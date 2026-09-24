@@ -1,1 +1,421 @@
-% chapters/ch2-intro-sec1.tex -- unit not yet transcribed
+% chapters/ch2-intro-sec1.tex -- Introduction; 1. The Dynamical Equations, 1.1-1.4 (PDF 93-110)
+\unnumberedsection{Introduction}\label{ch2:sec:intro}
+
+Model rocketeers have been familiar with the concept of aerodynamic stability
+for quite some time. As early as 1958 G. Harry Stine had published simplified
+treatments of aerodynamic stability as it pertains to model rocket design, in
+which the hobbyist was first made aware of the existence of a center of
+pressure (\CP) and of the all-important relationship between it and the model's
+center of gravity (\CG). In these early treatments the center of pressure was
+approximated by the center of lateral area, and for the next eight years the
+``cardboard cutout'' method remained the standard model builder's technique for
+estimating the location of the \CP
+
+The next major advance in the field came in 1966 at the Eighth National
+Association of Rocketry Annual Meet, where James Barrowman of the National
+Aeronautics and Space Administration's Sounding Rocket Branch unveiled an
+algebraic method based on the theory of potential flow capable of determining
+the center of pressure of a model rocket flying subsonically and at small
+angles of attack to a high order of accuracy. Barrowman showed that the actual
+\CP{} of a model rocket lies some distance aft of the location predicted by the
+cutout method, and that therefore model rocketeers had been designing their
+vehicles too conservatively.
+
+All consideration of model rocket stability had thus far been confined
+exclusively to its static manifestations, with the nature of the \CP-\CG{}
+relationship being used to determine whether a rocket, once deflected from
+facing directly into the relative airstream, would experience a moment tending
+to return it to the undeflected state (in which case it would be considered
+stable) or one tending to further deflect it (in which case it would be
+considered unstable). Little attention had been paid to the details of the
+process by which a stable rocket, once disturbed in its flight, restores itself
+to alignment with its intended flight path, or to the process by which an
+unstable rocket goes head over heels (unless, strangely enough, it is spinning
+rapidly enough about its centerline). The \emph{statics} of stability had been
+treated in admirable detail, but its \emph{dynamics} remained virtually
+ignored.
+
+This is not to say that our hobby had had \emph{no} exposure to stability
+considered in a dynamic context. Luther W. Gurkin of the National Aeronautics
+and Space Administration's Wallops Station had presented an excellent short
+treatment of rocket dynamics to the contestants at the Sixth National
+Association of Rocketry Annual Meet in 1964. Although copies of Gurkin's
+``Basic Missile Aerodynamic Stability'' were distributed to a number of
+interested persons at the meet, however, little was done to apply his results
+specifically to model rockets for nearly four years. Our vehicles continued to
+be subject to puzzling anomalies of behavior that could not be satisfactorily
+explained by considerations of static stability alone. Sometimes they
+``weathercocked''---flew directly into the prevailing wind at launch. In other
+cases they would mysteriously tip to some random orientation at launch and
+subsequently fly straight and true. Some models would oscillate excessively on
+the way up; others hardly at all, and still others would experience a sort of
+``semi-instability'' in which the nose circled violently about the intended
+axis of flight.
+
+This writer began to investigate the problem of dynamic stability early in
+1968, working from a general consideration of the dynamical equations governing
+the rotational motions of a streamlined projectile about its center of gravity
+during free flight. Although the mathematical details of such an approach are
+sometimes formidable, I felt that the greatest amount of information could only
+be obtained from the most general analysis. In this section I am going to
+endeavor to present the results of this analysis and to apply them to model
+rockets by the use of the Barrowman equations, concluding with some suggestions
+which should help the model rocketeer formulate designs which will both fly
+stably and exhibit favorable dynamic behavior.
+
+The dynamical equations describing the behavior we are interested in are
+necessarily of a type called \emph{differential} equations, and as such require
+the techniques of calculus for their solution. I want to emphasize as strongly
+as I can, however, that it is \emph{not necessary} that the reader understand
+calculus in order to follow the presentation. To the engineer, calculus is
+fundamentally a tool that enables him to obtain \emph{algebraic} equations
+describing the behavior of the system he is investigating. Care has therefore
+been taken to emphasize the \emph{algebraic results} of calculus-dependent
+derivations, with the calculus operations being considered as formulae for
+altering differential equations to algebraic equations. No reader who has had
+his second year of high school algebra, and perhaps some exposure to analytic
+geometry, should have any difficulty in understanding the text.
+
+As the exact forms of the equations governing the rotational motions of
+projectiles subject to aerodynamic moments are quite complex and introduce
+fundamental mathematical barriers to our obtaining physical solutions, I have
+made a number of approximations in order to cast the equations into a more
+readily soluble form. Approximations of the kind made here are quite common in
+the solution of the differential equations encountered in all branches of
+mathematical physics. Called \emph{linearizations}, they involve physical
+and/or geometrical reasoning by which the investigator can neglect or modify
+certain of the characteristics of his mathematics in ways not immediately
+determinable or obvious from the mathematics itself. I have taken care to
+identify each such approximation and to give its physical justification in
+order to keep the treatment as basic as possible.
+
+Certain portions of this analysis parallel Luther Gurkin's ``Basic Missile
+Aerodynamic Stability'', while others use information contained in James
+Barrowman's ``Calculating the Center of Pressure of a Rocket'', a National
+Aeronautics and Space Administration Educational Services Office pamphlet
+embodying the algebraic results of his analysis. In order to facilitate
+correlation of this treatment with theirs, appropriate references have been
+included.
+
+\section{The Dynamical Equations}\label{ch2:sec:1}
+
+\subsection{Euler's Angles}\label{ch2:sec:1.1}
+
+Suppose we have a rocket which has been rotated about some set of mutually
+perpendicular axes fixed in space: A, B, and C. We can speak of this rotational
+displacement in a quantitative way if we consider a second set of axes, D, E,
+and F, to have been fixed in the \emph{rocket}, with origin at the rocket's
+\CG, and with directions coincident with A,B, and C before the rotation began,
+and to have \emph{remained} fixed in the rocket as it rotated. We can always
+uniquely determine the final orientation of the rocket if we agree to abide by
+the following rule: that, in undergoing any given rotation, the rocket first
+\emph{yaws} through an angle $\alpha_D$ about axis D; then \emph{pitches}
+through an angle $\alpha_E$ about axis E; and finally \emph{rolls} through an
+angle $\alpha_F$ about axis F. This process is illustrated in
+Figure~\ref{ch2:fig:1}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig01.png}
+  \caption{A set of Euler's angles for specifying the rotational position of a
+  model rocket. $\alpha_D$ is the angle of \emph{yaw}, $\alpha_E$ is the angle
+  of \emph{pitch}, and $\alpha_F$ is the angle of \emph{roll}. The origin of
+  the coordinate system is taken as the center of gravity of the rocket.}
+  \label{ch2:fig:1}
+\end{figure}
+
+The \emph{body axes} D,E, and F first rotate about D through angle $\alpha_D$.
+Throughout this first rotation D coincides with axis A of the \emph{space axes}
+and E and F remain in the plane defined by B and C. At its completion axis F
+coincides with the dashed line \emph{Of} and axis E with \emph{Oe}. Next the
+body axes rotate about the \emph{new position} of E (that is, about \emph{Oe})
+through an angle $\alpha_E$. This rotation occurs in the plane of A and
+\emph{Of}, and at its conclusion axis F is in its final position as shown and
+axis D lies along line \emph{Od}. E, of course, is still along \emph{Oe}.
+Finally the body axes execute the roll through angle $\alpha_F$ about F, in the
+plane defined by \emph{Oe} and \emph{Od}, bringing all the axes into their
+final positions.
+
+It is important that this order of rotations be observed; if the order in which
+the yaw, pitch, and roll occur is changed the final position of the rocket will
+be different. A mathematician would say that angular displacements, or
+rotations, are \emph{not vector quantities} because, although they specify both
+a magnitude and a direction, they do not \emph{commute in addition}. The three
+``locating angles'' $\alpha_D$, $\alpha_E$, and $\alpha_F$ for specifying the
+rotational displacement of a solid body are called a \emph{set of Euler's
+angles} after their discoverer, the Swiss mathematician and physicist Leonhard
+Euler (1707--1783). You can see that if for any reason we wish to postulate an
+\emph{intermediate} set of axes which will perform some, but not all, of the
+movements of the rocket, we can find the rocket's final position by determining
+\emph{first} the position of the intermediate axes with respect to the space
+axes, and \emph{then} the position of the body axes with respect to the
+intermediate axes. At this point such a procedure seems a meaningless
+complication, but it will be very useful later on.
+
+\subsection{Angular Velocity}\label{ch2:sec:1.2}
+
+If you imagine the Euler's angles of a certain rotation becoming \emph{very
+small}, so that the rocket is barely turned from its original position, you may
+notice a curious and very useful fact: the order of the angular displacements
+is no longer of such great importance. If, when the angles were large, the
+rocket was considered to first pitch, then yaw, and finally roll or to perform
+the rotations in \emph{any} order other than the prescribed one of yaw, pitch,
+roll, we obtained a different final orientation in each case. Now, however, the
+effect of such alterations in the order of rotations is very slight; nearly the
+same result is obtained no matter what the order in which the rotations occur.
+If the rotations are allowed to become \emph{infinitesimally} small, so that
+they are, in the terminology of calculus, \emph{differential quantities}, the
+equality becomes exact. Thus, differential rotations \emph{are} vector
+quantities; they possess both a magnitude (though slight, to be sure) and a
+direction, and they \emph{do} commute in addition. Differentials are denoted by
+a lower-case letter $d$ in front of the quantity in question; differential
+angular displacements are thus $d\alpha_D$, $d\alpha_E$, and $d\alpha_F$.
+
+Now suppose the rocket is turning continuously, so that its Euler's angles keep
+changing as time goes on. This can be represented mathematically by stating
+that, in every \emph{differential element} of time $dt$, the rocket experiences
+differential angular displacements $d\alpha_D$, $d\alpha_E$, and $d\alpha_F$.
+We then form the fractions
+\begin{equation}\label{ch2:eq:1}
+\begin{split}
+\omega_D &= \frac{d\alpha_D}{dt}\\
+\omega_E &= \frac{d\alpha_E}{dt}\\
+\omega_F &= \frac{d\alpha_F}{dt}
+\end{split}
+\end{equation}
+and define
+\begin{itemize}[nosep,leftmargin=*,label={}]
+  \item $\omega_D \equiv$ angular velocity about D, or D-component of angular
+  velocity
+  \item $\omega_E \equiv$ angular velocity about E, or E-component of angular
+  velocity
+  \item $\omega_F \equiv$ angular velocity about F, or F-component of angular
+  velocity
+\end{itemize}
+Angular velocity is called the \emph{derivative with respect to time} of
+angular displacement, or the \emph{time rate of change} of angular
+displacement. Angular velocities are vector quantities: they have both
+magnitude and sign, they do commute in addition, and all vector operations such
+as cross product, dot product, and coordinate transformation apply to them.
+Specifically, we represent them in a so-called \emph{right-handed} coordinate
+system as \emph{positive} about a given axis when they cause a rotation such
+that a screw with right-handed threads would advance along that axis in the
+positive direction, \emph{negative} when such a progression would be in the
+negative direction. A right-handed system itself, such as our A,B,C axis set,
+is established by the requirement that the right-handed screw turned about its
+axis from A toward B advance positively along C. This convention is illustrated
+in Figure~\ref{ch2:fig:2}, while Figure~\ref{ch2:fig:3} shows a rocket
+undergoing a rotation in which all components of angular velocity are positive.
+An angular velocity is conveniently represented by an arrow along the axis
+about which it occurs, of direction determined by the sign of the component,
+and of length proportional to its magnitude. This allows all the common vector
+operations to be performed. Figure~\ref{ch2:fig:4} shows this convention in
+operation.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig02.png}
+  \caption{Definition of a right-handed coordinate system. Turning a screw with
+  right-hand threads as if axis A were being turned toward axis B causes the
+  screw to advance positively along axis C.}
+  \label{ch2:fig:2}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig03.png}
+  \caption{Positive components of angular velocity. $\omega_D$ is a positive
+  \emph{yaw rate}, $\omega_E$ is a positive \emph{pitch rate}, and $\omega_F$
+  is a positive \emph{roll rate}.}
+  \label{ch2:fig:3}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig04.png}
+  \caption{Vector representation of positive angular velocity components.
+  Compare with Figures~\ref{ch2:fig:2} and~\ref{ch2:fig:3} to see how this
+  representation is suggested by the direction of advance of a right-handed
+  screw.}
+  \label{ch2:fig:4}
+\end{figure}
+
+It is now necessary to go back and pick up a few loose ends in order to
+introduce some concepts which will be useful later on. First, there is the
+matter of defining positive and negative rotations; this must be done to obtain
+physically meaningful results from any investigation of rocket motion even
+though angular displacements do not have all the properties required of
+vectors. This is accomplished directly by the analogy of the right-handed screw
+through replacing the ``turning direction'' of the screw with the angular
+displacement. Secondly, the derivative relationship of angular velocity to
+angular displacement needs a little more explanation. While physical reasoning
+using differential quantities leads directly to the general form of
+equations~\eqref{ch2:eq:1}, this technique is not very useful when the question
+is: ``given the angular displacement as a function of time (that is, in an
+analytical formula), compute the angular velocity''. In this case the relation
+\begin{equation*}
+\omega = \frac{d\alpha}{dt}
+\end{equation*}
+is taken to mean: ``given $\alpha(t)$ (the meaning of this notation is
+``$\alpha$ as a function of time'' and it is read ``$\alpha$ of $t$''), apply a
+known rule, or formula, for \emph{differentiating it} with respect to time and
+obtain $\omega(t)$''. The expression, or formula, for $\alpha(t)$ is subject to
+certain restrictions for this method to work properly, but these need not
+concern you in anything discussed here. I am going to \emph{list the formulae}
+for the derivatives needed in this treatment wherever they appear, so that it
+will not be necessary to know them in order to follow the discussion.
+
+\subsection{Applied Moments, Angular Accelerations, and Moment of Inertia}\label{ch2:sec:1.3}
+
+Moment, or torque, is to rotational motion as force is to linear motion. It is
+the cause of all changes in the state of the rotational motion of a physical
+body. The simplest kind of relation between an applied moment and the resulting
+angular motion is identical in form to Newton's second law of motion for
+translational displacement: $\vec{F} = m\vec{a}$. To see this consider a
+flywheel, initially at rest, mounted in an axle held in frictionless bearings.
+At some time arbitrarily designated as $t = 0$ we begin to apply a constant
+moment about the shaft. An angular velocity will then arise which starts from
+zero and increases linearly (i.e., at a constant rate) with time. The rate is
+directly proportional to the applied moment and inversely proportional to a
+property of the mass distribution in the wheel called its \emph{moment of
+inertia} about its axis of radial symmetry. The relationship between an applied
+moment and the resulting \emph{angular acceleration} is written
+\begin{equation}\label{ch2:eq:2}
+M = I\gamma
+\end{equation}
+where
+\begin{itemize}[nosep,leftmargin=*,label={}]
+  \item $M$ = applied moment
+  \item $I$ = moment of inertia
+  \item $\gamma$ = angular acceleration
+\end{itemize}
+Note that the angular acceleration $\gamma$ is the time rate of change of the
+angular velocity $\omega$, just as $\omega$ is the time rate of change of the
+angular displacement $\alpha$. This sequence of derivative relationships is
+written
+\begin{equation}\label{ch2:eq:3}
+\begin{split}
+\gamma &= \frac{d\omega}{dt}\\
+&= \frac{d}{dt}\left(\frac{d\alpha}{dt}\right)\\
+&= \frac{d^{2}\alpha}{dt^{2}}
+\end{split}
+\end{equation}
+where the expression $d^{2}\alpha/dt^{2}$ is read, ``the second derivative of
+$\alpha$ with respect to $t$''. From a practical standpoint it means that the
+rule for differentiating $\alpha(t)$ has been applied twice in succession in
+order to obtain $\gamma(t)$. Thus $\gamma$, $\omega$, and $\alpha$ are all
+related by derivatives with respect to time, a property of great value to
+analysis. In the case of a constant applied moment, for instance, the angular
+acceleration is given by
+\begin{equation*}
+\gamma = \frac{M}{I}
+\end{equation*}
+while any mathematician could tell you that the angular velocity is
+\begin{equation*}
+\omega = \frac{M}{I}\,t
+\end{equation*}
+and the angular displacement after a time $t$ is
+\begin{equation*}
+\alpha = \frac{M}{2I}\,t^{2}
+\end{equation*}
+These relations are illustrated in Figure~\ref{ch2:fig:5}. Note also that both
+moment and angular acceleration are vectors, while moment of inertia, like
+mass, is a scalar. Moment of inertia gets its name not from the fact that an
+object exerts an equal and opposite moment on the cause of its angular
+acceleration (although it does), but from the fact that it is, mathematically
+speaking, the ``second moment'' of mass about a given axis, a term arising from
+the calculus formula for $I$. This analysis will not present the \emph{integral
+form} that must be used to calculate $I$ for the most general case, but the
+results for a few particular objects will appear later in the treatment.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig05.png}
+  \caption{Angular acceleration of a flywheel. At time $t = 0$ a constant
+  moment $M$ is applied to a flywheel whose moment of inertia about the axis is
+  $I$, producing an angular acceleration $\gamma = M/I$.}
+  \label{ch2:fig:5}
+\end{figure}
+
+\subsection{Euler's Dynamical Equations}\label{ch2:sec:1.4}
+
+The general three-dimensional angular motion of rigid bodies in response to
+general applied moments is far more complicated than the simple flywheel
+example given above. Their derivation is of no interest to model rocketeers,
+and I have therefore omitted it entirely from this presentation. The results of
+interest to us are the dynamical equations for a body which has sufficient
+symmetry for the directions of the so-called \emph{principal axes} to be
+geometrically obvious, and which is free to rotate about its center of mass in
+any direction. These equations, for a body with principal body axes D,E,F,
+rotating with respect to axes A,B,C fixed in space, are
+\begin{equation}\label{ch2:eq:4}
+\begin{split}
+M_D &= I_D\frac{d\omega_D}{dt} - (I_E - I_F)\,\omega_E\omega_F\\
+M_E &= I_E\frac{d\omega_E}{dt} - (I_F - I_D)\,\omega_F\omega_D\\
+M_F &= I_F\frac{d\omega_F}{dt} - (I_D - I_E)\,\omega_D\omega_E
+\end{split}
+\end{equation}
+where $M_D$, $M_E$, and $M_F$ are moments about D,E, and F impressed by
+external agencies and $I_D$, $I_E$, and $I_F$ are the moments of inertia taken
+about axes D,E, and F respectively. These equations, also due to Euler, were a
+landmark in the history of classical dynamics and are named Euler's dynamical
+equations in his honor. For bodies having trigonal or greater mass symmetry
+about the longitudinal axis (this category includes most rockets) we have
+\begin{align*}
+I_D = I_E &\equiv I_L\\
+I_F &\equiv I_R
+\end{align*}
+and the equations reduce to
+\begin{equation}\label{ch2:eq:5}
+\begin{split}
+M_D &= I_L\frac{d\omega_D}{dt} - (I_L - I_R)\,\omega_E\omega_F\\
+M_E &= I_L\frac{d\omega_E}{dt} - (I_R - I_L)\,\omega_F\omega_D\\
+M_F &= I_R\frac{d\omega_F}{dt}
+\end{split}
+\end{equation}
+It will become clear in a little while that these forms of the Euler equations
+are a bit inconvenient to use. It will be preferable to construct an
+intermediate system of axes X, Y, and Z which follow the rocket in yaw and
+pitch, but do not roll. Thus, Z always coincides with F but X and Y do not
+coincide with D and E unless $\alpha_F = 0$. Therefore,
+\begin{align*}
+\alpha_X &= \alpha_D\\
+\alpha_Y &= \alpha_E\\
+\alpha_Z &= 0 \ne \alpha_F
+\end{align*}
+This set of axes is shown in Figure~\ref{ch2:fig:6}. Since the rocket is
+symmetrical about Z, the intermediate axes remain principal regardless of the
+roll angle $\alpha_F$. Let the angular velocity components of the intermediate
+axes be denoted by $\Omega_X$, $\Omega_Y$, and $\Omega_Z$. Then we have
+\begin{align*}
+\Omega_X &= \omega_D\\
+\Omega_Y &= \omega_E\\
+\Omega_Z &= 0 \ne \omega_F
+\end{align*}
+Since the Z axis always coincides with the F axis, the notation can be
+simplified to include only three coordinate variables by writing
+\begin{equation*}
+\omega_Z \equiv \omega_F
+\end{equation*}
+but we must be careful not to confuse $\omega_Z$ (the roll rate of the rocket)
+with $\Omega_Z$ (the roll rate of the intermediate coordinates, which is kept
+zero). The dynamical equations now become, for a body with trigonal or greater
+mass symmetry about Z,
+\begin{equation}\label{ch2:eq:6}
+\begin{split}
+M_X &= I_L\frac{d\Omega_X}{dt} + I_R\,\Omega_Y\omega_Z\\
+M_Y &= I_L\frac{d\Omega_Y}{dt} - I_R\,\Omega_X\omega_Z\\
+M_Z &= I_R\frac{d\omega_Z}{dt}
+\end{split}
+\end{equation}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig06.png}
+  \caption{Space axes, intermediate axes, and body axes. The space axes (A,B,C)
+  are rotationally fixed with respect to inertial space. The body axes (D,E,F)
+  are fixed in the airframe of the rocket and follow it in yaw, pitch, and
+  roll, while the intermediate axes (X,Y,Z) follow the rocket in yaw and pitch
+  but maintain a zero roll angle.}
+  \label{ch2:fig:6}
+\end{figure}

@@ -1,1 +1,523 @@
-% chapters/ch2-sec6.tex -- unit not yet transcribed
+% chapters/ch2-sec6.tex -- 6. Model Rocket Design; 6.1-6.4 (PDF 264-288)
+\section{Model Rocket Design}\label{ch2:sec:6}
+
+I have often remarked during the foregoing presentations that the true
+purpose and real value of all the mathematical analyses to which we have
+turned our attention in this volume lies in the fact that they enable the
+formulation of rational rules for the \emph{design} of model rockets. We have
+now progressed sufficiently far in our analytical considerations of the
+dynamic behavior of model rockets that we are prepared to discuss the subject
+of model rocket design insofar as it is influenced by dynamical
+considerations. To ``design'' a rocket, from the standpoint of dynamics, is to
+adjust its shape and mass distribution so as to produce values of the dynamic
+parameters which give rise to favorable characteristics in its dynamic
+response. ``Favorable characteristics,'' in turn, mean that:
+\begin{enumerate}[label=(\alph*)]
+  \item The rocket is not easily disturbed, or deflected from its intended
+  direction of flight. For a given disturbing influence, the angle through
+  which it rotates is small.
+  \item The rocket soon returns to a straight and true flight path once the
+  disturbance has passed, and does so in an oscillatory fashion so that the
+  effect of the disturbance is evenly distributed about the intended flight
+  axis.
+\end{enumerate}
+
+\subsection{Representative Parameters}\label{ch2:sec:6.1}
+
+The solutions to the dynamical equations given in Section~\ref{ch2:sec:3}
+predict that favorable dynamic behavior in various particular situations will
+be associated with certain ranges of values of the dynamic parameters or
+combinations thereof. As it happens, however, the dynamic parameters of a
+model rocket cannot be varied independently of one another. Even if they
+could, it turns out that relations between the parameters best for one
+response are not necessarily best (or even acceptable) with respect to other
+types of disturbances. The designer of model rockets thus finds himself faced
+with the necessity to make certain compromises---``tradeoffs'', they are
+called by professional engineers---in order to arrive at a configuration
+which, on the whole, has favorable performance. The situation is further
+complicated by the fact that characteristics which are best for dynamics may
+not always be best for other aspects of rocket performance---altitude
+capability, for example. In order to guide himself to a rationale by which
+design compromises can be made the rocketeer needs two classes of
+information: first, what values of the parameters characterize a typical, or
+representative model; and second, what is the effect of varying the
+configuration of the model upon the values of its parameters?
+
+In order to supply an answer to the first question the typical model rocket
+configuration DTV-1, illustrated in Figure~\ref{ch2:fig:48}, was constructed
+and tested according to the methods of Section~\ref{ch2:sec:6}\ednote{The
+1973 text reads ``Section 6'', which is the present section. The experimental
+methods referred to are those of Section~\ref{ch2:sec:5}.} in the
+low-turbulence wind tunnel of the Massachusetts Institute of Technology's
+Aeronautical Projects Laboratory. DTV-1 was found to have the following
+dynamic parameters:
+\begin{itemize}[nosep,leftmargin=2.5em,label={}]
+  \item $C_1 = 0.65V^{2}$ dyne-centimeters, where $V$ is given in centimeters
+  per second
+  \item $C_2 = 10.5V$ dyne-centimeter-seconds
+  \item $I_L = 9100$ gram-centimeters$^{2}$
+  \item $I_R = 178$ gram-centimeters$^{2}$
+\end{itemize}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig48.png}
+  \caption{Dynamic test rocket DTV-1. All dimensions are given in centimeters,
+  with the exception of the engine casing specifications. These are given in
+  millimeters in accordance with international convention.}
+  \label{ch2:fig:48}
+\end{figure}
+
+\begin{plate}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth,height=0.34\textheight,keepaspectratio]{figures/ch2/plate01a.jpg}\\[2pt]
+  \includegraphics[width=0.7\textwidth,height=0.34\textheight,keepaspectratio]{figures/ch2/plate01b.jpg}
+  \caption{DTV-1 undergoing wind tunnel test to determine its damping moment
+  coefficient. The model is mounted on a moment balance similar to the one
+  pictured in Figure~\ref{ch2:fig:44}, but without the pulley wheel assembly
+  and equipped with a photoelectric angle indicating device. In frame (a) the
+  model has just been released from the angle $\alpha_0$. In (b) and (c) it is
+  accelerating in pitch up. (d): The model passes through zero angle of attack
+  at its maximum pitch rate, still pitching up but slowing in (e) and (f).
+  (g): The rocket is at its maximum pitch-up deflection, $\alpha_1$. (h), (i):
+  The model begins to pitch downward again. (j), (k), (l): The rocket passes
+  through zero again on its way down to complete its first full cycle of
+  oscillation.}
+  \label{ch2:plate:1}
+\end{plate}
+
+The rocket's roll rate during a number of additional experiments in which its
+behavior under roll-coupled resonance was investigated was an independent
+variable determined by the speed of an electric motor mounted on a balance
+system that was essentially a more refined form of that discussed in
+Section~\ref{ch2:sec:5.3}. It will be seen from the above figures that the
+following quantities are also characteristic of the rocket:
+\begin{align*}
+\omega_n &= .00845V \\
+\zeta &= .0682 \\
+\frac{I_R\omega_Z}{I_L} &= .0195\,\omega_Z \\
+\omega_{nc} &= .00838V \\
+\zeta_c &= .0675
+\end{align*}
+where $V$, the airspeed, is given in centimeters per second and $\omega_Z$ in
+radians per second. Now it is probable that DTV-1 is not precisely in the
+center of the average range of model characteristics; it is rather on the
+heavy side and has a static stability margin of three calibers. Nevertheless,
+it is certainly representative enough to allow the following general
+statements to be made:
+\begin{enumerate}[label=(\arabic*)]
+  \item In a model rocket of average design, the damping ratio tends to be
+  low---on the order of one tenth. Resonance, when it occurs, tends to be a
+  problem and will usually be caused by the development of a roll rate whose
+  value is close to the natural frequency. Overdamping, on the other hand, is
+  much less common and not usually to be feared.
+  \item The radial moment of inertia is very slight compared to the
+  longitudinal moment of inertia---on the order of a few percent. The roll
+  rate must be very rapid to produce appreciable gyroscopic moments.
+  Therefore, the angular frequencies and rate of decay of the response of an
+  average model rocket subjected to transient disturbances while spinning
+  about its longitudinal axis are very nearly equal to those that would
+  describe the behavior of the same rocket if it were not spinning at all,
+  unless the spin is very rapid. By ``very rapid'' I mean that the gyroscopic
+  precessional frequency $\dfrac{I_R\omega_Z}{I_L}$ is, say, 10\% or more of
+  the natural frequency. For DTV-1 during powered flight this would mean a
+  spin rate on the order of 100 radians (about 16 revolutions) per second.
+  \item As another consequence of the small radial moment of inertia, the
+  resonance condition for a given rocket is nearly the same when it is
+  rolling as when it is not; i.e., the natural frequency is nearly equal to
+  the \emph{coupled} natural frequency and the damping ratio is nearly equal
+  to the \emph{coupled} damping ratio. This is an advantage in that the
+  presence of roll does not appreciably increase the severity of the
+  resonance.
+\end{enumerate}
+
+\subsection{Effects of Varying the Parameters}\label{ch2:sec:6.2}
+
+Having roughly bracketed the ``average'' or ``representative'' dynamic
+parameters, we can start to investigate what happens when a rocket departs
+from the average range in various ways. We must remember, when doing this, to
+take into account factors affecting other aspects of the rocket's performance
+(such as its overall weight and drag) as well as those affecting its
+rigid-body dynamics.
+
+First, consider the effect of increasing the longitudinal moment of inertia
+of the rocket. This can be done by adding weight at points far fore and aft
+of the center of gravity, usually making the rocket longer as well as
+heavier. The damping ratio and natural frequency of oscillation will
+decrease, and the rocket will be more difficult to deflect from its intended
+path. If this is carried to extremes, however, the rocket will become so
+heavy that its altitude capabilities will be sharply reduced and it will
+experience catastrophic resonance at very low roll rates, resonance so severe
+that the model may behave as if it had insufficient static stability. The
+dramatic manner in which resonant amplitude ratio increases with decreasing
+damping ratio is shown in Figure~\ref{ch2:fig:49}. There is evidence that
+some model rockets have actually been caused to crash by excessive resonance
+at low roll rates early in the flight. Rocket A of Figure~\ref{ch2:fig:50} is
+an example of how a model designed with too great a longitudinal moment of
+inertia might look.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig49.png}
+  \caption{Variation of resonant amplitude ratio with damping ratio. A curve
+  of precisely the same form describes the variation of \emph{coupled}
+  resonant amplitude ratio with \emph{coupled} damping ratio.}
+  \label{ch2:fig:49}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig50.png}
+  \caption{Improperly designed model rockets resulting from extreme
+  variations in the relative values of the dynamic parameters.}
+  \label{ch2:fig:50}
+\end{figure}
+
+\emph{Decreasing} the longitudinal moment of inertia will increase both the
+damping ratio and the \emph{natural} frequency; the \emph{actual} angular
+frequency of oscillation will increase only up to a point, then begin to
+decrease towards zero as the damping ratio approaches 1.0. The resonance
+problem will disappear, but the rocket will be more easily deflected from
+alignment with the intended flight path. The slightest disturbance will be
+enough to start it wobbling, and although the oscillations will die away
+after only a few cycles the rocket will be disturbed so often that it will
+spend much of its upward flight at a considerable angle of attack. Its drag
+will thus be increased and its altitude lowered---particularly since a low
+longitudinal moment of inertia usually means a low weight and the rocket may
+already be \emph{ballistically} off-optimum\footnote{There is an optimum
+weight for any rocket, which gives the greatest altitude. See George
+Caporaso's chapter on trajectory analysis in this volume for an
+explanation.}. Continued reduction of $I_L$ causes overdamping, and the model
+behaves as if it had an insufficient static stability margin. An example of
+this extreme is rocket B of Figure~\ref{ch2:fig:50}. Between 1962 and 1967
+there was a marked trend toward this kind of design in the United States.
+Modelers at that time believed that the lighter a rocket was, the higher it
+would go, and so constructed all their altitude competition designs to be
+very light and stubby, with huge fins. The result was often excessive
+damping, sometimes even overdamping, causing severe launcher tipoff, erratic
+flight paths, and many a pile of wreckage. Thanks to Malewicki and
+Caporaso---who developed the equations of model rocket ballistics---and to
+Barrowman---who demonstrated analytically the fin areas actually needed by
+model rockets---and to much sad experience and observation, this fetish is
+largely a thing of the past.
+
+Suppose we now consider the effect of increasing the corrective moment
+coefficient. If this is done by increasing the static stability margin---by
+increasing the area of the fins and/or moving them farther toward the rear of
+the rocket---the frequency at which the rocket oscillates when disturbed will
+increase. Since altering the fin geometry in this way also increases the
+damping moment coefficient, the damping \emph{ratio} will not necessarily
+decrease; it may even \emph{increase} if the practice is carried to extremes.
+Thus, the \emph{time} required for the disturbed rocket to return to proper
+alignment with the intended flight direction becomes shorter---and, because
+the longitudinal moment of inertia has not been appreciably changed, the
+rocket is no easier to disturb than it was before. On the face of it, the
+modification appears to be a favorable one.
+
+Unfortunately, though, there are also \emph{disturbances} whose magnitude is
+directly proportional to the static stability margin and normal force
+coefficient of the model, notably the step disturbances due to horizontal
+winds. If the value of the static stability margin is made too great the
+rocket will therefore be subject to excessive ``weathercocking'', or turning
+into the wind during flight. This impairs altitude performance, makes
+recovery difficult, and can be dangerous. Most designers soon learn to steer
+clear of configurations like that of illustration C in
+Figure~\ref{ch2:fig:50}.
+
+There is, of course, a better way to obtain a large corrective moment
+coefficient. The value of $C_1$, you will recall, increases as the square of
+the airspeed. This does \emph{not} necessarily indicate that the ``way to
+go'' in model rocket design is to try for the highest possible velocities
+throughout the flight. While high burnout velocity generally means higher
+altitude, excessive accelerations achieved at the expense of burnout altitude
+cause excessive aerodynamic drag which can actually cause the altitude
+achieved to be reduced. What it does mean is that you should observe a
+reasonable minimum in the velocity at which your rocket leaves its launcher.
+Model rocket engines with end-burning grains are designed with a small port
+at the after end of the grain, just inside the nozzle. The purpose of this,
+besides providing a place to pack the igniter, is to provide a high initial
+thrust to achieve a substantial airspeed---and thus a substantial corrective
+moment---before the guiding influence of the launcher is left behind. You can
+best take advantage of this initial thrust peak by providing a long enough
+launching device and avoiding excessive liftoff weight, thereby insuring that
+your rocket leaves its launcher at a sufficient velocity to be stable. 9
+meters per second should be considered a minimum safe launch speed, and 12
+meters per second, if possible, would be advisable. If you are using a
+core-burning engine, of course, velocities on this order should never be a
+problem.
+
+\emph{Reducing} the corrective moment coefficient by reducing the static
+stability margin will cause the natural frequency to decrease. As the center
+of pressure moves forward and approaches the center of gravity, the damping
+ratio will increase, lowering the actual frequency of oscillation until
+overdamping occurs. Moving the center of pressure still further forward will
+result in neutral, and finally negative, static stability. Only the novice
+designer is ever caught making an error of this kind, and when he does the
+result is spectacular. ``Going ape'' is the colorful and appropriate phrase
+applied by the model rocketeer to the behavior of a statically-unstable
+rocket such as the one appearing in illustration D of
+Figure~\ref{ch2:fig:50}.
+
+The damping moment coefficient may be increased by the addition of fin area
+or the movement of fins to a position farther from the rocket's \CG, in the
+same way that the static stability margin is increased. Adding large amounts
+of fin area both forward and aft of the center of gravity, however, and the
+use of excessive fin area in general, will tend to increase the damping
+moment coefficient without a commensurate increase in corrective moment
+coefficient. Dynamically, up to a point (the point at which the damping ratio
+becomes .7071) this is good. Ballistically, however, such large surfaces are
+almost always associated with a decrease in altitude because of excessive
+drag. Working at such high damping ratios is not a good idea in general
+anyway, because a slight change of design or modification to a rocket in
+service or under construction could well send it ``over the line'' into an
+overdamped configuration. Rocket E of Figure~\ref{ch2:fig:50} is an example
+of what the designer may wind up with if he is too liberal with his sheet
+balsa.
+
+The damping moment coefficient, insofar as it is dependent on fin geometry,
+may be \emph{reduced} by making certain that all fin area is aft of the
+center of gravity but not greatly distant from it. Since placing the fins
+relatively near the center of gravity tends to reduce the corrective moment
+coefficient also, this procedure may not always reduce the damping
+\emph{ratio} and may even increase it. Reducing the damping ratio to very
+small values is not a good idea in any case, since under these conditions the
+oscillations of a deflected rocket persist for a long time and resonance
+becomes destructively severe. Making the damping moment coefficient too small
+thus has the same effect as making the longitudinal moment of inertia too
+large. The rocket of illustration F in Figure~\ref{ch2:fig:50} has had its
+damping ratio made too small by placing the fins insufficiently far from the
+center of gravity. While the designer has apparently been able to keep the
+static stability margin adequate, his rocket will not be a good performer.
+Much of its trajectory will be spent oscillating in response to various
+disturbances even if it does not happen to develop a resonant roll rate---in
+which case its useful operating life will be short indeed.
+
+The limitations of reasonable design and the standardization of component
+proportions arising from mass-produced model rocket supplies do not really
+leave much leeway for regulating the radial moment of inertia independently
+of the longitudinal moment of inertia. Assuming that $I_R$ could be
+substantially reduced, the effect of such a reduction would be negligible
+since $I_R$ is so small to begin with. The radial moment of inertia could
+conceivably be greatly increased by placing weighted pods, or ``bobs'' at the
+tips of the fins, but there would be no point in doing so. No advantage would
+be gained if the rocket were properly designed to begin with; in fact there
+would be some unfavorable consequences attendant upon such a modification.
+The rate of decay of the rocket's oscillations would be suppressed by
+gyroscopic moments if it were rolling, and its roll-induced resonance would
+be much more severe than its non-rolling resonant behavior.
+
+\subsection{Rolling Rockets}\label{ch2:sec:6.3}
+
+My last statements above were, of course, promulgated on the assumption of a
+statically-stable rocket. In cases of insufficient, neutral, or negative
+static stability it is necessary to induce a rapid spinning of the rocket
+about its centerline in order to generate the stability-like effect described
+in Section~\ref{ch2:sec:3.2.5}. The extent to which stability is effected by
+this artifice is dependent, it will be recalled, on the magnitude of the
+\emph{product} of $I_R$ and $\omega_Z$. It is thus desirable to have a rapid
+spin, a high radial moment of inertia, or both. Successful spin-stabilized
+rockets and projectiles tend to be short, squat, and heavy. It is this
+fundamental difference in the physical mechanism by which stable behavior is
+produced that accounts for the configurational differences between
+aerodynamic vehicles such as sounding rockets and objects such as artillery
+shells. Well-designed sounding rockets are long in relation to their
+diameters, while artillery shells are short. Why the difference? The reason,
+of course, is that the sounding rocket is aerodynamically stable while the
+artillery shell is not. It is an advantage to the shell to have a large
+diameter in relation to its length because this means a large radial moment
+of inertia, facilitating spin stabilization. The sounding rocket, on the
+other hand, performs best at a higher slenderness ratio since it relies on
+the corrective and damping characteristics due to its fins and on its high
+longitudinal moment of inertia for favorable dynamic response, not to mention
+the great advantage in altitude capability that goes with a more slender
+profile.
+
+Stabilization is not, however, the only motive for inducing spin in model
+rockets. It has been found that rolling models are less subject to
+``dispersion'' by horizontal winds and tipoff during launch and staging than
+those which are not, where by ``dispersion'' I mean the horizontal
+displacement of the rocket at the time of recovery system actuation. The roll
+rates used in dispersion-reduction are much lower than those used in roll
+stabilization, since the rockets to which they are applied are already
+statically stable; the inertial effect is generally slight and its only
+purpose is to induce just enough roll coupling to distribute the effects of
+disturbances in a radially symmetrical fashion about the intended axis of
+flight.
+
+A roll rate may be induced in a model rocket in a variety of ways. The major
+aerodynamic techniques in current use include ``spinnerons'' (that is, fin
+tabs), canted fins, and airfoiled fins as illustrated in
+Figure~\ref{ch2:fig:51}. Canted main propulsion or outrigger engines have
+also been used to ``spin up'' model rockets, and from time to time
+flywheel-like devices have appeared whereby a product $I_R\omega_Z$
+\emph{other} than that of the rocket airframe itself has been used to provide
+inertial coupling. The number and variety of roll-inducing techniques
+possible is so great, indeed, that it is impossible to write down any single
+analytical expression accounting for them all. In the particular case of spin
+produced by canting each fin of a rocket at some angle $\theta$ to the
+longitudinal axis, however, Barrowman analysis permits computation of the
+equilibrium roll rate in the form
+\begin{equation}\label{ch2:eq:115}
+\omega_Z = \frac{12\theta V A_r \bar{Y}_T k_r}
+  {s c_r k_d\left[(1+3\lambda)s^{2} + 4(1+2\lambda)s r_t + 6(1+\lambda)r_t^{2}\right]}
+\end{equation}
+where $k_r$, the roll forcing interference coefficient, is given by
+\begin{equation}\label{ch2:eq:116}
+\begin{split}
+k_r = \frac{1}{\pi^{2}}\Biggl[
+  &\frac{\pi^{2}}{4}\left(\frac{\tau+1}{\tau}\right)^{2}
+  + \frac{\pi}{\tau^{2}}\left(\frac{\tau+1}{\tau-1}\right)^{2}
+    \arcsin\left(\frac{\tau^{2}-1}{\tau^{2}+1}\right)
+  - \frac{2\pi}{\tau}\left(\frac{\tau+1}{\tau-1}\right)
+  + \frac{8}{(\tau-1)^{2}}\ln\left(\frac{\tau^{2}+1}{2\tau}\right) \\
+  &+ \left(\frac{\tau^{2}+1}{\tau(\tau-1)}\right)^{2}
+    \left(\arcsin\frac{\tau^{2}-1}{\tau^{2}+1}\right)^{2}
+  - \frac{4(\tau+1)}{\tau(\tau-1)}\arcsin\left(\frac{\tau^{2}-1}{\tau^{2}+1}\right)
+  \Biggr]
+\end{split}
+\end{equation}
+and $k_d$, the roll damping interference coefficient, is
+\begin{equation}\label{ch2:eq:117}
+k_d = 1 + \frac{\dfrac{\tau-\lambda}{\tau} - \dfrac{1-\lambda}{\tau-1}\ln\tau}
+  {\dfrac{(\tau+1)(\tau-\lambda)}{2} - \dfrac{(1-\lambda)(\tau^{3}-1)}{3(\tau-1)}}
+\end{equation}
+$\bar{Y}_t$ is given by equation~\eqref{ch2:eq:90}, $\lambda$ is the ratio
+$c_t/c_r$, and $\tau$ is the ratio $(s + r_t)/r_t$. The reader should refer
+back to Section~\ref{ch2:sec:4.1} for additional information concerning the
+notation used in equations~\eqref{ch2:eq:115} through~\eqref{ch2:eq:117}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig51.png}
+  \caption{Aerodynamic techniques used for inducing roll in model rockets.}
+  \label{ch2:fig:51}
+\end{figure}
+
+Given the ability to regulate the roll rate of his rocket, the designer will
+next want to know what roll rates are favorable to good performance. This
+question is generally answered by eliminating those ranges of roll rate which
+are \emph{deleterious} to good performance and stating that the ranges then
+remaining are acceptable. The roll rate that should be avoided at all costs
+is, of course, the roll-coupled resonant rate. In models where roll is
+produced by fin canting this is relatively easy to do, as both the resonant
+frequency and the roll rate are linear functions of airspeed. $\omega_Z$ can
+thus be kept as nearly zero as possible (the most common course of action),
+uniformly much lower than $\omega_{nc}$ (the technique adopted when
+dispersion-reduction is desired), or uniformly much higher than
+$\omega_{nc}$. This last technique is not recommended, as it results in large
+coupling moments, a high-drag configuration, and (often) tangling of the
+shrouds of parachute recovery systems. The selection of available relations
+between $\omega_Z$ and $\omega_{nc}$ in rockets whose roll rate is set by fin
+canting is illustrated in Figure~52.\ednote{The 1973 book contains no
+Figure~52; the figure was omitted from the original printing. The 2022
+correction pages supply it (``Roll Rates to Avoid \ldots''), to be placed on
+page 252 below Figure~\ref{ch2:fig:51}.} Perhaps you can now see the danger
+of resonance associated with too high a value of $I_L$: a very high
+longitudinal moment of inertia means a very low resonant frequency, and it is
+entirely possible that small fin cant angles arising from imperfections in
+construction will be just sufficient to produce the low spin rate needed for
+resonance.
+
+In cases where it is desired to stabilize a statically-unstable design by
+inducing roll, there is of course no resonance problem. The fin cant angles
+and spin rates required for roll stabilization are very high, though, and
+this means very poor altitude performance and a high probability of tangling
+the recovery system shrouds at ejection. The relative ease with which
+positive aerodynamic stability can be achieved by proper design procedures
+and the relatively poor performance of unstable rockets which require high
+roll rates for spin stabilization make it really inexcusable to use roll
+stabilization as the primary means of achieving a predictable flight path.
+Spin stabilized rockets are to be regarded as curiosities, in the final
+analysis suitable only for demonstration purposes.
+
+\subsection{Design Procedures and Criteria}\label{ch2:sec:6.4}
+
+With the results of all our investigations now lying ready to hand, it is
+possible to formulate a rational procedure permitting the modeler to design,
+with a high degree of confidence, a model that will behave both ballistically
+and dynamically in a favorable manner. Such a method, suitable for all
+general-purpose design and competition work, may be summarized as follows:
+
+\subsubsection{Design Definition; Center of Gravity and Moments of Inertia}\label{ch2:sec:6.4.1}
+
+Define, as nearly as possible, the purpose of the proposed model. Is it to
+be, for instance, used in altitude or payload competition, for photographic
+or sounding work, or some other ``mission''? Need it be staged? Should it be
+clustered? What must be the payload capacity, if any? What recovery system is
+to be used? The answers to questions such as these will roughly define the
+size and shape of the rocket's body and nose sections. A preliminary drawing
+can then be made showing the body and nose and all the components contained
+within them or of which they are comprised (engines, payload, bulkheads,
+etc.). A preliminary estimate of the \CG{} location and moments of inertia of
+the design thus far evolved should then be computed.
+
+\subsubsection{Static Stability Margin}\label{ch2:sec:6.4.2}
+
+Add a fin design to the drawing and compute the various normal force
+coefficients and \CP{} locations of the components and of the complete rocket
+by the Barrowman method. If the rocket is multistaged it will be necessary to
+perform the calculations for each configuration of stages in which the model
+is intended to fly. The \CP{} should lie between one and two calibers behind
+the \CG; if it is outside this range, try a new design. In contest or record
+work, where reduction of weathercocking is of paramount importance, many
+designers prefer to try for precisely one-caliber stability.
+
+\subsubsection{Damping Ratio}\label{ch2:sec:6.4.3}
+
+Using the information obtained thus far, compute the corrective moment
+coefficient and the damping moment coefficient according to the methods
+outlined in Section~\ref{ch2:sec:4}. From these and the moments of inertia
+compute the damping ratio and the coupled damping ratio. Check to insure that
+the coupled damping ratio is not less than 0.05 and that the decoupled
+damping ratio is not greater than 0.30. A too-low damping ratio can be cured
+by lightening the rocket and increasing its fin area; an excessively high one
+by adding weight to the nose and decreasing the fin area. While damping
+ratios up to 1.0 would be theoretically permissible, I have established an
+upper limit of 0.30 because it is my considered opinion that more heavily
+damped rockets are likely to be too light for good ballistic performance. The
+resonant deflection of the rocket's centerline from its intended flight path
+at a damping ratio of 0.3 is only 1.746 times the deflection a static
+disturbance would produce (see Figure~\ref{ch2:fig:49}). It should thus not
+really be necessary to use damping ratios higher than this value. In
+accepting a lower limit of 0.05, on the other hand, you will really be
+pushing the builder's art; the roll-coupled resonant deflection will be
+\emph{ten times} the static deflection due to a given disturbance. Assuming
+that a carefully-built model will incorporate unintentional asymmetries
+causing static deflections of no more than one-half of one degree, a damping
+ratio of 0.05 will permit such a model experiencing roll-coupled resonance to
+precess about its flight direction with a cone half-angle of five degrees.
+Clearly, this is about the most we can accept.
+
+\subsubsection{Roll Rate}\label{ch2:sec:6.4.4}
+
+Determine whether it is desirable to induce a roll rate in your vehicle for
+the reduction of dispersion and tipoff. Such a determination will be almost
+entirely a matter of your opinion as a designer, since the tradeoff between
+control of roll rate and control of static stability margin as a means of
+reducing dispersion is extremely subtle. The decisions of most designers seem
+to run in favor of roll rate control only in the case of multistaged models.
+If you decide to induce a roll rate by means of canted fins, compute the fin
+angle required for the linear velocity-dependence you desire, being careful
+to keep away from the resonant frequency. The analytical prediction of roll
+rates due to other means must await further advances in the state of our
+technology.
+
+\subsubsection{Construction and Testing}\label{ch2:sec:6.4.5}
+
+When the above steps are completed and the dynamic parameters of the proposed
+design have been found to be satisfactory, construction can be started. It
+would be desirable to measure the \CG{} location and moments of inertia at
+several stages during the construction, and to measure the dynamic parameters
+of the completed model before the first flight to check the accuracy of the
+estimates and calculations. Barring any major errors in these, the design
+determined by the above method will be sound.
+
+In practice, of course, a wide variation in design procedures will be found
+to be acceptable. The designer of a sport model need only be concerned with
+the static stability margin, while competition and research modelers will
+want to make full use of all the available analytical techniques in adjusting
+their designs for the greatest possible fulfillment of the missions for which
+they are designed. As our technology advances it may be expected that many
+designers will have recourse to parametric data generated by automatic
+computation as they apply ever more detailed design procedures to the
+challenging problems of model rocket optimization.

@@ -49,19 +49,19 @@
       ],
       "ch2-sec2": [
         111,
-        121
+        122
       ],
       "ch2-sec3a": [
         122,
-        148
+        149
       ],
       "ch2-sec3b": [
         149,
-        167
+        168
       ],
       "ch2-sec3c": [
         168,
-        192
+        193
       ],
       "ch2-sec3d": [
         193,
@@ -69,20 +69,23 @@
       ],
       "ch2-sec4": [
         214,
-        244
+        246
       ],
       "ch2-sec5": [
-        245,
-        262
+        246,
+        264
       ],
       "ch2-sec6": [
-        263,
+        264,
         288
       ],
       "ch2-refs": [
         289,
         289
       ]
+    },
+    "artwork_pages": {
+      "274": "Figure 50: 25 of the page's 37 OCR tokens are the hand-lettered panel sub-captions inside figures/ch2/fig50.png; the caption is transcribed"
     }
   },
   "ch3": {

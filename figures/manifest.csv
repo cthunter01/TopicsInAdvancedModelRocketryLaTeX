@@ -11,3 +11,56 @@ ch1-fig08,74,12.0,18.0,487.2,225.1,line,ch1-sec3,figures/ch1/fig08.png,auto
 ch1-fig09,76,12.0,18.0,350.0,242.8,line,ch1-sec3,figures/ch1/fig09.png,auto; x1 tightened by hand to exclude scanner specks right of the artwork
 ch1-fig10,79,12.0,18.0,494.4,440.0,line,ch1-sec3,figures/ch1/fig10.png,"hand: caption is on PDF 78, artwork on PDF 79 (MediaBox 506.4x713.76)"
 sup-ch1-fig02-1994,674,12.0,18.0,558.0,455.0,line,ch1-sec2a,figures/supplement/ch1-fig02-1994.png,"replacement Figure 2, Mandell 1994; hand: drawing with its equation row, caption below y=471 excluded, speck at x=565 excluded (MediaBox 612.48x792.48)"
+ch2-fig01,98,12.0,18.0,487.2,230.6,line,ch2-intro-sec1,figures/ch2/fig01.png,auto
+ch2-fig02,102,12.0,18.0,486.7,213.9,line,ch2-intro-sec1,figures/ch2/fig02.png,auto; upper figure of a page shared with Figure 3
+ch2-fig03,102,12.0,289.1,486.7,468.8,line,ch2-intro-sec1,figures/ch2/fig03.png,auto; lower figure of a page shared with Figure 2
+ch2-fig04,103,12.0,18.0,325.0,213.2,line,ch2-intro-sec1,figures/ch2/fig04.png,auto; x1 tightened by hand to exclude scanner specks right of the artwork
+ch2-fig05,107,12.0,18.0,220.0,220.4,line,ch2-intro-sec1,figures/ch2/fig05.png,auto; x1 tightened by hand to exclude a scanner speck right of the artwork; hand-lettered formulas below the drawing kept inside
+ch2-fig06,110,12.0,18.0,487.2,232.1,line,ch2-intro-sec1,figures/ch2/fig06.png,auto
+ch2-fig07,112,12.0,18.0,350.0,231.1,line,ch2-sec2,figures/ch2/fig07.png,auto; upper figure of a page shared with Figure 8; x1 tightened by hand
+ch2-fig08,112,78.0,272.0,340.0,464.9,line,ch2-sec2,figures/ch2/fig08.png,hand: lower figure of a page shared with Figure 7; y0 moved below the second line of the Figure 7 caption (seeder stopped its caption block after one line); x0 and x1 tightened to exclude scanner specks left of the axis label and right of the 150 tick
+ch2-fig09,115,12.0,18.0,315.0,415.3,line,ch2-sec2,figures/ch2/fig09.png,auto; both stacked panels in one crop; x1 tightened by hand to exclude a scanner speck
+ch2-fig10,128,12.0,18.0,340.0,397.6,line,ch2-sec3a,figures/ch2/fig10.png,auto; graph and rocket silhouettes in one crop; x1 tightened by hand to exclude a scanner speck
+ch2-fig11,130,12.0,18.0,487.2,218.9,line,ch2-sec3a,figures/ch2/fig11.png,auto
+ch2-fig12,135,12.0,18.0,330.0,210.4,line,ch2-sec3a,figures/ch2/fig12.png,auto; x1 tightened by hand to exclude a scanner speck
+ch2-fig13,138,12.0,18.0,350.0,207.0,line,ch2-sec3a,figures/ch2/fig13.png,hand: caption OCR read 'Figl.lre 13' so seeding missed it; box set by hand above the caption at y=210
+ch2-fig14,140,12.0,18.0,350.0,215.0,line,ch2-sec3a,figures/ch2/fig14.png,auto; upper figure of a page shared with Figure 15; x1 tightened by hand
+ch2-fig15,140,12.0,367.3,486.7,563.5,line,ch2-sec3a,figures/ch2/fig15.png,auto; lower figure of a page shared with Figure 14
+ch2-fig16,144,12.0,18.0,487.2,210.6,line,ch2-sec3a,figures/ch2/fig16.png,auto
+ch2-fig17,144,12.0,287.7,487.2,475.0,line,ch2-sec3a,figures/ch2/fig17.png,auto
+ch2-fig18,148,12.0,18.0,487.2,214.3,line,ch2-sec3a,figures/ch2/fig18.png,auto
+ch2-fig19,148,12.0,250.3,487.2,440.9,line,ch2-sec3a,figures/ch2/fig19.png,auto
+ch2-fig20,151,12.0,18.0,487.2,227.3,line,ch2-sec3b,figures/ch2/fig20.png,auto
+ch2-fig21,155,12.0,18.0,487.2,221.7,line,ch2-sec3b,figures/ch2/fig21.png,auto
+ch2-fig22,157,12.0,18.0,330.0,212.0,line,ch2-sec3b,figures/ch2/fig22.png,"auto; hand: x1 and y1 tightened to exclude a scanner speck at (350,213) below-right of the artwork (artwork ends x=306, y=207.4)"
+ch2-fig23,157,12.0,269.5,330.0,463.8,line,ch2-sec3b,figures/ch2/fig23.png,"auto; hand: x1 tightened to exclude a scanner speck at x=364 right of the artwork (artwork ends x=313); lower half of the Figure 22/23 sheet, in-figure formulas kept"
+ch2-fig24,166,12.0,18.0,487.2,221.0,line,ch2-sec3b,figures/ch2/fig24.png,auto
+ch2-fig25,166,12.0,257.5,487.2,453.8,line,ch2-sec3b,figures/ch2/fig25.png,auto
+ch2-fig26,188,12.0,18.0,345.0,384.2,line,ch2-sec3c,figures/ch2/fig26.png,auto; hand: x1 tightened to exclude a scanner speck at x=437 right of the artwork (artwork ends x=330); both stacked plots in one crop
+ch2-fig27,190,12.0,18.0,487.2,386.4,line,ch2-sec3c,figures/ch2/fig27.png,auto
+ch2-fig28,198,12.0,18.0,350.0,386.6,line,ch2-sec3d,figures/ch2/fig28.png,auto; x1 tightened by hand to exclude scanner specks right of the artwork
+ch2-fig29,201,12.0,18.0,330.0,383.3,line,ch2-sec3d,figures/ch2/fig29.png,auto; x1 tightened by hand to exclude scanner specks right of the artwork
+ch2-fig30,207,12.0,18.0,340.0,221.1,line,ch2-sec3d,figures/ch2/fig30.png,auto; upper half of page shared with fig31; x1 tightened by hand
+ch2-fig31,207,12.0,275.7,340.0,467.3,line,ch2-sec3d,figures/ch2/fig31.png,auto; lower half of page shared with fig30; x1 tightened by hand
+ch2-fig32,219,12.0,18.0,345.0,189.7,line,ch2-sec4,figures/ch2/fig32.png,auto; upper half of page shared with fig33; x1 tightened by hand
+ch2-fig33,219,12.0,245.5,345.0,438.8,line,ch2-sec4,figures/ch2/fig33.png,auto; lower half of page shared with fig32; panel letters (a)-(d) and shape names kept inside; x1 tightened by hand
+ch2-fig34,222,12.0,18.0,300.0,212.4,line,ch2-sec4,figures/ch2/fig34.png,auto; upper half of page shared with fig35; x1 tightened by hand
+ch2-fig35,222,12.0,308.0,300.0,497.5,line,ch2-sec4,figures/ch2/fig35.png,y0 set by hand (seeder proposed 375.6 which cut through the artwork); lower half of page shared with fig34; x1 tightened by hand
+ch2-fig36,224,12.0,18.0,350.0,214.3,line,ch2-sec4,figures/ch2/fig36.png,auto; hand-lettered AR formula kept inside the crop; x1 tightened by hand
+ch2-fig37,228,12.0,18.0,365.0,187.5,line,ch2-sec4,figures/ch2/fig37.png,auto; x1 tightened by hand
+ch2-fig38,234,12.0,18.0,370.0,191.2,line,ch2-sec4,figures/ch2/fig38.png,auto; two hand-lettered notation lines above the drawing kept inside the crop; x1 tightened by hand
+ch2-fig39,236,12.0,18.0,360.0,152.9,line,ch2-sec4,figures/ch2/fig39.png,auto; upper half of page shared with fig40; x1 tightened by hand
+ch2-fig40,236,12.0,189.3,360.0,326.0,line,ch2-sec4,figures/ch2/fig40.png,lower half of page shared with fig39; y1 and x1 set by hand to exclude a scanner speck on the caption line
+ch2-fig41,239,12.0,18.0,350.0,157.2,line,ch2-sec4,figures/ch2/fig41.png,auto; x1 tightened by hand
+ch2-fig42,244,12.0,18.0,487.2,184.6,line,ch2-sec4,figures/ch2/fig42.png,auto
+ch2-fig43,248,12.0,18.0,487.2,440.3,line,ch2-sec5,figures/ch2/fig43.png,auto; panels (a) and (b) with the vertical double-line separator kept inside the crop
+ch2-fig44,254,12.0,18.0,487.2,330.2,line,ch2-sec5,figures/ch2/fig44.png,auto
+ch2-fig45,258,12.0,18.0,487.2,218.3,line,ch2-sec5,figures/ch2/fig45.png,auto; hand-lettered formula lines at the top are part of the artwork
+ch2-fig46,260,12.0,18.0,400.0,422.6,line,ch2-sec5,figures/ch2/fig46.png,by hand: seed missed the caption (OCR 'Figure 46r'); panels (a) data table (b) (c) plot with formula kept inside the crop; x1 tightened by hand to exclude a scanner speck at x~428pt right of the artwork
+ch2-fig47,262,12.0,18.0,487.2,166.0,line,ch2-sec5,figures/ch2/fig47.png,by hand: seed missed the caption (OCR 'Flg11re 47:'); y1 kept above the hand-lettered alphas of the caption line
+ch2-fig48,266,12.0,18.0,370.0,433.6,line,ch2-sec6,figures/ch2/fig48.png,auto; x1 tightened by hand to exclude a scanner speck at x~400pt right of the artwork
+ch2-plate01a,268,12.0,18.0,487.2,420.0,photo,ch2-sec6,figures/ch2/plate01a.jpg,by hand: caption on PDF 267; frames (a)-(f) grid on PDF 268; no caption text on this page
+ch2-plate01b,269,12.0,18.0,487.2,420.0,photo,ch2-sec6,figures/ch2/plate01b.jpg,by hand: caption on PDF 267; frames (g)-(l) grid on PDF 269; no caption text on this page
+ch2-fig49,273,12.0,18.0,360.0,220.4,line,ch2-sec6,figures/ch2/fig49.png,auto; x1 tightened by hand to exclude a scanner speck at x~380pt right of the artwork
+ch2-fig50,274,12.0,18.0,487.2,401.1,line,ch2-sec6,figures/ch2/fig50.png,auto; six panels (a)-(f) with hand-lettered sub-captions kept inside the crop
+ch2-fig51,282,12.0,18.0,487.2,177.6,line,ch2-sec6,figures/ch2/fig51.png,auto

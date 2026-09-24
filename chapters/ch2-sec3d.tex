@@ -1,1 +1,618 @@
-% chapters/ch2-sec3d.tex -- unit not yet transcribed
+% chapters/ch2-sec3d.tex -- 3.2.2 Complete Response to Step Input; 3.2.3 Complete Response to
+% Impulse Input; 3.2.4 Steady State Response to Sinusoidal Forcing at the Roll Rate;
+% 3.2.5 Roll Stabilization (PDF 193-213)
+\subsubsection{Complete Response to Step Input}\label{ch2:sec:3.2.2}
+
+In this section I am going to derive the equations describing the angular
+oscillations of a rolling model rocket subjected to a step input in yaw alone,
+of the same form as that considered in Section~\ref{ch2:sec:3.1.2}. This can be
+done without loss of generality because the principle of superposition
+(Section~\ref{ch2:sec:2.4}) permits us to obtain the solution of the effect of
+each component of a step input having both pitch and yaw components separately,
+and then to add the solutions thus obtained to form the complete solution. It
+is also true that the response to a step in pitch is analogous to the response
+to a step in yaw, so that everything a designer needs to know can be learned by
+doing the yaw problem alone. For this same reason the impulse response of
+Section~\ref{ch2:sec:3.1.3} will be done assuming the only disturbing moment to
+act about the yaw axis.
+
+Before time equal to zero, when the value of the step disturbance is zero, the
+coupled dynamical equations appear as
+\begin{align*}
+I_L\frac{d^{2}\alpha_X}{dt^{2}} + C_2\frac{d\alpha_X}{dt} + C_1\alpha_X
+  + I_R\omega_Z\frac{d\alpha_Y}{dt} &= 0\\
+I_L\frac{d^{2}\alpha_Y}{dt^{2}} + C_2\frac{d\alpha_Y}{dt} + C_1\alpha_Y
+  - I_R\omega_Z\frac{d\alpha_X}{dt} &= 0
+\end{align*}
+As in Section~\ref{ch2:sec:3.1.2}, we are considering a rocket whose pitch and
+yaw states are quiescent before the application of the step. The solution to
+the above equations is therefore
+\begin{equation*}
+\alpha_X = \alpha_Y = 0
+\end{equation*}
+which, as you can see, identically satisfies them both. After the step
+disturbance rises to the value $M_s$ the equations become
+\begin{align*}
+I_L\frac{d^{2}\alpha_X}{dt^{2}} + C_2\frac{d\alpha_X}{dt} + C_1\alpha_X
+  + I_R\omega_Z\frac{d\alpha_Y}{dt} &= M_s\\
+I_L\frac{d^{2}\alpha_Y}{dt^{2}} + C_2\frac{d\alpha_Y}{dt} + C_1\alpha_Y
+  - I_R\omega_Z\frac{d\alpha_X}{dt} &= 0
+\end{align*}
+The particular solution to this set of equations is known to be
+\begin{equation}\label{ch2:eq:61}
+\begin{aligned}
+\alpha_X &= \frac{M_s}{C_1}\\
+\alpha_Y &= 0
+\end{aligned}
+\end{equation}
+The complete solution to the coupled step response for time greater than zero
+is then
+\begin{subequations}\label{ch2:eq:62}
+\begin{align}
+\alpha_X &= A_1 e^{-D_1 t}\sin(\omega_1 t + \varphi_1)
+  + A_2 e^{-D_2 t}\sin(\omega_2 t + \varphi_2) + \frac{M_s}{C_1}
+  \label{ch2:eq:62a}\\
+\alpha_Y &= A_1 e^{-D_1 t}\cos(\omega_1 t + \varphi_1)
+  + A_2 e^{-D_2 t}\cos(\omega_2 t + \varphi_2)
+  \label{ch2:eq:62b}
+\end{align}
+\end{subequations}
+where $\omega_1$ and $\omega_2$ are given by equations~\eqref{ch2:eq:56} and
+$D_1$ and $D_2$ are given by equations~\eqref{ch2:eq:57}. $A_1$, $A_2$,
+$\varphi_1$, and $\varphi_2$ are determined by the initial conditions of the
+motion, which, for a quiescent state prior to the disturbance, are all zero:
+\begin{align*}
+\alpha_{X0} &= A_1\sin\varphi_1 + A_2\sin\varphi_2 + \frac{M_s}{C_1}\\
+  &= 0\\
+\alpha_{Y0} &= A_1\cos\varphi_1 + A_2\cos\varphi_2\\
+  &= 0\\
+\Omega_{X0} &= -A_1 D_1\sin\varphi_1 + A_1\omega_1\cos\varphi_1
+  - A_2 D_2\sin\varphi_2 + A_2\omega_2\cos\varphi_2\\
+  &= 0\\
+\Omega_{Y0} &= -A_1 D_1\cos\varphi_1 - A_1\omega_1\sin\varphi_1
+  - A_2 D_2\cos\varphi_2 - A_2\omega_2\sin\varphi_2\\
+  &= 0
+\end{align*}
+These equations can be cast into the form of the initial condition equations
+used in Section~\ref{ch2:sec:3.2.1} for determining the values of the initial
+amplitudes and phase angles given in equations~\eqref{ch2:eq:58}
+and~\eqref{ch2:eq:59} by rewriting them in the following manner:
+\begin{align*}
+-\frac{M_s}{C_1} &= A_1\sin\varphi_1 + A_2\sin\varphi_2\\
+0 &= A_1\cos\varphi_1 + A_2\cos\varphi_2\\
+0 &= -A_1 D_1\sin\varphi_1 + A_1\omega_1\cos\varphi_1
+  - A_2 D_2\sin\varphi_2 + A_2\omega_2\cos\varphi_2\\
+0 &= -A_1 D_1\cos\varphi_1 - A_1\omega_1\sin\varphi_1
+  - A_2 D_2\cos\varphi_2 - A_2\omega_2\sin\varphi_2
+\end{align*}
+By analogy with the corresponding solutions to the equations of
+Section~\ref{ch2:sec:3.2.1} we can then write
+\begin{align*}
+A_1\sin\varphi_1 &= \frac{M_s}{C_1}\left[
+  \frac{(\omega_2^{2} + D_2^{2} - \omega_1\omega_2 - D_1 D_2)}
+       {2(D_1 D_2 + \omega_1\omega_2) - D_1^{2} - D_2^{2} - \omega_1^{2} - \omega_2^{2}}
+  \right]\\
+A_1\cos\varphi_1 &= \frac{M_s}{C_1}\left[
+  \frac{(\omega_1 D_2 - \omega_2 D_1)}
+       {2(\omega_1\omega_2 + D_1 D_2) - \omega_1^{2} - D_1^{2} - \omega_2^{2} - D_2^{2}}
+  \right]
+\end{align*}
+from which we obtain
+\begin{subequations}\label{ch2:eq:63}
+\begin{equation}\label{ch2:eq:63a}
+\varphi_1 = \arctan\left[
+  \frac{\omega_2^{2} + D_2^{2} - \omega_1\omega_2 - D_1 D_2}
+       {\omega_1 D_2 - \omega_2 D_1}\right]
+\end{equation}
+Then, using the relations
+\begin{align*}
+A_2\sin\varphi_2 &= -A_1\sin\varphi_1 - \frac{M_s}{C_1}\\
+A_2\cos\varphi_2 &= -A_1\cos\varphi_1
+\end{align*}
+we have
+\begin{align*}
+A_2\sin\varphi_2 &= \frac{M_s}{C_1}\left[
+  \frac{\omega_1^{2} + D_1^{2} - \omega_1\omega_2 - D_1 D_2}
+       {2(\omega_1\omega_2 + D_1 D_2) - \omega_1^{2} - D_1^{2} - \omega_2^{2} - D_2^{2}}
+  \right]\\
+A_2\cos\varphi_2 &= \frac{M_s}{C_1}\left[
+  \frac{\omega_2 D_1 - \omega_1 D_2}
+       {2(\omega_1\omega_2 + D_1 D_2) - \omega_1^{2} - D_1^{2} - \omega_2^{2} - D_2^{2}}
+  \right]
+\end{align*}
+and therefore, that
+\begin{equation}\label{ch2:eq:63b}
+\varphi_2 = \arctan\left[
+  \frac{\omega_1^{2} + D_1^{2} - \omega_1\omega_2 - D_1 D_2}
+       {\omega_2 D_1 - \omega_1 D_2}\right]
+\end{equation}
+\end{subequations}
+The values of the initial amplitudes are then obtained from the identities
+\begin{subequations}\label{ch2:eq:64}
+\begin{align}
+A_1 &= \frac{A_1\sin\varphi_1}{\sin\varphi_1}\label{ch2:eq:64a}\\
+A_2 &= \frac{A_2\sin\varphi_2}{\sin\varphi_2}\label{ch2:eq:64b}
+\end{align}
+\end{subequations}
+
+The special case of zero damping is obtained by setting $D_1 = D_2 = 0$. The
+characteristic appearance of this kind of motion should by now be familiar to
+you, so I won't bother to illustrate it. The coupled step response of a stable
+rocket with nonzero damping is shown in Figure~\ref{ch2:fig:28}. As in
+Section~\ref{ch2:sec:3.1.2}, the severity of the step response is inversely
+proportional to the (positive) magnitude of the corrective moment coefficient.
+The desirability of a large corrective moment coefficient is therefore
+undiminished by the presence of a nonzero roll rate.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig28.png}
+  \caption{Roll-coupled response of a model rocket with finite damping to a
+  step of intensity $M_s$ in yaw. Both yawing and pitching oscillations occur;
+  the pitching motion, however, decays to zero while the yaw angle eventually
+  approaches the value $M_s/C_1$.}
+  \label{ch2:fig:28}
+\end{figure}
+
+\subsubsection{Complete Response to Impulse Input}\label{ch2:sec:3.2.3}
+
+Should a rocket which is spinning about its longitudinal axis encounter an
+impulsive disturbance acting about its yaw axis and of strength $H$, it may be
+verified by an argument similar to the one used in
+Section~\ref{ch2:sec:3.1.3} that the initial effect of the impulse is
+identical to the effect of the same impulse upon the rocket when it is
+\emph{not} rolling: an initial yaw rate of value $H/I_L$ arises
+instantaneously. The subsequent motion is a roll-coupled characteristic
+response governed by equations~\eqref{ch2:eq:51} and~\eqref{ch2:eq:55}
+through~\eqref{ch2:eq:59} with initial conditions $\alpha_{X0}$,
+$\alpha_{Y0}$, and $\Omega_{Y0}$ all equal to zero and initial condition
+$\Omega_{X0}$ equal to $H/I_L$.
+
+The impulse response is thus given by equations~\eqref{ch2:eq:51},
+\begin{align*}
+\alpha_X &= A_1 e^{-D_1 t}\sin(\omega_1 t + \varphi_1)
+  + A_2 e^{-D_2 t}\sin(\omega_2 t + \varphi_2)\\
+\alpha_Y &= A_1 e^{-D_1 t}\cos(\omega_1 t + \varphi_1)
+  + A_2 e^{-D_2 t}\cos(\omega_2 t + \varphi_2)
+\end{align*}
+where $\omega_1$ and $\omega_2$ are given by equations~\eqref{ch2:eq:56} and
+$D_1$ and $D_2$ are computed according to equations~\eqref{ch2:eq:57}.
+Substituting the values of the initial conditions into the equations used in
+deriving equation~\eqref{ch2:eq:58a}, we have
+\begin{align*}
+A_1\sin\varphi_1 &= \frac{H}{I_L}\left[
+  \frac{D_1 - D_2}
+       {2(D_1 D_2 + \omega_1\omega_2) - D_1^{2} - D_2^{2} - \omega_1^{2} - \omega_2^{2}}
+  \right]\\
+A_1\cos\varphi_1 &= \frac{H}{I_L}\left[
+  \frac{\omega_2 - \omega_1}
+       {2(D_1 D_2 + \omega_1\omega_2) - D_1^{2} - D_2^{2} - \omega_1^{2} - \omega_2^{2}}
+  \right]
+\end{align*}
+from which we conclude that
+\begin{subequations}\label{ch2:eq:65}
+\begin{equation}\label{ch2:eq:65a}
+\varphi_1 = \arctan\left[\frac{D_1 - D_2}{\omega_2 - \omega_1}\right]
+\end{equation}
+The equations used in deriving~\eqref{ch2:eq:58b} become
+\begin{align*}
+A_2\sin\varphi_2 &= -A_1\sin\varphi_1\\
+A_2\cos\varphi_2 &= -A_1\cos\varphi_1
+\end{align*}
+and thus yield the result
+\begin{equation}\label{ch2:eq:65b}
+\varphi_2 = \varphi_1
+\end{equation}
+\end{subequations}
+A simplification of notation is then possible, in that the single value
+$\varphi = \varphi_1 = \varphi_2$ may be applied to the phase angles of both
+modes. The equations for the initial amplitudes thus become
+\begin{subequations}\label{ch2:eq:66}
+\begin{align}
+A_1 &= \frac{A_1\sin\varphi}{\sin\varphi}\label{ch2:eq:66a}\\
+A_2 &= -A_1\label{ch2:eq:66b}
+\end{align}
+\end{subequations}
+so that the initial amplitude of the first mode may be denoted by $A$, that of
+the second mode by $(-A)$. The roll-coupled impulse response may then be
+written in the simplified form
+\begin{equation}\label{ch2:eq:67}
+\begin{aligned}
+\alpha_X &= A\left[e^{-D_1 t}\sin(\omega_1 t + \varphi)
+  - e^{-D_2 t}\sin(\omega_2 t + \varphi)\right]\\
+\alpha_Y &= A\left[e^{-D_1 t}\cos(\omega_1 t + \varphi)
+  - e^{-D_2 t}\cos(\omega_2 t + \varphi)\right]
+\end{aligned}
+\end{equation}
+The coupled impulse response of a representative, statically-stable model
+rocket having a finite amount of damping is illustrated in
+Figure~\ref{ch2:fig:29}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig29.png}
+  \caption{Roll-coupled response of a model rocket with finite damping to an
+  impulse of strength $H$ in yaw. Again, both pitching and yawing oscillations
+  occur; the yawing motion, however, begins instantaneously with an angular
+  velocity of $H/I_L$, while the initial pitch rate is zero.}
+  \label{ch2:fig:29}
+\end{figure}
+
+Although the analytically explicit forms of the equations governing the
+maximum angular displacement experienced in a roll-coupled impulse response
+are prohibitively complicated, it will be found that a large value of the
+longitudinal moment of inertia $I_L$ is desirable, as it was in the decoupled
+case, in order to minimize the severity of the response. This characteristic
+of the behavior is (again as before) connected with the inverse dependence of
+the initial amplitude terms on $I_L$.
+
+\subsubsection{Steady State Response to Sinusoidal Forcing at the Roll Rate}\label{ch2:sec:3.2.4}
+
+While it is certainly possible for a rocket having a zero roll rate to
+experience sinusoidal forcing of the various types described in
+Section~\ref{ch2:sec:3.1.4}, it turns out that the vast majority of cases of
+sinusoidal motion encountered in practice are due to causes arising from the
+spinning of the rocket itself. Aerodynamic and inertial asymmetries and thrust
+misalignments, which appear as step disturbances to non-rolling rockets,
+become to a rolling rocket sinusoidal forcing functions whose angular
+frequency is identical to the rocket's roll rate. For this reason the
+roll-coupled pitch- and yaw-dynamics of cylindrical projectiles under
+sinusoidal forcing are usually analyzed only for the case
+$\omega_f = \omega_Z$. I shall adhere to this convention and treat, in the
+remainder of this section, the particular response of a rolling rocket to
+forcing functions of the form
+\begin{align*}
+f_x(t) &= A_f\sin\omega_Z t\\
+f_y(t) &= A_f\cos\omega_Z t
+\end{align*}
+
+The dynamical equations that must be solved become, in this case,
+\begin{align*}
+I_L\frac{d^{2}\alpha_X}{dt^{2}} + C_2\frac{d\alpha_X}{dt} + C_1\alpha_X
+  + I_R\omega_Z\frac{d\alpha_Y}{dt} &= A_f\sin\omega_Z t\\
+I_L\frac{d^{2}\alpha_Y}{dt^{2}} + C_2\frac{d\alpha_Y}{dt} + C_1\alpha_Y
+  - I_R\omega_Z\frac{d\alpha_X}{dt} &= A_f\cos\omega_Z t
+\end{align*}
+The particular solution to these equations is known to be of the form
+\begin{align*}
+\alpha_X &= A_r\sin(\omega_Z t + \varphi)\\
+\alpha_Y &= A_r\cos(\omega_Z t + \varphi)
+\end{align*}
+where $A_r$ and $\varphi$ are to be determined by substitution, as in
+Section~\ref{ch2:sec:3.1.4}. The time derivatives of these expressions are
+\begin{align*}
+\frac{d\alpha_X}{dt} &= A_r\omega_Z\cos(\omega_Z t + \varphi)\\
+\frac{d^{2}\alpha_X}{dt^{2}} &= -A_r\omega_Z^{2}\sin(\omega_Z t + \varphi)\\
+\frac{d\alpha_Y}{dt} &= -A_r\omega_Z\sin(\omega_Z t + \varphi)\\
+\frac{d^{2}\alpha_Y}{dt^{2}} &= -A_r\omega_Z^{2}\cos(\omega_Z t + \varphi)
+\end{align*}
+Substituting these into the dynamical equations yields the following set of
+algebraic equations:
+\begin{align*}
+&{-}I_L A_r\omega_Z^{2}\sin(\omega_Z t + \varphi)
+  + C_2 A_r\omega_Z\cos(\omega_Z t + \varphi)
+  + C_1 A_r\sin(\omega_Z t + \varphi)\\
+&\quad - I_R A_r\omega_Z^{2}\sin(\omega_Z t + \varphi) = A_f\sin\omega_Z t\\[1ex]
+&{-}I_L A_r\omega_Z^{2}\cos(\omega_Z t + \varphi)
+  - C_2 A_r\omega_Z\sin(\omega_Z t + \varphi)
+  + C_1 A_r\cos(\omega_Z t + \varphi)\\
+&\quad - I_R A_r\omega_Z^{2}\cos(\omega_Z t + \varphi) = A_f\cos\omega_Z t
+\end{align*}
+Making use of the trigonometric identities
+\begin{align*}
+\sin(\omega_Z t + \varphi) &= \sin\omega_Z t\cos\varphi + \cos\omega_Z t\sin\varphi\\
+\cos(\omega_Z t + \varphi) &= \cos\omega_Z t\cos\varphi - \sin\omega_Z t\sin\varphi
+\end{align*}
+we can obtain
+\begin{align*}
+&A_r\left[C_1 - \omega_Z^{2}(I_L + I_R)\right]
+  \left[\sin\omega_Z t\cos\varphi + \cos\omega_Z t\sin\varphi\right]\\
+&\quad + C_2 A_r\omega_Z\left[\cos\omega_Z t\cos\varphi - \sin\omega_Z t\sin\varphi\right]
+  = A_f\sin\omega_Z t\\[1ex]
+&A_r\left[C_1 - \omega_Z^{2}(I_L + I_R)\right]
+  \left[\cos\omega_Z t\cos\varphi - \sin\omega_Z t\sin\varphi\right]\\
+&\quad - C_2 A_r\omega_Z\left[\sin\omega_Z t\cos\varphi + \cos\omega_Z t\sin\varphi\right]
+  = A_f\cos\omega_Z t
+\end{align*}
+The terms containing $\sin\omega_Z t$ and those containing $\cos\omega_Z t$
+must be independent of each other. We then have, from the first relation
+above,
+\begin{align*}
+A_r\cos\varphi\left[C_1 - \omega_Z^{2}(I_L + I_R)\right]
+  - A_r\sin\varphi\, C_2\omega_Z &= A_f\\
+A_r\sin\varphi\left[C_1 - \omega_Z^{2}(I_L + I_R)\right]
+  + A_r\cos\varphi\, C_2\omega_Z &= 0
+\end{align*}
+From the second equation we see that
+\begin{align*}
+A_r\cos\varphi\left[C_1 - \omega_Z^{2}(I_L + I_R)\right]
+  - A_r\sin\varphi\, C_2\omega_Z &= A_f\\
+-A_r\sin\varphi\left[C_1 - \omega_Z^{2}(I_L + I_R)\right]
+  - A_r\cos\varphi\, C_2\omega_Z &= 0
+\end{align*}
+The two sets of equations are entirely equivalent; either pair can be chosen
+for determining $A_r$ and $\varphi$. Suppose I choose the first pair. The
+second member of this pair gives us
+\begin{subequations}\label{ch2:eq:68}
+\begin{equation}\label{ch2:eq:68a}
+\varphi = \arctan\left[\frac{C_2\omega_Z}{\omega_Z^{2}(I_L + I_R) - C_1}\right]
+\end{equation}
+The first member, when divided by $\cos\varphi$, becomes
+\begin{equation*}
+A_r\left[C_1 - \omega_Z^{2}(I_L + I_R)\right]
+  - A_r\left[\frac{C_2^{2}\omega_Z^{2}}{\omega_Z^{2}(I_L + I_R) - C_1}\right]
+  = A_f\sec\varphi
+\end{equation*}
+which, upon substitution of the trigonometric identity
+\begin{equation*}
+\sec\varphi = \sqrt{\tan^{2}\varphi + 1}
+\end{equation*}
+may be written in the form
+\begin{equation*}
+A_r\left[C_1 - \omega_Z^{2}(I_L + I_R)
+  - \frac{C_2^{2}\omega_Z^{2}}{\omega_Z^{2}(I_L + I_R) - C_1}\right]
+  = A_f\sqrt{\frac{C_2^{2}\omega_Z^{2}}{\left[\omega_Z^{2}(I_L + I_R) - C_1\right]^{2}} + 1}
+\end{equation*}
+This can readily be transformed into
+\begin{equation*}
+A_r\left\{\left[\omega_Z^{2}(I_L + I_R) - C_1\right]^{2} + C_2^{2}\omega_Z^{2}\right\}
+  = A_f\sqrt{\left[\omega_Z^{2}(I_L + I_R) - C_1\right]^{2} + C_2^{2}\omega_Z^{2}}
+\end{equation*}
+from which we obtain
+\begin{equation}\label{ch2:eq:68b}
+A_r = \frac{A_f}{\sqrt{\left[\omega_Z^{2}(I_L + I_R) - C_1\right]^{2} + C_2^{2}\omega_Z^{2}}}
+\end{equation}
+\end{subequations}
+Equations~\eqref{ch2:eq:68} are precisely analogous to
+equations~\eqref{ch2:eq:45} (Section~\ref{ch2:sec:3.1.4}); the only
+difference between the two pairs of formulae is that the quantity $I_L$ in
+equations~\eqref{ch2:eq:45} has been replaced by $(I_L + I_R)$ in
+equations~\eqref{ch2:eq:68}. We can therefore conduct the remainder of the
+present analysis exactly as we did in the case of the non-rolling rocket,
+with the aid of a few definitions:
+\begin{align}
+\omega_{nc} &= \sqrt{\frac{C_1}{I_L + I_R}}\label{ch2:eq:69}\\
+\zeta_c &= \frac{C_2}{2\sqrt{C_1(I_L + I_R)}}\label{ch2:eq:70}\\
+\beta_c &= \frac{\omega_Z}{\omega_{nc}}\label{ch2:eq:71}\\
+\mathit{AR}_c &= \frac{A_r}{A_f}\label{ch2:eq:72}
+\end{align}
+It is important to remember, however, that the quantities defined by
+equations~\eqref{ch2:eq:69} and~\eqref{ch2:eq:70} are highly artificial
+constructions created solely for the purpose of analytical convenience. The
+\emph{effective natural frequency} $\omega_{nc}$ does not correspond to any
+real, physical angular frequency at which the rocket can be expected to
+oscillate if undamped; neither does the \emph{effective damping ratio}
+$\zeta_c$ bear any relation to any damping parameter we can compute from the
+characteristics of the homogeneous response, as was the case for non-rolling
+rockets. Both $\omega_{nc}$ and $\zeta_c$ are excellent analytical tools,
+though, since they give us a maximum amount of information about the rocket
+with a minimum of writing, so you shouldn't let their somewhat tenuous
+physical bases bother you too much.
+
+Using equations~\eqref{ch2:eq:69} through~\eqref{ch2:eq:72} we can write, by
+analogy with equations~\eqref{ch2:eq:46} through~\eqref{ch2:eq:48}
+\begin{subequations}\label{ch2:eq:73}
+\begin{align}
+\varphi &= \arctan\left[\frac{2\zeta_c\beta_c}{\beta_c^{2} - 1}\right]\label{ch2:eq:73a}\\
+\mathit{AR}_c &= \frac{1}{C_1\sqrt{(\beta_c^{2} - 1)^{2} + (2\zeta_c\beta_c)^{2}}}\label{ch2:eq:73b}
+\end{align}
+\end{subequations}
+and, for the roll coupled resonant frequency and resonance peak,
+\begin{subequations}\label{ch2:eq:74}
+\begin{align}
+\beta_{\mathrm{cres}} &= \sqrt{1 - 2\zeta_c^{2}}\label{ch2:eq:74a}\\
+\omega_{\mathrm{cres}} &= \beta_{\mathrm{cres}}\,\omega_{nc}\label{ch2:eq:74b}
+\end{align}
+\end{subequations}
+\begin{equation}\label{ch2:eq:75}
+\mathit{AR}_{\mathrm{cres}} = \frac{1}{2C_1\zeta_c\sqrt{1 - \zeta_c^{2}}}
+\end{equation}
+Figures~\ref{ch2:fig:30} and~\ref{ch2:fig:31} illustrate the variation in
+$\varphi$ and $\mathit{AR}_c$ with $\beta_c$ for a number of different values of
+$\zeta_c$. These functions are, of course, identical to those illustrated in
+Figures~\ref{ch2:fig:24} and~\ref{ch2:fig:25}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig30.png}
+  \caption{Variation of coupled phase angle with coupled frequency ratio in
+  cases of roll-coupled response to sinusoidal forcing in pitch and yaw at the
+  roll rate.}
+  \label{ch2:fig:30}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig31.png}
+  \caption{Variation of coupled amplitude ratio with coupled frequency ratio
+  in cases of roll-coupled response to sinusoidal forcing in pitch and yaw at
+  the roll rate.}
+  \label{ch2:fig:31}
+\end{figure}
+
+All the dangers inherent in decoupled resonant responses are present also in
+the roll-coupled case, all the more so since the presence of a roll rate
+decreases the effective damping and makes the resonance peak of any given
+rocket more severe. In rockets that are not slender enough for $I_R$ to be
+negligible compared to $I_L$ the difference between the decoupled and coupled
+resonant responses can be significant. The effect of spinning upon a short,
+stubby rocket can be truly startling; it can even be serious enough to render
+unacceptable a design whose behavior might otherwise be within tolerable
+limits.
+
+From our analysis of the roll-coupled sinusoidal steady state we thus conclude
+that a large \emph{slenderness ratio} in the sense of a large ratio of $I_L$
+to $I_R$, as well as in the sense of a large value of $I_L$ itself, is to be
+ranked along with a large corrective moment coefficient and an adequate
+damping coefficient as a design feature useful in minimizing the hazards of
+resonance.
+
+\subsubsection{Roll Stabilization}\label{ch2:sec:3.2.5}
+
+Since the early days of model rocketry it has been known that the flight path
+of a model which has an insufficient, or even slightly negative, static
+stability margin can be rendered reasonably straight and true by inducing a
+very rapid roll rate in the vehicle at launch. This technique generally goes
+by the name of \emph{spin stabilization} or \emph{roll stabilization} and it
+is widely believed that the presence of a rapid enough roll rate actually
+induces positive aerodynamic stability in an otherwise unstable rocket. As an
+examination of the relevant dynamical equations will reveal, it does nothing
+of the kind.
+
+First of all, we have our results from Section~\ref{ch2:sec:3.2.1} which
+indicate that the angle of deflection of a statically-unstable rocket from its
+intended direction of flight increases with time after the rocket is
+disturbed, just as it does for a statically-unstable rocket which is not
+rolling at all. The only case in which the presence of a finite roll rate
+prevents an unstable rocket from diverging is that of zero damping
+(equations~\eqref{ch2:eq:60}), in which negative values of $C_1$ up to, but
+not including, $-\frac{I_R^{2}\omega_Z^{2}}{4I_L}$ can be tolerated while an
+oscillation which neither grows nor decays with time is maintained. What
+happens when $C_1$ reaches the critical value
+$-\frac{I_R^{2}\omega_Z^{2}}{4I_L}$? Well, if $C_1$ is precisely
+$-\frac{I_R^{2}\omega_Z^{2}}{4I_L}$ the solution to the dynamical equations
+assumes the form
+\begin{equation}\label{ch2:eq:76}
+\begin{aligned}
+\alpha_X &= A_1\sin(\omega_c t + \varphi_1) + A_2 t\sin(\omega_c t + \varphi_2)\\
+\alpha_Y &= A_1\cos(\omega_c t + \varphi_1) + A_2 t\cos(\omega_c t + \varphi_2)
+\end{aligned}
+\end{equation}
+where $\omega_c$, the \emph{critical frequency}, is given by
+\begin{equation*}
+\omega_c = -\frac{I_R}{2I_L}\,\omega_Z
+\end{equation*}
+Because equations~\eqref{ch2:eq:76} constitute a freak case which is of no
+interest whatsoever from the standpoint of design, I will not go into any
+detailed derivations of its properties. Suffice it to say that
+equations~\eqref{ch2:eq:76} describe a response which grows with time and is
+thus unstable.
+
+Should $C_1$ have a larger negative value than
+$-\frac{I_R^{2}\omega_Z^{2}}{4I_L}$ a motion of the form
+\begin{equation}\label{ch2:eq:77}
+\begin{aligned}
+\alpha_X &= A_1 e^{-\frac{t}{\tau_1}}\sin(\omega_c t + \varphi_1)
+  + A_2 e^{-\frac{t}{\tau_2}}\sin(\omega_c t + \varphi_2)\\
+\alpha_Y &= A_1 e^{-\frac{t}{\tau_1}}\cos(\omega_c t + \varphi_1)
+  + A_2 e^{-\frac{t}{\tau_2}}\cos(\omega_c t + \varphi_2)
+\end{aligned}
+\end{equation}
+will be observed where, again, $\omega_c = -\frac{I_R}{2I_L}\omega_Z$. The
+values of the time constants are given by
+\begin{subequations}\label{ch2:eq:78}
+\begin{align}
+\tau_1 &= \frac{1}{\sqrt{-\left(\frac{C_1}{I_L}
+  + \frac{I_R^{2}\omega_Z^{2}}{4I_L^{2}}\right)}}\label{ch2:eq:78a}\\
+\tau_2 &= -\tau_1\label{ch2:eq:78b}
+\end{align}
+\end{subequations}
+Again, since this is a singular case never encountered in practice there is
+no useful purpose served in presenting its full derivation. Its only useful
+purpose is to confirm that a divergent dynamical response results from
+$C_1 < -\frac{I_R^{2}\omega_Z^{2}}{4I_L}$. We see that this is indeed the
+case, as the time constant $\tau_2$ is \emph{negative} and will thus cause the
+amplitude of the sinusoidal mode with which it is associated to increase
+exponentially with time. I might mention here in passing that the behavior
+described by equations~\eqref{ch2:eq:76} and~\eqref{ch2:eq:77}
+through~\eqref{ch2:eq:78} is very like the ``running down'' of a toy top or
+gyroscope. Indeed, the equations involved are rather similar, so if you have
+such a device handy you might want to observe the decay of its motion a couple
+of times to get a ``feel'' for what the mathematics is saying.
+
+At any rate, what we have established so far is that in the idealization of
+zero damping (which never occurs anyway) a rocket spinning at a rate
+$\omega_Z$ is capable of tolerating negative stability up to, but not
+including, $C_1 = -\frac{I_R^{2}\omega_Z^{2}}{4I_L}$ without diverging (albeit
+without the oscillations \emph{subsiding} either, so that the motion is really
+only neutrally stable in the dynamic sense). Beyond this value the
+oscillations increase in violence until the rocket flips end for end entirely,
+destroying all semblance of a true and predictable flight path. In the
+\emph{real} case of finite damping, moreover, \emph{any} negative value of
+$C_1$, \emph{no matter how slight}, results in unstable flight. What, then,
+does roll stabilization really do?
+
+\emph{It suppresses the growth rate of the instability.} A close look at
+equations~\eqref{ch2:eq:57} will help to clarify my meaning here. Both the
+inverse time constants $D_1$ and $D_2$ involve a fraction whose
+\emph{denominator contains the term} $\frac{I_R\omega_Z}{2I_L}$. This means
+that for a large enough radial moment of inertia, a fast enough roll rate, or
+both the magnitudes of the inverse time constants will be \emph{very small}.
+Thus, even though one of them is negative in cases where $C_1$ is less than
+zero, it is only slightly so, meaning that the amplitude of the oscillations,
+while it does indeed grow with time, does so at a \emph{much slower rate} than
+would be the case if the rocket were spinning more slowly or not spinning at
+all. It is therefore entirely possible that, if the rocket is spinning with
+sufficient rapidity, the rate at which the deflection of the model from its
+intended flight path direction grows after it is once disturbed from
+equilibrium will be so slight that no appreciable instability will be evident
+during the entire upward flight. Once apex is reached and the recovery system
+is activated, of course, the stability question becomes irrelevant. If the
+spinning of the rocket is capable of holding it reasonably close to its proper
+attitude during the handful of seconds it takes to reach its maximum altitude
+it will have accomplished its purpose---and this, as we know from experience,
+is in fact the case.
+
+Secondly, the presence of a rapid spin rate causes the \emph{angular momentum}
+of the rocket to be appreciable. Angular momentum, like linear momentum, is a
+vector quantity which can be resolved into components by the methods of
+trigonometry. If this is done we find that the Z-component of a rocket's
+angular momentum is just $I_R\omega_Z$; a rocket which is not rolling at all
+thus has no Z-component of angular momentum, and in fact if it is flying
+straight and true it has no angular momentum at all. Now the effect of any
+disturbing moment on the model is to change its angular momentum; if it is a
+yaw disturbance it will impart an X-component of angular momentum, while if it
+is a pitch disturbance it will give rise to a Y-component. If the rocket is
+not spinning at all, the components of angular momentum imparted by
+disturbances will constitute \emph{all} the angular momentum the rocket has
+after any given disturbance. If it \emph{is} spinning, however, the
+disturbance-imparted components of angular momentum are only \emph{added
+vectorially} to the Z-component which is already present. What this means is
+that \emph{a disturbance of a given strength will have less effect on a
+spinning rocket than on one which is not spinning} because the change in
+angular momentum it imparts is of less importance to the spinning than to the
+non-spinning vehicle. The practical consequence of all this is that the
+\emph{initial amplitudes} of the roll-coupled motion due to any given
+disturbance will be \emph{less} than those of the decoupled response
+associated with that same disturbance (you can prove this to yourself by
+taking a representative disturbance and calculating its effect on both a
+rolling and a non-rolling rocket). Not only, therefore, does the angular
+displacement of a rapidly-spinning, unstable rocket increase very slowly after
+a disturbance is encountered, but the initial displacement produced by that
+disturbance is very slight.
+
+In addition, the kind of physical phenomena that produce transient
+disturbances in model rockets generally tend to be evenly distributed about
+the rocket's longitudinal axis. That is, it is just as likely that a step or
+impulse will be encountered in one direction as it is that it will be
+encountered in any \emph{other} direction. This being the case, it is rather
+likely that a rocket having encountered one disturbance will soon encounter
+another that cancels its effect---\emph{if} the rocket has not diverged too
+far from its intended flight direction by that time. If the rocket is unstable
+and is not spinning at all, the first disturbance it encounters will send it
+head over heels in a tiny fraction of a second, so this ``averaging'' effect
+will be no help at all. If it is spinning rapidly enough, though, it will
+still be nearly enough ``on course'' when the second disturbance hits to take
+advantage of its ameliorating influence. A rapid roll rate makes a rocket
+``sluggish'' in its rotational behavior, allowing it to respond more nearly to
+the \emph{time average} of disturbances than to the individual disturbances
+themselves---and since the time average is generally much less than any one
+individual disturbance, this is greatly to the rocket's advantage.
+
+Finally, the presence of roll turns all disturbances due to imperfections in
+the rocket itself into sinusoidal forcing at the roll frequency, as mentioned
+in Section~\ref{ch2:sec:3.2.4}. You will soon see how important this is if
+you examine equation~\eqref{ch2:eq:68b} and imagine $C_1$ to be a negative
+number, for if $C_1$ is negative then $(-C_1)$ must be positive. This means
+that the quantity $\left[\omega_Z^{2}(I_L + I_R) - C_1\right]$ will always be
+greater than $(-C_1)$ alone, which in turn means that \emph{the amplitude of
+the response will decrease uniformly as the roll rate increases from zero to
+infinity: an unstable rocket cannot experience resonance}. To impart a rapid
+roll rate to an unstable rocket is thus to render the effect of a large class
+of disturbances upon it inconsequential.
+
+So we see that the list of benefits available to statically unstable rockets
+through the mechanism of roll is impressive after all. The net effect of all
+of them taken together produces a condition that \emph{looks} enough and
+\emph{works} enough like stability that the use of the term ``roll
+stabilization'' is really not altogether unjustified.

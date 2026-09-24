@@ -1,1 +1,807 @@
-% chapters/ch2-sec4.tex -- unit not yet transcribed
+% chapters/ch2-sec4.tex -- 4. Analytical Determination of the Dynamic Parameters (PDF 214-246)
+\section{Analytical Determination of the Dynamic Parameters}\label{ch2:sec:4}
+
+The results of Section~\ref{ch2:sec:3} have shown that it is possible to
+calculate the response of any model rocket to any in-flight disturbance if
+the values of certain quantities which characterize the rocket and the nature
+of the motion at the beginning of the observation are known. Initial
+conditions, of course, vary from disturbance to disturbance; they are
+generally chosen to have any arbitrary values which insure that the response
+will remain within the range of validity of the linearized theory when doing
+actual calculations. The quantities of really \emph{fundamental} importance
+to dynamic response are those which characterize the rocket itself, the
+so-called \emph{dynamic parameters}: $C_1$, $C_2$, $I_L$, $I_R$, and
+$\omega_Z$. Since the formulae which describe the response of a rocket to a
+given disturbance depend on these quantities, you \emph{must} know them in
+order to perform any actual numerical calculations. How, then, does one
+determine their values?
+
+There are two broad classes of techniques for performing such
+determinations: the \emph{analytical} method, in which basic considerations
+of mathematical physics are used to compute the dynamic parameters from a
+knowledge of the rocket's size, shape, and mass distribution, and the
+\emph{experimental} method, in which the dynamic parameters are determined
+from observations of the dynamic responses of actual vehicles. The former of
+these two will be presented in this section, the latter in
+Section~\ref{ch2:sec:5}.
+
+The analytical method has a distinct advantage in that, by its use, a rocket
+design can be completely evaluated (and altered if necessary) before
+construction is started. Of course, it also involves the use of a large
+number of calculations, some of them based on approximations which only a
+human being (not a computer) has the judgment to make. I would therefore
+recommend that the reader pay the most careful attention to the development
+which follows. If you failed to understand the derivations in
+Section~\ref{ch2:sec:3} you can still have recourse to computer-generated
+solutions, but these will be of no use to you if you cannot tell the
+parameters of your rocket. A thorough comprehension of the following
+presentation \emph{is} essential to a complete knowledge of the factors
+which influence the design of model rockets.
+
+\subsection{Normal Force Coefficients and Center of Pressure: The Barrowman Method}\label{ch2:sec:4.1}
+
+In March, 1967, James S. Barrowman of the National Aeronautics and Space
+Administration completed a remarkable document entitled \emph{The Practical
+Calculation of the Aerodynamic Characteristics of Slender Finned Vehicles}.
+Submitted as his Master's thesis to the School of Engineering and
+Architecture of the Catholic University of America, the report included,
+among other things, a method of calculating the aerodynamic forces on a
+streamlined, axially symmetrical body flying at velocities less than that of
+sound and subjected to small pitching and yawing deflections. Such
+calculations can be used to determine the location of the center of pressure
+of a model rocket, the value of its corrective moment coefficient, and the
+value of its damping moment coefficient. Additional applications of
+Barrowman's work enable the designer to determine the roll rate induced by
+canting the fins of his rocket a given amount at any given airspeed.
+
+Barrowman's method is based on the concept of the \emph{normal force
+coefficient}, $\CNa$, a dimensionless number dependent upon the shape of the
+rocket which permits the calculation of the force acting in a direction
+perpendicular to the rocket's longitudinal axis whenever it is displaced from
+the direction of the relative airstream by some ``angle of attack'' (a
+pitching or yawing angle). The equation by which this is accomplished is
+\begin{equation*}
+N = \CNa \frac{\rho}{2} A_r V^{2}\alpha
+\end{equation*}
+where
+\begin{itemize}[nosep,leftmargin=*,label={}]
+  \item $N$ = normal force
+  \item $\rho$ = mass density of air
+  \item $V$ = airspeed of rocket
+  \item $A_r$ = reference area, a scaling factor used to separate information
+  regarding the rocket's size from the normal force coefficient. Barrowman
+  uses the cross sectional area of the body tube at the base of the nosecone
+  as his reference area, and I will follow his convention.
+  \item $\alpha$ = angle of attack in radians
+\end{itemize}
+
+Throughout the rest of this treatment I am going to be using the
+``centimeter-gram-second'', or CGS system of physical units. This means that
+all lengths or coordinate values will be considered as given in centimeters,
+all areas will be considered to be expressed in square centimeters, all
+volumes will be considered to be given in cubic centimeters, all masses in
+grams, all forces in dynes, and all measurements of time in seconds. Those
+readers unfamiliar with CGS and other metric systems of units should consult
+a physics text or mathematical handbook for the appropriate conversion
+factors between English and metric units. The density of the Earth's
+atmosphere at sea level is, in CGS units,
+\begin{equation*}
+\rho = 1.225 \times 10^{-3} \qquad \text{grams/cm}^{3}
+\end{equation*}
+so that the value of the force acting on a deflected rocket is given
+numerically by
+\begin{equation*}
+N = 0.6125 \times 10^{-3}\,\CNa A_r V^{2}\alpha \qquad \text{dynes}
+\end{equation*}
+
+Now the normal force coefficient of the rocket considered as a whole is the
+sum of the normal force coefficients of the individual components of which
+it is composed: nosecone, body sections, adapters (if any), and fins. Each
+part of the rocket is thus considered to provide a portion of the total
+normal force, and this portion is considered to act at a point on the
+component called its \emph{center of pressure} (\CP). The Barrowman method
+uses this technique of sectionalized analysis, together with the theory of
+moments, to derive the total normal force coefficient and center of pressure
+of the complete rocket.
+
+Figure~\ref{ch2:fig:32} illustrates the most general type of model rocket to
+which Barrowman analysis is applicable and the coordinate system used in
+performing the calculations. Those readers who have some familiarity with
+Newtonian mechanics will recognize that the moments due to the normal force
+components are being taken about the nose of the rocket by such an
+arrangement. The tip of the nose is considered to be $Z = 0$ and the value of
+the coordinate $Z$ increases as we move from the nose toward the tail of the
+rocket. The rocket itself may have a nosecone, conical shoulder, conical
+boattail, body sections of constant diameter, and any number of fins (3 or
+greater) spaced symmetrically about the centerline. The particular equations
+presented here, however, will be such that the number of fins must be either
+three or four since there is no particular reason to use any other number.
+In addition to being axially symmetrical, the rocket must be relatively
+slender with a smoothly tapered nose, must be flying subsonically (in the low
+subsonic region below about 200 meters per second), must contain no
+abruptly-tapered sections, must not be deflected to an angle of attack
+greater than 0.2 radian, must have fins that are virtually flat plates, and
+must not be subject to excessive deflections (bending) of its structure
+under loading conditions encountered in flight.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig32.png}
+  \caption{Notation and longitudinal coordinate system used in the Barrowman
+  method of finding the center of pressure of a model rocket.}
+  \label{ch2:fig:32}
+\end{figure}
+
+Under these conditions it can be shown that the normal force coefficient of
+the nose cone is independent of its shape, having the value 2.0 for all
+shapes which meet the assumptions of the analysis:
+\begin{equation}\label{ch2:eq:79}
+(\CNa)_n = 2.0
+\end{equation}
+The location of the nose center of pressure is found by specialization of a
+more general relationship determined in Barrowman's paper: to determine the
+location of the \CP{} of any axially symmetrical section of the rocket
+(nose, shoulder, or boattail) first compute the volume enclosed by its
+surface. Then divide this volume by the area of the base (i.e., the
+cross-sectional area of the component at its greatest diameter). The result
+of this division will have the units of \emph{length} (centimeters, in CGS
+units). Starting from the position of the base, travel a distance equal to
+this length in the direction of the component's taper, and the point you
+will locate in this manner is the component's center of pressure. You can
+see that, in order to give an actual formula for the location of the \CP{}
+of such a part, we must have a part whose \emph{volume} is computable by
+some known geometrical equation. The volume of unusually-curved components
+for which closed-form volume equations do not exist must be computed by
+immersing the part in question in liquid contained in a graduated cylinder.
+Many nose cone shapes, however, closely approximate geometrical forms of
+known volume and Figure~\ref{ch2:fig:33} lists the \CP{} locations of four
+such shapes: conical, ogival, paraboloidal, and ellipsoidal. Note that
+center of pressure coordinates are identified by a superscript bar, and also
+that a hemispherical nose is a special case of the ellipsoidal class, with
+its radius equal to its length. The listings of Figure~\ref{ch2:fig:33} are
+repeated below for reference:
+\begin{subequations}\label{ch2:eq:80}
+\begin{align}
+\bar{Z}_n &= \tfrac{2}{3}L & &\text{(conical nose)} \label{ch2:eq:80a}\\
+\bar{Z}_n &= .466L & &\text{(tangent ogive nose)} \label{ch2:eq:80b}\\
+\bar{Z}_n &= \tfrac{1}{2}L & &\text{(paraboloidal nose)} \label{ch2:eq:80c}\\
+\bar{Z}_n &= \tfrac{1}{3}L & &\text{(ellipsoidal nose)} \label{ch2:eq:80d}
+\end{align}
+\end{subequations}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig33.png}
+  \caption{Center of pressure locations for some common nose shapes.}
+  \label{ch2:fig:33}
+\end{figure}
+
+The notation used in determining the normal force coefficient and \CP{}
+location of a conical shoulder is given in Figure~\ref{ch2:fig:34}. The
+normal force coefficient of \emph{any} shoulder, whether or not it is
+conical, is given by
+\begin{equation}\label{ch2:eq:81}
+(\CNa)_S = 2\left[\left(\frac{r_2}{r_r}\right)^{2} - \left(\frac{r_1}{r_r}\right)^{2}\right]
+\end{equation}
+The conical form is, however, by far the most commonly used and the
+following equation for the \CP{} location is valid \emph{only} for the
+conical configuration:
+\begin{equation}\label{ch2:eq:82}
+\bar{Z}_{CS} = Z_1 + L\left[\frac{2}{3} - \frac{1}{3}\,\frac{r_1}{r_2}\left(\frac{r_1}{r_2} + 1\right)\right]
+\end{equation}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig34.png}
+  \caption{Notation used in determining the normal force coefficient and
+  center of pressure location of a conical shoulder. $Z_1$ denotes the
+  distance from the tip of the nose to the forward end of the shoulder, while
+  $\bar{Z}_{CS}$ is the distance from the tip of the nose to the center of
+  pressure of the shoulder.}
+  \label{ch2:fig:34}
+\end{figure}
+
+Figure~\ref{ch2:fig:35} illustrates the notation used in finding the normal
+force coefficient and \CP{} of a conical boattail. The normal force
+coefficient equation is identical to that used in computing the normal force
+coefficient of a shoulder:
+\begin{equation}\label{ch2:eq:83}
+(\CNa)_B = 2\left[\left(\frac{r_2}{r_r}\right)^{2} - \left(\frac{r_1}{r_r}\right)^{2}\right]
+\end{equation}
+Note, however, that in this case $r_2$ is \emph{smaller} than $r_1$, meaning
+that the value of $(\CNa)_B$ is \emph{negative}: a conical
+boattail experiences a \emph{suction} force when the rocket of which it is a
+part is yawed in a moving airstream. It follows that a boattail at the
+extreme after end of a rocket has a destabilizing effect, and any rocket
+incorporating such a device requires slightly larger fins than one which
+does not. The center of pressure location of a conical boattail is given by
+\begin{equation}\label{ch2:eq:84}
+\bar{Z}_{CB} = Z_1 + \frac{L}{3}\left[1 + \frac{r_2}{r_1}\left(\frac{r_2}{r_1} + 1\right)\right]
+\end{equation}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig35.png}
+  \caption{Notation used in determining the normal force coefficient and
+  center of pressure location of a conical boattail. Again, $Z_1$ is the
+  distance from the tip of the nose to the forward end of the boattail;
+  $\bar{Z}_{CB}$ is the distance from the nose tip to the boattail center of
+  pressure.}
+  \label{ch2:fig:35}
+\end{figure}
+
+Body tube sections of constant diameter exhibit no measurable normal force
+coefficient at zero angle of attack, and in fact produce no substantial
+normal force at all for angles of attack less than about 0.2 radian. For
+this reason body tube sections are omitted from the equations of Barrowman
+analysis.
+
+Figure~\ref{ch2:fig:36} shows the system of notation used in determining the
+normal force coefficient and center of pressure location of a fin or set of
+fins. Strictly speaking, the Barrowman method is applicable only to fins of
+the form shown in Figure~\ref{ch2:fig:36}, but in practical applications it
+is perfectly permissible to approximate a more complex fin shape by that
+shown in Figure~\ref{ch2:fig:36}. As long as the lateral area of the
+hypothetical approximation is identical to that of the actual fin, the
+numerical results obtained from the Barrowman analysis will be very nearly
+correct. If the approximate fin has \emph{less} area than the true fin, the
+results will be conservative, while if it has \emph{more} area than the true
+fin they will be overly optimistic. This latter condition is dangerous and
+should be avoided.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig36.png}
+  \caption{Notation used in determining the normal force coefficient and
+  center of pressure location of single fins and symmetrical fin assemblies.
+  $Z_T$ is the distance from the tip of the nose to the intersection of the
+  fin root and leading edge; $\bar{Z}_{T(B)}$ is the distance from the nose
+  tip to the center of pressure of the fin assembly. The definition of $\AR$,
+  the \emph{aspect ratio} of a single fin, is also given.}
+  \label{ch2:fig:36}
+\end{figure}
+
+The normal force coefficient of a single fin is given by
+\begin{equation}\label{ch2:eq:85}
+(\CNa)_1 = \frac{\AR\left(\dfrac{c_r + c_t}{r_r}\right)\left(\dfrac{s}{r_r}\right)}{2 + \sqrt{4 + \left(\dfrac{\AR}{\cos\Gamma_c}\right)^{2}}}
+\end{equation}
+while that of a complete set of $N$ fins, where $N$ must be either three or
+four, is
+\begin{equation}\label{ch2:eq:86}
+(\CNa)_T = \frac{N\,\AR\left(\dfrac{c_r + c_t}{2r_r}\right)\left(\dfrac{s}{r_r}\right)}{2 + \sqrt{4 + \left(\dfrac{\AR}{\cos\Gamma_c}\right)^{2}}}
+\end{equation}
+The airflow about the fins, however, is disturbed by the presence of the
+body with the result that the effective normal force coefficient of a set of
+fins is not equal to the expression given in equation~\eqref{ch2:eq:86}. The
+influence of the body is accounted for by postulating an ``interference
+coefficient'' $K_{T(B)}$ by which \eqref{ch2:eq:86} is to be multiplied to
+obtain the effective value of the normal force coefficient. If we let
+\begin{equation*}
+\tau = \frac{s + r_t}{r_t}
+\end{equation*}
+then the value of the interference coefficient for three- and four-finned
+configurations is given by
+\begin{equation}\label{ch2:eq:87}
+K_{T(B)} = 1 + \frac{1}{\tau}
+\end{equation}
+so that the applicable value of the normal force coefficient is
+\begin{equation}\label{ch2:eq:88}
+(\CNa)_{T(B)} = K_{T(B)}(\CNa)_T
+\end{equation}
+
+The longitudinal position of the \CP{} of any one fin (which is also equal
+to the longitudinal position of the \CP{} of the entire fin assembly) is
+computed according to
+\begin{equation}\label{ch2:eq:89}
+\bar{Z}_T = Z_T + \frac{x_t}{3}\left[\frac{c_r + 2c_t}{c_r + c_t}\right] + \frac{1}{6}\left[c_r + c_t - \frac{c_r c_t}{c_r + c_t}\right]
+\end{equation}
+while the radial position of the \CP{} of an individual fin is
+\begin{equation}\label{ch2:eq:90}
+\bar{Y}_T = r_t + \frac{s}{3}\left[\frac{c_r + 2c_t}{c_r + c_t}\right]
+\end{equation}
+The \CP{} of any radially-symmetrical set of three or more fins, of course,
+lies on the centerline of the rocket and thus has a radial coordinate of
+zero.
+
+Having thus determined the normal force coefficients and longitudinal center
+of pressure locations of all applicable components, we are now in a position
+to compute the normal force coefficient of the complete rocket and the \CP{}
+location of the vehicle considered as a whole. For the total normal force
+coefficient we have
+\begin{equation}\label{ch2:eq:91}
+\CNa = (\CNa)_n + (\CNa)_S + (\CNa)_B + (\CNa)_{T(B)}
+\end{equation}
+while the \CP{} location is given by
+\begin{equation}\label{ch2:eq:92}
+\bar{Z} = \frac{(\CNa)_n \bar{Z}_n + (\CNa)_S \bar{Z}_{CS} + (\CNa)_B \bar{Z}_{CB} + (\CNa)_{T(B)} \bar{Z}_T}{\CNa}
+\end{equation}
+These last two are the most general forms of the Barrowman equations in that
+they account for the presence of conical shoulders and boattails. Not all
+rockets have such components, but the equations are easily altered to apply
+to those that do not by omitting the terms due to the shoulder, the
+boattail, or both.
+
+\subsection{Locating the Center of Gravity}\label{ch2:sec:4.2}
+
+In order to compute the static stability margin, corrective and damping
+moment coefficients, and moments of inertia of a model rocket it is
+necessary to determine the location of its center of gravity. This is done
+by a method of moments very similar to that of the Barrowman equations,
+except that here we work with moments of mass rather than moments of
+pressure forces.
+
+If you have a complete rocket which has already been built, of course, it is
+a simple matter to balance the flight-ready vehicle (with payload, engine,
+and recovery system in place) on a cord or knife-edged object in order to
+find the \CG{} directly, for the \CG{} is defined as the balance point. We
+are concerned here, though, with \emph{designing} model rockets and must
+therefore have some means of predicting the \CG{} location of a rocket
+\emph{before} construction is begun. In order to do this precisely you must
+know the exact mass and the balance point of each component---nosecone, body
+tube, shoulder and boattail (if any), engine(s), fin assembly, and recovery
+system---of which the rocket is comprised. The payload, if any, must also be
+taken into account.
+
+The notation used in computing the \CG{} location is illustrated in
+Figure~\ref{ch2:fig:37}. Note that moments are again taken about the tip of
+the nose, and that the longitudinal coordinate increases as we move from the
+nose toward the tail, but the name of this coordinate has been changed from
+$Z$ to $W$ to avoid the use of elaborate subscript notation to distinguish
+between centers of gravity and centers of pressure. The masses of certain of
+the components---lengths of body tubing, rocket engines, shoulders,
+boattails, nosecones, and the standard National Association of Rocketry
+payload, for instance---can be determined from information given by the
+manufacturer, although you will have to take care to express weights given
+in ounces as masses given in grams by multiplying them by the factor 28.35.
+The masses of fins, fully-rigged recovery systems, and nonstandard payloads
+and components, however, must be determined by weighing on a laboratory gram
+balance. The \CG{} of each individual component can be determined by string
+or knife-edge balancing, except for those parts of the rocket which have not
+yet been made or cut to length, such as the body tube and fins. The \CG{} of
+a uniform body tube is, of course, its geometrical center. The \CG{} of a
+proposed set of fins can be found by cutting a pair of the proposed design,
+joined root to root, out of cardboard and balancing the fin set thus
+obtained on a knife-edge held spanwise. The weight of a fin is found by
+multiplying its area by the weight per unit area of the balsa sheet or other
+material of which it is composed. The weight per unit area of fin material,
+in turn, can be determined by weighing a sample sheet of fin material whose
+area is known (such as a complete three-by-thirty-six inch sheet of balsa,
+which has an area of 698 square centimeters) on a laboratory gram balance
+and dividing the weight thus obtained by the area of the sheet. To obtain
+conservative estimates you should completely fill and paint such balsa
+sample sheets and also use the hardest sheet of balsa you can find. This is
+because painting adds significantly to the weight of the fins and the weight
+of balsa itself varies greatly from piece to piece, being the greatest for
+the hardest material. \CG{} estimates should also be made on the basis of
+the most powerful (that is, heaviest) engine(s) with which it is intended
+that the rocket be flown.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig37.png}
+  \caption{Notation and longitudinal coordinate system used in determining
+  the center of gravity location of a model rocket. For the sake of clarity,
+  not all components have been considered in this drawing; the two
+  constant-diameter tube sections forward of the conical boattail, for
+  instance, have been omitted and the tail section---tube, engine, and
+  fins---has been considered as a unit.}
+  \label{ch2:fig:37}
+\end{figure}
+
+Once the mass and \CG{} location of each individual component have been
+determined, the total mass at liftoff and \CG{} of the complete rocket at
+liftoff can be calculated as follows:
+\begin{equation}\label{ch2:eq:93}
+M = M_n + M_s + M_p + M_b + M_r + M_t + M_e + M_f
+\end{equation}
+where
+\begin{itemize}[nosep,leftmargin=*,label={}]
+  \item $M_n$ = mass of nosecone
+  \item $M_s$ = mass of shoulder
+  \item $M_p$ = mass of payload and payload section of tube
+  \item $M_b$ = mass of boattail
+  \item $M_r$ = mass of fully rigged and packed recovery system
+  \item $M_t$ = mass of body tube
+  \item $M_e$ = mass of engine
+  \item $M_f$ = mass of fins
+\end{itemize}
+\begin{equation}\label{ch2:eq:94}
+\bar{W} = \frac{M_n\bar{W}_n + M_s\bar{W}_s + M_p\bar{W}_p + M_b\bar{W}_b + M_r\bar{W}_r + M_t\bar{W}_t + M_e\bar{W}_e + M_f\bar{W}_f}{M}
+\end{equation}
+As in the Barrowman calculations, any component which a given rocket design
+does not contain can simply be omitted from the equations. Unlike the
+Barrowman equations, however, the \CG{} equations \emph{always} contain
+nonzero contributions from the lengths of body tubing employed in building
+the rocket.
+
+Now it so happens that in the vast majority of actual model designs the
+location of the \CG{} is very largely determined by the mass properties and
+locations of the nose, payload, body and engine alone. Because of this it is
+often possible to get a very good estimate of the \CG{} location of the
+finished rocket by performing a ``preassembly balancing''---cutting the body
+tube to length, inserting engine and payload, and fitting the nosecone; then
+simply balancing the partly-completed rocket thus obtained. If your design
+is relatively standard or intended only for sport flying you can save a lot
+of work by measuring the \CG{} location in this way, but a knowledge of the
+analytical method of equations~\eqref{ch2:eq:93} and~\eqref{ch2:eq:94} is
+invaluable when working to high tolerances, doing competition work, or
+experimenting with unusual designs.
+
+\subsection{The Corrective Moment Coefficient}\label{ch2:sec:4.3}
+
+The results of Sections~\ref{ch2:sec:4.1} and~\ref{ch2:sec:4.2} enable the
+calculation of the dynamic parameter $C_1$ as follows:
+\begin{equation}\label{ch2:eq:95}
+C_1 = \frac{\rho}{2}V^{2}A_r\CNa\left[\bar{Z} - \bar{W}\right]
+\end{equation}
+The numerical value of $C_1$ in CGS units is given by
+\begin{equation}\label{ch2:eq:96}
+C_1 = \left(0.6125 \times 10^{-3}\right)V^{2}A_r\CNa\left[\bar{Z} - \bar{W}\right] \qquad \text{dyne-centimeters}
+\end{equation}
+Note that $\bar{W}$ must be \emph{smaller} than $\bar{Z}$ for $C_1$ to be a
+positive number; this is just the equation's way of telling us that the
+\CP{} must lie \emph{behind} the \CG{} for the rocket to be stable. The
+distance $(\bar{Z} - \bar{W})$ is referred to as the \emph{static stability
+margin} of the rocket. The static stability margin is often
+``nondimensionalized'' by dividing it by the maximum body diameter of the
+rocket. The resulting quantity is some multiple of the rocket's maximum
+diameter, or ``caliber'', and it is thus standard practice to refer to the
+static stability margin of a given rocket in calibers. The notation
+associated with computing $C_1$ and the static stability margin is explained
+in Figure~\ref{ch2:fig:38}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig38.png}
+  \caption{Notation used in computing corrective moment coefficient and
+  static stability margin.}
+  \label{ch2:fig:38}
+\end{figure}
+
+\subsection{The Damping Moment Coefficient}\label{ch2:sec:4.4}
+
+The dynamic parameter $C_2$ is the sum of two components, one of which is
+aerodynamic in origin, the other propulsive. The aerodynamic contribution to
+damping has been obtained by Barrowman as
+\begin{equation}\label{ch2:eq:97}
+\begin{split}
+C_{2A} = \frac{\rho}{2}VA_r\Big\{&(\CNa)_{T(B)}\left[\bar{Z}_T - \bar{W}\right]^{2} + (\CNa)_n\left[\bar{Z}_n - \bar{W}\right]^{2} + (\CNa)_S\left[\bar{Z}_{CS} - \bar{W}\right]^{2}\\
+&+ (\CNa)_B\left[\bar{Z}_{CB} - \bar{W}\right]^{2}\Big\}
+\end{split}
+\end{equation}
+of which the CGS numerical result is
+\begin{equation}\label{ch2:eq:98}
+\begin{split}
+C_{2A} = \left(0.6125 \times 10^{-3}\right)VA_r\Big\{&(\CNa)_{T(B)}\left[\bar{Z}_T - \bar{W}\right]^{2} + (\CNa)_n\left[\bar{Z}_n - \bar{W}\right]^{2} + (\CNa)_S\left[\bar{Z}_{CS} - \bar{W}\right]^{2}\\
+&+ (\CNa)_B\left[\bar{Z}_{CB} - \bar{W}\right]^{2}\Big\} \qquad \text{dyne-centimeter-seconds}
+\end{split}
+\end{equation}
+As in Section~\ref{ch2:sec:4.1}, any component which a given rocket does not
+possess is simply omitted from the calculation.
+
+During the time in which the rocket motor is firing there is an additional
+contribution to the damping moment arising from the expulsion of mass from
+the nozzle. If the nozzle exit is considered to be located a distance
+$L_{ne}$ from the tip of the nose this propulsive damping moment coefficient
+is given by
+\begin{equation}\label{ch2:eq:99}
+C_{2R} = \mdot\left[L_{ne} - \bar{W}\right]^{2} \qquad \text{dyne-centimeter-seconds}
+\end{equation}
+where $\mdot$ = rate of mass expulsion from the nozzle, grams/second. The
+phenomenon of damping due to rocket thrust is generally referred to as ``jet
+damping''. Readers desiring to explore the topic further should consult
+\emph{The Exterior Ballistics of Rockets}, by Davis, Follin, and Blitzer.
+This text, while highly mathematical in parts, contains an excellent
+development of the physics of propulsive damping.
+
+You should notice that $C_{2R}$ is not generally constant during the time of
+thrusting, since $\mdot$ depends on the motor's thrust $F$ and exhaust
+velocity $V_e$ according to
+\begin{equation*}
+\mdot = \frac{F}{V_e}
+\end{equation*}
+Both $F$ and $V_e$ vary with time during the burning of the motor, so that
+the determination of $\mdot$ with precision can be quite difficult.
+Fortunately, though, most model rocket motors of the end-burning type have a
+thrust and exhaust velocity that are virtually constant over much of the
+burning time. A rough average of the mass expulsion rate may then be
+computed by dividing the mass of propellant (call it $m_p$) contained in the
+motor before ignition by the duration of burning, $t_b$:
+\begin{equation*}
+\mdot = \frac{m_p}{t_b}
+\end{equation*}
+Whenever this approximation is valid the contribution of jet damping to the
+damping moment coefficient is
+\begin{equation}\label{ch2:eq:100}
+C_{2R} = \frac{m_p}{t_b}\left(L_{ne} - \bar{W}\right)^{2}
+\end{equation}
+The value of the damping moment coefficient during the time the rocket motor
+is thrusting is thus
+\begin{subequations}\label{ch2:eq:101}
+\begin{equation}\label{ch2:eq:101a}
+C_2 = C_{2A} + C_{2R}
+\end{equation}
+and the damping moment coefficient during the coasting phase of flight is
+given by
+\begin{equation}\label{ch2:eq:101b}
+C_2 = C_{2A}
+\end{equation}
+\end{subequations}
+Figures~\ref{ch2:fig:39} and~\ref{ch2:fig:40} illustrate the notation and
+procedure used in computing the aerodynamic and propulsive contributions to
+the damping moment coefficient.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig39.png}
+  \caption{Notation used in computing aerodynamic damping moment
+  coefficient.}
+  \label{ch2:fig:39}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig40.png}
+  \caption{Notation used in computing propulsive damping moment
+  coefficient.}
+  \label{ch2:fig:40}
+\end{figure}
+
+\subsection{The Longitudinal Moment of Inertia}\label{ch2:sec:4.5}
+
+A model rocket consists primarily of coaxial, circular cylindrical objects,
+of which some---such as the propellant grain, solid bulkheads, and NAR
+standard payload (if any)---are solid throughout and others---the body tube
+and motor casing, for example---are hollow. The nose cone, shoulders, and
+boattails can be of any radially symmetrical configuration, while there is
+less restriction on the geometry of fins and most models carry some small,
+dense, irregularly-shaped objects such as the bits of lead which are
+sometimes used as nose weights. Each component of the rocket contributes in
+some measure, depending on its mass, shape, and location, to the moments of
+inertia, and the inertial properties of the completed rocket are computed by
+determining each such contribution and adding all the contributions
+together.
+
+The contribution of any extended body to the longitudinal moment of inertia
+is equal to its mass multiplied by the \emph{square} of the longitudinal
+distance between its \CG{} and the \CG{} of the complete rocket, \emph{plus}
+its moment of inertia measured about a transverse axis passing through its
+own \CG{} The contribution to $I_L$ of any extended body (call it $o$) may
+thus be written
+\begin{equation}\label{ch2:eq:102}
+I_{Lo} = M_o\left[\bar{W} - \bar{W}_o\right]^{2} + I_{Lo}'
+\end{equation}
+where $I_{Lo}$ denotes the actual contribution of $o$ to the longitudinal
+moment of inertia of the rocket and $I_{Lo}'$ refers to the object's
+longitudinal moment of inertia with respect to its own \CG, which is located
+a distance $\bar{W}_o$ from the tip of the nose.
+
+In particular, the contribution of a solid, right, circular cylindrical
+object of uniform density to the longitudinal moment of inertia is given by
+\begin{subequations}\label{ch2:eq:103}
+\begin{equation}\label{ch2:eq:103a}
+I_{Lcs} = M_c\left\{\left[\bar{W} - \bar{W}_c\right]^{2} + \frac{R^{2}}{4} + \frac{L^{2}}{12}\right\}
+\end{equation}
+where
+\begin{itemize}[nosep,leftmargin=*,label={}]
+  \item $M_c$ = mass of cylinder
+  \item $L$ = length of cylinder
+  \item $R$ = radius of cylinder
+  \item $\bar{W}_c$ = location of cylinder's \CG{} (midpoint) reckoned as
+  distance back from tip of nose
+\end{itemize}
+while the contribution due to a \emph{hollow} cylindrical object of outer
+radius $R_o$, inner radius $R_1$, is
+\begin{equation}\label{ch2:eq:103b}
+I_{Lch} = M_c\left\{\left[\bar{W} - \bar{W}_c\right]^{2} + \frac{R_o^{2} + R_i^{2}}{4} + \frac{L^{2}}{12}\right\}
+\end{equation}
+\end{subequations}
+
+There also exist analytical expressions for the contributions of various
+nose cone shapes, shoulders, and boattails, and (in principle, at least) the
+contribution of any object whatsoever, regardless of shape or density
+properties, is computable by the methods of \emph{integral calculus}.
+Unfortunately, however, the majority of algebraic solutions obtainable by
+such techniques are so long and complex that they are utterly impractical to
+work with. The best course for the designer in this situation is to resort
+to an approximate technique for taking these components into account. Such a
+procedure is the ``point-mass approximation'', in which all the mass of a
+given object is considered to be concentrated at its own \CG{} This deprives
+the object in question of the property of extension and causes the term
+$I_{Lo}'$ in equation~\eqref{ch2:eq:102} to become zero; the point-mass
+approximation thus always results in an \emph{underestimate} of the
+component's inertial contribution, since it ignores the object's mass
+distribution. The point-mass assumption is most nearly valid when the
+component under consideration is far from the \CG{} of the complete rocket
+in comparison with its own dimensions; one thus often hears the method
+referred to as computing the inertial contribution of a ``remote object''.
+As it turns out, nose cones, nose weights, and payloads usually obey the
+approximation rather well but the technique is not as good when applied to
+shoulders, boattails, and fins. Some designers prefer to replace the
+distance between the component \CG{} and the rocket \CG{} by the distance
+from the rocket \CG{} to the \emph{most remote} point of the component (the
+trailing edge of the fins, for example) in order to increase the magnitude
+of the point-mass estimate in cases where its accuracy is questionable.
+Figure~\ref{ch2:fig:41} summarizes the various notations used to compute the
+contributions of some representative components to the longitudinal moment
+of inertia of a hypothetical rocket.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig41.png}
+  \caption{Examples of the notation used in computing contributions to the
+  longitudinal moment of inertia. An object subject to the point-mass
+  approximation (nosecone), a solid cylindrical component (NAR payload), and
+  a hollow cylindrical component (engine casing) are illustrated.}
+  \label{ch2:fig:41}
+\end{figure}
+
+The longitudinal moment of inertia of any given component about a transverse
+axis through its own \CG{} can also be \emph{measured} experimentally by the
+use of the torsion-wire method, the same technique used to determine the
+inertial properties of a completed, flight-ready rocket (to be discussed in
+detail in Section~\ref{ch2:sec:5}). The diameter of the wire used for the
+measurement of moments of inertia of some of the smaller components,
+however, will need to be smaller than that used for full-vehicle
+experiments. In some cases it may have to be as small as .005 or even .003
+inch.
+
+Once the contribution to $I_L$ of each component of the rocket has been
+determined, the longitudinal moment of inertia of the assembled vehicle can
+be computed by taking the sum of all the contributions. The number of
+contributions will vary from rocket to rocket, and in addition most
+designers use their own judgment in selecting only those components large
+enough and/or far enough from the \CG{} of the complete rocket to include in
+the computations. The minimum set of components necessary to take into
+consideration generally consists of body tube, engine, nose cone, payload
+(if any), and fins. Shoulders, boattails, and substantial bulkheads should
+also be included if the rocket has such components, but lesser items such as
+screw eyes, shock cords, streamers, and launch lugs are commonly omitted
+since their contributions are miniscule. Because the number and nature of
+inertial contributions varies so widely from rocket to rocket, a
+mathematical shorthand called ``summation notation'' is usually used to
+express the equation for the longitudinal moment of inertia as follows:
+\begin{equation}\label{ch2:eq:104}
+I_L = \sum_i I_{Li}
+\end{equation}
+This symbolism, literally translated into English, means simply ``the
+longitudinal moment of inertia of the entire rocket is equal to the sum of
+the contributions to the longitudinal moment of inertia from all the
+components of the rocket''. As you can see, summation notation saves a great
+deal of writing. It could equally as well have been applied to a number of
+other equations in this section; this I did not do, however, since I feel
+that the presence of examples of the explicit form of writing out summations
+aids in understanding the nature and purpose of summation notation.
+
+\subsection{The Radial Moment of Inertia}\label{ch2:sec:4.6}
+
+The radial moment of inertia of an assembled rocket is also predicted by
+summing the contributions due to all its components. The contribution of a
+solid cylindrical component of mass $M_c$ and radius $R$ to this quantity is
+given by
+\begin{subequations}\label{ch2:eq:105}
+\begin{equation}\label{ch2:eq:105a}
+I_{Rcs} = \tfrac{1}{2}M_c R^{2}
+\end{equation}
+while that of a hollow cylindrical component of inner radius $R_1$ and outer
+radius $R_o$ is
+\begin{equation}\label{ch2:eq:105b}
+I_{Rch} = \tfrac{1}{2}M_c\left[R_o^{2} + R_i^{2}\right]
+\end{equation}
+\end{subequations}
+The algebraic formulae for the radial moment of inertia contributions due to
+most nose cone shapes are, fortunately, much more tractable than in the case
+of longitudinal moment of inertia contributions. A few of the more
+elementary ones are those for a conical nose,
+\begin{equation}\label{ch2:eq:106}
+I_{Rn} = \tfrac{3}{10}M_n R^{2}
+\end{equation}
+and for an ellipsoidal or hemispherical nose,
+\begin{equation}\label{ch2:eq:107}
+I_{Rn} = \tfrac{2}{5}M_n R^{2}
+\end{equation}
+where, in each equation $M_n$ denotes the mass of the nose cone and $R$ its
+radius at the shoulder.
+
+Fins are difficult to treat analytically in any great generality due to the
+great variety of planform shapes possible. They cannot be ignored in
+computing the radial moment of inertia, despite the fact that their mass is
+often small, because it is also true that they extend farther from the
+centerline of the rocket than any other component. Nor can the point-mass
+approximation be made, as the spanwise extent of a fin is of comparable
+magnitude to the distance between its \CG{} and the model's centerline. If,
+as when performing Barrowman calculations, however, we idealize the fin
+planform to a trapezoid, we can obtain a good approximation to the radial
+moment of inertia due to a thin, flat fin of uniform density in the form
+\begin{subequations}\label{ch2:eq:108}
+\begin{equation}\label{ch2:eq:108a}
+I_{Rf} = \left\{\left[(s + r_t)^{3} - r_t^{3}\right]\frac{c_r}{3} - \frac{(c_r - c_t)}{4(s + r_t)}\left[(s + r_t)^{4} - r_t^{4}\right]\right\}\frac{M_f}{A_f}
+\end{equation}
+where
+\begin{itemize}[nosep,leftmargin=*,label={}]
+  \item $M_f$ = mass of fin
+  \item $A_f$ = lateral area of one side of fin
+  \item $r_t$ = radius of fin root from rocket centerline
+  \item $s$ = span of one fin
+  \item $c_r$ = root chord of fin
+  \item $c_t$ = tip chord of fin
+\end{itemize}
+It follows that the contribution of a tail assembly of $N$ identical fins,
+symmetrically arranged, is
+\begin{equation}\label{ch2:eq:108b}
+I_{Rt} = N I_{Rf}
+\end{equation}
+\end{subequations}
+The notation used in computing radial moment of inertia contributions of
+some representative components is shown in Figure~\ref{ch2:fig:42}.
+Generally speaking, consideration of body tube, fins, engine, nosecone, and
+payload, shoulder, and boattail (if any) in the calculations will suffice to
+give an accurate prediction of the radial moment of inertia of the completed
+model. As in the case of the longitudinal moment of inertia, the
+contribution of any given component can be determined experimentally by
+torsion wire. Once all the contributions to $I_R$ from the various
+components have been determined, the radial moment of inertia of the
+assembled rocket can be calculated according to
+\begin{equation}\label{ch2:eq:109}
+I_R = \sum_i I_{Ri}
+\end{equation}
+You should notice that moments of inertia, both longitudinal and radial,
+have units of gram-centimeters$^{2}$.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig42.png}
+  \caption{Examples of the notation used in computing contributions to the
+  radial moment of inertia. An ellipsoidal nosecone, a solid cylindrical
+  component (nosecone shoulder), a hollow cylindrical component (body tube),
+  and a set of four fins are illustrated.}
+  \label{ch2:fig:42}
+\end{figure}
+
+\subsection{General Properties of the Parameters}\label{ch2:sec:4.7}
+
+Having derived expressions by which the various dynamic parameters may be
+computed, we are now in a position to make some observations concerning
+their general nature and properties. We can, for instance, determine the
+physical dimensions of the various angular frequencies and time constants
+derived in the analyses of Section~\ref{ch2:sec:3}. From
+Sections~\ref{ch2:sec:4.1} through~\ref{ch2:sec:4.6} we have that the units
+of $C_1$ are dyne-centimeters, those of $C_2$ are dyne-centimeter-seconds,
+and those of $I_L$ and $I_R$ are gram-centimeters$^{2}$. The definitions of
+$C_1$ and $C_2$ from Section~\ref{ch2:sec:2.2}, however, indicate that the
+correct units of these parameters should be dyne-centimeters/radian for
+$C_1$ and dyne-centimeter-seconds/radian for $C_2$. There is nothing
+inconsistent here, however, because radians are by definition dimensionless
+(that is, they have no physical units). Their presence or absence thus
+cannot be detected in a dimensional analysis and one must remember to supply
+them whenever necessary in determining angular frequencies.
+
+Both angular frequencies and time constants should be computed using units
+for the dynamic parameters as obtained from Sections~\ref{ch2:sec:4.1}
+through~\ref{ch2:sec:4.6}, which do not contain radians. If this is done we
+obtain for any angular frequency the units (1/seconds). To this we must
+supply radians, thereby obtaining the physically meaningful result that
+angular frequencies have units of radians/second. Radians per second are
+thus the physical dimensions of $\omega$, $\omega_n$, $\omega_1$,
+$\omega_2$, $\omega_f$, and $\omega_Z$. Any inverse time constant ($D$,
+$D_1$, or $D_2$) will be found to have units of (1/seconds). Radians should
+\emph{not} be supplied to this result. Ordinary time constants (that is,
+$\tau_1$ or $\tau_2$) will turn out to have dimensions of seconds. Initial
+amplitudes and phase angles, of course, are in radians.
+
+The coupled and decoupled damping ratios, $\zeta$ and $\zeta_c$, will be
+found to be \emph{dimensionless}; like normal force coefficients, they have
+no physical units at all. Moreover, since $C_1$ varies as the \emph{square}
+of airspeed while $C_2$ varies \emph{linearly} with airspeed, you can see
+from equations~\eqref{ch2:eq:20} and~\eqref{ch2:eq:70} that neither damping
+ratio varies at all with airspeed. \emph{Damping ratio is therefore
+velocity-independent}---an enormously valuable property from the standpoint
+of analysis, for it means that the damping ratio (aside from small
+variations due to jet damping) of any given rocket will remain
+\emph{constant} throughout its flight \emph{even though the velocity of the
+rocket may vary by an order of magnitude or more}. It is then possible to
+define ``acceptable'' and ``optimum'' ranges of damping ratio which
+contribute to better flight characteristics, since the damping ratio can be
+designed into the model. $\zeta$ and $\zeta_c$ are relationships among
+geometrical and mass properties of the rocket and are independent (within
+the linearized theory) of its aerodynamic environment.

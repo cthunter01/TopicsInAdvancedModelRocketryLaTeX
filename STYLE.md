@@ -173,3 +173,22 @@ during the faithful transcription pass. Transcribe what is printed, including kn
 \end{enumerate}
 ```
 Underlined titles become `\emph{}`; keep the authors' citation wording.
+
+## 13. Chapter 2 notation (settled at assembly)
+
+The hand-lettering does not distinguish the case of x/X, y/Y, z/Z or of o/0 in subscripts, so
+Chapter 2 uses one form throughout, taken from its Symbols list. Auditors: these forms are intended.
+
+- Axis subscripts on angles and angular velocities are uppercase: `\alpha_X`, `\alpha_Y`,
+  `\Omega_X`, `\Omega_Y`, `\omega_Z` (roll rate), `\alpha_{Xm}`; hand-lettered moment subscripts
+  likewise `M_X`, `M_Y`, `M_Z` (the typed prose prints them so). Initial values carry a digit zero:
+  `\alpha_{X0}`, `\Omega_{Y0}`, `\alpha_0`.
+- Typewritten subscripts keep their printed case: the forcing functions `f_x(t)`, `f_y(t)` and the
+  Symbols list's `M_x`, `M_y`, `M_z`; the letter o in `I_{Lo}`, `M_o`, `\bar{W}_o`, `R_o`.
+- Amplitude ratio (two separate letters in the book) is `\mathit{AR}`, `\mathit{AR}_c`,
+  `\mathit{AR}_{\mathrm{res}}`, `\mathit{AR}_{\mathrm{cres}}`; `\AR` is only the aspect-ratio ligature.
+- Word-like subscripts are upright: `\beta_{\mathrm{res}}`, `\beta_{\mathrm{cres}}`,
+  `\omega_{\mathrm{cres}}`, `t_{\max}`; letter subscripts stay italic: `\omega_n`, `\omega_{nc}`,
+  `\zeta_c`, `\beta_c`, `I_{Lch}`. The natural-frequency subscript that looks like m is n.
+- Phase angle `\varphi`; damping ratio `\zeta`; angular acceleration `\gamma`; the Symbols list's
+  script F is `\mathscr{F}`.

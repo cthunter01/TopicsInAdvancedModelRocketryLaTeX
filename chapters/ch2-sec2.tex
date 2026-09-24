@@ -1,1 +1,308 @@
-% chapters/ch2-sec2.tex -- unit not yet transcribed
+% chapters/ch2-sec2.tex -- 2. The Linearized Theory: 2.1 Corrective and Damping
+% Moment; 2.2 The Linearization Approximations; 2.3 Coupled and Decoupled
+% Systems of Equations; 2.4 Homogeneous, Particular, and Steady-State Solutions
+% (PDF 111-122)
+\section{The Linearized Theory}\label{ch2:sec:2}
+
+\subsection{Corrective and Damping Moment}\label{ch2:sec:2.1}
+
+In considering the dynamics of a free-flying, fin-stabilized ballistic missile
+we are dealing principally with applied moments due to aerodynamic forces.
+Suppose that you have a model rocket which you have launched vertically, for
+instance. The model has begun its flight straight and true, but has
+subsequently been disturbed in some unknown manner such that it is rotated
+about its X axis. What happens next?
+
+$\Omega_Y$ and $\omega_Z$ are both zero, and there is no $M_Y$ or $M_Z$
+involved. The dynamical equations thus reduce to
+\begin{equation*}
+M_X = I_L \frac{d\Omega_X}{dt}
+\end{equation*}
+Now if the rocket is statically stable a \emph{corrective} moment $M_c$ will be
+generated, of sign opposite to the displacement. Due to center of pressure
+travel, separation, and interference effects the precise dependence of
+corrective moment on angular displacement is quite complicated analytically.
+It is observed that the functional form of this relation is similar in
+appearance to Figure~\ref{ch2:fig:7}. As the rocket develops an angular
+velocity in response to the corrective moment, a \emph{damping} moment $M_d$
+will also arise due to the consequent additional component of the relative
+velocity of the airstream normal (that is, perpendicular) to the longitudinal
+axis of the rocket. This moment will be opposite in sign to the angular
+\emph{velocity} and has a functional form roughly as shown in
+Figure~\ref{ch2:fig:8}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig07.png}
+  \caption{Variation of corrective moment with angular deflection for a
+  typical model rocket at constant airspeed.}
+  \label{ch2:fig:7}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig08.png}
+  \caption{Variation of damping moment with angular velocity for a typical
+  model rocket at constant airspeed.}
+  \label{ch2:fig:8}
+\end{figure}
+
+Suppose we denote $M_c$ as an unspecified function of angular displacement by
+writing $M_c = F(\alpha_X)$ and $M_d$ as an unspecified function of angular
+velocity by writing $M_d = G(\Omega_X)$. Then we can write
+\begin{align*}
+M_X &= M_X \text{ due to } \alpha_X + M_X \text{ due to } \frac{d\alpha_X}{dt}\\
+    &= -M_c - M_d\\
+    &= -F(\alpha_X) - G(\Omega_X)
+\end{align*}
+Substituting these expressions in the dynamical equations, we have
+\begin{equation*}
+I_L \frac{d\Omega_X}{dt} = -F(\alpha_X) - G(\Omega_X)
+\end{equation*}
+or
+\begin{equation}\label{ch2:eq:7}
+I_L \frac{d^{2}\alpha_X}{dt^{2}} + F(\alpha_X) + G\!\left(\frac{d\alpha_X}{dt}\right) = 0
+\end{equation}
+An equation of this kind is called a \emph{homogeneous}, \emph{nonlinear},
+\emph{differential} equation---``differential'' because derivatives of
+$\alpha_X$ are involved; ``homogeneous'' because, when every term depending on
+$\alpha_X$ or its derivatives is moved to the left side of the equal sign, the
+right side of the equation is zero; and ``nonlinear'' because functions which
+may not be of the form ``$y = mx + b$'' (the equation of a straight line) may
+be involved in relating corrective moment to angular displacement and damping
+moment to angular velocity. The ``nonlinear'' part is of particular
+importance: it means that, in general, the equation cannot be solved by any
+known means; it means that we have no assurance that a solution even
+\emph{exists}, and, if it does, that there may not be more than one. It even
+means that the assumption that $M_c$ and $M_d$ could simply be added to obtain
+$M_X$ was incorrect.
+
+\subsection{The Linearization Approximations}\label{ch2:sec:2.2}
+
+In order to obtain a closed-form mathematical solution to the dynamical
+equations it is necessary to adopt a number of \emph{linearization
+approximations}. The reasoning behind these proceeds as follows: although the
+functions representing $M_c$ and $M_d$ are not of the form ``$y = mx + b$'',
+they may be approximated by such forms over limited ranges of the values of
+their independent variables. An approximation of this kind is the
+\emph{tangent line} to the exact function at some point of interest. Since the
+motions of a statically-stable rocket will all occur about $\alpha = 0$,
+$d\alpha/dt = 0$, and $d^{2}\alpha/dt^{2} = 0$, zero is our tangent-point for
+these approximations. The linearization approximation for corrective moment
+states that
+\begin{equation}\label{ch2:eq:8}
+M_c \cong \left[\left.\frac{dM_c}{d\alpha_X}\right|_{\alpha_X = 0}\right]\alpha_X
+    = C_1\alpha_X
+\end{equation}
+which is read: ``$M_c$ is approximately equal to $\alpha_X$ times its
+derivative with respect to $\alpha_X$ at $\alpha_X = 0$''. Similarly, the
+linearized damping moment is written
+\begin{equation}\label{ch2:eq:9}
+M_d \cong \left[\left.\frac{dM_d}{d\Omega_X}\right|_{\Omega_X = 0}\right]\Omega_X
+    = C_2\Omega_X
+\end{equation}
+The linearization procedure is illustrated in Figure~\ref{ch2:fig:9}. You can
+see that the approximations are just the \emph{slopes} of the moment curves at
+$\alpha_X$ and $\Omega_X = 0$, respectively, multiplied by $\alpha_X$ and
+$\Omega_X$, respectively. Another physical interpretation of the concept of
+the derivative is thus to view it as the local \emph{slope} of the graphical
+representation of the function whose derivative is being taken.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig09.png}
+  \caption{Linearization approximations used to determine corrective moment
+  coefficient and damping moment coefficient for the model rocket of
+  Figures~\ref{ch2:fig:7} and~\ref{ch2:fig:8}. The corrective moment can be
+  considered linearly proportional to the yaw deflection $\alpha_X$ for yaw
+  angles less than 0.225 radian, while the damping moment can be considered
+  linearly proportional to the yaw rate for yaw rates below 87 rad/sec.}
+  \label{ch2:fig:9}
+\end{figure}
+
+The linearized moment coefficients of this treatment are identical to those
+given in the Gurkin report. The correspondence between the two is as follows:
+\begin{center}
+\begin{tabular}{@{}c@{\hspace{4em}}c@{}}
+\emph{Present Treatment} & \emph{Gurkin Report} \\[1ex]
+$\displaystyle \left.\frac{dM_c}{d\alpha_X}\right|_{\alpha_X = 0} \equiv C_1$ &
+$\displaystyle \left.\frac{dM_c}{d\alpha_X}\right|_{\alpha_X = 0} \equiv M_{\alpha}$ \\[3.5ex]
+$\displaystyle \left.\frac{dM_d}{d\Omega_X}\right|_{\Omega_X = 0} \equiv C_2$ &
+$\displaystyle \left.\frac{dM_d}{d\Omega_X}\right|_{\Omega_X = 0} \equiv M_{q}$ \\
+\end{tabular}
+\end{center}
+
+Within the ranges of validity of the linearization approximations it is
+permissible to express the total applied moment about the X axis as
+\begin{equation*}
+M_X = -C_1\alpha_X - C_2\frac{d\alpha_X}{dt}
+\end{equation*}
+These approximations are valid for $\alpha_X$ and $d\alpha_X/dt$ sufficiently
+\emph{small}: this means that the theory is restricted to cases of relatively
+small angular displacements and angular velocities; it is a so-called
+\emph{small-perturbation} theory. This restriction is acceptable in statically
+stable rockets for two reasons: in the vast majority of cases, the yaw and
+pitch disturbances encountered during flight \emph{will} be sufficiently small
+for a valid linear description and the angular velocities involved will not be
+out of the linear range of $M_d$. Secondly, should nonlinear behavior \emph{be}
+encountered the description of the linear theory will still be
+\emph{qualitatively} correct and, in any case, the motion will eventually damp
+down to within the linear displacement dependence range. Furthermore, should
+you ever obtain from this theory a solution indicating continued large and
+violent motions (for which the theory itself is invalid), you will have, in a
+sense, obtained all the information you need: you will know that the rocket in
+question ought to be redesigned.
+
+The limiting numerical values of yaw and pitch that can be treated within this
+theory are about 12 degrees (about 0.2 radian) either side of zero. The
+maximum permissible angular velocity will vary with the length of the rocket
+in question, the placement of its fins, and the speed at which it is
+travelling. As a practical matter, the inertial and aerodynamic
+characteristics of a well-designed rocket will invariably satisfy the angular
+velocity limit for that rocket.
+
+The great advantage of using the intermediate axis system now becomes clear:
+the angular displacements of the rocket about the X and Y axes will generally
+be small perturbations, but since there is no restoring moment about the roll
+axis of a ballistic rocket the angular displacements about the Z axis will
+often \emph{not} be small. The intermediate axes remove the necessity of
+keeping track of the third Euler's angle $\alpha_F$ and result in considerable
+analytical simplification. They allow us to view the motions in yaw and pitch
+from a position fixed in roll, without having to rotate with the rocket
+whenever it spins about its longitudinal axis. We can thus observe the yawing
+and pitching motions from a perspective relative to the space axes that is
+constant within the linear theory and can compute them directly as deviations
+of the longitudinal axis from the direction of flight.
+
+Returning to the dynamical equation for our case of yaw displacement and
+substituting the linearized form of the applied moment $M_X$, we find that
+\begin{equation}\label{ch2:eq:10}
+I_L \frac{d^{2}\alpha_X}{dt^{2}} + C_2 \frac{d\alpha_X}{dt} + C_1\alpha_X = 0
+\end{equation}
+This is now a homogeneous \emph{linear} differential equation with
+\emph{constant coefficients}. It is known that such equations \emph{always}
+have a solution and that the solution is \emph{unique} (i.e., that there is
+only one). Furthermore, the functional \emph{form} of the solution to this
+particular equation is well known and the solution itself is readily
+obtainable by a substitution technique called the \emph{method of undetermined
+coefficients}. If the rocket under consideration has four identical fins, the
+equation describing the pitching motion will be precisely analogous to that
+describing the yawing motion, the two having the same linear moment
+coefficients:
+\begin{equation*}
+I_L \frac{d^{2}\alpha_Y}{dt^{2}} + C_2 \frac{d\alpha_Y}{dt} + C_1\alpha_Y = 0
+\end{equation*}
+The pitch and yaw linear moment coefficients of a three-finned rocket may be
+expected to be slightly different and there will be some slight aerodynamic
+rolling moments arising from pitch and yaw angular displacements and angular
+velocities. Reasoning from the observed flight behavior of such rockets,
+though, it appears that these effects are slight and we shall restrict
+ourselves here to considering pitching behavior with the same constants as
+yawing behavior, both being aerodynamically decoupled from roll.
+
+\subsection{Coupled and Decoupled Systems of Equations}\label{ch2:sec:2.3}
+
+Once the linearization approximations have been made the dynamical equations
+of a rocket which is not rolling about its centerline become
+\begin{equation}\label{ch2:eq:11}
+\begin{aligned}
+I_L \frac{d^{2}\alpha_X}{dt^{2}} + C_2 \frac{d\alpha_X}{dt} + C_1\alpha_X &= 0\\
+I_L \frac{d^{2}\alpha_Y}{dt^{2}} + C_2 \frac{d\alpha_Y}{dt} + C_1\alpha_Y &= 0
+\end{aligned}
+\end{equation}
+For cases in which the rocket is spinning with some roll rate $\omega_Z$ we
+have
+\begin{equation}\label{ch2:eq:12}
+\begin{aligned}
+I_L \frac{d^{2}\alpha_X}{dt^{2}} + C_2 \frac{d\alpha_X}{dt} + C_1\alpha_X
+    + I_R\omega_Z \frac{d\alpha_Y}{dt} &= 0\\
+I_L \frac{d^{2}\alpha_Y}{dt^{2}} + C_2 \frac{d\alpha_Y}{dt} + C_1\alpha_Y
+    - I_R\omega_Z \frac{d\alpha_X}{dt} &= 0
+\end{aligned}
+\end{equation}
+Equations~\eqref{ch2:eq:11} are said to be \emph{decoupled} because $\alpha_X$
+and its time derivatives do not appear in the same equation with $\alpha_Y$
+and \emph{its} time derivatives. Equations~\eqref{ch2:eq:12}, however, have
+been \emph{coupled} together by the presence of the terms due to $\omega_Z$.
+Each equation of a decoupled system of equations can be solved independently
+of any others, but coupled systems must be solved simultaneously (i.e., by
+using various mathematical techniques to combine them so that they can both be
+considered at once). In both systems, if the roll rate $\omega_Z$ is constant,
+the third dynamical equation is identically zero and I have not written it
+down. It is important to notice that, in a radially symmetrical body like a
+rocket, \emph{pitch} can be coupled to \emph{yaw} by the \emph{presence} of
+roll but roll itself is never inertially coupled either to pitch or to yaw.
+
+\subsection{Homogeneous, Particular, and Steady-State Solutions}\label{ch2:sec:2.4}
+
+Recall that we began our discussion of the linearization approximations with
+an example in which we considered a rocket which had been initially displaced
+and concerned ourselves with its subsequent return to alignment. The only
+moments applied to the rocket were those due to the angular deflection itself
+and its time derivatives. Motions of this kind are called \emph{homogeneous},
+\emph{force-free}, or \emph{characteristic} responses. The state of the rocket
+at the time the observation of its behavior begins is known as the \emph{set
+of initial conditions}; these must be known in order to obtain a complete
+solution to the motion. Both the initial angular deflection and the initial
+angular velocity must be specified to complete the set.
+
+Now suppose that there are \emph{additional} moments acting on the rocket, and
+that these moments are functions of time due to causes other than angular
+displacement and its time derivatives. They might, for instance, be due to
+aerodynamic imbalances such as drag on the launch lug, misaligned fins, or the
+movement of control surfaces on the fins. They might also be due to off-center
+engine mounting, angled thrust, or the momentary expulsion of solid residue
+from the rocket nozzle. Such moments are called \emph{inputs}, or
+\emph{forcing functions}, and they appear on the right-hand side of the
+dynamical equations, which are therefore no longer homogeneous. For the case
+of zero roll rate with forcing in yaw and pitch we have
+\begin{equation}\label{ch2:eq:13}
+\begin{aligned}
+I_L \frac{d^{2}\alpha_X}{dt^{2}} + C_2 \frac{d\alpha_X}{dt} + C_1\alpha_X &= f_x(t)\\
+I_L \frac{d^{2}\alpha_Y}{dt^{2}} + C_2 \frac{d\alpha_Y}{dt} + C_1\alpha_Y &= f_y(t)
+\end{aligned}
+\end{equation}
+where $f_x(t)$ is read, ``function of time, about the X-axis'' and $f_y(t)$ is
+read, ``function of time, about the Y-axis''. With the presence of a constant
+roll rate the equations become
+\begin{equation}\label{ch2:eq:14}
+\begin{aligned}
+I_L \frac{d^{2}\alpha_X}{dt^{2}} + C_2 \frac{d\alpha_X}{dt} + C_1\alpha_X
+    + I_R\omega_Z \frac{d\alpha_Y}{dt} &= f_x(t)\\
+I_L \frac{d^{2}\alpha_Y}{dt^{2}} + C_2 \frac{d\alpha_Y}{dt} + C_1\alpha_Y
+    - I_R\omega_Z \frac{d\alpha_X}{dt} &= f_y(t)
+\end{aligned}
+\end{equation}
+The response of the rocket to these moments is the sum of the characteristic
+motion and a motion called the \emph{particular response} which is directly
+attributable to the effect of the forcing. The initial angular positions and
+velocities in yaw and pitch must be specified, as before, to obtain the
+complete motion; in this case, however, it is the \emph{sum} of the
+characteristic and particular responses which must satisfy the initial
+conditions. For a rocket flying straight and evenly upward before encountering
+a disturbance, these conditions are zero. From this you can see how the
+initial conditions of the characteristic motion arise: the rocket, initially
+undisturbed, is subjected to a forcing function which arises, persists for
+some interval of time, and then dies away to zero again. After the forcing has
+passed the rocket possesses some angular displacement and velocity---the
+initial conditions of the characteristic response, which then ensues. As will
+be shown later, the characteristic response of a statically stable rocket
+decreases with time and finally becomes effectively zero. Thus after some time
+the condition of straight and true flight is restored.
+
+Both the linearity of the dynamical equations and the decaying behavior of the
+characteristic response are extremely valuable features of the motion from the
+standpoint of analysis. Linear differential equations possess the property of
+\emph{superposition}, meaning that the response to any number of inputs
+applied simultaneously is just the sum of the particular responses due to each
+one separately, plus the homogeneous response. The effect of each disturbance
+can be computed separately and the total effect found by summing the
+individual effects. This is certainly far easier than solving an equation with
+one huge right-hand side! And since the characteristic response approaches
+zero with time, any forcing function which continues for a long enough time
+will cause the complete solution to approach the particular solution alone:
+after enough time has passed, the particular response is all that remains. You
+will thus see references in the literature of dynamics to the
+\emph{steady-state}, or \emph{forced}, response to this type of input, the
+term being most often applied when the input is specifically a smooth,
+periodic function of time such as a sine wave.

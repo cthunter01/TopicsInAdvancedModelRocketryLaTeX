@@ -1,1 +1,852 @@
-% chapters/ch2-sec3c.tex -- unit not yet transcribed
+% chapters/ch2-sec3c.tex -- 3.2 Dynamical Behavior at a Constant, Nonzero Roll Rate;
+% 3.2.1 Generalized Homogeneous Response (PDF 168-193, ms pp. 138-163)
+\subsection{Dynamical Behavior at a Constant, Nonzero Roll Rate}\label{ch2:sec:3.2}
+
+\subsubsection{Generalized Homogeneous Response}\label{ch2:sec:3.2.1}
+
+The presence of a constant roll rate causes the pitching and yawing movements
+of the rocket to become coupled (cf.\ Section~\ref{ch2:sec:2.3}), so that the
+differential equations for pitch and yaw must be solved simultaneously. We
+recall that the homogeneous differential equations for this case are
+\begin{align*}
+I_L\frac{d^2\alpha_X}{dt^2} + C_2\frac{d\alpha_X}{dt} + C_1\alpha_X
+  + I_R\omega_Z\frac{d\alpha_Y}{dt} &= 0\\
+I_L\frac{d^2\alpha_Y}{dt^2} + C_2\frac{d\alpha_Y}{dt} + C_1\alpha_Y
+  - I_R\omega_Z\frac{d\alpha_X}{dt} &= 0
+\end{align*}
+Although the general form of the solutions to these equations is somewhat
+similar to the solutions of the decoupled case, the complete solutions
+themselves are a good deal more complicated. The most generally applicable
+ones are given by
+\begin{equation}\label{ch2:eq:51}
+\begin{aligned}
+\alpha_X &= A_1 e^{-D_1 t}\sin(\omega_1 t + \varphi_1)
+  + A_2 e^{-D_2 t}\sin(\omega_2 t + \varphi_2)\\
+\alpha_Y &= A_1 e^{-D_1 t}\cos(\omega_1 t + \varphi_1)
+  + A_2 e^{-D_2 t}\cos(\omega_2 t + \varphi_2)
+\end{aligned}
+\end{equation}
+Now it is clear that the derivative formulae for those parts of
+equations~\eqref{ch2:eq:51} which carry the subscript ``2'' will be identical
+in form to those for the terms which are subscripted with a ``1''. I can
+therefore save a great deal of writing if, for now, I leave off the subscripts
+and just write down the derivatives of one term of each equation's right-hand
+member:
+\begin{align*}
+\frac{d\alpha_X}{dt} &= -AD e^{-Dt}\sin(\omega t + \varphi)
+  + A\omega e^{-Dt}\cos(\omega t + \varphi)\\
+\frac{d^2\alpha_X}{dt^2} &= A(D^2 - \omega^2)e^{-Dt}\sin(\omega t + \varphi)
+  - 2A\omega D e^{-Dt}\cos(\omega t + \varphi)\\
+\frac{d\alpha_Y}{dt} &= -AD e^{-Dt}\cos(\omega t + \varphi)
+  - A\omega e^{-Dt}\sin(\omega t + \varphi)\\
+\frac{d^2\alpha_Y}{dt^2} &= A(D^2 - \omega^2)e^{-Dt}\cos(\omega t + \varphi)
+  + 2A\omega D e^{-Dt}\sin(\omega t + \varphi)
+\end{align*}
+This amounts to pretending, for the present, that there is only one initial
+amplitude, only one inverse time constant, only one angular frequency and only
+one phase angle in the solution. Such an intentional error is perfectly
+permissible, just as it was in deriving equations~\eqref{ch2:eq:25}, for the
+mathematics of the derivation will later point out that there are in fact two
+each of these quantities.
+
+Upon substitution of the simplified derivative relations the first (yaw)
+differential equation becomes
+\begin{align*}
+&I_L A(D^2 - \omega^2)e^{-Dt}\sin(\omega t + \varphi)
+  - 2I_L A\omega D e^{-Dt}\cos(\omega t + \varphi)\\
+&- I_R\omega_Z AD e^{-Dt}\cos(\omega t + \varphi)
+  - I_R\omega_Z A\omega e^{-Dt}\sin(\omega t + \varphi)\\
+&- C_2 AD e^{-Dt}\sin(\omega t + \varphi)
+  + C_2 A\omega e^{-Dt}\cos(\omega t + \varphi)
+  + C_1 A e^{-Dt}\sin(\omega t + \varphi) = 0
+\end{align*}
+Removing the common factor $Ae^{-Dt}$ we have, from the requirement that sine
+terms sum independently to zero,
+\begin{equation*}
+I_L(D^2 - \omega^2) - I_R\omega_Z\omega - C_2 D + C_1 = 0
+\end{equation*}
+and from the requirement that cosine terms sum independently to zero,
+\begin{equation*}
+-2I_L\omega D - I_R\omega_Z D + C_2\omega = 0
+\end{equation*}
+Substituting the expressions for $\alpha$, $d\alpha/dt$, and
+$d^2\alpha/dt^2$ into the second (pitch) equation gives\ednote{The final
+``0'' of this display is cut off at the right edge of the 1973 page (only its
+left part is visible); it is restored from the parallel yaw expression above.}
+\begin{align*}
+&I_L A(D^2 - \omega^2)e^{-Dt}\cos(\omega t + \varphi)
+  + 2I_L A\omega D e^{-Dt}\sin(\omega t + \varphi)\\
+&+ I_R\omega_Z AD e^{-Dt}\sin(\omega t + \varphi)
+  - I_R\omega_Z A\omega e^{-Dt}\cos(\omega t + \varphi)\\
+&- C_2 AD e^{-Dt}\cos(\omega t + \varphi)
+  - C_2 A\omega e^{-Dt}\sin(\omega t + \varphi)
+  + C_1 A e^{-Dt}\cos(\omega t + \varphi) = 0
+\end{align*}
+from which the cosine terms give us
+\begin{equation*}
+I_L(D^2 - \omega^2) - I_R\omega_Z\omega - C_2 D + C_1 = 0
+\end{equation*}
+and the sine terms require that
+\begin{equation*}
+2I_L\omega D + I_R\omega_Z D - C_2\omega = 0
+\end{equation*}
+Now the sine equation from the first differential equation is identical to the
+cosine equation from the second, and the cosine equation from the first just
+equals the negative of the sine equation from the second and is therefore
+equivalent to it. This confirms that a coupled solution of the
+form~\eqref{ch2:eq:51} does in fact exist and that we can proceed to solve for
+$\omega$ and $D$.
+From the last equation above we can obtain $D$ in terms of $\omega$ as
+\begin{equation*}
+D = \frac{C_2\omega}{2I_L\omega + I_R\omega_Z}
+\end{equation*}
+Substituting this expression for $D$ into the second to last equation above
+yields
+\begin{equation*}
+\frac{I_L C_2^2\omega^2}{4I_L^2\omega^2 + 4I_L I_R\omega_Z\omega + I_R^2\omega_Z^2}
+  - I_L\omega^2 - I_R\omega_Z\omega
+  - \frac{C_2^2\omega}{2I_L\omega + I_R\omega_Z} + C_1 = 0
+\end{equation*}
+Multiplying the left and right sides of this equation by
+$(4I_L^2\omega^2 + 4I_L I_R\omega_Z\omega + I_R^2\omega_Z^2)$, collecting
+terms and dividing the resulting equation by a factor of $(-4I_L^3)$ to cast
+the equation into a form having a coefficient of 1 for the highest power of
+$\omega$ which appears (this is called \emph{normalizing}), we obtain
+\begin{align*}
+&\omega^4 + 2\frac{I_R}{I_L}\omega_Z\omega^3
+  + \left[-\frac{C_1}{I_L} + \frac{C_2^2}{4I_L^2}
+    + \frac{5}{4}\frac{I_R^2}{I_L^2}\omega_Z^2\right]\omega^2\\
+&+ \left[-\frac{C_1}{I_L}\frac{I_R}{I_L}\omega_Z
+    + \frac{C_2^2}{4I_L^2}\frac{I_R}{I_L}\omega_Z
+    + \frac{I_R^3}{4I_L^3}\omega_Z^3\right]\omega
+  - \frac{C_1}{4I_L}\frac{I_R^2}{I_L^2}\omega_Z^2 = 0
+\end{align*}
+Now this is a \emph{quartic} equation in $\omega$, in which all powers of
+$\omega$ from the zeroth to the fourth are present. The solution of such
+equations is generally quite difficult, but we can reduce the complexity
+somewhat in this case by considering the \emph{physics} of the situation and
+the \emph{limiting behavior} of the solutions, rather than just plowing ahead
+with the formal mathematics. By ``limiting behavior'' I mean just this: should
+$I_R\omega_Z$ become vanishingly small compared to $I_L$, the solution of the
+coupled motion will be very nearly identical to the solution of the decoupled
+case. A mathematician would say that the coupled solution \emph{approaches}
+the decoupled solution \emph{in the limit} as $\frac{I_R\omega_Z}{I_L}$ goes to
+zero, so that we \emph{recover} the solution of the decoupled case from the
+\emph{more general} solution of coupled motion. Similarly, for the case in
+which $C_1$ and $C_2$ become vanishingly small compared to $I_L$, we obtain
+the so-called \emph{force-free precession} which is familiar to the designers
+of gyroscopic instruments; the coupled solution approaches a force-free
+precession in the limit as $\frac{C_1}{I_L}$ and $\frac{C_2}{I_L}$ go to zero.
+I am going to try to put these properties to use after making the following
+substitutions in order to simplify the algebra of the angular frequency
+equation:
+\begin{align*}
+X &= \frac{I_R}{I_L}\\
+Y &= -\frac{C_1}{I_L}\\
+Z &= \frac{C_2^2}{4I_L^2}
+\end{align*}
+The equation for $\omega$ then becomes
+\begin{subequations}\label{ch2:eq:52}
+\begin{equation}\label{ch2:eq:52a}
+\begin{aligned}
+&\omega^4 + 2X\omega_Z\omega^3
+  + \left[Y + Z + \tfrac{5}{4}X^2\omega_Z^2\right]\omega^2\\
+&+ \left[YX\omega_Z + ZX\omega_Z + \frac{X^3}{4}\omega_Z^3\right]\omega
+  + \frac{Y}{4}X^2\omega_Z^2 = 0
+\end{aligned}
+\end{equation}
+Now since this is a fourth-degree polynomial equation, we know that there are
+four possible values of $\omega$ which will satisfy it (the \emph{roots} of
+the equation). Let these values be $A$, $B$, $C$, and $D$. The equation can
+then be written as
+\begin{equation*}
+(\omega - A)(\omega - B)(\omega - C)(\omega - D) = 0
+\end{equation*}
+which, when multiplied out, becomes
+\begin{equation}\label{ch2:eq:52b}
+\begin{aligned}
+&\omega^4 - (A + B + C + D)\omega^3
+  + \left[AB + CD + (A + B)(C + D)\right]\omega^2\\
+&- \left[CD(A + B) + AB(C + D)\right]\omega + ABCD = 0
+\end{aligned}
+\end{equation}
+\end{subequations}
+Now equations~\eqref{ch2:eq:52a} and~\eqref{ch2:eq:52b} are just different
+representations of the \emph{same} equation. This being the case, the
+coefficient of a given power of $\omega$ in equation~\eqref{ch2:eq:52a} must
+be identical to the coefficient of that same power of $\omega$ in
+equation~\eqref{ch2:eq:52b}. This allows us to write
+\begin{subequations}\label{ch2:eq:53}
+\begin{align}
+A + B + C + D &= -2X\omega_Z \label{ch2:eq:53a}\\
+\left[AB + CD + (A + B)(C + D)\right]
+  &= \left[Y + Z + \tfrac{5}{4}X^2\omega_Z^2\right] \label{ch2:eq:53b}\\
+\left[CD(A + B) + AB(C + D)\right]
+  &= -\left[YX\omega_Z + ZX\omega_Z + \frac{X^3}{4}\omega_Z^3\right]
+  \label{ch2:eq:53c}\\
+ABCD &= \frac{Y}{4}X^2\omega_Z^2 \label{ch2:eq:53d}
+\end{align}
+\end{subequations}
+
+Equations~\eqref{ch2:eq:53} are sufficient to determine the roots $A$, $B$,
+$C$, and $D$ in terms of the constants $X$, $Y$, and $Z$. This, however, would
+be an extremely difficult task if done by formal mathematics alone. Instead I
+am going to examine the limiting behavior of this particular dynamical
+system---a model rocket---to see if I cannot find some analytical ``short
+cut'' that will help me to \emph{guess} the roots.
+
+For $\frac{I_R\omega_Z}{I_L} = 0$, equation~\eqref{ch2:eq:52a} becomes
+\begin{equation*}
+\omega^4 + (Y + Z)\omega^2 = 0
+\end{equation*}
+Factoring this expression, we obtain
+\begin{equation*}
+\omega^2(\omega^2 + Y + Z) = 0
+\end{equation*}
+Two of the roots are thus $\omega = 0$. The remaining two are
+\begin{equation*}
+\omega = \pm\sqrt{-(Y + Z)}
+\end{equation*}
+or
+\begin{equation*}
+\omega = \pm\sqrt{\frac{C_1}{I_L} - \frac{C_2^2}{4I_L^2}}
+\end{equation*}
+which are just cases of decoupled, underdamped oscillation.
+
+For the limiting case $\frac{C_1}{I_L} = \frac{C_2}{I_L} = 0$, we have
+$Y = Z = 0$ and equation~\eqref{ch2:eq:52a} becomes
+\begin{equation*}
+\omega^4 + 2X\omega_Z\omega^3 + \tfrac{5}{4}X^2\omega_Z^2\omega^2
+  + \frac{X^3}{4}\omega_Z^3\omega = 0
+\end{equation*}
+Factoring gives us
+\begin{equation*}
+\omega\left(\omega^3 + 2X\omega_Z\omega^2 + \tfrac{5}{4}X^2\omega_Z^2\omega
+  + \frac{X^3}{4}\omega_Z^3\right) = 0
+\end{equation*}
+One of the four roots is seen to be $\omega = 0$. The remaining factor is a
+cubic equation and will therefore have three roots. Let these be denoted by
+$A'$, $B'$, and $C'$. Then
+\begin{equation*}
+(\omega - A')(\omega - B')(\omega - C') = 0
+\end{equation*}
+which, when expanded, becomes
+\begin{equation*}
+\omega^3 - (A + B + C)\omega^2 + \left[(A + B)C + AB\right]\omega - ABC = 0
+\end{equation*}
+Then, equating coefficients of like powers, we have
+\begin{align*}
+-(A + B + C) &= 2X\omega_Z\\
+(A + B)C + AB &= \tfrac{5}{4}X^2\omega_Z^2\\
+-ABC &= \frac{X^3}{4}\omega_Z^3
+\end{align*}
+I can now exercise on a reduced scale the techniques which I shall have to
+apply to solve the general quartic equation~\eqref{ch2:eq:52a}. The
+\emph{sum} of the roots of the cubic equation must equal $-2X\omega_Z$, while
+their \emph{product} must equal $-\frac{X^3}{4}\omega_Z^3$. From this I
+conclude that $A'$, $B'$, and $C'$ each contain a factor of $X\omega_Z$. If I
+attempt, reasoning from symmetry, to postulate three equal roots you can see
+that the coefficient equations will not be satisfied. If, however, I postulate
+\emph{two} identical roots and a different third root, the sum and product
+conditions will allow me to write
+\begin{align*}
+A' &= -\frac{X\omega_Z}{2}\\
+B' &= -\frac{X\omega_Z}{2}\\
+C' &= -X\omega_Z
+\end{align*}
+These roots also satisfy the center coefficient equation and \emph{are}
+therefore the roots of the cubic equation. I am now faced with the problem of
+determining which of these roots are \emph{physical} (i.e., which can really
+be observed in the physical universe) and which are ``spurious'' or
+``extraneous'' roots not applicable to the physical problem being solved. In
+order to ascertain the physical roots I return to the equation obtained from
+the cosine terms of the pitch differential equation and set $C_1 = C_2 = 0$.
+This sets $D$ to zero and leaves me with
+\begin{equation*}
+-I_L\omega^2 - I_R\omega_Z\omega = 0
+\end{equation*}
+from which I obtain the two roots
+\begin{align*}
+\omega &= 0\\
+\omega &= -\frac{I_R}{I_L}\omega_Z
+\end{align*}
+The first value represents a static displacement in pitch and yaw, and is the
+root already obtained by factoring the quartic. The second value represents
+the force-free precessional angular frequency of the rocket. Both values
+represent observable physical states of the rocket; in fact, for general
+initial conditions a combination of \emph{both} states will occur. There will
+thus be \emph{two} angular frequencies of oscillation associated with coupled
+motion, and we must be prepared to accept two of the four roots of the general
+quartic equation as physical possibilities. In the reduced case of $Y = Z = 0$
+these two roots are $\omega = 0$ and root $C'$ of the cubic equation. Roots
+$A'$ and $B'$ are non-physical and must be discarded.
+
+Having thus obtained complete information as to the limiting behavior of
+equation~\eqref{ch2:eq:52a}, I am prepared to postulate solutions to the
+general quartic equation. Symmetry considerations and
+equation~\eqref{ch2:eq:53a} motivate me to guess that the roots are of the
+following form:
+\begin{align*}
+A &= -\frac{X\omega_Z}{2} + a\\
+B &= -\frac{X\omega_Z}{2} - a\\
+C &= -\frac{X\omega_Z}{2} + b\\
+D &= -\frac{X\omega_Z}{2} - b
+\end{align*}
+You can see that these values identically satisfy
+equation~\eqref{ch2:eq:53a}. Equation~\eqref{ch2:eq:53b} becomes
+\begin{equation*}
+\frac{X^2\omega_Z^2}{2} - (a^2 + b^2) + X^2\omega_Z^2
+  = Y + Z + \tfrac{5}{4}X^2\omega_Z^2
+\end{equation*}
+from which we obtain
+\begin{equation*}
+b^2 = -(Y + Z) + \frac{X^2\omega_Z^2}{4} - a^2
+\end{equation*}
+Equation~\eqref{ch2:eq:53c} now appears as
+\begin{equation*}
+\left[\left(\frac{X^2\omega_Z^2}{4} - b^2\right)(-X\omega_Z)
+  + \left(\frac{X^2\omega_Z^2}{4} - a^2\right)(-X\omega_Z)\right]
+  = -X\omega_Z\left[Y + Z + \frac{X^2\omega_Z^2}{4}\right]
+\end{equation*}
+and, upon substitution of the expression for $b^2$ obtained
+in~\eqref{ch2:eq:53b}, is seen to be identically satisfied. The final
+coefficient equation, \eqref{ch2:eq:53d}, becomes
+\begin{equation*}
+\left(\frac{X^2\omega_Z^2}{4} - a^2\right)\left(\frac{X^2\omega_Z^2}{4} - b^2\right)
+  = Y\frac{X^2\omega_Z^2}{4}
+\end{equation*}
+Substituting for $b^2$ the expression obtained in~\eqref{ch2:eq:53b} we can
+obtain, after some rearrangement,
+\begin{equation*}
+a^4 + \left[Y + Z - \frac{X^2\omega_Z^2}{4}\right]a^2
+  - Z\frac{X^2\omega_Z^2}{4} = 0
+\end{equation*}
+Now this is a special kind of quartic equation known as a \emph{biquadratic}
+equation. It can be solved as a quadratic equation for $a^2$ to give
+\begin{equation*}
+a^2 = \frac{X^2\omega_Z^2}{8} - \frac{Y + Z}{2}
+  \pm \frac{1}{2}\sqrt{\left(Y + Z - \frac{X^2\omega_Z^2}{4}\right)^2
+    + ZX^2\omega_Z^2}
+\end{equation*}
+Solving for $b^2$ as obtained in~\eqref{ch2:eq:53b}, we have
+\begin{equation*}
+b^2 = \frac{X^2\omega_Z^2}{8} - \frac{Y + Z}{2}
+  \mp \sqrt{\left(Y + Z - \frac{X^2\omega_Z^2}{4}\right)^2 + ZX^2\omega_Z^2}
+\end{equation*}
+Now there is an option here in that we can choose the upper or lower sign for
+the square root terms. Having chosen a sign for the square root in $a^2$,
+however, we are obliged to choose the corresponding sign for that in $b^2$.
+Choosing the upper sign in each case, we have the following expressions for
+the complete roots of the quartic equation:
+\begin{equation}\label{ch2:eq:54}
+\begin{aligned}
+A &= -\frac{X\omega_Z}{2} + \sqrt{\frac{X^2\omega_Z^2}{8} - \frac{Y + Z}{2}
+  + \tfrac{1}{2}\sqrt{\left(Y + Z - \frac{X^2\omega_Z^2}{4}\right)^2
+  + ZX^2\omega_Z^2}}\\
+B &= -\frac{X\omega_Z}{2} - \sqrt{\frac{X^2\omega_Z^2}{8} - \frac{Y + Z}{2}
+  + \tfrac{1}{2}\sqrt{\left(Y + Z - \frac{X^2\omega_Z^2}{4}\right)^2
+  + ZX^2\omega_Z^2}}\\
+C &= -\frac{X\omega_Z}{2} + \sqrt{\frac{X^2\omega_Z^2}{8} - \frac{Y + Z}{2}
+  - \tfrac{1}{2}\sqrt{\left(Y + Z - \frac{X^2\omega_Z^2}{4}\right)^2
+  + ZX^2\omega_Z^2}}\\
+D &= -\frac{X\omega_Z}{2} - \sqrt{\frac{X^2\omega_Z^2}{8} - \frac{Y + Z}{2}
+  - \tfrac{1}{2}\sqrt{\left(Y + Z - \frac{X^2\omega_Z^2}{4}\right)^2
+  + ZX^2\omega_Z^2}}
+\end{aligned}
+\end{equation}
+We must determine which of these give us the correct limiting behavior. This
+is a rather tricky procedure in this case and must be carefully carried out
+step by step if inconsistencies are to be avoided. For the case
+$X\omega_Z = 0$, the roots assume the form
+\begin{align*}
+A &= \sqrt{-\frac{Y + Z}{2} + \tfrac{1}{2}\sqrt{(Y + Z)^2}}\\
+B &= -\sqrt{-\frac{Y + Z}{2} + \tfrac{1}{2}\sqrt{(Y + Z)^2}}\\
+C &= \sqrt{-\frac{Y + Z}{2} - \tfrac{1}{2}\sqrt{(Y + Z)^2}}\\
+D &= -\sqrt{-\frac{Y + Z}{2} - \tfrac{1}{2}\sqrt{(Y + Z)^2}}
+\end{align*}
+In simplifying these results we must bear in mind always the following rule of
+algebra: when a quantity is squared, and the square root of the number thus
+obtained is taken, all knowledge of the algebraic sign of the original
+quantity is \emph{irrevocably lost}. The final result of such a sequence of
+operations is the \emph{absolute value} of the original quantity, which is by
+definition a positive number. In our example here,
+\begin{align*}
+\sqrt{(Y + Z)^2} &= |Y + Z|\\
+&\equiv \text{``the absolute value of $(Y + Z)$''}
+\end{align*}
+Now
+\begin{align*}
+|Y + Z| &= Y + Z \qquad \text{if } (Y + Z) > 0\text{, but}\\
+|Y + Z| &= -(Y + Z) \qquad \text{if } (Y + Z) < 0
+\end{align*}
+In discussing statically-stable rockets, we are referring always to the case
+in which $Y$ is negative (that is, $C_1$ is positive). If we further stipulate
+that the motion be underdamped, we will always have $(Y + Z)$ negative. Then
+\begin{equation*}
+\sqrt{(Y + Z)^2} = -(Y + Z)
+\end{equation*}
+and the roots become
+\begin{align*}
+A &= \sqrt{-(Y + Z)}\\
+B &= -\sqrt{-(Y + Z)}\\
+C &= 0\\
+D &= 0
+\end{align*}
+Thus $A$ and $B$ are the roots which correctly describe the motion of an
+underdamped, statically-stable rocket in the limit of roll coupling equal to
+zero. For the opposite limit, that of $Y = Z = 0$, we have
+\begin{align*}
+A &= -\frac{X\omega_Z}{2} + \sqrt{\frac{X^2\omega_Z^2}{8}
+  + \tfrac{1}{2}\sqrt{\left(-\frac{X^2\omega_Z^2}{4}\right)^2}}\\
+B &= -\frac{X\omega_Z}{2} - \sqrt{\frac{X^2\omega_Z^2}{8}
+  + \tfrac{1}{2}\sqrt{\left(-\frac{X^2\omega_Z^2}{4}\right)^2}}\\
+C &= -\frac{X\omega_Z}{2} + \sqrt{\frac{X^2\omega_Z^2}{8}
+  - \tfrac{1}{2}\sqrt{\left(-\frac{X^2\omega_Z^2}{4}\right)^2}}\\
+D &= -\frac{X\omega_Z}{2} - \sqrt{\frac{X^2\omega_Z^2}{8}
+  - \tfrac{1}{2}\sqrt{\left(-\frac{X^2\omega_Z^2}{4}\right)^2}}
+\end{align*}
+Now in this case
+\begin{equation*}
+\sqrt{\left(-\frac{X^2\omega_Z^2}{4}\right)^2} = \frac{X^2\omega_Z^2}{4}
+\end{equation*}
+whereupon
+\begin{align*}
+A &= -\frac{X\omega_Z}{2} + \sqrt{\frac{X^2\omega_Z^2}{4}}\\
+B &= -\frac{X\omega_Z}{2} - \sqrt{\frac{X^2\omega_Z^2}{4}}\\
+C &= -\frac{X\omega_Z}{2}\\
+D &= -\frac{X\omega_Z}{2}
+\end{align*}
+Also,
+\begin{align*}
+\sqrt{\frac{X^2\omega_Z^2}{4}} &= \frac{X\omega_Z}{2}
+  \qquad \text{if } \omega_Z > 0\text{, but}\\
+\sqrt{\frac{X^2\omega_Z^2}{4}} &= -\frac{X\omega_Z}{2}
+  \qquad \text{if } \omega_Z < 0
+\end{align*}
+so that if $\omega_Z > 0$,
+\begin{align*}
+A &= 0\\
+B &= -X\omega_Z
+\end{align*}
+while if $\omega_Z < 0$,
+\begin{align*}
+A &= -X\omega_Z\\
+B &= 0
+\end{align*}
+Thus $A$ and $B$ are the physical roots in the limit of force-free precession
+as well as in the limit of decoupled motion. $C$ and $D$ are spurious roots
+and must be discarded. The two angular frequencies $A$ and $B$ describe the
+complete spectrum of dynamic behavior as we proceed continuously from motion
+dominated by roll coupling to motion dominated by aerodynamic moments (except
+in a few very special cases to be pointed out later).
+
+From this point on I am going to refer to root $A$ as angular frequency
+$\omega_1$ and to root $B$ as angular frequency $\omega_2$. The larger of the
+two will be called ``the fast mode'', the smaller ``the slow mode''. If
+$\omega_Z$ is positive, $\omega_1$ will be the slow mode and $\omega_2$ the
+fast mode; if $\omega_Z$ is negative, the reverse will be true (recall that a
+positive $\omega_Z$ means that the rocket is spinning clockwise as viewed from
+astern).
+
+I am also going to adopt the abbreviation
+\begin{equation*}
+\mathscr{F} = \frac{X^2\omega_Z^2}{4} - (Y + Z)
+\end{equation*}
+which may be written in terms of the rocket's dynamic constants as
+\begin{equation}\label{ch2:eq:55}
+\mathscr{F} = \frac{I_R^2\omega_Z^2}{4I_L^2} + \frac{C_1}{I_L}
+  - \frac{C_2^2}{4I_L^2}
+\end{equation}
+Under this convention the two angular frequencies appear as
+\begin{subequations}\label{ch2:eq:56}
+\begin{align}
+\omega_1 &= -\frac{I_R\omega_Z}{2I_L}
+  + \sqrt{\frac{\mathscr{F}}{2} + \tfrac{1}{2}\sqrt{\mathscr{F}^2
+    + \frac{C_2^2 I_R^2\omega_Z^2}{4I_L^4}}} \label{ch2:eq:56a}\\
+\omega_2 &= -\frac{I_R\omega_Z}{2I_L}
+  - \sqrt{\frac{\mathscr{F}}{2} + \tfrac{1}{2}\sqrt{\mathscr{F}^2
+    + \frac{C_2^2 I_R^2\omega_Z^2}{4I_L^4}}} \label{ch2:eq:56b}
+\end{align}
+\end{subequations}
+Since a complete description of the coupled motion of the rocket for general
+initial conditions must contain both modes, each with its own initial
+amplitude and its own phase angle, equations~\eqref{ch2:eq:51} must indeed be
+the solution to the problem. Substituting $\omega_1$ and $\omega_2$, in turn,
+into the equation
+\begin{equation*}
+D = \frac{C_2\omega}{2I_L\omega + I_R\omega_Z}
+\end{equation*}
+obtained earlier, we obtain the values
+\begin{subequations}\label{ch2:eq:57}
+\begin{align}
+D_1 &= \frac{C_2}{2I_L}\left(\frac{\omega_1}{\omega_1
+  + \frac{I_R}{2I_L}\omega_Z}\right) \label{ch2:eq:57a}\\
+D_2 &= \frac{C_2}{2I_L}\left(\frac{\omega_2}{\omega_2
+  + \frac{I_R}{2I_L}\omega_Z}\right) \label{ch2:eq:57b}
+\end{align}
+\end{subequations}
+for the two inverse time constants. Note that these both reduce to
+$C_2/(2I_L)$ for the case where the roll rate is zero.
+
+The values of $A_1$, $A_2$, $\varphi_1$, and $\varphi_2$ are determined by
+the four initial conditions, which are:
+\begin{align*}
+\alpha_{X0} &= \text{value of $\alpha_X$ at $t = 0$}\\
+\alpha_{Y0} &= \text{value of $\alpha_Y$ at $t = 0$}\\
+\Omega_{X0} &= \text{value of $d\alpha_X/dt$ at $t = 0$}\\
+\Omega_{Y0} &= \text{value of $d\alpha_Y/dt$ at $t = 0$}
+\end{align*}
+From equations~\eqref{ch2:eq:51} and their time derivatives we have that
+\begin{align*}
+\alpha_{X0} &= A_1\sin\varphi_1 + A_2\sin\varphi_2\\
+\alpha_{Y0} &= A_1\cos\varphi_1 + A_2\cos\varphi_2\\
+\Omega_{X0} &= -A_1 D_1\sin\varphi_1 + A_1\omega_1\cos\varphi_1
+  - A_2 D_2\sin\varphi_2 + A_2\omega_2\cos\varphi_2\\
+\Omega_{Y0} &= -A_1 D_1\cos\varphi_1 - A_1\omega_1\sin\varphi_1
+  - A_2 D_2\cos\varphi_2 - A_2\omega_2\sin\varphi_2
+\end{align*}
+This system of four independent equations in four unknowns is reduced by
+eliminating terms between the equations one by one until explicit formulae for
+the initial amplitudes and phase angles are obtained. Beginning this process
+with the angular velocity equations, for instance, I can write
+\begin{align*}
+D_1\Omega_{X0} + \omega_1\Omega_{Y0}
+  &= -A_1\sin\varphi_1(D_1^2 + \omega_1^2)
+   - A_2\sin\varphi_2(D_1 D_2 + \omega_1\omega_2)
+   + A_2\cos\varphi_2(\omega_2 D_1 - \omega_1 D_2)\\
+D_2\Omega_{X0} + \omega_2\Omega_{Y0}
+  &= -A_1\sin\varphi_1(D_1 D_2 + \omega_1\omega_2)
+   - A_2\sin\varphi_2(D_2^2 + \omega_2^2)
+   + A_1\cos\varphi_1(\omega_1 D_2 - \omega_2 D_1)
+\end{align*}
+Now if you substitute $\alpha_{Y0} - A_2\cos\varphi_2$ for
+$A_1\cos\varphi_1$ in the second equation and subtract it from the first you
+will get
+\begin{equation*}
+\left[\begin{aligned}
+&\Omega_{X0}(D_1 - D_2) + \Omega_{Y0}(\omega_1 - \omega_2)\\
+&+ \alpha_{Y0}(\omega_1 D_2 - \omega_2 D_1)
+\end{aligned}\right]
+=
+\left[\begin{aligned}
+&A_1\sin\varphi_1(D_1 D_2 + \omega_1\omega_2 - D_1^2 - \omega_1^2)\\
+&+ A_2\sin\varphi_2(D_2^2 + \omega_2^2 - D_1 D_2 - \omega_1\omega_2)
+\end{aligned}\right]
+\end{equation*}
+Multiplying the equation for $\alpha_{X0}$ by the factor
+$(D_2^2 + \omega_2^2 - D_1 D_2 - \omega_1\omega_2)$ and subtracting the result
+from \emph{this} equation results in the expression
+\begin{equation*}
+A_1\sin\varphi_1\left[\begin{aligned}
+&2(D_1 D_2 + \omega_1\omega_2) - D_1^2\\
+&- D_2^2 - \omega_1^2 - \omega_2^2
+\end{aligned}\right]
+=
+\left[\begin{aligned}
+&\Omega_{X0}(D_1 - D_2) + \Omega_{Y0}(\omega_1 - \omega_2)
+  + \alpha_{Y0}(\omega_1 D_2 - \omega_2 D_1)\\
+&+ \alpha_{X0}(D_1 D_2 + \omega_1\omega_2 - D_2^2 - \omega_2^2)
+\end{aligned}\right]
+\end{equation*}
+from which we can obtain
+\begin{equation*}
+A_1\sin\varphi_1 = \left[\vcenter{\hbox{$\displaystyle\frac{\begin{aligned}
+&\Omega_{X0}(D_1 - D_2) + \Omega_{Y0}(\omega_1 - \omega_2)
+  + \alpha_{X0}(D_1 D_2 + \omega_1\omega_2 - D_2^2 - \omega_2^2)\\
+&+ \alpha_{Y0}(\omega_1 D_2 - \omega_2 D_1)
+\end{aligned}}{2(D_1 D_2 + \omega_1\omega_2) - D_1^2 - D_2^2
+  - \omega_1^2 - \omega_2^2}$}}\right]
+\end{equation*}
+By a similar sequence of algebraic operations we can obtain the value of
+$A_1\cos\varphi_1$:
+\begin{align*}
+\omega_1\Omega_{X0} - D_1\Omega_{Y0}
+  &= A_1\cos\varphi_1(\omega_1^2 + D_1^2)
+   + A_2\sin\varphi_2(\omega_2 D_1 - \omega_1 D_2)
+   + A_2\cos\varphi_2(\omega_1\omega_2 + D_1 D_2)\\
+\omega_2\Omega_{X0} - D_2\Omega_{Y0}
+  &= A_1\cos\varphi_1(\omega_1\omega_2 + D_1 D_2)
+   + A_1\sin\varphi_1(\omega_1 D_2 - \omega_2 D_1)
+   + A_2\cos\varphi_2(\omega_2^2 + D_2^2)
+\end{align*}
+Substituting $\alpha_{X0} - A_2\sin\varphi_2$ for $A_1\sin\varphi_1$ and
+subtracting,
+\begin{equation*}
+\left[\begin{aligned}
+&\Omega_{X0}(\omega_1 - \omega_2) + \Omega_{Y0}(D_2 - D_1)\\
+&+ \alpha_{X0}(\omega_1 D_2 - \omega_2 D_1)
+\end{aligned}\right]
+=
+\left[\begin{aligned}
+&A_1\cos\varphi_1(\omega_1^2 + D_1^2 - \omega_1\omega_2 - D_1 D_2)\\
+&+ A_2\cos\varphi_2(\omega_1\omega_2 + D_1 D_2 - \omega_2^2 - D_2^2)
+\end{aligned}\right]
+\end{equation*}
+Multiplying $\alpha_{Y0}$ by
+$(\omega_1\omega_2 + D_1 D_2 - \omega_2^2 - D_2^2)$ and subtracting the
+result from the above gives us
+\begin{equation*}
+\left[\begin{aligned}
+&\Omega_{X0}(\omega_1 - \omega_2) + \Omega_{Y0}(D_2 - D_1)\\
+&+ \alpha_{X0}(\omega_1 D_2 - \omega_2 D_1)
+  + \alpha_{Y0}(\omega_2^2 + D_2^2 - \omega_1\omega_2 - D_1 D_2)
+\end{aligned}\right]
+= A_1\cos\varphi_1\left[\begin{aligned}
+&\omega_1^2 + D_1^2 + \omega_2^2 + D_2^2\\
+&- 2(\omega_1\omega_2 + D_1 D_2)
+\end{aligned}\right]
+\end{equation*}
+Multiplying both sides of this by $(-1)$ and performing the appropriate
+division, we obtain
+\begin{equation*}
+A_1\cos\varphi_1 = \left[\vcenter{\hbox{$\displaystyle\frac{\begin{aligned}
+&\Omega_{X0}(\omega_2 - \omega_1) + \Omega_{Y0}(D_1 - D_2)
+  + \alpha_{X0}(\omega_2 D_1 - \omega_1 D_2)\\
+&+ \alpha_{Y0}(\omega_1\omega_2 + D_1 D_2 - \omega_2^2 - D_2^2)
+\end{aligned}}{2(\omega_1\omega_2 + D_1 D_2) - D_1^2 - D_2^2
+  - \omega_1^2 - \omega_2^2}$}}\right]
+\end{equation*}
+Dividing $A_1\sin\varphi_1$ by $A_1\cos\varphi_1$ and taking the inverse
+tangent function of both sides of the resulting equation will give us an
+explicit formula for $\varphi_1$ in terms of the initial conditions, angular
+frequencies, and inverse time constants:
+\begin{subequations}\label{ch2:eq:58}
+\begin{equation}\label{ch2:eq:58a}
+\varphi_1 = \arctan\left[\frac{\begin{aligned}
+&\Omega_{X0}(D_1 - D_2) + \Omega_{Y0}(\omega_1 - \omega_2)
+  + \alpha_{X0}(\omega_1\omega_2 + D_1 D_2 - \omega_2^2 - D_2^2)\\
+&+ \alpha_{Y0}(\omega_1 D_2 - \omega_2 D_1)
+\end{aligned}}{\begin{aligned}
+&\Omega_{X0}(\omega_2 - \omega_1) + \Omega_{Y0}(D_1 - D_2)
+  + \alpha_{X0}(\omega_2 D_1 - \omega_1 D_2)\\
+&+ \alpha_{Y0}(\omega_1\omega_2 + D_1 D_2 - \omega_2^2 - D_2^2)
+\end{aligned}}\right]
+\end{equation}
+$\varphi_2$ is now computed from the relations
+\begin{align*}
+A_2\sin\varphi_2 &= \alpha_{X0} - A_1\sin\varphi_1\\
+A_2\cos\varphi_2 &= \alpha_{Y0} - A_1\cos\varphi_1
+\end{align*}
+This time, since $A_1\sin\varphi_1$ and $A_1\cos\varphi_1$ are both
+quantities which we have already computed for use in finding $\varphi_1$, we
+can immediately write
+\begin{equation}\label{ch2:eq:58b}
+\varphi_2 = \arctan\left[\frac{\alpha_{X0} - A_1\sin\varphi_1}
+  {\alpha_{Y0} - A_1\cos\varphi_1}\right]
+\end{equation}
+\end{subequations}
+Both phase angles are now known and their sine and cosine functions can be
+determined from trigonometric tables. Since we also know the explicit formulae
+for $A_1\sin\varphi_1$ and $A_2\sin\varphi_2$, we can compute the initial
+amplitudes as follows:
+\begin{subequations}\label{ch2:eq:59}
+\begin{align}
+A_1 &= \frac{A_1\sin\varphi_1}{\sin\varphi_1} \label{ch2:eq:59a}\\
+A_2 &= \frac{A_2\sin\varphi_2}{\sin\varphi_2} \label{ch2:eq:59b}
+\end{align}
+\end{subequations}
+
+Equations~\eqref{ch2:eq:51} and~\eqref{ch2:eq:55} through~\eqref{ch2:eq:59}
+contain all the information necessary to completely describe the angular
+oscillations of a rolling model rocket in pitch and yaw. For general initial
+conditions, both the pitching and yawing motions are sums of two different
+exponentially-damped sinusoids. The appearance of the motion is generally
+quite complicated. The slower mode sets the basic pattern: the nose of the
+rocket describes an inward spiral toward the position of zero deflection if
+the rocket is statically stable, an outward spiral if it is statically
+unstable, and a circle of constant radius if either (1) the corrective moment
+coefficient $C_1$ is zero, or (2) the corrective moment coefficient is
+positive but the damping moment coefficient $C_2$ is zero. The faster mode may
+impose intricate secondary motions called \emph{nutations} upon the basic
+pattern if it is sufficiently high in frequency and its amplitude is small. As
+in the case of decoupled motion, however, the characteristics of the
+oscillations are dependent upon the relative values of the rocket's inertial
+and aerodynamic constants.
+
+For the case of zero damping ($C_2 = 0$) the function $\mathscr{F}$ becomes
+\begin{equation*}
+\mathscr{F} = \frac{I_R^2\omega_Z^2}{4I_L^2} + \frac{C_1}{I_L}
+\end{equation*}
+From which we have
+\begin{align*}
+\omega_1 &= -\frac{I_R\omega_Z}{2I_L}
+  + \sqrt{\frac{I_R^2\omega_Z^2}{4I_L^2} + \frac{C_1}{I_L}}\\
+\omega_2 &= -\frac{I_R\omega_Z}{2I_L}
+  - \sqrt{\frac{I_R^2\omega_Z^2}{4I_L^2} + \frac{C_1}{I_L}}
+\end{align*}
+as long as $\mathscr{F}$ is positive, which it certainly will be for
+statically-stable rockets. Since $C_2$ is zero, $D_1$ and $D_2$ will both be
+zero and the expressions describing the motion become
+\begin{subequations}\label{ch2:eq:60}
+\begin{align}
+\alpha_X &= A_1\sin(\omega_1 t + \varphi_1)
+  + A_2\sin(\omega_2 t + \varphi_2) \label{ch2:eq:60a}\\
+\alpha_Y &= A_1\cos(\omega_1 t + \varphi_1)
+  + A_2\cos(\omega_2 t + \varphi_2) \label{ch2:eq:60b}
+\end{align}
+\end{subequations}
+Both pitch and yaw are the sum of two simple harmonic motions. The
+oscillations do not decay; they persist indefinitely at undiminished
+amplitudes as shown in Figure~\ref{ch2:fig:26}. Needless to say, this
+condition is undesirable; as in the decoupled case, the restoration of the
+rocket to a position in which it is facing directly along the intended flight
+path never occurs. Since damping is always present in some degree, however
+slight, this case will not be literally observed for any real rocket. But, as
+in decoupled motion, too little damping can result in an oscillation that
+continues for an undesirably long time.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig26.png}
+  \caption{Undamped homogeneous response to general initial conditions in yaw
+  and pitch of a model rocket spinning about its longitudinal axis at a nonzero
+  roll rate $\omega_Z$. The relation of the initial conditions to the
+  properties of the response has been illustrated. The pattern of pitching and
+  yawing motions shown repeats itself periodically for all time, as there is
+  no damping to dissipate the angular momentum of the oscillations.}
+  \label{ch2:fig:26}
+\end{figure}
+
+For nonzero damping such that
+\begin{equation*}
+\frac{\mathscr{F}}{2} + \frac{1}{2}\sqrt{\mathscr{F}^2
+  + \frac{C_2^2 I_R^2\omega_Z^2}{4I_L^4}} > \frac{I_R^2\omega_Z^2}{4I_L^2}
+\end{equation*}
+coupled, positively-stable motion described by the complete forms of
+equations~\eqref{ch2:eq:51} and~\eqref{ch2:eq:55}
+through~\eqref{ch2:eq:59} will occur. The angular frequency of the fast mode
+will be opposite in sign to that of the slow mode: the fast mode will be of
+opposite sign to the roll rate, while the sign of the slow mode will be the
+same as that of the roll rate. The damping coefficients $D_1$ and $D_2$ will
+both be positive, meaning that the amplitudes of both modes will \emph{decay}
+exponentially with time. The inverse time constant associated with the slow
+mode will be smaller in magnitude than that associated with the fast mode; the
+slow mode will therefore be a \emph{more slowly decaying} mode than the fast
+mode. The fast mode decays more rapidly than a decoupled oscillation with the
+same values of $C_1$, $C_2$, and $I_L$, while the slow mode decays more slowly
+than such a decoupled oscillation. As a practical matter this means that the
+slow mode will be the most important part of the oscillation after a
+sufficient time has elapsed, so that roll coupling serves to \emph{reduce the
+effectiveness of damping}. A representative case of coupled,
+positively-stable motion is shown in Figure~\ref{ch2:fig:27}. It is in this
+range of relative values of $C_1$, $C_2$, and $I_L$ that the designer wants
+his model rocket to lie; under no other conditions do the oscillations
+subside, whether the rocket is rolling or not.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig27.png}
+  \caption{Characteristic response of a model rocket with finite damping and
+  nonzero roll rate to general initial conditions in yaw and pitch, showing
+  the relation of the initial conditions to the properties of the response.
+  Both the yawing and pitching oscillations eventually decay to zero and the
+  model regains straight and true flight.}
+  \label{ch2:fig:27}
+\end{figure}
+
+The condition which must be satisfied for roll-coupled characteristic motion
+to be positively stable can be made more explicit by solving the inequality
+\begin{equation*}
+\frac{\mathscr{F}}{2} + \frac{1}{2}\sqrt{\mathscr{F}^2
+  + \frac{C_2^2 I_R^2\omega_Z^2}{4I_L^4}} > \frac{I_R^2\omega_Z^2}{4I_L^2}
+\end{equation*}
+for $\mathscr{F}$. We can express this relation as
+\begin{equation*}
+\sqrt{\mathscr{F}^2 + \frac{C_2^2 I_R^2\omega_Z^2}{4I_L^4}}
+  > \frac{I_R^2\omega_Z^2}{2I_L^2} - \mathscr{F}
+\end{equation*}
+Squaring both sides and collecting terms, we have
+\begin{equation*}
+\frac{C_2^2 I_R^2\omega_Z^2}{4I_L^4}
+  > \frac{I_R^4\omega_Z^4}{4I_L^4} - \mathscr{F}\cdot\frac{I_R^2\omega_Z^2}{I_L^2}
+\end{equation*}
+from which it can be seen that
+\begin{equation*}
+\mathscr{F} > \frac{I_R^2\omega_Z^2}{4I_L^2} - \frac{C_2^2}{4I_L^2}
+\end{equation*}
+Upon examining the original expression for $\mathscr{F}$ given in
+equation~\eqref{ch2:eq:55}, we see that this is just the requirement that
+\begin{equation*}
+C_1 > 0
+\end{equation*}
+\emph{Positive static stability is thus required for positively stable
+characteristic motion, whether or not the rocket is spinning about its
+centerline.} As the value of
+\begin{equation*}
+\frac{\mathscr{F}}{2} + \frac{1}{2}\sqrt{\mathscr{F}^2
+  + \frac{C_2^2 I_R^2\omega_Z^2}{4I_L^4}}
+\end{equation*}
+decreases toward $\frac{I_R^2\omega_Z^2}{4I_L^2}$ (that is, as the corrective
+moment coefficient decreases toward zero), the angular frequency of the fast
+mode approaches a value of $-\frac{I_R\omega_Z}{I_L}$ while that of the slow
+mode approaches zero from above if $\omega_Z$ is positive, from below if
+$\omega_Z$ is negative. The inverse time constant of the fast mode approaches
+$C_2/I_L$, or twice the damping of the decoupled oscillation, but that of the
+\emph{slow} mode \emph{approaches zero}. At $C_1 = 0$ the rocket remains
+deflected indefinitely; it is neutrally stable, just as if it were not
+rolling. As $C_1$ becomes \emph{negative}, so that
+\begin{equation*}
+\frac{\mathscr{F}}{2} + \frac{1}{2}\sqrt{\mathscr{F}^2
+  + \frac{C_2^2 I_R^2\omega_Z^2}{4I_L^4}} < \frac{I_R^2\omega_Z^2}{4I_L^2}
+\end{equation*}
+the inverse time constant of the slow mode \emph{also becomes negative}: the
+angular deflection of the rocket from its intended direction of flight
+\emph{increases with time}. A rocket with a negative corrective moment
+coefficient is unstable, as emphasized above, whether it is rolling or not.
+
+There is no fundamental change in the character of the rocket's motion as
+damping gains ascendancy over corrective moment, as there is in the case of
+decoupled motion, but the effect of too much damping is every bit as serious
+in the case of roll-coupled oscillation as it is for decoupled response. The
+condition of critical damping for rockets whose roll rate is zero, you may
+remember, is
+\begin{equation*}
+\frac{C_1}{I_L} = \frac{C_2^2}{4I_L^2}
+\end{equation*}
+Under this condition $\mathscr{F}$ becomes simply
+$\frac{I_R^2\omega_Z^2}{4I_L^2}$, and
+\begin{equation*}
+\frac{\mathscr{F}}{2} + \frac{1}{2}\sqrt{\mathscr{F}^2
+  + \frac{C_2^2 I_R^2\omega_Z^2}{4I_L^4}}
+  = \frac{I_R^2\omega_Z^2}{8I_L^2}
+  + \frac{1}{2}\sqrt{\frac{I_R^2\omega_Z^2}{4I_L^2}
+    \left(\frac{I_R^2\omega_Z^2}{4I_L^2} + \frac{C_2^2}{I_L^2}\right)}
+\end{equation*}
+Now
+\begin{equation*}
+\frac{I_R^2\omega_Z^2}{4I_L^2} + \frac{C_2^2}{I_L^2}
+  > \frac{I_R^2\omega_Z^2}{4I_L^2}
+\end{equation*}
+and therefore
+\begin{equation*}
+\frac{1}{2}\sqrt{\frac{I_R^2\omega_Z^2}{4I_L^2}
+  \left(\frac{I_R^2\omega_Z^2}{4I_L^2} + \frac{C_2^2}{I_L^2}\right)}
+  > \frac{I_R^2\omega_Z^2}{8I_L^2}
+\end{equation*}
+It follows that
+\begin{equation*}
+\frac{\mathscr{F}}{2} + \frac{1}{2}\sqrt{\mathscr{F}^2
+  + \frac{C_2^2 I_R^2\omega_Z^2}{4I_L^4}} > \frac{I_R^2\omega_Z^2}{4I_L^2}
+\end{equation*}
+so that the motion \emph{is} stable, no matter how great the value of $C_2$.
+This, of course, is consistent with our result that the value of $C_1$ alone
+determines the stability of the oscillation. But the slow mode, you will
+recall, will have an inverse time constant whose value is less than that of
+the inverse time constant of an identical rocket which is not rolling;
+therefore \emph{the same condition which produces critical damping in a
+non-rolling rocket will, in an identical rocket which is rolling, produce an
+oscillation that decays more slowly than a critically-damped response}. The
+condition
+\begin{equation*}
+\frac{C_2^2}{4I_L^2} > \frac{C_1}{I_L}
+\end{equation*}
+which produces overdamping in rockets which are not rolling, will aggravate
+this undesirable state of affairs, making the rate at which the deflections
+subside even less. Deflection amplitudes which are \emph{large} and which
+persist for \emph{long periods of time} can thus result from the same
+conditions which produce critically-damped or overdamped behavior in
+non-rolling rockets, so it remains good design practice to keep
+\begin{equation*}
+\frac{C_1}{I_L} > \frac{C_2^2}{4I_L^2}
+\end{equation*}
+for any model rocket, rolling or not.

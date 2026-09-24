@@ -20,7 +20,10 @@ Usage: python3 tools/prose_diff.py [--chapter ch1 ...] [--pdf build/main.pdf]
   default: every chapter whose "units" object in inventory/chapters.json is non-empty.
 Writes build/prose-chN.md and prints the per-page table.
 Exit status: 1 if some page with at least two windows has all of them below 0.3 (a likely dropped
-page); 2 on a setup error (missing PDF, draft or chapter); 0 otherwise.
+page); 2 on a setup error (missing PDF, draft or chapter); 0 otherwise.  A chapter's optional
+"artwork_pages" object in inventory/chapters.json ({"274": "reason"}) names pages whose OCR text is
+lettering inside a figure crop; such a page is still scored and listed, but with its reason
+instead of as a likely dropped page.
 """
 import argparse
 import json
@@ -124,7 +127,8 @@ def md_table(header, align, rows):
 
 def check_chapter(key, chapter, trigrams, dups, pdf):
     first, last = chapter["pdf_pages"]
-    rows, skipped, flagged, dropped = [], [], [], []
+    rows, skipped, flagged, dropped, excused = [], [], [], [], []
+    artwork = chapter.get("artwork_pages", {})
     for p in range(first, last + 1):
         path = DRAFTS / f"p{p:03d}.txt"
         if not path.exists():
@@ -144,7 +148,7 @@ def check_chapter(key, chapter, trigrams, dups, pdf):
         rows.append((p, len(scores), f"{min(scores):.2f}", f"{sum(scores) / len(scores):.2f}",
                      page_verdict(scores)))
         if len(scores) >= 2 and max(scores) < INSPECT:
-            dropped.append(p)
+            (excused if str(p) in artwork else dropped).append(p)
 
     table = md_table(["PDF page", "windows", "min score", "mean score", "verdict"],
                      ["---:", "---:", "---:", "---:", ":---"], rows)
@@ -156,6 +160,8 @@ def check_chapter(key, chapter, trigrams, dups, pdf):
           f"{len(flagged)} windows to inspect; {len(dups[0])} repeated 8-grams in the document")
     if dropped:
         print(f"LIKELY DROPPED PAGES: {', '.join(str(p) for p in dropped)}")
+    for p in excused:
+        print(f"artwork page {p} (below {INSPECT} everywhere, excused): {artwork[str(p)]}")
 
     out = ROOT / "build" / f"prose-{key}.md"
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -169,6 +175,9 @@ def check_chapter(key, chapter, trigrams, dups, pdf):
     if dropped:
         md += ["**Likely dropped pages (every window below "
                f"{INSPECT}):** {', '.join(str(p) for p in dropped)}", ""]
+    if excused:
+        md += [f"Artwork pages (every window below {INSPECT}; excused in inventory/chapters.json): " +
+               "; ".join(f"p{p:03d}: {artwork[str(p)]}" for p in excused), ""]
     md += [f"Skipped (fewer than {WINDOW} tokens): " +
            (", ".join(f"p{p:03d} ({n} tokens)" for p, n in skipped) if skipped else "none"), ""]
     md += ["## Windows to inspect", ""]

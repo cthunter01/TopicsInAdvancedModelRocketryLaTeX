@@ -1,1 +1,407 @@
-% chapters/ch2-sec5.tex -- unit not yet transcribed
+% chapters/ch2-sec5.tex -- 5. Experimental Determination of the Dynamic Parameters;
+% 5.1 Moments of Inertia: the Torsion-Wire Experiment; 5.2 The Corrective Moment
+% Coefficient; 5.3 The Damping Moment Coefficient (PDF 246-264)
+\section{Experimental Determination of the Dynamic Parameters}\label{ch2:sec:5}
+
+Mathematical analysis is a powerful and elegant technique that enables the
+designer of model rockets to obtain all the necessary information concerning
+the properties of his model while it is still ``on the drawing board''. Such
+analytical methods, however, are always based on approximations to the
+phenomena under consideration, for there invariably exist factors for which it
+is either impossible or impractical to account with absolute precision. The
+value of an engineering approximation is based on the fact that the errors it
+introduces under normal conditions are small, while the analytical
+simplification it permits is considerable. Even the most valuable of such
+approximations, though, is likely at one time or another to encounter some set
+of circumstances under which it becomes invalid. The limitations of analysis,
+the questionable nature of certain of its approximations with respect to
+nonstandard designs, and the necessity to establish limits of operating
+conditions for the validity of the approximations make it essential that we
+have recourse to empirical measurement to supplement and check the results of
+analytical computation. The subject matter of this section concerns itself
+with the experimental techniques by which such measurements may be obtained.
+
+\subsection{Moments of Inertia: The Torsion-Wire Experiment}\label{ch2:sec:5.1}
+
+The torsion-wire experiment is one of the standard techniques currently in use
+by professional industry for measuring the moments of inertia of such things
+as the rotative components of electric motors and turbomachinery and the
+indicating movements of various instruments. The experiment is ideally suited
+to model rocket work, providing rapid, precise, and independent determinations
+of the longitudinal and radial moments of inertia. The experimental apparatus
+can be put together in about twenty minutes at a cost that can be less than
+fifty cents, depending on the materials at hand, and the measurement can be
+made directly using the actual model in its ready-to-launch configuration
+without altering or damaging it in any way.
+
+The basis of the measuring system is the torsion wire itself, a three-foot
+length of thin music wire. Wire diameters in the range .010 inch to .020 inch
+are acceptable for most model rocket work, with the lower end of the range
+best suited to smaller rockets or radial moments of inertia, the upper end to
+larger rockets or longitudinal moments of inertia. The last inch on each end
+of the torsion wire is bent over the center of a two-inch length of .045-inch
+music wire, then twisted to hold it tightly and soldered in place, forming a
+``T'' fitting at each end of the wire. These ``T'' configurations are the
+means by which the torsion wire is secured to the test rocket at one end and
+the mounting structure at the other.
+
+Figure~\ref{ch2:fig:43} shows a complete torsion wire system set up for
+measuring the moments of inertia of a model rocket. Illustration A
+demonstrates the correct method of mounting the rocket to obtain a measurement
+of its longitudinal moment of inertia, while illustration B shows the mounting
+configuration for measuring the radial moment of inertia. The upper ``T''
+fitting is clamped or otherwise fastened to an overhanging beam mount, which
+can be a simple two-by-four with its other end clamped to a shelf, a table, or
+any other structure that will allow the suspended rocket to clear the floor of
+the laboratory. Torsion wire experiments should always be done indoors in
+order to minimize disturbances of the apparatus caused by stray air currents.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig43.png}
+  \caption{Measurement of moments of inertia using a torsion wire.
+  Illustration (a) shows a model rocket suspended in the position used for
+  determining its longitudinal moment of inertia; (b) shows the mounting
+  position used for a determination of the radial moment of inertia.}
+  \label{ch2:fig:43}
+\end{figure}
+
+The lower ``T'' is strapped to the rocket or component whose moment of inertia
+is to be measured by means of drafting or masking tape. The lighter the entire
+attachment assembly is, the better will be the accuracy of the measurement,
+and this may make some designers prefer to use a thinner crossbar and/or
+Scotch Magic Tape. The use of Magic Tape requires a great deal of care,
+however, to avoid damaging the finish of the model when removing the tape
+after a test is completed.
+
+In order to calibrate a newly-built torsion wire system a \emph{reference
+standard} is needed. The reference standard must be some object having a
+simple shape and a known density or mass, so that its moment of inertia is
+computable by means of a simple algebraic formula. One of the most convenient
+reference standards you can use is a half-inch aluminum rod about one foot
+long, suspended with its longitudinal axis parallel to the floor as in
+Figure~\ref{ch2:fig:43}A. The rod's moment of inertia, designated $I_s$, is
+given by
+\begin{equation}\label{ch2:eq:110}
+I_s = M\left[\frac{R^{2}}{4} + \frac{L^{2}}{12}\right] \qquad \text{gram-centimeters}^{2}
+\end{equation}
+where
+\begin{itemize}[nosep,leftmargin=*,label={}]
+  \item $M$ = mass of rod in grams
+  \item $R$ = radius of rod in centimeters
+  \item $L$ = length of rod in centimeters
+\end{itemize}
+A diameter of one-half inch corresponds to a radius of 0.635 centimeters; if
+such a rod is cut to a length of 29.7 centimeters and is of aluminum alloy
+6061 it will have a mass of 101.8 grams and therefore a moment of inertia of
+precisely 7500 gram-centimeters$^{2}$. Reference standards of different values
+of $I_s$ may be prepared by using rods of different lengths, diameters, and
+materials, but you should find that the one described above is convenient for
+the majority of the measurements you will be making.
+
+A timing device completes the equipment needed to perform the experiment. An
+ordinary wristwatch with a sweep second hand will do for this purpose, but
+much better accuracy is obtainable from a stopwatch or an electric laboratory
+stopclock. If a timing device accurate to a hundredth of a second is used, the
+experiment will yield values of moments of inertia which are repeatable to
+better than 2\%.
+
+A torsion-wire determination is performed by measuring the \emph{period of
+torsional oscillation} of the model and comparing it to that of the reference
+standard. This means that the wire must first be calibrated by performing the
+experiment with the reference standard affixed to the wire as in
+Figure~\ref{ch2:fig:43}A. The oscillations are started by twisting the wire
+between the fingers until the reference standard makes nearly one full
+revolution about the axis of the wire, then releasing it, taking care not to
+start the whole arrangement swinging like a pendulum in the process. Upon
+being released the reference standard will begin to turn slowly about the wire
+axis, first in one direction, then the other, twisting the wire this way and
+that. This is what is meant by the term ``torsional oscillation''. The
+\emph{period} of the oscillation is the time in seconds taken for the
+suspended object to execute one complete \emph{cycle}; that is, to twist from
+one extreme of the oscillation to the other \emph{and back again}. To increase
+the accuracy of the determination, you should measure \emph{ten} such periods
+in a single timing, starting the time when the reference standard is at one
+extreme of its oscillation and stopping it when the reference standard returns
+again to that position for the tenth time. If the time thus measured is
+divided by ten, a much more accurate determination of the period will result
+than could be obtained by measuring a single cycle. Denote the period of the
+reference standard by $T_s$ and keep a careful record of its value, for once
+you have obtained it you need never measure it again; the wire has been
+calibrated and the known values $I_s$ and $T_s$ may be used in reducing data
+from any further experiments done with that particular wire.
+
+To determine the moments of inertia of the model, remove the reference
+standard from the wire and affix the model as in Figure~\ref{ch2:fig:43}A for
+determining $I_L$ or as in Figure~\ref{ch2:fig:43}B for determining $I_R$. In
+each configuration, the oscillations are started and the torsional period is
+measured just as in the case of the reference standard. With most model
+rockets, torsion wires of diameters between .010 and .020 inch produce
+relatively slow oscillations which are easy to time with a high degree of
+accuracy and which are very lightly damped. It should thus not be difficult to
+observe the oscillations of the model for a full ten cycles.
+
+With the rocket mounted as in Figure~\ref{ch2:fig:43}A an oscillation period
+whose value I shall denote by $T_L$ will have been measured. The longitudinal
+moment of inertia of the rocket can then be computed according to
+\begin{equation}\label{ch2:eq:111}
+I_L = I_s \left(\frac{T_L}{T_s}\right)^{2}
+\end{equation}
+Similarly, when the model is mounted as in Figure~\ref{ch2:fig:43}B an
+oscillation period $T_R$ will result, from which the radial moment of inertia
+of the rocket can be calculated as
+\begin{equation}\label{ch2:eq:112}
+I_R = I_s \left(\frac{T_R}{T_s}\right)^{2}
+\end{equation}
+
+\subsection{The Corrective Moment Coefficient}\label{ch2:sec:5.2}
+
+The value of the corrective moment coefficient is determined by measuring the
+static angular deflection of the rocket produced by a known pitching moment.
+This experiment, as well as those to be described in subsequent sections,
+requires a small wind tunnel---one which has a test section whose transverse
+dimensions are at least twelve by twelve inches and which is capable of
+producing an airspeed of at least 15 meters per second. It would also be
+preferable if the airspeed were continuously variable, since this makes some
+of the experiments more convenient, but this feature is not essential. I am
+not going to try to explicitly describe the construction of a wind tunnel
+here; the variety of types is considerable and any such discussion would
+require a complete book of its own. Building such a device is a major project
+in itself, and most rocketeers would rather have recourse to a facility that
+already exists, such as those owned by some universities, NAR sections, and
+model rocket manufacturers. Those readers who would like to build their own
+tunnels can find information on the subject in \emph{Wind Tunnel Testing}, by
+Alan Pope (Second Edition, John Wiley and Sons, Inc., New York, 1954). A
+reading of this comprehensive work should give you a good idea of the variety
+of wind tunnel types available and the nature of the design process involved
+in their planning.
+
+The experiment to determine the corrective moment coefficient is performed
+using a moment balance and test rocket as shown in Figure~\ref{ch2:fig:44}.
+The balance is basically a single-degree-of-freedom gimbal consisting of a
+pulley wheel attached to a steel shaft which runs through ball bearings to
+terminate in an aluminum plug fitting. The test rocket is constructed in two
+sections, such that the forward section can be snugly slid onto one end of
+the plug fitting, the after section onto the other. Because it is necessary
+to build the rocket in this way only a \emph{design} can be tested, not an
+actual rocket which is to be flown, but the arrangement has the advantage
+that it produces a minimal disturbance in the airflow.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig44.png}
+  \caption{Experimental apparatus for determining the corrective moment
+  coefficient. The same instrument, with the pulley wheel, counterweight, and
+  balance pan assembly removed, can be used for determining the damping moment
+  coefficient. Bolt holes are provided in the bearing support plate nearest
+  the test rocket for mounting the apparatus on the wall of a wind tunnel test
+  section.}
+  \label{ch2:fig:44}
+\end{figure}
+
+That portion of the shaft on which the plug is mounted extends through a hole
+in the wall of the wind tunnel test section and out into the airstream, such
+that the plug is located approximately in the center of the test section. The
+case is bolted to the side of the test section opposite the viewing area in
+order to hold the instrument in place.
+
+The moment balance in Figure~\ref{ch2:fig:44} is shown with a
+pointer-and-protractor device for indicating the angle of deflection. This
+arrangement is perfectly adequate for static-deflection experiments; in the
+experiments described in later sections, though, where the rocket is set to
+oscillating, it will become desirable to \emph{record} the value of the
+angular deflection at any given time. This can be done with motion pictures
+and in various other ways using the protractor system, but it is usually
+preferred to substitute some electrical device for measuring the angle and to
+feed its output into a chart recorder, which then automatically draws a graph
+of deflection versus time.
+
+To generate the moment which will cause the rocket to assume an angle of pitch
+relative to the oncoming airstream it is necessary to apply a force tangential
+to the pulley wheel at its outer radius. This is done by suspending a balance
+pan from a thin cord which has been wrapped around the pulley and adding known
+weights to the pan. The balance pan itself must be suitably counterweighted so
+that there is no moment applied when there is no weight in the pan.
+
+The experiment is prepared by adjusting the weights of the forward and after
+sections of the test rocket so that, when assembled on the plug with an engine
+installed, it balances when the airstream is off and there is no weight in the
+pan. Under these conditions the shaft centerline passes through the \CG{} of
+the rocket, so that free-flight conditions are being accurately simulated.
+
+The airstream is then turned on and adjusted to some fixed velocity value
+which is not to be altered during the course of the experiment. The model
+should come to rest facing directly into the oncoming wind, which in a good
+wind tunnel will coincide with the test section centerline. If it fails to
+face into the wind, or turns tail-on to the wind, it is of course statically
+unstable and must be redesigned. Assuming the model is facing the airstream
+properly, the last remaining preliminary step is to check the angle indicator
+and adjust it if necessary so that it reads zero.
+
+The addition of weights to the pan can now be started, beginning with a unit
+weight that produces a small deflection (between $1\dg$ and $2\dg$), but which
+is an even quantity such as a single laboratory balance weight or simple
+combination thereof. Record the mass, in grams, of the weight used and the
+exact deflection in degrees which it produced. Then add another weight
+identical to the first and record the new deflection from the zero-degree line
+produced by the two acting together, making certain that all movement has
+subsided before you take a reading. Continue adding weights in this manner,
+recording the deflection angle associated with each value of total mass in the
+pan, until you reach a point at which the rocket will no longer come to
+equilibrium and the slightest additional weight in the pan will cause the
+rocket/balance assembly to become unstable. This will generally occur at some
+value of deflection angle between $12\dg$ and $18\dg$ and is due to the slope
+of the corrective moment curve becoming zero at that point (refer back to
+Figure~\ref{ch2:fig:7} for an illustration of the corrective moment curve).
+
+The experiment is now complete and data reduction can begin. The first step
+here is to transform the units in which the data are expressed, so that
+angular deflections are given as radians and pitching moments as
+dyne-centimeters. Deflections in degrees are converted to radian measure by
+dividing by 57.3; a moment in dyne-centimeters is computed by multiplying the
+mass (in grams) placed in the pan by 980 and then multiplying the result thus
+obtained by the radius of the pulley wheel in centimeters. These procedures
+are illustrated in Figure~\ref{ch2:fig:45}. The completed data reduction
+should provide a table listing each deflection in radians next to the moment
+required to produce it in dyne-centimeters.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig45.png}
+  \caption{Computing angle of attack in radians and corrective moment in
+  dyne-centimeters. The angle of attack in degrees is divided by 57.3 to
+  convert to radians; the mass on the balance pan, in grams, is multiplied by
+  980 times the radius of the pulley wheel in centimeters to give the moment
+  in dyn-cm.}
+  \label{ch2:fig:45}
+\end{figure}
+
+The data points are then plotted on a graph in cartesian coordinates whose
+horizontal axis represents pitching angle in radians and whose vertical axis
+represents pitching moment in dyne-centimeters. Such a plot is made by
+locating each point described by a coordinate pair in the table (a deflection
+and its associated moment) on the graph and marking it with a small ``x'' or
+dot, then drawing a smooth curve which, as nearly as possible, connects all
+the points. Since experimental data normally contains some ``scatter'', it is
+more likely that your curve will be accurate if it is smooth than if it
+connects each and every point with all its neighbors. The resulting graph is a
+representation of the first part of the curve in Figure~\ref{ch2:fig:7}:
+corrective moment as a function of angle of attack. In order to compute $C_1$
+from this graph, place a straightedge on it such that its edge is tangent to
+the curve at the intersection of the coordinate axes (the origin) and draw a
+line using the straightedge as a guide. This is the graphical method of
+performing the ``linearization about zero'' discussed in
+Section~\ref{ch2:sec:2.2} as applied to the corrective moment curve. The
+corrective moment coefficient $C_1$ is just the slope of this straight line
+and may be computed by locating any point on the straight line and dividing
+its moment coordinate by its deflection coordinate. The result is $C_1$ given
+in dyne-centimeters per radian, but this should be expressed as simply
+dyne-centimeters because radians (as stated in Section~\ref{ch2:sec:4.7}) are
+physically dimensionless. Figure~\ref{ch2:fig:46} illustrates the graphical
+reduction of data for a hypothetical rocket.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig46.png}
+  \caption{Graphical reduction of wind tunnel test data to determine the
+  corrective moment coefficient. (a): A table of corrective moment vs.\
+  deflection angle is compiled. (b): The data points on the table are
+  transferred to a graph and a smooth curve is drawn (as nearly as possible)
+  through the points. (c): A straightedge is placed along the lower portion of
+  the curve, tangent to it at the origin, and a line is drawn using the
+  straightedge as a guide. The slope of this line is the corrective moment
+  coefficient.}
+  \label{ch2:fig:46}
+\end{figure}
+
+You may wish to repeat the experiment at a number of different values of
+airspeed to determine the dependence of $C_1$ upon velocity. If you do this,
+you will find that $C_1$ is directly proportional to the square of the
+airspeed.
+
+\subsection{The Damping Moment Coefficient}\label{ch2:sec:5.3}
+
+The dynamic parameter $C_2$ is determined using the same gimbal arrangement as
+in the first experiment, with the exception that the pulley wheel and its
+associated pan and counterweight system must be removed. This must be done in
+order to reduce the moment of inertia contributed by the rotating parts of the
+balance system, and unless this modification is carried out the rocket will
+behave as if its longitudinal moment of inertia were much greater than it
+actually is.
+
+The experiment is prepared by balancing the test rocket so that the shaft
+passes through its center of mass as before, setting the airspeed to the
+desired value---which must remain constant throughout the test---and checking
+to make certain that the angle indicator is reading zero. Having completed
+these preliminary steps, deflect the rocket to some moderate angle of attack,
+say $10\dg$, and hold it steady in this position. You may wish to have an
+assistant do this by turning the shaft with his hand in order to allow you to
+best observe the subsequent motion, or you may devise various automatic
+systems to do the job. One simple technique for obtaining the initial
+deflection would be to wrap a length of strong thread around the end of the
+shaft from which the pulley has been removed and tie a weight to the thread.
+In any case, record the value of the initial deflection thus produced,
+identifying it as $\alpha_0$.
+
+Now release the rocket and allow it to rotate into the wind of its own accord.
+If you have used the thread-and-weight system for producing the initial
+deflection, you can do this by carefully snipping the thread with a pair of
+scissors. The rocket should swing toward alignment with the wind axis and
+\emph{overshoot} it, reaching a maximum angle which I shall refer to as
+$\alpha_1$ on the opposite side of zero from that on which the model was
+released, and subsequently oscillating with smaller and smaller amplitude
+about zero until it is facing steadily into the oncoming wind. The convention
+for representing $\alpha_0$ and $\alpha_1$, whose algebraic signs are both
+taken as positive, is shown in Figure~\ref{ch2:fig:47}. The maximum overshoot
+angle $\alpha_1$ will be reached at a time defined as $t_{\max}$ after the
+rocket is released. You must accurately record both the maximum overshoot
+angle and the time at which it occurs. In the case of indicating systems
+consisting only of a simple pointer-and-protractor $\alpha_1$ must be recorded
+by eye (or by photographic means) and $t_{\max}$ by a stopwatch. An electrical
+system for measuring and recording the deflections has a significant advantage
+here, in that it takes the guesswork out of the observations.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig47.png}
+  \caption{Convention for defining $\alpha_0$ and $\alpha_1$ in the experiment
+  for determining the damping moment coefficient.}
+  \label{ch2:fig:47}
+\end{figure}
+
+If, upon being released, the model does not oscillate at all but instead
+slowly faces into the relative wind from the position of initial deflection,
+it is overdamped. As shown by the results of Section~\ref{ch2:sec:3.1.1}, this
+is a hazardous condition which may result in an erratic flight path and the
+rocket must be redesigned to correct it. Additional nose weight will usually
+take care of this problem, but since this moves the center of mass forward it
+will require the building of a new test model which is divided in two further
+toward the nose. Alternatively, both the nose \emph{and} the tail of the model
+can be weighted, keeping the \CG{} in the same place but increasing the
+longitudinal moment of inertia.
+
+Assuming that the rocket has behaved in a properly oscillatory fashion and
+that $\alpha_0$, $\alpha_1$, and $t_{\max}$ have all been duly recorded, the
+value of the damping moment coefficient may now be computed. The first step is
+to determine the inverse time constant $D$ according to the relation
+\begin{equation}\label{ch2:eq:113}
+D = \frac{\ln\left(\alpha_0/\alpha_1\right)}{t_{\mathrm{MAX}}}
+\end{equation}
+where the reader is reminded that the notation ``$\ln(\alpha_0/\alpha_1)$''
+refers to the natural logarithm of $(\alpha_0/\alpha_1)$. Readers who are
+mathematically adept may recognize that equation~\eqref{ch2:eq:113} is derived
+from the peaking characteristics of decoupled, underdamped step-response
+presented in equations~\eqref{ch2:eq:32}, Section~\ref{ch2:sec:3.1.2}.
+
+With $D$ known from equation~\eqref{ch2:eq:113} and $I_L$ known from
+torsion-wire determinations, it is possible to calculate $C_2$ from
+equation~\eqref{ch2:eq:16}, Section~\ref{ch2:sec:3.1.1}, as
+\begin{equation}\label{ch2:eq:114}
+C_2 = 2 I_L D
+\end{equation}
+As when determining the corrective moment coefficient, you may wish to perform
+this test at various airspeeds. In doing this you will find that $C_2$
+increases linearly with airspeed so that the values of the decoupled and
+coupled damping ratios, as predicted by the Barrowman equations, remain
+constant. Equation~\eqref{ch2:eq:114} determines $C_2$ in units of
+dyne-centimeter-seconds.
