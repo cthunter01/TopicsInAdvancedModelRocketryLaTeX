@@ -56,6 +56,9 @@ people (and agents) work on the book in parallel and end with one consistent doc
 - Lettered groups (27a, 27b): `\begin{subequations}\label{chN:eq:27} \begin{equation}\label{chN:eq:27a}...`.
   Use `\tag{102b}` only when the printed lettering cannot be produced by `subequations`
   (e.g. a lone "(102b)" with no "(102a)"). Uppercase letters (144A): see preamble note.
+  A `\tag` always goes in a starred environment (`\begin{equation*}\tag{2a}\label{...}`): inside
+  a numbered `equation` it re-uses the next equation's PDF link target, so links to that equation
+  land on the tagged one (tools/check_numbering.py check 8 fails on it).
 - Unnumbered displays: `equation*`, `align*` (align on `=`), `gather*`. Multi-line derivations:
   `align*` with `&=` on each line. Side conditions printed at the right ("(t < 0)"): `\qquad (t<0)`
   inside the display, or `cases` when the display is piecewise.

@@ -38,7 +38,9 @@ checks 1-2 but still get the source checks 4-7):
   6  no \\newcommand, \\renewcommand, \\def, \\let, \\usepackage, \\DeclareRobustCommand
      (or close relatives such as \\gdef, \\providecommand, \\newenvironment) in chapters/*.tex
   7  \\draftnote occurrences per unit file (report only)
-  8  the log: undefined references/citations, multiply defined labels and TeX errors fail;
+  8  the log: undefined references/citations, multiply defined labels, duplicate PDF
+     destinations (pdfTeX "destination with the same identifier", e.g. a \\tag inside a numbered
+     equation, which sends links to the wrong equation) and TeX errors fail;
      "Overfull \\hbox" wider than --overfull pt (default 20) are reported with the file TeX was
      reading (best effort: TeX reports an overfull box at the end of the paragraph)
 
@@ -461,6 +463,7 @@ RE_UNDEF_ANY = re.compile(r"LaTeX Warning: There were undefined (references|cita
 RE_MULTI = re.compile(r"LaTeX Warning: Label `([^']*)' multiply defined")
 RE_MULTI_ANY = re.compile(r"LaTeX Warning: There were multiply-defined labels")
 RE_OVERFULL = re.compile(r"Overfull \\hbox \(([\d.]+)pt too wide\)(.*)")
+RE_DUPDEST = re.compile(r"destination with the same identifier \(name\{([^}]*)\}\)")
 RE_ERROR = re.compile(r"^(?:! .+|(?:\./)?[^\s:]+\.tex:\d+: .+)$")
 
 
@@ -471,6 +474,7 @@ def check_log(path, threshold, tolerate_undefined=False):
     lines = unwrap_log(path.read_text(encoding="utf-8", errors="replace"))
     files = files_at_lines(lines)
     undefined, multi, overfull, errors = [], [], [], []
+    dupdest = {}
     undef_any = multi_any = False
     for idx, line in enumerate(lines):
         m = RE_UNDEF.search(line)
@@ -487,6 +491,10 @@ def check_log(path, threshold, tolerate_undefined=False):
             continue
         if RE_MULTI_ANY.search(line):
             multi_any = True
+            continue
+        m = RE_DUPDEST.search(line)
+        if m:
+            dupdest.setdefault(m.group(1), files[idx])
             continue
         m = RE_OVERFULL.search(line)
         if m:
@@ -515,11 +523,16 @@ def check_log(path, threshold, tolerate_undefined=False):
         details.append(f"multiply defined labels ({len(multi)}"
                        + (", plus the summary warning" if multi_any and not multi else "") + "):")
         details += ["  " + u for u in multi]
+    if dupdest:
+        failed = True
+        details.append(f"duplicate PDF destinations ({len(dupdest)}; links to them land on the first one):")
+        details += [f"  {n}" + (f"  [{f}]" if f else "") for n, f in dupdest.items()]
     if overfull:
         details.append(f"Overfull \\hbox over {threshold:g}pt ({len(overfull)}, report only):")
         details += ["  " + o for o in overfull]
     summary = (f"{rel(path)}: {plural(len(errors), 'error')}, {len(undefined)} undefined, "
-               f"{len(multi)} multiply defined, {len(overfull)} overfull > {threshold:g}pt")
+               f"{len(multi)} multiply defined, {len(dupdest)} duplicate destinations, "
+               f"{len(overfull)} overfull > {threshold:g}pt")
     return (FAIL if failed else OK), summary, details
 
 
