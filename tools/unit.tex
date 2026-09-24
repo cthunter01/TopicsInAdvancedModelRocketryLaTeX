@@ -1,0 +1,14 @@
+% Wrapper for a standalone compile of one unit file (see Makefile target `unit`).
+% Counters can be preset from the command line, e.g. PRE='\def\chapstart{1}\def\eqstart{7}'
+\documentclass[11pt,letterpaper,oneside,openany]{book}
+\input{preamble}
+\begin{document}
+\ifdefined\chapstart\setcounter{chapter}{\chapstart}\fi
+\ifdefined\secstart\setcounter{section}{\secstart}\fi
+\ifdefined\subsecstart\setcounter{subsection}{\subsecstart}\fi
+\ifdefined\eqstart\setcounter{equation}{\eqstart}\fi
+\ifdefined\figstart\setcounter{figure}{\figstart}\fi
+\ifdefined\tabstart\setcounter{table}{\tabstart}\fi
+\ifdefined\platestart\setcounter{plate}{\platestart}\fi
+\input{\unitfile}
+\end{document}

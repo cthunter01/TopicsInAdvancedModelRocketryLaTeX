@@ -1,0 +1,26 @@
+% Topics in Advanced Model Rocketry -- LaTeX edition. Build with `make all` (see README.md).
+\documentclass[11pt,letterpaper,oneside,openany]{book}
+\input{preamble}
+\ifdefined\INCLUDEONLY\includeonly{\INCLUDEONLY}\fi
+\begin{document}
+\frontmatter
+\input{frontmatter/titlepage-2025}
+\input{frontmatter/historical-perspective}
+\input{frontmatter/author-photos}
+\input{frontmatter/original-1973}
+\input{frontmatter/about-this-edition}
+\tableofcontents
+\mainmatter
+\include{chapters/ch1}
+\include{chapters/ch2}
+\include{chapters/ch3}
+\include{chapters/ch4}
+\appendix
+\input{backmatter/appendix-a}
+\input{backmatter/appendix-b}
+\input{backmatter/appendix-c}
+\input{backmatter/appendix-d}
+\backmatter
+\input{backmatter/figure-credits}
+\input{backmatter/supplement/index}
+\end{document}

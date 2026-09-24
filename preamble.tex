@@ -1,0 +1,71 @@
+% preamble.tex -- packages and ALL macros. Nothing under chapters/ may define a macro.
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{mathtools}            % loads amsmath
+\usepackage{newtxtext}
+\usepackage{newtxmath}            % supplies the AMS symbols, \mathscr and integral signs;
+                                  % do NOT add amssymb, mathrsfs, esint or bm (math-family limit)
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf,justification=justified,singlelinecheck=false}
+\usepackage[section]{placeins}
+\usepackage{newfloat}
+\DeclareFloatingEnvironment[fileext=lop,within=chapter,placement=htbp,name=Plate,listname={List of Plates}]{plate}
+\usepackage{booktabs,longtable,tabularx,array,multirow}
+\usepackage{siunitx}
+\usepackage{enumitem}
+\usepackage{manyfoot}
+
+% ---- counters and numbering -------------------------------------------------
+\renewcommand{\theequation}{\arabic{equation}}
+\renewcommand{\thefigure}{\arabic{figure}}
+\renewcommand{\thetable}{\arabic{table}}
+\renewcommand{\theplate}{\arabic{plate}}
+\renewcommand{\thesection}{\arabic{section}}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+\makeatletter
+% top-level sections read "1. Title" as in the book; subsections keep "1.1 Title"
+\def\@seccntformat#1{\@ifundefined{#1@cntformat}{\csname the#1\endcsname\quad}{\csname #1@cntformat\endcsname}}
+\def\section@cntformat{\thesection.\quad}
+\makeatother
+
+% ---- structure ------------------------------------------------------------
+\newcommand{\chapterauthor}[1]{\begin{center}\large #1\end{center}\vspace{1em}}
+\newcommand{\unnumberedsection}[1]{\phantomsection\addcontentsline{toc}{section}{#1}\section*{#1}}
+
+% ---- editorial apparatus --------------------------------------------------
+\DeclareNewFootnote{Ed}
+\renewcommand{\thefootnoteEd}{E\arabic{footnoteEd}}
+\counterwithin*{footnoteEd}{chapter}
+\newcommand{\ednote}[1]{\footnoteEd{\textit{Editor's note:} #1}}
+\newcommand{\edcap}[1]{[\textit{Editor's note:} #1]}
+% \draftnote{...}: yellow inline box in draft builds; a hard error in final builds (make final)
+\newif\ifdraftnotes
+\ifdefined\FINAL\draftnotesfalse\else\draftnotestrue\fi
+\ifdraftnotes
+  \DeclareRobustCommand{\draftnote}[1]{\text{\colorbox{yellow}{\footnotesize\sffamily #1}}}
+\else
+  \DeclareRobustCommand{\draftnote}[1]{\errmessage{draftnote left in final build: #1}}
+\fi
+
+% ---- notation macros (complete list; documented in STYLE.md) --------------
+\newcommand{\AR}{\mathit{A\mkern-3mu R}}   % aspect-ratio ligature
+\newcommand{\CNa}{C_{N\alpha}}              % normal force curve slope
+\newcommand{\mdot}{\dot{m}}                 % mass flow rate
+\newcommand{\Isp}{I_{\mathrm{sp}}}          % specific impulse
+\newcommand{\CD}{C_{D}}                     % drag coefficient
+\newcommand{\CDo}{C_{D_0}}                  % zero-lift drag coefficient
+\newcommand{\un}[1]{\,\mathrm{#1}}          % unit inside math: 5\un{cm}
+\newcommand{\dg}{^{\circ}}                  % degree sign in math
+\newcommand{\CG}{C.G.}                      % centre of gravity (text)
+\newcommand{\CP}{C.P.}                      % centre of pressure (text)
+
+% ---- hyperref last ----------------------------------------------------------
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black,
+  hyperfootnotes=false,bookmarksnumbered=true,
+  pdftitle={Topics in Advanced Model Rocketry},
+  pdfauthor={Gordon K. Mandell, George J. Caporaso, William P. Bengen}]{hyperref}

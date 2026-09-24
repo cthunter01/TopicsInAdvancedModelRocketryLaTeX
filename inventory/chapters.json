@@ -1,0 +1,8 @@
+{
+  "ch1": {"title": "An Introduction to the Dynamics of Model Rocket Flight", "pdf_pages": [31, 82],
+          "units": {"ch1-symbols": [33, 35], "ch1-sec1": [36, 41], "ch1-sec2a": [42, 60],
+                    "ch1-sec2b": [61, 72], "ch1-sec3": [73, 80], "ch1-refs": [81, 81]}},
+  "ch2": {"title": "A Unified Approach to Aerodynamic Stability", "pdf_pages": [83, 290], "units": {}},
+  "ch3": {"title": "The Aerodynamic Drag of Model Rockets", "pdf_pages": [291, 528], "units": {}},
+  "ch4": {"title": "Elements of Trajectory Analysis", "pdf_pages": [529, 646], "units": {}}
+}

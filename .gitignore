@@ -1,0 +1,16 @@
+# source scan (42 MB) is not tracked; see README.md for its sha256
+Topics_in_Advanced_Model_Rocketry.pdf
+build/
+drafts/
+figures/pages/
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.out
+*.toc
+*.lof
+*.lot
+*.lop
+__pycache__/

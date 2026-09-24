@@ -1,0 +1,57 @@
+% Smoke test for the preamble: exercises every structural and editorial macro.
+\section{Smoke Test Section}\label{smoke:sec:1}
+Text with emphasis \emph{like this} and a dash---like this. Inline math $m_e$, $\CNa$, $\mdot$,
+$\Isp$, $\CD$, $\CDo$, $\AR$, $5\un{cm}$, $30\dg$, and script $\mathscr{F}$. The \CG{} and \CP{}.
+A footnote by the authors.\footnote{An original footnote.} An editorial note.\ednote{This is an
+editor's note giving the original reading.} A draft note follows: \draftnote{uncertain glyph}.
+\subsection{Equations}\label{smoke:sec:1.1}
+\begin{equation}\label{smoke:eq:1}
+  \vec{F} = -\vec{c}\,\frac{dm_e}{dt}
+\end{equation}
+\begin{subequations}\label{smoke:eq:2}
+\begin{align}
+  f_x(t) &= 0 \qquad (t < 0) \label{smoke:eq:2a}\\
+  f_x(t) &= M_s \qquad (t \ge 0) \label{smoke:eq:2b}
+\end{align}
+\end{subequations}
+\begin{equation}\tag{102b}\label{smoke:eq:102b}
+  \bar{Z}_{T(B)} = \frac{\CNa}{\sqrt{1+\left(\frac{2\ell}{c_r+c_t}\right)^2}}
+\end{equation}
+By equations~\eqref{smoke:eq:1}, \eqref{smoke:eq:2a} and~\eqref{smoke:eq:102b}, see
+Section~\ref{smoke:sec:1.1}, Figure~\ref{smoke:fig:1}, Plate~\ref{smoke:plate:1},
+Table~\ref{smoke:tab:1} and Reference~\ref{smoke:ref:2}.
+\begin{figure}[htbp]
+  \centering
+  \rule{4cm}{3cm}
+  \caption{A placeholder figure with a caption. \edcap{a caption-level editorial note}}
+  \label{smoke:fig:1}
+\end{figure}
+\begin{plate}[htbp]
+  \centering
+  \rule{4cm}{2cm}
+  \caption{A placeholder plate.}
+  \label{smoke:plate:1}
+\end{plate}
+\begin{table}[htbp]
+  \caption{A small table.}
+  \label{smoke:tab:1}
+  \centering
+  \begin{tabular}{l S[table-format=1.3]}
+    \toprule Quantity & {Value} \\ \midrule
+    density & 1.225 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\unnumberedsection{Symbols}\label{smoke:sec:symbols}
+\begin{longtable}{@{}l p{0.78\linewidth}@{}}
+\toprule \textbf{Symbol} & \textbf{Meaning} \\ \midrule \endfirsthead
+\toprule \textbf{Symbol} & \textbf{Meaning} \\ \midrule \endhead
+\bottomrule \endlastfoot
+$A_r$ & reference area \\
+$\vec{F}$ & thrust vector \\
+\end{longtable}
+\unnumberedsection{References}\label{smoke:sec:refs}
+\begin{enumerate}[label=\arabic*.,ref=\arabic*,leftmargin=*]
+  \item\label{smoke:ref:1} Stine, G. H., \emph{Handbook of Model Rocketry}.
+  \item\label{smoke:ref:2} Barrowman, J. S., \emph{The Practical Calculation of the Aerodynamic Characteristics of Slender Finned Vehicles}.
+\end{enumerate}
