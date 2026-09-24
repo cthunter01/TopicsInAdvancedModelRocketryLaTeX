@@ -59,6 +59,14 @@ people (and agents) work on the book in parallel and end with one consistent doc
 - Unnumbered displays: `equation*`, `align*` (align on `=`), `gather*`. Multi-line derivations:
   `align*` with `&=` on each line. Side conditions printed at the right ("(t < 0)"): `\qquad (t<0)`
   inside the display, or `cases` when the display is piecewise.
+- Connective words the typescript prints beside or between displays ("and", "or", "from which",
+  "or, since") are set as short prose lines between the displays; conditions such as "(t < 0)",
+  labels such as "(conical nose)" and units printed at the right stay inside the display after `\qquad`.
+- Unnumbered side-by-side comparisons (e.g. "Present Treatment | Gurkin Report") are a `tabular` inside
+  `center`, without caption or number, so they do not consume table numbers.
+- For an unclear hand-lettered glyph, render a zoomed crop of the scan and look at it:
+  `pdftoppm -r 300 -f P -l P -x X -y Y -W W -H H -png Topics_in_Advanced_Model_Rocketry.pdf build/zoom`
+  (X, Y, W, H in pixels at 300 dpi; the page is about 2080 x 2950 px).
 - Text between displays stays as prose paragraphs. Short "where" lists after an equation:
   `\begin{itemize}[nosep,leftmargin=*]` or a `where $x$ = ...` paragraph, matching the book.
 - Notation: vectors `\vec{F}`; overbars `\bar{Z}_T`; time derivatives `\dot{m}`, `\ddot{x}`;
