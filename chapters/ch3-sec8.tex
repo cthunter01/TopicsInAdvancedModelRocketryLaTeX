@@ -1,1 +1,235 @@
-% ch3-sec8 -- stub, to be transcribed (milestone M3)
+% chapters/ch3-sec8.tex -- 8. Experimental Determination of Drag Coefficients; 8.1-8.4
+% (PDF 516-526, printed pp. 484-494); Plate 6, Figure 55; equations (216)-(230)
+\section{Experimental Determination of Drag Coefficients}\label{ch3:sec:8}
+
+All the material presented thus far in this chapter has dealt with the
+theoretical or semiempirical prediction of model rocket drag coefficients. In
+order to determine the accuracy of the drag coefficient values obtained from
+such predictive calculations it is necessary to compare them to results
+obtained by experimental measurement. In addition, there exist designs whose
+shape is too complicated to permit the use of any of the analytical methods
+discussed in the preceding sections (the reader will recall, for instance, that
+even the presence of a mere launch lug forced us to use a tentative and highly
+speculative semiempirical rule to account for its effect). We therefore
+conclude this chapter with a brief discussion of three basic experimental
+techniques which may be used to determine the drag coefficient of any model
+rocket.
+
+\subsection{Wind Tunnel and Balance System}\label{ch3:sec:8.1}
+
+The most common experimental technique presently in use for determining drag
+coefficients, whether of model rockets or any other objects, is the
+wind-tunnel test. I will assume that readers of this volume already have some
+knowledge of wind tunnels, balances, and testing procedure; for the topic of
+wind-tunnel testing itself is a very broad one and would require far too
+lengthy a discussion for us to include it here. Those interested may find
+explanations of the various types of tunnels and balance systems, as well as
+information of use in designing and building wind tunnels, in an excellent
+book on the subject called \emph{Wind Tunnel Testing}, by Alan Pope, published
+by John Wiley and Sons of New York in several editions over the last twenty
+years.
+
+Plate~\ref{ch3:plate:6} shows a small wind tunnel and balance system capable
+of testing model rockets at airspeeds up to about 19 meters/second. The
+particular version illustrated is a return-flow tunnel of the
+``single-return'' variety, in which the air circulates clockwise through the
+closed, doughnut-like duct system. It can be constructed, complete with
+variable-speed drive, for several hundred dollars and represents a type that
+can be afforded by some of the larger model rocket clubs and NAR Sections. A
+somewhat similar (but larger) design was used by Mark Mercer for his drag
+experiments. One can also construct much simpler, ``open-circuit'' tunnels in
+which the air is drawn through an intake, passes through the test section, and
+is expelled through a ``diffuser'', or exhaust. In designing \emph{any} wind
+tunnel the greatest care must be exercised to prevent, insofar as is possible,
+turbulence in the airstream which passes through the test section. If too much
+turbulence is present the tunnel airflow will not accurately duplicate the
+conditions existing in free flight and the experimental results may not be
+accurate. Most wind tunnels thus far constructed by model rocketeers are in
+fact known to suffer from this problem. Another difficulty encountered by
+hobbyists attempting to design homebuilt wind tunnels involves velocity: the
+test-section airspeed must be high enough to provide reasonably good dynamic
+similarity (a Reynolds number not too different from those encountered in
+flight); yet, for a given test section cross-sectional area, the motor power
+required increases approximately as the \emph{cube} of the desired airspeed! In
+short, the design and construction of a wind tunnel that can provide
+high-quality drag data is not a project to be taken lightly: it will make
+considerable demands on a modeler's time, skill, and finances.
+
+\begin{plate}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/plate06.jpg}
+  \caption{A small wind tunnel that can be used to measure the drag coefficient
+  of a model rocket.}
+  \label{ch3:plate:6}
+\end{plate}
+
+Assuming that one \emph{has} a wind tunnel and balance system (or access to
+one, as in a university), however, the drag coefficient of any model mounted
+on the balance can be determined by reading the drag directly from the balance
+indicator. The drag reading obtained must be corrected for \emph{tare} (the
+drag of the balance support arm itself), aerodynamic interference between the
+model and the balance arm, and the effect of the test section walls on the
+airflow pattern about the model. Pope's text outlines the techniques for
+accomplishing these corrections with a high degree of precision (this is,
+however, a rather tedious task and many hobbyists prefer simply to subtract the
+tare drag from the total drag reading, a procedure which still permits
+determinations of $\CD$ to within 5\% in most cases). The drag coefficient is
+then found from the corrected drag using the equation
+\begin{equation}\label{ch3:eq:216}
+\CD = \frac{D}{\tfrac{1}{2}\rho S_m U^{2}}
+\end{equation}
+where the test-section velocity $U$ is that which has been measured on the
+velocity-indicating manometer. In a good wind tunnel the airspeed can be varied
+from zero to the maximum of which the tunnel is capable at will, by using an
+electrical or hydraulic control.
+
+The performance calculations of Chapter~\ref{ch4} use a \emph{drag parameter}
+$k$, given by
+\begin{equation}\label{ch3:eq:217}
+k = \tfrac{1}{2}\rho S_m \CD
+\end{equation}
+rather than the drag coefficient $\CD$ explicitly, in determining velocity and
+altitude. This drag parameter can be determined from the corrected drag as just
+\begin{equation}\label{ch3:eq:218}
+k = \frac{D}{U^{2}}
+\end{equation}
+
+\subsection{Vertical Wind Tunnel}\label{ch3:sec:8.2}
+
+A number of prominent modelers have suggested the construction of a
+\emph{vertical} wind tunnel; that is, one in which the test-section airstream
+travels \emph{directly upward}. Such a design has the advantage of not
+requiring a balance system, since the airspeed can be adjusted until the model
+is suspended motionless in the center of the test section. The drag is then
+just equal in magnitude to the model's weight:
+\begin{equation}\label{ch3:eq:219}
+D = kU^{2} = mg
+\end{equation}
+so
+\begin{equation}\label{ch3:eq:220}
+k = \frac{mg}{U^{2}}
+\end{equation}
+where $m$ is the mass of the model and $g$ is the acceleration of gravity. In
+MKS (meter-kilogram-second) units, $m$ is given in kilograms and $g$ is 9.8
+meters/second$^{2}$. The drag coefficient, if desired, can be extracted from the
+drag parameter using the relation
+\begin{equation}\label{ch3:eq:221}
+\CD = \frac{k}{\tfrac{1}{2}\rho S_m}
+\end{equation}
+The vertical tunnel concept does have some drawbacks. For one thing, fairly
+high velocities---50 to 75 meters/second or even more---will be required to
+make the drag of a high-performance model rocket equal its weight. The required
+velocity can be reduced by constructing a light test model and leaving out the
+engine, but the vertical wind tunnel will still need quite a lot more power
+than a standard, horizontal design using a balance. There may also be problems
+in maintaining the model's position within the test section, and the testing
+technique can only determine drag at a zero angle of attack.
+
+\subsection{Vertical Drop Test}\label{ch3:sec:8.3}
+
+It has also been noted that the drag parameter of a model can be determined
+without a wind tunnel, by measuring the \emph{time} taken by the model to
+\emph{fall} a specified distance when released from rest in a nose-down
+attitude. The relationship between the time of fall and the drag parameter can
+be determined by solving the differential equation of the rocket's motion,
+which is just Newton's second law for an object of constant mass:
+\begin{equation}\label{ch3:eq:222}
+\vec{F} = m\vec{a} = m\frac{d\vec{U}}{dt}
+\end{equation}
+where $\vec{F}$ is the vector sum of the forces acting on the object and
+$\vec{a}$ is its acceleration. If we adopt the convention that force,
+acceleration, velocity, and displacement are all to be considered positive
+downward we have for the falling rocket
+\begin{equation}\label{ch3:eq:223}
+m\frac{dU}{dt} = mg - kU^{2}
+\end{equation}
+This equation can be solved for \emph{time} as a function of \emph{velocity}:
+\begin{equation}\label{ch3:eq:224}
+t = \int_{0}^{U}\frac{dU}{g - \frac{k}{m}U^{2}}
+\end{equation}
+The integral on the right-hand side of~\eqref{ch3:eq:224} is known to have the
+form
+\begin{equation}\label{ch3:eq:225}
+t = \sqrt{\frac{m}{gk}}\,\tanh^{-1}\left[U\sqrt{\frac{k}{mg}}\,\right]
+\end{equation}
+from which, by algebraic manipulation and the use of inverse functions, we
+obtain
+\begin{equation}\label{ch3:eq:226}
+U = \sqrt{\frac{mg}{k}}\,\tanh\left[t\sqrt{\frac{gk}{m}}\,\right]
+\end{equation}
+Since the hyperbolic tangent function approaches 1.0 for time approaching
+infinity, the \emph{terminal velocity} of the falling model is seen to be
+$\sqrt{\frac{mg}{k}}$---the same velocity required to suspend the model
+motionless in the vertical wind tunnel.
+
+Letting the \emph{displacement}, or distance fallen, be denoted by $x$, and
+recognizing that $U = dx/dt$, we have
+\begin{equation*}
+\frac{dU}{dt} = \frac{dU}{dx}\,\frac{dx}{dt} = U\frac{dU}{dx}
+\end{equation*}
+Then equation~\eqref{ch3:eq:223} can be written
+\begin{equation}\label{ch3:eq:227}
+mU\frac{dU}{dx} = mg - kU^{2}
+\end{equation}
+and solved for $x$ as follows:
+\begin{equation}\label{ch3:eq:228}
+x = \int_{0}^{U}\frac{U\,dU}{g - \frac{k}{m}U^{2}}
+\end{equation}
+performing the integration, we have
+\begin{equation}\label{ch3:eq:229}
+x = -\frac{m}{2k}\ln\left[1 - \frac{k}{mg}U^{2}\right]
+\end{equation}
+Note that the argument of the natural logarithm function is always less than
+one; hence the logarithm itself is a negative number and $x$ is a positive
+quantity, as it should be, indicating downward displacement. By substituting
+the right-hand side of equation~\eqref{ch3:eq:226} for $U$ we obtain the
+desired functional relationship between displacement and time:
+\begin{equation}\label{ch3:eq:230}
+x = -\frac{m}{2k}\ln\left[1 - \tanh^{2}\left(t\sqrt{\frac{gk}{m}}\,\right)\right]
+\end{equation}
+Again, $x$ will be found positive for all positive values of $t$.
+
+Equation~\eqref{ch3:eq:230} can be used in conjunction with computerized
+calculation methods to compile graphs which display time as a function of the
+variable $(k/m)$ for various values of the ``drop distance'' $x$. One such
+``drop chart'' is shown in Figure~\ref{ch3:fig:55}. Inspection of the chart
+reveals that a fairly sizeable drop distance is required to enable the
+determination of $(k/m)$, and hence $k$, to a reasonable accuracy, since the
+velocity must be allowed to increase to the point at which drag has a
+significant influence on the model's behavior. The minimum distance needed for
+an accurate determination decreases as $(k/m)$ increases, but something on the
+order of 10 meters seems to be the limit for any reasonable test
+model---even if it is of lightweight construction and dropped without its
+engine. This means that a tower or building of some sort must be used for drop
+testing, and that the model must be cushioned at the end of its fall to avoid
+damage. Not all models can be tested in this manner; no amount of cushioning,
+for instance, can protect a model of the Saturn-V. The drop test, like the
+vertical wind tunnel, is suitable only for determining the drag parameter at a
+zero angle of attack---but it also eliminates the need for a balance system
+and has the added advantage that the test takes place in the open air, so that
+there are no tunnel wall effects.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig55.png}
+  \caption{A ``drop chart'' of the type that might be used in determining the
+  drag parameter $k$ of a model rocket from vertical drop tests. Curves are
+  presented for drop distances of 10, 25, 50, and 100 meters. The curves
+  flatten at the top because $k/m$ becomes great enough for the rocket to
+  attain its terminal velocity within the specified drop distance, after which
+  the drop time becomes roughly proportional to $\sqrt{\frac{k}{m}}$. For the
+  smaller drop distances accurate determinations of $k$ cannot be made without
+  extremely accurate timing devices.}
+  \label{ch3:fig:55}
+\end{figure}
+
+\subsection{Conclusion}\label{ch3:sec:8.4}
+
+The relative merits of the three experimental techniques described above can
+only be properly judged at such time as all three have been tried in practice
+and developed to the highest level of effectiveness of which it is reasonable
+to believe they are capable. It is our hope that, in the near future, each of
+them \emph{will} be tried and that an extensive experimental literature will be
+generated within the hobby as a result, for only a large body of reliable
+experimental data can permit us to verify or improve upon the techniques
+herein described for the analytical prediction of model rocket drag.

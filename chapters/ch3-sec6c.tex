@@ -1,1 +1,543 @@
-% ch3-sec6c -- stub, to be transcribed (milestone M3)
+% chapters/ch3-sec6c.tex -- 6.3 General Analysis of the Datcom Method; 6.3.1 The General
+% Configuration Rocket (GCR); 6.3.2; 6.3.3 (PDF 485-505, printed pp. 453-473), up to but not
+% including the heading "7." (mid-PDF 505). Equations 175-211, Figures 50-52, Tables 6-7.
+\subsection{General Analysis of the Datcom Method}\label{ch3:sec:6.3}
+
+\subsubsection{The General Configuration Rocket (GCR)}\label{ch3:sec:6.3.1}
+
+The preceding section was intended to familiarize the reader with the application of the
+\emph{Datcom} method to a particular problem. In this section the drag coefficient equations will
+be cast into special forms, particularly applicable to model rockets, which will clarify the
+relationships between rocket geometry and drag. This general, nondimensional approach will be
+utilized to discover the behavior of the drag coefficient and the drag force with respect to
+changing Reynolds number in Sections~\ref{ch3:sec:6.3.2} and~\ref{ch3:sec:6.3.3}.
+
+We begin by listing in general form the \emph{functional dependence} of the drag coefficients upon
+the variables of the \emph{Datcom} equations (equations~\eqref{ch3:eq:158}
+through~\eqref{ch3:eq:162}):
+\begin{align}
+(C_{Df})_b &= G_1\left(B, R_\ell, \frac{\ell_b}{d_m}, \frac{S_s}{S_m}\right) \label{ch3:eq:175}\\
+C_{Db} &= G_2\left(B, R_\ell, \frac{\ell_b}{d_m}, \frac{S_s}{S_m}, \frac{d_b}{d_m}\right)
+  \label{ch3:eq:176}\\
+(\CDo)_B &= G_3\left(B, R_\ell, \frac{\ell_b}{d_m}, \frac{S_s}{S_m}, \frac{d_b}{d_m}\right)
+  \label{ch3:eq:177}\\
+(\CDo)_F &= G_4\left(B, R_c, \frac{t}{c}, \frac{S_F}{S_m}\right) \label{ch3:eq:178}\\
+(\CDo)_{FB} &= G_5\left(B, R_\ell, \frac{\ell_b}{d_m}, \frac{S_s}{S_m}, \frac{d_b}{d_m}, R_c,
+  \frac{t}{c}, \frac{S_F}{S_m}\right) \label{ch3:eq:179}
+\end{align}
+where the right-hand sides of the equations are read as ``$G_1$ of $B$, $R_\ell$,
+$\frac{\ell_b}{d_m}$, $\frac{S_s}{S_m}$'', and so on. They are simply a form of mathematical
+shorthand to indicate that the drag coefficients depend on the quantities in parentheses on the
+right in some (as yet unspecified) fashion.
+
+Theoretically, we could obtain a graphical relationship between any one of the above drag
+coefficients and one of its variables by assigning constant values to all the other variables in
+the function. As a practical matter, however, this would not be very illuminating, as variables
+like $S_s/S_m$ and $S_F/S_m$ do not convey any concept of shape and are difficult to visualize.
+They can be converted to expressions involving only linear dimensions, though, if we assume
+specific shapes for the nosecone, fins, main body and boattail (if any) of the rocket.
+
+For this reason, we adopt as the basis for the remainder of the analysis in this section the
+configuration shown in Figure~\ref{ch3:fig:50}: a rocket consisting of an ogive nosecone, a
+circular cylindrical body, rectangular fins, and a conical boattail. This class of vehicles will
+henceforth be referred to as the General Configuration Rocket (GCR), since by varying its
+proportions one can obtain reasonable approximations to the shape of many single-staged model
+rockets. It should be noted that the fins enter the \emph{Datcom} equations only through their
+surface area $S_F$ and the thickness ratio $t/c$; hence no generality is lost by assuming
+rectangular fins for the GCR. The shape of the fins is important only in determining the drag and
+side force due to a \emph{nonzero angle of attack}, whereas the \emph{Datcom} equations presented
+here involve only the determination of the zero-lift drag coefficient. Furthermore, the GCR has no
+specific size until a numerical value for one of its linear dimensions is specified; the
+variations depicted in Figure~\ref{ch3:fig:50} could be ten centimeters or one meter in length.
+This ``nondimensionality'' is the most valuable property of the GCR concept.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig50.png}
+  \caption{The General Configuration Rocket (GCR), shown with its nomenclature and three of its
+    possible variations.}
+  \label{ch3:fig:50}
+\end{figure}
+
+We can now write for the GCR,
+\begin{equation}\label{ch3:eq:180}
+\left(\frac{S_s}{S_m}\right)_{\mathrm{GCR}} = \left(\frac{S_s}{S_m}\right)_{\mathrm{OGIVE}}
+  + \left(\frac{S_s}{S_m}\right)_{\mathrm{CYL}} + \left(\frac{S_s}{S_m}\right)_{\mathrm{BOATTAIL}}
+\end{equation}
+The approximate expression for the ogive nose is
+\begin{equation}\label{ch3:eq:181}
+\left(\frac{S_s}{S_m}\right)_{\mathrm{OGIVE}} \cong 2.7\,\frac{\ell_N}{d_m}
+  \qquad \left(\frac{\ell_N}{d_m} > 1.5\right)
+\end{equation}
+and the exact equation for the cylindrical body is
+\begin{equation}\label{ch3:eq:182}
+\left(\frac{S_s}{S_m}\right)_{\mathrm{CYL}} = 4\,\frac{\ell_c}{d_m}
+\end{equation}
+For the conical boattail,
+\begin{subequations}\label{ch3:eq:183}
+\begin{equation}\label{ch3:eq:183a}
+\left(\frac{S_s}{S_m}\right)_{\mathrm{BOATTAIL}} = \frac{2(d_m - d_b)\ell_T}{d_m^2}
+  \sqrt{1 + \left(\frac{d_m - d_b}{2\ell_T}\right)^2}
+\end{equation}
+which, for any practical boattail, can be accurately approximated as
+\begin{equation}\label{ch3:eq:183b}
+\left(\frac{S_s}{S_m}\right)_{\mathrm{BOATTAIL}} \cong 2\left(1 - \frac{d_b}{d_m}\right)
+  \frac{\ell_T}{d_m}
+\end{equation}
+\end{subequations}
+Hence,
+\begin{equation}\label{ch3:eq:184}
+\left(\frac{S_s}{S_m}\right)_{\mathrm{GCR}} = 2.7\,\frac{\ell_N}{d_m} + 4\,\frac{\ell_s}{d_m}
+  + 2\left(1 - \frac{d_b}{d_m}\right)\frac{\ell_T}{d_m}
+\end{equation}
+Equations~\eqref{ch3:eq:175}, \eqref{ch3:eq:176}, and~\eqref{ch3:eq:177} can also be written
+\begin{align}
+(C_{Df})_b &= H_1\left(B, R_\ell, \frac{d_b}{d_m}, \left\{\frac{\ell_b}{d_m}, \frac{\ell_N}{d_m},
+  \frac{\ell_s}{d_m}, \frac{\ell_T}{d_m}\right\}\right) \label{ch3:eq:185}\\
+C_{Db} &= H_2\left(B, R_\ell, \frac{d_b}{d_m}, \left\{\frac{\ell_b}{d_m}, \frac{\ell_N}{d_m},
+  \frac{\ell_s}{d_m}, \frac{\ell_T}{d_m}\right\}\right) \label{ch3:eq:186}\\
+(\CDo)_B &= H_3\left(B, R_\ell, \frac{d_b}{d_m}, \left\{\frac{\ell_b}{d_m}, \frac{\ell_N}{d_m},
+  \frac{\ell_s}{d_m}, \frac{\ell_T}{d_m}\right\}\right) \label{ch3:eq:187}
+\end{align}
+where the letters $H$ again just refer to the fact that the value of the quantity on the left-hand
+side of each equation depends upon the values of the quantities in parentheses on the right-hand
+side. The bracketed expression $\left\{\frac{\ell_b}{d_m}, \frac{\ell_N}{d_m}, \frac{\ell_s}{d_m},
+\frac{\ell_T}{d_m}\right\}$ means that only three of the four length-to-diameter ratios may be
+chosen to specify the problem, since choosing values for any three determines the value of the
+fourth. This follows from the fact that
+\begin{equation}\label{ch3:eq:188}
+\frac{\ell_b}{d_m} = \frac{\ell_N}{d_m} + \frac{\ell_s}{d_m} + \frac{\ell_T}{d_m}
+\end{equation}
+
+In a similar manner, $S_F/S_m$ may be transformed:
+\begin{align}
+S_F &= 4\sigma_F = 4\left(c\,\frac{b}{2}\right) = 2cb \label{ch3:eq:189}\\
+\frac{S_F}{S_m} &= \frac{2cb}{\pi\dfrac{d_m^2}{4}}
+  = \left(\frac{8}{\pi}\right)\left(\frac{c}{d_m}\right)\left(\frac{b}{d_m}\right)
+  \label{ch3:eq:190}
+\end{align}
+Furthermore,
+\begin{equation}\label{ch3:eq:191}
+R_\ell = \frac{U_\infty\ell_b}{\nu} \qquad\text{and}\qquad R_c = \frac{U_\infty c}{\nu}
+\end{equation}
+and $R_c$ can therefore be eliminated by substituting
+\begin{equation}\label{ch3:eq:192}
+R_c = \left(\frac{c}{\ell_b}\right)R_\ell = \frac{(c/d_m)}{(\ell_b/d_m)}\,R_\ell
+\end{equation}
+Consequently, equation~\eqref{ch3:eq:178} becomes
+\begin{equation}\label{ch3:eq:193}
+(\CDo)_F = H_4\left(B, R_\ell, \frac{\ell_b}{d_m}, \frac{t}{c}, \frac{c}{d_m}, \frac{b}{d_m}\right)
+\end{equation}
+The fin-body interference drag coefficient, which is one component of the fin drag coefficient, is
+given by
+\begin{equation}\label{ch3:eq:194}
+C_{DI} = 2(C_f)_F\left(1 + 2\,\frac{t}{c}\right)\frac{S_F - S_E}{S_m}
+\end{equation}
+For the GCR, it is found that
+\begin{equation}\label{ch3:eq:195}
+\frac{S_F - S_E}{S_m} = \frac{4}{\pi}\left[\left(\frac{c}{d_m}\right)\left(\frac{d_b}{d_m}\right)
+  + \left(\frac{c}{d_m}\right)^2\left(\frac{d_m}{\ell_T}\right)\left(1 - \frac{d_b}{d_m}\right)\right]
+\end{equation}
+so
+\begin{equation}\label{ch3:eq:196}
+C_{DI} = H_5\left(B, R_\ell, \frac{\ell_b}{d_m}, \frac{t}{c}, \frac{c}{d_m}, \frac{b}{d_m},
+  \frac{d_b}{d_m}, \frac{\ell_T}{d_m}\right)
+\end{equation}
+The total drag coefficient is then seen to exhibit the functional dependence
+\begin{equation}\label{ch3:eq:197}
+(\CDo)_{FB} = H_6\left(B, R_\ell, \frac{d_b}{d_m}, \frac{t}{c}, \frac{c}{d_m}, \frac{b}{d_m},
+  \left\{\frac{\ell_b}{d_m}, \frac{\ell_N}{d_m}, \frac{\ell_s}{d_m}, \frac{\ell_T}{d_m}\right\}\right)
+\end{equation}
+
+Nine independent, dimensionless variables completely determine the overall drag coefficient and
+its various constituents, as seen in equations~\eqref{ch3:eq:185}, \eqref{ch3:eq:186},
+\eqref{ch3:eq:187}, \eqref{ch3:eq:193}, \eqref{ch3:eq:196}, and~\eqref{ch3:eq:197}. Seven of these
+are strictly geometrical factors; the remaining two ($B$ and $R_\ell$) are related to the
+interaction of the rocket and the fluid through which it moves. This set of variables is not
+unique; for example, since
+\begin{equation}\label{ch3:eq:198}
+\left(\frac{t}{c}\right)\left(\frac{c}{d_m}\right) = \frac{t}{d_m}
+\end{equation}
+any two of these three quantities may be used to replace $t/c$ and $c/d_m$. Although each drag
+coefficient is a function of more variables than before (equations~\eqref{ch3:eq:175}
+through~\eqref{ch3:eq:179}), the problem has been simplified because there is a direct and visible
+relationship between $(\CDo)_{FB}$ and the pertinent factors of rocket geometry and vehicle-fluid
+interaction. The \emph{Datcom} equations, expressed in terms of these 9 variables for the GCR, are
+as follows:
+\begin{align}
+(C_{Df})_b &= \left[1 + \frac{60}{(\ell_b/d_m)^3} + .0025\,\frac{\ell_b}{d_m}\right]
+  \left[2.7\,\frac{\ell_N}{d_m} + 4\,\frac{\ell_s}{d_m}
+  + 2\left(1 - \frac{d_b}{d_m}\right)\frac{\ell_T}{d_m}\right](C_f)_B \label{ch3:eq:199}\\
+C_{Db} &= .029\left(\frac{d_b}{d_m}\right)^3\Big/\sqrt{(C_{Df})_b} \label{ch3:eq:200}\\
+(\CDo)_F &= \frac{16}{\pi}(C_f)_F\left(\frac{c}{d_m}\right)\left(\frac{b}{d_m}\right)
+  \left(1 + 2\,\frac{t}{c}\right) \label{ch3:eq:201}\\
+C_{DI} &= \frac{8}{\pi}(C_f)_F\left(1 + 2\,\frac{t}{c}\right)
+  \left[\left(\frac{c}{d_m}\right)\left(\frac{d_b}{d_m}\right)
+  + \left(\frac{c}{d_m}\right)^2\left(\frac{d_m}{\ell_T}\right)\left(1 - \frac{d_b}{d_m}\right)\right]
+  \label{ch3:eq:202}
+\end{align}
+where
+% (203a)-(204b) are one block in the book, all four '=' in one column and the side conditions in
+% another; two subequations groups cannot share one alignment, so the letters are \tag'ged in one
+% align*. The two \refstepcounter lines give the group labels (203), (204) (cited below as
+% "(199) through (204)") and advance the counter so that the next equation is (205).
+\refstepcounter{equation}\label{ch3:eq:203}%
+\refstepcounter{equation}\label{ch3:eq:204}%
+\begin{align*}
+(C_f)_B &= \frac{1.328}{\sqrt{R_\ell}} && (R_\ell < R_{\mathrm{crit}})
+  \tag{203a}\label{ch3:eq:203a}\\
+(C_f)_B &= \frac{0.074}{(R_\ell)^{1/5}} - \frac{B}{R_\ell} && (R_\ell \ge R_{\mathrm{crit}})
+  \tag{203b}\label{ch3:eq:203b}\\
+(C_f)_F &= \sqrt{\frac{\ell_b}{c}}\,\frac{1.328}{\sqrt{R_\ell}} && (R_\ell < R_{\mathrm{crit}})
+  \tag{204a}\label{ch3:eq:204a}\\
+(C_f)_F &= \left(\frac{\ell_b}{c}\right)^{1/5}\frac{0.074}{(R_\ell)^{1/5}}
+  - \left(\frac{\ell_b}{c}\right)\frac{B}{R_\ell} && (R_\ell \ge R_{\mathrm{crit}})
+  \tag{204b}\label{ch3:eq:204b}
+\end{align*}
+and the overall zero-lift drag coefficient is given by
+\begin{equation}\label{ch3:eq:205}
+(\CDo)_{FB} = (C_{Df})_b + C_{Db} + (\CDo)_F
+\end{equation}
+
+It is now a relatively straightforward matter to produce graphs depicting the behavior of any of
+the above drag coefficients as one of its parameters is varied. Some of these relationships will
+be more useful than others; it does not seem productive, for example, to determine the effect of
+the nose fineness ratio on the base drag coefficient. To illustrate such an analysis, we instead
+consider the far more important relationship between drag coefficient and Reynolds number---which,
+for a rocket of given length, translates directly into a relationship between drag coefficient and
+airspeed.
+
+\subsubsection{Dependence of the Drag Coefficient on Reynolds Number for the General Configuration
+Rocket}\label{ch3:sec:6.3.2}
+
+The Reynolds number $R_\ell$ is itself a function of three variables, $U_\infty$, $\ell_b$, and
+$\nu$. If the relationship between drag coefficient and $R_\ell$ is known, therefore, this
+relationship can be used to determine $\CD$ as a function of velocity by assuming numerical values
+for the 8 other quantities in the \emph{Datcom} equations:
+\begin{equation}\label{ch3:eq:206}
+\CD = f(U_\infty) \qquad \left(\frac{\ell_b}{\nu} = \text{constant}\right)
+\end{equation}
+A knowledge of this function is essential for accurate performance calculations. In particular,
+an assurance that $\CD$ does not vary greatly over the expected velocity range encountered by a
+given model in flight is required before a constant $\CD$ can be used in the performance
+calculations for that model with a high degree of confidence. To determine the variation of $\CD$
+with $R_\ell$ for a particular example of the GCR (denoted GCR-x) the following values were
+assigned to the 8 variables:
+\begin{equation*}
+\begin{array}{l@{\qquad}l@{\qquad}l@{\qquad}l}
+\dfrac{d_b}{d_m} = .8 & \dfrac{\ell_T}{d_m} = 3 & \dfrac{\ell_N}{d_m} = 3.5
+  & \dfrac{\ell_s}{d_m} = 11.5\\[2.5ex]
+\dfrac{t}{c} = .02 & \dfrac{c}{d_m} = 1.75 & \dfrac{b}{d_m} = 5
+  & B = 1735 \quad (R_{\mathrm{crit}} = 5 \times 10^{5})
+\end{array}
+\end{equation*}
+The overall fineness ratio $\ell_b/d_m$ is thus 18, making the GCR-x a fairly slender model.
+Substituting these values into equations~\eqref{ch3:eq:199} through~\eqref{ch3:eq:204}, we obtain
+\begin{equation*}
+\begin{aligned}
+&\left.\begin{aligned}
+(C_{Df})_b &= 82.8(C_f)_B\\
+C_{Db} &= \frac{.0149}{\sqrt{(C_{Df})_b}}
+\end{aligned}\ \right\}\ (C_{Df})_b + C_{Db} = (\CDo)_B\\
+&\begin{aligned}
+C_{DI} &= 4.25(C_f)_F\\
+(\CDo)_F &= 46.4(C_f)_F
+\end{aligned}
+\end{aligned}
+\end{equation*}
+where
+\begin{align*}
+(C_f)_B &= \frac{1.328}{\sqrt{R_\ell}}
+  && \left(R_\ell = \frac{U_\infty\ell_b}{\nu} < 5 \times 10^{5}\right)\\
+(C_f)_B &= \frac{0.074}{(R_\ell)^{1/5}} - \frac{1735}{R_\ell} && (R_\ell \ge 5 \times 10^{5})\\
+(C_f)_F &= \frac{4.25}{\sqrt{R_\ell}} && (R_\ell < 5.14 \times 10^{6})\\
+(C_f)_F &= \frac{0.118}{(R_\ell)^{1/5}} - \frac{17{,}900}{R_\ell} && (R_\ell \ge 5.14 \times 10^{6})
+\end{align*}
+and the overall zero-lift drag coefficient is therefore
+\begin{equation*}
+(\CDo)_{FB} = 82.8(C_f)_B + \frac{.0149}{\sqrt{82.8(C_f)_B}} + 46.4(C_f)_F
+\end{equation*}
+
+The results obtained for Reynolds numbers between $1 \times 10^{4}$ and $1 \times 10^{7}$ are
+summarized in Table~\ref{ch3:tab:6} and presented graphically in Figure~\ref{ch3:fig:51}. The
+total drag coefficient $(\CDo)_{FB}$ has a very interesting shape which exhibits three main
+phases.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Drag coefficient of the GCR-x rocket at various Reynolds numbers.}
+  \label{ch3:tab:6}
+  \begin{tabular}{@{}S[table-alignment-mode=none,table-number-alignment=left]
+      *{4}{S[table-format=1.3,print-zero-integer=false]}@{}}
+    \toprule
+    {$R_\ell$} & {$C_{Db}$} & {$(\CDo)_B$} & {$(\CDo)_F$} & {$(\CDo)_{FB}$} \\
+    \midrule
+    1e4    & .014 & 1.114 & 1.970 & 3.080 \\
+    5e4    & .021 & .513  & .883  & 1.396 \\
+    7e4    & .023 & .438  & .748  & 1.186 \\
+    1e5    & .025 & .373  & .627  & 1.000 \\
+    1.5e5  & .028 & .312  & .510  & .822  \\
+    2e5    & .030 & .276  & .441  & .717  \\
+    3e5    & .033 & .233  & .359  & .592  \\
+    4e5    & .036 & .210  & .312  & .522  \\
+    5e5    & .038 & .194  & .279  & .473  \\
+    6e5    & .034 & .223  & .255  & .478  \\
+    7e5    & .033 & .242  & .236  & .478  \\
+    8e5    & .031 & .257  & .221  & .478  \\
+    9e5    & .031 & .266  & .208  & .474  \\
+    1e6    & .030 & .272  & .197  & .469  \\
+    1.25e6 & .030 & .284  & .176  & .460  \\
+    1.5e6  & .029 & .289  & .161  & .450  \\
+    2e6    & .029 & .293  & .139  & .432  \\
+    3e6    & .029 & .292  & .112  & .404  \\
+    4e6    & .029 & .287  & .098  & .385  \\
+    5e6    & .030 & .281  & .089  & .370  \\
+    6e6    & .030 & .276  & .102  & .378  \\
+    8e6    & .031 & .268  & .122  & .390  \\
+    1e7    & .031 & .261  & .135  & .396  \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig51.png}
+  \caption{Variation of $(\CDo)_{FB}$ with Reynolds number for the GCR-x rocket. Also shown are
+    the constituent drag functions $(\CDo)_B$ and $(\CDo)_F$ and the base drag coefficient
+    $C_{Db}$. At Reynolds numbers below $5 \times 10^{5}$ the flow over the entire rocket is
+    laminar. Between $5 \times 10^{5}$ and $5 \times 10^{6}$ (region (2) on the graph) transition
+    to turbulent flow occurs partway down the body but the flow over the fins is laminar. Above a
+    Reynolds number of $5 \times 10^{6}$ transition to turbulent flow occurs partway back on the
+    fins as well (region (3) on the graph). Region (2) is referred to as the body transition zone;
+    region (3) is called the fin transition zone.}
+  \label{ch3:fig:51}
+\end{figure}
+
+At Reynolds numbers less than $5 \times 10^{5}$ the flow over the entire rocket is laminar and
+Phase I behavior of the total drag coefficient is observed. At small Reynolds numbers,
+$(\CDo)_{FB}$ is extremely large, achieving a value of 3.08 for $R_\ell = 1 \times 10^{4}$. This
+behavior is expected, as the boundary layer thickens with decreasing Reynolds number and viscous
+forces play a much greater role in the flow behavior than is the case at higher Reynolds numbers.
+For a model rocket of 30 centimeters length, a Reynolds number of $10^{4}$ corresponds to an
+airspeed of only about 0.6 meter/second. A well-designed model rocket does not leave its launcher
+with a velocity much less than 9 meters/second, so the behavior of the drag coefficient at such
+low Reynolds numbers is not of much interest in model rocket flight calculations.
+
+At Reynolds numbers between $5 \times 10^{5}$ and $5 \times 10^{6}$ the rocket is operating in
+Phase 2 flight. When the critical Reynolds number $R_\ell = 5 \times 10^{5}$ is attained, a region
+of turbulence begins to grow from the model's base forward. This is reflected in an
+\emph{increase} in the body drag coefficient $(\CDo)_B$ with increasing Reynolds number.
+Simultaneously, however, there is pure laminar flow over the fins, and from
+equation~\eqref{ch3:eq:204a} it is seen that $(\CDo)_F$ will \emph{decrease} with increasing
+Reynolds number. The net effect of these two opposing trends is to hold $(\CDo)_{FB}$ virtually
+constant in this phase, denoted the \emph{body transition zone} on the graph of
+Figure~\ref{ch3:fig:51}. $(\CDo)_B$ does not increase indefinitely, however, as it too is subject
+to opposing phenomena. From $R_\ell = 5 \times 10^{5}$ to $R_\ell = 2 \times 10^{6}$, the increase
+in skin-friction drag due to the growing turbulent region on the body is greater than the decrease
+experienced in both the laminar and turbulent regions due to the inverse variation of $(C_f)_B$
+with $R_\ell$ (see equations~\eqref{ch3:eq:203a} and~\eqref{ch3:eq:203b}); thus $(\CDo)_B$
+increases. At $R_\ell = 2.5 \times 10^{6}$, however, the body is mostly turbulent and the
+important effect becomes the reduction in $(C_f)_B$ with increasing Reynolds number. Hence, in the
+upper range of the body transition zone, both $(\CDo)_B$ and $(\CDo)_F$ are decreasing, and
+$(\CDo)_{FB}$ decreases with them. Phase 2 is the flight regime of greatest interest to the model
+rocketeer, as most model rocket flight occurs in this range of Reynolds numbers. A
+30-centimeter-long rocket is in Phase 2 flight whenever its velocity is between about 30 and 300
+meters/second.
+
+At a Reynolds number of $5.14 \times 10^{6}$, the fins of the GCR-x experience the development of
+a turbulent boundary layer beginning near the trailing edge and the rocket enters Phase 3 flight.
+In this phase the behavior of $(\CDo)_F$ is completely analogous to that of $(\CDo)_B$ in Phase 2.
+If Figure~\ref{ch3:fig:51} were extended to higher Reynolds numbers, $(\CDo)_F$ would be seen to
+attain a peak and then decrease again. In essence, the roles of $(\CDo)_B$ and $(\CDo)_F$ are
+reversed in Phases 2 and 3 with respect to their effects on $(\CDo)_{FB}$. Phase 3, labeled the
+\emph{fin transition zone} in Figure~\ref{ch3:fig:51}, is rarely attained in model rocket flight,
+due to limitations on engine power and the rapidly increasing magnitude of the drag \emph{force}
+at the velocities required to produce these high Reynolds numbers. Of course, rockets with very
+large fin chords, comparable to the rocket length $\ell_b$, will attain phase 3 at comparatively
+low Reynolds numbers---but this is an uncommon occurrence. The effects of compressibility
+generally become noticeable in Phase 3, or even in the upper range of Phase 2, so our analysis is
+not completely valid for these high-velocity regimes.
+
+The base drag coefficient is essentially constant over the entire spectrum of Reynolds numbers,
+attaining its maximum value when $(\CDo)_B$ attains its minimum value---which occurs at
+$R_\ell = 5 \times 10^{5}$. It is a relatively insignificant contribution to $(\CDo)_{FB}$ at low
+Reynolds numbers, but in Phase 2 or Phase 3 flight it represents about 7\% of the total drag
+coefficient.
+
+Although the curves of Figure~\ref{ch3:fig:51} were determined from specific values for the
+\emph{Datcom} variables, their general behavior will not be altered by changes in the values of
+these variables. For example, an increase in $\frac{\ell_N}{d_m}$, $\frac{\ell_s}{d_m}$, or
+$\frac{\ell_T}{d_m}$, or any combination of these three, while the original values of all the
+other variables are maintained, will widen the body transition zone, as transition on the fins
+will now occur at a higher value of $R_\ell$ (although $R_{\mathrm{crit}}$ remains unchanged).
+Furthermore, $(\CDo)_B$ and $(\CDo)_{FB}$ will be shifted slightly upwards, while $C_{Db}$ will be
+decreased everywhere. Figure~\ref{ch3:fig:51} thus presents the correct \emph{shape} of the drag
+coefficient vs.\ Reynolds number curves for any model rocket which can be represented (even
+approximately) by some variation of the GCR. This category includes a great many slender
+($\frac{\ell_b}{d_m} \ge 5$) single-staged model rockets.
+
+To determine the drag coefficient as a function of velocity $U_\infty$, it is required to know
+only the values of $\nu$ and $\ell_b$. While $\nu$ does vary somewhat with altitude as discussed
+in Section~\ref{ch3:sec:2.1}, one may reasonably assume a constant value of
+$\nu = 1.495 \times 10^{-5}$ meter$^{2}$/second, giving
+\begin{equation}\label{ch3:eq:207}
+U_\infty = \frac{1.495 \times 10^{-5}}{\ell_b}\,R_\ell
+\end{equation}
+Multiplying the abscissa $R_\ell$ of Figure~\ref{ch3:fig:51} by
+$\frac{1.495 \times 10^{-5}}{\ell_b}$ converts the Reynolds number axis to a velocity axis,
+measured in meters/second. For a rocket of 30 centimeters length,
+\begin{equation*}
+U_\infty = 4.975 \times 10^{-5}\,R_\ell
+\end{equation*}
+The body transition zone will then begin at an airspeed of 24.9 meters/second, and if the rocket
+has the same geometric proportions as the GCR-x, fin transition begins at 256 meters/second.
+
+In general, obtaining a plot of drag coefficient versus Reynolds number, as in
+Figure~\ref{ch3:fig:51}, requires a considerable amount of calculation. This work cannot be
+avoided if maximum accuracy is desired, as for theoretical predictions of altitude. As the
+following section will show, however, it \emph{is} possible to choose a single value of the drag
+coefficient $(\CDo)_{FB}$ which, if used in performance calculations, yields a good approximation
+to the ``exact'' behavior predicted by the \emph{Datcom} method.
+
+\subsubsection{Dependence of the Drag Force on Reynolds Number for the General Configuration
+Rocket}\label{ch3:sec:6.3.3}
+
+The drag force $D$ is expressed in terms of the drag coefficient as
+\begin{equation}\label{ch3:eq:208}
+D = \tfrac{1}{2}\rho U_\infty^2\CD S_m
+\end{equation}
+To eliminate $S_m$ and $U_\infty$, we write
+\begin{equation*}
+S_m = \frac{\pi d_m^2}{4}
+\end{equation*}
+and
+\begin{equation*}
+U_\infty^2 = \frac{R_\ell^2\nu^2}{\ell_b^2}
+\end{equation*}
+Then
+\begin{equation*}
+D = \tfrac{1}{2}\rho\left(\frac{R_\ell^2\nu^2}{\ell_b^2}\right)\CD\left(\frac{\pi d_m^2}{4}\right)
+\end{equation*}
+and finally
+\begin{equation}\label{ch3:eq:209}
+D = \left[\frac{(\pi/8)\rho\nu^2}{(\ell_b/d_m)^2}\right]\CD R_\ell^2
+\end{equation}
+
+Since $\CD$ is known as a function of $R_\ell$ from a plot like that of Figure~\ref{ch3:fig:51},
+compiled from \emph{Datcom} calculations, it is possible to determine the behavior of the drag
+force as a function of $R_\ell$ using equation~\eqref{ch3:eq:209}. Assuming
+$\nu = 1.495 \times 10^{-5}$ meter$^{2}$/second and $\rho = 1.225$ kilograms/meter$^{3}$
+(sea-level atmosphere), and $\frac{\ell_b}{d_m} = 18$ as for the GCR-x, we have
+\begin{equation}\label{ch3:eq:210}
+D = 3.33 \times 10^{-13}\,\CD R_\ell^2
+\end{equation}
+for the drag force in newtons.
+
+The column headed $D_e$ in Table~\ref{ch3:tab:7} summarizes the results obtained from
+equation~\eqref{ch3:eq:210} over the Reynolds number range $1 \times 10^{4}$ through
+$1 \times 10^{7}$. For Reynolds numbers up to about $1 \times 10^{5}$, the drag force is very small
+compared with either the rocket weight (very few model rockets weigh less than 0.25 newton at
+liftoff) or the thrust levels commonly encountered in model rocket engines. The drag force is so
+minute in this flight regime that in the graphical representation of the data shown in
+Figure~\ref{ch3:fig:52}, no distinction between values of the drag force predicted by
+equation~\eqref{ch3:eq:210} and by the assumption of a constant $\CD$ can be seen.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Comparison of the ``exact'' drag force in newtons on the GCR-x rocket, calculated using
+    the variable drag coefficient obtained from the Datcom equations, with the approximate drag
+    force calculated on the assumption of $(\CDo)_{FB} = 0.473$ at various Reynolds numbers.}
+  \label{ch3:tab:7}
+  \begin{tabular}{@{}*{3}{S[table-alignment-mode=none,table-number-alignment=left]}
+      S[table-format=-2.1]@{}}
+    \toprule
+    {$R$} & {$D_e$ (N)} & {$D_a$ (N)} & {\begin{tabular}{@{}c@{}}Percent\\ error\end{tabular}} \\
+    \midrule
+    1e4    & 1.03e-4 & 1.57e-5 & -84.6 \\
+    5e4    & 1.16e-3 & 3.94e-4 & -66.2 \\
+    7e4    & 1.94e-3 & 7.70e-4 & -60.1 \\
+    1e5    & 3.33e-3 & 1.57e-3 & -52.6 \\
+    1.5e5  & 6.18e-3 & 3.53e-3 & -42.7 \\
+    2e5    & 9.55e-3 & 6.31e-3 & -33.9 \\
+    3e5    & 1.77e-2 & 1.42e-2 & -20.0 \\
+    4e5    & 2.77e-2 & 2.51e-2 & -9.4  \\
+    5e5    & 3.94e-2 & 3.94e-2 & 0.0   \\
+    6e5    & 5.74e-2 & 5.65e-2 & -1.5  \\
+    7e5    & 7.80e-2 & 7.70e-2 & -1.1  \\
+    8e5    & 1.02e-1 & 1.01e-1 & -1.3  \\
+    9e5    & 1.28e-1 & 1.27e-1 & -0.2  \\
+    1e6    & 1.56e-1 & 1.57e-1 & 0.9   \\
+    1.25e6 & 2.39e-1 & 2.46e-1 & 2.9   \\
+    1.5e6  & 3.39e-1 & 3.53e-1 & 4.2   \\
+    1.75e6 & 4.50e-1 & 4.82e-1 & 7.0   \\
+    2e6    & 5.82e-1 & 6.31e-1 & 8.4   \\
+    2.2e6  & 6.89e-1 & 7.63e-1 & 10.8  \\
+    2.4e6  & 8.05e-1 & 9.09e-1 & 12.4  \\
+    3e6    & 1.21    & 1.42    & 17.3  \\
+    4e6    & 2.05    & 2.51    & 22.8  \\
+    5e6    & 3.07    & 3.94    & 28.0  \\
+    6e6    & 4.45    & 5.65    & 27.1  \\
+    8e6    & 8.31    & 10.1    & 21.0  \\
+    1e7    & 13.2    & 15.7    & 19.6  \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig52.png}
+  \caption{Variation of drag force in newtons with Reynolds number for the GCR-x rocket. $D_e$ is
+    the ``exact'' drag obtained using the variable drag coefficient computed by the Datcom method;
+    $D_a$ is the approximate drag obtained by taking $(\CDo)_{FB}$ as 0.473.}
+  \label{ch3:fig:52}
+\end{figure}
+
+The reason for this behavior is that, although $(\CDo)_{FB}$ is very large for values of $R_\ell$
+less than $10^{5}$, the quadratic dependence of the drag force on the Reynolds number drives $D$
+downwards as $R_\ell$ decreases. Since the laminar skin-friction coefficient is inversely
+proportional to the \emph{square root} of $R_\ell$, $(\CDo)_{FB}$ cannot increase rapidly enough to
+offset this effect.
+
+As the Reynolds number increases into the body transition zone, the drag force climbs rapidly,
+experiencing a tenfold increase between $R_\ell = 6 \times 10^{5}$ and $R_\ell = 2 \times 10^{6}$.
+Plotted along with the ``exact'' function $D_e$ in Figure~\ref{ch3:fig:52} is an
+\emph{approximating function} for the drag $D_a$, derived from equation~\eqref{ch3:eq:210} by
+assuming the drag coefficient to be \emph{constant} over the entire Reynolds number range. The
+value I have elected to choose for this constant is the value of $(\CDo)_{FB}$ at the initiation of
+Phase 2 flight, or $R_\ell = 5 \times 10^{5}$. From Table~\ref{ch3:tab:6} we read this as
+$(\CDo)_{FB} = 0.473$, so
+\begin{equation}\label{ch3:eq:211}
+D = 1.58 \times 10^{-13}\,R_\ell^2
+\end{equation}
+gives the approximate drag force in newtons.
+
+From inspection of Table~\ref{ch3:tab:7}, it may be seen that this function approximates $D_e$
+quite closely over the range of Reynolds numbers of interest in model rocket flight, deviating less
+than 10\% from the exact function for Reynolds numbers between $4 \times 10^{5}$ and
+$2.2 \times 10^{6}$. Furthermore, although the percentage error is large below
+$R_\ell = 4 \times 10^{5}$ (as $\CD$ attains large values in the exact calculation), the absolute
+magnitude of the drag force is so small that these deviations are insignificant in the calculation
+of model rocket performance. It is not necessary to know whether the drag force is 1/1000 of a
+newton or 2/1000 of a newton when the thrust and weight of the vehicle are both three or four
+orders of magnitude greater than these values.
+
+At higher Reynolds numbers---that is, $R_\ell$ greater than $5 \times 10^{5}$---$D_a$ represents a
+good approximation to the actual drag force because, as we saw in Figure~\ref{ch3:fig:51}, the drag
+coefficient is very nearly constant in the body transition zone. The value of $(\CDo)_{FB}$ at
+$R_\ell = 5 \times 10^{5}$ was chosen as the approximate, constant $\CD$ for the calculations on
+which Table~\ref{ch3:tab:7} and Figure~\ref{ch3:fig:52} are based for two major reasons: first,
+because $R_\ell = 5 \times 10^{5}$ may be considered to represent the onset of body transition for
+all model rockets, regardless of configuration; and second, because the exact magnitude of the drag
+is obtainable from this value of $\CD$ to within 10\% up to Reynolds numbers in the neighborhood of
+$2.2 \times 10^{6}$, very nearly the practical limit of $R_\ell$ encountered during the flight of
+small- to moderate-sized model rockets.
+
+This result can be stated in the form of a semiempirical rule: for single-staged model rockets not
+expected to exceed a Reynolds number of about $3 \times 10^{6}$ in flight, the assumption of a
+constant $\CD$ with a value equal to that attained at $R_\ell = 5 \times 10^{5}$ yields acceptable
+estimates of performance when used in closed-form altitude calculations requiring the assumption
+of a constant $\CD$.
+
+The Reynolds number axis of Figure~\ref{ch3:fig:52}, like that of Figure~\ref{ch3:fig:51}, can be
+converted to a velocity axis by applying the coordinate transformation given in
+equation~\eqref{ch3:eq:207}.

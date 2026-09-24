@@ -1,1 +1,582 @@
-% ch3-sec4b -- stub, to be transcribed (milestone M3)
+% chapters/ch3-sec4b.tex -- 4.3 Pressure Drag of the Forebody and Fins; 4.3.1 Nosecone (Forebody)
+% Pressure Drag; 4.3.2 Fin Pressure Drag; 4.3.3 Launch Lug Drag; 4.4 Base Drag (PDF 408-432, ms pp. 376-400)
+\subsection{Pressure Drag of the Forebody and Fins}\label{ch3:sec:4.3}
+
+From our discussion of separation, we derive a cardinal rule for low-drag
+model rocket design: \emph{never present a blunt surface to the flow}. In
+general, there are four areas on a typical model rocket which are capable of
+violating this rule: the body base, the launching lug or other protuberances
+(if present), the leading and trailing edges of the fins, and the nosecone.
+Although at least a portion of the base of any model rocket must necessarily
+be cut off abruptly to permit insertion or removal of the rocket engine,
+boattailing offers a considerable reduction in base drag and will be discussed
+separately later on. In the present section, we shall examine the effects of
+separation on the rest of the rocket body and fins and describe techniques
+for minimizing them.
+
+\subsubsection{Nosecone (Forebody) Pressure Drag}\label{ch3:sec:4.3.1}
+
+For the purposes of analysis, it is possible to consider the nosecone of a
+model rocket as being attached to a body tube of effectively infinite length
+oriented with its axis parallel to the flow. Such a configuration is known as
+a \emph{half-body}. An expression for the drag on such a body is a good
+approximation to the pressure drag on the forebody (nosecone and body tube) of
+an actual model rocket, provided that the rocket is long enough so conditions
+near the base do not have a sizeable influence on the flow near the nose. The
+data of Mark Mercer's investigation suggest that this approximation is a good
+one for a typical model rocket, since Mercer found changes in nosecone shape
+to cause the same absolute increment in drag coefficient for both the
+blunt-finned and the streamline-finned version of the model he tested.
+
+We first examine the flow about a half-body for an incompressible,
+inviscid---that is, perfect---fluid~(\ref{ch3:ref:12}). The mathematics of
+this problem are such that it cannot be solved unless some specifications are
+made regarding the pressure at the rear of the body. To circumvent this
+difficulty, aerodynamicists assume that, at a sufficient distance from the
+nose, there exists a slot into which the surrounding pressure penetrates
+(Figure~\ref{ch3:fig:27}). The pressure drag on such a half-body is then the
+resultant integral of pressure over the surface of the ``amputated'' forebody.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig27.png}
+  \caption{Scheme for computing the pressure drag of a half-body. $A_1$ is the
+    frontal cross-section area of the control surface; $A_2$ is the frontal
+    cross-section area of the half-body.}
+  \label{ch3:fig:27}
+\end{figure}
+
+The techniques of potential-flow theory, involving the mathematical concepts
+of sources and sinks, could be used to obtain the pressure drag, but a simpler
+model is presented here~(\ref{ch3:ref:12}). As in Figure~\ref{ch3:fig:27}, we
+enclose the half-body in a wide, hollow cylinder and integrate over a right,
+cylindrical control surface as indicated by the dotted line. Denoting the
+cross-sectional area of the cylinder as $A_1$, and the frontal area of the
+half-body as $A_2$, the requirement of mass conservation yields
+\begin{equation}\label{ch3:eq:111}
+A_1 u_1 = (A_1 - A_2)\,u_2
+\end{equation}
+or, letting $R_a = A_2/A_1$,
+\begin{equation}\label{ch3:eq:112}
+u_1 = (1 - R_a)\,u_2
+\end{equation}
+Bernoulli's equation for steady, incompressible flow requires that
+\begin{equation}\label{ch3:eq:113}
+p_1 + \tfrac{1}{2}\rho u_1^2 = p_2 + \tfrac{1}{2}\rho u_2^2
+\end{equation}
+so one can write
+\begin{equation}\label{ch3:eq:114}
+p_1 - p_2 = \frac{\rho}{2}\,u_2^2\left[1 - (1 - R_a)^2\right]
+\end{equation}
+Drag, it will be recalled, represents the \emph{momentum flux} through the
+control surface (as in the friction-drag calculations of
+Section~\ref{ch3:sec:3}). Hence,
+\begin{equation}\label{ch3:eq:115}
+D = A_1(p_1 - p_2) + A_1\rho u_1^2 - (A_1 - A_2)\rho u_2^2
+\end{equation}
+Applying the condition of mass conservation,
+\begin{equation}\label{ch3:eq:116}
+D = A_1(p_1 - p_2) + A_1\rho u_1(u_1 - u_2)
+\end{equation}
+From equation~\eqref{ch3:eq:113}, then,
+\begin{equation}\label{ch3:eq:117}
+D = A_1\frac{\rho}{2}\,u_2^2\left\{1 - (1 - R_a)^2
+  + 2\left[(1 - R_a)^2 - 1 + R_a\right]\right\}
+\end{equation}
+Finally, simplifying the algebra, one obtains
+\begin{equation}\label{ch3:eq:118}
+D = A_1\frac{\rho}{2}\,u_2^2 R_a^2 = A_2\frac{\rho}{2}\,u_2^2 R_a
+\end{equation}
+or $\CD = R_a$. If we let the cross-sectional area $A_1$ of the enclosing
+cylinder become infinitely large, $R_a$ goes to zero---resulting in the
+prediction that the drag of a half-body in a fluid flow of infinite extent is
+zero.
+
+A better understanding of this result can be had by examining the pressure
+distribution over the nose of the half-body under the assumption that the
+flow remains attached to the surface. The streamlines
+(Figure~\ref{ch3:fig:28}a) near the stagnation point are \emph{convex} toward
+the body; this causes an excess pressure in that region. As the flow proceeds
+downstream along the nose, however, the streamlines turn their \emph{concave}
+sides to the body, indicating the existence of a diminished pressure. The net
+effect, as can be seen in Figure~\ref{ch3:fig:28}b, is an equilibrium between
+positive pressures and suction (negative pressure increments), yielding zero
+pressure drag.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig28.png}
+  \caption{Streamlines and pressure distribution in flow about a half-body.
+    Drawing (a) shows the streamline pattern and the ratio of local static
+    pressure to free-stream dynamic pressure, while drawing (b) shows the
+    distribution of pressure over the surface. Note that there is positive
+    pressure on the forward part of the nose region and suction on the after
+    portion of the nose. According to potential theory the two effects
+    counteract each other and the drag of a half-body is zero.}
+  \label{ch3:fig:28}
+\end{figure}
+
+Although this result was derived for inviscid flow, it has important
+applications to real fluid flow. Consider, for instance, a nose shape with a
+smooth, gently-sloping profile, such as a paraboloid or tangent ogive. We do
+not expect the flow over such shapes to differ much from that predicted by
+potential theory, as separation does not occur. The streamlines will be
+displaced outward some small distance by the boundary layer, but they will
+retain essentially the same contours. Hence, it seems reasonable to assume
+that the pressure drag of a streamlined nosecone should be very close to zero
+in real fluid flow.
+
+There is a considerable body of experimental data supporting this contention.
+Figure~\ref{ch3:fig:29}, due to Hoerner~(\ref{ch3:ref:9}), presents a variety
+of possible nose shapes with their tested values of pressure foredrag
+coefficient (based on frontal cross-sectional area). As we surmised, the first
+two shapes, having no sharp edges or blunt surfaces, have pressure drag
+coefficients near zero. Furthermore, as the ``degree of bluntness'' increases
+(from top to bottom in the diagram) the drag coefficient shows a corresponding
+increase.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig29.png}
+  \caption{Pressure foredrag coefficients of various nose shapes. The rounded
+    shapes exhibit very low drag coefficients, in good agreement with the
+    potential-flow prediction for a half-body.}
+  \label{ch3:fig:29}
+\end{figure}
+
+Evidently the first shape, which might represent a conic section (ellipsoid,
+paraboloid, or hyperboloid of revolution), is superior for model rocketry
+applications; in fact, an ellipsoid of revolution whose length is about twice
+its base diameter is considered near-optimum by many designers. Its negative
+pressure drag coefficient is due to the predominance of suction forces over
+positive pressure increments on its surface. This result can be understood by
+reexamining the experimental pressure distributions determined for a circular
+cylinder held transverse to the flow. The flow over the forward half of the
+cylinder is the two-dimensional analog of the three-dimensional flow about a
+nosecone of rounded profile, and it can be seen that integration of the
+coefficient of pressure over the cylinder's forward half
+($\varphi \le 90\dg$) will result in a negative pressure drag coefficient.
+
+A comparison of shapes \#3 and \#6 reveals what even a small amount of
+rounding of sharp edges can accomplish. The quantitative variation of drag
+coefficient with ``rounding radius'' for a variety of two-dimensional and
+three-dimensional shapes is illustrated in Figure~\ref{ch3:fig:30}. At a value
+of $r/h \cong 0.1$ for three-dimensional shapes, $\CD$ declines sharply in a
+manner analogous to its behavior at the critical Reynolds number
+(Figure~\ref{ch3:fig:26}). The physical cause of this behavior is not
+transition, however, but a progressive \emph{decrease in separation} from the
+forward edges. The ``critical radius ratio'' $r/h = 0.1$ is then the minimum
+value above which the effects of separation on the pressure drag are
+negligible. It appears from tests that $(r/h)_{\mathrm{crit}}$ is a
+slowly-varying function of Reynolds number, decreasing as $R$ is increased.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig30.png}
+  \caption{Variation of drag coefficient with rounding radius for
+    two-dimensional and three-dimensional bodies. The two-dimensional result
+    can be applied to fin design, while the three-dimensional curve is
+    applicable to nosecones. Both curves are averages of experimental data.}
+  \label{ch3:fig:30}
+\end{figure}
+
+Mark Mercer~(\ref{ch3:ref:10}) has wind-tunnel tested all seven of the shapes
+in Figure~\ref{ch3:fig:29}, plus some additional ones of interest, on an
+actual model rocket---the Javelin, a commercially-available kit produced by
+the Centuri Engineering Company, which he modified to various configurations
+for test purposes. The trend toward greater drag with increasing nosecone
+bluntness is clearly demonstrated in his measurements
+(Figure~\ref{ch3:fig:31}). Note particularly that the five shapes exhibiting
+the lowest drag (Centuri stock nosecones, catalog numbers BC-70, BC-78, BC-72,
+BC-76 and BC-74) are roughly similar to the first shape in
+Figure~\ref{ch3:fig:29}; furthermore they are representative of what might be
+considered ``typical'' model rocket nosecones. The essential features which
+distinguish these shapes from the others tested are (a) a length-to-diameter
+ratio of at least 2; (b) a smooth transition between nosecone and body, the
+nosecone being generally tangent to the tube at its base; (c) a smooth
+boundary curve with its convex side toward the flow; and (d) no blunt surfaces
+facing the flow. Mercer's data may thus be considered an empirical guide to
+model rocket nosecone streamlining.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig31.png}
+  \caption{Drag coefficient of the Javelin rocket with various nosecone shapes
+    and fin profiles. The first column displays diagrams of the nose shapes
+    tested. The second lists designations for the shapes (designations
+    beginning with BC- are catalog numbers used by the Centuri Engineering
+    Company, producers of the cones and of the Javelin rocket). The third
+    column lists drag coefficients obtained for the Javelin rocket sanded,
+    painted, and with airfoiled fins using each nose shape. The fourth column
+    lists drag coefficients obtained for a sanded and painted Javelin with no
+    airfoiling on the fins. Figures in parentheses were obtained after adding a
+    launch lug; the figure in brackets is for an unsanded, unpainted Javelin
+    with a launch lug and without fin airfoiling.}
+  \label{ch3:fig:31}
+\end{figure}
+
+The importance of the length-to-diameter ratio in nosecone streamlining is
+demonstrated quantitatively in Figure~\ref{ch3:fig:32}, taken from
+Stine~(\ref{ch3:ref:18}). The pressure drag coefficient is reduced
+significantly as the ratio $L/d$ of the paraboloidal shape is increased up to
+about 2.0; further extension of the nose reduces the drag only slightly. This
+behavior accounts for the relatively slight differences in drag among the five
+streamlined nosecones in Mercer's tests.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig32.png}
+  \caption{Variation in the drag coefficient of a paraboloidal nose shape with
+    fineness ratio $L/d$.}
+  \label{ch3:fig:32}
+\end{figure}
+
+\subsubsection{Fin Pressure Drag}\label{ch3:sec:4.3.2}
+
+Since the fin surfaces are generally parallel to the flow direction, any
+pressure drag due to the fins must result from separation of the flow from
+the leading and/or trailing edges. Mercer's data indicate that the effect of
+blunt fin edges, as opposed to streamlined edges, is considerable in this
+respect (Figure~\ref{ch3:fig:31}). The Javelin rocket used in his tests
+experienced an increase in $\CD$ from 0.70 to 2.35 when all the fin edges were
+left squared off, rather than rounded at the leading edges and tapered at the
+trailing edges---a 236\% increase in drag over that of the streamlined-fin
+configuration.
+
+At the thickness-to-chord ratios commonly encountered in model rocketry
+(usually 0.02 or greater), the separated flow from a blunt leading edge will
+reattach itself to the fin at some point downstream. If the trailing edge is
+also squared off, separation will occur there also, resulting in a ``base
+drag'' analogous to that of the rocket's main body.
+
+To prevent---or rather, to minimize---fin separation, streamlining of the fin
+section (or ``profile'') is required. Adequate streamlining can usually be
+accomplished simply by providing a rounded leading edge (the two-dimensional
+analogy to the streamlined nose shape) and a gently-sloping aftersurface
+culminating in a sharp trailing edge (the so-called ``knife-edge''). One must
+compromise with structural durability requirements here, since a paper-thin
+trailing edge is very easily damaged. The profile of a well-streamlined model
+rocket fin is illustrated in Figure~\ref{ch3:fig:38}. The character of the
+lateral edges of the profile---whether they are flat or ``airfoiled''---does
+not substantially affect pressure drag, but it does play an important role in
+determining drag due to lift as discussed in Section~\ref{ch3:sec:5}.
+
+\subsubsection{Launch Lug Drag}\label{ch3:sec:4.3.3}
+
+A remarkable aspect of aerodynamic drag is that small changes in the shape of
+a body can produce large variations in its drag coefficient. Mercer's research
+showed that the addition of a launch lug (presumed location: near the rear of
+the body tube) increased the $\CD$ of the streamlined-fin version of his
+Javelin test rocket by about 0.28, or 67\% of the value for a lugless rocket.
+This finding agrees rather well with estimates of 50\% or more reported for
+much larger rockets~(\ref{ch3:ref:7}).
+
+The culprit, once again, is boundary-layer separation---in this case, from the
+blunt face of the lug. Pressure drag due to lugs and similar objects which
+protrude from the boundary layer is often referred to as \emph{parasitic
+drag}. The only available data on this important effect as it relates to
+model rockets is that of Mercer, so the influence of a launch lug on the $\CD$
+values of rockets of different body diameters and fin configurations, as well
+as the effects of launch lug placement, cannot now be accurately assessed. We
+note, however, that the addition of a lug to the blunt-finned version of
+Mercer's Javelin increased the drag coefficient by about 0.21, an increment
+roughly equal to that for the streamline-finned version. On this basis it is
+possible to suggest an average drag coefficient increment of
+$\Delta\CD = 0.25$ due to the presence of a launch lug on model rockets whose
+configurations are such that the ratio of body diameter to lug diameter is
+identical to that of Mercer's Javelin, and such that the lug placement is
+similar.
+
+We can develop a tentative formula for extending Mercer's results to models in
+which the launch lug diameter stands in a different ratio to the body tube
+diameter than was the case in the Javelin experiments, by computing the drag
+coefficient of the launch lug when in place based on its own included frontal
+area. To do this we note that the standard launch lug used on a model of the
+Javelin's size has a diameter of about 0.40 centimeter, while the body tube of
+the Javelin has an outer diameter of 1.93 centimeters. The ratio of the tube
+diameter to the lug diameter is then 4.8, and the ratio of $A_r$, the
+reference area for computing the drag of the entire rocket (which, it will be
+recalled, is equal to the cross-sectional area of the body tube), to the area
+included within the circular cross-section of the lug---which we shall denote
+by $A_{\mathrm{lug}}$---is the square of the diameter ratio, or
+$A_r/A_{\mathrm{lug}} = 23.0$. The drag coefficient of the lug based on
+\emph{its own} frontal area is therefore 23 times greater than that based on
+the body tube cross-sectional area. Denoting it by $(\CD)_{\mathrm{lug}}$, we
+have $(\CD)_{\mathrm{lug}} = 5.75$---quite a large value, and one that
+indicates that the lug must cause flow separation, not only from itself, but
+from a substantial area of the body tube in its vicinity. The general
+expression for the drag coefficient increment due to a body-mounted launch lug
+may then be written
+\begin{equation}\label{ch3:eq:119}
+(\Delta\CD)_{\mathrm{lug}} = 5.75\,\frac{A_{\mathrm{lug}}}{A_r}
+  = 5.75\left(\frac{d_{\mathrm{lug}}}{d_r}\right)^{2}
+\end{equation}
+
+Data taken by Douglas J. Malewicki~(\ref{ch3:ref:20}) indicate that placing the
+launch lug in one of the joints between the model's fins and its body can
+substantially decrease the launch lug drag increment. Malewicki determined an
+overall $\CD$ of about 0.50 for his Skychute XI rocket tested \emph{with} a
+launch lug at Reynolds numbers ($R_\ell = 2.5 \times 10^{5}$) about the same as
+those of Mercer's tests. Since, according to the methods of
+Section~\ref{ch3:sec:6}, the $\CD$ of the Skychute XI without a launch lug is
+probably not less than 0.35, the increment in $\CD$ due to the presence of the
+lug located at the fin-body joint cannot be much more than 0.15---only 60\% of
+the increase determined by Mercer for a body-mounted lug on a configuration of
+the same ratio $A_{\mathrm{lug}}/A_r$. The wind tunnel used by Malewicki (the
+low-speed tunnel at Wichita State University near Wichita, Kansas) may have
+had a significantly lower air turbulence level than that used by Mercer, so it
+is not necessarily accurate to compare their results directly. Given the
+extremely limited nature of the data concerning this important problem
+presently available to model rocketeers, however, the best we can do is to
+present the following tentative formula for the drag coefficient increment due
+to a launch lug mounted at the fin-body joint:
+\begin{equation}\label{ch3:eq:120}
+(\Delta\CD)_{\mathrm{lug}} = 3.45\,\frac{A_{\mathrm{lug}}}{A_r}
+  = 3.45\left(\frac{d_{\mathrm{lug}}}{d_r}\right)^{2}
+\end{equation}
+The development of accurate, empirical expressions for
+$(\Delta\CD)_{\mathrm{lug}}$ covering variations in lug configuration, size,
+and placement is a problem requiring considerable further research.
+
+The most effective means of reducing launch lug drag is to eliminate the lug
+completely and launch from a tower or closed-breech launching device.
+Mechanisms by which the lug can be retracted soon after launch or left behind
+on the launch rod have also been experimented with, resulting in varying
+degrees of success. One firm, Competition Model Rockets of Alexandria,
+Virginia, has developed a particularly successful form of pop-off launch lug
+and has incorporated the design in several commercially-available kits.
+
+In conclusion, however, I must reiterate that the prediction of drag due to
+launch lugs remains at the time of writing almost wholly a matter of empirical
+art---of ``guesstimating'', to adopt a colloquialism from professional
+rocketry. It is hoped that in the near future this area of model rocket drag
+will be more thoroughly investigated, and that formulae for predicting launch
+lug drag will be established on a firmer analytical foundation.
+
+\subsection{Base Drag}\label{ch3:sec:4.4}
+
+The only section of the rocket now remaining to be considered in our analysis
+of pressure drag is the base. Since the plane of the base is generally
+perpendicular to the flow direction (at zero angle of attack), base pressures
+act along the drag axis and the second term in
+equation~\eqref{ch3:eq:28}\ednote{The book prints ``second term''. The
+base-drag integral over $S_b$, which equation~\eqref{ch3:eq:121} restates, is
+the first term of equation~\eqref{ch3:eq:28}; the second term is the pressure
+foredrag over $S_s$.} may be written simply as
+\begin{equation}\label{ch3:eq:121}
+D_b = -\iint_{S_b} p_b\,dS_b
+\end{equation}
+so
+\begin{equation}\label{ch3:eq:122}
+C_{Db} = \frac{D_b}{\tfrac{1}{2}\rho U_\infty^2 S_b}
+\end{equation}
+
+Theoretical analysis of the base drag is extremely difficult; in fact, there
+is at this time no theory which can accurately predict the base drag of a
+model rocket during all phases of flight. Complications arise from the
+following sources:
+\begin{enumerate}[label=(\alph*),leftmargin=*]
+  \item The boundary layer separates from the blunt base and, as mentioned
+    previously, the boundary-layer equations are not valid beyond the
+    separation point;
+  \item The presence of the fins disturbs the flow, generally resulting in a
+    decrease in base drag from that observed for finless bodies; and
+  \item A jet exhausting into the base region is believed to cause a further
+    decrease in base drag.
+\end{enumerate}
+The last two problems, peculiar to rocketry, have not been well researched on
+either the hobby or the professional level for subsonic flow. The empirical
+expression for base drag presented here is consequently unable to take either
+of the last two phenomena into account.
+
+Base drag is essentially a separation phenomenon. Figure~\ref{ch3:fig:33}
+depicts the flow to be expected about the base of a model rocket when the
+engine is not firing. The boundary layer separates and then converges
+downstream, enclosing a volume known as the ``dead-air'' region. This term is
+actually a misnomer, as there is considerable motion of the air in this region
+resulting from mixing along the \emph{free shear layer}---the boundary region
+between the dead-air volume and the free stream---and from flow reversal at
+the convergence point~(\ref{ch3:ref:16}).
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig33.png}
+  \caption{Flow about the base of a model rocket with a conical boattail.
+    $\epsilon$ is the boattail angle and $\delta$ is the boundary-layer
+    thickness. The boundary layer thickens as the flow passes over the
+    boattail and then separates when the flat base is reached, forming a
+    region of low pressure---the ``base pressure'' $P_b$---and then
+    reattaching at point R downstream of the rocket. Viscous effects cause
+    the circulation pattern shown in the base pressure region.}
+  \label{ch3:fig:33}
+\end{figure}
+
+The character of the flow as a whole, as Hoerner~(\ref{ch3:ref:9}) suggests,
+is somewhat like a jet pump: the external flow, acting as a ``jet'', mixes
+with the ``dead air'' and tries to ``pump'' it away. The static pressure at the
+base is consequently reduced, and base drag results (see
+equation~\eqref{ch3:eq:121}). The boundary layer (which becomes the free shear
+layer after separation), however, acts as an insulating sheet between the jet
+pump effect of the outer flow and the dead-air region, and the effective
+dynamic pressure of the pump is reduced. An increase in boundary-layer
+thickness therefore results in a smaller reduction of base pressure, which in
+turn implies a smaller base drag.
+
+We have seen that the boundary-layer thickness is proportional to the
+skin-friction drag (for example, compare equations~\eqref{ch3:eq:54},
+\eqref{ch3:eq:59}, and~\eqref{ch3:eq:60}). If we now define a forebody
+friction drag coefficient $C_{fb}$ such that
+\begin{equation}\label{ch3:eq:123}
+C_{fb} = \frac{D_{\mathrm{forebody,\,friction}}}{q S_b} = C_f'\,\frac{S_s}{S_b}
+\end{equation}
+where $S_s$ is the wetted area of the body exclusive of the base, $S_b$ is the
+area of the base, and $C_f'$ is the forebody skin-friction coefficient as
+determined by the methods of Section~\ref{ch3:sec:3}, we expect (on the basis
+of the above discussion) that
+\begin{equation}\label{ch3:eq:124}
+C_{Db} = f(C_{fb})
+\end{equation}
+The nature of this relationship---that is, the form of the function $f$---can
+be determined from a plot of experimental data, as in Figure~\ref{ch3:fig:34}.
+The empirical function that has been determined for
+equation~\eqref{ch3:eq:124} is
+\begin{equation}\label{ch3:eq:125}
+C_{Db} = \frac{0.029}{\sqrt{C_{fb}}} \equiv \frac{D_b}{q S_b}
+\end{equation}
+As we expected, an increase in the body viscous drag (which includes the
+effects of roughness) produces a decrease in base drag.
+Equation~\eqref{ch3:eq:125}, however, as previously stated, does not take into
+account the effects of fins or rocket exhaust.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig34.png}
+  \caption{Variation of the base drag coefficient of a body of revolution with
+    forebody friction drag coefficient. The curve and semiempirical function
+    shown represent a ``best fit'' to a large collection of experimental
+    data.}
+  \label{ch3:fig:34}
+\end{figure}
+
+Although there has been some experimentation with trading increased friction
+drag for reduced base drag by varying the roughness of a model's surface
+finish, model rocketeers are generally limited to variations in rocket
+geometry to effect reductions in base drag. The most widely-used technique,
+employed on models which require a main body tube section greater in diameter
+than that which would be a ``glove fit'' to the engine, is referred to as
+\emph{boattailing}. A gradually-tapered section (see
+Figure~\ref{ch3:fig:33}) is added to the rear of the rocket body, to guide the
+flow downstream to a reduced base area. If the boattail angle $\epsilon$ is
+small enough (about 5 or 10 degrees) the flow will not separate from the
+boattail lateral surface, and the increase in base pressure due to pressure
+recovery along the boattail reduces the base drag. The technique is limited in
+usefulness to those models which, for some reason, must use a main body
+section significantly greater in diameter than the engine casing; there is, of
+course, no sense in enlarging the diameter of a rocket just to enable it to be
+built with a boattail!
+
+An expression for the base drag of a boattailed configuration can be developed
+from equation~\eqref{ch3:eq:125}. If the body maximum frontal area is denoted
+$S_m$, and its associated body diameter $d_m$, then
+\begin{equation}\label{ch3:eq:126}
+S_b = S_m\left(\frac{d_b}{d_m}\right)^{2}
+\end{equation}
+The friction drag coefficient of the forebody based on maximum body frontal
+area is
+\begin{equation}\label{ch3:eq:127}
+C_{Df} = \frac{D_{\mathrm{forebody}}}{q S_m}
+\end{equation}
+Now
+\begin{equation}\label{ch3:eq:128}
+C_{fb} = \frac{D_{\mathrm{forebody}}}{q S_b}
+  = \left(\frac{D_{\mathrm{forebody}}}{q S_m}\right)\left(\frac{d_m}{d_b}\right)^{2}
+  = C_{Df}\left(\frac{d_m}{d_b}\right)^{2}
+\end{equation}
+Furthermore,
+\begin{equation}\label{ch3:eq:129}
+(C_{Db})_m = \frac{D_b}{q S_m} = \frac{D_b}{q S_b}\left(\frac{d_b}{d_m}\right)^{2}
+  = C_{Db}\left(\frac{d_b}{d_m}\right)^{2}
+\end{equation}
+where $(C_{Db})_m$ is the base drag coefficient based on maximum body frontal
+area. Then
+\begin{equation}\label{ch3:eq:130}
+(C_{Db})_m = \left(\frac{d_b}{d_m}\right)^{2}\frac{0.029}{\sqrt{C_{Df}(d_m/d_b)^{2}}}
+\end{equation}
+or, simplifying algebraically,
+\begin{equation}\label{ch3:eq:131}
+(C_{Db})_m = \left(\frac{d_b}{d_m}\right)^{3}\frac{0.029}{\sqrt{C_{Df}}}
+\end{equation}
+
+It is apparent that $(C_{Db})_m$ can be reduced, either by decreasing the ratio
+$d_b/d_m$ or by increasing the skin-friction drag of the body. The first
+technique is limited by the diameter of the engine itself. The danger of
+separation from the boattail as the boattail angle $\epsilon$ (as defined in
+Figure~\ref{ch3:fig:33}) is increased also imposes a lower limit on $d_b/d_m$
+for a given boattail length. The maximum permissible value of $\epsilon$
+generally lies somewhere between $5\dg$ and $10\dg$; if $\epsilon$ is greater
+than this value separation will occur on the boattail and
+equation~\eqref{ch3:eq:131} will not apply.
+
+Increasing the skin-friction drag of the body can be accomplished by
+lengthening the boattail, but it can be demonstrated from
+equation~\eqref{ch3:eq:131} that the boattail should not be longer than the
+section of cylindrical body tube it replaces; or more precisely, that the
+rocket with boattail should not be any longer than it would have been if
+designed without a boattail. Differentiation of~\eqref{ch3:eq:131} with
+respect to $C_{Df}$ gives
+\begin{equation}\label{ch3:eq:132}
+\frac{d(C_{Db})_m}{dC_{Df}} = -\left(\frac{d_b}{d_m}\right)^{3}\frac{0.029}{2(C_{Df})^{3/2}}
+\end{equation}
+where care must be taken to distinguish the letter $d$ as used to denote
+differentiation on the left-hand side from $d$ as used to denote diameter on
+the right, and the assumption has been made that $d_b/d_m$ is unrelated to
+$C_{Df}$. Since, for the increase in skin-friction drag to be less than the
+decrease in base drag, we require $\Delta(C_{Db})_m < -\Delta(C_{Df})$,
+\begin{equation}\label{ch3:eq:133}
+-\left(\frac{d_b}{d_m}\right)^{3}\frac{0.029}{2(C_{Df})^{3/2}} < -1
+\end{equation}
+giving
+\begin{equation}\label{ch3:eq:134}
+(C_{Df})^{3/2} < .0145\left(\frac{d_b}{d_m}\right)^{3}
+\end{equation}
+and finally,
+\begin{equation}\label{ch3:eq:135}
+C_{Df} < .059\left(\frac{d_b}{d_m}\right)^{2}
+\end{equation}
+The largest value of $C_{Df}$ for which an increase in $C_{Df}$ will result in
+a decrease in overall drag occurs for the limiting case $d_b/d_m = 1.0$, and
+even then $C_{Df}$ must be less than 0.059. Model rockets do not have body
+skin-friction drag coefficients this small. A typical value of $C_{Df}$ for a
+well-designed model rocket is three or more times this value (see
+Section~\ref{ch3:sec:6}). This is because well-designed model rockets have a
+\emph{fineness} (length-to-diameter) ratio sufficiently great so that the
+ratio of wetted area to frontal area is relatively large, and so, therefore,
+is $C_{Df}$. Hence, insofar as equation~\eqref{ch3:eq:131} is valid, the
+contention that an increase in $C_{Df}$ cannot result in a decrease in base
+drag sufficient to lower the overall drag of the rocket is proved. Note that
+the \emph{means} by which $C_{Df}$ is to be increased has not been specified
+in the derivation, and that equation~\eqref{ch3:eq:135} consequently refers to
+variations in $C_{Df}$ effected by any means whatsoever; i.e., whether by
+altering the length of the body to change $S_s$ or by altering the surface
+finish of the body to change $C_f'$. Equation~\eqref{ch3:eq:135} therefore
+indicates, not only that a rocket should not be lengthened to incorporate a
+boattail, but that it should not be roughened in the hope that increasing
+$C_{Df}$ will decrease $C_{Db}$ enough to lower the overall drag coefficient of
+the model. Having determined to design a model with a boattail no longer than
+it would have been without one, the modeler may follow
+Stine~(\ref{ch3:ref:18}) who suggests a boattail length of two or three body
+diameters for best results at moderate ratios $d_b/d_m$.
+
+A recent experimental investigation~(\ref{ch3:ref:5}) indicates that recessing
+the base of a boattailed configuration may be an effective means of reducing
+base drag. Since the nozzle of a model rocket engine provides a natural
+concavity at the base, this technique, although not regarded as such, has
+been in use for some time. By recessing the engine slightly into the tube,
+thereby creating a deeper concavity, it may be possible to reduce base drag
+still further. Care must be taken not to recess the engine further than about
+half a body diameter, or the conditions of nozzle overexpansion responsible
+for the notorious Krushnic effect (named for Richard Krushnic, who discovered
+it in 1958) will be created, destroying most of the effective thrust (and
+probably the aft section of the model). Those readers desiring a further
+explanation of this interesting phenomenon may consult the article by Gordon
+Mandell in \emph{Model Rocketry} magazine for November, 1969.

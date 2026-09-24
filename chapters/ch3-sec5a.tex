@@ -1,1 +1,348 @@
-% ch3-sec5a -- stub, to be transcribed (milestone M3)
+% chapters/ch3-sec5a.tex -- 5. Other Contributions to Model Rocket Drag; 5.1 Introduction;
+% 5.2 Drag at Small Angles of Attack; 5.2.1 Body Drag at Angle of Attack; 5.2.2 Fin Drag at Angle of Attack
+% (PDF 432-446, ms pp. 400-414)
+\section{Other Contributions to Model Rocket Drag}\label{ch3:sec:5}
+
+\subsection{Introduction}\label{ch3:sec:5.1}
+
+The two preceding sections examined the contributions to drag of the tangential
+(viscous) and normal (pressure) forces acting on a model rocket body. Several
+important assumptions were inherent in these presentations; namely that (a) the
+body was inclined at zero incidence (zero angle of attack) to the flow; (b) the
+body was not rotating about its longitudinal axis; and (c) surface roughness
+affected the drag only through inducement of premature transition. We are now
+interested in determining the effects on the drag of relaxing these
+assumptions.
+
+The determination of tail-body drag at angle of attack is extremely difficult,
+because little is known about tail-body interference effects at different flow
+inclinations. We will restrict our attention to small angles of attack (less
+than about $10\dg$), since at larger values of $\alpha$ the relationship between
+drag and angle of attack is far more complex and, in any case, flight at large
+angles of attack generally indicates a dynamic stability problem necessitating
+a redesign of the rocket. Furthermore, only very simple single-stage model
+rocket configurations will be examined. Article~\ref{ch3:sec:5.2} presents a
+practical method (from Reference~\ref{ch3:ref:6}) for calculating the drag
+coefficient at angles of attack, although (as with many methods discussed in
+this chapter) it still requires experimental data to confirm its applicability
+to model rockets.
+
+In Section~\ref{ch3:sec:5.3} we examine the effects of rotation about the roll
+axis, which generally produces a drag increase. It will be found that the
+increase in drag coefficient due to spin is usually small compared to that due
+to the mechanism which induces the rotation (usually canted fins).
+
+Previously, in Section~\ref{ch3:sec:3.5.2}, it was seen that surface roughness
+due to single or distributed particles can lead to premature transition, and
+hence to an increase in the skin friction. In a purely turbulent region surface
+imperfections, since they represent obstacles to the flow, have a viscous drag
+of their own. This component of model rocket drag will be examined in
+Section~\ref{ch3:sec:5.4}.
+
+\subsection{Drag at Small Angles of Attack}\label{ch3:sec:5.2}
+
+Due to forces which may arise from causes such as wind gusts, off-center
+thrust, misaligned fins, or staging transients, a model rocket may assume an
+angle of attack $\alpha$ to the instantaneous velocity vector, as seen in
+Figure~\ref{ch3:fig:37}. If the vehicle is aerodynamically stable the angle is
+usually quite small and quickly reduced by the restoring moment and damping
+moment characteristic of a stable model. During the time in which the response
+to the disturbance produces discernable angles of attack, however, the drag may
+be increased considerably. A knowledge of the extent to which the drag
+coefficient of a given rocket increases with angle of attack is therefore of
+considerable value. In Sections~\ref{ch3:sec:5.2.1} and~\ref{ch3:sec:5.2.2}
+expressions will be presented for estimating the increase in drag coefficient
+of the body and tailfin assembly alone, respectively, with angle of attack. The
+magnitude of the corrections required due to fin-body interference will be
+discussed in~\ref{ch3:sec:5.2.3}, and the overall variation of $\CD$ with angle
+of attack, as found by experiment and through semiempirical formulae, is
+analyzed in~\ref{ch3:sec:5.2.4}.
+
+\subsubsection{Body Drag at Angle of Attack}\label{ch3:sec:5.2.1}
+
+The drag of a slender body (such as that of a model rocket) at an angle of
+attack is closely related to its side force (if any) and drag at zero angle of
+attack. The total drag coefficient of a model rocket body (nosecone plus
+cylindrical body tube, but excluding fins, launch lugs, and any other
+protuberances) at a nonzero angle of attack can be expressed as
+\begin{equation}\label{ch3:eq:136}
+C_{D_B} = (\CDo)_B + C_{D_B}(\alpha)
+\end{equation}
+where
+\begin{itemize}[leftmargin=2.5em,label={}]
+  \item $(\CDo)_B$ is the body drag coefficient at zero angle of attack. A
+  detailed method of estimating this quantity is presented in
+  Section~\ref{ch3:sec:6}. A typical value for a slender model rocket is
+  $(\CDo)_B = 0.27$ at a Reynolds number of $1 \times 10^{6}$. This coefficient
+  includes base drag.
+  \item $C_{D_B}(\alpha)$ is the drag coefficient of the body due to angle of
+  attack (the notation is read ``$C_{D_B}$ as a function of $\alpha$'', or
+  simply ``$C_{D_B}$ of $\alpha$''), which will be discussed herein.
+\end{itemize}
+
+When a model rocket assumes a very small angle of attack (about 2 degrees or
+less), the external flow is not significantly disturbed from its behavior at
+zero incidence. Since it was shown in Section~\ref{ch3:sec:4} that (for a
+streamlined nose) this external flow resembles closely that predicted for an
+inviscid fluid, it is reasonable to attempt the use of potential flow theory for
+the determination of aerodynamic forces at very small angles of attack---and,
+indeed, such analyses have been carried out. The forces produced are a side
+force, perpendicular to the free-stream flow direction, and a much smaller drag
+force, parallel to $U_\infty$.
+
+Potential theory predicts a side force (also referred to as ``lift'')
+coefficient which varies linearly with angle of attack. According to Van
+Dyke~(\ref{ch3:ref:6}), the body lift-curve slope at zero incidence is given by
+\begin{equation}\label{ch3:eq:137}
+\frac{dC_L}{d\alpha} = \frac{2(k_2 - k_1)}{S_m}S_o
+\end{equation}
+so that the lift coefficient $C_L$ is given by
+\begin{equation}\label{ch3:eq:138}
+C_L = \frac{2(k_2 - k_1)S_o}{S_m}\alpha
+\end{equation}
+Applying the approximation $\sin(\alpha) \cong \alpha$, valid for small angles,
+we then have
+\begin{equation}\label{ch3:eq:139}
+C_{D_B}(\alpha) = \alpha C_L = \frac{2(k_2 - k_1)S_o}{S_m}\alpha
+\end{equation}
+where
+\begin{itemize}[leftmargin=2.5em,label={}]
+  \item $(k_2 - k_1)$ is the ``apparent mass factor'' as determined by Munk,
+  given in Figure~\ref{ch3:fig:35} as a function of body fineness ratio.
+  \item $x$ is the distance from the nosecone tip measured along the
+  longitudinal body axis.
+  \item $x_o$ is the body station where the flow ceases to obey the predictions
+  of potential theory. This location can be found from the expression
+  \begin{equation}\label{ch3:eq:140}
+  x_o = 0.55x_1 + 0.36\ell_B
+  \end{equation}
+  \item $x_1$ is the body station where the rate of change of cross-sectional
+  area with $x$ $(dS_x/dx)$ first reaches its minimum value.
+  \item $S_x$ is the body cross-sectional area at station $x$.
+  \item $S_o$ is the body cross-sectional area at $x_o$.
+  \item $S_m$ is the maximum body cross-sectional area.
+\end{itemize}
+These terms will be clarified when a numerical example is computed shortly. It
+should be noted that equation~\eqref{ch3:eq:140} has been constructed by slope
+and intercept extrapolation from a graph contained in
+Reference~\ref{ch3:ref:6}, and that the validity of this extrapolation has not
+as yet been demonstrated.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig35.png}
+  \caption{Apparent mass factor $(k_2 - k_1)$ as a function of body fineness
+  ratio $(\ell_b/d)$.}
+  \label{ch3:fig:35}
+\end{figure}
+
+As the angle of attack increases beyond about two degrees, separation of the
+boundary layer from the leeward side of the body occurs and potential theory no
+longer yields an accurate result; the \emph{normal} (i.e., perpendicular)
+forces, and hence the lift, increase nonlinearly with angle of attack. The flow
+in the boundary layer exhibits a component in the circumferential direction due
+to the increasing magnitude of \emph{viscous cross-flow forces}. Theories have
+been developed which take account of these effects by adding to the
+potential-flow solution of equations~\eqref{ch3:eq:138} and~\eqref{ch3:eq:139}
+another, viscous term. The method we will present here assumes, as before, that
+the flow is potential over the forward part of the body and that there is no
+viscous contribution to drag due solely to the angle of attack. On the aft part
+of the body, where the flow is assumed entirely viscous, lift and drag arise
+solely from cross-flow forces. Then, according to Hopkins~(\ref{ch3:ref:6}),
+\begin{align}
+C_L &= \frac{2(k_2 - k_1)S_o}{S_m}\alpha
+  + \frac{2\alpha^2}{S_m}\int_{x_o}^{\ell_b} \eta r_x C_{Dc}\,dx
+  \label{ch3:eq:141}\\
+C_{D_B}(\alpha) &= \frac{2(k_2 - k_1)S_o}{S_m}\alpha^2
+  + \frac{2\alpha^3}{S_m}\int_{x_o}^{\ell_b} \eta r_x C_{Dc}\,dx
+  \label{ch3:eq:142}
+\end{align}
+where
+\begin{itemize}[leftmargin=2.5em,label={}]
+  \item $\eta$ is the ratio of the cross-flow drag on a cylinder of
+  \emph{finite} length to the cross-flow drag on a cylinder of \emph{infinite}
+  length, given in Figure~\ref{ch3:fig:36};
+  \item $C_{Dc}$ is the experimental steady-state cross-flow drag coefficient of
+  a circular cylinder of infinite length. $C_{Dc}$ is equal to 1.2 for all
+  practical model rocket problems; and
+  \item $r_x$ is the body radius at any station $x$.
+\end{itemize}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig36.png}
+  \caption{Ratio of the drag coefficient of a circular cylinder of finite length
+  to the drag coefficient of a circular cylinder of infinite length, $\eta$, as
+  a function of cylinder fineness ratio $(\ell_b/d)$.}
+  \label{ch3:fig:36}
+\end{figure}
+
+The reader is reminded here that equations~\eqref{ch3:eq:138},
+\eqref{ch3:eq:139}, \eqref{ch3:eq:141}, and~\eqref{ch3:eq:142} must be applied
+using $\alpha$ given in \emph{radians} rather than degrees. In most cases,
+equation~\eqref{ch3:eq:142} is quite simple to apply to model rockets, as $x_o$
+(the station where the external flow ceases to be potential) usually occurs
+downstream of the nosecone-body joint. The quantity $S_o/S_m$ thus usually
+equals 1.0, and the integral, since $\eta$, $r_x$, and $C_{Dc}$ are all
+constant along the aft section of a rocket having no shoulder or boattail,
+involves only an exact differential $dx$. In such a case,
+\begin{equation}\label{ch3:eq:143}
+\int_{x_o}^{\ell_b} \eta r_x C_{Dc}\,dx = (\ell_b - x_o)\eta r_x C_{Dc}
+\end{equation}
+
+In order to acquire some ``feel'' for the kind of numerical results one obtains
+from equation~\eqref{ch3:eq:142}, we shall employ the simple, single-stage
+model rocket configuration shown in Figure~\ref{ch3:fig:37}. Its length, 13
+inches (33 cm.)\ and body diameter, 0.813 inch (2.06 cm.), are identical to the
+corresponding dimensions of the Aerobee-Hi for which Stine~(\ref{ch3:ref:18})
+has reported the experimentally-determined variation of the total $\CD$ with
+$\alpha$. We do not seek or expect good agreement with Stine's data, as the
+methods of this and the following sections are approximate, and as the trial
+rocket is somewhat different from the Aerobee-Hi. Specifically, the trial
+rocket has 4 fins as opposed to 3 for the Aerobee-Hi, a different fin shape, no
+launch lug, and is without the Aerobee's longitudinal fairings. Comparing the
+experimental results with analytical predictions for a rocket of roughly
+similar configuration, however, will give us a ``feel'' for whether our results
+are, in the colloquialism of engineering, ``in the right ball park''.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig37.png}
+  \caption{Trial rocket used to compute drag increase due to nonzero angle of
+  attack. All dimensions are given in centimeters.}
+  \label{ch3:fig:37}
+\end{figure}
+
+From Figure~\ref{ch3:fig:37}, $\ell_b/d = 16$, for which
+Figure~\ref{ch3:fig:35} yields $(k_2 - k_1) = 0.97$. The quantity $dS_x/dx$
+attains its minimum value, zero, at the body-nosecone junction, so
+$x_1 = 8.9$ cm. We determine $x_o$ from equation~\eqref{ch3:eq:140} as follows:
+\begin{equation*}
+x_o = .55(8.9) + .36(33) = 16.8\un{cm.}
+\end{equation*}
+Since $x_o$ is located on the cylindrical body, $S_o/S_m = 1.0$; the first term
+in equation~\eqref{ch3:eq:142} then becomes
+\begin{equation*}
+2(k_2 - k_1)\frac{S_o}{S_m}\alpha^2 = 1.94\alpha^2
+\end{equation*}
+From Figure~\ref{ch3:fig:36}, $\eta = 0.74$. The body radius $r_x$ is a
+constant, 1.03 cm., between $x_o$ and $\ell_b$. Hence,
+\begin{align*}
+\frac{2\alpha^3}{S_m}\eta r_x C_{Dc}(\ell_b - x_o)
+  &= \alpha^3\left[\frac{2\times .74\times 1.03\times 1.2\times 16.2}
+     {\pi\times(1.03)^2}\right]\\
+  &= 8.86\alpha^3
+\end{align*}
+Finally, we obtain
+\begin{equation}\label{ch3:eq:144}
+C_{D_B}(\alpha) = 1.94\alpha^2 + 8.86\alpha^3
+\end{equation}
+
+This coefficient is based on maximum body frontal area $S_m$. For
+$\alpha \le 0.022$ radian (about $1.25\dg$), the $\alpha^2$ term is at least
+ten times greater than the $\alpha^3$ term. This essentially defines the range
+of validity for the potential-flow solution. The two terms are of equal
+magnitude at $\alpha = 12.5\dg$. It should be noted here that
+$C_{D_B}(\alpha)$ is independent of velocity, a result which agrees with the
+predictions of slender-body theory for incompressible flow.
+
+\subsubsection{Fin Drag at Angle of Attack}\label{ch3:sec:5.2.2}
+
+A model rocket fin, which is here assumed to have a symmetrical, streamlined
+section profile, will behave like an aircraft wing when it is inclined at an
+angle to the flow. It will naturally produce a side force, or ``lift'', as
+shown in Figure~\ref{ch3:fig:38}---which, after all, is why rockets have fins in
+the first place. Due to the deflection of the flow in the vicinity of the fin,
+however, the total aerodynamic \emph{normal force} $N$ will not be
+perpendicular to the free-stream flow. Instead, it is turned backwards to some
+angle $\alpha_i$ to the line perpendicular to the free stream, so that it
+exhibits a drag component. This drag component is known as the \emph{induced
+drag} of the fin, and its associated drag coefficient is denoted $C_{Di}$.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig38.png}
+  \caption{The origin of induced drag. The fin is held at an angle of attack
+  $\alpha$, causing the force $\vec{F}$ to act through the center of pressure.
+  $\vec{F}$ is tilted back at the angle $\alpha_i$ and is resolved into lift
+  $\vec{L}$ and induced drag $\vec{D}_i$.}
+  \label{ch3:fig:38}
+\end{figure}
+
+As in the case of the body, the induced drag of a fin is related to the lift
+force it produces. One cannot, however, obtain an expression for $C_{Di}$
+unless he has specific knowledge of the \emph{distribution} of lift on the fin.
+We shall assume for the purposes of our numerical example that the following
+values given by Hoerner~(\ref{ch3:ref:9}) for a rectangular wing of aspect ratio
+$\AR = \text{span/chord} = 3$ with sharp chordwise edges are valid for the trial
+rocket:
+\begin{equation*}
+\frac{d\alpha\dg}{dC_L} = 18.6 \qquad \frac{d\CD}{dC_L^2} = .123
+\end{equation*}
+Then for $\alpha$ given in radians,
+\begin{equation*}
+\frac{d\alpha}{dC_L} = 0.32
+\end{equation*}
+so that
+\begin{equation*}
+C_{Di} = .123\,C_L^2 = .123\left(\frac{\alpha}{.32}\right)^2 = 1.2\alpha^2
+\end{equation*}
+This coefficient, based on fin planform area, can be converted to a coefficient
+based on maximum body frontal area by multiplying by the factor $S_F/S_m$. We
+shall assume the angle of attack to exist entirely about the $x$-axis (yaw) or
+$y$-axis (pitch) of the rocket, so that only two fins are producing lift. Then
+\begin{equation*}
+\frac{S_F}{S_m} = \frac{7.14\times 2.54}{\pi(1.03)^2} = 5.42
+\end{equation*}
+\begin{equation}\label{ch3:eq:145}
+C_{Di}' = 5.42\times 1.2\alpha^2 = 6.51\alpha^2
+\end{equation}
+You should note here that the fin planform area used includes the imaginary
+extension of the fins within the body tube, and that ``planform'' refers to the
+fact that only the area of \emph{one side} of the fins is used.
+
+The assumption of square chordwise edges (squared tips) in the above
+calculations is of some significance, as the shape of the fin tip can affect
+the value of the induced drag considerably. When a fin is producing lift, it has
+a lower pressure on its upper, or ``suction'' side, than on its lower side. This
+phenomenon is associated with the formation of \emph{trailing vortices} (see
+Figure~\ref{ch3:fig:39}a) near the fin tips as the air from below tries to
+``curl up'' around the tips. Depending on the fin tip shape, the distance
+between the resulting vortex cores may be less than the actual span of the fins,
+leading to a reduction in effective span---and therefore, to a reduction in
+effective aspect ratio. Figure~\ref{ch3:fig:39}b depicts several possible
+fin-tip shapes, with their changes in effective aspect ratio $\Delta\AR$ and the
+location of the vortex core in each case. Those shapes for which $\Delta\AR$ is
+positive or zero are most desirable, since they produce low induced drag. Of
+the shapes shown, this category would include numbers 1, 5, and 6. One shape
+not shown, but popular among designers of high-performance model rockets, is
+the \emph{elliptical} fin. During the 1930's it was shown mathematically that,
+for airplane wings of moderate aspect ratio and without twist (``washin'' or
+``washout'' at the tips), an elliptical planform gives the least induced drag
+for a given lift. Elliptical or near-elliptical wing planforms were
+subsequently incorporated into several fighter planes of the World War II era,
+most famous among them being the Supermarine Spitfire of the English Royal Air
+Force. It is not known for certain whether the elliptical planform retains its
+advantage in the presence of a body tube of diameter commensurate with the fin
+span, and in fact the testing of model rocket fin planform shapes for induced
+drag is currently a pressing need which, it is hoped, advanced hobbyists will
+shortly fulfil. Nevertheless, the elliptical planform is currently preferred by
+a number of successful competition modelers.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig39.png}
+  \caption{Trailing vortices and effective aspect ratio. An airplane wing or a
+  pair of diametrically opposed rocket fins sheds trailing vortices from its
+  tips (a). As viewed from behind the wing the left vortex rotates clockwise;
+  the right one counterclockwise as shown. The vortices descend after leaving
+  the wing and also ``tuck in'' slightly, reducing the effective span of the
+  wing and therefore reducing the effective aspect ratio, since the aspect ratio
+  $\AR$ is defined as the span divided by the average chord. Panel (b) shows the
+  change in effective aspect ratio and vortex core position (dotted line)
+  measured for a number of different tip shapes on wings of $\AR = 3.0$. Since
+  wings of higher $\AR$ can generate a given lift at lower angle of attack and
+  lower induced drag than wings of lower $\AR$, zero or positive values of
+  $\Delta\AR$ are desirable.}
+  \label{ch3:fig:39}
+\end{figure}

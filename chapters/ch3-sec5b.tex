@@ -1,1 +1,385 @@
-% ch3-sec5b -- stub, to be transcribed (milestone M3)
+% chapters/ch3-sec5b.tex -- 5.2.3 Fin-Body Interference Drag at Angle of Attack; 5.2.4 Total Drag
+% Increase at Angle of Attack; 5.3 Drag Due to Rotation; 5.4 Drag Due to Surface Roughness in
+% Turbulent Flow (PDF 446-461, ms pp. 414-429)
+\subsubsection{Fin-Body Interference Drag at Angle of Attack}\label{ch3:sec:5.2.3}
+
+The subject of interference drag at angle of attack is prohibitively difficult to handle
+theoretically. Consequently, we shall rely entirely upon semiempirical determinations here.
+The term ``interference drag'' refers to the increment in drag a complete configuration possesses
+over the sum of the drags of its separated, component parts. At the fin-body joints there is a
+joining and thickening of boundary layers, leading to increased drag in this region. Separation is
+a distinct possibility at such joints, and Stine~(\ref{ch3:ref:18}) suggests the elimination of
+sharp corners by glue fillets to minimize this danger. Hoerner~(\ref{ch3:ref:9}) has reported data
+indicating that interference drag is minimized when the fillet radius is between 4\% and 8\% of
+the fin chord at the root.
+
+Reference~(\ref{ch3:ref:6}) gives the following semiempirical expression for interference drag
+coefficient at angle of attack:
+\begin{equation}\label{ch3:eq:146}
+\Delta C_{Di} = \left[K_{F(B)} + K_{B(F)} - 1\right]\frac{dC_L}{d\alpha}\,\frac{S_e}{S_m}\,\alpha^2
+\end{equation}
+where
+\begin{itemize}[nosep,itemsep=1ex,leftmargin=*,label={}]
+  \item $K_{F(B)} = \dfrac{\text{fin lift in the presence of the body}}{\text{fin lift alone}}$;
+  \item $K_{B(F)} = \dfrac{\text{body lift in the presence of the fins}}{\text{fin lift alone}}$;
+  \item $\dfrac{dC_L}{d\alpha}$ is the lift-curve slope of the fin at $\alpha = 0$; and
+  \item $S_e$ is the exposed fin planform area.
+\end{itemize}
+The functions $K_{F(B)}$ and $K_{B(F)}$ are both given in Figure~\ref{ch3:fig:40}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig40.png}
+  \caption{Fin-body interference coefficients for flight at nonzero angle of attack. $d$ is the
+    diameter of the body tube, while $b$ is the span of a diametrically opposed pair of fins.}
+  \label{ch3:fig:40}
+\end{figure}
+
+We can now determine $\Delta C_{Di}$ for our trial rocket. The total fin span $b$ is 7.14 cm.\ and
+the body diameter $d$ is 2.06 cm., so $d/b = .289$. This gives, from Figure~\ref{ch3:fig:40},
+$K_{B(F)} = 0.44$ and $K_{F(B)} = 1.25$. Since only two fins are assumed to be producing lift,
+$S_e = 12.95$ cm.$^{2}$, and
+\begin{equation*}
+S_m = \pi r^2 = 3.33\un{cm.^{2}}
+\qquad\qquad\qquad
+\frac{dC_L}{d\alpha} = \frac{1}{.32} = 3.12
+\end{equation*}
+so that
+\begin{equation}\label{ch3:eq:147}
+\Delta C_{Di} = (.44 + 1.25 - 1)\,3.12\,\frac{12.95}{3.33}\,\alpha^2 = 8.38\alpha^2
+\end{equation}
+The interference drag coefficient due to angle of attack is thus of considerable magnitude; in
+fact, it is larger than the \emph{sum} of $C_{D_B}(\alpha)$ and $C_{Di}'$, as given by
+equations~\eqref{ch3:eq:144} and~\eqref{ch3:eq:145}.
+
+\subsubsection{Total Drag Increase at Angle of Attack}\label{ch3:sec:5.2.4}
+
+If we now combine the results of~\ref{ch3:sec:5.2.1}, \ref{ch3:sec:5.2.2}, and~\ref{ch3:sec:5.2.3},
+we obtain an expression for the total drag coefficient increment $\CD(\alpha)$ due to angle of
+attack:
+\begin{equation}\label{ch3:eq:148}
+\CD(\alpha) = C_{D_B}(\alpha) + C_{Di}' + \Delta C_{Di}
+\end{equation}
+For our trial rocket, the result is
+\begin{equation}\label{ch3:eq:149}
+\CD(\alpha) = 16.83\alpha^2 + 8.9\alpha^3
+\end{equation}
+This function, along with its constituent functions, is tabulated in Table~\ref{ch3:tab:4} and is
+plotted in Figure~\ref{ch3:fig:41}. In order to compare equation~\eqref{ch3:eq:149} with the
+experimental data for G. Harry Stine's Aerobee-Hi, the trial rocket has been assumed to have the
+same zero-lift drag coefficient as the Aerobee-Hi (about 0.75). The trial vehicle would probably
+have a much lower zero-lift drag coefficient in actuality (unless its surface were very rough),
+but the assumption of equal zero-lift drag for the two vehicles makes it more convenient to compare
+their drag increments due to angle of attack. The agreement between the curves for the two
+vehicles is surprisingly close, considering the physical differences between the rockets and the
+simplifying assumptions made in the derivation of equation~\eqref{ch3:eq:149}---a result which
+tends to confirm the validity of the semiempirical approach. It is, however, hoped that
+experiments will be performed in the near future on rockets similar to that of
+Figure~\ref{ch3:fig:37} (with and without launch lug), to determine with greater precision the
+accuracy of this computational method.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig41.png}
+  \caption{Increase in drag coefficient with angle of attack for the trial rocket of
+    Figure~\ref{ch3:fig:37} (semiempirical) and for a scale model Aerobee-Hi tested by G. Harry
+    Stine, assuming the same drag coefficient for both rockets at zero angle of attack.}
+  \label{ch3:fig:41}
+\end{figure}
+
+\begin{table}[htbp]
+  \centering
+  \caption{Increase in drag coefficient with angle of attack for the trial rocket of
+    Figure~\ref{ch3:fig:37}.}
+  \label{ch3:tab:4}
+  \sisetup{group-digits=none}
+  \begin{tabular}{S[table-format=2.1] S[table-format=1.5,print-zero-integer=false]
+      S[table-format=1.3,print-zero-integer=false] S[table-format=1.3,print-zero-integer=false]}
+    \toprule
+    {\begin{tabular}{@{}>{\centering\arraybackslash}p{2.1cm}@{}}
+      Angle of\\ attack\\ $\alpha$ (deg)\end{tabular}} &
+    {\begin{tabular}{@{}>{\centering\arraybackslash}p{2.1cm}@{}}
+      Angle of\\ attack\\ $\alpha$ (rad)\end{tabular}} &
+    {\begin{tabular}{@{}>{\centering\arraybackslash}p{3.6cm}@{}}
+      Body drag\\ coefficient\\ due to $\alpha$:\\[1ex] $C_{D_B}(\alpha)$\\[0.5ex]
+      $1.94\alpha^2 + 8.86\alpha^3$\end{tabular}} &
+    {\begin{tabular}{@{}>{\centering\arraybackslash}p{3.6cm}@{}}
+      Fin drag\\ coefficient\\ due to $\alpha$:\\[1ex] $C_{Di}'$\\[0.5ex]
+      $6.51\alpha^2$\end{tabular}} \\
+    \midrule
+     0.5 & .00873 & .000 & .000 \\
+     1.0 & .0175  & .001 & .002 \\
+     2.0 & .0349  & .003 & .008 \\
+     3.0 & .0524  & .007 & .018 \\
+     4.0 & .0698  & .012 & .031 \\
+     5.0 & .0873  & .021 & .050 \\
+     6.0 & .1047  & .032 & .072 \\
+     7.0 & .1222  & .045 & .097 \\
+     8.0 & .1396  & .062 & .127 \\
+     9.0 & .1571  & .082 & .161 \\
+    10.0 & .1745  & .106 & .198 \\
+    \bottomrule
+  \end{tabular}
+
+  \bigskip
+
+  \begin{tabular}{S[table-format=2.1] S[table-format=1.5,print-zero-integer=false]
+      S[table-format=1.3,print-zero-integer=false] S[table-format=1.3,print-zero-integer=false]}
+    \toprule
+    {\begin{tabular}{@{}>{\centering\arraybackslash}p{2.1cm}@{}}
+      Angle of\\ attack\\ $\alpha$ (deg)\end{tabular}} &
+    {\begin{tabular}{@{}>{\centering\arraybackslash}p{2.1cm}@{}}
+      Angle of\\ attack\\ $\alpha$ (rad)\end{tabular}} &
+    {\begin{tabular}{@{}>{\centering\arraybackslash}p{3.6cm}@{}}
+      Fin-body\\ interference\\ drag\\ coefficient\\ due to $\alpha$:\\[1ex] $\Delta C_{Di}$\\[0.5ex]
+      $8.38\alpha^2$\end{tabular}} &
+    {\begin{tabular}{@{}>{\centering\arraybackslash}p{3.6cm}@{}}
+      Total drag\\ coefficient\\ due to $\alpha$:\\[1ex] $\CD(\alpha)$\\[0.5ex]
+      $16.83\alpha^2 + 8.9\alpha^3$\end{tabular}} \\
+    \midrule
+     0.5 & .00873 & .001 & .001 \\
+     1.0 & .0175  & .003 & .005 \\
+     2.0 & .0349  & .010 & .021 \\
+     3.0 & .0524  & .023 & .048 \\
+     4.0 & .0698  & .041 & .084 \\
+     5.0 & .0873  & .063 & .136 \\
+     6.0 & .1047  & .092 & .196 \\
+     7.0 & .1222  & .125 & .267 \\
+     8.0 & .1396  & .163 & .352 \\
+     9.0 & .1571  & .208 & .451 \\
+    10.0 & .1745  & .255 & .559 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+One fact is clearly established in Figure~\ref{ch3:fig:41}: that the increase in drag at small
+angles of attack can be a sizeable portion of the zero-lift drag. For the Aerobee-Hi model, the
+drag coefficient is doubled at an incidence of ten degrees. Clearly, then, for maximum altitude
+performance, it is desirable to design a rocket such that all oscillations resulting from
+in-flight disturbances are damped out as quickly as possible.
+
+We observe that equation~\eqref{ch3:eq:149} is dominated by the $\alpha^2$ term over the entire
+range of angles of attack of interest in model rocketry; up to $\alpha = 5\dg$, the $\alpha^3$ term
+may be neglected with less than 5\% error in the final result. With respect to determining the
+coefficient $\epsilon$ introduced in Chapter~\ref{ch1} and used in Chapter~\ref{ch4} to compute the
+effect of dynamic oscillations on altitude capability, however, the modeler will generally want
+to be conservative. A conservative determination of $\epsilon$ may be made by finding the value of
+$\alpha$ at which $\CD$ is doubled over its zero-lift value, according to
+equation~\eqref{ch3:eq:148}, and then determining the value of $\epsilon$ in the approximate
+function
+\begin{equation}\label{ch3:eq:150}
+\CD(\alpha) \cong \frac{2\epsilon}{\rho S_m}\,\alpha^2
+\end{equation}
+such that the drag is again doubled at this same value of $\alpha$. In the case of our trial
+rocket, the drag coefficient will be doubled over its zero lift value when $\CD(\alpha) = 0.75$.
+This occurs for $\alpha = 0.201$ radian, or about $11.5\dg$. From equation~\eqref{ch3:eq:150} we
+find that the value of $\frac{2\epsilon}{\rho S_m}$ required to produce a $\CD(\alpha)$ of 0.75 at
+$\alpha = 0.201$ radian is 18.52, and this would determine the value of $\epsilon$ used in
+determining oscillation effects on altitude performance by the methods presented in
+Chapter~\ref{ch4}. Equation~\eqref{ch3:eq:150} is conservative (that is, it slightly overestimates
+the drag) over the range of angles of attack between zero and that at which the drag is
+doubled---and for the average model rocket, the $\alpha$ at which $\CD$ is doubled marks the upper
+limit of the range of angles of attack of interest.
+
+\subsection{Drag Due to Rotation}\label{ch3:sec:5.3}
+
+A model rocket, rotating about its longitudinal---or \emph{roll}---axis in flight, will experience
+an increase in drag due to the thickening of the boundary layer resulting from the circumferential
+velocity of the body tube surface. We shall denote this circumferential velocity component by $u$.
+This thickening of the boundary layer could conceivably cause separation on the forebody and fins,
+and an increased dead-air volume aft of the base, if $u$ is sufficiently large.
+
+The drag increase due to rotation may be estimated by examining Figure~\ref{ch3:fig:42}. The
+circumferential velocity is given by
+\begin{equation}\label{ch3:eq:151}
+u = \pi d n
+\end{equation}
+where $d$ is the diameter of the body and $n$ is the number of revolutions per second. If we
+assume that the trial rocket of our numerical example (diameter $= 2.06$ cm.) has been given a roll
+rate of 100 radians per second (15.9 revolutions/second) at an airspeed of 60 meters (6000 cm.) per
+second, we obtain
+\begin{equation*}
+\frac{u}{U} = 0.0172
+\end{equation*}
+The effect of such small ratios of body tube circumferential velocity to vehicle
+airspeed---ratios typical of model rockets---is too small to be read from the curve of
+Figure~\ref{ch3:fig:42}. One may therefore conclude that, as far as the finless body is
+concerned, rotation does not exert a significant influence on model rocket drag.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig42.png}
+  \caption{Increase in the drag coefficient of a finless projectile due to rotation (spinning)
+    about the longitudinal axis. $u$ is the tangential velocity of the projectile's surface due to
+    the spin; $U$ is the longitudinal free-stream velocity.}
+  \label{ch3:fig:42}
+\end{figure}
+
+The mechanism for inducing rotation in a model rocket purposefully is usually fin
+geometry---that is, by canting the fins, giving them an asymmetrical section profile, or adding
+spinnerons. Of these three techniques, fin canting is the most commonly used. Since canting merely
+creates a permanent, artificially-induced angle of attack for the fins, the drag due to fin cant
+can be estimated using the methods of Chapter~\ref{ch2} and the results of
+Section~\ref{ch3:sec:5.2.2} of the present chapter. According to equations~\eqref{ch2:eq:90},
+\eqref{ch2:eq:115}, \eqref{ch2:eq:116}, and~\eqref{ch2:eq:117} of Chapter~\ref{ch2}, canting the
+fins of our trial rocket will give it a roll rate determined by
+\begin{equation}\label{ch3:eq:152}
+\omega_Z = .1672\,U\theta
+\end{equation}
+For $\omega_Z = 100$ radians/second at $U = 6000$ cm./sec., a fin cant angle $\theta$ almost
+exactly 0.1 radian is required (0.1 radian $= 5.73\dg$). Now the effective angle of attack of the
+fins is always \emph{less} than the cant angle, since the airflow itself is ``canted'' as seen by
+the rotating fins. To be more precise, the angle of attack varies with radius from the rocket's
+centerline according to
+\begin{equation}\label{ch3:eq:153}
+\alpha(r) = \theta - \frac{\omega_Z r}{U}
+\end{equation}
+For the simple, rectangular fins of our trial rocket, the \emph{average} effective angle of attack
+can be used to determine the induced drag due to fin cant. The value of $\alpha(r)$ at the fin root
+is 0.0828, while the value at the tip is 0.0405. Since $\alpha(r)$ varies linearly with radial
+distance from the centerline, the average effective angle of attack $\bar{\alpha}$ is just
+\begin{equation*}
+\bar{\alpha} = \frac{.0828 + .0405}{2} = .0617
+\end{equation*}
+In equation~\eqref{ch3:eq:145} the induced drag of two of the trial rocket's fins was found to be
+$6.24\alpha^2$. In the case of canted fins, all four fins are at the angle of attack $\bar{\alpha}$;
+equation~\eqref{ch3:eq:145} must therefore be doubled to give
+\begin{equation}\label{ch3:eq:154}
+(C_{Di}')_{\mathrm{cant}} \cong 12.5\bar{\alpha}^2
+\end{equation}
+For the computed $\bar{\alpha}$ of 0.0617, $(C_{Di}')_c = .0475$. If the rocket's zero-incidence
+drag coefficient is .75 without fin cant, this means a 6.34\% increase in $\CDo$. If a spin rate
+double that used in the above calculations were desired, it would be necessary to incur four times
+this drag penalty, or an increase of 25.4\% in $\CDo$. These figures, together with the
+realization that they probably represent minimum values for the drag increase due to fin
+cant---they do not account for increased fin-body interference---indicate that, while the effects
+of rotation themselves may not be significant, the effects of the mechanism by which rotation is
+induced are considerable. Furthermore, there is an increasing danger of separation in the vicinity
+of the fin leading edges as the angle of cant is increased. Such separation could result in a
+gross magnification of pressure drag. While the angle of cant at which such phenomena become
+significant has not as yet been established with precision, it has been generally accepted for a
+number of years that cant angles greater than $15\dg$ produce reductions in performance so severe
+as to be detectable with the naked eye.
+
+\subsection{Drag Due to Surface Roughness in Turbulent Flow}\label{ch3:sec:5.4}
+
+In Section~\ref{ch3:sec:3.5} we examined the critical height of roughness elements necessary to
+induce premature transition in the boundary layer from laminar to turbulent flow. Within the
+turbulent boundary layer which is prevalent over most of a model rocket at higher Reynolds numbers,
+roughness can affect the drag in another manner: if the individual roughness particles protrude
+above the thin laminar sublayer, they will have a viscous drag of their own. The turbulent
+skin-friction coefficient derived in Section~\ref{ch3:sec:3} (equation~\eqref{ch3:eq:86}) applies
+only to ``hydraulically smooth'' surfaces; that is, surfaces on which the grain size $k$ of
+roughness particles is less than the thickness of the laminar sublayer.
+
+The \emph{admissible height} $k_{\mathrm{adm}}$ for roughness particles is defined as the maximum
+height of the particles which gives no increase in the drag compared with a smooth wall. A simple,
+conservative formula for determining $k_{\mathrm{adm}}$ for a flat plate is~(\ref{ch3:ref:15}):
+\begin{equation}\label{ch3:eq:155}
+k_{\mathrm{adm}} \le 100\,\frac{\nu}{U_\infty}
+\end{equation}
+This relationship is accurate for Reynolds numbers below about $1 \times 10^{6}$. It does not take
+into account the fact that the boundary-layer thickness increases with distance from the leading
+edge, and hence that $k_{\mathrm{adm}}$ is smaller upstream than downstream. Its use is justified,
+however, because it provides values of $k_{\mathrm{adm}}$ which are generally smaller than those
+obtained from the more precise expression~(\ref{ch3:ref:15})
+\begin{equation}\label{ch3:eq:156}
+k_{\mathrm{adm}} < \frac{7\nu}{U_\infty\sqrt{C_{fx}}}
+\end{equation}
+where $C_{fx}$ is the local skin-friction coefficient, given by
+$\frac{2\tau_o}{\rho U_\infty^2}$. Equation~\eqref{ch3:eq:155} may thus be used for the entire
+range of model rocket Reynolds numbers without fear of obtaining values of $k_{\mathrm{adm}}$ which
+are too large.
+
+If we let $U = 60$ meters/second, for instance, and $\nu = 1.495 \times 10^{-5}$
+meter$^{2}$/second, equation~\eqref{ch3:eq:155} yields
+\begin{equation*}
+k_{\mathrm{adm}} \le 2.48 \times 10^{-5}\un{meter} = 2.48 \times 10^{-3}\un{cm.}
+\end{equation*}
+This result applies specifically to sand grains, for which equation~\eqref{ch3:eq:155} was
+empirically determined, but it can be used as an approximate guide for other forms of roughness.
+Hence, at a velocity typical of model rocket flight, the surface of the model downstream of the
+transition point may be regarded as hydraulically smooth if the size of distributed roughness
+grains does not exceed about 0.0025 cm. If this condition is satisfied, the smooth turbulent
+skin-friction coefficient of Section~\ref{ch3:sec:3} may be used in calculations. It should be
+noted that the calculated value of $k_{\mathrm{adm}}$ is considerably less than the roughness height
+required to induce premature transition as determined in Section~\ref{ch3:sec:3.5}. If the
+criterion of this section is satisfied, therefore, transition will not be induced prematurely.
+
+Table~\ref{ch3:tab:5} provides information on grain sizes in microns (1 micron
+$= 1 \times 10^{-6}$ meter $= 1 \times 10^{-4}$ cm.) for various surfaces. It indicates that the
+finish on a model rocket should be about as smooth as that of paint on mass-produced aircraft, or
+better. Note that \emph{poorly-sprayed} paint has a grain size of about 200 microns---\emph{eight
+times} our calculated $k_{\mathrm{adm}}$. A rocket with such a poor finish will have a considerably
+higher skin-friction coefficient than one that is sufficiently well painted to be hydraulically
+smooth. The skin-friction coefficient of a surface having roughness elements sufficiently large
+that it cannot be considered hydraulically smooth may be found from the semiempirical
+formula~(\ref{ch3:ref:15})
+\begin{equation}\label{ch3:eq:157}
+C_f = \left(1.89 + 1.62\log\frac{\ell_b}{k}\right)^{-2.5}
+\end{equation}
+which is valid for values of $\frac{\ell_b}{k}$ between $10^{2}$ and $10^{6}$, where $\ell_b$
+denotes the length of the body (or fin, as the case may be), and the notation ``log'' denotes the
+logarithm to the base 10. According to equation~\eqref{ch3:eq:157}, a body 30 cm.\ in length
+having roughness particles of $k = 0.02$ cm.\ will exhibit a friction drag coefficient of
+\begin{equation*}
+C_f = 7.63 \times 10^{-3}
+\end{equation*}
+The corresponding value for a hydraulically smooth body in turbulent flow is $4.5 \times 10^{-3}$,
+so in this instance roughness increases the friction drag by about 70\%.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Size of surface roughness elements for various surfaces.}
+  \label{ch3:tab:5}
+  \begin{tabular}{@{}l S[table-format=4.1]@{}}
+    \toprule
+    Type of surface &
+    {\begin{tabular}[t]{@{}c@{}}Approximate grain size $k$\\ in microns\end{tabular}} \\
+    \midrule
+    surfaces like that of a ``mirror''  & 0 \\
+    surface of average glass            & 0.1 \\
+    finished and polished surfaces      & 0.5 \\
+    aircraft-type sheet-metal surfaces  & 2 \\
+    optimum paint-sprayed surfaces      & 5 \\
+    planed wooden boards                & 15 \\
+    paint in aircraft-mass production   & 20 \\
+    bare steel plating                  & 50 \\
+    smooth cement surface               & 50 \\
+    surface with asphalt-type coating   & 100 \\
+    dip-galvanized metal surface        & 150 \\
+    incorrectly sprayed aircraft paint  & 200 \\
+    natural surface of cast iron        & 250 \\
+    raw wooden boards                   & 500 \\
+    average concrete surface            & 1000 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Equation~\eqref{ch3:eq:157} applies only to surfaces which are completely rough; i.e., those for
+which the height of the roughness elements is everywhere greater than the thickness of the laminar
+sublayer. The degree of roughness of a given surface thus depends upon $k/\delta$, the ratio of
+grain size to boundary-layer thickness. Since $\delta$ varies with Reynolds number, a given surface
+may appear rough or smooth, depending on the value of the free-stream velocity. If, for example,
+we examine a turbulent boundary layer over a surface at relatively low Reynolds numbers (around
+$5 \times 10^{5}$), the roughness elements may be completely submerged in the laminar sublayer,
+making the surface appear hydraulically smooth. As the velocity (and therefore the Reynolds number)
+increases, the boundary layer becomes thinner, and the roughness elements begin to protrude from
+the sublayer. This process is initiated near the nose, or leading edge, where the boundary layer is
+thinnest, and progresses downstream with increasing $R$. When a surface is in this ``transition''
+state between a completely smooth and a completely rough appearance, its skin-friction coefficient
+will have a value intermediate between those determined from equations~\eqref{ch3:eq:86}
+and~\eqref{ch3:eq:157}. Note that this process proceeds along a body in a direction opposite to
+that of laminar-to-turbulent boundary-layer transition, as described in
+Section~\ref{ch3:sec:3.5.1}.
+
+Two final observations can be made regarding drag due to roughness. First, since
+equation~\eqref{ch3:eq:157} is independent of velocity, $C_f$ is a constant for any given ratio
+$\frac{\ell_b}{k}$. In accordance with equation~\eqref{ch3:eq:18}, it may then be concluded that
+hydraulically rough surfaces obey the quadratic drag law exactly. Furthermore,
+equation~\eqref{ch3:eq:155} for $k_{\mathrm{adm}}$ is independent of body length; hence \emph{any
+two} rockets travelling at the same velocity under identical atmospheric conditions have identical
+values of $k_{\mathrm{adm}}$. The maximum velocity attained by a rocket determines the minimum
+value of $k_{\mathrm{adm}}$. If this minimum grain size is not exceeded anywhere on the surface, the
+rocket may be regarded as hydraulically smooth throughout its flight, and the friction drag
+equations of Section~\ref{ch3:sec:3} are applicable to the calculation of its drag coefficient.

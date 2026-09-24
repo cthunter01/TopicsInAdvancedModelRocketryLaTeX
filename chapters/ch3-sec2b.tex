@@ -1,1 +1,427 @@
-% ch3-sec2b -- stub, to be transcribed (milestone M3)
+% chapters/ch3-sec2b.tex -- 2.2 Dimensionless Coefficients and Quantities (2.2.1 The Reynolds Number,
+% 2.2.2 The Drag Coefficient, 2.2.3 The Coefficient of Pressure); 2.3 Constituents of the Total Drag
+% Coefficient (PDF 324-340, printed pages 292-308)
+\subsection{Dimensionless Coefficients and Quantities}\label{ch3:sec:2.2}
+
+\subsubsection{The Reynolds Number}\label{ch3:sec:2.2.1}
+
+In our study of model rocket drag, we will make frequent use of a dimensionless
+quantity called the \emph{Reynolds number}, denoted by $R$. Named for the English
+physicist Osborne Reynolds (1842--1912), its value reflects the nature of the flow
+about a body. Under certain conditions the drag coefficient
+(see~\ref{ch3:sec:2.2.2}) may be expressed as a function of Reynolds number alone.
+
+The theoretical derivation of the Reynolds number may be accomplished in a variety
+of ways: by dimensional analysis, by a consideration of the forces acting on a
+fluid element in incompressible flow, or by examination of the Navier-Stokes
+equations of fluid equilibrium. I shall use the second approach, since I feel it
+is of greatest interest to model rocketeers; those readers who desire to follow
+the other lines of argument are referred to the excellent accounts in
+Shapiro~(\ref{ch3:ref:17}) and Schlichting~(\ref{ch3:ref:15}).
+
+Suppose we consider the forces acting on a fluid element moving parallel to the
+$x$-axis of a Cartesian coordinate system at a velocity $u$, where $u$ is a
+function of both the $x$ and $y$ coordinate values (Figure~\ref{ch3:fig:9}). The
+size of the fluid element is large compared with the dimensions of a molecule of
+fluid, and large compared with the average distance between the molecules, but
+small compared with the dimensions of the region in which fluid is flowing and
+small compared to the dimensions of any physical boundary or solid object nearby.
+The flow itself is composed of a very large number of fluid elements, such that
+variations in density, velocity, and all other physical properties between
+adjacent elements are small enough to permit the flow to appear continuous.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig09.png}
+  \caption{A fluid element in Cartesian coordinates, showing the variation of the
+  $x$-component of velocity with the $y$ coordinate and the shearing stress on the
+  upper and lower $y$-faces of the element.}
+  \label{ch3:fig:9}
+\end{figure}
+
+There are essentially two types of forces which act upon an individual fluid
+element: \emph{body} forces, which act from a distance (such as gravity), and
+\emph{surface} forces, which act through the physical contact of one fluid element
+with another. Surface forces may be further subdivided into \emph{normal} stresses
+(pressure), which act perpendicular to the surface, and \emph{shear} stresses
+(viscous friction), which act parallel to the surface of the element.
+
+In this analysis, the body force due to gravity is assumed to be balanced by
+buoyancy forces in the fluid, and hence is neglected. Furthermore, the fluid is
+assumed incompressible, which means that the volume of each fluid element is
+constant; hence any elastic forces which might arise from a change in volume are
+neglected.
+
+The only forces left to consider, then, are \emph{inertia} forces and
+\emph{viscous} friction forces. We shall attempt to express the ratio of these two
+forces in terms of the variables which determine the nature of the flow: the
+density $\rho$, the coefficient of viscosity $\mu$, the free-stream velocity $V$,
+and a characteristic linear dimension of any given solid body in the flow, $L$.
+
+The free-stream velocity $V$ is the velocity of the undisturbed fluid relative to
+the solid body. For a model rocket, $V$ is the velocity of the airstream as seen by
+an imaginary observer moving with the rocket, at points far enough from the
+rocket's surface to be undisturbed by its passage (Figure~\ref{ch3:fig:10}). It is
+important to distinguish $V$ from the velocity of elements very near the body; for
+the elements at the surface itself this velocity is effectively zero. In most cases
+applicable to model rockets, $L$ will refer to the total length of the rocket. When
+we consider friction drag in Section~\ref{ch3:sec:3}, however, we will find that
+the nature of the flow over the fins is determined by the fin chord $c$, so $L$
+will be taken as $c$ in that instance.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig10.png}
+  \caption{The concept of free-stream velocity. The air in the free stream moves
+  past the rocket at velocity $V$, while the air in the ``boundary layer'' next to
+  the rocket's surface is slowed down by viscous friction. The thickness of the
+  boundary layer has been greatly exaggerated to make it visible; actual boundary
+  layers have thicknesses on the order of $10^{-2}$ or $10^{-3}$~cm.}
+  \label{ch3:fig:10}
+\end{figure}
+
+From considering Figure~\ref{ch3:fig:9}, one can determine that the net resultant
+of all shearing forces on the element is
+\begin{equation}\label{ch3:eq:13}
+\left(\tau + \frac{\partial\tau}{\partial y}\,dy\right)dx\,dz - \tau\,dx\,dz
+  = \frac{\partial\tau}{\partial y}\,dx\,dy\,dz
+\end{equation}
+Applying equation~\eqref{ch3:eq:12b} and dividing through by $dx\,dy\,dz$, the
+volume of the element, we find the shear force per unit volume as
+\begin{equation}\label{ch3:eq:14}
+\frac{\partial\tau}{\partial y} = \mu\frac{\partial^{2}u}{\partial y^{2}}
+\end{equation}
+Note that the symbol $\partial$, rather than $d$, is used in writing the
+derivatives of a function of more than one independent variable. The derivative of
+such a function is called a \emph{partial derivative}. The inertia force per unit
+volume, assuming steady (i.e., not oscillating) flow conditions, is equal to
+$\rho u\frac{\partial u}{\partial x}$. Consequently,
+\begin{equation}\label{ch3:eq:15}
+\text{(inertia force)/(friction force)}
+  = \frac{\rho u\frac{\partial u}{\partial x}}{\mu\frac{\partial^{2}u}{\partial y^{2}}}
+\end{equation}
+Now using order-of-magnitude approximations, we can say that the velocity $u$ is of
+the same order of magnitude as the free stream velocity $V$,
+$\frac{\partial u}{\partial x}$ is of the order $V/L$, and
+$\frac{\partial^{2}u}{\partial y^{2}}$ is of the order $V/L^{2}$. Hence the ratio
+of inertia force to friction force is given approximately by
+\begin{equation}\label{ch3:eq:16}
+\frac{\text{inertia force}}{\text{friction force}}
+  = \frac{\rho\frac{V^{2}}{L}}{\mu\frac{V}{L^{2}}}
+  = \frac{\rho}{\mu}VL = \frac{VL}{\nu}
+\end{equation}
+
+The quantity $\frac{VL}{\nu}$ is the Reynolds number. Part of the significance of
+this quantity (which is dimensionless when evaluated in a consistent set of units)
+stems from the answer to the following question: given two bodies, geometrically
+similar but of different sizes, what is the condition that must be satisfied for
+the \emph{flow} over these two bodies to be similar; i.e., for the streamlines to be
+geometrically similar also? Some thought reveals that the forces acting on any two
+fluid elements at geometrically similar positions must bear the same ratio in both
+cases, at each and every instant of time.
+
+If we consider now the type of flow from which we derived the Reynolds number; i.e.,
+an incompressible flow with no free surfaces (so that gravity and buoyancy forces
+cancel) it is apparent that the inertial and viscous forces bear a fixed ratio in
+any two cases of flow about geometrically similar bodies \emph{if the Reynolds
+numbers of the two flows are identical}. Two such flows are referred to as
+\emph{dynamically similar}.
+
+To illustrate this principle by example, consider the airflow about the Saturn V
+moon rocket and that about an accurate 1/100 scale model of that vehicle. For the
+flow about the two bodies to be dynamically similar, the Reynolds numbers must be
+equal; hence
+\begin{equation}\label{ch3:eq:17}
+\left(\frac{VL}{\nu}\right)_{\mathrm{full\text{-}scale}}
+  = \left(\frac{VL}{\nu}\right)_{\mathrm{model}}
+\end{equation}
+Since the fluid is air in both cases, and we can restrict the problem to
+low-altitude flight with standard launch-site atmospheric conditions, the values of
+$\nu$ are identical. With
+$L_{\mathrm{full\text{-}scale}} = L_{\mathrm{model}} \times 100$, the requirement of
+equal Reynolds numbers becomes
+\begin{equation*}
+V_{\mathrm{model}} = 100V_{\mathrm{full\text{-}scale}}
+\end{equation*}
+The airflow about the model Saturn flying at, say, 100 meters/second is then
+dynamically similar to that about the full-scale rocket when it is moving only one
+meter/second! Throughout almost all of its flight, the full-scale Saturn V is in a
+Reynolds number regime far above that which model rockets ever experience. This
+suggests that the types of flow problems encountered in model rocketry tend to be
+somewhat different from those of full-scale astronautics---a conclusion which, to a
+large degree, is correct.
+
+The principle of dynamic similarity is the basis for the technique of model
+testing, whether by wind tunnel or any other means. To achieve the same flow
+characteristics about a scale model which are found at typical operating velocities
+about the full-scale version, it is possible to vary both the test velocity and the
+kinematic viscosity, as seen in equation~\eqref{ch3:eq:17}. Practically speaking,
+the velocity of a wind tunnel cannot be made large enough to attain the desired
+Reynolds number if the disparity in size between model and prototype is too great.
+For instance, the subsonic aerodynamic characteristics of the Saturn V could not be
+determined by the wind-tunnel testing of a 1/100 scale model, since simulation of a
+prototype velocity of 100 meters/second would require a wind-tunnel test at 10,000
+meters/second; and while the Reynolds numbers would then be equal the extreme
+compressibility effects on the model test would destroy its validity. By choosing
+another test fluid with a lower value of $\nu$, however, it is possible to conduct
+dynamically similar model tests for moderate scaling ratios between model and
+prototype. Water, for instance, has a kinematic viscosity at room temperature less
+than 8\% that of air; it would therefore be possible to test a 1/4 scale model of a
+light airplane which is to fly 45 meters/second, using a test velocity of 15
+meters/second in water, and have flow about the model which is dynamically similar
+to that about the full-scale airplane. Increasing the model size has the same
+effect as reducing the kinematic viscosity: it permits dynamically similar testing
+at lower velocities. For this reason, many wind tunnels are built today with very
+large test-section dimensions.
+
+To get an idea of the Reynolds numbers commonly encountered in model rocketry,
+suppose we compute the value of $R$ for a model 0.3 meter long travelling at 60
+meters/second. Using $\nu = 1.495 \times 10^{-5}$ meter$^{2}$/second, we obtain from
+equation~\eqref{ch3:eq:16} $R = 1.205 \times 10^{6}$. Because a consistent set of
+units was used, the Reynolds number is dimensionless; this must be the case, as the
+ratio of forces should not depend on the system of units used to evaluate it.
+
+It appears that model rocket flight thus enters regimes in which inertia forces on
+the air in regions surrounding the model are about a million times greater than
+frictional forces. One might assume, for this reason, that it would be possible to
+ignore friction forces completely in our analysis. Despite the attractiveness of
+this proposition, it does not stand up to experiment; friction forces exert a great
+influence on the flow around a body, no matter how great the Reynolds number, but
+their action is confined essentially to a very thin layer at the body's surface
+known as the \emph{boundary layer}. This concept will be discussed more thoroughly
+in Section~\ref{ch3:sec:3}.
+
+\subsubsection{The Drag Coefficient}\label{ch3:sec:2.2.2}
+
+The drag coefficient of a body, denoted by $\CD$, is defined as
+\begin{equation}\label{ch3:eq:18}
+\CD = \frac{D}{\tfrac{1}{2}\rho V^{2}A_r}
+\end{equation}
+where $D$ is the drag force, $A_r$ is a characteristic ``reference area'' of the
+body (in model rockets, usually the body tube cross-sectional area), and
+$\tfrac{1}{2}\rho V^{2}$ is known as the \emph{dynamic pressure}. In this form,
+evaluated with a consistent set of units, the drag coefficient is dimensionless.
+
+Under certain conditions the drag coefficient possesses a very useful and valuable
+property: given two geometrically similar bodies, the only difference in drag
+coefficient between them (if any) will be due to their being operated at different
+Reynolds numbers; the drag coefficient is a \emph{function of Reynolds number
+alone}. Mathematically,
+\begin{equation}\label{ch3:eq:19}
+\CD = f(R)
+\end{equation}
+Conditions required for the validity of~\eqref{ch3:eq:19}, in addition to geometric
+similarity, are that the flow be incompressible and the angle of attack be zero, so
+that the only forces acting on a fluid element in the vicinity of the body are due
+to friction and inertia. The functional dependence of $\CD$ on $R$ must usually be
+determined experimentally, as present theory is generally inadequate to predict drag
+coefficients for any but the simplest geometric shapes. For the model rocketeer,
+this would imply the necessity for extensive wind tunnel tests on each of his
+models. Unfortunately, there are few individuals with access to the necessary
+equipment for such tests.
+
+One solution to this problem is to resort to semi-empirical expressions for the
+drag coefficient which have been compiled from statistics derived by testing a
+great many subsonic rocket vehicles. In Section~\ref{ch3:sec:6}, one such method is
+presented and analyzed in detail. Although these formulae are not applicable to
+bizarre model rocket shapes, and have not yet been extended to multistaged vehicles
+with any considerable degree of confidence in their accuracy, they do permit
+sizeable variations in nose cone shape, fin planform, number of fins, boattail
+characteristics, and general physical dimensions for single-stage rockets.
+
+Since the empirical expression must necessarily be dependent on Reynolds number, it
+would appear that a laborious computational procedure is still required to
+determine graphically the relationship between $\CD$ and $R$ for any given model.
+Fortunately, as we shall see later, the drag force on a model rocket over a
+considerable range of Reynolds numbers of interest is very nearly proportional to
+the square of the velocity:
+\begin{equation}\label{ch3:eq:20}
+D = kV^{2}
+\end{equation}
+where $k$ is a constant. Comparison of equation (2.20) with equation
+(2.18)\ednote{The typescript's ``(2.20)'' and ``(2.18)'' are
+equations~\eqref{ch3:eq:20} and~\eqref{ch3:eq:18}; elsewhere the chapter
+cites its equations by their plain numbers.} reveals that $k$ is just equal to
+$\tfrac{1}{2}\rho\CD A_r$, so that the condition of constant $k$ requires
+\begin{equation}\label{ch3:eq:21}
+\CD = \text{constant}
+\end{equation}
+Hence, to obtain a drag coefficient of acceptable accuracy for almost all model
+rocketry purposes it is necessary to calculate only a single value of $\CD$ from
+the semiempirical expression, using a Reynolds number roughly estimated as the
+average value to be encountered in flight. The ``average'' $\CD$ thus determined may
+then be used in performance analyses.
+
+\subsubsection{The Coefficient of Pressure}\label{ch3:sec:2.2.3}
+
+Undisturbed air has an \emph{ambient}, or ``static'', pressure (denoted $p_o$) which
+may be measured on a gauge or barometer. At sea level, the ambient pressure is equal
+to 101,325 newtons/meter$^{2}$. In flow past a body such as a model rocket, however,
+the static pressure as measured on a gauge by an imaginary observer moving with the
+airstream will be seen to undergo changes in value. At a \emph{stagnation point}
+(where the flow has been brought to rest relative to the body, as happens at the tip
+of the nose), for example, the static pressure will increase. In incompressible flow
+the amount of this increase is just $q = \tfrac{1}{2}\rho V^{2}$, where $V$ is the
+free-stream velocity. At other points on the body, the static pressure will vary
+between its value at the stagnation
+point---$(p_s)_{\mathrm{stag}} = p_o + \tfrac{1}{2}\rho V^{2}$---and some minimum
+value which \emph{can} be \emph{less} than the ambient static pressure $p_o$.
+
+The fundamental relationship which relates changes in static pressure to changes in
+dynamic pressure $q$ is \emph{Bernoulli's Principle}, which states that the total
+pressure $P_{\mathrm{tot}}$ is a constant in frictionless, incompressible flow. The
+total pressure is simply the sum of the local static and dynamic pressures, at any
+location in the flow:
+\begin{equation}\label{ch3:eq:22}
+p_{\mathrm{tot}} = p_{s1} + \tfrac{1}{2}\rho u_1^{2}
+  = p_{s2} + \tfrac{1}{2}\rho u_2^{2} = \text{constant}
+\end{equation}
+where $p_{s1}$, $p_{s2}$, and $u_1$, $u_2$ are the static pressures and velocities at
+any two points which have been designated point 1 and point 2, respectively. If we
+choose point 1 to be a stagnation point, $u_1$ is zero and
+\begin{equation}\label{ch3:eq:23}
+p_{\mathrm{tot}} = (p_s)_{\mathrm{stag}} = p_s + \tfrac{1}{2}\rho u^{2}
+  = \text{constant}
+\end{equation}
+The total pressure of the flow is thus seen to be equal to the static pressure at a
+stagnation point.
+
+The increment in static pressure at stagnation, $q = \tfrac{1}{2}\rho V^{2}$, is an
+important quantity in aerodynamics, as in many applications the force experienced by
+an object resulting from the flow of fluid around it is proportional to $q$. This
+explains, for instance, why the drag coefficient is defined as
+\begin{equation}\label{ch3:eq:24}
+\CD \equiv \frac{D}{qA_r}
+\end{equation}
+In an analogous manner we can define a \emph{pressure coefficient}. It is apparent
+from the above discussion that \emph{differences} in pressure, rather than absolute
+pressures, are important in determining fluid dynamic forces. Hence we define
+\begin{equation}\label{ch3:eq:25}
+C_p \equiv \frac{\Delta p}{q} \equiv \frac{p - p_\infty}{q}
+\end{equation}
+where $p$ is the local static pressure, $p_\infty$ is the ambient atmospheric
+pressure (free-stream static pressure)---101,325 newtons/meter$^{2}$ at sea
+level---and $q$ is the free-stream dynamic pressure, $\tfrac{1}{2}\rho V^{2}$. At a
+stagnation point, equation~\eqref{ch3:eq:25} gives the result $C_p = +1.0$.
+
+In Section~\ref{ch3:sec:4}, Bernoulli's Principle and the concept of the pressure
+coefficient will be used to explain the existence of pressure drag.
+
+\subsection{Constituents of the Total Drag Coefficient}\label{ch3:sec:2.3}
+
+It has been found in practice that a systematic analysis of drag requires some
+scheme for dividing the drag into components, which can then be studied separately.
+In subsonic flow problems, the most common partitioning technique is to divide the
+total drag into \emph{skin-friction drag} (due to forces tangential to the body
+surface) and \emph{pressure drag} (resulting from forces perpendicular to the body
+surface). Integration of the \emph{components} of the tangential and normal forces
+which are \emph{parallel to the direction of motion} leads to the following general
+expressions for the drag~(\ref{ch3:ref:14}):
+\begin{alignat}{2}
+&\text{pressure drag:}\qquad & D_p &= -\iint_{S} p\cos(\vec{n},\vec{V})\,dS
+  \label{ch3:eq:26}\\
+&\text{skin-friction drag:}\qquad & D_v &= \iint_{S} \tau\cos(\vec{t},\vec{V})\,dS
+  \label{ch3:eq:27}
+\end{alignat}
+The notation associated with these so-called \emph{double integrals} or
+\emph{surface integrals} is illustrated in Figure~\ref{ch3:fig:11}. The effect of
+performing the calculus operation called ``integration'' is just to add up all the
+infinitesimal contributions to drag resulting from the pressure and viscous
+skin-friction stress on each infinitesimal bit of surface area $dS$. The pressure
+integration results in equation~\eqref{ch3:eq:26}, while the friction integration
+results in equation~\eqref{ch3:eq:27}. The area $S$ includes the base area of the
+rocket.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig11.png}
+  \caption{Notation used in the surface integrations for calculating friction drag
+  and pressure drag. The unit vector $\vec{n}$, perpendicular to the surface, and
+  the unit vector $\vec{t}$, tangent to the surface, originate from the center of
+  the small element of area $dS$. The notation $\cos(\vec{n},\vec{V})$ refers to the
+  cosine of the angle between $\vec{n}$ and $\vec{V}$, while $\cos(\vec{t},\vec{V})$
+  is the cosine of the angle between $\vec{t}$ and $\vec{V}$.}
+  \label{ch3:fig:11}
+\end{figure}
+
+The pressure drag may be further subdivided into the integral over the base area,
+called \emph{base drag}, and the integral over the rest of the model's surface,
+called \emph{pressure foredrag}:
+\begin{equation}\label{ch3:eq:28}
+D_p = -\iint_{S_b} p\cos(\vec{n},\vec{V})\,dS_b
+  - \iint_{S_s} p\cos(\vec{n},\vec{V})\,dS_s
+\end{equation}
+where $S_b$ denotes the base area and $S_s$ the total forebody surface, or
+``wetted'', area. Equation~\eqref{ch3:eq:28} may also be written using the
+abbreviated notation
+\begin{equation}\label{ch3:eq:29}
+D_p = D_b + D_f
+\end{equation}
+where $D_b$ denotes the base drag and $D_f$ the pressure foredrag. This arrangement
+is convenient because base drag is an important topic in itself, and special
+techniques are employed to reduce it. The total drag at zero angle of attack is then
+\begin{equation}\label{ch3:eq:30}
+D = D_b + D_f + D_v
+\end{equation}
+
+Skin friction drag is discussed in Section~\ref{ch3:sec:3}, and base drag in
+Section~\ref{ch3:sec:4}. The analysis of these sections will be valid only for zero
+angle of attack; in Section~\ref{ch3:sec:5}, the additional drag $D_\alpha$ due to
+angular deflection of the rocket longitudinal axis from the direction of the
+relative airstream will be considered. The total drag at a general, nonzero angle of
+attack may then be written
+\begin{equation}\label{ch3:eq:31}
+D = D_b + D_f + D_v + D_\alpha
+\end{equation}
+
+Dividing by $\tfrac{1}{2}\rho V^{2}A_r$, where the $A_r$ we will be using is the
+rocket's \emph{maximum frontal area}, we can express the drag in nondimensional form
+as the sum of constituent drag coefficients:
+\begin{equation}\label{ch3:eq:32}
+\frac{D}{\tfrac{1}{2}\rho V^{2}A_r} = \CD = C_{Db} + C_{Df} + C_{Dv} + C_{D\alpha}
+\end{equation}
+You should note the use of maximum cross-sectional area in this chapter for
+computing drag coefficients, as opposed to the use of the cross-sectional area at
+the base of the nose as the reference area for determining the normal force
+coefficients of Chapter~\ref{ch2}'s Barrowman analysis.
+
+The above scheme of componentization will be used to study model rocket drag in
+succeeding sections. At this point something might be said about the relative
+importance of the various terms in equation~\eqref{ch3:eq:32}. According to
+experimental evidence to date, the order of importance of the drag components of a
+typical streamlined, well-constructed model rocket might appear as follows:
+\begin{enumerate}[label=\arabic*),leftmargin=4.5em,labelsep=0.8em]
+  \item \emph{Launch lug drag}: In models having launch lugs, the lug produces a
+  component of pressure drag that must be added to the pressure foredrag. This
+  component accounts for about 35\% of the total $\CD$.
+  \item \emph{Skin-friction drag of forebody}: Accounts for 25\% to 30\% of the
+  total $\CD$ in models having launch lugs, 35\% to 45\% in lugless models.
+  \item \emph{Skin-friction drag of fins}: Accounts for 25\%--30\% of the total
+  $\CD$ in models with lugs, 35\%--45\% in lugless models.
+  \item \emph{Base drag}: Accounts for about 10\% of the total $\CD$ in models having
+  lugs, about 15\% in lugless models.
+  \item \emph{Pressure foredrag}: Forebody pressure drag from sources other than
+  launch lugs accounts for less than 1\% of the total $\CD$.
+\end{enumerate}
+The order of this list, and the relative magnitudes of the contributions, can be
+altered drastically by improper construction techniques. Failing to provide the
+fins with the proper airfoil shape gives rise to a pressure drag several times
+greater than the \emph{total} drag would be with properly-shaped fins. Rough surface
+finishes and blunt nosecones also lead to considerable increases in drag, though not
+so great as do unshaped fins, and the increase in drag due to nonzero angle of
+attack can be quite large even for a well-streamlined vehicle. It is not uncommon
+for a model rocket to have twice the drag at a $10\dg$ angle of attack that it
+exhibits at $0\dg$.
+
+Typical values of the total drag coefficient for model rockets with launch lugs
+range from 0.5 to 0.8, depending on the quality of the design and construction of
+the model. By comparison, a circular disc held perpendicular to the flow has a
+$\CD$ of 1.1; the disc thus experiences a drag force 50\% to 100\% greater than that
+on a model rocket of the same diameter in an airstream of the same velocity. This
+result foreshadows our later discussion on the undesirability of blunt shapes and
+abrupt protrusions in model rocket work. To quote an example, removing the launch
+lug from a certain model rocket may reduce its drag coefficient from 0.7 to about
+0.45.
+
+Figure~\ref{ch3:fig:12} summarizes diagrammatically the important topics in model
+rocket drag to be considered in detail in the following pages.

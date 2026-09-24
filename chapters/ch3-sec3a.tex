@@ -1,1 +1,592 @@
-% ch3-sec3a -- stub, to be transcribed (milestone M3)
+% chapters/ch3-sec3a.tex -- 3. Viscous (Skin-Friction) Drag; 3.1 The Importance of Viscosity in Real
+% Fluid Flow; 3.2 The Distinction Between Laminar and Turbulent Flow; 3.3 The Laminar Boundary Layer on
+% a Smooth, Flat Plate (PDF 340-362, up to heading 3.4; printed pp. 308-330)
+\section{Viscous (Skin-Friction) Drag}\label{ch3:sec:3}
+
+\subsection{The Importance of Viscosity in Real Fluid Flow}\label{ch3:sec:3.1}
+
+In Section~\ref{ch3:sec:2} the skin-friction drag was defined as
+\begin{equation}\label{ch3:eq:33}
+D_v = \iint_{S} \tau_o \cos(\vec{t},\vec{V})\,dS
+\end{equation}
+where $\tau_o$ is the skin-friction force per unit area at the surface of the
+model (equal to the viscous shearing stress in the air directly adjacent to
+the model surface). Recalling equation~\eqref{ch3:eq:12b}, we can write
+$\tau_o$ as
+\begin{equation}\label{ch3:eq:34}
+\tau_o = \mu\left(\frac{\partial u}{\partial y}\right)_{y=0}
+\end{equation}
+where we have adopted a ``local'' coordinate system in which the $y$-axis
+extends perpendicularly upwards from the point on the rocket's surface at
+which $\tau_o$ is being evaluated. Earlier we saw, via an estimate of typical
+model rocket Reynolds numbers, that inertial forces are about a million times
+greater than viscous forces at average model rocket flight speeds. Why, then,
+not ignore the viscous forces completely in our analysis?
+
+% Figure 12 is printed on PDF 341, after the "3." heading on PDF 340 and between equation (33)
+% and the "where \tau_o is ..." sentence of this paragraph. The paragraph that first refers to it
+% ("Figure 12 summarizes diagrammatically ...", PDF 340) is the boundary paragraph of ch3-sec2b
+% (STYLE.md rule 2), so the figure is placed at the first paragraph break of this unit
+% (inventory/ch3.csv and figures/manifest.csv assign Figure 12 to ch3-sec3a).
+% As with Figure 8 in ch1-sec3.tex: ch3-sec2b.tex carries only \ref{ch3:fig:12} (no figure
+% environment), so this is the sole copy; it stays here so the numbering of Figures 13-16 is
+% unaffected and the standalone builds keep \figstart{11}.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig12.png}
+  \caption{Causes and constituents of model rocket drag. The various drag
+  constituents and flow phenomena shown here are discussed in detail in later
+  sections of this chapter. The thickness of the boundary layer in this
+  drawing has been greatly exaggerated to make it visible to the eye.}
+  \label{ch3:fig:12}
+\end{figure}
+
+The mathematical model which corresponds to this assumption is the so-called
+``perfect fluid'' of classical hydrodynamics. The theory of the perfect fluid
+model, which assumes a fluid that is incompressible and has a coefficient of
+viscosity of zero, was well developed before the beginning of the 20th Century
+since the mathematical simplifications permitted by the perfect fluid
+assumption are considerable. The results one obtains from calculations based
+on classical hydrodynamics, however, assert that the drag on a closed body of
+\emph{any shape} moving at constant velocity through a perfect fluid is
+exactly \emph{zero}. This prediction was so contradictory to all experimental
+evidence---even that available in the mid-19th Century---that it came to be
+called d'Alembert's Paradox. It was apparent that one of the fundamental
+assumptions of the ideal fluid theory was physically inaccurate.
+
+In 1904 the great German scientist Ludwig Prandtl (1875--1953) resolved this
+dilemma by introducing the concept of the \emph{boundary layer}. According to
+this theory, the influence of viscosity in fluids whose viscosity is small (or
+in situations where the Reynolds number is large) is confined to a thin region
+near the surface of any solid body immersed in the flow. The fluid obeys the
+rule of \emph{no slip} at the wall---contrary to the behavior of the perfect
+fluid, which was allowed to flow past a body freely---and hence the fluid
+velocity must increase from zero at the body wall to the full free-stream
+value in a very short distance, perhaps a few hundredths or thousandths of a
+centimeter (note that the terms ``wall'' and ``surface'' are being used
+interchangeably in this discussion). This condition requires that the fluid
+velocity increase very rapidly with distance from the body surface; i.e., that
+the \emph{velocity gradient} $\frac{\partial u}{\partial y}$ be very large in
+the boundary layer, and hence $\tau_o$ in equation~\eqref{ch3:eq:34} may
+\emph{not} be negligible even if $\mu$ is small.
+
+This theory essentially divides the flow about a body at high Reynolds numbers
+into two regions. Within the thin boundary layer viscous forces are of about
+the same magnitude as inertial forces, and hence cannot be ignored. Outside
+the boundary layer, the flow conforms very closely to the behavior of a
+perfect fluid: frictional forces are negligible in this region. This
+partitioning of the flow permits a mathematical solution to the problem of
+flow about a body at high Reynolds numbers to be obtained. This is generally
+done by first determining the flow about the body by the methods of classical
+hydrodynamics---the so-called ``potential flow'' theory. The solution thus
+obtained for the flow outside the boundary layer provides what mathematicians
+call ``boundary conditions'' which allow the solution of the boundary-layer
+equations to be carried out. The two solutions are then ``grafted together''
+where the boundary layer ends and the outer flow begins, to provide a picture
+of the total flow pattern.
+
+The mathematical difficulties involved in the solution of a three-dimensional
+boundary layer, as on a model rocket, are nevertheless of momentous
+proportion. Several basic problems, such as the location of the ``transition
+point'' where the character of the boundary-layer flow changes from
+``laminar'' to ``turbulent'' (these terms will be discussed in detail later
+on), as yet lack a firm theoretical foundation for their solution.
+Furthermore, it is doubtful whether a complete mathematical description of the
+flow pattern about his model would be of great benefit to the hobbyist, as
+such a description can only be obtained by laborious numerical techniques
+requiring the use of an electronic computer for each and every case to be
+solved.
+
+This section will therefore confine itself to a discussion of the basic
+concepts of boundary-layer theory likely to be of greatest interest and
+utility to the model rocketeer. The ultimate aim, of course, is to develop
+expressions for the viscous stresses in the boundary layer which can be
+related directly to the skin-friction drag. Fortunately, with the aid of
+certain assumptions which will be enumerated as we go on, one \emph{can}
+derive results which are applicable to the calculation of skin-friction drag
+on model rockets.
+
+\subsection{The Distinction Between Laminar and Turbulent Flow}\label{ch3:sec:3.2}
+
+The fluid flow within a boundary layer may be characterized as either
+\emph{laminar} or \emph{turbulent}. The distinction between these two states
+may be observed in the stream of smoke rising from a burning cigarette in very
+still air (Plate~\ref{ch3:plate:1}). For a short vertical distance the column
+is narrow and straight, but above this region the flow disintegrates into a
+disorderly, eddying stream. The smooth, unmixed phase of the flow is termed
+\emph{laminar}; the rough, eddying part is called \emph{turbulent}.
+
+\begin{plate}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth,height=0.7\textheight,keepaspectratio]{figures/ch3/plate01.jpg}
+  \caption{Smoke rising from a cigarette in a still room. The path of the
+  smoke is at first smooth and straight (laminar flow), but after it has risen
+  for a certain distance it becomes rough and mixed (turbulent flow).}
+  \label{ch3:plate:1}
+\end{plate}
+
+Whether the flow in the boundary layer along an object will be laminar or
+turbulent depends to a large extent on the Reynolds number, although physical
+conditions such as air turbulence and surface roughness can assume important
+roles. Experimentally, the value of $R$ at which the transition from laminar
+to turbulent flow in the boundary layer over a flat plate will occur has been
+found to lie in the range between $3 \times 10^{5}$ and $3 \times 10^{6}$
+(\ref{ch3:ref:15}). Since this interval includes the previously calculated
+typical value of $R$ for a small model rocket, we may expect both laminar and
+turbulent boundary-layer flows to exist on model rockets during flight,
+depending on the velocity.
+
+Consequently, we shall examine both types of boundary-layer flow. Because the
+analysis for a three-dimensional body can be extremely complicated, our
+discussion will be restricted to the steady, two-dimensional flow past a thin,
+flat plate held parallel to the airstream. Although this is geometrically a
+quite simple case, the skin-friction coefficients derived from the analysis of
+the flat plate in laminar and turbulent flow form the basis for the
+calculation of skin-friction drag on all three-dimensional shapes (assuming
+that boundary-layer separation, discussed in Section~\ref{ch3:sec:4.2}, is not
+present). The results of Sections~\ref{ch3:sec:3.3} and~\ref{ch3:sec:3.4} for
+laminar and turbulent flow, respectively, will be used extensively later on in
+this chapter for the determination of model rocket drag coefficients.
+
+Next, in Section~\ref{ch3:sec:3.5}, a discussion of the mechanism of
+boundary-layer transition is presented. Since laminar and turbulent boundary
+layers produce markedly different skin-friction coefficients, even at
+identical Reynolds numbers, it is important to know the location of the
+transition zone in order to calculate viscous drag accurately. This problem,
+unfortunately, has not as yet been well-researched for model rockets, and it
+is necessary to assume a location for the transition. Section~\ref{ch3:sec:3.5}
+analyzes the important factors affecting the location of the transition point
+and discusses the calculation of the total skin-friction coefficient for
+boundary layers exhibiting both laminar and turbulent regions.
+
+Section~\ref{ch3:sec:3} will conclude with some estimates of the correction
+factors required to apply the flat-plate results to three-dimensional
+configurations. This will be seen to be small, usually 5\% or less, for the
+fins and body of a model rocket.
+
+\subsection{The Laminar Boundary Layer on a Smooth, Flat Plate}\label{ch3:sec:3.3}
+
+In laminar flow, the fluid elements move parallel to the surface of the body
+and there is little or no mixing of the fluid---i.e., transfer of
+momentum---between adjacent streamlines. Historically, the first application
+of Prandtl's boundary-layer theory was accomplished by H.~Blasius, who in 1908
+computed the laminar boundary layer in uniform potential flow past a flat
+plate. Since this example illustrates many of the important features of
+boundary-layer analysis, we shall examine it in detail.
+
+Steady fluid motion about such a plate is depicted in
+Plate~\ref{ch3:plate:2} (\ref{ch3:ref:12}). The streamlines of the flow were
+made visible by sprinkling aluminum particles on the water; the length of the
+streaks left by the particles is proportional to their velocity. Very near the
+surface of the plate, the traces are much shorter than in the exterior flow;
+this region of reduced velocity is the boundary layer. Note also that the
+apparent thickness of the boundary layer, which we shall shortly define in
+mathematical terms, increases with distance downstream along the plate. This
+is because the boundary-layer shearing stresses are retarding a greater volume
+of fluid as distance from the leading edge increases.
+
+\begin{plate}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/plate02.jpg}
+  \caption{Flow about a thin plate of length $\ell$ at a Reynolds number
+  $R_\ell$ of 3.}
+  \label{ch3:plate:2}
+\end{plate}
+
+Note that there is no indication of the absolute size of the plate in the
+photograph. Hence we expect the velocity profiles (see
+Figure~\ref{ch3:fig:13}) at all $x$-stations on the plate to be mathematically
+similar; i.e., the dimensionless ratio $u/U_\infty$ may be expressed as some
+function of the dimensionless coordinate ratio $y/\delta$, where $U_\infty$ is
+the velocity of the exterior flow immediately outside the boundary layer
+(calculated by potential-flow theory) and $\delta$ is the boundary-layer
+thickness at any given location on the plate. This \emph{function} must be the
+\emph{same} at all distances $x$ from the leading edge of the plate, although
+$\delta$ itself becomes greater as $x$ increases.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig13.png}
+  \caption{Profiles of longitudinal velocity in a laminar boundary layer over
+  one side of a flat plate at zero angle of attack.}
+  \label{ch3:fig:13}
+\end{figure}
+
+We can make an estimate of the boundary-layer thickness $\delta$ by equating
+the viscous and inertial forces within the boundary layer and solving for the
+value of $\delta$ at which this condition occurs. As seen in
+Section~\ref{ch3:sec:2.2}, the inertial forces in the fluid flowing near an
+object of characteristic dimension $L$ are of the order $\rho U_\infty^2/L$.
+The friction forces per unit volume in a boundary layer of thickness $\delta$
+are of the order $\mu U_\infty/\delta^2$, as the velocity gradient
+$\frac{\partial u}{\partial y}$ exists only within the thickness of the
+boundary layer itself. We then obtain
+\begin{equation}\label{ch3:eq:35}
+\frac{\mu U_\infty}{\delta^2} \sim \frac{\rho U_\infty^2}{L}
+\end{equation}
+Solving for the boundary-layer thickness $\delta$,
+\begin{equation}\label{ch3:eq:36}
+\delta \sim \sqrt{\frac{\mu L}{\rho U_\infty}} = \sqrt{\frac{\nu L}{U_\infty}}
+\end{equation}
+In the case of the flat plate the characteristic length of interest is the
+distance from the leading edge $x$. Substituting $x$ for $L$, we obtain the
+boundary-layer thickness as
+\begin{equation}\label{ch3:eq:37}
+\delta \sim \sqrt{\frac{\nu x}{U_\infty}}
+\end{equation}
+
+The thickness of the boundary layer is thus seen to vary with the square root
+of the distance from the leading edge. The object of a mathematical solution
+to this problem is to obtain the constant of proportionality in the expression
+for $\delta$, and to determine functions for the boundary-layer velocity
+profile and the skin-friction drag.
+
+The equations of fluid flow for a general, two-dimensional boundary layer are
+\begin{align}
+\frac{\partial u}{\partial t} + u\frac{\partial u}{\partial x}
+  + v\frac{\partial u}{\partial y}
+  &= -\frac{1}{\rho}\frac{dp}{dx} + \nu\frac{\partial^2 u}{\partial y^2}
+  \label{ch3:eq:38}\\
+\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} &= 0
+  \label{ch3:eq:39}
+\end{align}
+where $u$ and $v$ are the local components of velocity in the $x$- and
+$y$-directions, respectively. The boundary conditions required to completely
+define the solution to this set of equations are
+\begin{alignat*}{3}
+y &= 0\colon &\quad u &= v = 0 &\qquad&
+  \text{(both the tangential and the normal velocity}\\
+&&&&& \text{\phantom{(}components must vanish at the wall)}\\[1ex]
+y &= \infty\colon & u &= U_\infty(x,t) &&
+  \text{(the tangential velocity component must}\\
+&&&&& \text{\phantom{(}be identical to that computed from potential-}\\
+&&&&& \text{\phantom{(}flow theory at large distances from the wall)}
+\end{alignat*}
+Those readers who are interested in the derivation of these equations from the
+complete Navier-Stokes equations for general fluid flow may consult
+Schlichting (\ref{ch3:ref:15}).
+
+The Blasius problem assumes a steady flow, so all derivatives with respect to
+time will vanish. Furthermore, the potential flow cannot detect the existence
+of a thin, flat plate held parallel to it; $U_\infty$ just remains constant at
+the free-stream value far from the plate, and hence $dp/dx$ is zero (there is
+no pressure gradient along the plate), as may be determined from Bernoulli's
+equation. The boundary-layer equations are then seen to reduce to
+\begin{align}
+u\frac{\partial u}{\partial x} + v\frac{\partial u}{\partial y}
+  &= \nu\frac{\partial^2 u}{\partial y^2} \label{ch3:eq:40}\\
+\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} &= 0
+  \label{ch3:eq:41}
+\end{align}
+and the boundary conditions become
+\begin{alignat*}{3}
+y &= 0\colon &\quad u &= v = 0\\
+y &= \infty\colon & u &= U_\infty &\qquad&
+  \text{(note that $U_\infty$ is now independent of $x$ and $t$)}
+\end{alignat*}
+
+To solve these equations Blasius introduced a new dimensionless variable
+$\eta = \frac{y}{\delta}$, or, using the expression for the approximate
+boundary-layer thickness from equation~\eqref{ch3:eq:37},
+\begin{equation}\label{ch3:eq:42}
+\eta = y\sqrt{\frac{U_\infty}{\nu x}}
+\end{equation}
+A dimensionless \emph{streamfunction} $f(\eta)$ was also introduced, such that
+\begin{equation}\label{ch3:eq:43}
+f(\eta) = \frac{\psi}{\sqrt{\nu x U_\infty}}
+\end{equation}
+where $\psi(x,y)$ is the streamfunction that had been well known to
+potential-flow theorists of the 19th Century; it is related to the flow
+velocities $u$ and $v$ in such a manner that it identically satisfies
+equation~\eqref{ch3:eq:39}:
+\begin{subequations}\label{ch3:eq:44}
+\begin{align}
+u &= \frac{\partial\psi}{\partial y} \label{ch3:eq:44a}\\
+v &= -\frac{\partial\psi}{\partial x} \label{ch3:eq:44b}
+\end{align}
+\end{subequations}
+from which we see that
+\begin{align*}
+\frac{\partial u}{\partial x} &= \frac{\partial^2\psi}{\partial y\,\partial x}\\
+\frac{\partial v}{\partial y} &= -\frac{\partial^2\psi}{\partial x\,\partial y}
+  = -\frac{\partial^2\psi}{\partial y\,\partial x}\\
+\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y}
+  &= \frac{\partial^2\psi}{\partial y\,\partial x}
+  - \frac{\partial^2\psi}{\partial y\,\partial x} \equiv 0
+\end{align*}
+Using equations~\eqref{ch3:eq:42} and~\eqref{ch3:eq:43} to substitute into the
+expressions for the velocity components, Blasius obtained
+\begin{align}
+u &= \frac{\partial\psi}{\partial y}
+  = \frac{\partial\psi}{\partial\eta}\frac{\partial\eta}{\partial y}
+  = U_\infty\frac{df(\eta)}{d\eta} = U_\infty f'(\eta) \label{ch3:eq:45}\\
+v &= -\frac{\partial\psi}{\partial x}
+  = \tfrac{1}{2}\sqrt{\frac{\nu U_\infty}{x}}\,(\eta f' - f) \label{ch3:eq:46}
+\end{align}
+The prime symbol (${}'$) is often used in calculus to denote a derivative;
+hence $\frac{df(\eta)}{d\eta}$ is also written $f'(\eta)$, or simply $f'$.
+Higher-order derivatives are denoted by multiple primes; hence
+$\frac{d^2 f(\eta)}{d\eta^2}$ is equivalent to $f''$, etc.
+
+From equations~\eqref{ch3:eq:45} and~\eqref{ch3:eq:46} it is possible to
+obtain expressions for the velocity derivatives of equation~\eqref{ch3:eq:40}
+in terms of the nondimensional vertical coordinate $\eta$ and the
+nondimensional streamfunction $f$:
+\begin{align}
+\frac{\partial u}{\partial x}
+  &= \frac{\partial u}{\partial\eta}\frac{\partial\eta}{\partial x}
+  = \left[U_\infty f''\right]\left[-\frac{\eta}{2x}\right] \label{ch3:eq:47}\\
+\frac{\partial u}{\partial y}
+  &= \frac{\partial u}{\partial\eta}\frac{\partial\eta}{\partial y}
+  = \left[U_\infty f''\right]\sqrt{\frac{U_\infty}{\nu x}} \label{ch3:eq:48}\\
+\frac{\partial^2 u}{\partial y^2}
+  &= U_\infty\sqrt{\frac{U_\infty}{\nu x}}\,
+  \frac{\partial f''}{\partial\eta}\frac{\partial\eta}{\partial y}
+  = \frac{U_\infty^2}{\nu x}f''' \label{ch3:eq:49}
+\end{align}
+Substituting~\eqref{ch3:eq:45} through~\eqref{ch3:eq:49}
+into~\eqref{ch3:eq:40}, we have
+\begin{equation}\label{ch3:eq:50}
+-\frac{U_\infty^2}{2x}\eta f'f'' + \frac{U_\infty^2}{2x}(\eta f' - f)f''
+  = \nu\frac{U_\infty^2}{x\nu}f'''
+\end{equation}
+which can be algebraically simplified to
+\begin{equation}\label{ch3:eq:51}
+ff'' + 2f''' = 0
+\end{equation}
+with the boundary conditions
+\begin{alignat}{2}
+\eta &= 0\colon &\qquad& f = 0;\quad f' = 0 \label{ch3:eq:52}\\
+\eta &= \infty\colon && f' = 1 \label{ch3:eq:53}
+\end{alignat}
+
+Now the advantage Blasius obtained by introducing the dimensionless vertical
+coordinate and dimensionless streamfunction was that he was able to reduce
+equations~\eqref{ch3:eq:40} and~\eqref{ch3:eq:41}, a nonlinear system of two
+partial differential equations, to equation~\eqref{ch3:eq:51}, which is known
+as an \emph{ordinary}, \emph{homogeneous}, \emph{nonlinear} differential
+equation: ``ordinary'' because $f$ is a function of the single variable
+$\eta$, ``homogeneous'' because the right side is zero, and ``nonlinear''
+because the product of $f$ with $f''$ appears in the equation. Such an
+equation is easier to solve than the original system of equations;
+``easier'', however, does \emph{not} mean ``easy'', and a solution to
+equation~\eqref{ch3:eq:51} has never been obtained in closed form. Power
+series methods have been used to obtain accurate solutions by numerical means,
+but the procedure is rather complex and its mechanics are of little interest
+to model rocketeers (readers desiring a presentation of the method are urged
+to consult Reference~\ref{ch3:ref:15}). Table~\ref{ch3:tab:1} presents the
+numerical tabulation obtained by L.~Howarth from his highly accurate solution
+of equation~\eqref{ch3:eq:51}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Numerical solution of the laminar boundary layer over a flat plate
+  at zero angle of attack, obtained after the method of H.~Blasius by
+  L.~Howarth.}
+  \label{ch3:tab:1}
+  \small
+  \sisetup{group-digits=none}
+  \begin{tabular}{@{}S[table-format=1.1]
+                  S[table-format=1.5]
+                  S[table-format=1.5]
+                  S[table-format=1.5]@{}}
+    \toprule
+    {$\eta = y\sqrt{\dfrac{U_\infty}{\nu x}}$} & {$f$} & {$f' = u/U_\infty$} & {$f''$} \\
+    \midrule
+    0.0 & 0.00000 & 0.00000 & 0.33206 \\
+    0.2 & 0.00664 & 0.06641 & 0.33199 \\
+    0.4 & 0.02656 & 0.13277 & 0.33147 \\
+    0.6 & 0.05974 & 0.19894 & 0.33008 \\
+    0.8 & 0.10611 & 0.26471 & 0.32739 \\
+    1.0 & 0.16557 & 0.32979 & 0.32301 \\ \addlinespace[3pt]
+    1.2 & 0.23795 & 0.39378 & 0.31659 \\
+    1.4 & 0.32298 & 0.45627 & 0.30787 \\
+    1.6 & 0.42032 & 0.51676 & 0.29667 \\
+    1.8 & 0.52952 & 0.57477 & 0.28293 \\
+    2.0 & 0.65003 & 0.62977 & 0.26675 \\ \addlinespace[3pt]
+    2.2 & 0.78120 & 0.68132 & 0.24835 \\
+    2.4 & 0.92230 & 0.72899 & 0.22809 \\
+    2.6 & 1.07252 & 0.77246 & 0.20646 \\
+    2.8 & 1.23099 & 0.81152 & 0.18401 \\
+    3.0 & 1.39682 & 0.84605 & 0.16136 \\ \addlinespace[3pt]
+    3.2 & 1.56911 & 0.87609 & 0.13913 \\
+    3.4 & 1.74696 & 0.90177 & 0.11788 \\
+    3.6 & 1.92954 & 0.92333 & 0.09809 \\
+    3.8 & 2.11605 & 0.94112 & 0.08013 \\
+    4.0 & 2.30576 & 0.95552 & 0.06424 \\ \addlinespace[3pt]
+    4.2 & 2.49806 & 0.96696 & 0.05052 \\
+    4.4 & 2.69238 & 0.97587 & 0.03897 \\
+    4.6 & 2.88826 & 0.98269 & 0.02948 \\
+    4.8 & 3.08534 & 0.98779 & 0.02187 \\
+    5.0 & 3.28329 & 0.99155 & 0.01591 \\ \addlinespace[3pt]
+    5.2 & 3.48189 & 0.99425 & 0.01134 \\
+    5.4 & 3.68094 & 0.99616 & 0.00793 \\
+    5.6 & 3.88031 & 0.99748 & 0.00543 \\
+    5.8 & 4.07990 & 0.99838 & 0.00365 \\
+    6.0 & 4.27964 & 0.99898 & 0.00240 \\ \addlinespace[3pt]
+    6.2 & 4.47948 & 0.99937 & 0.00155 \\
+    6.4 & 4.67938 & 0.99961 & 0.00098 \\
+    6.6 & 4.87931 & 0.99977 & 0.00061 \\
+    6.8 & 5.07928 & 0.99987 & 0.00037 \\
+    7.0 & 5.27926 & 0.99992 & 0.00022 \\ \addlinespace[3pt]
+    7.2 & 5.47925 & 0.99996 & 0.00013 \\
+    7.4 & 5.67924 & 0.99998 & 0.00007 \\
+    7.6 & 5.87924 & 0.99999 & 0.00004 \\
+    7.8 & 6.07923 & 1.00000 & 0.00002 \\
+    8.0 & 6.27923 & 1.00000 & 0.00001 \\ \addlinespace[3pt]
+    8.2 & 6.47923 & 1.00000 & 0.00001 \\
+    8.4 & 6.67923 & 1.00000 & 0.00000 \\
+    8.6 & 6.87923 & 1.00000 & 0.00000 \\
+    8.8 & 7.07923 & 1.00000 & 0.00000 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+These data can be used to obtain a picture of the velocity distribution in the
+boundary layer; the results for the horizontal velocity component are plotted
+in Figure~\ref{ch3:fig:14}. Near the wall the horizontal velocity component is
+nearly a linear function of the $y$ coordinate, but as $y$ increases the slope
+of the curve rapidly steepens as $u$ approaches the potential-flow velocity
+$U_\infty$.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig14.png}
+  \caption{Horizontal velocity component vs.\ $\eta$ in a laminar boundary
+  layer over a flat plate at zero angle of attack. $\eta$ has been taken as
+  the vertical axis because it is the dimensionless coordinate perpendicular to
+  the plate's surface. The quantity $\delta^{*}$ is called the
+  \emph{displacement thickness} and is equal to approximately
+  $1/3\,\delta$.}
+  \label{ch3:fig:14}
+\end{figure}
+
+Notice that the free-stream velocity is attained \emph{asymptotically}; i.e.,
+that the boundary layer shades gradually into the exterior flow, so that the
+concept of ``boundary-layer thickness'' is ambiguous. The generally-accepted
+definition is based on the distance from the wall where the velocity differs
+by 1\% from $U_\infty$; i.e., where $u = 0.99U_\infty$. From
+Table~\ref{ch3:tab:1} we see that this corresponds to $\eta \cong 5.0$; hence
+\begin{equation}\label{ch3:eq:54}
+\delta = 5\sqrt{\frac{\nu x}{U_\infty}}
+\end{equation}
+Evaluating this expression for $U_\infty = 60$ meters/second (6000
+centimeters/second) and $\nu = 1.495 \times 10^{-5}$ meter$^{2}$/second
+(0.1495 cm$^{2}$/second), we obtain
+\begin{subequations}\label{ch3:eq:55}
+\begin{equation}\label{ch3:eq:55a}
+\delta = 3.10 \times 10^{-3}\sqrt{x}
+\end{equation}
+for $x$ and $\delta$ in meters, and
+\begin{equation}\label{ch3:eq:55b}
+\delta = 3.10 \times 10^{-2}\sqrt{x}
+\end{equation}
+\end{subequations}
+for $x$ and $\delta$ in centimeters. At $x = 1$ cm., then, the boundary-layer
+thickness $\delta$ is .031 cm.; at $x = 10$ cm.\ $\delta$ is .098 cm., while
+at $x = 100$ cm.\ (1 meter) $\delta$ is .310 cm. The corresponding Reynolds
+numbers based on $x$ are $4.02 \times 10^{4}$, $4.02 \times 10^{5}$, and
+$4.02 \times 10^{6}$, respectively.
+
+The transverse component of velocity, $v$, can also be determined from the
+Blasius solution by substituting values for $f$ and $f'$ at each value of
+$\eta$ desired into equation~\eqref{ch3:eq:46}. The variation of the
+nondimensional quantity $\frac{v}{U_\infty}\sqrt{\frac{U_\infty x}{\nu}}$ with
+$\eta$ is plotted in Figure~\ref{ch3:fig:15}. As $\eta$ approaches infinity
+$v$ does not vanish, but instead attains the asymptotic value
+\begin{equation}\label{ch3:eq:56}
+v_\infty = 0.865\,U_\infty\sqrt{\frac{\nu}{xU_\infty}}
+\end{equation}
+Examining again the case of $U_\infty = 60$ meters/second, we obtain
+\begin{equation}\label{ch3:eq:57}
+v_\infty = \frac{3.22 \times 10^{-2}}{\sqrt{x}} \qquad \text{meters/second}
+\end{equation}
+where $x$ must be given in meters. Thus, at a point 1 cm.\ from the plate
+leading edge (that is, 0.01 meter), the value of $v_\infty$ is 0.322
+meter/second---insignificant, of course, compared with $U_\infty$ but still
+nonzero. The nonzero value of the transverse velocity at the upper edge of the
+boundary layer is explained by the fact that the increasing boundary-layer
+thickness causes the airstream to be displaced from the wall as it flows along
+it, creating a slight outward velocity component. This is \emph{not} the same
+as the flow \emph{separating} entirely from the wall, a phenomenon that occurs
+only in an ``adverse pressure gradient''; i.e., when the pressure in the
+boundary layer is increasing in the direction of flow. The flat plate at zero
+angle of attack, it will be recalled, exhibits a \emph{zero} pressure
+gradient.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig15.png}
+  \caption{Nondimensionalized transverse velocity component
+  $\frac{v}{U_\infty}\sqrt{\frac{U_\infty x}{\nu}}$ vs.\ $\eta$ in a laminar
+  boundary layer over a flat plate at zero angle of attack. Again, $\eta$ has
+  been taken as the vertical axis.}
+  \label{ch3:fig:15}
+\end{figure}
+
+The Blasius solution enables us to determine the skin-friction drag on the
+flat plate with a laminar boundary layer by specializing the equation for the
+viscous drag on a surface in general, two-dimensional flow:
+\begin{equation}\label{ch3:eq:58}
+D_v = b\int_{s=0}^{\ell} \tau_o\cos\phi\,ds
+\end{equation}
+where $\tau_o$ is the shearing stress at the wall, $b$ is the span of the
+object (dimension transverse to the flow), and $\ell$ is distance measured
+around the object's profile from front to rear. The notation of
+equation~\eqref{ch3:eq:58} is explained pictorially in
+Figure~\ref{ch3:fig:16}. For a flat plate of negligible thickness the angle
+$\phi$ is zero everywhere, so $\cos\phi = 1.0$. In such a case the
+differential path length $ds$ is also equal to $dx$, so
+\begin{equation}\label{ch3:eq:59}
+D_v = b\int_{x=0}^{\ell} \tau_o\,dx
+\end{equation}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig16.png}
+  \caption{Notation used in determining the friction drag of an object of
+  finite thickness in laminar flow.}
+  \label{ch3:fig:16}
+\end{figure}%
+From equations~\eqref{ch3:eq:34} and~\eqref{ch3:eq:48}
+\begin{equation}\label{ch3:eq:60}
+\tau_o(x) = \mu\left(\frac{\partial u}{\partial y}\right)_{y=0}
+  = \mu U_\infty\sqrt{\frac{U_\infty}{\nu x}}\cdot f''(0)
+  = \alpha U_\infty\sqrt{\frac{U_\infty}{\nu x}}
+\end{equation}
+where the quantity $f''(0)$ has been represented by the symbol $\alpha$
+(\emph{not} to be confused with angle of attack in this application). From
+Table~\ref{ch3:tab:1}, $\alpha$ is found to be 0.332. Hence, the
+skin-friction drag on one side of the plate is
+\begin{equation}\label{ch3:eq:61}
+D_v = .332\,\mu b U_\infty\sqrt{\frac{U_\infty}{\nu}}
+  \int_{x=0}^{\ell}\frac{dx}{\sqrt{x}}
+  = .664\,b U_\infty\sqrt{\mu\rho\ell U_\infty}
+\end{equation}
+For both sides (the total friction drag), we have
+\begin{equation}\label{ch3:eq:62}
+2D_v = 1.328\,b\sqrt{U_\infty^3\mu\rho\ell}
+\end{equation}
+The friction drag coefficient for laminar flow over a flat plate wetted on
+both sides is thus
+\begin{equation}\label{ch3:eq:63}
+C_f = \frac{2D_v}{\tfrac{1}{2}\rho U_\infty^2 A} = \frac{1.328}{\sqrt{R_\ell}}
+\end{equation}
+where $A$, the lateral area of both sides of the plate, is $2b\ell$ and
+$R_\ell$ is the Reynolds number based on the length of the plate \emph{if} the
+plate is too short for transition to turbulent flow to occur anywhere on its
+surface. If the plate is sufficiently long for transition to occur, $R_\ell$
+is the Reynolds number based on the distance from the leading edge to the
+transition zone and the coefficient computed according to
+equation~\eqref{ch3:eq:63} is valid only for that portion of the plate
+forward of the transition region. Recalling our numerical example of
+$U_\infty = 60$ meters/second suppose we compute the friction drag coefficient
+of a typical model rocket fin with an average chord of 3 cm.\ (.03 meter).
+For such a case we obtain
+\begin{equation}\label{ch3:eq:64}
+C_f = \frac{1.328}{\sqrt{12.06 \times 10^{4}}} = .00382
+\end{equation}
+We must remember, however, that friction drag coefficients as originally
+computed are based on wetted area---that is, total lateral surface area. To
+use them in calculating the overall drag coefficient of a model rocket, one
+must convert them to coefficients based on maximum body frontal area. This
+procedure will be described later on.

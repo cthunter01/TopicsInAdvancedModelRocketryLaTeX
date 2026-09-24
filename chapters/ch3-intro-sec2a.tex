@@ -1,1 +1,535 @@
-% ch3-intro-sec2a -- stub, to be transcribed (milestone M3)
+% chapters/ch3-intro-sec2a.tex -- Introduction; 1. Basic Considerations; 2. Basic Concepts Relating to the
+% Study of Drag; 2.1 Atmospheric Properties for Model Rocket Flight; 2.1.1 Density; 2.1.2 Viscosity and
+% Kinematic Viscosity (PDF 301-324, printed pp. 271-292; the unit ends above the 2.2 heading on PDF 324)
+\unnumberedsection{Introduction}\label{ch3:sec:intro}
+
+Like stability, aerodynamic drag has been a topic of intense interest in the
+field of model rocketry since the hobby was in its infancy in the late 1950's.
+One does not have to look very far to find the reason for such interest: model
+rockets, owing to their lightweight construction and the fact that their
+operation is restricted to flight entirely within the lower reaches of the
+atmosphere, are more strongly affected by atmospheric resistance than any
+other type of ballistic, rocket-propelled vehicle. The influence of drag upon
+the altitude performance of a model rocket is not a slight correction, but a
+major controlling factor, and no modeler who is seriously interested in
+accurate predictions of altitude capability can afford to ignore it or dismiss
+its effect lightly.
+
+The early recognition of this fact by members of the National Association of
+Rocketry during the first year of that organization's existence led in 1958 to
+the first wind-tunnel test of a model rocket to determine its coefficient of
+drag. The results of this test sequence, performed on a model of the
+Aerobee-Hi sounding rocket in the subsonic wind tunnel of the United States
+Air Force Academy, were published that same year by G. Harry Stine in the
+first NAR Technical Report, ``Basic Model Rocket Flight Calculations''. The
+same document contained the observation that aerodynamic drag is responsible
+for lowering the maximum altitude of a typical model rocket by more than 50\%,
+and an expanded discussion of the same material contained in Stine's
+\emph{Handbook of Model Rocketry} (First Edition, 1965) reported altitude
+reductions due to drag of more than 90\% in cases of exceptionally poor
+design.
+
+The Aerobee-Hi tests remained nearly the sole source of experimental model
+rocket drag data for the next eight years. From time to time various modelers
+would construct home-built wind tunnels and balance systems in an effort to
+obtain more data; most of these test facilities, however, were too crude to
+provide a low enough air turbulence level for accurate measurements. Whatever
+valid data \emph{were} obtained, moreover, appeared to receive only local
+attention, and virtually no modelers attempted to adapt theoretical or
+semiempirical analytical treatments of the drag problem to cases of model
+rocket flight. During the winter of 1965--1966, however, the NARHAMS Section of
+the National Association of Rocketry constructed a single-return-flow,
+low-speed wind tunnel with sufficiently low air turbulence to permit relatively
+accurate measurements of model rocket drag coefficients. Mark Mercer of that
+section subsequently conducted an extensive parametric investigation of
+various modified forms of the Javelin, a commercially-available kit produced
+by the Centuri Engineering Company of Phoenix, Arizona. The results of his
+tests, incorporated by Douglas J. Malewicki into Centuri's Technical
+Information Report TIR-100, \emph{Model Rocket Altitude Performance}, represent
+the most complete set of experimental data on model rocket drag available to
+date.
+
+During the same period, serious analytical and semiempirical studies of the
+model rocket drag problem first began to appear. The Research and Development
+competition event at the Eighth Annual National Model Rocket Championships in
+1966 saw the presentation of a paper by Dr.~Gerald M. Gregorek of Ohio State
+University, entitled ``A Critical Examination of Model Rocket Drag for Use
+with Maximum Altitude Performance Charts''. Dr.~Gregorek's paper, a milestone
+in the hobby comparable to the advent of Barrowman analysis in stability
+determination, and to Malewicki's publication of altitude graphs based on
+closed-form solutions to the equations of vertical motion for model rockets,
+presented a semiempirical method for calculating the drag coefficient of a
+model rocket based on the \emph{United States Air Force Stability and Control
+Datcom} (Datcom being an acronym for \emph{Dat}a \emph{Com}pendium). The
+Gregorek treatment deserves credit, not only for being the first in-depth,
+analytical discussion of the topic of model rocket drag, but also for
+motivating the growing body of literature on the subject that has appeared in
+the hobby since the original paper was presented and subsequently, widely
+circulated among interested local sections of the National Association of
+Rocketry. Since its first appearance in 1968, the periodical \emph{Model
+Rocketry} has carried a number of articles concerned with the topic of drag
+coefficient determination by both experimental and analytical means.
+Contributors to the literature over the past three years have included George
+J. Caporaso, Douglas J. Malewicki, Forrest M. Mims, Thomas T. Milkie, Gary
+Schwede, Dr.~Gregorek himself, and several others. It is in this atmosphere of
+increased interest in the determination of model rocket drag properties to a
+high degree of precision that the present chapter has been written.
+
+The treatment to be presented here is divided into eight major sections, of
+which the first is a basic survey of the properties and importance of model
+rocket drag. Section~\ref{ch3:sec:2} presents discussions of the basic
+concepts---drag coefficient, Reynolds number, and so on---which will be
+employed repeatedly in the subsequent sections. Sections~\ref{ch3:sec:3}
+and~\ref{ch3:sec:4} contain analyses of the two major contributions to drag at
+a zero angle of attack: pressure forces and skin friction, while
+Section~\ref{ch3:sec:5} examines drag due to the side force (or ``lift'') on a
+yawed rocket, drag due to nonzero roll rate, and drag due to surface
+roughness. Section~\ref{ch3:sec:6} contains information of use in the practical
+calculation of drag coefficients for specific model rockets. I have, for this
+purpose, used a slight modification of the \emph{USAF Stability and Control
+Datcom} method which is applicable to the regime of relatively low Reynolds
+numbers (usually under $3 \times 10^{6}$) typically encountered in model
+rocketry. In Section~\ref{ch3:sec:7} a semiempirical method of accounting for
+the effects of compressible airflow on the drag coefficients of extremely
+high-performance model rockets is considered, and the chapter is concluded
+with a survey of experimental methods for the determination of model rocket
+drag.
+
+The accurate determination of model rocket drag requires a rather precise
+knowledge of the airflow pattern which exists around the vehicle in question.
+This, in turn, must be determined by applying the theories of \emph{fluid
+dynamics}---that branch of mathematical physics which concerns itself with the
+study of liquids and gases in motion. The general equations of fluid dynamics,
+named the Navier-Stokes equations in honor of those who first formulated them
+in the mid-Nineteenth Century, are among the most complex and difficult known
+to man. A strongly \emph{coupled set of nonlinear, partial differential
+equations with nonconstant coefficients}, they have never been solved in their
+full generality. Even most of the highly-specialized approximations to these
+equations used in determining model rocket drag are therefore quite
+complicated and require the methods of calculus for their solution.
+Mathematical derivations employing calculus have been used freely throughout
+the chapter for the benefit of those advanced readers who have an interest in
+them and who require some analytical justification for the conclusions
+eventually reached through their application. Those who have no knowledge of
+(or interest in) advanced mathematics need not give up in despair, however,
+for the equations ultimately derived by all the calculus manipulation---the
+equations actually used in the calculation of model rocket drag
+coefficients---are all algebraic and capable of being solved by anyone who has
+had the first year of high school algebra.
+
+A number of books and papers have been used as references in the compilation
+of this chapter. Rather than refer to each one by name as material based on it
+is presented, I have cited references by footnote numbers. The work identified
+by a given number may be found by consulting the reference list at the end of
+the chapter.
+
+\section{Basic Considerations}\label{ch3:sec:1}
+
+The study of drag forces on model rockets is one of the most difficult,
+exciting, and important problems facing the modeler today. The amount of
+experimental work of significant value which has been accomplished in this
+field is relatively limited; many questions remain unanswered, and many of the
+physical phenomena involved are imperfectly understood. My intention in
+writing this is not to close the question of model rocket drag, but to provide
+basic information and methods which, it is hoped, will be extended, refined,
+improved upon and added to by modelers engaged in future serious research. The
+reader is encouraged to view all applications of theory to model rockets
+presented in the following pages with a critical eye, for until a really
+sizeable body of experimental data is available, many conclusions must remain
+tentative and subject to revision.
+
+By definition, drag is \emph{the sum of the components of all the aerodynamic
+forces acting on a body parallel to its instantaneous velocity vector with
+respect to the air}. The algebraic sign of any component of drag is taken as
+positive when it acts in a direction \emph{opposite} to the direction of the
+model's motion. Defined in this manner, the total drag of any body is, of
+course, positive. The drag of a model rocket is a complicated function of its
+size, shape, finish, velocity, and angle of attack, and of the thermodynamic
+state of the air. Even for relatively simple rocket shapes, the relationship
+between drag and the variables upon which it depends is virtually impossible
+to predict with any precision on a purely theoretical basis. Resort must be
+had to semiempirical methods---composites of theoretical predictions and
+experimental data---like the one employed in Section~\ref{ch3:sec:6}; hence the
+need for extensive experimental research on model rocket shapes, to confirm
+(or if necessary, correct) any such method. In Figure~\ref{ch3:fig:1} the
+definition of drag (which is considered to originate from the model's
+\emph{center of pressure}, or \CP), and the multiplicity of factors which
+determine its magnitude, have been illustrated.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig01.png}
+  \caption{Definition of drag and the variables that determine its magnitude.
+    The size, shape, surface finish, and to some extent the airspeed and angle
+    of attack of the rocket are under the designer's control. The atmospheric
+    density and viscosity, and the speed of sound, are properties of the medium
+    to which model rocket flight is confined. The sound speed influences drag
+    through its relation to compressibility effects.}
+  \label{ch3:fig:1}
+\end{figure}
+
+Because of their lightweight, low-density construction, model rockets have
+lower ratios of weight to frontal and surface area than any other class of
+ballistic, rocket-propelled bodies. Hence, aerodynamic drag has a greater
+influence on the flight of model rockets than it does on the flight of other
+rocket-propelled vehicles. In a typical model rocket at burnout, the drag is of
+the same order of magnitude as the weight, and thus has a considerable effect
+on the coasting portion of the model's flight. During the powered portion of
+flight, when the engine is providing a thrust that is normally eight or ten
+times the model's weight, the influence of drag is of course lessened; its
+effect on the overall flight performance, however, is always considerable, and
+it is a rare occurrence for a model rocket to reach more than half the
+altitude it could have achieved, were aerodynamic drag altogether absent. In
+some high-performance models, moreover, the drag can become much greater than
+the weight, so that the drag and weight taken together are equal and opposite
+to the thrust of the engine. This condition creates a \emph{terminal velocity}
+which the rocket cannot exceed, even if the burning time of the engine is
+relatively long. The minimization of aerodynamic drag is, therefore, one of the
+prime considerations in the design of high-performance model rockets.
+
+Analytical knowledge of the physical phenomena which underlie drag is, like
+most scientific knowledge, of interest for its own sake. More important to the
+model rocketeer, however (and the reason it is presented in this book), is
+that it has distinctly practical applications in the design of rockets. It
+helps to explain, for instance, why rounded nosecones, streamlined fins, and
+smooth surface finishes---features which have been advocated for years---are in
+fact effective means of reducing the drag. As another example, it is
+impossible to predict the drag of a rocket accurately without an understanding
+of the boundary-layer approximation, and of the transition phenomenon
+characteristic of boundary-layer flow in the Reynolds number regime in which
+model rockets operate. And so it is that rather extensive use of mathematical
+derivation, though admittedly burdensome to the average hobbyist, is
+unavoidable in any thorough discussion of model rocket drag. I reiterate,
+however, that one need not be a mathematician to make use of the information
+contained herein. Remember that we are taking a basically engineering
+approach: we are interested in the \emph{results} of the mathematical
+derivations. And in each case and each constituent of aerodynamic drag
+considered, it will be found that these results are no more difficult to work
+than, say, the equations of Barrowman analysis.
+
+\section{Basic Concepts Relating to the Study of Drag}\label{ch3:sec:2}
+
+This section will lay the foundation for a detailed analysis of drag forces by
+presenting a number of basic concepts and ideas. Section~\ref{ch3:sec:2.1} will
+examine certain physical properties of the atmosphere, and the variation of
+these properties as they affect calculations of drag (and hence, altitude
+performance). The dimensionless quantities defined and discussed in
+Section~\ref{ch3:sec:2.2} will be used extensively in succeeding sections,
+particularly the Reynolds number $R$ and the drag coefficient $\CD$.
+Section~\ref{ch3:sec:2.3} concludes the treatment of basic concepts with a
+discussion of the scheme by which the total drag force is separated into
+components and analyzed in later sections.
+
+\subsection{Atmospheric Properties for Model Rocket Flight}\label{ch3:sec:2.1}
+
+The physical properties of the atmosphere of greatest interest to model
+rocketry are its mass density $\rho$, its absolute coefficient of viscosity
+$\mu$, and the ratio between these two quantities, the kinematic viscosity
+$\nu = (\mu/\rho)$. Hence we shall restrict our attention to phenomena
+associated with these variables.
+
+The atmospheric data presented herein is based on the \emph{United States
+Standard Atmosphere, 1962} (\ref{ch3:ref:19}), whose figures have been
+converted to MKS (meter-kilogram-second) metric units for model rocketry work.
+This model of the atmosphere, based partly on experimental data, is an
+``idealized, middle latitude (approximately $45\dg$) year-round mean over the
+range of solar activity between sunspot minima and maxima''
+(\ref{ch3:ref:19}). The assumed sea-level temperature for the tabulations is
+$59\dg$ Fahrenheit ($15\dg$ Celsius or $288\dg$ Kelvin), with a standard
+sea-level pressure of 101,325 newtons per square meter (the MKS equivalent of
+the familiar 14.7 pounds per square inch).
+
+\subsubsection{Density}\label{ch3:sec:2.1.1}
+
+A measure of the drag force exerted on a rocket is the total \emph{momentum}
+the rocket imparts to the originally stationary fluid through which it
+travels. Momentum is directly proportional to the mass of the fluid displaced;
+and since the density of a fluid is simply its mass per unit volume, its
+connection with drag is established. As mentioned in Chapter~\ref{ch1} and
+shown later in this chapter, the overall drag on a model rocket is directly
+proportional to the mass density of the air through which it flies.
+
+Atmospheric density generally decreases with altitude, as seen in
+Figure~\ref{ch3:fig:2}. At an altitude of 300 meters, $\rho$ departs from its
+sea-level value by just under 3\%. At 1000 meters, a respectable altitude for
+a model rocket, the deviation is just over 9\%. By the time a height of 3000
+meters, the practical altitude limit for a model rocket, is reached the
+density has decreased by 25.6\%. Except in cases of extremely high performance
+models, the variation in atmospheric density during the course of a flight is
+rarely considered. It is, however, fairly common for modelers to account for
+the elevation of their launch sites by using the atmospheric density at the
+launcher elevation in their calculations of drag.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig02.png}
+  \caption{Variation of standard atmospheric density with altitude above sea
+    level.}
+  \label{ch3:fig:2}
+\end{figure}
+
+Density is also affected by the temperature of the air; in fact, the Standard
+Atmosphere density graph of Figure~\ref{ch3:fig:2} is based on the
+relationship of temperature to altitude shown in Figure~\ref{ch3:fig:3}. It can
+be seen from the graph that the Standard Atmosphere assumes a so-called
+``linear lapse rate'' of about $1\dg$~C. for each 154 meters of altitude. As we
+all know from experience, however, the temperature at any given launch site
+may vary widely from day to day; for very precise performance calculations one
+might therefore wish to use the perfect gas law for correcting the density
+according to
+\begin{equation*}
+\rho = \rho_{\mathrm{std.}}\frac{T_{\mathrm{std.}}}{T}
+\end{equation*}
+where the temperature $T$ is measured on an absolute scale. If you have a
+Fahrenheit thermometer you can convert its reading to the absolute Rankine
+scale by adding $460\dg$, while the reading of a Celsius (``Centigrade'')
+thermometer is converted to the absolute Kelvin scale by adding $273\dg$.
+Strictly speaking, variations in air pressure due to changes in the weather
+also change the atmospheric density, but in any weather good enough for flying
+high-performance model rockets safely such effects are relatively minute.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig03.png}
+  \caption{Variation of standard atmospheric temperature with altitude above
+    sea level.}
+  \label{ch3:fig:3}
+\end{figure}
+
+Finally, the movement of a body through the air produces local changes in
+density, since the increased pressures on the body's surface resulting from
+such motion tend to compress the surrounding air. If the motion is slow enough
+to keep these effects small, results from \emph{incompressible flow theory}
+can be used in our analysis of drag which permit considerable simplifications
+over theories which take compressibility into account. The magnitude of
+compression effects due to velocity can be estimated following the method of
+Schlichting (\ref{ch3:ref:15}).
+
+The \emph{modulus of elasticity} of air, denoted by $E$, is defined by
+\begin{equation}\label{ch3:eq:1}
+\Delta p = -E\frac{\Delta V}{V_o}
+\end{equation}
+where $\Delta V/V_o$ denotes the change in each unit volume of air produced by
+the change in pressure $\Delta p$. For air at sea level, assuming isothermal
+(constant-temperature) pressure changes, $E$ is just equal to the sea-level
+pressure of 101,325 nt/m$^{2}$. The total \emph{mass} of air present in the
+volume $V_o$ must be equal to the total mass present after the pressure change
+has altered the volume to $V_o + \Delta V$. Since mass is just the product of
+density and volume, this means
+\begin{equation}\label{ch3:eq:2}
+(V_o + \Delta V)(\rho_o + \Delta\rho) = V_o\rho_o
+\end{equation}
+Carrying out the multiplication and neglecting the products of differences in
+volume and density,
+\begin{equation}\label{ch3:eq:3}
+\frac{\Delta\rho}{\rho_o} = -\frac{\Delta V}{V_o}
+\end{equation}
+so that
+\begin{equation}\label{ch3:eq:4}
+\Delta p = E\frac{\Delta\rho}{\rho_o}
+  \qquad\text{or, equivalently,}\qquad
+  \frac{\Delta\rho}{\rho_o} = \frac{\Delta p}{E}
+\end{equation}
+Now the speed of sound, denoted by $c$, can be found by solving a calculus
+problem known as Laplace's equation, given the density and elasticity of the
+air. The result of the calculation is
+\begin{equation}\label{ch3:eq:5}
+c^2 = \frac{E}{\rho_o}
+\end{equation}
+Bernoulli's equation, one of the basic formulae of fluid dynamics, gives the
+relation between the pressure exerted by a moving fluid in the direction
+transverse to its motion (the \emph{static pressure}) and the flow velocity
+$u$ as
+\begin{equation}\label{ch3:eq:6}
+p + \tfrac{1}{2}\rho_o u^2 = \text{constant}
+\end{equation}
+The maximum change in pressure $\Delta p$ caused by flow of velocity $u$ about
+a body is therefore (assuming there is some so-called \emph{stagnation} point
+on the body's surface at which the fluid is decelerated to rest) of the order
+$\tfrac{1}{2}\rho_o u^2$. This last quantity is often denoted by the symbol $q$
+and referred to as the \emph{dynamic pressure}. Substituting $E = c^2\rho_o$
+and
+\begin{equation}\label{ch3:eq:7}
+\Delta p \cong \tfrac{1}{2}\rho_o u^2
+\end{equation}
+into equation~\eqref{ch3:eq:4}, we obtain
+\begin{equation}\label{ch3:eq:8}
+\frac{\Delta\rho}{\rho_o} \cong \frac{\rho_o u^2}{2c^2\rho_o}
+  = \tfrac{1}{2}\left(\frac{u}{c}\right)^2
+\end{equation}
+
+The ratio $u/c$ is known as the \emph{Mach number} $M$ of the flow (named for
+Ernst Mach (1838--1916)). Since, for approximate incompressibility to prevail,
+$\Delta\rho/\rho_o$ must be small compared to one, equation~\eqref{ch3:eq:8}
+gives
+\begin{equation}\label{ch3:eq:9}
+\tfrac{1}{2}M^2 \ll 1
+\end{equation}
+If one assumes $\Delta\rho/\rho_o = 0.05$ to be the largest tolerable relative
+compression for which compressibility need not be considered, one derives
+$\tfrac{1}{2}M^2 = .05$, or $M = 0.316$. Since the velocity of sound at sea
+level (see Figure~\ref{ch3:fig:4}) is about 340 meters/second, this value of
+Mach number corresponds to a rocket velocity of about 107 meters/second.
+High-performance model rockets certainly attain, and often exceed, this value
+in flight, but for the majority of model rockets it is a fairly high figure,
+attained only during the final instants of powered flight, if at all, and then
+persisting for only a short time after burnout. As we shall see in
+Section~\ref{ch3:sec:7}, moreover, slender, finned projectiles like model
+rockets possess the fortunate property that, throughout much of the higher
+subsonic flight regime, the influence of compressibility on the overall drag
+characteristics of the body as computed according to incompressible flow
+theory is relatively slight even though the relative compression itself is
+not. Hence, it will be assumed throughout this chapter's
+Sections~\ref{ch3:sec:1} through~\ref{ch3:sec:6} that effects due to the
+compressibility of air are negligible.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig04.png}
+  \caption{Variation of standard atmospheric sound speed with altitude above
+    sea level.}
+  \label{ch3:fig:4}
+\end{figure}
+
+\subsubsection{Viscosity and Kinematic Viscosity}\label{ch3:sec:2.1.2}
+
+Suppose we had a cube of some elastic solid material, such as hard rubber or
+some ``springy'' metal like steel or aluminum. Suppose, moreover, that we had
+somehow arranged to apply forces parallel to four faces of the cube in the
+manner shown in Figure~\ref{ch3:fig:5}a. The force on each face (which is
+equal in magnitude to that on each of the other faces), divided by the area of
+that face, is known as the \emph{shearing stress} $\tau$, given in MKS units as
+newtons/meter$^{2}$. Thus, if the face area is denoted by $A_c$ and the force
+by $F$, $\tau = F/A_c$. Since the cube is placed in static equilibrium by the
+force system thus described, it will neither move away nor turn---but it
+\emph{will deform} into a rhomboidal parallelepiped as shown in
+Figure~\ref{ch3:fig:5}b, where the angle $\theta$ as illustrated is less than
+$90\dg$. If the stress is reasonably small; i.e., within the so-called
+\emph{elastic limit} for the material, the cube will not be permanently bent
+out of shape by it, but will return to its original form when the stress is
+removed. In most materials this results in the difference $(\pi/2 - \theta)$,
+where $\theta$ is given in \emph{radians} (1 radian $= 57.3\dg$), being small.
+For such cases, the quantity $(\pi/2 - \theta)$ is defined as $\gamma$, the
+\emph{engineering shear strain} which is effectively dimensionless although it
+is often written in units such as meters per meter. The stress required to
+produce a given shear strain is given by Hooke's law as
+\begin{equation}\label{ch3:eq:10}
+\tau = G\gamma
+\end{equation}
+where $G$, given in newtons/meter$^{2}$, is called the \emph{torsion modulus}
+or \emph{shear modulus}. In elastic solids, then, the shearing stress is
+directly proportional to the \emph{amount} of shearing strain. In
+\emph{fluids}, however, the deformation law assumes a different dependence on
+strain, as the following experiment demonstrates.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig05.png}
+  \caption{Shearing deformation of an elastic solid. A cube of elastic material
+    is subjected to a shearing stress $\tau$ on its lateral faces (a), placing
+    it in a state of uniform shearing strain $\gamma$ as shown in (b). The cube
+    is viewed directly from the front, so that only its forward face is
+    visible.}
+  \label{ch3:fig:5}
+\end{figure}
+
+Consider two very long parallel plates, containing a \emph{viscous} fluid
+between them (the meaning of ``viscous'' will become clear as the experiment
+proceeds), as in Figure~\ref{ch3:fig:6} (after~\ref{ch3:ref:15}). The lower
+plate is fixed in the observer's reference frame, while the upper plate, at a
+height $h$ above the lower, moves to the right with a constant velocity $U$.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig06.png}
+  \caption{Shearing deformation of a viscous fluid. The lower plate is fixed,
+    while the upper plate moves at horizontal velocity $U$. The horizontal
+    velocity of the fluid confined between the plates is given by $u = Uy/h$.}
+  \label{ch3:fig:6}
+\end{figure}
+
+An extremely important experimental observation about viscous fluid flow is
+that the fluid behaves as if it were \emph{adhering} to any surface with which
+it comes in contact---that is, the fluid directly adjacent to any given surface
+undergoes no relative motion with respect to that surface; it ``sticks'' to
+it. This phenomenon, known as the \emph{no-slip condition} at the wall, means
+that the material of which the plates are constructed is immaterial to the
+flow (assuming hydraulically smooth surfaces). The no-slip condition is a
+useful physical assumption in continuum fluid dynamics, although it is by no
+means an absolutely valid physical model of what actually happens near a
+surface in fluid flow. In fact, there are cases of the flow of extremely
+rarified gases in which a considerable amount of ``slip'' relative to the wall
+occurs and a finite-slip condition must be applied. In all cases of interest
+to model rocketeers, however, the validity of the no-slip condition can be
+assumed. The no-slip condition has a number of ramifications in application to
+model rockets which will be detailed in Section~\ref{ch3:sec:3}.
+
+In our experiment, a consequence of the no-slip condition is that the velocity
+of the fluid increases linearly with height above the lower plate, from zero
+at the lower plate to $U$ at the upper plate. Assuming the lower plate to be
+fastened to some fixture that prevents it from moving, there must be a force
+$F$ applied tangentially to the upper plate to \emph{maintain} its velocity at
+$U$, and since there is no acceleration $F$ must equal the frictional (or
+\emph{viscous}) forces applied to the upper plate by the fluid. Furthermore,
+experiment reveals that
+\begin{equation}\label{ch3:eq:11}
+F \propto \frac{UA}{h}
+\end{equation}
+where $A$ is the area of the upper plate in contact with the fluid. The
+frictional \emph{shearing stress} $\tau$ is then proportional to $U/h$. Since
+the fluid velocity varies linearly with $y$, the vertical coordinate, $U/h$ is
+just equal to the \emph{rate} at which the fluid velocity $u$ increases with
+height above the lower plate; i.e., the \emph{derivative} of $u$ with respect
+to $y$, or $du/dy$. Thus,
+\begin{subequations}\label{ch3:eq:12}
+\begin{equation}\label{ch3:eq:12a}
+\tau \propto \frac{du}{dy}
+\end{equation}
+where the symbol $\propto$ reads in English, ``is directly proportional to''.
+Specifically, it has been found that
+\begin{equation}\label{ch3:eq:12b}
+\tau = \mu\frac{du}{dy}
+\end{equation}
+\end{subequations}
+where $\mu$ is the \emph{coefficient of viscosity}, a physical property of the
+fluid. From~\eqref{ch3:eq:12b} it is seen that the shearing stress in a fluid
+is dependent on the \emph{rate}, not the \emph{amount} of deformation.
+
+The constant $\mu$ is then a measure of a fluid's resistance to deformation.
+At room temperature, water is roughly 75 times as viscous as air. Substances
+like glycerine and molasses are more viscous still. Thus you can see that the
+word ``thick'', as applied to fluids colloquially, is roughly equivalent to the
+more technical term ``viscous''. For gases, to a first approximation, $\mu$ can
+be considered independent of pressure, depending only on temperature. In
+Figure~\ref{ch3:fig:7}, $\mu$ is seen to decrease steadily with increasing
+altitude.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig07.png}
+  \caption{Variation of the absolute viscosity of standard atmosphere with
+    altitude above sea level.}
+  \label{ch3:fig:7}
+\end{figure}
+
+The ratio of the coefficient of viscosity to the density of a fluid is called
+its \emph{kinematic viscosity} $\nu = \mu/\rho$. It is this quantity, rather
+than $\mu$ independently, that will appear repeatedly in our analysis of drag;
+its significance is discussed in the treatment of Reynolds number. For the
+present, we observe from Figure~\ref{ch3:fig:8} that $\nu$ \emph{increases}
+relatively slowly with altitude. This is because at altitudes typical of model
+rocket flight, although $\rho$ and $\mu$ are both decreasing, $\rho$ is
+decreasing at a faster rate than $\mu$ with increasing altitude. At an altitude
+of 300 meters, $\nu$ is only about 2.4\% greater than its sea-level value. In
+the calculations of this chapter $\nu$ will be assumed to have a constant value
+of $1.495 \times 10^{-5}$ meter$^{2}$/second, an average valid for the
+temperature and density variations normally encountered in flying model
+rockets.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig08.png}
+  \caption{Variation of the kinematic viscosity of standard atmosphere with
+    altitude above sea level.}
+  \label{ch3:fig:8}
+\end{figure}

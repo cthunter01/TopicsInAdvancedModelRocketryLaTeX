@@ -145,7 +145,10 @@ Symbols lists:
 $A_r$ & reference area of a rocket \\
 ...
 \end{longtable}
+\addtocounter{table}{-1}% a caption-less longtable still steps the table counter (STYLE.md section 8)
 ```
+The `\addtocounter` line is required: longtable steps the table counter even without a caption, so without it
+the chapter's Table 1 would print as Table 2.
 Keep the book's order of entries.
 
 ## 9. Footnotes and editorial notes

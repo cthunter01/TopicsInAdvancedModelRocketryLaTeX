@@ -1,1 +1,778 @@
-% ch3-sec3b -- stub, to be transcribed (milestone M3)
+% chapters/ch3-sec3b.tex -- 3.4 The Turbulent Boundary Layer on a Smooth, Flat Plate;
+% 3.5 Boundary Layer Transition, 3.5.1-3.5.3 (PDF 362-389, ms pp. 330-357)
+\subsection{The Turbulent Boundary Layer on a Smooth, Flat Plate}\label{ch3:sec:3.4}
+
+At a certain value of the Reynolds number, the fluid flow
+in the boundary layer above a given surface will change from
+laminar to turbulent---a phenomenon known as \emph{transition}.
+Plate~\ref{ch3:plate:3} illustrates a case of transition occurring in a channel
+of water. As the Reynolds number increases from \emph{subcritical}
+(fully laminar flow) to \emph{supercritical} (fully turbulent flow)
+values, a thread of dye injected into the fluid is subjected
+to increasing mixing action until finally the entire channel
+is colored. In this section we will consider the structure
+of the fully-turbulent boundary layer in the flow over a smooth,
+flat plate, noting how the velocity profiles, boundary-layer
+thickness, and skin-friction drag differ from the laminar
+case.
+
+\begin{plate}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/plate03.jpg}
+  \caption{The Reynolds dye experiment, illustrating the transition
+  from laminar to turbulent flow in a channel of liquid. A thread
+  of dye injected into the flowing fluid at first remains smooth and
+  straight (a), but farther down the channel the critical Reynolds
+  number of the flow has been exceeded and the stream is turbulent
+  (b), causing the dye to be mixed.}
+  \label{ch3:plate:3}
+\end{plate}
+
+In laminar flow, streamlines move more or less parallel
+to each other with negligible mixing, and if the flow is steady
+the velocity at any point in the flow remains constant as time
+goes on. When turbulent flow is observed closely, however,
+subsidiary motions of the fluid \emph{transverse} to the main motion
+downstream are detected (\ref{ch3:ref:15}). The velocity at a point is no
+longer constant, but is subject to \emph{excursions}, or variations,
+about some average value. This behavior amounts to mixing
+between the streamlines and causes an exchange of momentum
+in the transverse direction, because each fluid element essentially
+retains its forward momentum while mixing is occurring. Hence,
+the velocity profile in the turbulent boundary layer is such
+that the $x$-component of velocity increases far more slowly
+with height over most of the boundary-layer thickness than is
+the case for the laminar boundary layer.
+
+The distinctive feature of turbulent flow is the irregular,
+high-frequency oscillations exhibited by the velocity and pressure
+at a point. These quantities can be considered constants only
+as an average over an extended period of time. Turbulent flow
+must still observe the no-slip condition at the wall, however,
+and there is thus a region very close to the wall where viscous
+stresses are of larger magnitude than the stresses due to
+turbulence which dominate the rest of the boundary layer. Since
+the conditions of flow in this very thin region---perhaps 1\%
+or so of the total turbulent boundary layer thickness---are
+essentially laminar, it is known as the \emph{laminar sublayer}.
+Despite its small thickness, the sublayer plays a vital role
+in determining the magnitude of the viscous shearing stress
+at the wall and hence the turbulent skin-friction drag. We
+shall encounter it again in Section~\ref{ch3:sec:5.4} when we examine drag
+due to surface roughness.
+
+Because of its extensive applicability, we would like to
+determine the turbulent skin-friction drag on a smooth, flat
+plate as we did in the laminar-flow case. The same general
+methods of derivation cannot, however, be used again owing
+to two major difficulties: (a) very little is known about
+the nature of the transition that occurs as one passes upward
+from the laminar sublayer to the turbulent region; and (b)
+the laws of friction which are effective in the sublayer are
+also unknown. We proceed, then, on a different tack, by
+assuming that the boundary-layer velocity distribution over
+a plate is similar to that within a circular pipe. This allows
+us to avail ourselves of the extensive data available for pipe
+flow, which has been studied in experiments preferentially to
+the plate case since it is much more difficult to carry out
+measurements in the boundary layer of a plate than in that
+within a pipe (\ref{ch3:ref:15}).
+
+The validity of this assumption has been established, at
+least for moderate Reynolds numbers, by experimental investigations.
+Since the boundary layer in a pipe is formed under
+the influence of a pressure gradient (the pressure at the
+downstream end of the pipe must be less than that at the upstream
+end, or no fluid would flow through it), while for the flat
+plate $dp/dx$ was assumed equal to zero, the velocity distributions
+for the two configurations certainly cannot be exactly identical.
+Because the friction drag is calculated from a \emph{spatial integral}
+of the fluid momentum in cases of turbulent flow, however,
+small differences in the velocity distribution are not critical
+(\ref{ch3:ref:15}).
+
+In order to compute skin-friction drag for a turbulent
+boundary layer, it is first necessary to introduce the concept
+of the \emph{momentum thickness}, $\theta$, of the boundary layer. The rate
+at which $x$-momentum per unit span of the plate (or per unit
+circumferential distance of the pipe) is being lost due to
+the presence of the boundary layer instead of potential flow
+is given by $\rho\int_{0}^{\infty} u(U_\infty - u)\,dy$. We may therefore define a quantity
+$\theta$ such that
+\begin{equation}\label{ch3:eq:65}
+\rho U_\infty^{2}\theta = \rho\int_{y=0}^{\infty} u(U_\infty - u)\,dy
+\end{equation}
+or
+\begin{equation}\label{ch3:eq:66}
+\theta = \int_{y=0}^{\infty} \frac{u}{U_\infty}\left(1 - \frac{u}{U_\infty}\right)dy
+\end{equation}
+Then in the case of laminar flow, since $(u/U_\infty) = f'$,
+\begin{equation}\label{ch3:eq:67}
+\theta = \sqrt{\frac{\nu x}{U_\infty}}\int_{\eta=0}^{\infty} f'(1 - f')\,d\eta
+\end{equation}
+or
+\begin{equation}\label{ch3:eq:68}
+\theta = 0.664\sqrt{\frac{\nu x}{U_\infty}}
+\end{equation}
+This is approximately 1/8 of the boundary-layer thickness
+defined by equation~\eqref{ch3:eq:54}.
+
+Now we may relate $\theta$ to the skin-friction drag in the
+following manner: consider a flat plate surrounded by a rectangular
+\emph{control surface} (an imaginary surface in space---a
+concept often used in the analysis of fluid-flow problems)
+identified by its corner points, $AA_1B_1B$, as in Figure~\ref{ch3:fig:17}.
+Segment $A_1B_1$, parallel to the plate, is sufficiently far from
+the wall that it lies in the region of undisturbed velocity $U_\infty$.
+Pressure forces in such a case are constant over the whole control
+surface, so one need not consider their contribution to the
+fluid momentum. Due to symmetry, moreover, segment $AB$ contributes
+nothing to the momentum in the $x$-direction. Assigning positive
+value to mass flowing in and negative value to mass flowing
+out of the region enclosed by the control surface, the momentum
+balance may be expressed as in Table~\ref{ch3:tab:2}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Volume flow and momentum flux accounting associated with
+  the control surface pictured in Figure~\ref{ch3:fig:17}, for use in calculating
+  turbulent skin-friction drag.}
+  \label{ch3:tab:2}
+  \begin{tabular}{@{}l@{\qquad}c@{\qquad}c@{}}
+    \toprule
+    Cross-Section & Rate of Flow
+      & \begin{tabular}[t]{@{}c@{}}Momentum Flux in\\ $x$-Direction\end{tabular}\\
+    \midrule
+    $AB$ & $0$ & $0$\\[4pt]
+    $AA_1$ & $\displaystyle b\int_{0}^{h} U_\infty\,dy$
+      & $\displaystyle \rho b\int_{0}^{h} U_\infty^{2}\,dy$\\[10pt]
+    $BB_1$ & $\displaystyle -b\int_{0}^{h} u\,dy$
+      & $\displaystyle -\rho b\int_{0}^{h} u^{2}\,dy$\\[10pt]
+    $A_1B_1$ & $\displaystyle -b\int_{0}^{h} (U_\infty - u)\,dy$
+      & $\displaystyle -\rho b\int_{0}^{h} U_\infty(U_\infty - u)\,dy$\\[4pt]
+    \midrule
+    \begin{tabular}[t]{@{}l@{}}sum $=$ control\\ \phantom{sum $=$ }surface\end{tabular}
+      & \begin{tabular}[t]{@{}l@{}}total net rate\\ of flow $= 0$\end{tabular}
+      & \begin{tabular}[t]{@{}l@{}}total momentum flux\\ $=$ drag\end{tabular}\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig17.png}
+  \caption{Control surface for calculating the friction drag
+  due to a turbulent boundary layer over a flat plate at zero
+  angle of attack.}
+  \label{ch3:fig:17}
+\end{figure}
+
+Momentum conservation requires that the drag force $D$ be
+exactly equal to the total momentum flux through the control
+surface, or
+\begin{equation}\label{ch3:eq:69}
+D = \rho b\int_{0}^{h} \left(U_\infty^{2} - u^{2} - U_\infty^{2} - uU_\infty\right)dy
+\end{equation}
+The upper limit of integration may be changed to infinity, as
+the integrand is zero for $y > h$; hence
+\begin{equation}\label{ch3:eq:70}
+D = \rho b\int_{0}^{\infty} u(U_\infty - u)\,dy
+\end{equation}
+This expression applies to a plate wetted on only one side; to
+obtain the drag for a plate wetted on both sides, we evaluate
+\begin{equation}\label{ch3:eq:71}
+2D = \rho b\int_{-\infty}^{\infty} u(U_\infty - u)\,dy
+\end{equation}
+
+Two remarks concerning these integrals should be made here.
+First, equation~\eqref{ch3:eq:70} is applicable to any symmetrical cylindrical
+body, not only a flat plate; in the case of a cylindrical body
+$b$ is merely replaced by the circumference of the cylinder.
+Second, the integral may be evaluated at any station $x$ on the
+body, in which case it will give the drag due to skin friction
+on the region extending from the leading edge to that particular
+station.
+
+Now from equation~\eqref{ch3:eq:65} it will be recalled that
+\begin{equation}\label{ch3:eq:72}
+U_\infty^{2}\theta = \int_{y=0}^{\infty} u(U_\infty - u)\,dy
+\end{equation}
+This expression is identical to the integral appearing in
+equations~\eqref{ch3:eq:70} and~\eqref{ch3:eq:71}; hence we have
+\begin{equation}\label{ch3:eq:73}
+D = b\rho U_\infty^{2}\theta
+\end{equation}
+
+We return now to an explicit consideration of the turbulent
+boundary layer on a flat plate. From the empirical results for
+turbulent boundary layers in pipe flow we adopt the ``1/7th-power
+velocity distribution law'' in the form
+\begin{equation}\label{ch3:eq:74}
+\frac{u}{U_\infty} = \left(\frac{y}{\delta}\right)^{1/7}
+\end{equation}
+As in the laminar case, this relationship requires that all
+the velocity profiles along a flat plate in turbulent flow
+be of the same form, and thus one curve plotted in dimensionless
+coordinates can represent them all.
+
+The results of experiments with turbulent boundary layers
+in circular pipes have also shown that the shearing stress at
+the wall obeys the relation
+\begin{equation}\label{ch3:eq:75}
+\frac{\tau_o}{\rho U_\infty^{2}} = 0.0225\left(\frac{\nu}{U_\infty\delta}\right)^{1/4}
+\end{equation}
+The momentum thickness can now be obtained in terms of the
+boundary-layer thickness $\delta$ by direct integration from
+equations~\eqref{ch3:eq:66} and~\eqref{ch3:eq:74}:
+\begin{align*}
+\theta &= \int_{y=0}^{\delta} \frac{u}{U_\infty}\left(1 - \frac{u}{U_\infty}\right)dy\\
+&= \int_{y=0}^{\delta} \left(\frac{y}{\delta}\right)^{1/7}\left[1 - \left(\frac{y}{\delta}\right)^{1/7}\right]dy\\
+&= \int_{0}^{\delta} \left(\frac{y}{\delta}\right)^{1/7}dy
+  - \int_{0}^{\delta} \left(\frac{y}{\delta}\right)^{2/7}dy
+  = \frac{7}{8}\delta - \frac{7}{9}\delta
+\end{align*}
+Then
+\begin{equation}\label{ch3:eq:76}
+\theta = \frac{7}{72}\delta
+\end{equation}
+Now if we differentiate equation~\eqref{ch3:eq:73} with respect to $x$ we
+obtain
+\begin{equation}\label{ch3:eq:77}
+\frac{1}{b}\frac{dD}{dx} = \tau_o(x) = \rho U_\infty^{2}\frac{d\theta}{dx}
+\end{equation}
+Combining equations~\eqref{ch3:eq:76} and~\eqref{ch3:eq:77} then yields
+\begin{equation}\label{ch3:eq:78}
+\frac{\tau_o}{\rho U_\infty^{2}} = \frac{d\theta}{dx} = \frac{7}{72}\frac{d\delta}{dx}
+\end{equation}
+Substituting~\eqref{ch3:eq:78} into~\eqref{ch3:eq:75}, we have
+\begin{equation}\label{ch3:eq:79}
+\frac{7}{72}\frac{d\delta}{dx} = 0.0225\left(\frac{\nu}{U_\infty\delta}\right)^{1/4}
+\end{equation}
+An explicit expression for $\delta$ as a function of $x$ can now be
+obtained by integrating this ordinary differential equation
+in $\delta$, assuming that $\delta = 0$ at $x = 0$. The result is
+\begin{equation}\label{ch3:eq:80}
+\delta = 0.37x\left(\frac{U_\infty x}{\nu}\right)^{-\frac{1}{5}}
+\end{equation}
+and
+\begin{equation}\label{ch3:eq:81}
+\theta = 0.036x\left(\frac{U_\infty x}{\nu}\right)^{-\frac{1}{5}}
+\end{equation}
+
+The boundary-layer thickness in turbulent flow is thus
+seen to increase more rapidly with distance than in the laminar
+case: $\delta(x)$ is proportional to $x^{\frac{4}{5}}$ for a turbulent boundary
+layer, while $\delta(x)$ for a laminar boundary layer varies as
+$x^{\frac{1}{2}}$. The difference is due to the mixing action present in
+turbulent flow, which causes greater momentum and energy losses
+per unit time than is the case for laminar boundary layers.
+
+From equations~\eqref{ch3:eq:73} and~\eqref{ch3:eq:81}, the turbulent skin-friction
+drag on one side of a flat plate may now be written as
+\begin{equation}\label{ch3:eq:82}
+D = b\rho U_\infty^{2}\theta = 0.036\rho U_\infty^{2}b\ell\left(\frac{U_\infty\ell}{\nu}\right)^{-\frac{1}{5}}
+\end{equation}
+The drag varies as $U_\infty^{\frac{9}{5}}$ and $\ell^{\frac{4}{5}}$, as compared to $U_\infty^{\frac{3}{2}}$ and $\ell^{\frac{1}{2}}$
+for the laminar boundary layer. The skin-friction coefficient
+$C_f$ can then be determined from its definition and equation~\eqref{ch3:eq:82}:
+\begin{align}
+C_f &= \frac{D}{\tfrac{1}{2}\rho U_\infty^{2}b\ell} \label{ch3:eq:83}\\
+C_f &= \frac{2\theta(\ell)}{\ell} \label{ch3:eq:84}
+\end{align}
+and finally, we arrive at the result
+\begin{equation}\label{ch3:eq:85}
+C_f = 0.072\left(\frac{U_\infty\ell}{\nu}\right)^{-\frac{1}{5}}
+\end{equation}
+This expression has been found to represent experimental results
+very well, provided the value of the numerical coefficient is
+altered slightly to 0.074 (\ref{ch3:ref:15}):
+\begin{equation}\label{ch3:eq:86}
+C_f = 0.074\left(\frac{U_\infty\ell}{\nu}\right)^{-\frac{1}{5}} = 0.074\,(R_\ell)^{-\frac{1}{5}}
+\end{equation}
+
+This relationship, valid for a flat plate with a completely
+turbulent boundary layer from the leading edge downstream, is
+limited to the range of Reynolds numbers between $5 \times 10^{5}$ and
+$1 \times 10^{7}$---a range which, fortunately, includes the upper limit
+of $R$ to be expected in the vast majority of model rocket flights.
+
+Table~\ref{ch3:tab:3} summarizes the results of our analyses of purely
+laminar and purely turbulent boundary layers:
+
+\begin{table}[htbp]
+  \centering
+  \caption{}
+  \label{ch3:tab:3}
+  \begin{tabular}{@{}l@{\qquad}c@{\qquad}c@{}}
+    \toprule
+    characteristic & laminar value & turbulent value\\
+    \midrule
+    $C_f$ & $\dfrac{1.328}{(R_\ell)^{1/2}}$ & $\dfrac{0.074}{(R_\ell)^{1/5}}$\\[10pt]
+    $\delta$ & $5\sqrt{\dfrac{\nu x}{U_\infty}}$
+      & $0.37x\left(\dfrac{U_\infty x}{\nu}\right)^{-\frac{1}{5}}$\\[10pt]
+    $u/U_\infty$ & \begin{tabular}[t]{@{}l@{}}as given in\\ Table~\ref{ch3:tab:1}\end{tabular}
+      & $\left(\dfrac{y}{\delta}\right)^{1/7}$\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+To give a representative example of a turbulent skin-friction
+coefficient, suppose we consider again the free-stream velocity
+$U_\infty = 60$ meters/second and a plate with a length of 0.3 meter,
+giving a Reynolds number of $1.206 \times 10^{6}$. Assuming that some
+condition of free-stream turbulence or some device like a tripwire
+has caused the boundary layer to be turbulent all along
+the length of the plate, we derive the result
+\begin{equation*}
+C_f = .0045
+\end{equation*}
+
+\subsection{Boundary Layer Transition}\label{ch3:sec:3.5}
+
+\subsubsection{Effect of Pressure Gradient and Reynolds Number}\label{ch3:sec:3.5.1}
+
+The two preceding sections dealt with boundary layers that
+are entirely laminar or entirely turbulent in character. In
+reality, the flow over a flat plate may exhibit both forms of
+behavior. Laminar conditions will generally exist from the
+leading edge downstream to a point at which the local Reynolds
+number $R_x = U_\infty x/\nu$ attains a value somewhere between $3 \times 10^{5}$
+and $3 \times 10^{6}$. At higher local Reynolds numbers the flow is
+almost certain to be turbulent.
+
+The exact value of the Reynolds number at which this
+phenomenon of \emph{transition} from laminar to turbulent flow occurs
+depends on a number of factors: the turbulence level of the
+free stream, the roughness of the surface, centrifugal body
+forces due to rotation of the body, and whether or not heat
+is being transferred to the boundary layer from the body or
+from external sources. The pressure gradient in the external
+flow (which is uniformly zero for a flat plate) also exerts a
+considerable influence on transition, as will be seen shortly.
+
+The hypothesis which underlies theoretical studies of
+transition was first enunciated by Osborne Reynolds: that
+the process of transition from laminar to turbulent flow comes
+about as the consequence of an \emph{instability} in the laminar flow
+(\ref{ch3:ref:15}). Small disturbances, which may arise from any of the sources
+listed above, are assumed to act upon the laminar flow. The
+theory of stability attempts to determine whether these disturbances
+magnify or die away with time. If they decay, the flow is
+considered stable; if, instead, they grow in magnitude, the
+flow is regarded as unstable and transition to a turbulent
+pattern \emph{may} result. The ultimate object of the stability
+theory is a prediction of the critical Reynolds number, $R_{\mathrm{crit}}$,
+for which transition may be expected.
+
+The results of the stability analysis for a flat plate
+will not be presented here (readers interested in this analysis
+may consult Reference~\ref{ch3:ref:15}), as they are not directly applicable
+to the three-dimensional boundary layer on a model rocket.
+Instead, we shall investigate briefly the effects of the pressure
+gradient in the external flow on boundary-layer stability, and
+then present the hypothetical model of transition on model
+rockets which will be used for the calculation of drag coefficients
+in Section~\ref{ch3:sec:6}.
+
+The great English scientist, Lord Rayleigh (1842--1919) was
+the first to propose that velocity profiles with a \emph{point of
+inflection} (point at which the curvature reverses) are unstable.
+Figure~\ref{ch3:fig:18} compares such a profile with one found in a region of
+stable flow. Rayleigh's observation is of great practical
+significance, because there is a direct relationship between
+the existence of an inflection point and the nature of the
+local pressure gradient. The pressure distribution on a surface
+in fluid flow (for cases in which there is no separation of
+the boundary layer) is determined by the theory of potential
+flow, which, it will be remembered, applies to the inviscid,
+``perfect'' fluid. In real cases it is found that this theoretical
+pressure distribution agrees very closely with measured pressure
+distributions, as if the boundary layer were not present. In
+a sense, then, the external flow \emph{impresses} its pressure distribution
+on the boundary layer. Along a surface with a \emph{favorable} pressure
+gradient; that is, with the pressure \emph{decreasing} in the downstream
+direction, the boundary-layer velocity profiles will
+be full and without inflection points, as in Figure~\ref{ch3:fig:18}b. In
+the presence of an \emph{adverse} pressure gradient; i.e., where the
+pressure \emph{increases} downstream, the velocity profiles will
+generally develop inflection points, as in Figure~\ref{ch3:fig:18}a. In
+summary, then, a \emph{favorable} pressure gradient tends to \emph{stabilize}
+the flow in the boundary layer, while an \emph{adverse} pressure
+gradient tends to \emph{destabilize} it. The point of minimum pressure
+on a body is therefore of considerable importance; it determines
+the point of transition, and the two are generally in close
+proximity.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.6\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig18.png}
+  \caption{Stable and unstable boundary layer velocity profiles.
+  Profile (a) has a point of inflection; that is, a point at which
+  the curvature of the velocity profile reverses. Profile (b) is
+  fully convex in the direction of flow. The flow of profile (a)
+  is unstable, while that of (b) is stable.}
+  \label{ch3:fig:18}
+\end{figure}
+
+For an object such as a circular cylinder held with its
+axis perpendicular to the stream, the region of minimum pressure
+occurs near the shoulder as seen in Figure~\ref{ch3:fig:24} (the angles
+$\varphi = 0\dg$ and $180\dg$ correspond to the front and rear stagnation
+points, respectively). This experimental fact could also be
+\emph{deduced} from equation~\eqref{ch3:eq:23}: since the flow must be accelerated
+initially to pass over the upstream half of the cylinder, there
+is a corresponding decrease in static pressure in this region.
+Along the downstream side (in the ideal case) the flow is
+decelerated to its original undisturbed velocity and static
+pressure.
+
+Something analogous to this process occurs on the nose of
+a model rocket: the flow is accelerated slightly and a point
+of minimum pressure is attained somewhere in the vicinity of the
+body-to-nosecone joint. If the rocket possesses a circular
+cylindrical body, no further deflection of the flow will occur
+until the vicinity of the base is reached. Along the body,
+then, it is expected that the pressure gradient is either
+zero or very small; hence no adverse pressure gradient is
+expected anywhere along the airframe of such a rocket and it
+is assumed that the location of the transition point on a typical
+model rocket is independent of the external pressure distribution.
+If the model has a boattail, however, an adverse pressure gradient
+will exist on it and transition---or even separation---can be
+expected in the flow about such a component.
+
+No data are available to indicate either where transition
+first occurs on a model rocket or the corresponding critical
+Reynolds number. The following hypothetical description, based
+on the flow behavior observed about streamlined bodies similar
+to model rockets, is advanced with some reservations as a
+model for boundary-layer transition on model rockets: at
+low velocities, corresponding to Reynolds numbers based on
+body length below about $3 \times 10^{5}$, the boundary layer on a model
+rocket will be completely laminar. As the velocity increases,
+the local Reynolds number $R_x = U_\infty x/\nu$ (based on axial distance
+from the nosecone tip) will exceed at some station $x$ the
+experimentally-determined (or assumed) value of $R_{\mathrm{crit}}$ for the rocket.
+This event will first occur near the model's tail, where the
+local Reynolds numbers are greatest; hence a small region
+of turbulent flow will first appear on the body near the base.
+As the velocity continues to increase, all values of $R_x$ also
+increase and the transition point, determined by $R_x = R_{\mathrm{crit}}$,
+will move progressively toward the nose.
+
+A similar progression of events will occur on the fins,
+but at much higher body Reynolds numbers $R_\ell$, because the nature
+of the flow over the fins is determined by the Reynolds number
+based on fin chord length $R_c = U_\infty c/\nu$. For typical model rockets,
+$R_\ell$ is an order of magnitude greater than $R_c$; a turbulent boundary
+layer will therefore not generally be found on model rocket fins
+except in cases of exceptionally large rockets and/or exceptionally
+high velocities. The reasoning of this and the last paragraph
+is based on the assumption of perfectly smooth surfaces. Roughness,
+as will be shown in the following section, can induce premature
+transition.
+
+\subsubsection{Effects of Surface Roughness}\label{ch3:sec:3.5.2}
+
+The presence of roughness elements, whether isolated or
+distributed in groups, in a laminar flow is known to be generally
+conducive to transition. Under otherwise identical conditions,
+transition occurs at a lower Reynolds number on a rough wall
+than on a smooth one. This behavior follows from the theory
+of stability, as the roughness elements create disturbances
+in the flow which add to those already present in the boundary
+layer and the external flow. Transition will occur at a lower
+value of $R$ than would otherwise be the case if the disturbances
+created by the roughness exceed those due to the turbulence
+already present in the flow. If, however, the roughness elements
+are very small, turbulent disturbances from the free stream
+will dominate and the roughness should have no effect on transition.
+
+We examine first the effect of a cylindrical wire which is
+attached to a wall at right angles to the stream direction.
+S. Goldstein has determined the critical height $k_{\mathrm{crit}}$ of such
+a wire; i.e., the wire diameter just small enough so as not to
+influence transition, to be (\ref{ch3:ref:15})
+\begin{equation}\label{ch3:eq:87}
+k_{\mathrm{crit}} = \frac{7\nu}{\sqrt{\frac{\tau_{ok}}{\rho}}}
+\end{equation}
+where $\tau_{ok}$ is the shearing stress at the wall in the laminar
+boundary layer at the location of the wire. Now for a flat
+plate, equation~\eqref{ch3:eq:60} gives
+\begin{equation}\label{ch3:eq:88}
+\tau_o(x) = \mu U_\infty\sqrt{\frac{U_\infty}{\nu x}}\,f''(0)
+\end{equation}
+and from Table~\ref{ch3:tab:1}, $f''(0) = 0.332$. Recognizing that $\mu = \nu\rho$,
+\begin{equation}\label{ch3:eq:89}
+\tau_o(x) = \frac{0.332}{\sqrt{R_x}}\rho U_\infty^{2} = \tau_{ok}
+\end{equation}
+Then for a flat plate,
+\begin{equation}\label{ch3:eq:90}
+k_{\mathrm{crit}} = \frac{12.2\,\nu(R_x)^{1/4}}{U_\infty}
+  = 12.2\left(\frac{\nu}{U_\infty}\right)^{3/4}x^{1/4}
+\end{equation}
+where the quantities involved must all be members of the same
+consistent set of units. For example, if $U_\infty = 60$ meters/second
+and $x = 3$ cm.\ (0.03 meter), the critical height will be
+\begin{equation*}
+k_{\mathrm{crit}} = 5.67 \times 10^{-5}\un{meter} = 5.67 \times 10^{-3}\un{cm.}
+\end{equation*}
+The cylindrical wire of the foregoing analysis could represent
+a paintbrush hair, the body-to-nosecone joint, or any similar
+small, cylindrical protuberance on the model's surface. If
+such protuberances have heights greater than the value of $k_{\mathrm{crit}}$
+computed according to equation~\eqref{ch3:eq:90}, there is some danger of
+premature transition. For the nosecone joint or surface,
+considering the stabilizing effect of the favorable pressure
+gradient, the value of $k_{\mathrm{crit}}$ given by equation~\eqref{ch3:eq:90} is probably
+somewhat too small. Assuming it \emph{does} give the correct \emph{order
+of magnitude}, however, it is apparent that a model rocket
+requires a rather smooth surface to minimize the possibility of
+transition occurring prematurely, with its consequent marked
+increase in skin-friction drag.
+
+In reality, the transition point will occur somewhat
+\emph{downstream} of a roughness element which just exceeds $k_{\mathrm{crit}}$
+as determined by equation~\eqref{ch3:eq:90}. This is due to the fact that
+a finite ``amplification time'' is required for the disturbances
+due to the protrusion to generate turbulent flow. In order to
+induce effectively instantaneous transition, the height of the
+protrusion must be two or three times that predicted by
+equation~\eqref{ch3:eq:90}.
+
+Distributed roughness elements; i.e., particles typified
+by dust or sandpaper grit, can also induce premature transition.
+We present here a simplified method (Ref.~\ref{ch3:ref:3}) for determining
+the minimum height $k_t$ of distributed particles which will be
+just sufficient to cause the development of premature transition
+to turbulent boundary-layer flow.
+
+We first define a parameter $\eta_k$, which may be used as a
+nondimensional representation of a given roughness particle of
+height $k$:
+\begin{equation}\label{ch3:eq:91}
+\eta_k = \frac{k}{2x}\sqrt{R_x}
+\end{equation}
+where $R_x = U_\infty x/\nu$, and $x$ is the distance from the leading edge
+(or nose). A \emph{roughness Reynolds number} $R_k$, based on particle
+height and flow velocity at the point in the boundary layer
+corresponding to the top of the particle, is also defined as
+\begin{equation}\label{ch3:eq:92}
+R_k = \frac{ku_k}{\nu}
+\end{equation}
+
+It is possible to express $\eta_k$ as a function of $R_k/\sqrt{R_x}$,
+assuming the velocity and temperature distribution throughout
+the boundary layer is known. In Reference~\ref{ch3:ref:3}, these calculations
+have been carried out for the cases of two-dimensional flow
+past a flat plate and three-dimensional flow past a conical
+body held with its axis parallel to the stream. The relationships
+thus obtained are presented graphically in Figures~\ref{ch3:fig:19} and~\ref{ch3:fig:20}.
+To use these charts, it is necessary to choose a value of the
+\emph{critical} roughness Reynolds number $(R_k)_t$. Attempts to measure
+$(R_k)_t$ experimentally have yielded values anywhere from 250 to
+600, but Reference~\ref{ch3:ref:3} suggests that the higher value is the most
+accurate. Once $(R_k)_t$ is selected, the value of $k$ required to
+induce transition at a given distance $x$ from the nose or leading
+edge can then be determined by calculating the ratio $(R_k)_t/\sqrt{R_x}$
+and reading the corresponding value of $\eta_k$ from Figure~\ref{ch3:fig:19}
+or~\ref{ch3:fig:20}; this value of $\eta_k$ is used in equation~\eqref{ch3:eq:91} to give
+\begin{equation}\label{ch3:eq:93}
+k_t = \frac{2x\eta_k}{\sqrt{R_x}}
+\end{equation}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth,height=0.4\textheight,keepaspectratio]{figures/ch3/fig19.png}
+  \caption{$\eta_k$, the nondimensionalized roughness particle height
+  required to cause transition from laminar to turbulent flow, plotted
+  as a function of $\frac{R_k}{\sqrt{R_x}}$, the ratio of the ``roughness Reynolds number''
+  to the square root of the ``station Reynolds number'' for a flat
+  plate at zero angle of attack.}
+  \label{ch3:fig:19}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth,height=0.4\textheight,keepaspectratio]{figures/ch3/fig20.png}
+  \caption{$\eta_k$, the nondimensionalized roughness particle height
+  required to cause transition from laminar to turbulent flow,
+  plotted as a function of $\frac{R_k}{\sqrt{R_x}}$, the ratio of the ``roughness Reynolds
+  number'' to the square root of the ``station Reynolds number'' for a
+  cone whose axis is at zero angle of attack.}
+  \label{ch3:fig:20}
+\end{figure}
+
+By way of example, if we take $(R_k)_t$ as 600 and base $R_x$
+on $U_\infty = 60$ meters/second, we have
+\begin{equation*}
+\frac{(R_k)_t}{\sqrt{R_x}} = \frac{0.299}{\sqrt{x}} \qquad \text{(for $x$ given in meters)}
+\end{equation*}
+Suppose, now, we want to know the particle size needed to induce
+transition at a distance of 3 cm.\ (.03 meter) from the nose or
+leading edge of the surface in question. The quantity $(R_k)_t/\sqrt{R_x}$
+is then 1.73; from the graphs we find the associated two-dimensional
+value of $\eta_k$ is 1.20, while the three-dimensional value is 0.96.
+Substituting in equation~\eqref{ch3:eq:93}, we then calculate critical particle
+sizes $k_t$ of $2.08 \times 10^{-4}$ meter for the two-dimensional case and
+$1.66 \times 10^{-4}$ meter for the three-dimensional case. The two-dimensional
+results may be applied with good accuracy to fins,
+body tubes of constant diameter, and other surfaces of zero
+pressure gradient; the three-dimensional results are applicable
+to nosecones, shoulders, and similar components whose boundary-layer
+pressure gradients are favorable. In either case, the
+critical size of distributed roughness particles is found to
+be on the order of 1/100 of a centimeter---further demonstration
+of the necessity for a smooth surface finish on model rockets
+to minimize the skin-friction drag. It should also be noted
+that the case of our example has an $R_x$ of $1.206 \times 10^{5}$, which
+is well above the lower limit of $6 \times 10^{4}$ given in
+Reference~\ref{ch3:ref:15} as the Reynolds number below which a laminar flow \emph{cannot
+be disturbed} into a turbulent pattern. Hence, transition \emph{can}
+occur under the conditions given in the example.
+
+There are certain limitations to this method. First, a
+zero pressure gradient has been assumed in its derivation; it
+seems likely, however, that the pressure gradient on most
+reasonably well-designed model rockets is small enough to keep
+the method accurate enough for practical use. Second, the
+critical roughness Reynolds number $(R_k)_t$ can be assumed to have
+the constant value of 600 only if the roughness elements are
+completely submerged in the laminar boundary layer. The height
+of the roughness particles compared with the boundary-layer
+thickness can be determined from the value of $\eta_k$ found for
+a particular case and the boundary-layer velocity profiles of
+Figures~\ref{ch3:fig:21}a and~\ref{ch3:fig:21}b (\ref{ch3:ref:3}). The values of $\eta_k$ found for the example
+above are seen to lie well within the boundary layer.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth,height=0.4\textheight,keepaspectratio]{figures/ch3/fig21.png}
+  \caption{Boundary layer velocity profiles for laminar flow
+  over flat plates (a) and cones (b).}
+  \label{ch3:fig:21}
+\end{figure}
+
+The reader should note at this point that the variable
+$\eta$ as used in Reference~\ref{ch3:ref:3}, from which Figures~\ref{ch3:fig:19} through~\ref{ch3:fig:21} are
+taken, is not the same as the variable $\eta$ used in the presentation
+of the Blasius solution of Section~\ref{ch3:sec:3.3}. If we identify the
+$\eta$ of Ref.~\ref{ch3:ref:3} as $\eta_3$ and the $\eta$ of Blasius by $\eta_B$, we have
+\begin{align}
+\eta_3 &= \frac{y}{2x}\sqrt{R_x} = \frac{y}{2x}\sqrt{\frac{U_\infty x}{\nu}}
+  = \frac{y}{2}\sqrt{\frac{U_\infty}{\nu x}} \label{ch3:eq:94}\\
+\eta_B &= y\sqrt{\frac{U_\infty}{\nu x}} \label{ch3:eq:95}
+\end{align}
+so that
+\begin{equation}\label{ch3:eq:96}
+\eta_B = 2\eta_3
+\end{equation}
+The two-dimensional boundary-layer profile of Figure~\ref{ch3:fig:21}a is thus
+identical to that of Figure~\ref{ch3:fig:14}, except for a scale factor of two
+in the vertical coordinate.
+
+The station $x = 3$ cm.\ generally corresponds to a position
+on the nosecone or fins of a model rocket. As $x$ is increased,
+the boundary layer becomes thicker (varying as $\sqrt{x}$ for a laminar
+boundary layer in zero pressure gradient) and the particle size
+required to induce transition at that value of $x$ is also increased.
+Eventually, the increase in downstream distance from the nose or
+leading edge will result in a value of $R_x$ sufficiently great
+to cause natural transition without the presence of any surface
+roughness. Calculations of induced transition due to surface
+roughness are, of course, applicable only for values of $R_x$ less
+than the critical Reynolds number $R_{\mathrm{crit}}$.
+
+An increase in the free-stream velocity will decrease the
+boundary-layer thickness at a given station $x$, so the particle
+size required to cause premature transition will also decrease.
+High-performance model rockets, which are expected to travel
+at extreme velocities, therefore require exceptionally smooth
+surface finishes to minimize their friction drag.
+
+Finally, we should note a third limitation on the general
+applicability of the calculation method presented in this section:
+the ``distributed'' roughness particles are actually assumed to
+lie in a thin band transverse to the stream direction so that
+the given value of $R_x$ can apply to them all, and the transition
+induced by particles of diameter $k_t$ is presumed to occur instantaneously
+as the air flows over this band. In actuality, of
+course, the roughness in a model rocket's finish is usually
+distributed fairly evenly over the entire surface of the rocket
+and the transition induced by the particles occurs at some
+finite distance downstream of them. The calculation method
+presented does, however, provide the kind of order-of-magnitude
+information useful to the model rocketeer in ascertaining the
+permissible roughness of surface finishes that will avoid
+premature transition and keep friction drag as low as possible.
+
+\subsubsection{Skin-Friction Drag of Boundary Layers with Transition}\label{ch3:sec:3.5.3}
+
+One can estimate the skin-friction drag on a flat plate
+on which boundary-layer transition occurs if it is assumed
+that, behind the transition point, the turbulent boundary
+layer behaves \emph{as if it had been turbulent all the way from
+the leading edge}. Since the laminar region introduces a reduction
+in drag from what the drag would be if the entire boundary layer
+were turbulent, we can just substitute the laminar drag up to
+the transition point for the turbulent drag over the same
+distance (\ref{ch3:ref:15}). The incremental decrease in drag force is then
+\begin{equation}\label{ch3:eq:97}
+\Delta D = -\frac{\rho}{2}U_\infty^{2}b\,x_{\mathrm{crit}}
+  \left[(C_f)_{\mathrm{turb}} - (C_f)_{\mathrm{lam}}\right]
+\end{equation}
+where $(C_f)_{\mathrm{turb}}$ and $(C_f)_{\mathrm{lam}}$ are the respective coefficients
+of turbulent and laminar skin friction.
+
+The change in overall skin-friction coefficient becomes
+\begin{equation}\label{ch3:eq:98}
+\Delta C_f = -\frac{x_{\mathrm{crit}}}{\ell}\left[(C_f)_{\mathrm{turb}} - (C_f)_{\mathrm{lam}}\right]
+\end{equation}
+or
+\begin{equation}\label{ch3:eq:99}
+\Delta C_f = -\frac{R_{\mathrm{crit}}}{R_\ell}\left[(C_f)_{\mathrm{turb}} - (C_f)_{\mathrm{lam}}\right]
+\end{equation}
+Letting
+\begin{equation}\label{ch3:eq:100}
+B = R_{\mathrm{crit}}\left[(C_f)_{\mathrm{turb}} - (C_f)_{\mathrm{lam}}\right]
+\end{equation}
+we derive the overall skin-friction coefficient as (\ref{ch3:ref:15}):
+\begin{equation}\label{ch3:eq:101}
+C_f = \frac{0.074}{R_\ell^{1/5}} - \frac{B}{R_\ell}
+\end{equation}
+where the laminar and turbulent skin-friction coefficients
+are evaluated from the previously derived expressions,
+equations~\eqref{ch3:eq:86} and~\eqref{ch3:eq:63}:
+\begin{subequations}\label{ch3:eq:102}
+\begin{align}
+(C_f)_{\mathrm{turb}} &= \frac{0.074}{(R_\ell)^{1/5}} \label{ch3:eq:102a}\\
+(C_f)_{\mathrm{lam}} &= \frac{1.328}{(R_\ell)^{1/2}} \label{ch3:eq:102b}
+\end{align}
+\end{subequations}
+Approximate values of $B$ for several possible values of $R_{\mathrm{crit}}$
+are listed below (\ref{ch3:ref:15}):
+\begin{center}
+  \begin{tabular}{@{}l@{\qquad}l@{\qquad}l@{\qquad}l@{\qquad}l@{}}
+    \toprule
+    $R_{\mathrm{crit}}$ & $3 \times 10^{5}$ & $5 \times 10^{5}$ & $1 \times 10^{6}$ & $3 \times 10^{6}$\\
+    $B$ & 1050 & 1700 & 3300 & 8700\\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+In order to apply equation~\eqref{ch3:eq:101} in a particular case,
+the value of $R_{\mathrm{crit}}$ must be known. Since no value of this
+quantity has been determined for a model rocket, we shall
+assume an average value for calculation purposes of $R_{\mathrm{crit}} = 5 \times 10^{5}$,
+corresponding to a $B$ of about 1700. Since this value is near
+the lower end of the $R_{\mathrm{crit}}$ range for flat plates ($3 \times 10^{5}$ to
+$3 \times 10^{6}$), the results obtained should be somewhat conservative,
+making it unlikely that the drag will be underestimated. Section~\ref{ch3:sec:6}
+discusses the matter of critical Reynolds number for model
+rockets further in the light of data gathered by Mark Mercer.
+The transition curve described by equation~\eqref{ch3:eq:101} for $B = 1700$
+is plotted as function C in Figure~\ref{ch3:fig:22}, along with the pure laminar
+and pure turbulent functions from equations~\eqref{ch3:eq:63} (function A)
+and~\eqref{ch3:eq:86} (function B). Figure~\ref{ch3:fig:22} can be used directly to find
+skin-friction coefficients for use in the method described
+in Section~\ref{ch3:sec:6}.

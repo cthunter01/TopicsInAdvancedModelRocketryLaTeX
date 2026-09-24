@@ -1,1 +1,288 @@
-% ch3-sec6b -- stub, to be transcribed (milestone M3)
+% chapters/ch3-sec6b.tex -- 6.2 The Datcom Method Applied to the Javelin Rocket
+% (PDF 475-485, printed pp. 443-453), up to but not including the 6.3 heading (last line of PDF 485).
+% No numbered equations: the worked example is unnumbered arithmetic, one display per printed display.
+\subsection{The Datcom Method Applied to the Javelin Rocket}\label{ch3:sec:6.2}
+
+To illustrate the application of the equations presented in the preceding section, I shall
+perform the zero-lift drag coefficient calculation for a specific model rocket: the Javelin, a
+kit produced by the Centuri Engineering Company, and the same model for which Mercer has published
+experimentally-determined information on drag obtained through wind-tunnel tests. The
+availability of published data gives us a standard by which to measure the accuracy of the
+\emph{Datcom} results. The Javelin, a simple, single-staged vehicle with a tangent-ogive nose, is
+shown in Figure~\ref{ch3:fig:48}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig48.png}
+  \caption{The Javelin rocket, produced in kit form by the Centuri Engineering Company of Phoenix,
+    Arizona, shown with its stock BC-74 nosecone. All dimensions are given in centimeters.}
+  \label{ch3:fig:48}
+\end{figure}
+
+I shall begin the calculation by making the following assumptions:
+\begin{enumerate}[label=(\alph*)]
+  \item the angle of attack is zero;
+  \item the model has no launch lug;
+  \item the airspeed is 60 meters/second and $\nu = 1.495 \times 10^{-5}$ meter$^{2}$/second;
+  \item the finish is hydraulically smooth at the given velocity;
+  \item the flow over the fins is completely laminar;
+  \item the flow over the body is completely turbulent; and
+  \item the flow does not separate from fins or body, except at the base.
+\end{enumerate}
+The determination then proceeds as follows:
+
+\medskip\noindent Step~1:\quad forebody drag coefficient $(C_{Df})_b$
+\begin{align*}
+(C_{Df})_b &= (C_f)_B\left[1 + \frac{60}{(\ell_b/d_m)^3} + 0.0025\,\frac{\ell_b}{d_m}\right]\frac{S_s}{S_m}
+\end{align*}
+Assume $(C_f)_B$ given by equation~\eqref{ch3:eq:86}:
+\begin{align*}
+(C_f)_B &= (C_f)_{\mathrm{turb}} = \frac{.074}{(R_\ell)^{1/5}}
+\end{align*}
+Since $\ell_b = 31.75$ cm.\ $= 0.3175$ meter, the Reynolds number based on body length is
+given by
+\begin{align*}
+R_\ell &= \frac{60 \times .3175}{1.495 \times 10^{-5}} = 1.27 \times 10^{6}
+\end{align*}
+Then the skin-friction coefficient of the body is
+\begin{align*}
+(C_f)_B &= .00445
+\end{align*}
+Since
+\begin{align*}
+\frac{\ell_b}{d_m} &= \frac{31.75}{1.93} = 16.45
+\end{align*}
+we obtain
+\begin{align*}
+\left[1 + \frac{60}{(\ell_b/d_m)^3} + .0025\,\frac{\ell_b}{d_m}\right] &= 1 + .0135 + .0411 \cong 1.055
+\end{align*}
+The ratio of wetted area to cross-sectional area is
+\begin{align*}
+\frac{S_s}{S_m} &= \left(\frac{S_s}{S_m}\right)_{\mathrm{CYL}} + \left(\frac{S_s}{S_m}\right)_{\mathrm{OGIVE}}
+\end{align*}
+For the cylindrical body we find from~\eqref{ch3:eq:170}
+\begin{align*}
+\left(\frac{S_s}{S_m}\right)_{\mathrm{CYL}} &= 4\,\frac{\ell}{d_m} = \frac{22.61}{1.93} = 46.9
+\end{align*}
+and for the ogival nose Figure~\ref{ch3:fig:46} or equation~\eqref{ch3:eq:171c} gives
+\begin{align*}
+\left(\frac{S_s}{S_m}\right)_{\mathrm{OGIVE}} &\cong 2.7\,\frac{\ell}{d_m} = 2.7\,\frac{9.14}{1.93} = 12.8
+\end{align*}
+So
+\begin{align*}
+\frac{S_s}{S_m} &= 46.9 + 12.8 = 59.7
+\end{align*}
+The forebody drag coefficient is thus
+\begin{align*}
+(C_{Df})_b &= .00445 \times 1.055 \times 59.7 = 0.279
+\end{align*}
+
+\medskip\noindent Step~2:\quad base drag coefficient $C_{Db}$
+\begin{align*}
+C_{Db} &= \frac{0.029(d_b/d_m)^3}{\sqrt{(C_{Df})_b}}
+\end{align*}
+From Step 1,
+\begin{align*}
+\sqrt{(C_{Df})_b} &= \sqrt{.279} = .528
+\end{align*}
+and hence the base drag coefficient is
+\begin{align*}
+C_{Db} &= \frac{.029}{.528} = .055
+\end{align*}
+
+\medskip\noindent Step~3:\quad fin drag coefficient $(\CDo)_F$
+\begin{align*}
+(\CDo)_F &= 2(C_f)_F\left(1 + 2\,\frac{t}{c}\right)\frac{S_F}{S_m}
+\end{align*}
+Assume $(C_f)_F$ given by equation~\eqref{ch3:eq:63}:
+\begin{align*}
+(C_f)_F &= (C_f)_{\mathrm{LAM.}} = \frac{1.328}{\sqrt{R_c}}
+\end{align*}
+The average fin chord is simply
+\begin{align*}
+c &= \frac{3.97 + 2.07}{2} = 3.02\un{cm.} = .0302\un{meter}
+\end{align*}
+Hence the Reynolds number for the fins is
+\begin{align*}
+R_c &= \frac{60 \times .0302}{1.495 \times 10^{-5}} = 1.21 \times 10^{5}
+\end{align*}
+which gives
+\begin{align*}
+(C_f)_F &= \frac{1.328}{\sqrt{1.21 \times 10^{5}}} = .00382
+\end{align*}
+Fins made of 3/32\textquotedbl{} balsa give $t = 0.238$ cm., so
+\begin{align*}
+\frac{t}{c} &= \frac{.238}{3.02} = 0.079
+\end{align*}
+The gross area $\sigma_F$ of a single fin can be determined by resolving the Javelin fin into
+rectangles and right triangles, as shown in Figure~\ref{ch3:fig:49}b; this method simplifies the
+calculation of $\sigma_F$ and, although it results in a slightly larger value than that obtained
+by the standard method (shown in Figure~\ref{ch3:fig:49}a), the difference is not very
+significant. Following Figure~\ref{ch3:fig:49}b, then,
+\begin{align*}
+\text{Area of region I} &= \tfrac{1}{2} \times 1.90 \times 4.19 = 3.98\un{cm.^{2}}\\
+\text{Area of region II} &= 2.07 \times 4.19 = 8.68\un{cm.^{2}}\\
+\text{Area of region III} &= 3.21 \times 0.965 = 3.10\un{cm.^{2}}\\[1ex]
+\sigma_F &= (3.98 + 8.68 + 3.10)\un{cm.^{2}} = 15.76\un{cm.^{2}}
+\end{align*}
+Since the Javelin has four fins,
+\begin{align*}
+S_F &= 4\sigma_F \cong 63\un{cm.^{2}}
+\end{align*}
+The body frontal area is
+\begin{align*}
+S_m &= \frac{\pi d_m^2}{4} = \frac{3.14 \times 1.93^2}{4} = 2.92\un{cm.^{2}}
+\end{align*}
+and hence the fin drag coefficient is
+\begin{align*}
+(\CDo)_F &= 2 \times .00382 \times 1.158 \times \frac{63}{2.92} = .190
+\end{align*}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig49.png}
+  \caption{Standard and approximate methods of determining the gross fin planform area of the
+    Javelin rocket. The approximate method (b) is preferred to the standard method (a) because it
+    is more conservative; that is, it results in a larger value of $\sigma_F$.}
+  \label{ch3:fig:49}
+\end{figure}
+
+Summing the results of steps 1, 2, and 3, we obtain the total zero-lift drag coefficient of the
+rocket:
+\begin{align*}
+(\CDo)_{FB} &= .279 + .055 + .190 = .524
+\end{align*}
+
+This value is about 25\% greater than the drag coefficient measured by Mercer for the Javelin
+rocket with a Centuri BC-74 nosecone (see Figure~\ref{ch3:fig:31}).
+
+Now suppose we see what happens if I rescind assumption (f) above and replace it with the more
+accurate assumption that the flow over the body is partly laminar and partly turbulent, with
+transition occurring at the critical Reynolds number $R_{\mathrm{crit}} = 5 \times 10^{5}$.
+
+\medskip\noindent Step~1:\quad forebody drag coefficient $(C_{Df})_b$
+
+\noindent The body skin-friction coefficient will now be given by
+equation~\eqref{ch3:eq:101}:
+\begin{align*}
+(C_f)_B &= \frac{0.074}{(R_\ell)^{1/5}} - \frac{B}{R_\ell}
+\end{align*}
+From equation~\eqref{ch3:eq:100} we find $B = 1735$; since $R_\ell = 1.27 \times 10^{6}$,
+\begin{align*}
+(C_f)_B &= .00445 - .00137 = .00308
+\end{align*}
+The forebody drag coefficient then becomes
+\begin{align*}
+(C_{Df})_b &= .00308 \times 1.055 \times 59.7 = .194
+\end{align*}
+which is a reduction of 30.5\% from its previous value of 0.279, or a reduction in the
+contribution to the overall drag coefficient by 0.085. This is due to the fact that, at these
+Reynolds numbers, the skin-friction coefficient for a laminar boundary layer is considerably
+lower than that for a turbulent boundary layer.
+
+\medskip\noindent Step~2:\quad base drag coefficient $C_{Db}$
+
+\noindent Using the new value of $(C_{Df})_b$, we find the base drag coefficient to be
+\begin{align*}
+C_{Db} &= \frac{0.029}{\sqrt{.194}} = .066
+\end{align*}
+The base drag coefficient is thus \emph{increased} by 20\%, but since it was a relatively small
+quantity to begin with the actual increase in drag coefficient due to this percentage increase is
+only 0.011.
+
+\medskip\noindent Step~3:\quad fin drag coefficient $(\CDo)_F$
+
+\noindent Since $R_c$ is less than the critical Reynolds number, laminar flow will be maintained
+on the fins. The fin drag coefficient thus remains unchanged from its previous value of 0.190.
+
+Summing the contributions from Steps 1, 2, and 3 we obtain a new value for the total drag
+coefficient:
+\begin{align*}
+(\CDo)_{FB} &= .194 + .066 + .190 = .450
+\end{align*}
+
+This result is only about 7\% greater than Mercer's measured value of 0.42 for the Javelin
+rocket. Actually, we have no right to expect any closer agreement with Mercer's data, both
+because a 7\% error is within the measurement uncertainty of the type of equipment used in the
+wind-tunnel experiments and because the wind-tunnel tests were conducted at a much lower velocity
+than 60 meters/second, and hence a much lower Reynolds number than that on which the above
+calculations were based. An airspeed of 15 meters/second is representative of the test velocities
+produced by the type of wind tunnel used in the Mercer experiments. Suppose we then rescind
+assumption (c) above and replace it with the assumption that the airspeed is 15 meters/second.
+This gives $R_\ell = 3.175 \times 10^{5}$ and $R_c = 3.02 \times 10^{4}$. Both Reynolds numbers
+are subcritical, so the flow will remain entirely laminar over both body and fins.
+
+\medskip\noindent Step~1:\quad forebody drag coefficient $(C_{Df})_b$
+
+\noindent The body skin-friction coefficient is given by
+\begin{align*}
+(C_f)_B &= (C_f)_{\mathrm{LAM.}} = \frac{1.328}{\sqrt{31.75 \times 10^{4}}} = .00154
+\end{align*}
+so the forebody drag coefficient is
+\begin{align*}
+(C_{Df})_b &= .00154 \times 1.055 \times 59.7 = .097
+\end{align*}
+This represents a decrease of 0.097, or 50\%, from the transition-flow value of $(C_{Df})_b$.
+
+\medskip\noindent Step~2:\quad base drag coefficient $C_{Db}$
+\begin{align*}
+C_{Db} &= \frac{.029}{\sqrt{.097}} = .093
+\end{align*}
+This is an \emph{increase} of 0.028, or 41\% over the transition-flow calculated value.
+
+\medskip\noindent Step~3:\quad fin drag coefficient $(\CDo)_F$
+
+\noindent The fin skin-friction coefficient is
+\begin{align*}
+(C_f)_F &= \frac{1.328}{\sqrt{3.02 \times 10^{4}}} = .00765
+\end{align*}
+Then
+\begin{align*}
+(\CDo)_F &= 2 \times .00765 \times 1.158 \times \frac{63}{2.92} = .380
+\end{align*}
+This is an increase of .190, or \emph{double} the value calculated for 60 meters/second.
+
+From these calculations we obtain an overall drag coefficient of
+\begin{align*}
+(\CDo)_{FB} &= .097 + .093 + .380 = .570
+\end{align*}
+
+This is a substantial disagreement with the experimental result---almost 36\%. And yet the
+Mercer data should be \emph{closer} to this value than to the other two values calculated,
+according to theory. Discrepancies of this kind can and often do arise, however, due to the
+airflow characteristics present in the test sections of many small, subsonic wind tunnels. Test
+facilities of this type are prone to have much more \emph{free-stream turbulence} in the air
+moving through their test sections than is present in the open atmosphere. The effect of
+free-stream turbulence in wind-tunnel testing is to raise the \emph{effective Reynolds number} of
+the test; i.e., to make the data look as if the Reynolds number were much higher than it actually
+is. One may thus conjecture that, although the Mercer tests may have been conducted at an airspeed
+closer to 15 than to 60 meters/second, free-stream turbulence in the wind tunnel made the drag
+coefficient appear as if the Reynolds number of the test had been closer to that produced by a 60
+meter/second airspeed. If this \emph{were} the case it would present model rocketeers with a
+rather paradoxical advantage, for it would mean that a turbulent, low-speed wind tunnel could
+produce drag coefficient data applicable to higher-speed model rocket flight in the open air. The
+difficulty with such an approach, of course, is that one cannot tell precisely what the effective
+Reynolds number of a test in a turbulent wind tunnel is, except by comparing the data with the
+semiempirical predictions of \emph{Datcom} theory.
+
+At a given Reynolds number, there are two major parameters which can be used to adjust the
+\emph{Datcom} prediction of the drag coefficient of a given rocket: the critical Reynolds number
+(and hence, the quantity $B$) and the decrease in base drag coefficient due to the presence of the
+fins. Since there are no data available to relate these effects quantitatively to either rocket
+geometry or flow conditions, such a process of adjustment must at present be considered pure
+guesswork. Variations in critical Reynolds number and base-drag reduction due to the fins could
+certainly be considered to account for the discrepancy between the prediction of our last
+calculation above and Mercer's experimental determination, but even if numerical estimates of
+these quantities are derived which, when used with the \emph{Datcom} method, give an accurate
+value of $(\CDo)_{FB}$ for the Javelin rocket, there is no assurance that their use can be
+extended to other rocket configurations. The constant $B$, for example, almost certainly depends
+upon the individual rocket, so there will always be some error inherent in a general technique
+like the \emph{Datcom} method. It can only be hoped that the variation of $B$ from model to model
+is small enough so that the error is maintained within acceptable limits for model rocketry
+work---say, about 10\%.
+
+In conclusion, it would appear that full adaptation of the \emph{Datcom} method to the practical
+calculation of model rocket drag coefficients requires research to establish reasonably
+representative values of $B$ for model rockets of different shapes, and to establish a
+semiempirical relationship between base drag and fin geometry and location, if this effect is
+indeed significant.

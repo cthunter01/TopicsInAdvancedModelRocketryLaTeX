@@ -1,1 +1,367 @@
-% ch3-sec3c-sec4a -- stub, to be transcribed (milestone M3)
+% chapters/ch3-sec3c-sec4a.tex -- 3.6 Three-Dimensional Corrections to the Flat-Plate
+% Skin-Friction Coefficients; 3.6.1 Body Corrections; 3.6.2 Fin Corrections; 4. Pressure Drag;
+% 4.1 Introduction; 4.2 Boundary-Layer Separation (PDF 389-408, ms pp. 357-376)
+\subsection{Three-Dimensional Corrections to the Flat-Plate Skin-Friction Coefficients}\label{ch3:sec:3.6}
+
+Approximate methods have been developed for estimating the effects of
+three-dimensionality on the values of the skin-friction coefficients derived
+for the flat plate. The results of an approximate method described in
+Reference~\ref{ch3:ref:9}, which can be used to correct two-dimensional
+skin-friction coefficients for application to three-dimensional surfaces, are
+presented below.
+
+% Figure 22 is printed on PDF 390, inside the paragraph above (PDF 389 ends after its first
+% line). The paragraph that first refers to it is the boundary paragraph of ch3-sec3b, which
+% carries only \ref{ch3:fig:22}; inventory/ch3.csv and figures/manifest.csv assign the figure to
+% this unit, so, as with ch1 Figure 8 (ch1-sec3.tex), it stays here after the paragraph it
+% interrupts.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig22.png}
+  \caption{Skin friction coefficient for flow over a flat plate with boundary
+  layer transition, based on the assumption of
+  $R_{\mathrm{crit}} = 5 \times 10^{5}$ (corresponding to $B = 1740$ in
+  equation~\eqref{ch3:eq:101}).}
+  \label{ch3:fig:22}
+\end{figure}
+
+\subsubsection{Body Corrections}\label{ch3:sec:3.6.1}
+
+For laminar boundary-layer flow over a circular cylinder held with its axis
+parallel to the stream, the increase in skin-friction coefficient over that of
+a two-dimensional plate having the same length $\ell$ is given approximately
+by (\ref{ch3:ref:9})
+\begin{equation}\label{ch3:eq:103}
+(\Delta C_f)_{\mathrm{lam}} = \frac{2\ell/d}{R_\ell}
+\end{equation}
+In a previous example, we determined a skin-friction coefficient of 0.00382
+for laminar flow over a flat plate at a Reynolds number of
+$1.206 \times 10^{5}$. For a model rocket body with a length-to-diameter ratio
+of 10 at the same Reynolds number, we obtain
+\begin{equation*}
+(\Delta C_f)_{\mathrm{lam}} = 1.66 \times 10^{-4}
+\end{equation*}
+The adjusted skin-friction coefficient is thus
+\begin{equation*}
+(C_f')_{\mathrm{lam}} = (C_f)_{\mathrm{lam}} + (\Delta C_f)_{\mathrm{lam}}
+  = \frac{1.328}{R_\ell^{1/2}} + \frac{2\ell/d}{R_\ell} = .003986
+\end{equation*}
+with equation~\eqref{ch3:eq:103} accounting for a 4.4\% increase in the value
+of $C_f$.
+
+In the case of turbulent flow, the increase in skin-friction coefficient is
+found from (\ref{ch3:ref:9})
+\begin{equation}\label{ch3:eq:104}
+(\Delta C_f)_{\mathrm{turb}} = \frac{.022(\ell/d)}{(R_\ell)^{1/5}}(C_f)_{\mathrm{turb}}
+\end{equation}
+or, since $(C_f)_{\mathrm{turb}} = .074/R_\ell^{1/5}$ for a flat plate,
+\begin{equation}\label{ch3:eq:105}
+(\Delta C_f)_{\mathrm{turb}} = \frac{1.6 \times 10^{-3}(\ell/d)}{(R_\ell)^{2/5}}
+\end{equation}
+In our turbulent-flow example, it will be recalled that the skin-friction
+coefficient for a completely turbulent boundary layer over a flat plate at a
+Reynolds number of $1.206 \times 10^{6}$ was found to be 0.0045. Assuming a
+length-to-diameter ratio of 10 and the same Reynolds number, we have for the
+cylinder
+\begin{equation*}
+(\Delta C_f)_{\mathrm{turb}} = 5.93 \times 10^{-5}
+\end{equation*}
+Then the adjusted skin-friction coefficient is
+\begin{equation*}
+(C_f')_{\mathrm{turb}} = \frac{.074}{(R_\ell)^{1/5}}
+  + \frac{1.6 \times 10^{-3}(\ell/d)}{(R_\ell)^{2/5}} = .0045593
+\end{equation*}
+with equation~\eqref{ch3:eq:105} accounting for a 1.3\% increase from the
+flat-plate value---a bit less than 1/3 the percentage increase for the laminar
+case. In Section~\ref{ch3:sec:6}, corrections of these magnitudes will be used
+to determine the skin-friction drag on the constant-diameter body tube sections
+of a model rocket.
+
+\subsubsection{Fin Corrections}\label{ch3:sec:3.6.2}
+
+A model rocket fin is generally not quite thin enough to be represented as a
+flat plate. The average tangential velocity of the airstream about a fin with a
+symmetrical airfoil section is higher than that of the undisturbed flow, even
+at zero angle of attack when the fin produces no side force (or ``lift'', as
+the side force is sometimes colloquially called) (\ref{ch3:ref:9}). The
+friction drag coefficient of a flat plate wetted on both sides, with the
+planform area (area of one side only) used as the reference area, is
+\begin{equation}\label{ch3:eq:106}
+C_{Df} = 2C_f
+\end{equation}
+Now the increase in friction drag with thickness is proportional to the
+increment in dynamic pressure caused by the increase in flow velocity required
+for the air to negotiate a fin of finite thickness. This increment, in turn, is
+proportional to the \emph{thickness ratio} $t/c$, where $t$ denotes fin maximum
+thickness and $c$ denotes fin chord:
+\begin{equation}\label{ch3:eq:107}
+\frac{\Delta C_{Df}}{2C_f} = \frac{\Delta q}{q} = 2\frac{t}{c}
+\end{equation}
+Then for the fin drag coefficient, based on fin planform area, corrected for
+thickness effects, we obtain
+\begin{equation}\label{ch3:eq:108}
+C_{Df}' = 2C_f\left(1 + 2\frac{t}{c}\right)
+\end{equation}
+For a typical model rocket fin having a thickness ratio of 0.05 the correction
+introduced by the use of equation~\eqref{ch3:eq:108} is seen to be 10\%.
+
+Again, we shall have occasion to return to these formulae in
+Section~\ref{ch3:sec:6}. In that section also, procedures for converting
+skin-friction drag coefficients based on body tube lateral area and fin
+planform area to coefficients based on maximum frontal area will be presented.
+
+\section{Pressure Drag}\label{ch3:sec:4}
+
+\subsection{Introduction}\label{ch3:sec:4.1}
+
+Pressure drag was defined previously in Section~\ref{ch3:sec:2} as the
+integral over the body surface of the components of pressure forces acting
+directly opposite the direction of the rocket's motion; that is,
+\begin{equation}\label{ch3:eq:109}
+D_p = \iint_{S} p\cos(\vec{n},\vec{V})\,dS
+\end{equation}
+where the unit vector $n$ is everywhere normal to the surface (you may wish to
+refresh your memory in regard to the notation by consulting
+Figure~\ref{ch3:fig:11} again). For purposes of analysis, it is useful to
+divide this integral into two parts: first, the integral over the base area of
+the rocket, called base drag, which will be discussed in
+Section~\ref{ch3:sec:4.4}; and second, the integral over the remainder of the
+rocket body and fins (pressure foredrag), to be discussed in
+Section~\ref{ch3:sec:4.3}.
+
+The existence of pressure drag is intimately associated with the phenomenon of
+\emph{boundary-layer separation}. In general, for a rocket with a streamlined
+nose, streamlined fin profile, and no launch lug, the base drag will be
+considerably larger than the pressure foredrag. This is because separation of
+the boundary layer from the rear of the rocket, unavoidable due to the presence
+of the opening into which the engine casing must be inserted, creates a
+relatively large component of pressure drag. In the event that extensive flow
+separation occurs on the forebody, however---as the result of blunt surfaces
+directed against the airflow---the pressure drag of the forebody can be quite
+large, perhaps several times the base drag.
+
+Since an understanding of the mechanism and prevention of boundary-layer
+separation is essential to the study of pressure drag, we begin with a
+discussion of this phenomenon in Section~\ref{ch3:sec:4.2}. Unfortunately,
+there is very little quantitative information available concerning the two most
+important sources of pressure drag on well-constructed model rockets: the
+launch lug (if the model has one) and the base. Section~\ref{ch3:sec:4.3}
+discusses Mark Mercer's data concerning the first question, and in
+Section~\ref{ch3:sec:4.4} the empirically-derived expression which is used to
+evaluate base drag is presented, although it is noted that this formula does
+not take into account either the effects of stabilizing fins or the influence
+of the engine exhaust on the base drag.
+
+\subsection{Boundary-Layer Separation}\label{ch3:sec:4.2}
+
+The skin-friction coefficients which were derived in Section~\ref{ch3:sec:3}
+for laminar and turbulent flow presuppose that the boundary layer remains
+attached to the solid surface on which it is formed. This assumption is
+generally valid for a flat plate, as the pressure gradient along the plate's
+surface $dp/dx$ is zero; but in regions of \emph{increasing} pressure ($dp/dx$
+positive, a so-called \emph{adverse} pressure gradient) the boundary layer may
+be unable to follow the contour of the body surface beyond a certain point and
+it will break away from the surface. When this happens, the skin-friction
+coefficients of Section~\ref{ch3:sec:3} are not applicable beyond the point of
+separation.
+
+To illustrate this phenomenon, we examine the flow past a blunt body, such as
+the circular cylinder shown in Figure~\ref{ch3:fig:23}. In the inviscid flow of
+a ``perfect'' fluid, the fluid elements are \emph{accelerated} from point A to
+point B, and are \emph{decelerated} from point B to point C. In accordance with
+Bernoulli's equation, there is an increase in static pressure between A and B
+and a corresponding decrease along the downstream surface from B to C. This
+theoretical pressure distribution (which appears in Figure~\ref{ch3:fig:24} as
+the curve $C_p = 1 - 4\sin^2\varphi$) is \emph{impressed upon} the boundary
+layer in real fluid flow; that is, at any station in the boundary layer the
+pressure over the thickness of the layer is virtually constant and is taken as
+equal to the pressure in the exterior flow at the same station.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig23.png}
+  \caption{Flow about a circular cylinder held transverse to the airstream.
+  Inviscid (``potential'') theory predicts that the flow near the surface of
+  the cylinder will be accelerated from point A to point B and decelerated
+  again from B to C. In actuality, the boundary layer develops an inflection
+  point due to the adverse pressure gradient between B and C, and separation
+  occurs at S.}
+  \label{ch3:fig:23}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig24.png}
+  \caption{Theoretical and experimental variation of pressure coefficient in
+  flow about a circular cylinder. The theoretical curve obtained from potential
+  flow theory is displayed and compared with average curves of experimental
+  data taken at the subcritical Reynolds number $6 \times 10^{4}$ and the
+  supercritical Reynolds number $3 \times 10^{5}$ (based on cylinder diameter).
+  The angle $\varphi$ is the angle between a line drawn from the cylinder axis
+  to point A in Figure~\ref{ch3:fig:23} and a line drawn from the axis to any
+  other point on the cylinder periphery. Point B in Figure~\ref{ch3:fig:23}
+  thus corresponds to $\varphi = 90\dg$ and point C to $\varphi = 180\dg$.}
+  \label{ch3:fig:24}
+\end{figure}
+
+An element in the exterior flow, because of the pressure distribution,
+undergoes a continual change in kinetic energy as it moves from the front to
+the rear of the cylinder, first increasing, then decreasing. Because there is
+no dissipation of energy in inviscid flow, the theory of perfect fluids
+predicts that a fluid element will arrive at C with the same velocity it had at
+A. Within the boundary layer, however, fluid elements are subjected to large
+frictional forces which consume much of the kinetic energy gained in travelling
+from A to B. Hence an element near the wall will not have sufficient kinetic
+energy to overcome the positive pressure gradient on the downstream side of the
+cylinder, and at some point its motion will be arrested. Acting under the
+influence of the pressure gradient, it will then \emph{reverse} the direction
+of its motion so that it is actually moving \emph{against} the exterior
+airstream.
+
+This process and its consequences are depicted in Figure~\ref{ch3:fig:25},
+which shows how the velocity profiles in the boundary layer are altered near a
+point of separation. The boundary layer has a full, stable velocity profile at
+point a, well upstream of the separation point c. As the flow moves into the
+region of increasing pressure, however, the particles at the wall begin to be
+retarded until, at c, the velocity profile develops an inflection point and has
+a zero velocity gradient at the wall. The layer of fluid nearest the wall has
+consequently lost all its forward momentum. The condition of zero normal
+velocity gradient at the wall is expressed mathematically as
+\begin{equation}\label{ch3:eq:110}
+\left(\frac{\partial u}{\partial y}\right)_{y=0} = 0
+\end{equation}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig25.png}
+  \caption{The development of boundary layer separation from a surface due to
+  the influence of a positive (adverse) pressure gradient.}
+  \label{ch3:fig:25}
+\end{figure}
+
+Downstream of c, the separation point, the layers of fluid nearest the wall
+reverse their motion, a vortex is formed, and the general accumulation of fluid
+in the boundary layer leads to a rapid increase of boundary-layer thickness
+(points d and e). The layer becomes so thick, in fact, that the original
+assumptions which were made in the derivation of the boundary-layer equations
+(equations~\eqref{ch3:eq:38} and~\eqref{ch3:eq:39}) are no longer valid and a
+``boundary layer'' as such can no longer be said to exist. Hence, the
+boundary-layer approximations apply only up to the point of separation, and
+resort must be had to experiment to determine the conditions on the rear of the
+body from which the flow has separated.
+
+The remarkable series of photographs in Plates~\ref{ch3:plate:4}a
+through~\ref{ch3:plate:4}j, made by Prandtl and Tietjens
+(Reference~\ref{ch3:ref:12}), illustrates the actual development of separation
+at the rear of a circular cylinder. In Plate~\ref{ch3:plate:4}a, the flow has
+just begun; the boundary layer is very thin, and conditions conform very
+closely to ideal, inviscid potential flow. In the next picture, some particles
+nearest the wall have been retarded by the adverse pressure gradient; they
+appear as bright, white dots. This corresponds to the velocity profile of point
+c in Figure~\ref{ch3:fig:25}. These particles have acquired a backwards
+velocity in Plate~\ref{ch3:plate:4}c, and a line of stationary fluid now exists
+at some distance from the wall, as at points d and e in
+Figure~\ref{ch3:fig:25}. The external flow persists in forward (left-to-right)
+motion outside this line. The instability of the dividing line is demonstrated
+in the concluding plates of the sequence as it breaks up into separate
+vortices, grossly altering the pressure distribution beyond the separation
+point.
+
+\begin{plate}[htbp]
+  \centering
+  \includegraphics[width=0.62\textwidth,height=0.27\textheight,keepaspectratio]{figures/ch3/plate04a.jpg}\\[4pt]
+  \includegraphics[width=0.62\textwidth,height=0.55\textheight,keepaspectratio]{figures/ch3/plate04b.jpg}
+  \caption{Flow around the rear end of a blunt body, illustrating the onset of
+  boundary layer separation due to an adverse pressure gradient.}
+  \label{ch3:plate:4}
+\end{plate}
+
+Figure~\ref{ch3:fig:24} compares the theoretical pressure distribution
+($C_p = 1 - 4\sin^2\varphi$) on a circular cylinder with experimental results
+obtained at various Reynolds numbers. Because of the symmetry of the
+theoretical curve, integration of the pressure forces over the surface of the
+cylinder will yield a pressure drag of zero---the same result obtained for an
+object of \emph{any} shape using potential-flow theory alone. In the
+experimental cases, however, the pressure over the rear of the cylinder never
+attains its original value at $\varphi = 0\dg$. \emph{Pressure recovery} is
+thus said to be \emph{incomplete}. The suction forces due to the negative
+pressure coefficient at the rear will predominate over the suction forces
+acting on the upstream side, and a net positive pressure drag (force in the
+direction of the stream) will result.
+
+The existence of a point of inflection in the velocity distribution is a
+necessary condition for separation (\ref{ch3:ref:15}). In
+Section~\ref{ch3:sec:3} we saw that the stability of a laminar flow is also
+related to this characteristic of the velocity profile: the existence of a
+point of inflection is a necessary \emph{and sufficient} condition for the
+amplification of turbulent disturbances. The significance of this correlation
+is revealed when one considers the variation of the drag coefficient of a
+sphere or circular cylinder with Reynolds number, as shown in
+Figure~\ref{ch3:fig:26}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth,height=0.8\textheight,keepaspectratio]{figures/ch3/fig26.png}
+  \caption{Variation of drag coefficient with Reynolds number based on diameter
+  for circular cylinders (a) and spheres (b). The curves shown are average
+  values obtained from a large number of experiments.}
+  \label{ch3:fig:26}
+\end{figure}
+
+At a Reynolds number of about $3 \times 10^{5}$ for a sphere, and about
+$5 \times 10^{5}$ for a circular cylinder held transverse to the flow, the drag
+coefficient exhibits a sudden and considerable decrease. This phenomenon is due
+to the transition of the boundary layer from laminar to turbulent flow, causing
+the separation point to move downstream---and, therefore, causing the total
+width of the ``stagnant'' or ``dead-air'' region created by the separation to
+decrease. This effect is also demonstrated in the experimental pressure
+distributions of Figure~\ref{ch3:fig:24}, as for supercritical
+(post-transition) Reynolds numbers, the pressure recovery is more complete than
+at subcritical (pre-transition) Reynolds numbers. Hence the fluid flow
+resembles frictionless flow more closely, and the pressure drag is
+correspondingly reduced. The magnitude of the \emph{decrease} in
+\emph{pressure} drag is considerably greater than the \emph{increase} in the
+\emph{friction} drag due to the attached turbulent boundary layer. This
+accounts for the sharpness of the drag coefficient curve's slope at the
+critical Reynolds number.
+
+A striking flow-visualization experiment, originally performed by Prandtl
+(\ref{ch3:ref:12}), demonstrates the validity of these assertions. He placed a
+sphere in subcritical flow and observed the resulting flow pattern, made
+visible by smoke (Plate~\ref{ch3:plate:5}a). As expected, the laminar flow
+separated just before the shoulder, and there was a very wide wake trailing the
+body. When a thin wire ring was mounted upstream of the sphere's equator,
+artificially inducing turbulence at a subcritical Reynolds number (see
+Section~\ref{ch3:sec:3.5}), the separation point moved well downstream as shown
+in Plate~\ref{ch3:plate:5}b. This movement was accompanied by a decrease in the
+measured drag coefficient, similar to that achieved at supercritical Reynolds
+numbers. The experiment is thus a convincing demonstration that the sharp
+decline in the drag coefficient of spheres and cylinders observed at the
+critical Reynolds number can only be interpreted as a boundary-layer phenomenon
+(\ref{ch3:ref:15}).
+
+\begin{plate}[htbp]
+  \centering
+  \includegraphics[width=0.6\textwidth,height=0.7\textheight,keepaspectratio]{figures/ch3/plate05.jpg}
+  \caption{Flow about a sphere at a subcritical Reynolds number. In (a) the
+  laminar boundary layer separates slightly upstream of the shoulder. In (b)
+  the presence of a wire ring ``trips'' the boundary layer, artificially
+  inducing transition to turbulent flow and delaying separation until the flow
+  is far downstream of the shoulder.}
+  \label{ch3:plate:5}
+\end{plate}
+
+It remains to be explained why transition affects the position of the
+separation point. The physical phenomenon determining this behavior is that
+\emph{a turbulent boundary layer can withstand a stronger adverse pressure
+gradient than can a laminar boundary layer}. This results from the mixing
+action present in the turbulent layer, which transfers momentum from the outer
+layers of the flow to the strata of fluid near the wall, permitting them to
+continue their forward motion for greater distances against adverse pressure
+gradients than would otherwise be the case. This same mechanism accounts for
+the low drag of many bodies with streamlined aftersections, such as airplane
+fuselages: the transition of the boundary layer to turbulent flow prevents the
+flow from separating in the relatively mild adverse pressure gradient at the
+rear of such a body, and thus the pressure drag is very small. Since the skin
+friction of such a body in fluids such as air is also small, the overall drag
+coefficient is close to zero.

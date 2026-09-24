@@ -1,1 +1,379 @@
-% ch3-sec6a -- stub, to be transcribed (milestone M3)
+% chapters/ch3-sec6a.tex -- 6. Calculation of the Zero-Lift Drag of Simple Model Rockets;
+% 6.1 The United States Air Force Stability and Control Datcom Method; 6.1.1; 6.1.2
+% (PDF 461-474, book pp. 429-442)
+\section{Calculation of the Zero-Lift Drag of Simple Model Rockets}\label{ch3:sec:6}
+
+\subsection{The United States Air Force Stability and Control Datcom Method}\label{ch3:sec:6.1}
+
+In the previous sections we have analyzed in detail the origin of drag forces
+on model rockets. Information of this nature is of interest in the design
+stage, when it is desired to minimize the drag on a vehicle whose size and
+shape are known to be subject to certain constraints arising from the purpose
+for which it is built, but whose precise, final form is yet to be determined.
+After the construction of the rocket is complete and it stands ready to
+launch, however, the modeler invariably finds himself asking, ``Just how high
+\emph{will} it go?''. To answer this question one requires a knowledge of the
+overall drag coefficient of the model, which can generally be obtained in
+actual cases only through accurate wind-tunnel or drop tests. Since the
+facilities required for such tests are not available to the majority of model
+rocketeers, most of us must be content with calculating fairly accurate $\CD$
+values from available semiempirical expressions.
+
+This section presents and discusses one such semiempirical method, derived
+from the \emph{United States Air Force Stability and Control Datcom}
+(``Datcom'' standing for \emph{Dat}a \emph{Com}pendium). The existence of this
+method was first brought to the author's attention through a short paper
+entitled ``A Critical Examination of Model Rocket Drag for Use with Maximum
+Altitude Performance Charts'', a work prepared by Dr.\ Gerald M. Gregorek of
+Ohio State University for presentation at the Eighth National Model Rocket
+Championships in 1966, and which subsequently received limited distribution
+to certain interested parties and local sections of the National Association
+of Rocketry. Through his compilation of this work, Dr.\ Gregorek deserves full
+credit for being the first to apply the Datcom method to model rockets.
+
+The \emph{USAF Stability and Control Datcom} is a large compilation of
+semiempirical expressions for evaluating the aerodynamic forces acting on
+aircraft and missiles in subsonic, supersonic, and hypersonic flight regimes.
+It is updated periodically to include new developments in the literature of
+aerodynamics. The formulae presented here are taken from the most recent
+edition available to the author at the time of writing (\ref{ch3:ref:6}).
+According to the \emph{Datcom}, the zero-lift drag coefficient of a fin-body
+combination may be represented as
+\begin{equation}\label{ch3:eq:158}
+(\CDo)_{FB} = (\CDo)_F\frac{S_F}{S_m} + (\CDo)_B
+\end{equation}
+where
+\begin{itemize}[nosep,leftmargin=2.5em,label={}]
+  \item $S_F$ is the total planform area of all the fins;
+  \item $S_m$ is the maximum body cross-sectional area;
+  \item $(\CDo)_F$ is the zero-lift drag coefficient of the fins as derived in
+  Section~\ref{ch3:sec:3.6}, equation~\eqref{ch3:eq:108}:
+  \begin{equation}\label{ch3:eq:159}
+  (\CDo)_F = 2(C_f)_F\left(1 + 2\frac{t}{c}\right) \qquad \text{; and}
+  \end{equation}
+  \item $(\CDo)_B$ is the zero-lift drag coefficient of the body, which is
+  further subdivided into the forebody drag and the base drag:
+  \begin{equation}\label{ch3:eq:160}
+  (\CDo)_B = (C_{Df})_b + C_{Db}
+  \end{equation}
+\end{itemize}
+where
+\begin{align}
+(C_{Df})_b &= (C_f)_b\left[1 + \frac{60}{(\ell_b/d_m)^3}
+  + 0.0025\left(\frac{\ell_b}{d_m}\right)\right]\frac{S_s}{S_m}
+  \label{ch3:eq:161}\\
+C_{Db} &= \frac{0.029(d_b/d_m)^3}{\sqrt{(C_{Df})_b}} \label{ch3:eq:162}
+\end{align}
+
+$(\CDo)_{FB}$ is based on the maximum body frontal area $S_m$.
+Figure~\ref{ch3:fig:43} explains most of the notation pertaining to rocket
+geometry used in equations~\eqref{ch3:eq:159} through~\eqref{ch3:eq:162}.
+Additional explanatory discussion may be found in
+Sections~\ref{ch3:sec:6.1.1} and~\ref{ch3:sec:6.1.2}, where we shall examine
+in detail the calculation of $(\CDo)_F$ and $(\CDo)_B$, respectively.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig43.png}
+  \caption{Notation used in the Datcom method for computing the drag of
+  simple model rockets at zero angle of attack. Note that the variable $b$ as
+  used here refers to the span of a single fin, from root to tip; elsewhere in
+  this chapter it usually refers to the span of a diametrically opposed
+  \emph{pair} of fins, tip to tip.}
+  \label{ch3:fig:43}
+\end{figure}
+
+\subsubsection{Zero-Lift Drag Coefficient of the Fins}\label{ch3:sec:6.1.1}
+
+The \emph{Datcom} expression for the drag coefficient of the fins at zero
+angle of attack is equation~\eqref{ch3:eq:159}, which we repeat here for
+convenience:
+\begin{equation*}
+(\CDo)_F = 2(C_f)_F\left(1 + 2\frac{t}{c}\right)\frac{S_F}{S_m}
+\end{equation*}
+where
+\begin{itemize}[nosep,leftmargin=2.5em,label={}]
+  \item $t/c$ is the average \emph{streamwise thickness ratio} of the fins;
+  \item $(C_f)_F$ is the flat-plate skin-friction coefficient of the fins;
+  \item $S_F$ is the total fin planform area; and
+  \item $S_m$ is the maximum body frontal, or cross-sectional, area.
+\end{itemize}
+In the interest of clarity, certain of these terms are explained in greater
+detail below:
+
+For the purpose of these calculations, the planform area of a fin is
+considered to be the \emph{sum} of its actual, exposed planform area and the
+planform area of its \emph{imaginary extension into the body tube}.
+Figure~\ref{ch3:fig:44} illustrates the procedure for obtaining this ``gross
+area'', denoted by $\sigma_F$, for a number of possible fin planforms. For
+most fins, $\sigma_F$ can be obtained by simply extending the leading and
+trailing edges until they intersect the body longitudinal axis. For shapes
+like that of the Python-2 (\ref{ch3:ref:18}), where the trailing edge
+intersects the body tube at a very shallow angle, it is better to extend
+straight lines from the leading and trailing edges of the root chord, parallel
+to the base, until they intersect the body centerline as shown. For a rocket
+with $n$ identical fins, the total fin planform area $S_F$ is equal to
+$n\sigma_F$.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig44.png}
+  \caption{Obtaining the gross planform area of various fin shapes (shapes
+  after G. Harry Stine).}
+  \label{ch3:fig:44}
+\end{figure}
+
+Because $S_F$ is greater than the exposed fin area $S_E$, we expect
+$(\CDo)_F$ as given by equation~\eqref{ch3:eq:159} to be an overestimate of
+the true skin-friction drag. The difference between the overestimated and true
+values represents an approximation to the interference drag resulting from the
+juncture of the body and fins. $C_{DI}$, the interference drag coefficient, is
+then given by
+\begin{equation}\label{ch3:eq:163}
+C_{DI} = 2(C_f)_F\left(1 + 2\frac{t}{c}\right)\frac{S_F - S_E}{S_m}
+\end{equation}
+In the \emph{Datcom} method, therefore, the skin-friction drag of the
+imaginary fin area within the body tube is taken to be the interference drag
+at zero angle of attack. It is apparent from our rather arbitrary means of
+determining the ``hidden'' fin area that we cannot expect any great precision
+in such a determination of $C_{DI}$. This is the best practical method
+currently available, however, since $C_{DI}$ is an extremely difficult
+quantity to evaluate, whether theoretically or experimentally.
+
+The \emph{thickness} $t$ of the fin can be represented for most purposes by
+the thickness of the original material from which the fin was constructed.
+Painstaking micrometer readings may look scientific, but they cannot improve
+the accuracy of an approximate method. The \emph{chord} $c$ used in these
+calculations is the average chord of the fin. For simple planforms, the
+expression
+\begin{equation}\label{ch3:eq:164}
+c = \frac{c_{\mathrm{root}} + c_{\mathrm{tip}}}{2}
+\end{equation}
+can be used, while for more complicated shapes the determination can be made
+according to
+\begin{equation}\label{ch3:eq:165}
+c = \frac{\sigma_E}{b}
+\end{equation}
+where $\sigma_E$ denotes the exposed planform area of one fin and $b$ is the
+fin span, or radial distance from root to tip.
+
+The skin-friction coefficient of the fins, $(C_f)_F$, can be determined from
+the results of the preceding sections. Equation~\eqref{ch3:eq:63} may be used
+if the flow is completely laminar, while equation~\eqref{ch3:eq:101} applies in
+cases where transition occurs. Alternatively, the designer may choose to read
+the skin-friction coefficient from Figure~\ref{ch3:fig:22} to save the work of
+making a calculation. The Reynolds number used in the determination of
+$(C_f)_F$ is based on the average fin chord: $R_c = \frac{U_\infty c}{\nu}$.
+Since the local chord may be considerably larger than this average value at
+certain locations on the fin, it is possible that transition will occur at
+lower velocities than predicted on the basis of $R_c$, and that the
+skin-friction coefficient will be underestimated when using
+equations~\eqref{ch3:eq:63} or~\eqref{ch3:eq:101}, or Figure~\ref{ch3:fig:22}.
+Fortunately, the danger of this is not very great, as the flow over the fins is
+almost entirely laminar throughout the flight for all but a few model rockets,
+owing to the extremely high airspeeds and large chords necessary to effect
+transition on a model rocket fin. The implications of this problem will be
+further explored later on.
+
+Equation~\eqref{ch3:eq:159} is valid for fins without separated flow at the
+leading or trailing edges; hence it is valid \emph{only} for streamlined fins.
+At the time of writing there is no convenient, analytical method for
+estimating the effects of blunt leading and trailing edges on fin drag. This,
+however, is not a serious handicap, since no designer careful enough to apply
+analytical methods to his work will be inclined to permit a threefold drag
+increase on his rocket by neglecting the small job of sanding its fins to the
+proper shape.
+
+\subsubsection{Zero-Lift Drag Coefficient of the Body}\label{ch3:sec:6.1.2}
+
+The \emph{Datcom} expression for the drag coefficient of the body at zero
+angle of attack is
+\begin{equation}\label{ch3:eq:166}
+(\CDo)_B = (C_f)_B\left[1 + \frac{60}{(\ell_b/d_m)^3}
+  + 0.0025\left(\frac{\ell_b}{d_m}\right)\right]\frac{S_s}{S_m}
+  + \frac{.029(d_b/d_m)^3}{\sqrt{(C_{Df})_b}}
+\end{equation}
+where
+\begin{itemize}[nosep,leftmargin=2.5em,label={}]
+  \item $(C_{Df})_b$ is given by equation~\eqref{ch3:eq:161}, and is also the
+  first term in equation~\eqref{ch3:eq:166};
+  \item $\ell_b$ is the total length of the rocket body;
+  \item $S_s$ is the total wetted surface area of the body, excluding the base;
+  \item $S_m$ is the maximum frontal cross-sectional area of the body;
+  \item $d_b$ is the diameter of the base; and
+  \item $(C_f)_B$ is the applicable skin-friction coefficient for the body.
+\end{itemize}
+Again, a more detailed explanation of these terms may prove useful in cases of
+practical application.
+
+Strictly speaking, equation~\eqref{ch3:eq:166} is valid for \emph{bodies of
+revolution}, a class of geometrical shapes to which most model rockets belong.
+The \emph{fineness ratio} $\ell_b/d_m$ for several body configurations is
+defined in Figure~\ref{ch3:fig:45}. An excellent approximation to the drag
+coefficient of an object which is \emph{not} a body of revolution can,
+however, be computed by utilizing the \emph{equivalent diameter} given by
+\begin{equation}\label{ch3:eq:167}
+d_{\mathrm{equiv.}} = \sqrt{\frac{\text{cross-sectional area}}{0.7854}}
+\end{equation}
+Such a procedure might be used, for instance, to determine the drag
+coefficient of a model rocket with an elliptical cross-section.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig45.png}
+  \caption{Definition of fineness ratio for various bodies of revolution. The
+  fineness ratio of the nose is given by $\frac{\ell_n}{d_n}$; for the other
+  three shapes the fineness ratio is defined as $\frac{\ell_b}{d_m}$.}
+  \label{ch3:fig:45}
+\end{figure}
+
+The \emph{wetted area} of the body $S_s$ is defined as the total surface area
+of the body in contact with the surrounding fluid, excluding in the case of a
+model rocket the area of the blunt base. Mathematically speaking, if $P(x)$ is
+the cross-section perimeter of the body at any station $x$ (for this
+calculation $x$ may be reckoned either forward from the base or aft from the
+nose),
+\begin{equation}\label{ch3:eq:168}
+S_s = \int_{0}^{\ell_b} P(x)\,dx
+\end{equation}
+For a circular, cylindrical body tube $P(x)$ is a constant $P = \pi d_m$, and
+\begin{equation}\label{ch3:eq:169}
+(S_s)_{\mathrm{cyl.}} = \pi d_m\ell_b
+\end{equation}
+Since $(S_m)_{\mathrm{cyl.}} = \pi r_m^2 = \pi\frac{d_m^2}{4}$, we then have
+\begin{equation}\label{ch3:eq:170}
+\left(\frac{S_s}{S_m}\right)_{\mathrm{cyl.}} = \frac{\pi d_m\ell_b}{\pi d_m^2/4}
+  = 4\frac{\ell_b}{d_m}
+\end{equation}
+In Figure~\ref{ch3:fig:46} $S_s/S_m$ is plotted as a function of component
+fineness ratio for the cylinder, as well as for ellipsoidal, conical, and
+tangent-ogive nose and afterbody shapes. The following equations may also be
+used to determine $S_s/S_m$ for a variety of nosecone shapes:
+\begin{subequations}\label{ch3:eq:171}
+\begin{align}
+\left(\frac{S_s}{S_m}\right)_{\mathrm{ELLIP.}} &= 1
+  + \frac{2\ell/d_m}{\sqrt{1 - \frac{d_m^2}{4\ell^2}}}
+  \sin^{-1}\sqrt{1 - \frac{d_m^2}{4\ell^2}} \label{ch3:eq:171a}\\
+\left(\frac{S_s}{S_m}\right)_{\mathrm{ELLIP.}} &\cong
+  \left(1 + \pi\frac{\ell}{d_m}\right)
+  \qquad \text{for } \frac{\ell}{d_m} \gg 1 \label{ch3:eq:171b}\\
+\left(\frac{S_s}{S_m}\right)_{\mathrm{OGIVE}} &\cong 2.67\frac{\ell}{d_m}
+  \qquad \text{for } \frac{\ell}{d_m} > 1.5 \label{ch3:eq:171c}\\
+\left(\frac{S_s}{S_m}\right)_{\mathrm{CONE}} &=
+  2\sqrt{\tfrac{1}{4} + (\ell/d_m)^2} \label{ch3:eq:171d}\\
+\left(\frac{S_s}{S_m}\right)_{\mathrm{CONE}} &\cong 2\frac{\ell}{d_m}
+  \qquad \text{for } \frac{2\ell}{d_m} \gg 1 \label{ch3:eq:171e}
+\end{align}
+\end{subequations}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig46.png}
+  \caption{Ratio of surface area to maximum frontal area $S_s/S_m$ as a
+  function of fineness ratio $\ell/d_m$ for various component shapes. The
+  functions for ellipsoids, cones, and ogives are approximate and are
+  terminated at the lower limit of fineness ratio for which they give
+  acceptable accuracy.}
+  \label{ch3:fig:46}
+\end{figure}
+
+The above shapes, or combinations thereof, may be taken as good
+approximations to most model rocket nosecone shapes. The geometrical
+definitions of these shapes are illustrated in Figure~\ref{ch3:fig:47}. The
+ellipsoidal nose is constructed by first forming an ellipse (which is done by
+passing a plane through a cone at some angle less than a right angle to the
+cone axis, but greater than the half-angle of the cone itself), then dividing
+the ellipse about its minor axis, and finally revolving the remaining
+half-ellipse about its semimajor axis. As geometers know, parabolae and
+hyperbolae can also be constructed from the intersections of cones and planes;
+a parabola is formed by passing the plane through the cone at an angle to its
+axis equal to the cone half-angle, while a hyperbola results if the
+intersection occurs at a lesser angle. Paraboloidal and hyperboloidal
+nosecones can, of course, also be constructed, but they are not as good as
+ellipsoids because they do not become tangent to the body tube at their bases.
+Half the lateral section of a tangent-ogive nosecone is formed by the area
+bounded by a circle, a diameter of that circle, and a half-chord of the circle
+perpendicular to the diameter. The familiar tangent ogive nose shape is
+generated by revolving this section about the chord line. The cone, simplest
+of the shapes, is generated by revolving a right triangle about its altitude.
+The cone suffers from the same shortcoming as the parabola and hyperbola in
+that the intersection of the nose with the body tube is not smooth. Its sharp
+point, however, gives it favorable drag characteristics in supersonic flight,
+as we shall see in Section~\ref{ch3:sec:7}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig47.png}
+  \caption{Geometrical definitions of common nose shapes. (a): An ellipse is
+  formed by passing a plane through a cone at an angle to the cone axis
+  greater than the cone's half-angle. The ellipse is divided along its minor
+  axis and spun about its semimajor axis to form an ellipsoidal nose. (b): A
+  parabola is formed by passing a plane through a cone at an angle equal to
+  the half-angle of the cone and is then rotated to produce a paraboloidal
+  nose. (c): A hyperbola is formed by passing a plane through a cone at an
+  angle less than the cone half-angle and is rotated to produce a
+  hyperboloidal nose. (d): A chord line is passed through a circle; the
+  smaller segment thus formed is bisected by a radial line and the shaded
+  half-segment is revolved about the chord line, forming a tangent ogive nose.
+  (e): A right triangle is revolved about its altitude to form a conical
+  nose.}
+  \label{ch3:fig:47}
+\end{figure}
+
+When computing the ratio $(S_s/S_m)$ for a boattail, account must be taken of
+the fact that the geometrical solid in whose shape the boattail has been made
+is \emph{truncated} by the presence of the blunt base. For a conical boattail
+of maximum diameter $d_m$ and base diameter $d_b$, the ratio of surface area
+to maximum cross-sectional area is given by
+\begin{subequations}\label{ch3:eq:172}
+\begin{align}
+\left(\frac{S_s}{S_m}\right)_{\mathrm{BOATTAIL}} &=
+  \frac{2(d_m - d_b)\ell_T}{d_m^2}
+  \sqrt{1 + \left(\frac{d_m - d_b}{2\ell_T}\right)^2} \label{ch3:eq:172a}\\
+\left(\frac{S_s}{S_m}\right)_{\mathrm{BOATTAIL}} &\cong
+  2\left(1 - \frac{d_b}{d_m}\right)\frac{\ell_T}{d_m}
+  \qquad \text{for } \frac{2\ell_T}{d_m - d_b} \gg 1 \label{ch3:eq:172b}
+\end{align}
+\end{subequations}
+Equations~\eqref{ch3:eq:172a} and~\eqref{ch3:eq:172b} may also be used to
+approximate $(S_s/S_m)$ for boattails made in the shape of truncated
+ellipsoids or ogives, as the exact formulae for these shapes are too
+complicated to be worth the gain in accuracy over~\eqref{ch3:eq:172a}
+and~\eqref{ch3:eq:172b} resulting from their use in practice.
+
+If the body, nose, and boattail (if any) have the same maximum diameter, the
+overall ratio of surface area to maximum cross-sectional area can be expressed
+as
+\begin{equation}\label{ch3:eq:173}
+\frac{S_s}{S_m} = \left(\frac{S_s}{S_m}\right)_{\mathrm{NOSE}}
+  + \left(\frac{S_s}{S_m}\right)_{\mathrm{CYL}}
+  + \left(\frac{S_s}{S_m}\right)_{\mathrm{BOATTAIL}}
+\end{equation}
+
+The original \emph{Datcom} method employs the turbulent skin-friction
+coefficient of the body for $(C_f)_B$ and the turbulent skin-friction
+coefficient of the fins for $(C_f)_F$ in all its calculations. This,
+presumably, is because the \emph{Datcom} was devised for the purpose of
+providing drag coefficient predictions for full-scale aircraft and rockets.
+The Reynolds numbers of such vehicles are much higher than those commonly
+encountered in model rocketry. In the numerical example treated in
+Section~\ref{ch3:sec:6.2}, we shall begin the calculations by assuming
+completely turbulent flow over the rocket body and see how the estimate of the
+drag coefficient thus obtained compares with experimental values.
+
+The body friction drag coefficient given in equation~\eqref{ch3:eq:161},
+which is also the first term on the right of equation~\eqref{ch3:eq:166}, is
+of the form
+\begin{equation}\label{ch3:eq:174}
+(C_{Df})_b = (C_f)_B(1 + a)\frac{S_s}{S_m}
+\end{equation}
+The quantity $a$, which typically has a value of about 0.05, may be thought of
+as a three-dimensional correction to $C_f$ as discussed in
+Section~\ref{ch3:sec:3.6}. The term $0.0025\frac{\ell_b}{d_m}$, according to
+the \emph{Datcom}, is the pressure-drag contribution of the body due to the
+effect of its ``thickness'', or cross-sectional area. In the \emph{Datcom}
+method, therefore, the pressure drag of a streamlined body is reckoned for the
+purposes of practical calculation as part of its friction drag. The
+second---i.e., base-drag---term in equation~\eqref{ch3:eq:166} requires no
+further discussion here, as it was presented previously in
+Section~\ref{ch3:sec:4.4}.
