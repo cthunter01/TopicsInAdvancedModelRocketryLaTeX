@@ -25,7 +25,7 @@ Status: todo / applied (with \ednote location) / deferred (reason)
 | 12 | 695 | p.445 (PDF 477), the handwritten equation after "For the cylindrical body we find from (170)" | the third member gets the factor 4: $(S_s/S_m)_{\mathrm{CYL}} = 4\,\ell/d_m = 4\,(22.61/1.93) = 46.9$ | ch3-sec6b | applied, factor 4 in the third member, ch3-sec6b.tex:67, \ednote line 63; rendered p.229 (PDF 234) matches |
 | 13 | 696 | p.449 (PDF 481), the line after the first handwritten equation | "From equation (100) we find B = 1735; since R_l = 1.27 x 10^6," becomes "From equation (100) we find B = 1735. Then, since R_l = 1.27 x 10^6," | ch3-sec6b | applied silently (punctuation and connective only, no change of content), ch3-sec6b.tex:178 |
 | 14 | 697-698 | p.451 and the top of p.452 (PDF 483-484) | replacement text: Steps 1-3 and the overall drag coefficient $(C_{Do})_{FB} = .605$; "remainder of text on page 452 is unchanged" | ch3-sec6b | applied, Steps 1-3, (CDo)_FB = .605 and 'more than 44%'; \ednote on 'The body skin-friction coefficient is given by', ch3-sec6b.tex:225; rendered pp.232-233 (PDF 237-238) match |
-| F1 | plan | Figure 22 caption (PDF 390) vs the text and tabulation (PDF 389) | the caption gives B = 1740, the text and tabulation about 1700 (the formula gives about 1742): flag with an \ednote | ch3-sec3c-sec4a | applied, \edcap in the Figure 22 caption, ch3-sec3c-sec4a.tex:30 (B = 1742.6, so 1743, verified) |
+| F1 | plan | Figure 22 caption (PDF 390) vs the text and tabulation (PDF 389) | the caption gives B = 1740, the text and tabulation about 1700 (the formula gives about 1742): flag with an \ednote | ch3-sec3c-sec4a | minor arithmetic slip: no note (user decision, 2026-09-24) |
 
 Notes
 - (144A) and (144B) exist only in the corrected text: `\begin{equation*}\tag{144A}\label{ch3:eq:n144A}` (STYLE.md section 4).
@@ -57,10 +57,10 @@ Doubts (the faithful pass keeps each as printed; the corrections step gives each
 | D20 | ch3-sec6c | 489-491 | the same frustum sign in (183a)-(183b), carried into (184) and (199) | note, ch3-sec6c.tex:76 (1.2 against 10.8 verified) |
 | D21 | ch3-sec6c | 493 | the coefficient 82.8 in (C_Df)_b = 82.8(C_f)_B does not follow from (199) with the GCR-x values (59.8 as printed, 69.9 with the corrected sign); Table 6 is computed with 82.8 | checked, confirmed; note, ch3-sec6c.tex:251 (59.8, 69.9 and 78.5 verified on PDF 493) |
 | D22 | ch3-sec6c | 492 | the fin side conditions of (204a)-(204b) are printed with R_l and R_crit, but fin transition depends on R_c = (c/l_b) R_l: R_l < (l_b/c) R_crit, i.e. the 5.14 x 10^6 used on PDF 493 | note, ch3-sec6c.tex:188 (5.14e6 verified) |
-| D23 | ch3-sec6c | 494 | R = 10^4 is said to correspond to "about 0.6 meter/second" for a 30 cm rocket; nu R/l = 0.50 m/s, as the book's own U = 4.975 x 10^-5 R_l (PDF 499) also gives | note, ch3-sec6c.tex:345 (0.50 m/s verified on PDF 494) |
+| D23 | ch3-sec6c | 494 | R = 10^4 is said to correspond to "about 0.6 meter/second" for a 30 cm rocket; nu R/l = 0.50 m/s, as the book's own U = 4.975 x 10^-5 R_l (PDF 499) also gives | minor arithmetic slip: no note (user decision, 2026-09-24) |
 | D24 | ch3-sec6c | 491-494 | C_DI is computed in (202) and on PDF 493 but left out of (205) and the PDF 494 total | checked, not confirmed: C_DI in (194) is the friction drag of the buried fin area S_F - S_E, which (CDo)_F in (201) already covers by using the gross area S_F (Section 6.1.1, PDF 465); leaving it out of (205), the PDF 494 total and Table 6 is the method, not an omission; no note |
 | D25 | ch3-sec5b | 452 (ch3-sec5b.tex, before (152)) | the derivation of (152) cites Chapter 2's (90) and (115)-(117), which this edition prints in Mandell's 2022 form; item 10 replaces (152) onward but not this sentence | note, ch3-sec5b.tex:233 (0.32726, 0.1691 and 0.0505 verified by recomputing Chapter 2's (90) and (115)-(117)) |
-| D26 | ch3-sec6b | 478-479 | the fin dimensions in the text (root chord 3.97, region I 1.90 x 4.19, region III 3.21 x 0.965) do not all match the labels of Figure 48 (1.91, 3.30, 4.19, 0.68, 2.07) | checked, confirmed for region III (3.21 against the 3.30 of Figure 48); note, ch3-sec6b.tex:123 (3.18 and 15.84 verified) |
+| D26 | ch3-sec6b | 478-479 | the fin dimensions in the text (root chord 3.97, region I 1.90 x 4.19, region III 3.21 x 0.965) do not all match the labels of Figure 48 (1.91, 3.30, 4.19, 0.68, 2.07) | minor arithmetic slip: no note (user decision, 2026-09-24) |
 | D27 | ch3-sec2b | 333 | "Comparison of equation (2.20) with equation (2.18)" uses section-prefixed numbers that exist nowhere else (it means (20) and (18)) | existing note restyled, ch3-sec2b.tex:242 |
 | D28 | ch3-sec4b | 423 | base drag is called "the second term in equation (28)", but the S_b integral is the first term of (28) as printed | existing note restyled, ch3-sec4b.tex:367 |
 | D29 | several | 362, 372, 399, 406, 409, 522 | silent typographical fixes: "occuring" (362), "drag one one side" (372), "Prandl" (399; "Prandtl" on 404), "as a subcritical" for "at" (406), "R_a = A_2/A_1." before (112) (409), "Where" after (222) (522) | fixed silently in the faithful pass |
@@ -90,5 +90,6 @@ Decisions for the corrections step (2026-09-24)
   are verified first (by derivation or recomputation), then noted if confirmed or left as printed with the reason
   recorded. D27 and D28 already have notes: bring their wording into the same style. D2 (the unit tangent t without
   an arrow) gets a note on its row, in the longtable-safe form of STYLE.md section 9.
-- F1: an \edcap in the Figure 22 caption. The caption gives B = 1740, while the text and the tabulation give 1700,
-  and (100) with (102a)-(102b) gives about 1742.
+- Minor arithmetic slips get no notes (user decision, 2026-09-24): F1 (B = 1740 against "about 1700"), D23
+  ("about 0.6" for 0.50 m/s) and D26 (3.21 against 3.30 cm) are recorded here only, like the D35 list. Notes stay
+  for wrong formulas, statements and reasoning, and for numbers that are substantially wrong and propagate (D11, D21).
