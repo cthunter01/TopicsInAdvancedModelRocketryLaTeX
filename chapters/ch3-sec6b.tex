@@ -60,9 +60,11 @@ The ratio of wetted area to cross-sectional area is
 \begin{align*}
 \frac{S_s}{S_m} &= \left(\frac{S_s}{S_m}\right)_{\mathrm{CYL}} + \left(\frac{S_s}{S_m}\right)_{\mathrm{OGIVE}}
 \end{align*}
-For the cylindrical body we find from~\eqref{ch3:eq:170}
+For the cylindrical body we find from~\eqref{ch3:eq:170}\ednote{The factor 4 of the third member is
+added per the supplement's correction to page 445 of the 1973 edition; the 1973 display read
+$(S_s/S_m)_{\mathrm{CYL}} = 4\,\ell/d_m = 22.61/1.93 = 46.9$.}
 \begin{align*}
-\left(\frac{S_s}{S_m}\right)_{\mathrm{CYL}} &= 4\,\frac{\ell}{d_m} = \frac{22.61}{1.93} = 46.9
+\left(\frac{S_s}{S_m}\right)_{\mathrm{CYL}} &= 4\,\frac{\ell}{d_m} = 4\,\frac{22.61}{1.93} = 46.9
 \end{align*}
 and for the ogival nose Figure~\ref{ch3:fig:46} or equation~\eqref{ch3:eq:171c} gives
 \begin{align*}
@@ -118,7 +120,13 @@ The gross area $\sigma_F$ of a single fin can be determined by resolving the Jav
 rectangles and right triangles, as shown in Figure~\ref{ch3:fig:49}b; this method simplifies the
 calculation of $\sigma_F$ and, although it results in a slightly larger value than that obtained
 by the standard method (shown in Figure~\ref{ch3:fig:49}a), the difference is not very
-significant. Following Figure~\ref{ch3:fig:49}b, then,
+significant. Following Figure~\ref{ch3:fig:49}b, then,\ednote{The length of region III is printed
+as 3.21 cm. Region III is the part of the gross fin inside the body, as wide as the body radius
+($1.93/2 = 0.965$) and as long as the fin root from its leading edge to the base of the body, a
+length that Figure~\ref{ch3:fig:48} gives as 3.30 cm. With 3.30 the region's area is
+3.18 cm.$^2$ and $\sigma_F$ is 15.84 cm.$^2$, which still gives $S_F \cong 63$ cm.$^2$. The other
+dimensions differ from the figure's at most in the last digit (1.90 for its 1.91). Neither the
+errata nor the supplements correct this; the dimension is kept as printed.}
 \begin{align*}
 \text{Area of region I} &= \tfrac{1}{2} \times 1.90 \times 4.19 = 3.98\un{cm.^{2}}\\
 \text{Area of region II} &= 2.07 \times 4.19 = 8.68\un{cm.^{2}}\\
@@ -167,7 +175,7 @@ equation~\eqref{ch3:eq:101}:
 \begin{align*}
 (C_f)_B &= \frac{0.074}{(R_\ell)^{1/5}} - \frac{B}{R_\ell}
 \end{align*}
-From equation~\eqref{ch3:eq:100} we find $B = 1735$; since $R_\ell = 1.27 \times 10^{6}$,
+From equation~\eqref{ch3:eq:100} we find $B = 1735$. Then, since $R_\ell = 1.27 \times 10^{6}$,
 \begin{align*}
 (C_f)_B &= .00445 - .00137 = .00308
 \end{align*}
@@ -214,40 +222,57 @@ are subcritical, so the flow will remain entirely laminar over both body and fin
 
 \medskip\noindent Step~1:\quad forebody drag coefficient $(C_{Df})_b$
 
-\noindent The body skin-friction coefficient is given by
+\noindent The body skin-friction coefficient is given by\ednote{From here to ``\ldots{} by more
+than 44\%'' below, the text is that of the supplement's replacement for page 451 and the top of
+page 452 of the 1973 edition. The 1973 value of $(C_f)_B$ does not follow from its formula
+($1.328/\sqrt{31.75 \times 10^{4}} = .00236$), and the figures of Steps 1 and 2 and the total were
+computed from it. In Step 3 the supplement also takes $R_c = 3.03 \times 10^{4}$
+($15 \times .0302/1.495 \times 10^{-5}$), where the text above gives $3.02 \times 10^{4}$. The
+1973 text read $(C_f)_B = (C_f)_{\mathrm{LAM.}} = 1.328/\sqrt{31.75 \times 10^{4}} = .00154$;
+$(C_{Df})_b = .00154 \times 1.055 \times 59.7 = .097$; ``This represents a decrease of 0.097, or
+50\%, from the transition-flow value of $(C_{Df})_b$.''; $C_{Db} = .029/\sqrt{.097} = .093$; ``This
+is an \emph{increase} of 0.028, or 41\% over the transition-flow calculated value.'';
+$(C_f)_F = 1.328/\sqrt{3.02 \times 10^{4}} = .00765$;
+$(\CDo)_F = 2 \times .00765 \times 1.158 \times 63/2.92 = .380$; ``This is an increase of .190, or
+\emph{double} the value calculated for 60 meters/second.''; $(\CDo)_{FB} = .097 + .093 + .380 =
+.570$; and ``This is a substantial disagreement with the experimental result---almost 36\%.'' The
+other sentences of the passage are unchanged.}
 \begin{align*}
-(C_f)_B &= (C_f)_{\mathrm{LAM.}} = \frac{1.328}{\sqrt{31.75 \times 10^{4}}} = .00154
+(C_f)_B &= (C_f)_{\mathrm{LAM.}} = \frac{1.328}{\sqrt{31.75 \times 10^{4}}} = .00236
 \end{align*}
 so the forebody drag coefficient is
 \begin{align*}
-(C_{Df})_b &= .00154 \times 1.055 \times 59.7 = .097
+(C_{Df})_b &= .00236 \times 1.055 \times 59.7 = .149
 \end{align*}
-This represents a decrease of 0.097, or 50\%, from the transition-flow value of $(C_{Df})_b$.
+This represents a decrease of 0.045, or 23.2\%, from the transition-flow calculated value of
+$(C_{Df})_b$.
 
 \medskip\noindent Step~2:\quad base drag coefficient $C_{Db}$
 \begin{align*}
-C_{Db} &= \frac{.029}{\sqrt{.097}} = .093
+C_{Db} &= \frac{.029}{\sqrt{.149}} = .075
 \end{align*}
-This is an \emph{increase} of 0.028, or 41\% over the transition-flow calculated value.
+This is an \emph{increase} of 0.009, or 13.6\% over the transition-flow calculated value.
 
 \medskip\noindent Step~3:\quad fin drag coefficient $(\CDo)_F$
 
 \noindent The fin skin-friction coefficient is
 \begin{align*}
-(C_f)_F &= \frac{1.328}{\sqrt{3.02 \times 10^{4}}} = .00765
+(C_f)_F &= \frac{1.328}{\sqrt{3.03 \times 10^{4}}} = .00763
 \end{align*}
 Then
 \begin{align*}
-(\CDo)_F &= 2 \times .00765 \times 1.158 \times \frac{63}{2.92} = .380
+(\CDo)_F &= 2 \times .00763 \times 1.158 \times \frac{63}{2.92} = .381
 \end{align*}
-This is an increase of .190, or \emph{double} the value calculated for 60 meters/second.
+This is an increase of 0.191, or \emph{more than double} the value calculated for 60
+meters/second.
 
 From these calculations we obtain an overall drag coefficient of
 \begin{align*}
-(\CDo)_{FB} &= .097 + .093 + .380 = .570
+(\CDo)_{FB} &= .149 + .075 + .381 = .605
 \end{align*}
 
-This is a substantial disagreement with the experimental result---almost 36\%. And yet the
+This is a substantial disagreement with the experimental result---the calculated value exceeds the
+measured value by more than 44\%. And yet the
 Mercer data should be \emph{closer} to this value than to the other two values calculated,
 according to theory. Discrepancies of this kind can and often do arise, however, due to the
 airflow characteristics present in the test sections of many small, subsonic wind tunnels. Test

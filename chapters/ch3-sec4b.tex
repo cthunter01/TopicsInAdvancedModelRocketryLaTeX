@@ -1,5 +1,7 @@
 % chapters/ch3-sec4b.tex -- 4.3 Pressure Drag of the Forebody and Fins; 4.3.1 Nosecone (Forebody)
 % Pressure Drag; 4.3.2 Fin Pressure Drag; 4.3.3 Launch Lug Drag; 4.4 Base Drag (PDF 408-432, ms pp. 376-400)
+% Corrections applied (corrections/ch3.md): item 5 from the 1973 errata sheet (PDF 664); D8
+% (Figure 33 caption, p_b, silent); D28 (doubt note on ``the second term in equation (28)'').
 \subsection{Pressure Drag of the Forebody and Fins}\label{ch3:sec:4.3}
 
 From our discussion of separation, we derive a cardinal rule for low-drag
@@ -132,8 +134,11 @@ of possible nose shapes with their tested values of pressure foredrag
 coefficient (based on frontal cross-sectional area). As we surmised, the first
 two shapes, having no sharp edges or blunt surfaces, have pressure drag
 coefficients near zero. Furthermore, as the ``degree of bluntness'' increases
-(from top to bottom in the diagram) the drag coefficient shows a corresponding
-increase.
+(from left to right in the diagram) the drag coefficient shows a corresponding
+increase.\ednote{Corrected per the 1973 errata sheet; the shapes of
+Figure~\ref{ch3:fig:29} stand side by side, their drag coefficients rising from
+left to right. The 1973 text read ``(from top to bottom in the diagram) the drag
+coefficient shows a corresponding increase.''}
 
 \begin{figure}[htbp]
   \centering
@@ -359,10 +364,12 @@ The only section of the rocket now remaining to be considered in our analysis
 of pressure drag is the base. Since the plane of the base is generally
 perpendicular to the flow direction (at zero angle of attack), base pressures
 act along the drag axis and the second term in
-equation~\eqref{ch3:eq:28}\ednote{The book prints ``second term''. The
-base-drag integral over $S_b$, which equation~\eqref{ch3:eq:121} restates, is
-the first term of equation~\eqref{ch3:eq:28}; the second term is the pressure
-foredrag over $S_s$.} may be written simply as
+equation~\eqref{ch3:eq:28}\ednote{The 1973 text reads ``the second term in
+equation (28)''. The first term is evidently meant: it is the base-drag integral
+over $S_b$, which equation~\eqref{ch3:eq:121} restates, while the second term of
+equation~\eqref{ch3:eq:28} is the pressure foredrag over $S_s$. Neither the
+errata nor the supplements correct this; the text is kept as printed.} may be
+written simply as
 \begin{equation}\label{ch3:eq:121}
 D_b = -\iint_{S_b} p_b\,dS_b
 \end{equation}
@@ -405,7 +412,7 @@ the convergence point~(\ref{ch3:ref:16}).
     $\epsilon$ is the boattail angle and $\delta$ is the boundary-layer
     thickness. The boundary layer thickens as the flow passes over the
     boattail and then separates when the flat base is reached, forming a
-    region of low pressure---the ``base pressure'' $P_b$---and then
+    region of low pressure---the ``base pressure'' $p_b$---and then
     reattaching at point R downstream of the rocket. Viscous effects cause
     the circulation pattern shown in the base pressure region.}
   \label{ch3:fig:33}

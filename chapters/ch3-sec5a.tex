@@ -101,7 +101,12 @@ so that the lift coefficient $C_L$ is given by
 C_L = \frac{2(k_2 - k_1)S_o}{S_m}\alpha
 \end{equation}
 Applying the approximation $\sin(\alpha) \cong \alpha$, valid for small angles,
-we then have
+we then have\ednote{The last member of equation~\eqref{ch3:eq:139} is printed
+with the factor $\alpha$. The factor $\alpha^{2}$ is evidently meant: it is
+what $\alpha C_L$ gives with $C_L$ from equation~\eqref{ch3:eq:138}, and the
+first term of equation~\eqref{ch3:eq:142} and the numerical example below, which
+gives $1.94\alpha^{2}$, have it. Neither the errata nor the supplements correct
+this; the equation is kept as printed.}
 \begin{equation}\label{ch3:eq:139}
 C_{D_B}(\alpha) = \alpha C_L = \frac{2(k_2 - k_1)S_o}{S_m}\alpha
 \end{equation}
@@ -114,7 +119,7 @@ where
   \item $x_o$ is the body station where the flow ceases to obey the predictions
   of potential theory. This location can be found from the expression
   \begin{equation}\label{ch3:eq:140}
-  x_o = 0.55x_1 + 0.36\ell_B
+  x_o = 0.55x_1 + 0.36\ell_b
   \end{equation}
   \item $x_1$ is the body station where the rate of change of cross-sectional
   area with $x$ $(dS_x/dx)$ first reaches its minimum value.
@@ -270,14 +275,46 @@ drag} of the fin, and its associated drag coefficient is denoted $C_{Di}$.
 \end{figure}
 
 As in the case of the body, the induced drag of a fin is related to the lift
-force it produces. One cannot, however, obtain an expression for $C_{Di}$
-unless he has specific knowledge of the \emph{distribution} of lift on the fin.
+force it produces. The induced drag coefficient of a fin flying at an angle of
+attack $\alpha$ such that its lift coefficient is $C_L$ is given
+by\ednote{From this sentence through equation~\eqref{ch3:eq:n144B} the text
+and equations are those of the supplement ``Corrections and additions to
+Section 5.2.2 of Chapter~3'', which replace the 1973 sentence ``One cannot,
+however, obtain an expression for $C_{Di}$ unless he has specific knowledge of
+the \emph{distribution} of lift on the fin.'' The same supplement adds the
+constant $e = 0.863$ to the row of Hoerner's values below, which in 1973 gave
+only $d\alpha\dg/dC_L = 18.6$ and $d\CD/dC_L^{2} = .123$; with $\AR = 3$ this
+$e$ makes the $1/(\pi e\AR)$ of equation~\eqref{ch3:eq:n144A} equal to that
+$.123$. The rest of Section~\ref{ch3:sec:5.2.2} is unchanged.}
+\begin{equation*}\tag{144A}\label{ch3:eq:n144A}
+C_{Di} = \frac{C_L^{2}}{\pi e\AR}
+\end{equation*}
+where
+\begin{itemize}[leftmargin=2.5em,label={}]
+  \item $\AR$ = aspect ratio, the span of a ``wing'' formed by a pair of
+  diametrically-opposed fins divided by the average fin chord, also equal to
+  $(\text{span})^{2}/(\text{area})$
+\end{itemize}
+and
+\begin{itemize}[leftmargin=2.5em,label={}]
+  \item $e$ = span efficiency factor
+\end{itemize}
+The quantity $e\AR$ is the \textbf{effective aspect ratio} of an
+``equivalent'' wing whose lift is distributed across its span in the shape of
+an ellipse. In practice, $e$ is almost always less than 1.0. Since
+\begin{equation*}
+C_L = \left(\frac{dC_L}{d\alpha}\right)\alpha
+\end{equation*}
+equation~\eqref{ch3:eq:n144A} can also be written in terms of $\alpha$ as
+\begin{equation*}\tag{144B}\label{ch3:eq:n144B}
+C_{Di} = \left(\frac{dC_L}{d\alpha}\right)^{2}\frac{\alpha^{2}}{\pi e\AR}
+\end{equation*}
 We shall assume for the purposes of our numerical example that the following
 values given by Hoerner~(\ref{ch3:ref:9}) for a rectangular wing of aspect ratio
 $\AR = \text{span/chord} = 3$ with sharp chordwise edges are valid for the trial
 rocket:
 \begin{equation*}
-\frac{d\alpha\dg}{dC_L} = 18.6 \qquad \frac{d\CD}{dC_L^2} = .123
+\frac{d\alpha\dg}{dC_L} = 18.6 \qquad \frac{d\CD}{dC_L^2} = 0.123 \qquad e = 0.863
 \end{equation*}
 Then for $\alpha$ given in radians,
 \begin{equation*}

@@ -1,4 +1,12 @@
 % chapters/ch3-symbols.tex -- Chapter 3 Symbols list (PDF pages 293-300)
+% Corrections applied (corrections/ch3.md): items 1 and 2 from the 1973 errata sheet (PDF 664, silent);
+% item 11 from the supplement ``Corrections and additions to symbol table of Chapter 3'' (PDF 694): the
+% (C_Di')_cant entry corrected, seven entries added in the book's order (Delta C_Di between C_Di and C_Di',
+% as Delta C_Df between C_Df and C_Df'; (Delta C_Di)_cant after (C_Di')_cant and the twist pair after them,
+% grouped by outer subscript as the lam and turb entries are; (Delta C_D)_cant before (C_D)_lug; e after
+% d_r; Delta alpha after alpha-bar); D2 (doubt note on the unit tangent vector t).
+% An \ednote in a p{} cell of a longtable loses its text (STYLE.md section 9), so the rows carrying a note
+% are one-line \multicolumn{1}{l@{}} cells.
 \unnumberedsection{Symbols}\label{ch3:sec:symbols}
 \begin{longtable}{@{}l p{0.78\linewidth}@{}}
 \toprule \textbf{Symbol} & \textbf{Meaning} \\ \midrule \endfirsthead
@@ -22,8 +30,13 @@ $C_{Df}'$ & fin friction drag coefficient corrected for the effect of fin thickn
 $C_{DI}$ & coefficient of interference drag at zero angle of attack \\
 $(C_{Df})_b$ & forebody drag coefficient as used in Datcom equations \\
 $C_{Di}$ & induced drag coefficient of fins based on fin area in side view \\
+$\Delta C_{Di}$ & \multicolumn{1}{l@{}}{interference drag coefficient due to angle of attack\ednote{The entries for $\Delta C_{Di}$, $(\Delta C_{Di})_{\mathrm{cant}}$, $(C_{Di})_{\mathrm{twist}}$, $(C_{Di}')_{\mathrm{twist}}$, $(\Delta C_D)_{\mathrm{cant}}$, $e$ and $\Delta\alpha$ are added per the supplement ``Corrections and additions to symbol table of Chapter~3''; they do not appear in the 1973 Symbols list. $\Delta C_{Di}$ is defined in the 1973 text by equation~\eqref{ch3:eq:146}; the others come from the corrected Sections~\ref{ch3:sec:5.2.2} and~\ref{ch3:sec:5.3}.}} \\
 $C_{Di}'$ & induced drag coefficient of fins based on maximum frontal cross-sectional area \\
-$(C_{Di}')_{\mathrm{cant}}$ & increase in drag coefficient due to canting of fins \\
+$(C_{Di}')_{\mathrm{cant}}$ & \multicolumn{1}{l@{}}{increase in induced drag coefficient due to canting of fins\ednote{Corrected per the supplement ``Corrections and additions to symbol table of Chapter~3''. The 1973 entry read ``increase in drag coefficient due to canting of fins''. In the corrected Section~\ref{ch3:sec:5.3} this coefficient is the induced part only: the total increase due to canting is $(\Delta C_D)_{\mathrm{cant}}$, the sum of $(C_{Di}')_{\mathrm{cant}}$, $(C_{Di}')_{\mathrm{twist}}$ and $(\Delta C_{Di})_{\mathrm{cant}}$.}} \\
+$(\Delta C_{Di})_{\mathrm{cant}}$ & increase in interference drag coefficient due to canting of fins \\
+$(C_{Di})_{\mathrm{twist}}$ & increase in induced drag coefficient due to fin aerodynamic twist, based on fin area in side view \\
+$(C_{Di}')_{\mathrm{twist}}$ & increase in induced drag coefficient due to fin aerodynamic twist, based on maximum frontal cross-sectional area \\
+$(\Delta C_D)_{\mathrm{cant}}$ & total increase in drag coefficient due to canting of fins \\
 $(\CD)_{\mathrm{lug}}$ & drag coefficient of launch lug based on lug frontal area \\
 $(\Delta\CD)_{\mathrm{lug}}$ & increase in vehicle drag coefficient based on maximum frontal cross-sectional area, due to the presence of a launch lug \\
 $(\CDo)_B$ & body drag coefficient at zero angle of attack \\
@@ -104,6 +117,7 @@ $d_{\mathrm{equiv.}}$ & equivalent diameter \\
 $d_{\mathrm{lug}}$ & diameter of launch lug \\
 $d_m$ & maximum diameter of body, used as reference diameter in Datcom equations \\
 $d_r$ & reference diameter \\
+$e$ & span efficiency factor used in calculating induced drag due to fin ``lift'' or side force \\
 $f(\ )$ & function of ( ) \\
 $g$ & acceleration of gravity \\
 $h$ & height or thickness of fluid layer; \emph{also} height of control volume in momentum-integral boundary layer analysis \\
@@ -116,7 +130,7 @@ $\ell$ & length; \emph{also} distance measured around body profile, starting at 
 $\ell_b$ & body length \\
 $\ell_T$ & length of boattail \\
 $n$ & rotation rate, revolutions per second \\
-$n$ & unit normal vector \\
+$\vec{n}$ & unit normal vector \\
 $p$ & pressure \\
 $\Delta p$ & change in pressure \\
 $p_b$ & base pressure \\
@@ -131,7 +145,7 @@ $r$ & radius \\
 $r_x$ & radius of body at station $x$ \\
 $s$ & distance coordinate measured along surface \\
 $t$ & time; \emph{also} fin thickness \\
-$t$ & unit tangent vector \\
+$t$ & \multicolumn{1}{l@{}}{unit tangent vector\ednote{The symbol is printed $t$, without an arrow, the same as the time and fin thickness of the entry above. The text writes the unit tangent vector $\vec{t}$ (equations~\eqref{ch3:eq:27} and~\eqref{ch3:eq:33} and the caption of Figure~\ref{ch3:fig:11}), so $\vec{t}$ is evidently meant; the errata sheet adds the arrow to the unit normal vector $\vec{n}$ only. Neither the errata nor the supplements correct this; the symbol is kept as printed.}} \\
 $u$ & longitudinal component of flow velocity; \emph{also} circumferential velocity of the surface of a spinning rocket \\
 $u_k$ & longitudinal flow velocity at the top of a roughness element \\
 $v$ & transverse component of flow velocity \\
@@ -143,6 +157,7 @@ $y$ & coordinate perpendicular to surface \\
 $\Delta(\ )$ & change in ( ) \\
 $\alpha$ & angle of attack; \emph{also} $f''(0)$ in Blasius boundary-layer analysis \\
 $\bar{\alpha}$ & average effective angle of attack \\
+$\Delta\alpha$ & aerodynamic twist of fins \\
 $\gamma$ & engineering shear strain \\
 $\delta$ & boundary layer thickness \\
 $\epsilon$ & boattail angle; \emph{also} parameter of drag due to angle of attack as used in Chapter~\ref{ch4} \\
@@ -169,7 +184,6 @@ $\omega_Z$ & rotation rate, radians per second \\
 $\partial(\ )$ & partial differential of ( ) \\
 $\partial(\ )/\partial(\ )$ & partial derivative \\
 $\partial^{2}(\ )/\partial(\ )^{2}$ & second partial derivative \\
-% The book prints this entry with an empty Symbol column (no infinity sign); kept as printed.
- & infinity \\
+$\infty$ & infinity \\
 \end{longtable}
 \addtocounter{table}{-1}% a caption-less longtable still steps the table counter (STYLE.md section 8)

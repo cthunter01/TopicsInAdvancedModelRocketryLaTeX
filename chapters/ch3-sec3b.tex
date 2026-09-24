@@ -169,7 +169,12 @@ balance may be expressed as in Table~\ref{ch3:tab:2}.
 
 Momentum conservation requires that the drag force $D$ be
 exactly equal to the total momentum flux through the control
-surface, or
+surface, or\ednote{The last term of the integrand is printed $-uU_\infty$.
+The term $+uU_\infty$ is evidently meant: the momentum flux through $A_1B_1$
+in Table~\ref{ch3:tab:2} is $-\rho b\int_{0}^{h} U_\infty(U_\infty - u)\,dy$,
+and only with $+uU_\infty$ does the integrand reduce to the $u(U_\infty - u)$
+of equation~\eqref{ch3:eq:70}. Neither the errata nor the supplements correct
+this; the equation is kept as printed.}
 \begin{equation}\label{ch3:eq:69}
 D = \rho b\int_{0}^{h} \left(U_\infty^{2} - u^{2} - U_\infty^{2} - uU_\infty\right)dy
 \end{equation}
@@ -708,21 +713,38 @@ premature transition and keep friction drag as low as possible.
 
 \subsubsection{Skin-Friction Drag of Boundary Layers with Transition}\label{ch3:sec:3.5.3}
 
-One can estimate the skin-friction drag on a flat plate
-on which boundary-layer transition occurs if it is assumed
-that, behind the transition point, the turbulent boundary
-layer behaves \emph{as if it had been turbulent all the way from
-the leading edge}. Since the laminar region introduces a reduction
-in drag from what the drag would be if the entire boundary layer
-were turbulent, we can just substitute the laminar drag up to
-the transition point for the turbulent drag over the same
-distance (\ref{ch3:ref:15}). The incremental decrease in drag force is then
+One can estimate the skin-friction drag on a flat plate of length $= \ell$
+on which boundary-layer transition occurs if it is assumed that, behind the
+transition point, the turbulent boundary layer behaves \emph{as if it had been
+turbulent all the way from the leading edge}.\ednote{From this paragraph
+through equation~\eqref{ch3:eq:102b} the text and equations are those of the
+supplement's replacement page 356 and top of page 357.
+Equations~\eqref{ch3:eq:97}--\eqref{ch3:eq:101} are unchanged. The 1973
+equations (102a) and (102b) read
+$(C_f)_{\mathrm{turb}} = 0.074/(R_\ell)^{1/5}$ and
+$(C_f)_{\mathrm{lam}} = 1.328/(R_\ell)^{1/2}$, with the plate Reynolds number
+$R_\ell$ where the coefficients at the transition point, $R = R_{\mathrm{crit}}$,
+are meant. The 1973 text read ``where $(C_f)_{\mathrm{turb}}$ and
+$(C_f)_{\mathrm{lam}}$ are the respective coefficients of turbulent and laminar
+skin friction.'' and ``where the laminar and turbulent skin-friction
+coefficients are evaluated from the previously derived expressions, equations
+(86) and (63):''. The rest is only reworded: the 1973 text had no ``of length
+$= \ell$'', and read ``Since the laminar region introduces a reduction in drag
+from what the drag would be if the entire boundary layer were turbulent, we can
+just substitute the laminar drag up to the transition point for the turbulent
+drag over the same distance (15).'', ``The incremental decrease in drag force
+is then'' and ``Letting''.} Since the laminar region reduces
+the drag from what it would be if the entire boundary layer were turbulent,
+we can just substitute the laminar drag from the leading edge to the
+transition point for the turbulent drag over the same distance (\ref{ch3:ref:15}).
+The incremental decrease in drag force due to the laminar region is then
 \begin{equation}\label{ch3:eq:97}
 \Delta D = -\frac{\rho}{2}U_\infty^{2}b\,x_{\mathrm{crit}}
   \left[(C_f)_{\mathrm{turb}} - (C_f)_{\mathrm{lam}}\right]
 \end{equation}
-where $(C_f)_{\mathrm{turb}}$ and $(C_f)_{\mathrm{lam}}$ are the respective coefficients
-of turbulent and laminar skin friction.
+where $(C_f)_{\mathrm{turb}}$ and $(C_f)_{\mathrm{lam}}$ are the respective coefficients of turbulent and
+laminar skin friction calculated at the transition point, which is located a distance
+$x_{\mathrm{crit}}$ downstream from the leading edge.
 
 The change in overall skin-friction coefficient becomes
 \begin{equation}\label{ch3:eq:98}
@@ -732,7 +754,7 @@ or
 \begin{equation}\label{ch3:eq:99}
 \Delta C_f = -\frac{R_{\mathrm{crit}}}{R_\ell}\left[(C_f)_{\mathrm{turb}} - (C_f)_{\mathrm{lam}}\right]
 \end{equation}
-Letting
+Then, letting
 \begin{equation}\label{ch3:eq:100}
 B = R_{\mathrm{crit}}\left[(C_f)_{\mathrm{turb}} - (C_f)_{\mathrm{lam}}\right]
 \end{equation}
@@ -740,13 +762,13 @@ we derive the overall skin-friction coefficient as (\ref{ch3:ref:15}):
 \begin{equation}\label{ch3:eq:101}
 C_f = \frac{0.074}{R_\ell^{1/5}} - \frac{B}{R_\ell}
 \end{equation}
-where the laminar and turbulent skin-friction coefficients
-are evaluated from the previously derived expressions,
-equations~\eqref{ch3:eq:86} and~\eqref{ch3:eq:63}:
+where the laminar and turbulent skin-friction coefficients used in calculating
+$B$ are evaluated from the previously derived expressions, equations~\eqref{ch3:eq:86}
+and~\eqref{ch3:eq:63}, by setting $R = R_{\mathrm{crit}}$ instead of $R_\ell$:
 \begin{subequations}\label{ch3:eq:102}
 \begin{align}
-(C_f)_{\mathrm{turb}} &= \frac{0.074}{(R_\ell)^{1/5}} \label{ch3:eq:102a}\\
-(C_f)_{\mathrm{lam}} &= \frac{1.328}{(R_\ell)^{1/2}} \label{ch3:eq:102b}
+(C_f)_{\mathrm{turb}} &= \frac{0.074}{(R_{\mathrm{crit}})^{1/5}} \label{ch3:eq:102a}\\
+(C_f)_{\mathrm{lam}} &= \frac{1.328}{(R_{\mathrm{crit}})^{1/2}} \label{ch3:eq:102b}
 \end{align}
 \end{subequations}
 Approximate values of $B$ for several possible values of $R_{\mathrm{crit}}$

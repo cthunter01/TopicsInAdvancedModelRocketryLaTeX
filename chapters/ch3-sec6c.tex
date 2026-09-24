@@ -71,9 +71,18 @@ The approximate expression for the ogive nose is
 \end{equation}
 and the exact equation for the cylindrical body is
 \begin{equation}\label{ch3:eq:182}
-\left(\frac{S_s}{S_m}\right)_{\mathrm{CYL}} = 4\,\frac{\ell_c}{d_m}
+\left(\frac{S_s}{S_m}\right)_{\mathrm{CYL}} = 4\,\frac{\ell_s}{d_m}
 \end{equation}
-For the conical boattail,
+For the conical boattail,\ednote{Both equations are printed with a minus sign in the leading
+factor: $(d_m - d_b)$ before the radical in~\eqref{ch3:eq:183a} and $(1 - d_b/d_m)$
+in~\eqref{ch3:eq:183b}, as are equations~\eqref{ch3:eq:172a} and~\eqref{ch3:eq:172b}. The factors
+$(d_m + d_b)$ and $(1 + d_b/d_m)$ are evidently meant: the lateral area of a conical frustum is
+$\pi(d_m + d_b)/2$ times its slant height $\ell_T[1 + ((d_m - d_b)/2\ell_T)^2]^{1/2}$, so the
+$(d_m - d_b)$ under the radical is correct, and with the printed sign in the leading factor a
+boattail with $d_b = d_m$, which is a cylinder, would have no surface instead of the $4\ell_T/d_m$ that equation~\eqref{ch3:eq:182} gives for a cylinder of that length. The printed
+factor is carried into equations~\eqref{ch3:eq:184} and~\eqref{ch3:eq:199}; for the GCR-x it makes
+the boattail's $S_s/S_m$ 1.2 instead of 10.8. Neither the errata nor the supplements correct this;
+the equations are kept as printed.}
 \begin{subequations}\label{ch3:eq:183}
 \begin{equation}\label{ch3:eq:183a}
 \left(\frac{S_s}{S_m}\right)_{\mathrm{BOATTAIL}} = \frac{2(d_m - d_b)\ell_T}{d_m^2}
@@ -176,7 +185,13 @@ C_{DI} &= \frac{8}{\pi}(C_f)_F\left(1 + 2\,\frac{t}{c}\right)
   + \left(\frac{c}{d_m}\right)^2\left(\frac{d_m}{\ell_T}\right)\left(1 - \frac{d_b}{d_m}\right)\right]
   \label{ch3:eq:202}
 \end{align}
-where
+where\ednote{The side conditions of equations~\eqref{ch3:eq:204a} and~\eqref{ch3:eq:204b} are
+printed $(R_\ell < R_{\mathrm{crit}})$ and $(R_\ell \ge R_{\mathrm{crit}})$, as for the body.
+Transition on the fins depends on the chord Reynolds number $R_c = (c/\ell_b)R_\ell$ of
+equation~\eqref{ch3:eq:192}, so the conditions evidently meant are
+$R_\ell < (\ell_b/c)R_{\mathrm{crit}}$ and $R_\ell \ge (\ell_b/c)R_{\mathrm{crit}}$: these give the
+$5.14 \times 10^{6}$ $(= (18/1.75) \times 5 \times 10^{5})$ used for the fins of the GCR-x below.
+Neither the errata nor the supplements correct this; the conditions are kept as printed.}
 % (203a)-(204b) are one block in the book, all four '=' in one column and the side conditions in
 % another; two subequations groups cannot share one alignment, so the letters are \tag'ged in one
 % align*. The two \refstepcounter lines give the group labels (203), (204) (cited below as
@@ -232,7 +247,15 @@ assigned to the 8 variables:
 \end{array}
 \end{equation*}
 The overall fineness ratio $\ell_b/d_m$ is thus 18, making the GCR-x a fairly slender model.
-Substituting these values into equations~\eqref{ch3:eq:199} through~\eqref{ch3:eq:204}, we obtain
+Substituting these values into equations~\eqref{ch3:eq:199} through~\eqref{ch3:eq:204}, we
+obtain\ednote{With these values equation~\eqref{ch3:eq:199} gives
+$(C_{Df})_b = 1.055 \times 56.65\,(C_f)_B = 59.8(C_f)_B$ with the equation as printed, or
+$1.055 \times 66.25\,(C_f)_B = 69.9(C_f)_B$ with the frustum factor $(1 + d_b/d_m)$ (see the note on
+the boattail factor of equations~\eqref{ch3:eq:183a} and~\eqref{ch3:eq:183b}). The printed
+coefficient 82.8 would need $S_s/S_m = 78.5$, which these values do not give. Table~\ref{ch3:tab:6}
+and Figure~\ref{ch3:fig:51}, and the drag forces of Table~\ref{ch3:tab:7} and
+Figure~\ref{ch3:fig:52}, are computed with 82.8. Neither the errata nor the supplements correct
+this; the coefficient is kept as printed.}
 \begin{equation*}
 \begin{aligned}
 &\left.\begin{aligned}
@@ -319,7 +342,12 @@ $(\CDo)_{FB}$ is extremely large, achieving a value of 3.08 for $R_\ell = 1 \tim
 behavior is expected, as the boundary layer thickens with decreasing Reynolds number and viscous
 forces play a much greater role in the flow behavior than is the case at higher Reynolds numbers.
 For a model rocket of 30 centimeters length, a Reynolds number of $10^{4}$ corresponds to an
-airspeed of only about 0.6 meter/second. A well-designed model rocket does not leave its launcher
+airspeed of only about 0.6 meter/second.\ednote{The 1973 text gives ``about 0.6
+meter/second''. About 0.5 meter/second is evidently meant: with $\nu = 1.495 \times 10^{-5}$
+meter$^{2}$/second, $U_\infty = \nu R_\ell/\ell_b = 1.495 \times 10^{-5} \times 10^{4}/0.30
+= 0.50$ meter/second, which is also what the relation $U_\infty = 4.975 \times 10^{-5}\,R_\ell$
+given below for a rocket of this length yields. Neither the errata nor the supplements correct
+this; the figure is kept as printed.} A well-designed model rocket does not leave its launcher
 with a velocity much less than 9 meters/second, so the behavior of the drag coefficient at such
 low Reynolds numbers is not of much interest in model rocket flight calculations.
 

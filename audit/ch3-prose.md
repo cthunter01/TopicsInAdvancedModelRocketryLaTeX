@@ -46,3 +46,23 @@ Repeated 8-grams involving Chapter 3: every one is legitimate.
 - References 12 and 13 (Prandtl and Tietjens).
 - Barrowman TIR-33 and Davis, Follin and Blitzer, which also appear in Chapter 2's reference list.
 No duplicated transcription.
+
+
+## After the corrections step (2026-09-24)
+
+Method: I rebuilt the committed 1973 text in the scratchpad (git archive HEAD, then latexmk). That copy of the PDF is build/zoom/assemble-base-main.pdf. Its prose_diff result is 140 pass, 64 inspect and 122 windows, and its inspect pages match the 64 pages listed in audit/ch3-prose.md exactly (the audit's count of 121 windows is one short). The corrected build gives 138 pass, 66 inspect, 0 missing and 125 windows. I compared the two window by window and listed every OCR 3-gram the current PDF has lost.
+
+Replaced pages (388-389, 444, 454-456, 477, 481, 483-484) and the errata pages (396, 414): most still pass, because each \ednote quotes the replaced 1973 text. Only 388 and 477 have non-pass windows.
+- p388 (item 8): the lost 3-grams are the replaced text itself. "flat plate [of length = l] on which" and "skin friction [calculated at the transition point ...]. The change".
+- p477 (item 12): the correction is hand-lettered maths, so it has no OCR tokens. Both windows were already inspect in the audit (0.57, now 0.54). The only lost 3-gram, "coefficient body since", is broken by a page break that moved after the (C_f)_B = .00445 display.
+- Pages that still pass also lost replaced text only: 444 "cannot, however" and "lift ... shall assume" (item 9), 454-455 "0.1 radian", "rotating fins", "found ... case" and so on (item 10), 481 "we find B = 1735; since" (item 13), and 483-484 "transition-flow value" and "almost 36%" (item 14).
+- p396 lost nothing. On 389, 414, 454, 481 and 484 some 3-grams are split by a note's footnote or a page break that now falls between words.
+
+Other pages that got worse. None has dropped, garbled or duplicated prose:
+- p297 (now inspect): item 11 adds the e entry between d_r and f( ) in the Symbols list, and the longtable now breaks between "derivative" and "second derivative".
+- p334 (a window below 0.6; the page was already inspect): the silent D7 fix P_tot -> p_tot makes pdftotext print "p tot" as two tokens, so the OCR token "ptot" no longer matches.
+- p391: Figure 22, whose caption now carries the F1 \edcap, floats in between "presented below." and heading 3.6.1.
+- p465 (now inspect): the D18 note's footnote and the Figure 43 float fall between "cross-sectional area." and "In the interest of clarity".
+- p313, 352, 408, 439 and 485 (485 now inspect): page breaks moved.
+
+p404 now passes. Repeated 8-grams in the whole document rose from 267 to 340. The new ones are three things: the notes' quotations of 1973 text next to the corrected text, the notes' shared wording ("Neither the errata nor the supplements correct this; the ... is kept as printed"), and running heads, including Symbols-list subscripts that coincide with (156'). There is no duplicated transcription. No artwork_pages entry is needed.

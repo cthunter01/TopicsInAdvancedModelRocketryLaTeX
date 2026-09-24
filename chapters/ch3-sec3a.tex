@@ -1,6 +1,9 @@
 % chapters/ch3-sec3a.tex -- 3. Viscous (Skin-Friction) Drag; 3.1 The Importance of Viscosity in Real
 % Fluid Flow; 3.2 The Distinction Between Laminar and Turbulent Flow; 3.3 The Laminar Boundary Layer on
 % a Smooth, Flat Plate (PDF 340-362, up to heading 3.4; printed pp. 308-330)
+% Corrections applied (corrections/ch3.md): no errata or supplement item falls in this unit.
+% Doubt notes: D13 (Plate 2 caption, \edcap), D11 (coefficients of (55a)-(55b) and (57)),
+% D12 (last member of (60)).
 \section{Viscous (Skin-Friction) Drag}\label{ch3:sec:3}
 
 \subsection{The Importance of Viscosity in Real Fluid Flow}\label{ch3:sec:3.1}
@@ -189,7 +192,15 @@ of fluid as distance from the leading edge increases.
   \centering
   \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/plate02.jpg}
   \caption{Flow about a thin plate of length $\ell$ at a Reynolds number
-  $R_\ell$ of 3.}
+  $R_\ell$ of 3.
+  \edcap{A Reynolds number of 3 is implausibly low for the flow shown. At
+  $R_\ell = 3$ even equation~\eqref{ch3:eq:54} would give a boundary layer at
+  the trailing edge nearly three times as thick as the plate is long
+  ($\delta = 5\ell/\sqrt{R_\ell} \cong 2.9\ell$), whereas the photograph
+  shows, and the text describes, a thin layer of retarded flow next to the
+  plate, which Section~\ref{ch3:sec:3.1} attributes to large Reynolds numbers.
+  A far larger value is evidently meant. Neither the errata nor the
+  supplements correct this; the caption is kept as printed.}}
   \label{ch3:plate:2}
 \end{plate}
 
@@ -472,7 +483,23 @@ Table~\ref{ch3:tab:1} we see that this corresponds to $\eta \cong 5.0$; hence
 \end{equation}
 Evaluating this expression for $U_\infty = 60$ meters/second (6000
 centimeters/second) and $\nu = 1.495 \times 10^{-5}$ meter$^{2}$/second
-(0.1495 cm$^{2}$/second), we obtain
+(0.1495 cm$^{2}$/second), we obtain\ednote{The coefficients of
+equations~\eqref{ch3:eq:55a} and~\eqref{ch3:eq:55b}, $3.10 \times 10^{-3}$ and
+$3.10 \times 10^{-2}$, and the $3.22 \times 10^{-2}$ of
+equation~\eqref{ch3:eq:57} below do not follow from the values just stated.
+With $U_\infty = 60$ meters/second and $\nu = 1.495 \times 10^{-5}$
+meter$^{2}$/second, equation~\eqref{ch3:eq:54} gives
+$\delta = 2.50 \times 10^{-3}\sqrt{x}$ ($x$ and $\delta$ in meters) and
+$\delta = 2.50 \times 10^{-2}\sqrt{x}$ (in centimeters), and
+equation~\eqref{ch3:eq:56} gives $v_\infty = 2.59 \times 10^{-2}/\sqrt{x}$
+meters/second; the printed coefficients correspond to
+$\nu = 2.31 \times 10^{-5}$ meter$^{2}$/second. The stated $\nu$ is evidently
+meant, since the Reynolds numbers quoted after equation~\eqref{ch3:eq:55b} are
+computed with it; the thicknesses quoted there (.031, .098 and .310 cm., for
+.025, .079 and .250 cm.) and the 0.322 meter/second after
+equation~\eqref{ch3:eq:57} (for 0.259) follow the printed coefficients.
+Neither the errata nor the supplements correct this; the coefficients and the
+values computed from them are kept as printed.}
 \begin{subequations}\label{ch3:eq:55}
 \begin{equation}\label{ch3:eq:55a}
 \delta = 3.10 \times 10^{-3}\sqrt{x}
@@ -547,7 +574,13 @@ D_v = b\int_{x=0}^{\ell} \tau_o\,dx
   finite thickness in laminar flow.}
   \label{ch3:fig:16}
 \end{figure}%
-From equations~\eqref{ch3:eq:34} and~\eqref{ch3:eq:48}
+From equations~\eqref{ch3:eq:34} and~\eqref{ch3:eq:48}\ednote{The last
+member of this display is printed $\alpha U_\infty\sqrt{U_\infty/\nu x}$,
+without the factor $\mu$ that the middle member carries.
+$\alpha\mu U_\infty\sqrt{U_\infty/\nu x}$ is evidently meant: $\alpha$ stands
+for $f''(0)$ alone, as the next sentence says, and
+equation~\eqref{ch3:eq:61} restores the $\mu$. Neither the errata nor the
+supplements correct this; the display is kept as printed.}
 \begin{equation}\label{ch3:eq:60}
 \tau_o(x) = \mu\left(\frac{\partial u}{\partial y}\right)_{y=0}
   = \mu U_\infty\sqrt{\frac{U_\infty}{\nu x}}\cdot f''(0)

@@ -50,7 +50,15 @@ so that
 \end{equation}
 The interference drag coefficient due to angle of attack is thus of considerable magnitude; in
 fact, it is larger than the \emph{sum} of $C_{D_B}(\alpha)$ and $C_{Di}'$, as given by
-equations~\eqref{ch3:eq:144} and~\eqref{ch3:eq:145}.
+equations~\eqref{ch3:eq:144} and~\eqref{ch3:eq:145}.\ednote{The text says that
+$\Delta C_{Di}$ is larger than the \emph{sum} of $C_{D_B}(\alpha)$ and $C_{Di}'$. Over the
+range of Table~\ref{ch3:tab:4} it is larger than either of them, but not than their sum:
+equations~\eqref{ch3:eq:144} and~\eqref{ch3:eq:145} add up to
+$8.45\alpha^{2} + 8.86\alpha^{3}$, which exceeds the $8.38\alpha^{2}$ of
+equation~\eqref{ch3:eq:147} at every angle of attack (at $10\dg$ the table gives
+$.106 + .198 = .304$ against $.255$); only the $\alpha^{2}$ coefficients, 8.45 and 8.38, are
+nearly equal. Neither the errata nor the
+supplements correct this; the sentence is kept as printed.}
 
 \subsubsection{Total Drag Increase at Angle of Attack}\label{ch3:sec:5.2.4}
 
@@ -221,40 +229,143 @@ spinnerons. Of these three techniques, fin canting is the most commonly used. Si
 creates a permanent, artificially-induced angle of attack for the fins, the drag due to fin cant
 can be estimated using the methods of Chapter~\ref{ch2} and the results of
 Section~\ref{ch3:sec:5.2.2} of the present chapter. According to equations~\eqref{ch2:eq:90},
-\eqref{ch2:eq:115}, \eqref{ch2:eq:116}, and~\eqref{ch2:eq:117} of Chapter~\ref{ch2}, canting the
-fins of our trial rocket will give it a roll rate determined by
+\eqref{ch2:eq:115}, \eqref{ch2:eq:116}, and~\eqref{ch2:eq:117} of
+Chapter~\ref{ch2},\ednote{This edition prints equations~\eqref{ch2:eq:115}
+and~\eqref{ch2:eq:116} in Mandell's corrected form of 15~February 2022 (Chapter~\ref{ch2},
+Section~\ref{ch2:sec:6.3}); equations~\eqref{ch2:eq:90} and~\eqref{ch2:eq:117} are unchanged. For
+the trial rocket's fins ($s = c_r = c_t = 2.54$ cm., $r_t = 1.03$ cm.)\ the corrected equations
+give $\omega_Z = 0.32726\,U\theta$, the supplement's equation~\eqref{ch3:eq:152} below. Bengen's
+1973 coefficient .1672 follows from the 1973 form of equation (115), which has $12A_r/(s c_r)$
+where the corrected one has $6(1 + \lambda)$, with $k_r$ computed as in the corrected
+equation~\eqref{ch2:eq:116}: these give $0.169\,U\theta$. With the $(\tau + 1)$ printed in the 1973
+equation (116) where the corrected one has $(\tau^{2} + 1)$, the 1973 equation (115) gives
+$0.0505\,U\theta$.} canting the fins of our trial
+rocket will give it a roll rate determined by\ednote{From equation~\eqref{ch3:eq:152} to the
+sentence beginning ``Furthermore'' the text and equations are those of the supplement
+``Corrections to drag due to fin cant in Chapter~3, Section~5.3''. The 1973 equations read (152)
+$\omega_Z = .1672\,U\theta$, (153) $\alpha(r) = \theta - \omega_Z r/U$,
+$\bar{\alpha} = (.0828 + .0405)/2 = .0617$ and (154)
+$(C_{Di}')_{\mathrm{cant}} \cong 12.5\bar{\alpha}^{2}$. The 1973 text read ``For
+$\omega_Z = 100$ radians/second at $U = 6000$ cm./sec., a fin cant angle $\theta$ almost exactly
+0.1 radian is required (0.1 radian $= 5.73\dg$).'', ``For the simple, rectangular fins of our
+trial rocket, the \emph{average} effective angle of attack can be used to determine the induced
+drag due to fin cant. The value of $\alpha(r)$ at the fin root is 0.0828, while the value at the
+tip is 0.0405.'', ``In equation (145) the induced drag of two of the trial rocket's fins was found
+to be $6.24\alpha^{2}$.'' (equation~\eqref{ch3:eq:145} gives $6.51\alpha^{2}$) and ``For the
+computed $\bar{\alpha}$ of 0.0617, $(C_{Di}')_c = .0475$. If the rocket's zero-incidence drag
+coefficient is .75 without fin cant, this means a 6.34\% increase in $\CDo$. If a spin rate double
+that used in the above calculations were desired, it would be necessary to incur four times this
+drag penalty, or an increase of 25.4\% in $\CDo$. These figures, together with the realization
+that they probably represent minimum values for the drag increase due to fin cant---they do not
+account for increased fin-body interference---indicate that, while the effects of rotation
+themselves may not be significant, the effects of the mechanism by which rotation is induced are
+considerable.'' The exact form of $\alpha(r)$ and its linearization, the fins' extension to the
+centerline, the sentence on the roll damping moment, the aerodynamic twist with
+equation~\eqref{ch3:eq:n155}, the fin-body interference term, equation~\eqref{ch3:eq:n156} and the
+case of triple spin are new; the rest is only reworded (``the rotating fins'' became ``the fins
+affixed to the rotating rocket''). The supplement numbers its last two equations (155) and (156);
+since equations~\eqref{ch3:eq:155} and~\eqref{ch3:eq:156} of Section~\ref{ch3:sec:5.4}, which it
+leaves unchanged, keep those numbers, the new ones are marked (155$'$) and (156$'$) here.}
 \begin{equation}\label{ch3:eq:152}
-\omega_Z = .1672\,U\theta
+\omega_Z = 0.327259\,U\theta
 \end{equation}
-For $\omega_Z = 100$ radians/second at $U = 6000$ cm./sec., a fin cant angle $\theta$ almost
-exactly 0.1 radian is required (0.1 radian $= 5.73\dg$). Now the effective angle of attack of the
-fins is always \emph{less} than the cant angle, since the airflow itself is ``canted'' as seen by
-the rotating fins. To be more precise, the angle of attack varies with radius from the rocket's
-centerline according to
-\begin{equation}\label{ch3:eq:153}
-\alpha(r) = \theta - \frac{\omega_Z r}{U}
-\end{equation}
-For the simple, rectangular fins of our trial rocket, the \emph{average} effective angle of attack
-can be used to determine the induced drag due to fin cant. The value of $\alpha(r)$ at the fin root
-is 0.0828, while the value at the tip is 0.0405. Since $\alpha(r)$ varies linearly with radial
-distance from the centerline, the average effective angle of attack $\bar{\alpha}$ is just
+For $\omega_Z = 100$ radians/second at $U = 6000$ cm./sec., a fin cant angle $\theta$ of 0.05093
+radian ($2.918\dg$) is required. Now the effective angle of attack of the fins is always
+\emph{less} than the cant angle, since the airflow itself is ``canted'' as seen by the fins affixed
+to the rotating rocket. To be more precise, the angle of attack varies with the radius from the
+rocket's centerline according to
 \begin{equation*}
-\bar{\alpha} = \frac{.0828 + .0405}{2} = .0617
+\alpha(r) = \theta - \arctan\left(\frac{\omega_Z r}{U}\right)
 \end{equation*}
-In equation~\eqref{ch3:eq:145} the induced drag of two of the trial rocket's fins was found to be
-$6.24\alpha^2$. In the case of canted fins, all four fins are at the angle of attack $\bar{\alpha}$;
-equation~\eqref{ch3:eq:145} must therefore be doubled to give
-\begin{equation}\label{ch3:eq:154}
-(C_{Di}')_{\mathrm{cant}} \cong 12.5\bar{\alpha}^2
+For $\arctan\left(\frac{\omega_Z r}{U}\right) \le$ about $15\dg$ ($= 0.262$ radian), or
+$\left(\frac{\omega_Z r}{U}\right) \le$ about 0.268,
+$\arctan\left(\frac{\omega_Z r}{U}\right) \cong \frac{\omega_Z r}{U}$.
+That is, the ``small angle approximation'' is valid. Then the equation for $\alpha(r)$ can be
+linearized to give
+\begin{equation}\label{ch3:eq:153}
+\alpha(r) = \theta - \frac{\omega_Z r}{U} \qquad \text{radian}
 \end{equation}
-For the computed $\bar{\alpha}$ of 0.0617, $(C_{Di}')_c = .0475$. If the rocket's zero-incidence
-drag coefficient is .75 without fin cant, this means a 6.34\% increase in $\CDo$. If a spin rate
-double that used in the above calculations were desired, it would be necessary to incur four times
-this drag penalty, or an increase of 25.4\% in $\CDo$. These figures, together with the
-realization that they probably represent minimum values for the drag increase due to fin
-cant---they do not account for increased fin-body interference---indicate that, while the effects
+without significant loss of accuracy.
+
+For the simple, rectangular fins of our trial rocket, the \emph{average} effective angle of attack
+can be used to determine the largest component of the induced drag, and to determine the fin-body
+interference drag, due to fin cant. Remembering that the fins are assumed to extend through the
+body tube for the purpose of calculating induced drag, each one of the four canted fins is assumed
+to run from the rocket's centerline to the fin tip. The effective angle of attack $\alpha(r)$ at the
+centerline (where $r = 0$) is just $\theta = 0.05093$ radian, while $\alpha(r)$ at the fin tip is
+$-0.00857$ radian. The negative effective angle of attack near the tip creates the roll damping
+moment that balances the roll forcing moment to produce the equilibrium roll rate $\omega_Z$ given
+by equation~\eqref{ch2:eq:115} of Chapter~\ref{ch2} and equation~\eqref{ch3:eq:152} above. Since
+$\alpha(r)$ varies linearly with radial distance from the centerline, the average effective angle
+of attack $\bar{\alpha}$ is just
+\begin{equation*}
+\bar{\alpha} = (0.05093 - 0.00857)/2 = 0.02118\un{radian}
+\end{equation*}
+In equation~\eqref{ch3:eq:145} the induced drag of two diametrically opposed fins of the trial
+rocket was found to be $6.51\alpha^2$. In the case of canted fins, all four fins are at the angle
+of attack $\bar{\alpha}$; equation~\eqref{ch3:eq:145} must therefore be doubled to give
+\begin{equation}\label{ch3:eq:154}
+(C_{Di}')_{\mathrm{cant}} = 13.02\bar{\alpha}^2
+\end{equation}
+
+The linear variation of $\alpha(r)$ with radial distance from the centerline also makes the fins
+appear to the relative airstream as if they were twisted. This \emph{aerodynamic twist}, denoted
+$\Delta\alpha$, gives rise to an additional component of induced drag. Although less than the
+component of induced drag due to the average effective angle of attack, this additional induced
+drag component can be of significant magnitude. Hoerner~(\ref{ch3:ref:9}) gives the approximate
+value of the coefficient of induced drag due to twist as
+\begin{equation*}
+(C_{Di})_{\mathrm{twist}} = (4 \times 10^{-5})(\Delta\alpha)^2
+\qquad \text{for $\Delta\alpha$ given in degrees}
+\end{equation*}
+For $\Delta\alpha$ given in radians, the equation becomes
+\begin{equation*}
+(C_{Di})_{\mathrm{twist}} = 0.1313(\Delta\alpha)^2
+\end{equation*}
+This coefficient is based on the fin area. To convert it to a coefficient based on the maximum body
+cross-sectional area we must multiply it by $S_F/S_m$, where $S_F$ is the total area of all four
+canted fins:
+\begin{align*}
+(C_{Di}')_{\mathrm{twist}} &= (C_{Di})_{\mathrm{twist}}\,\frac{4\,(3.57 \times 2.54)}{\pi(1.03)^2}\\
+&= 10.8828\,(C_{Di})_{\mathrm{twist}}\\
+(C_{Di}')_{\mathrm{twist}} &= 1.43(\Delta\alpha)^2 \tag{155$'$}\label{ch3:eq:n155}
+\end{align*}
+
+From equation~\eqref{ch3:eq:147}, we obtain the fin-body interference drag component due to the 4
+canted fins as
+\begin{align*}
+(\Delta C_{Di})_{\mathrm{cant}} &= 2(8.38\bar{\alpha}^2)\\
+&= 16.76\bar{\alpha}^2
+\end{align*}
+
+The total drag increase due to fin cant is then
+\begin{equation*}\tag{156$'$}\label{ch3:eq:n156}
+(\Delta\CD)_{\mathrm{cant}} = (C_{Di}')_{\mathrm{cant}} + (C_{Di}')_{\mathrm{twist}}
++ (\Delta C_{Di})_{\mathrm{cant}}
+\end{equation*}
+which, for our trial rocket, becomes
+\begin{equation*}
+(\Delta\CD)_{\mathrm{cant}} = (13.02 + 16.76)\bar{\alpha}^2 + 1.43(\Delta\alpha)^2
+\end{equation*}
+The average effective angle of attack $\bar{\alpha}$ has been calculated as 0.02118 radian. The
+total aerodynamic twist $\Delta\alpha$ is the difference between the effective angle of attack at
+the centerline and the effective angle of attack at the fin tip:
+\begin{align*}
+\Delta\alpha &= 0.05093 - (-0.00857)\\
+&= 0.0595\un{radian}
+\end{align*}
+Then
+\begin{align*}
+(\Delta\CD)_{\mathrm{cant}} &= (13.02 + 16.76)(0.02118)^2 + 1.43(0.0595)^2\\
+&= 0.018433
+\end{align*}
+If the rocket's zero-incidence drag coefficient is 0.75 without fin cant, this means a 2.46\%
+increase in $\CDo$. If a spin rate double that used in the above calculations were desired, it
+would be necessary to incur four times this drag penalty, or an increase of 9.84\% in $\CDo$. If
+triple the example spin rate were desired, it would be necessary to incur nine times the example's
+drag penalty, or an increase of 22.14\% in $\CDo$. These figures indicate that, while the effects
 of rotation themselves may not be significant, the effects of the mechanism by which rotation is
-induced are considerable. Furthermore, there is an increasing danger of separation in the vicinity
+induced may be considerable. Furthermore, there is an increasing danger of separation in the vicinity
 of the fin leading edges as the angle of cant is increased. Such separation could result in a
 gross magnification of pressure drag. While the angle of cant at which such phenomena become
 significant has not as yet been established with precision, it has been generally accepted for a

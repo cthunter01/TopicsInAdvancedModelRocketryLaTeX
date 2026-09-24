@@ -1,6 +1,11 @@
 % chapters/ch3-sec3c-sec4a.tex -- 3.6 Three-Dimensional Corrections to the Flat-Plate
 % Skin-Friction Coefficients; 3.6.1 Body Corrections; 3.6.2 Fin Corrections; 4. Pressure Drag;
 % 4.1 Introduction; 4.2 Boundary-Layer Separation (PDF 389-408, ms pp. 357-376)
+% Corrections applied (corrections/ch3.md): item 4 (page 364, the Bernoulli sentence) from the
+% 1973 errata sheet (PDF 664); F1 (Figure 22 caption, \edcap). D15 checked: (105) with
+% l/d = 10, R_l = 1.206 x 10^6 gives 5.91 x 10^-5 (printed 5.93 x 10^-5, as with R_l^{2/5}
+% rounded to 270), and .0044974 + .0000591 = .004557 (printed .0045593 = .0045 + .0000593);
+% the 1.3% holds either way: no note (last-digit rounding only).
 \subsection{Three-Dimensional Corrections to the Flat-Plate Skin-Friction Coefficients}\label{ch3:sec:3.6}
 
 Approximate methods have been developed for estimating the effects of
@@ -21,7 +26,17 @@ presented below.
   \caption{Skin friction coefficient for flow over a flat plate with boundary
   layer transition, based on the assumption of
   $R_{\mathrm{crit}} = 5 \times 10^{5}$ (corresponding to $B = 1740$ in
-  equation~\eqref{ch3:eq:101}).}
+  equation~\eqref{ch3:eq:101}).
+  \edcap{The text and the tabulation of Section~\ref{ch3:sec:3.5.3}, quoted
+  from Reference~\ref{ch3:ref:15}, give $B = 1700$ for
+  $R_{\mathrm{crit}} = 5 \times 10^{5}$, and the text says that curve C is
+  drawn for $B = 1700$. Equation~\eqref{ch3:eq:100}, with
+  $(C_f)_{\mathrm{turb}} = .005363$ and $(C_f)_{\mathrm{lam}} = .001878$ from
+  equations~\eqref{ch3:eq:102a} and~\eqref{ch3:eq:102b} at
+  $R_{\mathrm{crit}}$, gives $B = 1743$, which the caption's 1740 matches to
+  three figures.
+  Neither the errata nor the supplements reconcile the two values; both are
+  kept as printed.}}
   \label{ch3:fig:22}
 \end{figure}
 
@@ -169,8 +184,13 @@ To illustrate this phenomenon, we examine the flow past a blunt body, such as
 the circular cylinder shown in Figure~\ref{ch3:fig:23}. In the inviscid flow of
 a ``perfect'' fluid, the fluid elements are \emph{accelerated} from point A to
 point B, and are \emph{decelerated} from point B to point C. In accordance with
-Bernoulli's equation, there is an increase in static pressure between A and B
-and a corresponding decrease along the downstream surface from B to C. This
+Bernoulli's equation, there is a decrease in static pressure between A and B
+and a corresponding increase along the downstream surface from B to
+C.\ednote{Corrected per the 1973 errata sheet. The 1973 sentence read ``In
+accordance with Bernoulli's equation, there is an increase in static pressure
+between A and B and a corresponding decrease along the downstream surface from
+B to C.'', with increase and decrease reversed: the pressure falls where the
+fluid is accelerated and rises where it is decelerated.} This
 theoretical pressure distribution (which appears in Figure~\ref{ch3:fig:24} as
 the curve $C_p = 1 - 4\sin^2\varphi$) is \emph{impressed upon} the boundary
 layer in real fluid flow; that is, at any station in the boundary layer the

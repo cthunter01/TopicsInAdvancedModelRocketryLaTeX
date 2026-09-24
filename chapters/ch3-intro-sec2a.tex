@@ -312,7 +312,18 @@ The \emph{modulus of elasticity} of air, denoted by $E$, is defined by
 where $\Delta V/V_o$ denotes the change in each unit volume of air produced by
 the change in pressure $\Delta p$. For air at sea level, assuming isothermal
 (constant-temperature) pressure changes, $E$ is just equal to the sea-level
-pressure of 101,325 nt/m$^{2}$. The total \emph{mass} of air present in the
+pressure of 101,325 nt/m$^{2}$.\ednote{The text sets $E$ equal to the
+sea-level pressure, its value for isothermal changes. With it
+equation~\eqref{ch3:eq:5} gives $c = \sqrt{101{,}325/1.225} \cong 288$
+meters/second (with the sea-level density of Figure~\ref{ch3:fig:2}), not the
+340 meters/second used below and in Section~\ref{ch3:sec:7} and plotted in
+Figure~\ref{ch3:fig:4}. The adiabatic modulus, 1.4 times the pressure (1.4
+being the ratio of the specific heats of air), or about 141,900
+nt/m$^{2}$, is the one that applies, since the pressure changes of a sound
+wave, like those of the flow about a body, are adiabatic. With it equation~\eqref{ch3:eq:5} gives 340
+meters/second, and the argument that follows is unchanged. Neither the errata
+nor the supplements correct this; the text is kept as printed.} The total
+\emph{mass} of air present in the
 volume $V_o$ must be equal to the total mass present after the pressure change
 has altered the volume to $V_o + \Delta V$. Since mass is just the product of
 density and volume, this means
@@ -332,7 +343,16 @@ so that
 \end{equation}
 Now the speed of sound, denoted by $c$, can be found by solving a calculus
 problem known as Laplace's equation, given the density and elasticity of the
-air. The result of the calculation is
+air.\ednote{The text credits equation~\eqref{ch3:eq:5} to ``a calculus problem
+known as Laplace's equation''. The wave equation is evidently meant: combining
+equation~\eqref{ch3:eq:4} with the equations of motion and of continuity for
+small disturbances gives $\partial^{2}p/\partial t^{2} =
+(E/\rho_o)\,\partial^{2}p/\partial x^{2}$, whose solutions are waves traveling
+at the speed $\sqrt{E/\rho_o}$; Laplace's equation, which governs
+incompressible potential flow, has no time derivative and so no speed of
+propagation. Neither the errata nor the
+supplements correct this; the text is kept as printed.} The result of the
+calculation is
 \begin{equation}\label{ch3:eq:5}
 c^2 = \frac{E}{\rho_o}
 \end{equation}

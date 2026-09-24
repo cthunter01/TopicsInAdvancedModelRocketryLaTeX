@@ -59,7 +59,7 @@ where
 \end{itemize}
 where
 \begin{align}
-(C_{Df})_b &= (C_f)_b\left[1 + \frac{60}{(\ell_b/d_m)^3}
+(C_{Df})_b &= (C_f)_B\left[1 + \frac{60}{(\ell_b/d_m)^3}
   + 0.0025\left(\frac{\ell_b}{d_m}\right)\right]\frac{S_s}{S_m}
   \label{ch3:eq:161}\\
 C_{Db} &= \frac{0.029(d_b/d_m)^3}{\sqrt{(C_{Df})_b}} \label{ch3:eq:162}
@@ -87,7 +87,16 @@ in detail the calculation of $(\CDo)_F$ and $(\CDo)_B$, respectively.
 
 The \emph{Datcom} expression for the drag coefficient of the fins at zero
 angle of attack is equation~\eqref{ch3:eq:159}, which we repeat here for
-convenience:
+convenience:\ednote{The repeated equation carries a factor $S_F/S_m$ that
+equation~\eqref{ch3:eq:159} is printed without. Equation~\eqref{ch3:eq:159},
+like equation~\eqref{ch3:eq:108}, is based on the fin planform area, and
+equation~\eqref{ch3:eq:158} converts it to the body frontal area with its
+factor $S_F/S_m$; the repeated form is already based on $S_m$, so with it
+equation~\eqref{ch3:eq:158} would count the area ratio twice. The rest of the
+chapter uses the repeated form and adds $(\CDo)_F$ to the body terms without a
+further factor (the calculations of Section~\ref{ch3:sec:6.2} and
+equation~\eqref{ch3:eq:205}), so that $S_F/S_m$ enters once. Neither the errata
+nor the supplements correct this; the equations are kept as printed.}
 \begin{equation*}
 (\CDo)_F = 2(C_f)_F\left(1 + 2\frac{t}{c}\right)\frac{S_F}{S_m}
 \end{equation*}
@@ -324,7 +333,18 @@ When computing the ratio $(S_s/S_m)$ for a boattail, account must be taken of
 the fact that the geometrical solid in whose shape the boattail has been made
 is \emph{truncated} by the presence of the blunt base. For a conical boattail
 of maximum diameter $d_m$ and base diameter $d_b$, the ratio of surface area
-to maximum cross-sectional area is given by
+to maximum cross-sectional area is given by\ednote{Both equations are printed
+with a minus sign in the leading factor: $(d_m - d_b)$ before the radical
+in~\eqref{ch3:eq:172a} and $(1 - d_b/d_m)$ in~\eqref{ch3:eq:172b}. The lateral
+area of a conical frustum is $\pi(d_m + d_b)/2$ times its slant height
+$\ell_T[1 + ((d_m - d_b)/2\ell_T)^2]^{1/2}$; divided by $S_m = \pi d_m^2/4$ it
+gives $2(d_m + d_b)\ell_T/d_m^2$ before the radical, and
+$2(1 + d_b/d_m)\ell_T/d_m$ in~\eqref{ch3:eq:172b}. With the printed sign a
+cylinder ($d_b = d_m$) gives 0 instead of the $4\ell_T/d_m$ that
+equation~\eqref{ch3:eq:170} gives for a cylinder of that length; for a pointed
+cone ($d_b = 0$) either sign reduces~\eqref{ch3:eq:172a}
+to~\eqref{ch3:eq:171d} and~\eqref{ch3:eq:172b} to~\eqref{ch3:eq:171e}. Neither the errata
+nor the supplements correct this; the equations are kept as printed.}
 \begin{subequations}\label{ch3:eq:172}
 \begin{align}
 \left(\frac{S_s}{S_m}\right)_{\mathrm{BOATTAIL}} &=
