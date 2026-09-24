@@ -66,3 +66,65 @@ ch2-fig50,274,12.0,18.0,487.2,401.1,line,ch2-sec6,figures/ch2/fig50.png,auto; si
 ch2-fig51,282,12.0,18.0,487.2,177.6,line,ch2-sec6,figures/ch2/fig51.png,auto
 sup-ch2-fig36-1994,680,12.0,205.0,560.0,512.0,line,ch2-sec4,figures/supplement/ch2-fig36-1994.png,"replacement Figure 36, Mandell 1994; drawing with the AR formula at left, typed caption below y=525 excluded (MediaBox 612.48x792.48)"
 sup-ch2-fig52-2022,687,10.0,34.0,630.0,455.0,line,ch2-sec6,figures/supplement/ch2-fig52-2022.png,"new Figure 52, Mandell 2022 (the larger copy; PDF 684 has a smaller one); the title line above y=30 is the caption and is excluded (MediaBox 648x485.76)"
+ch3-fig01,308,12.0,18.0,486.7,211.5,line,ch3-intro-sec2a,figures/ch3/fig01.png,auto
+ch3-fig02,312,12.0,18.0,486.7,214.1,line,ch3-intro-sec2a,figures/ch3/fig02.png,auto
+ch3-fig03,312,12.0,250.2,486.7,448.3,line,ch3-intro-sec2a,figures/ch3/fig03.png,auto
+ch3-fig04,317,12.0,18.0,486.7,221.2,line,ch3-intro-sec2a,figures/ch3/fig04.png,auto
+ch3-fig05,317,12.0,257.4,486.7,442.0,line,ch3-intro-sec2a,figures/ch3/fig05.png,auto
+ch3-fig06,319,12.0,18.0,486.7,179.5,line,ch3-intro-sec2a,figures/ch3/fig06.png,auto
+ch3-fig07,322,12.0,18.0,487.2,220.8,line,ch3-intro-sec2a,figures/ch3/fig07.png,auto
+ch3-fig08,323,12.0,18.0,486.7,213.1,line,ch3-intro-sec2a,figures/ch3/fig08.png,auto
+ch3-fig09,326,12.0,18.0,487.2,214.8,line,ch3-sec2b,figures/ch3/fig09.png,auto
+ch3-fig10,326,12.0,290.1,487.2,476.9,line,ch3-sec2b,figures/ch3/fig10.png,auto
+ch3-fig11,337,12.0,18.0,487.2,186.0,line,ch3-sec2b,figures/ch3/fig11.png,y1 186.0 (was 192.0) to drop a scanner speck at y~190 between artwork and caption
+ch3-fig12,341,12.0,18.0,486.7,206.9,line,ch3-sec3a,figures/ch3/fig12.png,auto
+ch3-plate01,346,55.0,45.0,387.0,509.0,photo,ch3-sec3a,figures/ch3/plate01.jpg,added by hand: OCR read the caption as "I'late 1"
+ch3-plate02,349,36.0,34.0,443.0,322.0,photo,ch3-sec3a,figures/ch3/plate02.jpg,hand: top moved up (seed started below OCR noise in the photo)
+ch3-fig13,349,12.0,363.7,486.7,498.3,line,ch3-sec3a,figures/ch3/fig13.png,auto
+ch3-fig14,357,12.0,18.0,400.0,221.1,line,ch3-sec3a,figures/ch3/fig14.png,hand: x1 tightened to drop a speck at right
+ch3-fig15,360,12.0,18.0,345.0,232.2,line,ch3-sec3a,figures/ch3/fig15.png,hand: x1 tightened to drop a speck at right (354 pt)
+ch3-fig16,360,12.0,326.0,487.2,458.3,line,ch3-sec3a,figures/ch3/fig16.png,hand: top moved below the Figure 15 caption ("axis." line) and below a speck at 324 pt
+ch3-plate03,363,12.0,18.0,486.7,281.0,photo,ch3-sec3b,figures/ch3/plate03.jpg,auto
+ch3-fig17,369,12.0,18.0,486.7,197.7,line,ch3-sec3b,figures/ch3/fig17.png,auto
+ch3-fig18,376,12.0,18.0,487.2,213.1,line,ch3-sec3b,figures/ch3/fig18.png,auto
+ch3-fig19,383,12.0,18.0,487.2,227.8,line,ch3-sec3b,figures/ch3/fig19.png,auto
+ch3-fig20,383,12.0,322.6,487.2,524.9,line,ch3-sec3b,figures/ch3/fig20.png,auto
+ch3-fig21,386,12.0,18.0,360.0,229.8,line,ch3-sec3b,figures/ch3/fig21.png,hand: x1 tightened to drop a speck at right (435 pt)
+ch3-fig22,390,12.0,18.0,487.2,225.4,line,ch3-sec3c-sec4a,figures/ch3/fig22.png,auto
+ch3-fig23,397,12.0,18.0,487.2,170.4,line,ch3-sec3c-sec4a,figures/ch3/fig23.png,auto
+ch3-fig24,398,12.0,18.0,330.0,220.8,line,ch3-sec3c-sec4a,figures/ch3/fig24.png,auto; x1 tightened by hand to exclude a scanner speck right of the graph
+ch3-plate04a,400,12.0,18.0,497.3,346.6,photo,ch3-sec3c-sec4a,figures/ch3/plate04a.jpg,"auto box; id and output renamed by hand to plate04a (plate spans PDF 400-401); panels a-d with their letters, caption 'Plate 4:' underneath excluded"
+ch3-plate04b,401,12.0,18.0,487.2,700.0,photo,ch3-sec3c-sec4a,figures/ch3/plate04b.jpg,"by hand: panels e-j with their letters on PDF 401; no caption on this page (caption on PDF 400)"
+ch3-fig25,403,12.0,18.0,486.7,200.9,line,ch3-sec3c-sec4a,figures/ch3/fig25.png,auto
+ch3-fig26,405,12.0,18.0,498.2,409.1,line,ch3-sec3c-sec4a,figures/ch3/fig26.png,auto
+ch3-plate05,407,12.0,18.0,487.2,390.1,photo,ch3-sec3c-sec4a,figures/ch3/plate05.jpg,auto
+ch3-fig27,410,12.0,18.0,486.7,142.5,line,ch3-sec4b,figures/ch3/fig27.png,auto
+ch3-fig28,413,12.0,18.0,487.2,207.3,line,ch3-sec4b,figures/ch3/fig28.png,auto
+ch3-fig29,413,12.0,362.0,487.2,510.0,line,ch3-sec4b,figures/ch3/fig29.png,"by hand: seeder missed the caption (OCR 'Figure 29 ,'); lower half of PDF 413 between the Figure 28 caption block and the Figure 29 caption, C_Do value row kept"
+ch3-fig30,415,12.0,18.0,487.2,233.3,line,ch3-sec4b,figures/ch3/fig30.png,auto
+ch3-fig31,416,12.0,18.0,487.2,450.0,line,ch3-sec4b,figures/ch3/fig31.png,"by hand: caption at the top of PDF 417; artwork is the full-page ruled table with nose-shape drawings on PDF 416"
+ch3-fig32,417,12.0,273.2,487.2,475.7,line,ch3-sec4b,figures/ch3/fig32.png,auto
+ch3-fig33,425,12.0,18.0,487.2,227.5,line,ch3-sec4b,figures/ch3/fig33.png,auto
+ch3-fig34,428,12.0,18.0,487.2,203.5,line,ch3-sec4b,figures/ch3/fig34.png,auto
+ch3-fig35,437,12.0,18.0,320.0,221.9,line,ch3-sec5a,figures/ch3/fig35.png,auto; x1 tightened by hand to exclude scanner specks right of the graph
+ch3-fig36,437,12.0,258.5,487.2,457.1,line,ch3-sec5a,figures/ch3/fig36.png,auto
+ch3-fig37,440,12.0,18.0,487.2,231.5,line,ch3-sec5a,figures/ch3/fig37.png,auto
+ch3-fig38,442,12.0,58.0,487.2,202.1,line,ch3-sec5a,figures/ch3/fig38.png,auto; y0 below page number
+ch3-fig39,443,12.0,56.0,487.2,705.0,line,ch3-sec5a,figures/ch3/fig39.png,hand: caption on p442; artwork fills p443
+ch3-fig40,448,12.0,18.0,340.0,218.2,line,ch3-sec5b,figures/ch3/fig40.png,auto; hand: x1 tightened to drop scanner speck
+ch3-fig41,448,12.0,274.3,340.0,477.8,line,ch3-sec5b,figures/ch3/fig41.png,auto; hand: x1 tightened to drop scanner speck
+ch3-fig42,453,12.0,18.0,487.2,218.5,line,ch3-sec5b,figures/ch3/fig42.png,hand: seeder took a text line on p452; artwork on p453; y1 tightened to drop speck
+ch3-fig43,464,12.0,18.0,487.2,203.5,line,ch3-sec6a,figures/ch3/fig43.png,auto
+ch3-fig44,464,12.0,297.7,487.2,502.5,line,ch3-sec6a,figures/ch3/fig44.png,auto
+ch3-fig45,469,12.0,18.0,487.2,227.6,line,ch3-sec6a,figures/ch3/fig45.png,auto
+ch3-fig46,469,12.0,290.0,315.0,491.2,line,ch3-sec6a,figures/ch3/fig46.png,"auto; hand: y0 below the l/d_m fraction of Figure 45's caption, x1 tightened to drop specks"
+ch3-fig47,472,12.0,18.0,486.7,224.6,line,ch3-sec6a,figures/ch3/fig47.png,auto
+ch3-fig48,476,12.0,18.0,342.5,204.7,line,ch3-sec6b,figures/ch3/fig48.png,auto; hand: x1 tightened to drop scanner specks
+ch3-fig49,480,12.0,18.0,487.2,210.7,line,ch3-sec6b,figures/ch3/fig49.png,auto
+ch3-fig50,488,12.0,18.0,487.2,227.0,line,ch3-sec6c,figures/ch3/fig50.png,hand: seeder took a text line on p487
+ch3-fig51,496,12.0,18.0,340.0,223.4,line,ch3-sec6c,figures/ch3/fig51.png,auto; x1 tightened by hand to exclude a scanner speck right of the artwork; inset rocket sketch and hand-lettered (C_Do) curve labels kept inside
+ch3-fig52,503,12.0,18.0,497.3,229.4,line,ch3-sec6c,figures/ch3/fig52.png,"auto; legend (D_e solid, D_a dashed) kept inside"
+ch3-fig53,511,12.0,18.0,487.2,413.9,line,ch3-sec7,figures/ch3/fig53.png,"auto; both stacked panels (a) and (b) in one crop, circled panel letters kept inside"
+ch3-fig54,513,12.0,18.0,487.2,225.1,line,ch3-sec7,figures/ch3/fig54.png,auto; both rocket outlines with circled (a) and (b) in one crop
+ch3-plate06,518,12.0,18.0,487.2,272.1,photo,ch3-sec8,figures/ch3/plate06.jpg,"auto; photograph only, caption excluded"
+ch3-fig55,525,12.0,18.0,486.7,225.6,line,ch3-sec8,figures/ch3/fig55.png,"auto; hand-lettered k/m (m^-1) axis label kept inside; a small scanner speck inside the plot area (left of the 10 curve, near k/m = 2e-2) cannot be cropped away"

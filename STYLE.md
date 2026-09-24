@@ -55,7 +55,8 @@ people (and agents) work on the book in parallel and end with one consistent doc
   `chN:eq:nK` (e.g. `ch1:eq:n21`).
 - Lettered groups (27a, 27b): `\begin{subequations}\label{chN:eq:27} \begin{equation}\label{chN:eq:27a}...`.
   Use `\tag{102b}` only when the printed lettering cannot be produced by `subequations`
-  (e.g. a lone "(102b)" with no "(102a)"). Uppercase letters (144A): see preamble note.
+  (e.g. a lone "(102b)" with no "(102a)"). Uppercase letters such as (144A), which occur only in the
+  corrected text: `\begin{equation*}\tag{144A}\label{chN:eq:n144A}`.
   A `\tag` always goes in a starred environment (`\begin{equation*}\tag{2a}\label{...}`): inside
   a numbered `equation` it re-uses the next equation's PDF link target, so links to that equation
   land on the tagged one (tools/check_numbering.py check 8 fails on it).
@@ -195,3 +196,82 @@ Chapter 2 uses one form throughout, taken from its Symbols list. Auditors: these
   `\zeta_c`, `\beta_c`, `I_{Lch}`. The natural-frequency subscript that looks like m is n.
 - Phase angle `\varphi`; damping ratio `\zeta`; angular acceleration `\gamma`; the Symbols list's
   script F is `\mathscr{F}`.
+
+## 14. Chapter 3 notation (settled before transcription)
+
+Chapter 3 mixes typed symbols in the prose with hand-lettered displays, and the two often differ in case and in
+how far a subscript drops. The Chapter 3 Symbols list (`chapters/ch3-symbols.tex`) fixes the form of each symbol.
+Where a hand-lettered glyph does not show its case or level (x/X, s/S, c/C, v/V, p/P, k/K, z/Z, o/0, subscript vs
+sub-subscript), set the listed form without a note. Where the print is unambiguous but differs from the list for
+what is evidently the same quantity, transcribe it as printed and report it (the corrections step decides).
+Auditors: the forms below are intended.
+
+- **Drag coefficients: one subscript level.** `\CD`, `(\CD)_{\mathrm{lug}}`, `(\Delta\CD)_{\mathrm{lug}}`,
+  `C_{Db}`, `(C_{Db})_m`, `C_{Dc}`, `C_{Df}`, `\Delta C_{Df}`, `C_{Df}'`, `(C_{Df})_b`, `C_{Di}`, `C_{Di}'`,
+  `\Delta C_{Di}`, `(C_{Di}')_{\mathrm{cant}}`, `C_{DI}`, `C_{Ds}`, `C_{Dv}`, `C_{D\alpha}`. The second letter
+  often drops in the hand-lettering and sometimes in the typing (PDF 429, 439): that is placement, not a
+  sub-subscript. The one true sub-subscript is `C_{D_B}(\alpha)`. Capital I (`C_{DI}`, interference) and lowercase
+  i (`C_{Di}`, induced) follow the printed case even where the meaning suggests the other (ΔC_Di in (146)); the
+  hooked, λ-like hand glyph with a dot is i.
+- **Zero-lift drag coefficient** is `\CDo` (as in Chapter 1): `\CDo`, `(\CDo)_B`, `(\CDo)_F`, `(\CDo)_{FB}`,
+  typed or lettered. It is the only o subscript set as a digit zero.
+- **Every other o subscript is the letter o**: `S_o`, `x_o`, `V_o`, `p_o`, `\rho_o`, `\mu_o`, `\nu_o`, `\tau_o`,
+  `\tau_{ok}`. A value is a digit: `f''(0)`, `y=0`, `\int_{0}`.
+- **Skin friction**: `C_f`, `C_{fb}`, `C_{fx}`, `C_f'`, `\Delta C_f`, `(C_f)_B`, `(C_f)_F`, `(C_f)_{\mathrm{lam}}`,
+  `(C_f)_{\mathrm{turb}}`, `(C_f')_{\mathrm{lam}}`, `(C_f')_{\mathrm{turb}}`, `(\Delta C_f)_{\mathrm{lam}}`,
+  `(\Delta C_f)_{\mathrm{turb}}`. The crossed hand f that looks like t or + is f. Outer capitals B (body) and F (fins)
+  are italic and distinct from the lowercase b of `(C_{Df})_b`.
+- **Upright subscripts** (`\mathrm`, spelling and periods as printed at that place): `lug`, `cant`, `lam`, `turb`,
+  `tot`, `adm`, `crit`, `root`, `tip`, `model`, `full\text{-}scale`, `forebody`, `std.`/`std`, `stag.`/`stag`,
+  `equiv.` (the Symbols list's "eqiv." is a typing slip, fixed silently). Shape descriptors keep their printed
+  capitals: `ELLIP.`, `OGIVE`, `CONE`, `BOATTAIL`, `NOSE`, `CYL`, `GCR`, `LAM.`; the "cyL." of (169)-(170) is set
+  `\mathrm{cyl.}` (this hand has no upright lowercase l). Letter and digit subscripts stay italic: `S_b`, `S_e`,
+  `S_E`, `S_F`, `S_m`, `S_s`, `S_x`, `d_b`, `d_m`, `d_n`, `d_r`, `\ell_b`, `\ell_N`, `\ell_T`, `\ell_s`, `D_a`,
+  `D_b`, `D_e`, `D_f`, `D_p`, `D_v`, `D_\alpha`, `p_b`, `p_s`, `p_{s1}`, `p_{s2}`, `A_r`, `A_c`, `R_a`, `k_t`,
+  `u_k`, `\eta_k`, `\eta_B`, `\eta_3`, `K_{F(B)}`, `K_{B(F)}`, `p_1`, `p_2`, `u_1`, `u_2`, `A_1`, `A_2`.
+- **Pressure is lowercase p** (`p`, `\Delta p`, `p_b`, `p_o`, `p_s`, `p_\infty`, `p_{\mathrm{tot}}`, `C_p`, `D_p`),
+  including hand p's without a descender. Capital `P` is only the perimeter `P(x)`.
+- **Surfaces and areas**: `A`, `A_c`, `A_r`, `A_{\mathrm{lug}}`; the surface of integration `\iint_{S}` with `dS`
+  (and `S_b`, `dS_b`), even where the hand S looks like s; lowercase `s` is the distance along a surface. `S_s`
+  has a lowercase s. `S_E` and `S_e`, and `\sigma_F` and `\sigma_E`, are different symbols.
+- **Script ell** `\ell` everywhere, hand or typed: `\ell`, `\ell_b`, `\ell_T`, `\ell_N`, `\ell_s`, `R_\ell`,
+  `\ell/d_m`. The script "ℓn" in (229)-(230) is `\ln`.
+- **Reynolds number is R**: `R`, `R_\ell`, `R_x`, `R_c`, `R_d`, `R_k`, `(R_k)_t`, `R_{\mathrm{crit}}`, exponents as
+  printed (`R_\ell^{1/5}`, `(R_\ell)^{1/5}`). `R_a` is the area ratio. The R of Figure 33 and the A, B, C of
+  Figures 23-24 are point labels.
+- **Velocities**: `U_\infty` wherever an infinity sign is drawn (even degraded); plain `U` where printed plain;
+  lowercase `u`, `u_k` for flow velocity; `v` the transverse velocity (lowercase even when drawn large); `V` where
+  the prose types V.
+- **ν and look-alikes**: decide ν by context, not by the tail: a curled v-like glyph in viscosity and Reynolds
+  expressions (`U/\nu x`, `UL/\nu`, `ku_k/\nu`, `\sqrt{\nu x/U_\infty}`) is `\nu` even with a descender; `y` is the
+  coordinate normal to the surface (`\partial/\partial y`, `y=0`) with a straight descender; the looped one is
+  `\gamma` (shear strain). `\rho` has its loop at the top, `\delta` at the bottom. The hand q and g that look like 9
+  are `q` and `g`.
+- **x and times**: coordinates `x`, `y`, `z` are lowercase (the cap-height hand x is x). An X-shaped glyph is
+  `\times` only between numbers or before a power of ten; between symbols it is the variable (`2x\eta_k` in (93)).
+- **Thicknesses**: `\delta`, `\delta^{*}`, `\theta` (lowercase; θ also names the deformation and fin-cant angles,
+  including the Θ-shaped hand and typed forms of (152)-(153)).
+- **Greek**: `\epsilon`; `\eta`; `\phi` (surface deviation angle, PDF 360-361, and the typed slashed ø) vs
+  `\varphi` (central angle on a cylinder, PDF 377, 396-402, 414); `\psi`; `\pi`; `\alpha`, `\bar{\alpha}`,
+  `\alpha_i`; `\omega_Z` (roll rate); `\tau`; `\mu`; `\sigma_E`, `\sigma_F`.
+- **Derivatives**: italic `d` (also the curled hand d); `\partial` only where a partial sign is drawn.
+- **Vectors**: `\vec{}` wherever an arrow is drawn (`\vec{n}`, `\vec{t}`, `\vec{V}`, `\vec{F}`, `\vec{D}_i`); a
+  letter printed without an arrow stays plain.
+- **Primes** follow the whole subscript: `C_{Df}'`, `(C_f')_{\mathrm{lam}}`; Blasius `f`, `f'`, `f''`, `f'''`.
+- **Functions and relations**: `\sin^{-1}` in (171a) as printed; `\tanh`, `\tanh^{-1}`, `\ln`, `\log`; `\cong`
+  (tilde over two bars); `\sim` in (35)-(37); `\propto`; `\equiv` (three bars: (24), (25), PDF 353); `\le`, `\gg`,
+  `<`, `>` (side conditions); words inside formulas in `\text{}` ("constant", "cross-sectional area").
+- **Numbers**: leading-dot decimals as printed (`.0617`); `3 \times 10^{6}` in math; the typed ½ and the small hand
+  ½ are `\tfrac{1}{2}`; slashed fractional exponents as printed (`^{1/5}`); degrees `90\dg`, including the typed
+  raised o after a number.
+- **Units**: in prose after a number, units stay as text ("60 meters/second"); units attached to a number inside a
+  formula use `\un{}` with the printed period (`5.67 \times 10^{-3}\un{cm.}`); a unit word printed at the right of
+  a display goes after `\qquad` as `\text{...}` (Chapter 2 practice).
+- **Other symbols**: `\AR`, `\Delta\AR` (aspect ratio); lowercase `c` for chord and for the speed of sound (even
+  when drawn large, e.g. `c = c_{\mathrm{std}}\sqrt{T/T_{\mathrm{std}}}`); `b` lowercase (span), `B` capital
+  (transition constant); `M` (Mach number); `n` (rotation rate, unit normal, and the number of fins on PDF 465,
+  as printed); `d` (body diameter, PDF 447-448, 392); `m` (mass, PDF 521-523); `\Delta` typed or drawn.
+- **Tables** follow section 8 (booktabs, caption above, no vertical rules or boxes, whatever the typescript draws);
+  stacked sub-tables (Tables 4 and 8) are two tabulars in one table float with their sub-titles; an unnumbered
+  tabulation is a `tabular` in `center` or an aligned display, per section 4. Tables drawn inside a figure's artwork
+  (Figures 29, 31, 39b, 44, 45) stay in the image.
