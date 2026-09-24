@@ -141,7 +141,10 @@ Keep the book's order of entries.
 - The authors' own footnotes: `\footnote{...}`.
 - Editorial notes: `\ednote{...}` (numbered E1, E2, … per chapter). Put it in the sentence that
   introduces a display, never inside `align`/`gather`/`equation` (amsmath typesets the body twice),
-  never inside `\caption` or a `longtable` head. Inside captions and table rows use `\edcap{...}`.
+  never inside `\caption` or a `longtable` head. Inside captions use `\edcap{...}`. Inside a `longtable`
+  a `p{}` cell silently drops the text of an `\ednote` (longtable re-routes only kernel footnotes), so in
+  table rows either use `\edcap{...}` or, for a short cell, make it an hbox cell:
+  `\multicolumn{1}{l@{}}{short meaning\ednote{...}}` (see chapters/ch1-symbols.tex).
 
 ## 10. Uncertain readings
 

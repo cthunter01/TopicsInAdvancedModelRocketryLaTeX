@@ -184,7 +184,12 @@ be arranged in neat, smooth, microscopically-thin layers and is thus said to be
 \emph{laminar}. At higher Reynolds numbers (greater than $5 \times 10^{6}$) the
 importance of viscosity diminishes and the boundary layer is likely to undergo
 transition and become \emph{turbulent}; the once-smooth layers mixing and
-swirling down the side of the model in a rough, chaotic manner. The
+swirling down the side of the model in a rough, chaotic manner.\ednote{The 1973
+text gives the laminar range as ``less than $5 \times 10^{5}$'' but the
+turbulent range as ``greater than $5 \times 10^{6}$''. The two thresholds are
+inconsistent (a single transition value is evidently intended; $5 \times 10^{5}$
+is the usual flat-plate figure), and neither the errata sheet nor the 1994
+supplement corrects them. Both are left as printed.} The
 \emph{friction} drag of an object with a turbulent boundary layer is much
 \emph{higher} than that of one with a laminar boundary layer, but a turbulent
 boundary layer follows the contour of an object's surface better than a laminar
@@ -217,16 +222,39 @@ attack that decreases to zero as the angle of attack itself goes to zero.
 According to the method of analysis developed by James Barrowman, which is
 discussed in detail in Chapter~\ref{ch2}, a rocket flying at a nonzero angle of
 attack experiences a \emph{normal force} (i.e., one perpendicular to the
-model's centerline) whose magnitude is given by
+model's centerline) whose magnitude is given by\ednote{This paragraph, with
+equations~\eqref{ch1:eq:20}, \eqref{ch1:eq:n21} and~\eqref{ch1:eq:n22}, follows
+Mandell's June 1994 ``Correction to original page 40 of Chapter~1''. The 1973
+text read $N = \tfrac{1}{2}\rho C_{n\alpha} A_r v^{2}$ for equation~(20),
+continued ``where $C_{n\alpha}$ is the \emph{normal force coefficient}, whose
+computation by the Barrowman method is described in Chapter~2. The component of
+force $N\sin\alpha$ is an additional contribution to the \emph{drag}, while the
+component $N\cos\alpha$ is a \emph{side force} \ldots'', and had no equations
+corresponding to \eqref{ch1:eq:n21} and~\eqref{ch1:eq:n22}. The supplement
+directs that all subsequent equation numbers be increased by 2: the 1973
+equations (21) and (22) therefore now display as \eqref{ch1:eq:21}
+and~\eqref{ch1:eq:22}.}
 \begin{equation}\label{ch1:eq:20}
-N = \tfrac{1}{2}\rho C_{n\alpha} A_r v^{2}
+N = \tfrac{1}{2}\rho C_N A_r v^{2}
 \end{equation}
-where $C_{n\alpha}$ is the \emph{normal force coefficient}, whose computation by
-the Barrowman method is described in Chapter~\ref{ch2}. The component of force
-$N\sin\alpha$ is an additional contribution to the \emph{drag}, while the
-component $N\cos\alpha$ is a \emph{side force} tending to deflect the rocket's
-path by causing an acceleration component normal to the current direction of
-flight. The resolution of the normal force is shown in Figure~\ref{ch1:fig:7}.
+where $C_N$ is the \emph{normal force coefficient} whose computation by the
+Barrowman method is described in Chapter~\ref{ch2}. For angles of attack that
+are not too large $C_N$ is very nearly directly proportional to $\alpha$. The
+variation of $C_N$ with $\alpha$ can then be expressed as
+\begin{equation}\label{ch1:eq:n21}
+C_N = \CNa \cdot \alpha
+\end{equation}
+where $\CNa$ is the slope of the curve of the normal force coefficient versus
+angle of attack, often referred to in an abbreviated fashion as the
+\emph{normal force curve slope}. Then
+\begin{equation}\label{ch1:eq:n22}
+N = \tfrac{1}{2}\rho \CNa A_r v^{2}\alpha
+\end{equation}
+The component of force $N\sin\alpha$ is an additional contribution to the
+\emph{drag}, while the component of force $N\cos\alpha$ is a \emph{side force}
+tending to deflect the rocket's path by causing an acceleration component
+normal to the current direction of flight. The resolution of the normal force
+is shown in Figure~\ref{ch1:fig:7}.
 
 \begin{figure}[htbp]
   \centering
@@ -249,10 +277,19 @@ S &\equiv N\cos\alpha \label{ch1:eq:22}\\
   &\cong N \notag
 \end{align}
 where $S$ denotes the magnitude of the side force. Now by inspection of
-equations~\eqref{ch1:eq:19}, \eqref{ch1:eq:20}, and~\eqref{ch1:eq:21}, one
-might be tempted to deduce that
+equations~\eqref{ch1:eq:19}, \eqref{ch1:eq:n22}, and~\eqref{ch1:eq:21}, one
+might be tempted to deduce that\ednote{The 1973 text cited ``equations (19),
+(20), and (21)'' and wrote $\epsilon = \tfrac{1}{2}\rho C_{n\alpha} A_r$. After
+the June 1994 replacement of page 40 the 1973 equation (21) displays as
+\eqref{ch1:eq:21}, and the relation that, with \eqref{ch1:eq:19}
+and~\eqref{ch1:eq:21}, yields the deduction below is the new
+equation~\eqref{ch1:eq:n22}, $N = \tfrac{1}{2}\rho \CNa A_r v^{2}\alpha$,
+rather than the rewritten \eqref{ch1:eq:20}; the citation has been changed
+accordingly. The 1973 symbol $C_{n\alpha}$, which the 1973 text called the
+normal force coefficient, is here the quantity the 1994 text names the normal
+force curve slope, and has been written $\CNa$ to match.}
 \begin{equation*}
-\epsilon = \tfrac{1}{2}\rho C_{n\alpha} A_r \qquad \text{and}
+\epsilon = \tfrac{1}{2}\rho \CNa A_r \qquad \text{and}
 \end{equation*}
 \begin{equation*}
 f(\alpha) = \alpha^{2}

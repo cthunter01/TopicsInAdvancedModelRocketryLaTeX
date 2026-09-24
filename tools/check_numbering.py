@@ -364,7 +364,10 @@ def load_manifest(path, problems):
             output = (row.get("output") or "").strip()
             ident = (row.get("id") or "").strip()
             chapter, inferred = None, False
-            for cand, via in ((owner, False), (ident, True), (re.sub(r"^figures/", "", output), True)):
+            # a non-blank owner is authoritative: an owner such as "supplement" that names no chapter
+            # means the row belongs to no chapter; only a blank owner falls back to the id or output path
+            cands = ((owner, False),) if owner else ((ident, True), (re.sub(r"^figures/", "", output), True))
+            for cand, via in cands:
                 m = re.match(r"(ch\d+)(?:$|[-_/.])", cand)
                 if m:
                     chapter, inferred = m.group(1), via

@@ -18,7 +18,7 @@ chapter: dirs
 	latexmk -usepretex -pretex='\def\INCLUDEONLY{chapters/ch$(N)}' main.tex
 
 final: dirs
-	latexmk -usepretex -pretex='\def\FINAL{}' main.tex
+	latexmk -g -usepretex -pretex='\def\FINAL{}' main.tex
 
 # standalone compile of one unit file; renders its pages to build/unit/<unit>-N.png
 unit: dirs

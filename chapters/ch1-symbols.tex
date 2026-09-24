@@ -5,11 +5,16 @@
 \toprule \textbf{Symbol} & \textbf{Meaning} \\ \midrule \endhead
 \bottomrule \endlastfoot
 $A$ & coefficient used in writing example of $F(t)$ \\
+% NOTE: an \ednote (manyfoot footnote) placed inside a p{} cell of a longtable is silently lost (only the kernel
+% \footnote is re-routed out of the p-box by longtable), so the two Meaning cells that carry an \ednote are set
+% as one-line \multicolumn{1}{l@{}} cells; their text is short enough never to wrap.
+$A_e$ & \multicolumn{1}{l@{}}{magnitude of nozzle exit plane area\ednote{The symbols $A_e$, $\vec{A}_e$, $P_a$, $P_e$ and $c_{\mathrm{eff}}$ are added per Mandell's June 1994 supplement (``Changes to text of Chapter~1'', p.~6); they do not appear in the 1973 Symbols list.}} \\
+$\vec{A}_e$ & nozzle exit plane area written as a vector whose direction is forward along the vehicle centerline \\
 $A_r$ & reference area \\
 $C$ & constant of integration \\
 $\CD$ & drag coefficient \\
 $\CDo$ & coefficient of drag at zero angle of attack \\
-$C_n$ & normal force coefficient \\
+$C_n$ & \multicolumn{1}{l@{}}{normal force coefficient\ednote{The 1994 correction to page~40 (Mandell's June 1994 supplement) rewrites the normal-force discussion in terms of the normal force curve slope $\CNa$, the slope of the normal force coefficient (there written $C_N$) versus angle of attack; the supplement does not update this Symbols table, and the 1973 entry is kept as printed.}} \\
 $D$ & drag \\
 $F$ & magnitude of thrust, whose direction is assumed to be forward along the vehicle centerline \\
 $\vec{F}$ & thrust \\
@@ -20,12 +25,15 @@ $\Isp$ & specific impulse \\
 $I_t$ & total impulse \\
 $L$ & characteristic length \\
 $N$ & normal force \\
+$P_a$ & ambient pressure \\
+$P_e$ & pressure of exhaust gas at nozzle exit plane \\
 $R$ & radius measured from the center of the Earth \\
 $R_e$ & Reynolds number \\
 $R_0$ & radius of the Earth \\
 $S$ & side force \\
 $c$ & magnitude of exhaust velocity, whose direction is assumed to be rearward along the vehicle centerline \\
 $\vec{c}$ & exhaust velocity \\
+$c_{\mathrm{eff}}$ & magnitude of effective exhaust velocity (\emph{also} called equivalent exhaust velocity), whose direction is assumed to be rearward along the vehicle centerline \\
 $d(\ )$ & differential of ( ) \\
 $d(\ )/dt$ & derivative of ( ) with respect to time \\
 $f(\ )$ & function of angle of attack \\
@@ -52,8 +60,8 @@ $w_f$ & weight of propellant charge \\
 $x$ & horizontal coordinate, range \\
 $y$ & vertical coordinate, altitude \\
 $\Delta(\ )$ & increment of ( ), change in ( ) \\
-% The next entry is printed with a Delta in the 1973 book (known error, presumably Sigma); transcribed as printed.
-$\Delta(\ )$ & sum of all ( ) \\
+% Corrected per the 1973 errata sheet (PDF 664): the book prints a Delta here.
+$\Sigma(\ )$ & sum of all ( ) \\
 $\alpha$ & angle of attack \\
 $\epsilon$ & parameter of drag due to angle of attack \\
 $\mu$ & absolute viscosity \\
