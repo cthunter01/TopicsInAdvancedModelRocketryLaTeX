@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{mathtools}            % loads amsmath
+\usepackage{empheq}               % brace-grouped equation sets with a condition (Chapter 4)
 \usepackage{newtxtext}
 \usepackage{newtxmath}            % supplies the AMS symbols, \mathscr and integral signs;
                                   % do NOT add amssymb, mathrsfs, esint or bm (math-family limit)
@@ -15,6 +16,7 @@
 \usepackage{newfloat}
 \DeclareFloatingEnvironment[fileext=lop,within=chapter,placement=htbp,name=Plate,listname={List of Plates}]{plate}
 \usepackage{booktabs,longtable,tabularx,array,multirow}
+\usepackage{pdflscape}             % landscape pages for wide tables (Chapter 4 Table 2)
 \usepackage{siunitx}
 \usepackage{enumitem}
 \usepackage{manyfoot}
@@ -24,6 +26,13 @@
 \renewcommand{\thefigure}{\arabic{figure}}
 \renewcommand{\thetable}{\arabic{table}}
 \renewcommand{\theplate}{\arabic{plate}}
+% A figure printed as separately captioned panels ("Figure 5(a)", "Figure 5(b)", ...; Chapter 4): put
+% \figurepanel{a}, then {b}, {c}, in each panel's figure environment before \caption. Panel a steps the figure
+% counter, the later panels reuse its number; labels are chN:fig:5a, chN:fig:5b, ...
+\newcommand{\figurepanel}[1]{%
+  \if a#1\else\addtocounter{figure}{-1}\fi
+  \renewcommand{\thefigure}{\arabic{figure}(#1)}%
+  \renewcommand{\theHfigure}{\arabic{chapter}.\arabic{figure}#1}}
 \renewcommand{\thesection}{\arabic{section}}
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}

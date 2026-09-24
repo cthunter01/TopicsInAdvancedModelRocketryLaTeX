@@ -128,3 +128,29 @@ ch3-fig53,511,12.0,18.0,487.2,413.9,line,ch3-sec7,figures/ch3/fig53.png,"auto; b
 ch3-fig54,513,12.0,18.0,487.2,225.1,line,ch3-sec7,figures/ch3/fig54.png,auto; both rocket outlines with circled (a) and (b) in one crop
 ch3-plate06,518,12.0,18.0,487.2,272.1,photo,ch3-sec8,figures/ch3/plate06.jpg,"auto; photograph only, caption excluded"
 ch3-fig55,525,12.0,18.0,486.7,225.6,line,ch3-sec8,figures/ch3/fig55.png,"auto; hand-lettered k/m (m^-1) axis label kept inside; a small scanner speck inside the plot area (left of the 10 curve, near k/m = 2e-2) cannot be cropped away"
+ch4-fig01,543,20.0,20.0,480.0,401.0,line,ch4-intro-sec1,figures/ch4/fig01.png,added by hand (seeder missed caption OCR'd as 'Figure ls'); panels (a) top and (b) bottom in one crop; box ends above caption at y=408
+ch4-fig02,551,12.0,18.0,486.7,369.0,line,ch4-intro-sec1,figures/ch4/fig02.png,auto; bottom raised to 369 (caption top 375)
+ch4-fig03,574,12.0,18.0,487.2,369.0,line,ch4-sec2b,figures/ch4/fig03.png,auto; bottom raised to 369 (caption top 373.5)
+ch4-fig04,580,64.0,18.0,494.4,220.3,line,ch4-sec2b,figures/ch4/fig04.png,auto; x0 moved in by hand to exclude a scanner speck at x=60.5 left of the F (N) axis label
+ch4-fig05a,588,12.0,18.0,330.0,209.0,line,ch4-sec2b,figures/ch4/fig05a.png,hand: seeder missed the caption (lettered 'Figure 5(a):'); upper plot of PDF 588 above its caption at y=212.9; x1 tightened by hand to exclude a scanner speck at x=341 right of the artwork (artwork ends x=316)
+ch4-fig05b,588,12.0,250.0,487.2,431.0,line,ch4-sec2b,figures/ch4/fig05b.png,hand: seeder missed the caption (OCR 'Figure S(b):'); lower plot of PDF 588 between the 5(a) caption block (ends 243.5) and its caption at y=434.7
+ch4-fig05c,589,12.0,18.0,487.2,210.0,line,ch4-sec2b,figures/ch4/fig05c.png,hand: seeder missed the caption ('Figure 5 ( c) :'); upper plot of PDF 589 above its caption at y=213.2
+ch4-fig06a,589,12.0,250.0,487.2,435.0,line,ch4-sec2b,figures/ch4/fig06a.png,hand: seeder missed the caption ('Figure 6 (a):'); lower plot of PDF 589 between the 5(c) caption block (ends 243.0) and its caption at y=438.6
+ch4-fig06b,590,12.0,18.0,487.2,209.0,line,ch4-sec2b,figures/ch4/fig06b.png,hand: seeder missed the lettered caption; upper plot of PDF 590 above its caption at y=212.9
+ch4-fig06c,590,12.0,250.0,487.2,431.0,line,ch4-sec2b,figures/ch4/fig06c.png,hand: seeder missed the lettered caption; lower plot of PDF 590 between the 6(b) caption block (ends 243.5) and its caption at y=434.7
+ch4-fig07a,591,12.0,18.0,487.2,210.0,line,ch4-sec2b,figures/ch4/fig07a.png,hand: seeder missed the caption (OCR 'Figure 7{a):'); upper plot of PDF 591 above its caption at y=214.0
+ch4-fig07b,591,12.0,250.0,487.2,435.0,line,ch4-sec2b,figures/ch4/fig07b.png,hand: seeder missed the lettered caption; lower plot of PDF 591 between the 7(a) caption block (ends 243.4) and its caption at y=438.4
+ch4-fig07c,592,12.0,18.0,335.0,206.0,line,ch4-sec2b,figures/ch4/fig07c.png,hand: seeder missed the lettered caption; upper plot of PDF 592 above its caption at y=209.4; x1 tightened by hand to exclude a scanner speck at x=392 right of the artwork (artwork ends x=323)
+ch4-fig08a,592,12.0,246.0,487.2,429.0,line,ch4-sec2b,figures/ch4/fig08a.png,hand: seeder missed the lettered caption; lower plot of PDF 592 between the 7(c) caption block (ends 239.1) and its caption at y=433.0
+ch4-fig08b,593,12.0,18.0,487.2,205.0,line,ch4-sec2b,figures/ch4/fig08b.png,hand: seeder missed the caption (OCR 'F1gure 8(b):'); upper plot of PDF 593 above its caption at y=208.5
+ch4-fig08c,593,12.0,285.0,305.0,472.0,line,ch4-sec2b,figures/ch4/fig08c.png,hand: seeder missed the lettered caption; lower plot of PDF 593 between the four-line 8(b) caption block (ends 277.7) and its caption at y=475.8; x1 tightened by hand to exclude a scanner speck at x=317 right of the artwork (artwork ends x=294)
+ch4-fig09a,594,12.0,18.0,487.2,212.0,line,ch4-sec2b,figures/ch4/fig09a.png,hand: seeder missed the lettered caption; upper plot of PDF 594 above its caption at y=216.1
+ch4-fig09b,594,12.0,252.0,487.2,437.0,line,ch4-sec2b,figures/ch4/fig09b.png,hand: seeder missed the caption (OCR 'Figure 9{b):'); lower plot of PDF 594 between the 9(a) caption block (ends 245.3) and its caption at y=440.7
+ch4-fig09c,595,12.0,18.0,487.2,213.0,line,ch4-sec2b,figures/ch4/fig09c.png,hand: seeder missed the lettered caption; the only item on PDF 595; box ends above its caption at y=216.6
+ch4-fig10,603,12.0,18.0,486.7,224.3,line,ch4-sec3,figures/ch4/fig10.png,auto
+ch4-fig11,604,12.0,18.0,487.2,219.0,line,ch4-sec3,figures/ch4/fig11.png,hand: seeder missed the caption (OCR 'Figur e 11:'); upper plot of PDF 604 above its caption at y=222.6
+ch4-fig12,604,12.0,322.0,300.0,519.0,line,ch4-sec3,figures/ch4/fig12.png,hand: seeder missed the caption (OCR 'Figure 1 2 :'); lower plot of PDF 604 between the six-line Figure 11 caption block (ends 317.5) and its caption at y=522.6; x1 tightened by hand to exclude a scanner speck at x=405 right of the artwork (artwork ends x=284)
+ch4-fig13,605,12.0,18.0,487.2,218.3,line,ch4-sec3,figures/ch4/fig13.png,auto
+ch4-fig14,605,12.0,313.6,487.2,519.7,line,ch4-sec3,figures/ch4/fig14.png,auto
+ch4-fig15,607,12.0,18.0,486.7,222.0,line,ch4-sec3,figures/ch4/fig15.png,auto
+ch4-fig16,641,12.0,18.0,487.2,391.0,line,ch4-sec5,figures/ch4/fig16.png,auto

@@ -130,6 +130,9 @@ and flagged with `\ednote{...}` naming the probable target.
   structure and `\label{chN:plate:1}`.
 - The image file is the one named in `figures/manifest.csv` for that figure; include it exactly
   once. Figures whose artwork contains formulas stay as images in version 1.
+- A figure printed as separately captioned panels ("Figure 5(a):", "Figure 5(b):" ...) is one figure environment
+  per panel with `\figurepanel{a}` (then `{b}`, `{c}`) before `\caption` and the label `chN:fig:5a`, `chN:fig:5b` ...;
+  cite a panel as `Figure~\ref{ch4:fig:5a}` (it prints 5(a)).
 
 ## 8. Tables
 
@@ -278,3 +281,72 @@ Auditors: the forms below are intended.
   stacked sub-tables (Tables 4 and 8) are two tabulars in one table float with their sub-titles; an unnumbered
   tabulation is a `tabular` in `center` or an aligned display, per section 4. Tables drawn inside a figure's artwork
   (Figures 29, 31, 39b, 44, 45) stay in the image.
+
+## 15. Chapter 4 notation (settled before transcription)
+
+Chapter 4's prose, Symbols list, equations (9)-(11), "where" lists and Tables 1-2 are typewritten. Every other display is hand-lettered, and hand-drawn Greek letters, arrows and Δ are also pasted into the typed prose. The lettering does not show case (v/V, x/X, y/Y, z/Z, c/C, k/K, s/S) or o/0, and it often draws a subscript at full size. The Chapter 4 Symbols list (`chapters/ch4-symbols.tex`) fixes the form of each symbol. A symbol gets the same LaTeX form whether it is typed or lettered. Where a lettered glyph does not show its case, its level or o/0, set the listed form without a note. Where the print is unambiguous but differs from the list for the same quantity, transcribe it as printed and report it. Auditors: the forms below are intended.
+
+- **Axis subscripts are lowercase** (unlike Chapters 2 and 3): `\alpha_x`, `\alpha_y`, `\alpha_x(t)`, `\Delta\alpha_x`, `\omega_x`, `\omega_y`, `\Delta\omega_y`, `\omega_z` (roll rate), `M_x`, `M_y`, `H_x`, `H_y`, `f_x(t)`, `f_y(t)`, `v_x`, `v_y`. The list, the prose ("subscripts x and y", PDF 616) and Table 2 (typed ω_z) all print them lowercase. The crossed hand z (ƶ) is z, not 2, and the capital-looking Y of H_y in (160c) is y. These subscripts name the yaw and pitch axes, not the coordinates x and y.
+- **Every o subscript is the letter o**, whether typed or lettered: `t_o`, `m_o`, `A_o`, `\theta_o`, `\omega_o`, `\alpha_{xo}`, `\alpha_{yo}`, `\omega_{xo}`, `\omega_{yo}`, `\omega_{zo}`. This includes the conditions (`t < t_o`, `t = t_o`, `t_o \le t \le t_1`) and Table 2. The typewriter makes a subscript by dropping a full-size character (the 1 of t_1 is digit height). Its o subscript is only x-height, shorter than its digit 0 (PDF 601, 620, 622). The rule also covers the large hand circles (ω_xo in (155c), ω_zo in (165b)), even though the text speaks of "zero-subscripted quantities" (PDF 619). It differs from Chapter 1's `m_0` and Chapter 2's `\alpha_{X0}`. Values are digits: `t = 0`, `\alpha_x = \alpha_y = 0`, `(0 \le t \le t_m)` (the x-height o of the (73a)-(74a) ranges is a digit), integral limits `0` (lower in (19b), (22)-(23), (41)-(43); upper in (63) and (66), `\int_{v_b}^{0}`), and the `0,0` of (23). The only digit-zero subscript is `(\CDo)_{FB}` (Table 1): its typed o is x-height, but the zero-lift coefficient follows the Chapters 1 and 3 `\CDo` convention.
+- **Digit and index subscripts**: the typed 1 (the same glyph as l) and the lettered 1, which looks like a stroke, a comma or ı, are the digit 1. The z-like 2 is 2. So: `A_1`, `A_2`, `C_1`, `C_2`, `F_2`, `k_1`, `k_2`, `m_1`, `m_2`, `t_1`, `t_2`, `v_1`, `v_2`, `y_1`, `y_2`, `t_2^{2}`. The stage index is `F_n`, `k_n`, `m_n`, `t_n`, `v_n`, `y_n`, `v_{n-1}`, `y_{n-1}` (the lettered "n-ı" is n-1). Sums are set as lettered: `y_1 + \ldots + y_{n-1}`. In the prose, "nth" and "(n-1)th" are `$n$th` and `$(n-1)$th`.
+- **Letter subscripts are italic** and lowercase, as the list gives them: `v_b`, `t_b`, `y_b`, `x_b`, `m_b` (the 6-like hand b is b), `t_c`, `y_c`, `m_f`, `F_m`, `t_m`, `F_s`, `t_s`, `F_t`, `F_p`, `I_t` (capital I), `A_f`, `A_r`, `\omega_f` (the crossed hand f), `\omega_n` (the m-like n), `\zeta_c`, `dm_e` (e even where it looks like ε), `v_t`, `\Delta v_t`, `\Delta v_a`, `\Delta\dot{x}_t`, `\Delta\dot{y}_a`. Capitals stay as printed: `I_L`, `I_R`, `C_{2A}`, `C_{2R}`. A subscript lettered at full size ("Va", "Fm" in (73b), "Δẋa") is still a subscript. The t of `v_t` and `\Delta v_t` (drag-free, "theoretical") and the t of `F_t` (tangent) are the same italic t. `d\vec{p}_E` (external forces) and `d\vec{p}_e` (exhaust) are different symbols.
+- **Word subscripts are upright**: `\Isp` (also for the lettered "I_SP" of (69)), `\omega_{\mathrm{res}}`, `\omega_{\mathrm{cres}}`, `k_{\min}`, `k_{\max}`, `y_{\max}`, `\alpha_{\max}` (like Chapter 2's `t_{\max}`), `(\Delta\CD)_{\mathrm{lug}}`.
+- **Velocity, altitude, range, time**: `v` is lowercase everywhere. That includes the cap-height lettered V in (12)-(13), (34), (80), (85), (94)-(128), (133)-(139) and (163)-(165), and the typed v of the tables. `x` (range) and `y` (altitude) are lowercase too, including the X-shaped x of (99), (101), (109), (114), (123) and (130) and the γ- or Y-like y. Time is `t`, `\Delta t`, `dt`. Dots go over the letter and the subscript follows: `\dot{x}`, `\dot{y}`, `\ddot{x}`, `\dot{u}`, `\ddot{u}`, `\Delta\dot{y}_t`, `\mdot`.
+- **Thrust, mass and drag** (as in Chapters 1 and 3):
+  - Thrust: `F` (average thrust), `F(t)`, `F_t`, `F_p`, `F_2`, `F_n`. (12)-(13) print `F_t` and (16)-(17) print `F(t)`; set both as printed.
+  - Mass: `m` and `m(t)` are lowercase (the rn- or M-like hand m is m), with `m_b`, `m_f`, `m_o`, `dm_e/dt`. Capital M is only the moments `M_x`, `M_y` and the typed disturbing moment `M` of PDF 621 (`M/C_1`). `\gamma` is the mass-expulsion rate in (70)-(71), not y and not 8.
+  - Drag: `D` (italic, as typed in (11)), and the typed or lettered word `\text{Drag}` in (77), (95), (117), (133). `k` is lowercase; `\epsilon`, `f(\alpha)`, `kv^{2}`, `(k + \epsilon\alpha^{2})v^{2}`, `\CD`, `(\Delta\CD)_{\mathrm{lug}}`, `A_r`, `\rho`, `\tfrac{1}{2}\rho\CD A_r`.
+  - Other: `c = g\Isp`; `g` is always g, even when the hand g looks like 9 or q; `I_t`.
+- **Greek**:
+  - `\alpha` for every ∝-like glyph, typed, lettered or pasted into the prose. In (41)-(42), `\alpha` and `\beta` are generic limits (the κ-like smudge is α).
+  - `\theta`, `\theta_o` for the Θ-like typed and lettered forms.
+  - `\zeta`, `\zeta_c` for the curl that looks like ≤ or ʃ; `\rho` for the ʃ-like typed and lettered form.
+  - `\epsilon` for the lunate, ∈-like form; also `\gamma` and `\omega`.
+  - `\Delta`, typed or drawn, never A.
+  - `\propto`, `\in`, `\Theta` and `\varepsilon` do not occur.
+- **Vectors**: use `\vec{}` wherever an arrow is drawn, over the letter only: `\vec{F} = m\vec{a}`, `\vec{p}`, `d\vec{p}`, `d\vec{p}_E`, `d\vec{p}_e`, `\vec{v}`, `d\vec{v}`, `\vec{c}`, `\vec{E}`, and `\vec{F}(t)` in (8). A letter printed without an arrow stays plain (the E on PDF 546). The overbars of Figure 1 stay in the artwork.
+- **Functions and calculus**:
+  - Functions: `\ln` (for the script "ℓn"), `\tanh`, `\cosh`, `\sinh`, `\tanh^{-1}`, `\tan^{-1}` in (64) as printed (not `\arctan`), `\sin`, `\cos`, `\sqrt`. `e^{Ht}` has an italic e. The prose's "tanh( ), ln( ), cosh( )" are `$\tanh(\ )$`, `$\ln(\ )$`, `$\cosh(\ )$`.
+  - The curled hand d is an italic `d`.
+  - Integral limits go at the side, as in Chapters 1 and 3 (`\int_{t_1}^{t_1+t_2}`, `\int_{v_b}^{0}`), with no `\limits`, even where the typescript stacks them ((40), (43), (44), (52)): typographic, not a discrepancy. The evaluation bars are `kyv\Big]_{0,0}^{y_b,v_b}` in (23) and `\Big]_{v_1}^{v_2}` in (53).
+  - Relations: `\cong` in (135), `\Delta t \to 0` (PDF 585), `\le`, `\ge`, `<`.
+  - Derivatives: `\dot{x}`, `\dot{y}`, `\ddot{x}`, `\dot{u}`, `\ddot{u}`; `dv_y/dt`, `dv_x/dt` with a lowercase v even where the lettering draws it large.
+- **Riccati and Fehskens-Malewicki constants**: `u`, `A_1`, `A_2`, `H`, as in `u = A_1e^{Ht} + A_2e^{-Ht}`, `H = \frac{1}{m}\sqrt{k(F - mg)}` and `v = \frac{m}{k}\frac{\dot{u}}{u}`. `A` and `B` in the unnumbered cosh identity (PDF 568) are plain capitals. `C_1` and `C_2` are capitals even where (144)-(145) letter them small; the typed C that looks like O is C.
+- **Brace-grouped conditions** ((154), (155), (157), (158), (160), (166)): each row keeps its printed number. One right brace spans the rows, and the condition follows it as printed (`t < t_o`, `t = t_o`, `t_o \le t \le t_1`, `t = 0`):
+  ```latex
+  \begin{subequations}\label{ch4:eq:155}
+  \begin{empheq}[right={\empheqrbrace\quad t = t_o}]{align}
+    \alpha_x &= \alpha_{xo} \label{ch4:eq:155a}\\
+    \alpha_y &= \alpha_{yo} \label{ch4:eq:155b}\\
+    ...
+  \end{empheq}
+  \end{subequations}
+  ```
+  The (154) group prints its third row as (156c). Use the Chapter 3 (203)-(204) pattern: first `\refstepcounter{equation}\label{ch4:eq:154}`, then `empheq` on `align*` with `\tag{154a}\label{ch4:eq:154a}`, `\tag{154b}\label{ch4:eq:154b}` and `\tag{156c}\label{ch4:eq:156c}`. Report the misnumber. A condition without a brace stays inside the display: `\qquad (t \ge t_o)` in (156) and `\qquad (t \ge t_1)` in (159). The `empheq` package is loaded in preamble.tex. The ranges of (73)-(74) form a column: `&& (0 \le t \le t_m)`.
+- **Assignment lists** ((76)-(82), (83)-(87), (92)-(105), (106)-(115), (116)-(124), (125)-(131), (137)-(153)):
+  - Use one numbered `align` per printed run, with one `\label` per row. A page break does not end a run; prose between the rows does.
+  - Follow the typescript's layout: where a run's "=" signs are lined up ((92)-(97), (106)-(110), (116)-(120), (144)-(153)), align on "="; where they are not ((76)-(82), (138)-(143) ...), begin every row with `&` so the statements start at one column.
+  - Keep "=" as printed (`y = y + \Delta y`, `t = t + \Delta t`). Never use `\gets`, `:=` or an arrow.
+  - Stacked fractions stay stacked (`\frac{\Delta\dot{y}_a}{2}`) and slashed ones stay slashed (`\Delta v_a/2`, `[\ldots]/m(t)`).
+  - The text steps are `&\text{calculate } C_1`, `&\text{calculate } C_2` and, in (143), `&\text{calculate or input } \omega_z`.
+  - The typed "where" lists that follow use the Chapter 2 form: `\begin{itemize}[nosep,leftmargin=*,label={}]`, `\item $\Delta\dot{x}_t$ = drag-free ...`.
+- **Wide displays** ((48)-(51), (56)-(60)):
+  - Where the book breaks a display ((51), (58), (60)), break it at the same term with `split` inside `equation`. The continuation line starts with its +, set under the first term. The number stays centred between the lines, as printed.
+  - Keep a one-line display on one line if it fits (`make unit` lists overfull boxes over 20pt).
+  - If it does not fit, break it at an outermost + or − with `split`. Inside brackets, use `\biggl[`…`\biggr]`, not `\left`/`\right`.
+  - A display that cannot be broken this way, because it is a single fraction ((48)-(50)), goes in `\begingroup\small … \endgroup` with no blank line around it. Use `\footnotesize` only if `\small` still overflows. Never use `\resizebox` or `\scalebox`.
+  - Inside these brackets and radicals the letterer draws some stacked fractions small (t_2/2, t_2/m_2, t_n/m_n, (t−t_1)/m_2). Set them with `\tfrac`.
+- **Repeated displays**: (16)-(17) are printed again on PDF 596 with their numbers. Set them as `\tag{16}` and `\tag{17}` in `equation*`/`align*`, with no `\label`; the labels stay on the first occurrence (PDF 552).
+- **Stale citations**: several equation citations use numbers 35 higher than the printed equations: (175) on PDF 615, (189) on PDF 622, (195) on PDF 623, (200a) on PDF 625; and PDF 635 cites a "Figure 19" (Figure 16 is meant). Type them all literally, not as `\eqref`/`\ref`. The first three are corrected by the errata (corrections/ch4.md items 2-4) in the corrections step: no note in the faithful pass. (200a) and "Figure 19" get an `\ednote` naming the probable target ((165a), Figure~\ref{ch4:fig:16}) per section 6.
+- **Connective words** printed at the right of a display ("and" after (16) on PDF 596 and after (163a) on PDF 624) are set as prose lines between the displays (section 4).
+- **Unnumbered displays** such as `v = \frac{m}{k}\frac{\dot{u}}{u}` (PDF 557) and the identity `\cosh(A+B) = \cosh A\cosh B + \sinh A\sinh B` (PDF 568; A, B the Symbols list's dummy variables) stay unnumbered.
+- **Numbers and units**:
+  - A typed "x" between numbers is `\times` (`0.92 \times 10^{-4}`).
+  - Leading-dot decimals stay as printed (`.001`, `.00833`).
+  - Degrees are `\dg` (`1.11\dg`, `12\dg`, `\theta_o = 30\dg`).
+  - The typed ½ is `\tfrac{1}{2}` (the engine class `$\tfrac{1}{2}$A`, and `\tfrac{1}{2}\rho\CD A_r`).
+  - In prose and table cells, units stay as text: "0.04 kg", `396$v^{2}$ dyn-cm for $v$ in m/sec`, `(kg/m)/rad$^{2}$`, `g-cm$^{2}$`, and the header `$\omega_z$ (rad/sec)`. Use `\un{}` only for a unit attached to a number inside a formula.
+  - Engine types stay plain text (B14, B4, D4, F100, F7).
+- **Figures**: artwork labels stay in the images (Figure 2's ẏ = V_y, and the K/k, m_o and y_max of Figures 3-16). Symbols in typed captions follow this section: `$m_o$`, `$k_{\min}$`, `$x_b$`, `$y_b$`, `$\theta_o = 30\dg$`.
+- **Table 2** (PDF 628-631, printed in two halves of about 5 columns) is one table of about 10 columns with its caption above: a `longtable` in `\small`, inside a `landscape` environment (pdflscape, loaded in the preamble) if it does not fit a portrait page. Table 1 is an ordinary table.
+- **Macros**: no new macro is needed. The preamble's `\Isp`, `\CD`, `\CDo`, `\mdot`, `\dg` and `\un`, plus amsmath's `\tfrac`, `\text` and `\hat` (the last for the corrected (52)-(53)), cover the chapter. The brace groups use `empheq` and wide tables `pdflscape`, both loaded in preamble.tex.

@@ -733,7 +733,10 @@ def main(argv=None):
                     continue
                 compared += 1
                 expected, renumbered = expected_number(k[0], k[1], renumber)
-                if lab.number != expected:
+                shown = lab.number
+                if k[0] in ("fig", "plate"):      # a panel figure displays 5(a) for label 5a (\figurepanel)
+                    shown = re.sub(r"^(\d+)\(([a-z])\)$", r"\1\2", shown)
+                if shown != expected:
                     mismatches.append(f"{lab.name}: displayed {lab.number!r}, expected {expected!r}"
                                       + (" (from renumber map)" if renumbered else "") + f"  [{lab.source}:{lab.line}]")
             report.add(section, 2, "displayed numbers", FAIL if mismatches else OK,
