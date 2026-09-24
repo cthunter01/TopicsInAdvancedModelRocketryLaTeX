@@ -333,58 +333,114 @@ the great advantage in altitude capability that goes with a more slender
 profile.
 
 Stabilization is not, however, the only motive for inducing spin in model
-rockets. It has been found that rolling models are less subject to
-``dispersion'' by horizontal winds and tipoff during launch and staging than
-those which are not, where by ``dispersion'' I mean the horizontal
-displacement of the rocket at the time of recovery system actuation. The roll
-rates used in dispersion-reduction are much lower than those used in roll
-stabilization, since the rockets to which they are applied are already
-statically stable; the inertial effect is generally slight and its only
-purpose is to induce just enough roll coupling to distribute the effects of
-disturbances in a radially symmetrical fashion about the intended axis of
-flight.
-
-A roll rate may be induced in a model rocket in a variety of ways. The major
-aerodynamic techniques in current use include ``spinnerons'' (that is, fin
-tabs), canted fins, and airfoiled fins as illustrated in
-Figure~\ref{ch2:fig:51}. Canted main propulsion or outrigger engines have
-also been used to ``spin up'' model rockets, and from time to time
-flywheel-like devices have appeared whereby a product $I_R\omega_Z$
-\emph{other} than that of the rocket airframe itself has been used to provide
-inertial coupling. The number and variety of roll-inducing techniques
-possible is so great, indeed, that it is impossible to write down any single
-analytical expression accounting for them all. In the particular case of spin
+rockets.\ednote{From here through equation~\eqref{ch2:eq:115} the text is
+that of Mandell's correction of 15 February 2022, which replaces page 251 of
+the 1973 book. The correction removes the errors in
+equations~\eqref{ch2:eq:115} and~\eqref{ch2:eq:116} reported by Alan V. Jones
+on 18 February 1986 and generalizes the equilibrium roll rate to all
+fin-induced roll. The 1973 text defined ``dispersion'' as ``the horizontal
+displacement of the rocket at the time of recovery system actuation'', and
+the sentence introducing the equation read ``In the particular case of spin
 produced by canting each fin of a rocket at some angle $\theta$ to the
 longitudinal axis, however, Barrowman analysis permits computation of the
-equilibrium roll rate in the form
+equilibrium roll rate in the form''. The 1973 equation (115) read
+$\omega_Z = 12\theta V A_r \bar{Y}_T k_r/\{s c_r k_d[(1+3\lambda)s^{2} +
+4(1+2\lambda)s r_t + 6(1+\lambda)r_t^{2}]\}$. Mandell's handwritten 1994 correction of the same equation, superseded by the 2022 text but reproduced in the supplement Part, explains the error: $A_f$, the planform area of one fin, belongs in the numerator in place of the reference area $A_r$; with $A_f = s c_r(1+\lambda)/2$ the corrected equation takes the 2022 form. The rest of the page is only
+reworded: the 1973 text read ``axis of flight'' for ``direction of flight'',
+listed the techniques in the order ``spinnerons'', canted fins, airfoiled
+fins, and said that ``from time to time flywheel-like devices have
+appeared''.} It has been found that rolling models are less subject to
+``dispersion'' by horizontal winds and tipoff during launch and staging than
+those which are not, where by ``dispersion'' I mean the horizontal distance
+of the rocket from its launch site at the time of recovery system actuation.
+The roll rates used in dispersion-reduction are much lower than those used in
+roll stabilization, since the rockets to which they are applied are already
+statically stable; the inertial effect is generally slight and its only
+purpose is to induce just enough roll coupling to distribute the effects of
+disturbances in a radially symmetrical fashion about the intended direction
+of flight.
+
+A roll rate may be induced in a model rocket in a variety of ways. The major
+aerodynamic techniques in current use include airfoiled fins, canted fins,
+and ``spinnerons'' (that is, fin tabs) as illustrated in
+Figure~\ref{ch2:fig:51}. Canted main propulsion or outrigger engines have
+also been used to ``spin up'' model rockets, and flywheel-like devices have
+been installed whereby a product $I_R\omega_Z$ \emph{other} than that of the
+rocket airframe itself has been used to provide inertial coupling. The number
+and variety of roll-inducing techniques possible is so great, indeed, that it
+is impossible to write down any single analytical expression accounting for
+them all. In the particular case of aerodynamically-induced roll, however,
+Barrowman analysis permits computation of the equilibrium roll rate as
 \begin{equation}\label{ch2:eq:115}
-\omega_Z = \frac{12\theta V A_r \bar{Y}_T k_r}
-  {s c_r k_d\left[(1+3\lambda)s^{2} + 4(1+2\lambda)s r_t + 6(1+\lambda)r_t^{2}\right]}
+\omega_Z = \frac{6\theta V\bar{Y}_T(1 + \lambda)k_r}
+  {[(1 + 3\lambda)s^{2} + 4(1 + 2\lambda)s r_t + 6(1 + \lambda)r_t^{2}]k_d}
 \end{equation}
-where $k_r$, the roll forcing interference coefficient, is given by
+where:\ednote{From here to the end of the paragraph that ends ``\ldots{}but
+not over $2.0\omega_{nc}$'' the text is that of Mandell's correction of
+15 February 2022, which replaces page 253 of the 1973 book and the part of
+the paragraph at the top of page 254 that ends ``\ldots{}the low spin rate
+needed for resonance''. The list defining $\theta$, $\alpha_0$ and $V$ is
+new: the 1973 text went on from equation (115) with ``where $k_r$, the roll
+forcing interference coefficient, is given by''. The 1973 equation (116) read
+$k_r = (1/\pi^{2})\{(\pi^{2}/4)[(\tau+1)/\tau]^{2} +
+(\pi/\tau^{2})[(\tau+1)/(\tau-1)]^{2}\arcsin[(\tau^{2}-1)/(\tau^{2}+1)] -
+(2\pi/\tau)(\tau+1)/(\tau-1) + [8/(\tau-1)^{2}]\ln[(\tau^{2}+1)/(2\tau)] +
+\{(\tau^{2}+1)/[\tau(\tau-1)]\}^{2}\{\arcsin[(\tau^{2}-1)/(\tau^{2}+1)]\}^{2}
+- \{4(\tau+1)/[\tau(\tau-1)]\}\arcsin[(\tau^{2}-1)/(\tau^{2}+1)]\}$, with
+$(\tau+1)$ where the corrected second term has $(\tau^{2}+1)$. The 1973
+equation (117) read $k_d = 1 + \{(\tau-\lambda)/\tau -
+[(1-\lambda)/(\tau-1)]\ln\tau\}/\{(\tau+1)(\tau-\lambda)/2 -
+(1-\lambda)(\tau^{3}-1)/[3(\tau-1)]\}$, the same expression as the corrected
+one. In the paragraph that begins ``Given the ability to regulate the roll
+rate'' the 1973 text read ``In
+models where roll is produced by fin canting this is relatively easy to do,
+as both the resonant frequency and the roll rate are linear functions of
+airspeed.'' and ``$\omega_Z$ can thus be kept as nearly zero as possible (the
+most common course of action), uniformly much lower than $\omega_{nc}$ (the
+technique adopted when dispersion-reduction is desired), or uniformly much
+higher than $\omega_{nc}$.'', and the sentence citing the figure read ``The
+selection of available relations between $\omega_Z$ and $\omega_{nc}$ in
+rockets whose roll rate is set by fin canting is illustrated in Figure
+52.''; the closing sentence, on a rule of thumb, is new. The rest is only
+reworded: ``is given by'' for ``is'' before equation (117), ``of a proposed
+rocket'' for ``of his rocket'', the added reference
+to Figure~\ref{ch2:fig:36}, ``roll-coupled resonant frequency'' for
+``resonant frequency'' and ``roll rate'' for ``spin rate''.}
+\begin{itemize}[nosep,leftmargin=*,label={}]
+  \item $\theta$ = the angle, in radians, at which the fins are canted with
+  respect to the rocket's longitudinal axis when roll is induced by canted
+  fins
+  \item $\theta = -(\alpha_0)$ when roll is induced by airfoiled fins or fins
+  equipped with spinnerons
+  \item $\alpha_0$ = the angle, in radians, at which each airfoiled or
+  spinneron-equipped fin would have to be canted to keep the rocket's roll
+  rate zero. For practical purposes, this angle is identical to what
+  aerodynamicists call the ``angle of zero lift''. Methods of determining the
+  angle of zero lift are presented in Reference~\ref{ch2:ref:12}.\ednote{Here
+  $\alpha_0$, as in the 2022 correction, is the angle of zero lift, not the
+  initial angle of attack of the Symbols list and Section~\ref{ch2:sec:5}.}
+  \item $V$ = the rocket's airspeed
+\end{itemize}
+$k_r$, the roll forcing interference coefficient, is given by
 \begin{equation}\label{ch2:eq:116}
 \begin{split}
-k_r = \frac{1}{\pi^{2}}\Biggl[
-  &\frac{\pi^{2}}{4}\left(\frac{\tau+1}{\tau}\right)^{2}
-  + \frac{\pi}{\tau^{2}}\left(\frac{\tau+1}{\tau-1}\right)^{2}
-    \arcsin\left(\frac{\tau^{2}-1}{\tau^{2}+1}\right)
-  - \frac{2\pi}{\tau}\left(\frac{\tau+1}{\tau-1}\right)
-  + \frac{8}{(\tau-1)^{2}}\ln\left(\frac{\tau^{2}+1}{2\tau}\right) \\
-  &+ \left(\frac{\tau^{2}+1}{\tau(\tau-1)}\right)^{2}
-    \left(\arcsin\frac{\tau^{2}-1}{\tau^{2}+1}\right)^{2}
-  - \frac{4(\tau+1)}{\tau(\tau-1)}\arcsin\left(\frac{\tau^{2}-1}{\tau^{2}+1}\right)
-  \Biggr]
+k_r = (1/\pi^{2})\Bigl\{&(\pi^{2}/4)[(\tau + 1)/\tau]^{2}
+  + (\pi/\tau^{2})[(\tau^{2} + 1)/(\tau - 1)]^{2}\arcsin[(\tau^{2} - 1)/(\tau^{2} + 1)]\\
+&- (2\pi/\tau)(\tau + 1)/(\tau - 1) + [8/(\tau - 1)^{2}]\ln[(\tau^{2} + 1)/(2\tau)]\\
+&+ \{(\tau^{2} + 1)/[\tau(\tau - 1)]\}^{2}\{\arcsin[(\tau^{2} - 1)/(\tau^{2} + 1)]\}^{2}\\
+&- \{4(\tau + 1)/[\tau(\tau - 1)]\}\arcsin[(\tau^{2} - 1)/(\tau^{2} + 1)]\Bigr\}
 \end{split}
 \end{equation}
-and $k_d$, the roll damping interference coefficient, is
+and $k_d$, the roll damping interference coefficient, is given by
 \begin{equation}\label{ch2:eq:117}
-k_d = 1 + \frac{\dfrac{\tau-\lambda}{\tau} - \dfrac{1-\lambda}{\tau-1}\ln\tau}
-  {\dfrac{(\tau+1)(\tau-\lambda)}{2} - \dfrac{(1-\lambda)(\tau^{3}-1)}{3(\tau-1)}}
+k_d = 1 + \frac{[(\tau - \lambda)/\tau] - [(1 - \lambda)/(\tau - 1)]\ln(\tau)}
+  {[(\tau + 1)(\tau - \lambda)/2] - (1 - \lambda)(\tau^{3} - 1)/[3(\tau - 1)]}
 \end{equation}
 $\bar{Y}_t$ is given by equation~\eqref{ch2:eq:90}, $\lambda$ is the ratio
 $c_t/c_r$, and $\tau$ is the ratio $(s + r_t)/r_t$. The reader should refer
-back to Section~\ref{ch2:sec:4.1} for additional information concerning the
-notation used in equations~\eqref{ch2:eq:115} through~\eqref{ch2:eq:117}.
+back to Figure~\ref{ch2:fig:36} in Section~\ref{ch2:sec:4.1} for additional
+information concerning the notation used in equations~\eqref{ch2:eq:115}
+through~\eqref{ch2:eq:117}.
 
 \begin{figure}[htbp]
   \centering
@@ -393,30 +449,43 @@ notation used in equations~\eqref{ch2:eq:115} through~\eqref{ch2:eq:117}.
   \label{ch2:fig:51}
 \end{figure}
 
-Given the ability to regulate the roll rate of his rocket, the designer will
-next want to know what roll rates are favorable to good performance. This
-question is generally answered by eliminating those ranges of roll rate which
-are \emph{deleterious} to good performance and stating that the ranges then
-remaining are acceptable. The roll rate that should be avoided at all costs
-is, of course, the roll-coupled resonant rate. In models where roll is
-produced by fin canting this is relatively easy to do, as both the resonant
-frequency and the roll rate are linear functions of airspeed. $\omega_Z$ can
-thus be kept as nearly zero as possible (the most common course of action),
-uniformly much lower than $\omega_{nc}$ (the technique adopted when
-dispersion-reduction is desired), or uniformly much higher than
-$\omega_{nc}$. This last technique is not recommended, as it results in large
-coupling moments, a high-drag configuration, and (often) tangling of the
-shrouds of parachute recovery systems. The selection of available relations
-between $\omega_Z$ and $\omega_{nc}$ in rockets whose roll rate is set by fin
-canting is illustrated in Figure~52.\ednote{The 1973 book contains no
-Figure~52; the figure was omitted from the original printing. The 2022
-correction pages supply it (``Roll Rates to Avoid \ldots''), to be placed on
-page 252 below Figure~\ref{ch2:fig:51}.} Perhaps you can now see the danger
-of resonance associated with too high a value of $I_L$: a very high
-longitudinal moment of inertia means a very low resonant frequency, and it is
-entirely possible that small fin cant angles arising from imperfections in
-construction will be just sufficient to produce the low spin rate needed for
-resonance.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/supplement/ch2-fig52-2022.png}
+  \caption{Roll Rates to Avoid to Keep $\mathit{AR}_c$ from Exceeding
+  $1.25/C_1$ \edcap{Added per Mandell's correction of 15 February 2022,
+  which supplies this figure; it is cited in the text but missing from the
+  1973 book.}}
+  \label{ch2:fig:52}
+\end{figure}
+
+Given the ability to regulate the roll rate of a proposed rocket, the
+designer will next want to know what roll rates are favorable to good
+performance. This question is generally answered by eliminating those ranges
+of roll rate which are \emph{deleterious} to good performance and stating
+that the ranges then remaining are acceptable. The roll rate that should be
+avoided at all costs is, of course, the roll-coupled resonant rate. In models
+where roll is produced by the fins this is relatively easy to do, as both the
+resonant frequency and the roll rate are linear functions of airspeed.
+$\omega_Z$ can thus be kept as nearly zero as possible (the most common
+course of action), uniformly much lower than $\omega_{\mathrm{cres}}$ (the
+technique adopted when dispersion-reduction is desired), or uniformly much
+higher than $\omega_{\mathrm{cres}}$. This last technique is not recommended,
+as it results in large coupling moments, a high-drag configuration, and
+(often) tangling of the shrouds of parachute recovery systems. The range of
+$\beta_c = \omega_Z/\omega_{nc}$ to be avoided to ensure that rolling will
+not amplify pitch and yaw angles caused by disturbances more than 25\% is
+illustrated in Figure~\ref{ch2:fig:52}. Perhaps you can now see the danger of
+resonance associated with too high a value of $I_L$: a very high
+longitudinal moment of inertia means a very low roll-coupled resonant
+frequency, and it is entirely possible that small fin cant angles arising
+from imperfections in construction will be just sufficient to produce the low
+roll rate needed for resonance. Figure~\ref{ch2:fig:52} also suggests a
+simple rule of thumb for preventing a rolling rocket from developing
+excessive pitch and yaw angles (``coning'' about the intended direction of
+flight) even if it has a very low $\zeta_c$, while avoiding the problems
+caused by excessive roll rate: keep $\omega_Z$ less than $0.44\omega_{nc}$,
+or greater than $1.35\omega_{nc}$ but not over $2.0\omega_{nc}$.
 
 In cases where it is desired to stabilize a statically-unstable design by
 inducing roll, there is of course no resonance problem. The fin cant angles

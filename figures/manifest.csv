@@ -46,7 +46,7 @@ ch2-fig32,219,12.0,18.0,345.0,189.7,line,ch2-sec4,figures/ch2/fig32.png,auto; up
 ch2-fig33,219,12.0,245.5,345.0,438.8,line,ch2-sec4,figures/ch2/fig33.png,auto; lower half of page shared with fig32; panel letters (a)-(d) and shape names kept inside; x1 tightened by hand
 ch2-fig34,222,12.0,18.0,300.0,212.4,line,ch2-sec4,figures/ch2/fig34.png,auto; upper half of page shared with fig35; x1 tightened by hand
 ch2-fig35,222,12.0,308.0,300.0,497.5,line,ch2-sec4,figures/ch2/fig35.png,y0 set by hand (seeder proposed 375.6 which cut through the artwork); lower half of page shared with fig34; x1 tightened by hand
-ch2-fig36,224,12.0,18.0,350.0,214.3,line,ch2-sec4,figures/ch2/fig36.png,auto; hand-lettered AR formula kept inside the crop; x1 tightened by hand
+ch2-fig36,224,12.0,18.0,350.0,214.3,line,supplement,figures/ch2/fig36.png,"auto; hand-lettered AR formula kept inside the crop; x1 tightened by hand; replaced in Chapter 2 by sup-ch2-fig36-1994 (1994 supplement), reproduced in the supplement Part"
 ch2-fig37,228,12.0,18.0,365.0,187.5,line,ch2-sec4,figures/ch2/fig37.png,auto; x1 tightened by hand
 ch2-fig38,234,12.0,18.0,370.0,191.2,line,ch2-sec4,figures/ch2/fig38.png,auto; two hand-lettered notation lines above the drawing kept inside the crop; x1 tightened by hand
 ch2-fig39,236,12.0,18.0,360.0,152.9,line,ch2-sec4,figures/ch2/fig39.png,auto; upper half of page shared with fig40; x1 tightened by hand
@@ -64,3 +64,5 @@ ch2-plate01b,269,12.0,18.0,487.2,420.0,photo,ch2-sec6,figures/ch2/plate01b.jpg,b
 ch2-fig49,273,12.0,18.0,360.0,220.4,line,ch2-sec6,figures/ch2/fig49.png,auto; x1 tightened by hand to exclude a scanner speck at x~380pt right of the artwork
 ch2-fig50,274,12.0,18.0,487.2,401.1,line,ch2-sec6,figures/ch2/fig50.png,auto; six panels (a)-(f) with hand-lettered sub-captions kept inside the crop
 ch2-fig51,282,12.0,18.0,487.2,177.6,line,ch2-sec6,figures/ch2/fig51.png,auto
+sup-ch2-fig36-1994,680,12.0,205.0,560.0,512.0,line,ch2-sec4,figures/supplement/ch2-fig36-1994.png,"replacement Figure 36, Mandell 1994; drawing with the AR formula at left, typed caption below y=525 excluded (MediaBox 612.48x792.48)"
+sup-ch2-fig52-2022,687,10.0,34.0,630.0,455.0,line,ch2-sec6,figures/supplement/ch2-fig52-2022.png,"new Figure 52, Mandell 2022 (the larger copy; PDF 684 has a smaller one); the title line above y=30 is the caption and is excluded (MediaBox 648x485.76)"

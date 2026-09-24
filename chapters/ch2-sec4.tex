@@ -55,25 +55,58 @@ Barrowman's work enable the designer to determine the roll rate induced by
 canting the fins of his rocket a given amount at any given airspeed.
 
 Barrowman's method is based on the concept of the \emph{normal force
-coefficient}, $\CNa$, a dimensionless number dependent upon the shape of the
+coefficient} $C_N$, a dimensionless number dependent upon the shape of the
 rocket which permits the calculation of the force acting in a direction
 perpendicular to the rocket's longitudinal axis whenever it is displaced from
-the direction of the relative airstream by some ``angle of attack'' (a
-pitching or yawing angle). The equation by which this is accomplished is
+the direction of the relative airstream by some ``angle of attack'' $\alpha$
+(a pitching or yawing angle). The equation by which this is
+accomplished is\ednote{From this paragraph to the end of the paragraph that
+names the \emph{lift curve slope} the text is that of Mandell's June 1994
+supplement (``Correction to original pages 186 through 196 of Chapter~2'').
+The 1973 paragraph read ``Barrowman's method is based on the concept of the
+\emph{normal force coefficient}, $\CNa$, a dimensionless number dependent upon
+the shape of the rocket which permits the calculation of the force acting in
+a direction perpendicular to the rocket's longitudinal axis whenever it is
+displaced from the direction of the relative airstream by some `angle of
+attack' (a pitching or yawing angle). The equation by which this is
+accomplished is $N = \CNa\tfrac{\rho}{2}A_rV^{2}\alpha$'', and the list of
+definitions after it had, besides the entries for $N$, $\rho$ and $A_r$ given
+here, ``$V$ = airspeed of rocket'' and ``$\alpha$ = angle of attack in
+radians''. The
+passages that follow, which write $C_N = \CNa\cdot\alpha$, define $\CNa$ as
+the slope $(dC_N/d\alpha)|_{\alpha=0}$ and name it the \emph{normal force
+curve slope}, are new.}
 \begin{equation*}
-N = \CNa \frac{\rho}{2} A_r V^{2}\alpha
+N = (\rho/2)C_N A_r V^{2}
 \end{equation*}
 where
 \begin{itemize}[nosep,leftmargin=*,label={}]
   \item $N$ = normal force
   \item $\rho$ = mass density of air
-  \item $V$ = airspeed of rocket
   \item $A_r$ = reference area, a scaling factor used to separate information
   regarding the rocket's size from the normal force coefficient. Barrowman
-  uses the cross sectional area of the body tube at the base of the nosecone
+  uses the cross-sectional area of the body tube at the base of the nosecone
   as his reference area, and I will follow his convention.
-  \item $\alpha$ = angle of attack in radians
 \end{itemize}
+For small angles of attack [typically 0.2 radian (about $11.5\dg$) or less]
+it is sufficiently accurate for design purposes to regard $C_N$ as directly
+proportional to $\alpha$. $C_N$ can then be expressed as
+\begin{equation*}
+C_N = \CNa \cdot \alpha
+\end{equation*}
+where $\CNa$ is the derivative (or ``slope'') of the curve of the normal force
+coefficient versus angle of attack measured at the point ($C_N = 0$,
+$\alpha = 0$). That is,
+\begin{equation*}
+\CNa = \left.(dC_N/d\alpha)\right|_{\alpha = 0}
+\end{equation*}
+The slope of the normal force coefficient curve is often referred to as the
+\emph{normal force curve slope} in the same abbreviated fashion that the
+slope of the curve of an airplane wing's lift coefficient versus angle of
+attack is called the \emph{lift curve slope}. The Barrowman method assumes
+that the angle of attack is expressed in radians, so that $\CNa$ has units of
+$C_N$ per radian (or, because $C_N$ is dimensionless, simply 1/radians or
+radians$^{-1}$).
 
 Throughout the rest of this treatment I am going to be using the
 ``centimeter-gram-second'', or CGS system of physical units. This means that
@@ -94,15 +127,21 @@ numerically by
 N = 0.6125 \times 10^{-3}\,\CNa A_r V^{2}\alpha \qquad \text{dynes}
 \end{equation*}
 
-Now the normal force coefficient of the rocket considered as a whole is the
-sum of the normal force coefficients of the individual components of which
+Now the normal force curve slope of the rocket considered as a whole is the
+sum of the normal force curve slopes of the individual components of which
 it is composed: nosecone, body sections, adapters (if any), and fins. Each
 part of the rocket is thus considered to provide a portion of the total
 normal force, and this portion is considered to act at a point on the
 component called its \emph{center of pressure} (\CP). The Barrowman method
 uses this technique of sectionalized analysis, together with the theory of
-moments, to derive the total normal force coefficient and center of pressure
-of the complete rocket.
+moments, to derive the total normal force curve slope and center of pressure
+of the complete rocket.\ednote{Paragraph as given in Mandell's June 1994
+supplement. The 1973 paragraph differs only in reading ``normal force
+coefficient'' for ``normal force curve slope'' three times: ``Now the normal
+force coefficient of the rocket considered as a whole is the sum of the
+normal force coefficients of the individual components\ldots{}'' and
+``\ldots{}to derive the total normal force coefficient and center of pressure
+of the complete rocket.''}
 
 Figure~\ref{ch2:fig:32} illustrates the most general type of model rocket to
 which Barrowman analysis is applicable and the coordinate system used in
@@ -115,7 +154,10 @@ rocket. The rocket itself may have a nosecone, conical shoulder, conical
 boattail, body sections of constant diameter, and any number of fins (3 or
 greater) spaced symmetrically about the centerline. The particular equations
 presented here, however, will be such that the number of fins must be either
-three or four since there is no particular reason to use any other number.
+three or four since there is no particular reason to use any other number.\ednote{The
+June 1994 fin correction below also admits six fins, with its own interference
+coefficient~\eqref{ch2:eq:n91}; the supplement leaves this sentence
+unchanged.}
 In addition to being axially symmetrical, the rocket must be relatively
 slender with a smoothly tapered nose, must be flying subsonically (in the low
 subsonic region below about 200 meters per second), must contain no
@@ -132,9 +174,18 @@ under loading conditions encountered in flight.
   \label{ch2:fig:32}
 \end{figure}
 
-Under these conditions it can be shown that the normal force coefficient of
+Under these conditions it can be shown that the normal force curve slope of
 the nose cone is independent of its shape, having the value 2.0 for all
-shapes which meet the assumptions of the analysis:
+shapes which meet the assumptions of the analysis:\ednote{Here and in the rest
+of Section~\ref{ch2:sec:4.1} (1973 pages 189--196), and in the captions of
+Figures~\ref{ch2:fig:34}, \ref{ch2:fig:35} and~\ref{ch2:fig:36}, ``normal
+force coefficient(s)'' is replaced by ``normal force curve slope(s)'' as
+directed by Mandell's June 1994 supplement, except in the paragraph on body
+tube sections below (``Body tube sections of constant diameter exhibit no
+measurable normal force coefficient\ldots{}''), which the supplement leaves
+unchanged. The 1973 text read ``normal force coefficient(s)'' at each renamed
+place. The section heading, on page 185, is outside the range of the
+instruction and keeps its 1973 wording.}
 \begin{equation}\label{ch2:eq:79}
 (\CNa)_n = 2.0
 \end{equation}
@@ -176,16 +227,29 @@ repeated below for reference:
   \label{ch2:fig:33}
 \end{figure}
 
-The notation used in determining the normal force coefficient and \CP{}
+The notation used in determining the normal force curve slope and \CP{}
 location of a conical shoulder is given in Figure~\ref{ch2:fig:34}. The
-normal force coefficient of \emph{any} shoulder, whether or not it is
+normal force curve slope of \emph{any} shoulder, whether or not it is
 conical, is given by
 \begin{equation}\label{ch2:eq:81}
 (\CNa)_S = 2\left[\left(\frac{r_2}{r_r}\right)^{2} - \left(\frac{r_1}{r_r}\right)^{2}\right]
 \end{equation}
 The conical form is, however, by far the most commonly used and the
 following equation for the \CP{} location is valid \emph{only} for the
-conical configuration:
+conical configuration:\ednote{Equations~\eqref{ch2:eq:82}
+and~\eqref{ch2:eq:84} apply the volume-over-base-area rule given above,
+which takes no account of the cross-sectional area at the smaller end of a
+shoulder or boattail. Barrowman's result for a conical shoulder or boattail,
+in the notation of Figures~\ref{ch2:fig:34} and~\ref{ch2:fig:35} ($r_1$ at
+the forward end, $r_2$ at the aft end), is
+$\bar{Z} = Z_1 + \frac{L}{3}\bigl[1 + \frac{1 - r_1/r_2}{1 - (r_1/r_2)^{2}}\bigr]
+= Z_1 + \frac{L}{3}\bigl[1 + \frac{r_2}{r_1 + r_2}\bigr]$
+for both. The two agree only for a pointed cone ($r_1 = 0$
+in~\eqref{ch2:eq:82}, $r_2 = 0$ in~\eqref{ch2:eq:84}). For a shoulder with
+$r_1/r_2 = 1/2$, \eqref{ch2:eq:82} gives $Z_1 + 0.42L$ and Barrowman's formula
+$Z_1 + 0.56L$; as the taper vanishes \eqref{ch2:eq:82} and~\eqref{ch2:eq:84}
+tend to $Z_1$ and $Z_1 + L$, Barrowman's formula to the midpoint
+$Z_1 + L/2$. Neither the errata nor the supplements correct this; the equations are kept as printed.}
 \begin{equation}\label{ch2:eq:82}
 \bar{Z}_{CS} = Z_1 + L\left[\frac{2}{3} - \frac{1}{3}\,\frac{r_1}{r_2}\left(\frac{r_1}{r_2} + 1\right)\right]
 \end{equation}
@@ -193,7 +257,7 @@ conical configuration:
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig34.png}
-  \caption{Notation used in determining the normal force coefficient and
+  \caption{Notation used in determining the normal force curve slope and
   center of pressure location of a conical shoulder. $Z_1$ denotes the
   distance from the tip of the nose to the forward end of the shoulder, while
   $\bar{Z}_{CS}$ is the distance from the tip of the nose to the center of
@@ -202,9 +266,9 @@ conical configuration:
 \end{figure}
 
 Figure~\ref{ch2:fig:35} illustrates the notation used in finding the normal
-force coefficient and \CP{} of a conical boattail. The normal force
-coefficient equation is identical to that used in computing the normal force
-coefficient of a shoulder:
+force curve slope and \CP{} of a conical boattail. The normal force
+curve slope equation is identical to that used in computing the normal force
+curve slope of a shoulder:
 \begin{equation}\label{ch2:eq:83}
 (\CNa)_B = 2\left[\left(\frac{r_2}{r_r}\right)^{2} - \left(\frac{r_1}{r_r}\right)^{2}\right]
 \end{equation}
@@ -222,7 +286,7 @@ does not. The center of pressure location of a conical boattail is given by
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig35.png}
-  \caption{Notation used in determining the normal force coefficient and
+  \caption{Notation used in determining the normal force curve slope and
   center of pressure location of a conical boattail. Again, $Z_1$ is the
   distance from the tip of the nose to the forward end of the boattail;
   $\bar{Z}_{CB}$ is the distance from the nose tip to the boattail center of
@@ -237,7 +301,7 @@ this reason body tube sections are omitted from the equations of Barrowman
 analysis.
 
 Figure~\ref{ch2:fig:36} shows the system of notation used in determining the
-normal force coefficient and center of pressure location of a fin or set of
+normal force curve slope and center of pressure location of a fin or set of
 fins. Strictly speaking, the Barrowman method is applicable only to fins of
 the form shown in Figure~\ref{ch2:fig:36}, but in practical applications it
 is perfectly permissible to approximate a more complex fin shape by that
@@ -251,43 +315,112 @@ should be avoided.
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch2/fig36.png}
-  \caption{Notation used in determining the normal force coefficient and
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/supplement/ch2-fig36-1994.png}
+  \caption{Notation used in determining the normal force curve slope and
   center of pressure location of single fins and symmetrical fin assemblies.
-  $Z_T$ is the distance from the tip of the nose to the intersection of the
-  fin root and leading edge; $\bar{Z}_{T(B)}$ is the distance from the nose
-  tip to the center of pressure of the fin assembly. The definition of $\AR$,
-  the \emph{aspect ratio} of a single fin, is also given.}
+  $Z_T$ is the distance from the tip of the rocket's nose to the intersection
+  of the fin root and the fin leading edge. $\bar{Z}_{T(B)}$ is the distance
+  from the nose tip to the center of pressure of the fin assembly. $\ell$ is
+  the distance from the midpoint of the fin root chord to the midpoint of the
+  fin tip chord. The definition of $\AR$, the \emph{aspect ratio} of a pair of
+  fins joined at the root to create a ``wing'' of span $2s$, is also given.
+  \edcap{Figure and caption replaced per Mandell's June 1994 supplement. The
+  1973 drawing defined $\AR = 2s/(c_r + c_t)$ where the new one has
+  $4s/(c_r + c_t)$, and did not mark $\ell$; the 1973 caption read ``Notation
+  used in determining the normal force coefficient and center of pressure
+  location of single fins and symmetrical fin assemblies. $Z_T$ is the
+  distance from the tip of the nose to the intersection of the fin root and
+  leading edge; $\bar{Z}_{T(B)}$ is the distance from the nose tip to the
+  center of pressure of the fin assembly. The definition of $\AR$, the
+  \emph{aspect ratio} of a single fin, is also given.'' The 1973 figure and
+  caption are reproduced in the supplement Part.}}
   \label{ch2:fig:36}
 \end{figure}
 
-The normal force coefficient of a single fin is given by
+The normal force curve slope of a single fin is given by\ednote{From this
+sentence through equation~\eqref{ch2:eq:n92} the text and equations are those
+of Mandell's June 1994 supplement (``Corrections and clarifications to fin
+normal force curve slope equations on page 195''). The 1973 text read ``The
+normal force coefficient of a single fin is given by'' (85)
+$(\CNa)_1 = \AR\bigl(\frac{c_r + c_t}{r_r}\bigr)\bigl(\frac{s}{r_r}\bigr)\big/\bigl[2 + \sqrt{4 + (\AR/\cos\Gamma_c)^{2}}\,\bigr]$
+``while that of a complete set of $N$ fins, where $N$ must be either three or
+four, is'' (86)
+$(\CNa)_T = N\AR\bigl(\frac{c_r + c_t}{2r_r}\bigr)\bigl(\frac{s}{r_r}\bigr)\big/\bigl[2 + \sqrt{4 + (\AR/\cos\Gamma_c)^{2}}\,\bigr]$
+``The airflow about the fins, however, is disturbed by the presence of the
+body with the result that the effective normal force coefficient of a set of
+fins is not equal to the expression given in equation (86). The influence of
+the body is accounted for by postulating an `interference coefficient'
+$K_{T(B)}$ by which (86) is to be multiplied to obtain the effective value of
+the normal force coefficient. If we let $\tau = (s + r_t)/r_t$ then the value
+of the interference coefficient for three- and four-finned configurations is
+given by'' (87) $K_{T(B)} = 1 + 1/\tau$ ``so that the applicable value of the
+normal force coefficient is'' (88) $(\CNa)_{T(B)} = K_{T(B)}(\CNa)_T$. The
+1994 equation~\eqref{ch2:eq:85} has the form of the 1973 (85), but its $\AR$
+is that of the two-fin wing, $4s/(c_r + c_t)$ by~\eqref{ch2:eq:86}, where the
+1973 drawing of Figure~\ref{ch2:fig:36} gave $2s/(c_r + c_t)$. The 1973 (86)
+was $N/2$ times (85), so that with $N = 1$ it gave half the single-fin value;
+the 1994 text keeps that factor, now written out in~\eqref{ch2:eq:n89}, and
+admits six fins, with the interference coefficient~\eqref{ch2:eq:n91}. With
+the new $\AR$, \eqref{ch2:eq:88} and~\eqref{ch2:eq:n89} give
+$(\CNa)_T = N(s/r_r)^{2}\big/\bigl[1 + \sqrt{1 + (2\ell/(c_r + c_t))^{2}}\,\bigr]$;
+the 1973 equations gave
+$\frac{N}{2}(s/r_r)^{2}\big/\bigl[1 + \sqrt{1 + (\ell/(c_r + c_t))^{2}}\,\bigr]$,
+half as much for fins of small aspect ratio. The 1973 (87) and (88) reappear
+as~\eqref{ch2:eq:n90}
+and~\eqref{ch2:eq:n92}. The supplement numbers its eight equations
+(85)--(92); since the 1973 equations that follow keep their numbers
+(89)--(92), and Mandell's correction of 15~February 2022 still cites (90) in
+its 1973 sense (the radial position $\bar{Y}_T$ of the fin \CP), the last
+four are marked (89$'$)--(92$'$) here.}
 \begin{equation}\label{ch2:eq:85}
 (\CNa)_1 = \frac{\AR\left(\dfrac{c_r + c_t}{r_r}\right)\left(\dfrac{s}{r_r}\right)}{2 + \sqrt{4 + \left(\dfrac{\AR}{\cos\Gamma_c}\right)^{2}}}
 \end{equation}
-while that of a complete set of $N$ fins, where $N$ must be either three or
-four, is
+where $\AR$ is the aspect ratio of the wing of span $2s$ that would be
+created if two fins were joined at the root:
 \begin{equation}\label{ch2:eq:86}
-(\CNa)_T = \frac{N\,\AR\left(\dfrac{c_r + c_t}{2r_r}\right)\left(\dfrac{s}{r_r}\right)}{2 + \sqrt{4 + \left(\dfrac{\AR}{\cos\Gamma_c}\right)^{2}}}
+\AR = \frac{4s}{c_r + c_t}
 \end{equation}
-The airflow about the fins, however, is disturbed by the presence of the
-body with the result that the effective normal force coefficient of a set of
-fins is not equal to the expression given in equation~\eqref{ch2:eq:86}. The
-influence of the body is accounted for by postulating an ``interference
-coefficient'' $K_{T(B)}$ by which \eqref{ch2:eq:86} is to be multiplied to
-obtain the effective value of the normal force coefficient. If we let
+If we define the distance from the midpoint of the fin root chord to the
+midpoint of the fin tip chord as $\ell$, we have
+\begin{equation}\label{ch2:eq:87}
+\ell = \frac{s}{\cos\Gamma_c}
+\end{equation}
+Equations~\eqref{ch2:eq:86} and~\eqref{ch2:eq:87} can be used to cast
+equation~\eqref{ch2:eq:85} into a simpler form. Substituting
+\begin{equation*}
+\frac{4s}{c_r + c_t}\quad\text{for $\AR$ and}\quad\frac{\ell}{s}\quad\text{for}\quad\frac{1}{\cos\Gamma_c}\quad\text{in equation~\eqref{ch2:eq:85}, we obtain}
+\end{equation*}
+\begin{equation}\label{ch2:eq:88}
+(\CNa)_1 = \frac{2\left(\dfrac{s}{r_r}\right)^{2}}{1 + \sqrt{1 + \left(\dfrac{2\ell}{c_r + c_t}\right)^{2}}}
+\end{equation}
+The normal force curve slope of a complete set of $N$ fins, where $N$ must be
+three, four, or six, is
+\begin{equation*}\tag{89$'$}\label{ch2:eq:n89}
+(\CNa)_T = \frac{N}{2}(\CNa)_1
+\end{equation*}
+The airflow about the fins, however, is altered by the presence of the body so
+that the effective normal force curve slope of the fins in the presence of the
+body is not exactly equal to the value predicted by
+equation~\eqref{ch2:eq:n89}. The influence of the body is accounted for by
+postulating an ``interference coefficient'' $K_{T(B)}$ by which
+\eqref{ch2:eq:n89} is to be multiplied to obtain the effective value of the
+normal force curve slope. If we let
 \begin{equation*}
 \tau = \frac{s + r_t}{r_t}
 \end{equation*}
 then the value of the interference coefficient for three- and four-finned
 configurations is given by
-\begin{equation}\label{ch2:eq:87}
+\begin{equation*}\tag{90$'$}\label{ch2:eq:n90}
 K_{T(B)} = 1 + \frac{1}{\tau}
-\end{equation}
-so that the applicable value of the normal force coefficient is
-\begin{equation}\label{ch2:eq:88}
+\end{equation*}
+and its value for six-finned configurations is
+\begin{equation*}\tag{91$'$}\label{ch2:eq:n91}
+K_{T(B)} = 1 + \frac{1}{2\tau}
+\end{equation*}
+so that the applicable value of the normal force curve slope is
+\begin{equation*}\tag{92$'$}\label{ch2:eq:n92}
 (\CNa)_{T(B)} = K_{T(B)}(\CNa)_T
-\end{equation}
+\end{equation*}
 
 The longitudinal position of the \CP{} of any one fin (which is also equal
 to the longitudinal position of the \CP{} of the entire fin assembly) is
@@ -303,11 +436,11 @@ The \CP{} of any radially-symmetrical set of three or more fins, of course,
 lies on the centerline of the rocket and thus has a radial coordinate of
 zero.
 
-Having thus determined the normal force coefficients and longitudinal center
+Having thus determined the normal force curve slopes and longitudinal center
 of pressure locations of all applicable components, we are now in a position
-to compute the normal force coefficient of the complete rocket and the \CP{}
+to compute the normal force curve slope of the complete rocket and the \CP{}
 location of the vehicle considered as a whole. For the total normal force
-coefficient we have
+curve slope we have
 \begin{equation}\label{ch2:eq:91}
 \CNa = (\CNa)_n + (\CNa)_S + (\CNa)_B + (\CNa)_{T(B)}
 \end{equation}
@@ -789,7 +922,10 @@ $D_1$, or $D_2$) will be found to have units of (1/seconds). Radians should
 $\tau_1$ or $\tau_2$) will turn out to have dimensions of seconds. Initial
 amplitudes and phase angles, of course, are in radians.
 
-The coupled and decoupled damping ratios, $\zeta$ and $\zeta_c$, will be
+The coupled and decoupled damping ratios, $\zeta$ and $\zeta_c$,\ednote{The Symbols list and equations~\eqref{ch2:eq:20} and~\eqref{ch2:eq:70} make
+$\zeta_c$ the coupled and $\zeta$ the decoupled damping ratio, so the two
+symbols are named here in the reverse order. Neither the errata nor the
+supplements correct this; the sentence is kept as printed.} will be
 found to be \emph{dimensionless}; like normal force coefficients, they have
 no physical units at all. Moreover, since $C_1$ varies as the \emph{square}
 of airspeed while $C_2$ varies \emph{linearly} with airspeed, you can see

@@ -29,9 +29,10 @@ Version 1 keeps these as scanned images (STYLE.md section 7). A later version ma
 | Chapter 2 Figure 30 | figures/ch2/fig30.png | Y-axis tick labels 0, -\pi/4, -\pi/2, -3\pi/4, -\pi (stacked fractions); curve labels \zeta_c = 0, 2, 1, \sqrt{2}/2, .5, .2; axes \varphi_c (rad), \beta_c |
 | Chapter 2 Figure 31 | figures/ch2/fig31.png | Y-axis tick labels 3/C_1, 2/C_1, 1/C_1, 0 (stacked fractions); curve labels \zeta_c = 0, .2, .5, \sqrt{2}/2, 1, 2; axes AR_c [rad/(dyn-cm)], \beta_c |
 | Chapter 2 Figure 33 | figures/ch2/fig33.png | Dimension formulas (2/3)L, .466L, (1/2)L, (1/3)L for the C.P._n of the four nose shapes |
-| Chapter 2 Figure 36 | figures/ch2/fig36.png | Aspect-ratio formula AR = 2s/(c_r + c_t) at left; half-chord dimensions c_r/2 and c_t/2 (stacked fractions) |
+| Chapter 2 Figure 36 | figures/supplement/ch2-fig36-1994.png (the 1994 replacement; the 1973 figures/ch2/fig36.png goes to the supplement Part) | aspect-ratio formula AR = 4s/(c_r + c_t) at left; dimension labels c_r/2, c_t/2 |
 | Chapter 2 Figure 38 | figures/ch2/fig38.png | Two hand-lettered lines above the drawing: A_r = \pi r_r^2 and 'Static stability margin in calibers = (\bar{Z} - \bar{W})/d_max' |
 | Chapter 2 Figure 42 | figures/ch2/fig42.png | Label 'Planform area of one fin = A_f' (short definitional equation) |
 | Chapter 2 Figure 45 | figures/ch2/fig45.png | Two formula lines at top: 'Deflection angle (rad) = \alpha^\circ/57.3' and 'Moment (dyn-cm) = M x 980 x R' |
 | Chapter 2 Figure 46 | figures/ch2/fig46.png | Panel (a) data table with two columns, Moment (10^5 dyn-cm) and Deflection angle (rad), 11 rows (0.0/.0000 to 8.125/.2315); panel (c) formula C_1 = (5 x 10^5)/0.1 = 5 x 10^6 dyn-cm |
 | Chapter 2 Figure 49 | figures/ch2/fig49.png | Y-axis tick labels 2/C_1, 4/C_1, 6/C_1, 8/C_1 (stacked fractions, rotated with the axis); axes AR_res [rad/(dyn-cm)], \zeta |
+| Chapter 2 Figure 52 | figures/supplement/ch2-fig52-2022.png | a spreadsheet chart (2022): axis titles "Coupled Damping Ratio zeta_c" and "Coupled Frequency Ratio beta_c = (omega_z/omega_nc)" and tick values |

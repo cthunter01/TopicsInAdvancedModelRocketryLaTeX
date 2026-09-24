@@ -1,6 +1,8 @@
 % chapters/ch2-sec3a.tex -- 3. Solutions to the Dynamical Equations for Particular Cases of
 % Interest; 3.1 Dynamical Behavior at Zero Roll Rate; 3.1.1 Generalized Homogeneous Response;
 % 3.1.2 Complete Response to Step Input (PDF 122-149, up to the 3.1.3 heading)
+% Corrections applied (corrections/ch2.md): items 1 (Figure 13 caption, silent) and 2 (equation
+% (30)) from the 1973 errata sheet (PDF 664); doubt notes D3-D5 and D7 (D6 merged into item 2).
 \section{Solutions to the Dynamical Equations for Particular Cases of Interest}\label{ch2:sec:3}
 
 Having given the reader some background from which to proceed, I am going to
@@ -67,8 +69,10 @@ time reckoned in seconds), and $\varphi$ is the \emph{phase angle}, or simply
 measure, is approximately equal to 57.3 degrees. The formulae for the time
 derivatives of the function described by equation~\eqref{ch2:eq:15}
 are:\ednote{The cosine term of the first-derivative formula is printed with the
-factor $A\omega D$; differentiating equation~\eqref{ch2:eq:15} gives $A\omega$,
-which is the factor used in the substituted expression that follows.}
+factor $A\omega D$. The factor $A\omega$ is evidently meant: it is what differentiating
+equation~\eqref{ch2:eq:15} gives, and both the second-derivative formula and the
+substituted expression that follows are computed with it. Neither the errata
+nor the supplements correct this; the formula is kept as printed.}
 \begin{align*}
 \frac{d\alpha_X}{dt} &= -AD e^{-Dt}\sin(\omega t + \varphi)
   + A\omega D e^{-Dt}\cos(\omega t + \varphi)\\
@@ -299,8 +303,11 @@ expression under the radical sign is zero and
 D = \frac{C_2}{2 I_L} \qquad \text{as before.}
 \end{equation*}
 If you substitute $C_2/I_L$ for $D$ in the first equation, you will find that
-the terms involving $A_2$ sum to zero.\ednote{Printed ``$C_2/I_L$''; the value
-of $D$ just obtained is $C_2/2I_L$.} It is then possible to remove the
+the terms involving $A_2$ sum to zero.\ednote{The 1973 text reads ``substitute
+$C_2/I_L$ for $D$''. The value of $D$ just obtained, $C_2/2I_L$, is evidently
+meant: only with it do the terms involving $A_2$ sum to zero and the next
+display follow. Neither the errata nor the supplements correct this; the text is
+kept as printed.} It is then possible to remove the
 now-common factor of $A_1$ and obtain
 \begin{equation*}
 C_1 - \frac{C_2^{2}}{4 I_L} = 0
@@ -364,8 +371,10 @@ response. The derivative formulae are
   + \frac{A_2}{\tau_2^{2}} e^{-\frac{t}{\tau_2}}
 \end{align*}
 Substituting these expressions in the dynamical equation gives\ednote{The first
-term is printed with a bare $A$ where the pattern of the other terms calls for
-$A_1$.}
+term of this display is printed with a bare $A$. The coefficient $A_1$ is evidently meant, as in
+the second-derivative formula above and in the other terms in
+$e^{-\frac{t}{\tau_1}}$. Neither the errata nor the supplements correct this;
+the display is kept as printed.}
 \begin{align*}
 &I_L \frac{A}{\tau_1^{2}} e^{-\frac{t}{\tau_1}} + I_L \frac{A_2}{\tau_2^{2}} e^{-\frac{t}{\tau_2}}
   - C_2 \frac{A_1}{\tau_1} e^{-\frac{t}{\tau_1}} - C_2 \frac{A_2}{\tau_2} e^{-\frac{t}{\tau_2}}\\
@@ -401,8 +410,10 @@ way, the condition $\frac{C_1}{I_L} > \frac{C_2^{2}}{4 I_L^{2}}$ for the
 validity of the sinusoidal solutions was that the square root of a negative
 number not occur, and that there be \emph{both} a nonzero $\omega$ and a value
 of $D$. The constants $A_1$ and $A_2$ in equation~\eqref{ch2:eq:25}\ednote{The
-constants $A_1$ and $A_2$ appear in equation~\eqref{ch2:eq:24};
-equation~\eqref{ch2:eq:25} gives $\tau_1$ and $\tau_2$.} are set by
+1973 text reads ``equation (25)''. Equation~\eqref{ch2:eq:24}, in which the
+constants $A_1$ and $A_2$ appear, is evidently meant;
+equation~\eqref{ch2:eq:25} gives $\tau_1$ and $\tau_2$. Neither the errata nor
+the supplements correct this; the reference is kept as printed.} are set by
 the initial conditions. Writing $\alpha_{X0}$ and $\Omega_{X0}$ by setting
 $t = 0$ in the expressions for $\alpha_X$ and $d\alpha_X/dt$, we obtain
 \begin{align*}
@@ -433,9 +444,7 @@ motion.
   response. The yaw angle returns to zero more slowly than in the critically
   damped case, and in the limit of infinite damping ratio the rocket would
   instantly lose its initial yaw rate and remain ``stuck'' at the initial yaw
-  angle ${}_{X0}$\edcap{The typescript prints only the typed subscript ``xo'',
-  preceded by a blank space; the hand-lettered $\alpha$ was never added.} as if
-  encased in very thick glue or tar.}
+  angle $\alpha_{X0}$ as if encased in very thick glue or tar.}
   \label{ch2:fig:13}
 \end{figure}
 
@@ -553,11 +562,13 @@ K = M_s/C_1
 \end{equation}
 The complete step-response for the cases in which
 $\frac{C_1}{I_L} > \frac{C_2^{2}}{4 I_L^{2}}$ is therefore\ednote{Equation~\eqref{ch2:eq:30}
-is printed without the particular-response term $M_s/C_1$ of
-equation~\eqref{ch2:eq:29}; the initial-condition expressions that follow, and
-equations~\eqref{ch2:eq:33} and~\eqref{ch2:eq:35}, include it.}
+corrected per the 1973 errata sheet; the 1973 equation read
+$\alpha_X = A e^{-Dt}\sin(\omega t + \varphi)$, without the particular-response
+term $M_s/C_1$ of equation~\eqref{ch2:eq:29}, which the initial-condition
+expressions that follow and equations~\eqref{ch2:eq:33} and~\eqref{ch2:eq:35}
+include.}
 \begin{equation}\label{ch2:eq:30}
-\alpha_X = A e^{-Dt}\sin(\omega t + \varphi)
+\alpha_X = A e^{-Dt}\sin(\omega t + \varphi) + \frac{M_s}{C_1}
 \end{equation}
 where $D$ is given by equation~\eqref{ch2:eq:16} and $\omega$ by
 equation~\eqref{ch2:eq:17}. As in Section~\ref{ch2:sec:3.1.1}, the values of
