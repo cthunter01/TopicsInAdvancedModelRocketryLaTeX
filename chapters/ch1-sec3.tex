@@ -1,1 +1,120 @@
-% chapters/ch1-sec3.tex -- unit not yet transcribed
+% chapters/ch1-sec3.tex -- Chapter 1, Section 3: Description of the Perturbing Forces
+% Source: 1973 typescript, PDF pages 73-80 (book pages 43-50).
+% Unit boundary: starts at the "3." heading on PDF 73; the paragraph above that heading
+% ("In Figure 8 a complete vector diagram ...") belongs to ch1-sec2b (STYLE.md rule 2).
+% Ends before the References heading on PDF 81.
+
+\section{Description of the Perturbing Forces}\label{ch1:sec:3}
+
+This section will consider those forces encountered by a model rocket in flight that produce
+moments which rotate the model about its center of gravity. The changes in angle of attack
+produced by such rotations result, as we saw in Section~\ref{ch1:sec:2.3}, in increased
+aerodynamic drag and also give rise to side forces which, if they persist for a long enough
+time, can seriously disturb the rocket's flight path. The \emph{perturbing forces} generally
+arise from irregularities in the construction of the model, launching and staging effects, and
+local wind phenomena---all of which must be allowed for in some degree when designing a model.
+Model rockets must be designed to respond as little as possible to the perturbing forces, and to
+return to straight and true flight as soon as possible after the disturbance has passed.
+Accordingly, the analyses of Chapters~\ref{ch2} and~\ref{ch4} will present in detail information
+useful in designing disturbance-resistant rockets.
+
+% Figure 8 is printed on PDF 74, between the two halves of the paragraph above. The paragraph
+% that first refers to it is the boundary paragraph of ch1-sec2b, so the figure is placed at the
+% start of this unit (inventory/ch1.csv assigns Figure 8 to ch1-sec3).
+% Audit decision: ch1-sec2b.tex carries only \ref{ch1:fig:8} (no figure environment), so this is
+% the sole copy; it stays here so chapter numbering of Figures 9 and 10 is unaffected.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch1/fig08.png}
+  \caption{Forces on a model rocket in flight. Thrust, drag, weight, and side force, as well as
+    the velocity vector, have been shown for a rocket in general flight attitude (that is, the
+    rocket is neither flying vertically nor at zero angle of attack). Wind-free conditions have
+    been assumed.}
+  \label{ch1:fig:8}
+\end{figure}
+
+\subsection{Aerodynamic Disturbances}\label{ch1:sec:3.1}
+
+Aerodynamic effects that tend to rotate a rocket vehicle about its \CG\ can arise from winds,
+misaligned fins or other components, ``fluttering'' of the fins, or protrusions such as launch
+lugs which cause asymmetries in the vehicle's shape. Winds may either blow continuously or arise
+in momentary gusts. In Chapter~\ref{ch2} it will be shown that a constant wind that persists for
+a long period of time can produce \emph{weathercocking}, a phenomenon in which the model tends to
+tip toward the direction from which the wind is coming and fly off at an angle determined by the
+vector sum of the wind velocity and the vertical velocity of the rocket at the time it began to
+experience the wind. Weathercocking is illustrated in Figure~\ref{ch1:fig:9}. A \emph{gust} of
+wind, on the other hand, will succeed in temporarily deflecting the vehicle and will generally
+cause it to oscillate in rotation about its \CG, with its angle of attack passing back and forth
+through zero.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch1/fig09.png}
+  \caption{Weathercocking. The rocket leaves the launcher (a) at vertical velocity $\vec{V}$ and
+    encounters a horizontal wind of velocity $\vec{U}$. It then tends to fly off in the direction
+    of the vector $\vec{V} + (-\vec{U})$ and ``weathercocks'' (b), or flies into the wind. This is
+    because the wind acts through the center of pressure which, for any stable rocket, is behind
+    the center of gravity.}
+  \label{ch1:fig:9}
+\end{figure}
+
+Fin flutter is a \emph{periodic} force. That is, the fins are undergoing rapid vibrations from
+side to side (sometimes these vibrations are audible as a whirr, or buzz) which induce forces and
+moments on the model that are \emph{sinusoidal} (i.e., if their magnitudes were graphed versus
+time the resulting graphs would look like sine waves). Flutter will be present in fins which are
+too thin to possess sufficient rigidity; it is evidence of poor design since it is perfectly
+possible (indeed, \emph{easy}) to design fins which do not flutter at all. If you do encounter a
+case of fin flutter, though, you will want your rocket to survive it so you will have a chance to
+replace the model's fins. Consequently, the rocket as a whole should be designed for minimal
+response to any possible flutter.
+
+Misaligned fins or other components and asymmetrical surface protrusions will cause forces and
+moments which are constant in direction in a rocket that is not spinning (or ``rolling'') about
+its centerline, and which are sinusoidal in nature in one that is spinning. The \emph{angular
+frequency} of the sine functions in the latter case is equal to the roll rate of the vehicle in
+radians per second.
+
+\subsection{Mechanical Disturbances}\label{ch1:sec:3.2}
+
+Mechanical perturbing forces and moments are distinguished from aerodynamic disturbances in that
+they in no way depend upon the aerodynamic coupling of the point-mass motion to the model's
+rigid-body rotations, and that they do not originate from any aerodynamic sources at all.
+Mechanical perturbations would arise even if one attempted to fly a model rocket in the hard
+vacuum of outer space. Examples of mechanical disturbances are those caused by thrust
+misalignment due to imperfect engine mounting or nozzle abnormalities, propulsive instabilities
+resulting in an oscillating thrust vector, force transients arising as the vehicle leaves the
+launch rod or tower, and forces due to a staging ignition sequence.
+
+Mechanical disturbances arising from launch departure effects or staging are unidirectional in
+nature and are of extremely short duration, while those arising from thrust misalignment or
+thrust vector oscillation are of relatively long duration. Thrust oscillation effects are
+sinusoidal with an angular frequency determined by the rapidity of the oscillation itself. In the
+case of a spinning rocket the frequency of the thrust oscillation will be superimposed upon the
+model's roll rate. A constant thrust misalignment will be unidirectional in nature if the vehicle
+is not spinning, and sinusoidal with an angular frequency equal to the roll rate if it is.
+
+All the perturbing effects mentioned here and in Section~\ref{ch1:sec:3.1} will be discussed in
+detail, modeled mathematically, and treated as input moments (``inputs'' or ``forcing
+functions'') causing the model to undergo various rigid-body rotations in Chapter~\ref{ch2}.
+While reading Chapter~\ref{ch2} you may wish to consult Figure~\ref{ch1:fig:10}, in which a
+number of situations which will produce aerodynamic or mechanical disturbances have been
+illustrated.
+
+% Figure 10: caption printed on PDF 78, six-panel drawing on PDF 79 (between book pages 47 and
+% 50, i.e. in the middle of the first paragraph of 3.2). Placed after the paragraph that first
+% refers to it, per STYLE.md rule 7.
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch1/fig10.png}
+  \caption{Examples of aerodynamic and mechanical disturbances. A horizontal wind (a) produces
+    step forcing of constant intensity, while mismounted fins (b) cause a step disturbance of
+    intensity proportional to the square of the airspeed. If only one fin is canted the rocket
+    will spin, producing roll-coupled sinusoidal forcing. Torsionally vibrating fins (c) produce
+    sinusoidal forcing of intensity proportional to the square of the airspeed. A mismounted or
+    malfunctioning engine (d) produces step forcing proportional to the thrust level. Launch rod
+    whip at departure (e) causes an impulse disturbance, as does staging (f). Since the lower
+    stage has been blown to the right by the blow-through/ignition sequence, the base of the upper
+    stage is pushed to the left. Cases (a), (b), and (c) are aerodynamic disturbances, while (d),
+    (e), and (f) are mechanical disturbances.}
+  \label{ch1:fig:10}
+\end{figure}

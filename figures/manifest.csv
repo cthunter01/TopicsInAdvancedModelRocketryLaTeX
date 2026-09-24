@@ -1,1 +1,12 @@
 id,pdf_page,x0,y0,x1,y1,kind,owner,output,notes
+ch1-fig01,40,12.0,18.0,487.2,517.2,line,ch1-sec1,figures/ch1/fig01.png,auto
+ch1-fig02,44,12.0,18.0,250.0,340.7,line,ch1-sec2a,figures/ch1/fig02.png,auto; x1 tightened by hand to exclude scanner specks right of the artwork
+ch1-fig03,47,12.0,18.0,487.2,391.3,line,ch1-sec2a,figures/ch1/fig03.png,auto
+ch1-fig04a,54,12.0,18.0,487.2,241.6,line,ch1-sec2a,figures/ch1/fig04a.png,"hand: panels a-b, caption underneath excluded"
+ch1-fig04b,55,12.0,18.0,487.2,300.0,line,ch1-sec2a,figures/ch1/fig04b.png,"hand: panels c-d, no caption on this page"
+ch1-fig05,58,12.0,18.0,487.2,424.0,line,ch1-sec2a,figures/ch1/fig05.png,auto
+ch1-fig06,66,12.0,18.0,486.7,190.1,line,ch1-sec2b,figures/ch1/fig06.png,auto
+ch1-fig07,71,12.0,18.0,260.0,224.3,line,ch1-sec2b,figures/ch1/fig07.png,auto; x1 tightened by hand to exclude scanner specks right of the artwork
+ch1-fig08,74,12.0,18.0,487.2,225.1,line,ch1-sec3,figures/ch1/fig08.png,auto
+ch1-fig09,76,12.0,18.0,350.0,242.8,line,ch1-sec3,figures/ch1/fig09.png,auto; x1 tightened by hand to exclude scanner specks right of the artwork
+ch1-fig10,79,12.0,18.0,494.4,440.0,line,ch1-sec3,figures/ch1/fig10.png,"hand: caption is on PDF 78, artwork on PDF 79 (MediaBox 506.4x713.76)"

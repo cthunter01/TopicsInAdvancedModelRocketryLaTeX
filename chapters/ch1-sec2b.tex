@@ -1,1 +1,276 @@
-% chapters/ch1-sec2b.tex -- unit not yet transcribed
+% chapters/ch1-sec2b.tex -- 2.2 Weight; 2.3 Drag and Side Force (PDF 61-73)
+\subsection{Weight}\label{ch1:sec:2.2}
+
+The \emph{weight} of a model rocket is the force exerted on it by the Earth's
+gravitational field. A rocket of mass $m$ will have a weight given by
+\begin{equation}\label{ch1:eq:8}
+\vec{w} = m\vec{g}
+\end{equation}
+where, as before, $\vec{g}$ is the (vector) acceleration of the Earth's gravity
+field. The weight force always points in the direction of the gravity field,
+which in this case is the center of the Earth---or ``straight down'' along the
+local vertical. Strictly speaking, the value of $\vec{g}$ decreases with
+increasing altitude above the Earth's surface according to the relation
+\begin{equation}\label{ch1:eq:9}
+\frac{g}{g_0} = \left[\frac{R_0}{R}\right]^{2}
+\end{equation}
+where $R_0$ is the radius of the Earth, $g_0$ is the magnitude of $\vec{g}$ at
+the Earth's surface, $R$ is any radius greater than $R_0$ and $g$ is the
+magnitude of $\vec{g}$ at that radius. Even a 20,000-foot model rocket flight
+(about 6,000 meters---much higher than any ever officially confirmed), however,
+would result in an apogee value of $R$ only \emph{one tenth of one percent}
+greater than $R_0$. The effect of altitude on the weight of a model rocket is,
+therefore, wholly negligible. In all the calculations in this book $\vec{g}$
+will be taken to have the magnitude $g_0$.
+
+The weight of a model rocket \emph{does} vary during its flight, though. This
+in-flight weight variation is due to the expulsion of mass from the rocket
+motor as it produces thrust. In Section~\ref{ch1:sec:2.1} the relationship
+between thrust and the rate of mass expulsion was established as
+equation~\eqref{ch1:eq:2}. Equation~\eqref{ch1:eq:2} can now be used to
+determine the model's mass as a function of time in the form
+\begin{equation}\label{ch1:eq:10}
+m = m_0 - \int_{0}^{t} \frac{F(t)}{c}\,dt
+\end{equation}
+When the engine ceases burning at time $t_b$, the mass of the rocket is
+\begin{equation}\label{ch1:eq:11}
+m_b = m_0 - \int_{0}^{t_b} \frac{F(t)}{c}\,dt \qquad \text{or, since}
+\end{equation}
+\begin{equation}\label{ch1:eq:12}
+m_f = \int_{0}^{t_b} \frac{F(t)}{c}\,dt
+\end{equation}
+where $m_f$ is the total mass of propellant in the engine before ignition,
+\begin{equation}\label{ch1:eq:13}
+m_b = m_0 - m_f
+\end{equation}
+Accordingly, the weight of the rocket decreases continuously during the engine
+burn and the model is lighter after burnout than at ignition. In large guided
+missiles and space boosters the propellant constitutes most of the liftoff mass
+of the vehicle, so that such a rocket at burnout has only a small fraction of
+the mass it had at ignition. In model rockets, however, the mass change due to
+the expenditure of the propellant is relatively slight. This fact, as will be
+shown in Chapter~\ref{ch4}, considerably simplifies the calculation of model
+rocket altitude performance.
+
+Unlike the thrust, the direction of the weight vector remains invariant when
+the rocket rotates or ``tips'' away from the vertical. The weight of a model
+rocket, or for that matter any object, appears to originate from a point called
+the \emph{center of mass}, which for all practical purposes within the scope of
+this book may be taken as identical to the \emph{center of gravity}, or
+\emph{balance point}: the point by which the object may be suspended without
+showing any tendency to rotate in any direction. All rotations of a model in
+flight occur about the \CG, and the weight vector always acts through the \CG{}
+downward along the local vertical.
+
+\subsection{Drag and Side Force}\label{ch1:sec:2.3}
+
+Probably the most interesting, and certainly the most complex and difficult to
+calculate, force acting on a body moving through the atmosphere is the
+aerodynamic resistance to its passage, which physicists and engineers call
+\emph{drag}. The drag of a body is a function of the \emph{density} and
+\emph{viscosity} of the medium through which it moves, its \emph{size} and
+\emph{shape}, the \emph{velocity} with which it moves, the \emph{quality of its
+finish}, its \emph{detailed surface characteristics}, and its \emph{angle of
+attack}.
+
+Detailed discussions of the physical mechanisms by which all these factors
+influence the drag of a model rocket will be presented in Chapter~\ref{ch3}.
+For the present it will be enough to write down just a few of the most
+fundamental facts about drag as it pertains to model rockets. First of all, the
+total drag on a model rocket moving through air of density $\rho$ at a velocity
+of magnitude $v$ is given by
+\begin{equation}\label{ch1:eq:14}
+D = \tfrac{1}{2}\rho \CD A_r v^{2}
+\end{equation}
+where $A_r$ is a \emph{reference area} which is usually taken to be the
+cross-sectional area of the largest diameter body tube used in the rocket and
+$\CD$ is the \emph{drag coefficient}, a dimensionless parameter which depends on
+the shape of the model and its angle of attack, and also (more generally) on
+the Reynolds number at which it is operating.
+
+The \emph{angle of attack}, usually denoted by the symbol $\alpha$, is the angle
+between the instantaneous velocity vector of the model's \CG{} with respect to
+the air and the orientation of the rocket's longitudinal axis. The concept of
+angle of attack is illustrated in Figure~\ref{ch1:fig:6}. As the angle of
+attack of a model rocket increases from zero its drag coefficient also
+increases, since the effective area normal---that is, perpendicular---to the
+airflow which it presents becomes larger than the reference area $A_r$ used in
+calculating the drag, and the effective shape of the rocket becomes more
+difficult for the airflow to negotiate.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch1/fig06.png}
+  \caption{Angle of attack. The direction of the rocket's longitudinal axis is
+  deflected through the angle $\alpha$ from the instantaneous velocity vector
+  $\vec{V}$. $\alpha$ is referred to as the ``angle of attack''. This diagram
+  assumes that there is no horizontal wind, so that the rocket's velocity with
+  respect to the air is the same as its velocity with respect to the ground.}
+  \label{ch1:fig:6}
+\end{figure}
+
+The Reynolds number, named for the English physicist Osborne Reynolds
+(1842--1912), is usually denoted by $R_e$ and is a dimensionless aerodynamic
+scaling factor given by the relation
+\begin{equation}\label{ch1:eq:15}
+R_e = \frac{\rho}{\mu} vL
+\end{equation}
+where (again) $\rho$ is the density of the air, $\mu$ is the viscosity of the
+air, $v$ is the magnitude of the velocity vector and $L$ is the length of the
+rocket or other object of interest. There is also a \emph{kinematic viscosity},
+defined as
+\begin{equation}\label{ch1:eq:16}
+\nu = \frac{\mu}{\rho}
+\end{equation}
+so that the Reynolds number is sometimes written as
+\begin{equation}\label{ch1:eq:17}
+R_e = \frac{vL}{\nu}
+\end{equation}
+The concept of viscosity will be more fully discussed and explained in
+Chapter~\ref{ch3}. For the present, the importance of
+equations~\eqref{ch1:eq:15} and~\eqref{ch1:eq:17} can be summed up in two
+statements:
+\begin{enumerate}[label=(\alph*)]
+  \item The flow about two geometrically similar objects is \emph{dynamically
+  similar} if the Reynolds numbers for the two cases are identical; and
+  \item The Reynolds number expresses the ratio of \emph{inertial} force to
+  \emph{viscous} force in any given fluid-flow situation. The effects of
+  \emph{viscosity} predominate at Reynolds numbers less than 1.0, while
+  \emph{inertial} effects predominate at Reynolds numbers greater than 1.0.
+\end{enumerate}
+Statement (a) is important to the field of aerodynamic testing in which models
+are used, such as wind-tunnel testing. It means, for instance, that a
+quarter-scale model of an airplane placed in a wind tunnel will yield accurate
+information about the full-scale prototype if the tunnel airspeed is maintained
+at four times the flight speed of the prototype, so that the product $vL$ is
+the same for the two cases (or if the tunnel is pressurized or some other fluid
+than air is used, so that the kinematic viscosity is decreased and a lower
+speed may be used). Conversely, data taken on a model rocket placed in a wind
+tunnel which can only generate an airspeed of 5 meters per second may
+\emph{not} apply to that same model when it is flying 150 meters per second.
+
+Statement (b) is important when considering the effect of varying Reynolds
+number on the drag coefficient. The density of sea-level air is
+$1.225 \times 10^{-3}$ gram/cm.$^{3}$, while its viscosity at room temperature
+($18\dg$ C) is $1.827 \times 10^{-4}$ gram/(cm.-sec.). The unit combination
+gram/(cm.-sec.) is also known as the \emph{poise}. In any case, this makes the
+value of $\rho/\mu$ in CGS units equal to 6.69 sec./cm.$^{2}$. With the length
+of a typical model rocket being about 30 centimeters, a flight velocity of 150
+meters/sec. (15,000 cm./sec.) produces a Reynolds number of about
+$3 \times 10^{6}$. An airspeed of 5 meters/second, on the other hand, gives an
+$R_e$ of only $1 \times 10^{5}$. Both numbers are considerably greater than one,
+of course, so that inertial forces are much greater than viscous forces in all
+cases involving model rockets. Still, the two cases differ by more than an
+order of magnitude, so that viscous effects are \emph{thirty times} more
+important in the wind-tunnel test than in flight. Consequently, the flow
+behavior observed in the wind-tunnel test may be different from that actually
+encountered in flight. The drag coefficient, in particular, may be somewhat
+different.
+
+Each component of a model rocket---nosecone, body tube, fins, and so
+on---contributes in some measure to the overall drag on the model, and hence to
+its drag coefficient. Each contributes both \emph{pressure drag} due to the
+effect of its shape in displacing the airflow pattern about the rocket and
+\emph{friction drag} due to the \emph{viscous shearing stress}, or
+``friction'', of the air directly adjacent to its lateral surfaces. The effect
+of the components in modifying the flow about each other also produces a small
+amount of additional drag, called the \emph{interference drag}. Changes in
+Reynolds number over a great enough range can change the value of the overall
+drag coefficient through the phenomenon of \emph{transition}, which alters the
+characteristics of the airflow about the rocket. At lower Reynolds numbers
+(less than $5 \times 10^{5}$), where viscous forces are more important, the
+flow in the \emph{boundary layer} directly adjacent to the model is likely to
+be arranged in neat, smooth, microscopically-thin layers and is thus said to be
+\emph{laminar}. At higher Reynolds numbers (greater than $5 \times 10^{6}$) the
+importance of viscosity diminishes and the boundary layer is likely to undergo
+transition and become \emph{turbulent}; the once-smooth layers mixing and
+swirling down the side of the model in a rough, chaotic manner. The
+\emph{friction} drag of an object with a turbulent boundary layer is much
+\emph{higher} than that of one with a laminar boundary layer, but a turbulent
+boundary layer follows the contour of an object's surface better than a laminar
+one and is less likely to \emph{separate} from the surface, so it may
+\emph{lower} the \emph{pressure} drag. Detailed discussions of precisely how
+much Reynolds number changes, with their associated transition phenomena, alter
+a model rocket's drag coefficient will be presented in Chapter~\ref{ch3}. The
+present brief discussion should be sufficient to give you a general idea of why
+the Reynolds number is important and how it can change the drag coefficient.
+Over the range of $R_e$ usually encountered in practice, values of $\CD$ for
+most model rockets range from 0.35 to about 1.0, averaging 0.7 to 0.75 for
+sport rockets of average design and finish quality.
+
+Chapter~\ref{ch3} will also present a thorough treatment of methods for
+calculating how a model rocket's drag coefficient increases with angle of
+attack. A slightly different approach, but one which gives very nearly the same
+numerical results, will be used in Chapter~\ref{ch4} for determining the effect
+of dynamic oscillations (``wobbling'' of the rocket on the way up) on a model's
+maximum altitude. According to this treatment, the coefficient of drag at zero
+angle of attack is written $\CDo$. A constant $k$ can then be defined such that
+\begin{equation}\label{ch1:eq:18}
+k \equiv \tfrac{1}{2}\rho A_r \CDo
+\end{equation}
+Then one can represent the drag as a function of angle of attack by
+\begin{equation}\label{ch1:eq:19}
+D = \left\{k + \epsilon f(\alpha)\right\} v^{2}
+\end{equation}
+where $\epsilon$ is a constant and $f(\alpha)$ is some function of the angle of
+attack that decreases to zero as the angle of attack itself goes to zero.
+According to the method of analysis developed by James Barrowman, which is
+discussed in detail in Chapter~\ref{ch2}, a rocket flying at a nonzero angle of
+attack experiences a \emph{normal force} (i.e., one perpendicular to the
+model's centerline) whose magnitude is given by
+\begin{equation}\label{ch1:eq:20}
+N = \tfrac{1}{2}\rho C_{n\alpha} A_r v^{2}
+\end{equation}
+where $C_{n\alpha}$ is the \emph{normal force coefficient}, whose computation by
+the Barrowman method is described in Chapter~\ref{ch2}. The component of force
+$N\sin\alpha$ is an additional contribution to the \emph{drag}, while the
+component $N\cos\alpha$ is a \emph{side force} tending to deflect the rocket's
+path by causing an acceleration component normal to the current direction of
+flight. The resolution of the normal force is shown in Figure~\ref{ch1:fig:7}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch1/fig07.png}
+  \caption{Resolution of normal force into side force and ``drag due to
+  lift''. The normal force and its components are considered to act through the
+  center of pressure. $\vec{N}$ is perpendicular to the longitudinal axis of the
+  rocket, $\vec{S}$ is perpendicular to the velocity vector, and $\vec{D}_1$ is
+  parallel to the velocity vector. A case of no wind has again been assumed.}
+  \label{ch1:fig:7}
+\end{figure}
+
+Now at small angles of attack (less than about $15\dg$) $\sin\alpha$ is very
+nearly equal to the value of $\alpha$ itself in \emph{radians} (one radian
+equals $57.3\dg$), while $\cos\alpha$ is very nearly equal to 1.0. Accordingly,
+one can make the \emph{small-angle approximations}
+\begin{align}
+N\sin\alpha &\cong N\alpha \label{ch1:eq:21}\\
+S &\equiv N\cos\alpha \label{ch1:eq:22}\\
+  &\cong N \notag
+\end{align}
+where $S$ denotes the magnitude of the side force. Now by inspection of
+equations~\eqref{ch1:eq:19}, \eqref{ch1:eq:20}, and~\eqref{ch1:eq:21}, one
+might be tempted to deduce that
+\begin{equation*}
+\epsilon = \tfrac{1}{2}\rho C_{n\alpha} A_r \qquad \text{and}
+\end{equation*}
+\begin{equation*}
+f(\alpha) = \alpha^{2}
+\end{equation*}
+Unfortunately, things are not quite that simple. The drag increase due to the
+normal force is only one of several contributions to the increase in drag
+produced by a nonzero angle of attack. As explained in Chapter~\ref{ch3},
+viscous cross-flow and increased interference effects cause the increase in
+drag due to angle of attack to be somewhat greater than one would predict from
+Barrowman analysis alone. It will, however, be found quite accurate to
+represent $f(\alpha)$ by $\alpha^{2}$, and this property will be used in
+Chapter~\ref{ch4} to estimate the effects of the oscillatory responses to
+various in-flight perturbations on altitude capability.
+
+In Figure~\ref{ch1:fig:8} a complete vector diagram of all the forces
+influencing the center-of-mass motion of a model rocket in flight is presented.
+The making of such a drawing, called a \emph{free-body diagram}, is one of the
+fundamental steps in the solution of any problem in statics or dynamics since
+it enables one to readily visualize all the components of the forces required
+to write down the equations of motion. You may find it helpful to consult
+Figure~\ref{ch1:fig:8} of this chapter again when reading Chapter~\ref{ch4}.
