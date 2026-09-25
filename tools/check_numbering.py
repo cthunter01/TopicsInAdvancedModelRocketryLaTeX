@@ -38,6 +38,9 @@ checks 1-2 but still get the source checks 4-7):
   6  no \\newcommand, \\renewcommand, \\def, \\let, \\usepackage, \\DeclareRobustCommand
      (or close relatives such as \\gdef, \\providecommand, \\newenvironment) in chapters/*.tex
   7  \\draftnote occurrences per unit file (report only)
+  9  front and back matter: every manifest output whose owner is "front" or "supplement" is included
+     by \\includegraphics exactly once across frontmatter/*.tex and backmatter/**/*.tex, and every
+     \\includegraphics path there exists on disk
   8  the log: undefined references/citations, multiply defined labels, duplicate PDF
      destinations (pdfTeX "destination with the same identifier", e.g. a \\tag inside a numbered
      equation, which sends links to the wrong equation) and TeX errors fail;
@@ -619,6 +622,8 @@ def main(argv=None):
         try:
             meta = json.loads(chapters_json.read_text(encoding="utf-8"))
             for ch, info in meta.items():
+                if not re.fullmatch(r"ch\d+", ch):
+                    continue            # "front", "back", "supplement": prose_diff ranges, not chapters
                 chapters.add(ch)
                 if isinstance(info, dict) and info.get("title"):
                     titles[ch] = info["title"]
@@ -837,6 +842,30 @@ def main(argv=None):
             log_path = ROOT / "build" / "main.log"
         status, summary, details = check_log(log_path, args.overfull, args.tolerate_undefined)
         report.add(section, 8, "log: references, labels, boxes", status, summary, details)
+
+        # check 9: front and back matter figures (only for a full build of main.tex)
+        if not requested and root_aux.name == "main.aux":
+            fb_files = sorted((ROOT / "frontmatter").glob("*.tex")) + sorted((ROOT / "backmatter").rglob("*.tex"))
+            fb_includes, details, failed = [], [], False
+            for p in fb_files:
+                text = strip_comments(p.read_text(encoding="utf-8", errors="replace"))
+                for line, path in find_includegraphics(text):
+                    fb_includes.append((rel(p), line, path))
+                    if not graphic_exists(path):
+                        failed = True
+                        details.append(f"{rel(p)}:{line}: \\includegraphics{{{path}}} does not exist on disk")
+            fb_rows = [r for r in manifest if r["owner"] in ("front", "supplement") and r["output"]]
+            for row in fb_rows:
+                stems = {graphic_stem(row["output"]), graphic_stem("figures/" + row["output"])}
+                hits = [(f, l) for f, l, p in fb_includes if graphic_stem(p) in stems]
+                if len(hits) != 1:
+                    failed = True
+                    details.append(f"manifest {row['id']} output {row['output']} (owner {row['owner']}): "
+                                   + ("not included in the front or back matter" if not hits
+                                      else "included " + str(len(hits)) + " times: " + ", ".join(f"{f}:{l}" for f, l in hits)))
+            report.add(section, 9, "front and back matter figures", FAIL if failed else OK,
+                       f"{len(fb_rows)} manifest outputs owned by front/supplement, "
+                       f"{len(fb_includes)} \\includegraphics in {len(fb_files)} front/back files", details)
 
     if problems:
         report.add("input problems", "-", "inputs", INFO, f"{len(problems)} note(s)", problems)

@@ -3,6 +3,10 @@
 \documentclass[11pt,letterpaper,oneside,openany]{book}
 \input{preamble}
 \begin{document}
+% front and back matter: PRE='\def\unitfrontmatter{}', '\def\unitappendix{}' (appendices) or '\def\unitbackmatter{}'
+\ifdefined\unitfrontmatter\frontmatter\fi
+\ifdefined\unitappendix\appendix\fi
+\ifdefined\unitbackmatter\backmatter\fi
 \ifdefined\chapstart\setcounter{chapter}{\chapstart}\fi
 \ifdefined\secstart\setcounter{section}{\secstart}\fi
 \ifdefined\subsecstart\setcounter{subsection}{\subsecstart}\fi
