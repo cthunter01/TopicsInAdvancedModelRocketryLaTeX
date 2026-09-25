@@ -1,11 +1,17 @@
 % chapters/ch4-symbols.tex -- Chapter 4 Symbols list (PDF pages 531-536)
-% Faithful transcription of the 1973 list; the errata and supplements are applied in a later step.
+% Corrections applied (corrections/ch4.md): item 6 from Mandell's ``Changes to text of Chapter 4'' (June 1994,
+% PDF 702): six entries added in the list's order, each vector next to its scalar (\vec{A}_e after A, B;
+% \vec{E}_o after \vec{E}; \vec{F}(t) after F(t); P_a, P_e after M_y; \vec{c}_eff after \vec{c}), one note
+% on the first of them; the meaning of F(t) changed, with a note quoting the 1973 entry.
+% An \ednote in a p{} cell of a longtable loses its text (STYLE.md section 9): the F(t) row is a one-line
+% \multicolumn{1}{l@{}} cell; the \vec{A}_e row is too long for one line and carries its note as \edcap.
 \unnumberedsection{Symbols}\label{ch4:sec:symbols}
 \begin{longtable}{@{}l p{0.78\linewidth}@{}}
 \toprule \textbf{Symbol} & \textbf{Meaning} \\ \midrule \endfirsthead
 \toprule \textbf{Symbol} & \textbf{Meaning} \\ \midrule \endhead
 \bottomrule \endlastfoot
 $A, B$ & dummy variables used in trigonometric identities \\
+$\vec{A}_e$ & nozzle exit plane area written as a vector whose direction is forward along the vehicle centerline \edcap{The symbols $\vec{A}_e$, $\vec{E}_o$, $\vec{F}(t)$, $P_a$, $P_e$ and $\vec{c}_{\mathrm{eff}}$ are added per Mandell's June 1994 supplement (``Changes to text of Chapter~4'', p.~3); they do not appear in the 1973 Symbols list. They are introduced in the corrected text after equation~\eqref{ch4:eq:7}.} \\
 $A_f$ & amplitude of sinusoidal forcing \\
 $A_r$ & reference area \\
 $A_o$ & value of $A_f$ at an airspeed of 1 meter/second \\
@@ -15,9 +21,11 @@ $C_1$ & corrective moment coefficient \\
 $C_2$ & damping moment coefficient \\
 $D$ & drag \\
 $\vec{E}$ & vector sum of all externally applied forces \\
+$\vec{E}_o$ & vector sum of all externally-applied forces other than pressure component of thrust \\
 $F$ & average thrust \\
 $\vec{F}$ & force \\
-$F(t)$ & thrust as a function of time \\
+$F(t)$ & \multicolumn{1}{l@{}}{magnitude of thrust as a function of time\ednote{Changed per Mandell's June 1994 supplement (``Changes to text of Chapter~4'', p.~3), which adds the thrust vector $\vec{F}(t)$ as a separate entry. The 1973 entry read ``thrust as a function of time''.}} \\
+$\vec{F}(t)$ & thrust as a function of time \\
 $F_m$ & maximum thrust \\
 $F_n$ & average thrust of $n$th stage motor \\
 $F_p$ & component of thrust perpendicular to trajectory \\
@@ -33,9 +41,12 @@ $\Isp$ & specific impulse \\
 $I_t$ & total impulse \\
 $M_x$ & strength of step moment in yaw \\
 $M_y$ & strength of step moment in pitch \\
+$P_a$ & ambient pressure \\
+$P_e$ & pressure of exhaust gas at nozzle exit plane \\
 $\vec{a}$ & acceleration \\
 $c$ & magnitude of exhaust velocity \\
 $\vec{c}$ & exhaust velocity \\
+$\vec{c}_{\mathrm{eff}}$ & effective exhaust velocity, \emph{also} called equivalent exhaust velocity \\
 $d(\ )/dt$ & derivative of ( ) with respect to time \\
 $e$ & base of the Napierian logarithm system, numerically equal to approximately 2.718 \\
 $f(\alpha)$ & function of angle of attack \\

@@ -2,7 +2,8 @@
 % 2.1 The Specialized Differential Equation for the Vertical Case, 2.1.1-2.1.3; 2.2 Extension of the
 % Solutions to Multistaged Vehicles, 2.2.1-2.2.2 (PDF 552-570, printed pp. 520-538), up to but not
 % including the heading "2.3" (PDF 571). Equations 18-60; no figures or tables.
-% Faithful transcription of the 1973 text; the errata (items 1 and 7) are applied in a later step.
+% Faithful transcription of the 1973 text with the corrections applied: the multistage Summary
+% (corrections/ch4.md item 7, which subsumes errata item 1), D6 (note at (25)), D13 (silent).
 \section{The Non-Oscillating Rocket: Solutions for Vehicles Launched Vertically}\label{ch4:sec:2}
 
 \subsection{The Specialized Differential Equation for the Vertical Case}\label{ch4:sec:2.1}
@@ -99,7 +100,13 @@ mv_b = I_t - mgt_b - ky_bv_b
 where $I_t$ denotes the total impulse of the motor. Equation~\eqref{ch4:eq:24} can then be
 integrated again if one replaces the velocities, times, and altitudes by ``dummy'' running
 variables to avoid confusing their running values with their end-point values. Upon completion of
-the integration one obtains
+the integration one obtains\ednote{The inner integral of equation~\eqref{ch4:eq:25} is printed
+with the upper limit $t_b$, like the outer one. The running time of the outer integration is
+evidently meant, as the ``dummy'' running variables of this sentence imply: with $t_b$ the inner
+integral is the constant $I_t$ and the first term is $I_tt_b$, which does not depend on the
+functional form of the thrust (the text goes on to say that the burnout altitude does), and a
+constant thrust $F$ would give $Ft_b^{2}$ where equation~\eqref{ch4:eq:26} has $Ft_b^{2}/2$. Neither the errata nor the
+supplements correct this; the limit is kept as printed.}
 \begin{equation}\label{ch4:eq:25}
 my_b = \int_{0}^{t_b}\Bigl[\int_{0}^{t_b} F(t)\,dt\Bigr]\,dt - mg\frac{t_b^{2}}{2} - \frac{ky_b^{2}}{2}
 \end{equation}
@@ -250,7 +257,33 @@ deriving equations~\eqref{ch4:eq:27} and~\eqref{ch4:eq:28}, since it not only is
 simple, but also affords the greatest physical insight into the problem of choosing the limits of
 integration. In extending this method we shall first apply equation~\eqref{ch4:eq:22} to a
 two-staged model, modifying the limits of integration for the calculation of the second-stage
-burnout velocity and burnout altitude. The following notation will be used:
+burnout velocity and burnout altitude. The following notation will be used:\ednote{Equations~\eqref{ch4:eq:40}
+and~\eqref{ch4:eq:44}--\eqref{ch4:eq:53} are corrected per the ``Summary: Corrections and additions to
+altitude equations for 2-stage and multistage rockets'' (no author or date shown), which treats the
+burning of an upper stage as an initial-value problem: with $\hat{t} = t - t_1$ and $\hat{y} = y - y_1$,
+$v$ changes from $v_1$ to $v_2$ and $\hat{y}$ increases from 0 to $y_2$ as $\hat{t}$ increases from 0
+to $t_2$. The last four entries of the list below are added from the Summary, in its words; the 1973
+list ends with $t_1$. The Summary corrects two errors. In the truncated drag
+integral~\eqref{ch4:eq:44} ``zero should have appeared instead of $y_1$'', since the altitude gained
+since second-stage ignition is zero at the moment of ignition; with that correction every term in
+$y_1$ disappears from the equations that follow, as physical intuition expects, the Summary says,
+because they do not account for the decrease of atmospheric density with altitude. And the last term
+under the radicals of~\eqref{ch4:eq:48}--\eqref{ch4:eq:51} has the wrong sign: $-m_2v_1$
+($-m_nv_{n-1}$) should be $+m_2v_1$ ($+m_nv_{n-1}$), as solving~\eqref{ch4:eq:47} for $y_2$ shows; the
+Summary records that Larry Curcio caught this error first, on a marked copy of printed page 533. The
+Summary also writes the total impulse $I_{t2}$ ($I_{tn}$) in place of the $F_2t_2$ ($F_nt_n$) of
+constant average thrust in~\eqref{ch4:eq:45}, \eqref{ch4:eq:46}, \eqref{ch4:eq:49}
+and~\eqref{ch4:eq:50}, and gives~\eqref{ch4:eq:53} the right-hand side $t_2$. The 1973 forms are
+quoted in the notes at~\eqref{ch4:eq:40}, \eqref{ch4:eq:44}, \eqref{ch4:eq:48}
+and~\eqref{ch4:eq:52}. The Summary's plans are not carried out here: moving this notation and the
+discussion of the physics of two-staged flight to Section~\ref{ch4:sec:2.2}; revising the discussion
+of limiting behavior to eliminate the reference to $y_1$; moving the generalization to three or more
+stages; a new Section 2.2.3 on the qualitative features and limiting behavior of multistage solutions
+and on terminal velocity; a new Section 2.2.4 on upper stages with thrust equal to or less than their
+weight; and a treatment of the coasting phase by the Caporaso-Bengen method. The whole Summary is
+reproduced in the supplement Part. The rest of the 1973 text is kept, including the discussion
+of~\eqref{ch4:eq:41}--\eqref{ch4:eq:43} and of the drag parameter treated as $k_2$ throughout the
+flight, which the Summary says the rewrite makes unnecessary.}
 \begin{itemize}[nosep,leftmargin=2.5em,label={}]
   \item $y_1$ = $y_b$ = burnout altitude of first stage
   \item $v_1$ = $v_b$ = burnout velocity of first stage
@@ -262,6 +295,11 @@ burnout velocity and burnout altitude. The following notation will be used:
   \item $k_2$ = second-stage drag parameter
   \item $t_2$ = burning time of second-stage engine
   \item $t_1$ = $t_b$ = burning time of first-stage engine
+  \item $v$ = velocity at any time during the burning of the second-stage engine
+  \item $\hat{y}$ = altitude gained since the ignition of the second-stage engine (not the total
+  altitude above the launch point)
+  \item $\hat{t}$ = time elapsed since the ignition of the second-stage engine
+  \item $I_{t2}$ = total impulse of the second-stage engine
 \end{itemize}
 
 To better conceptualize the reasons for the choice of limits to be made in the following
@@ -277,10 +315,14 @@ is the only other force acting on the model and, if the second-stage engine did 
 
 The second stage now fires and contributes to the vehicle a quantity of momentum equal to its total
 impulse. Thus, after the burnout of the first stage, the momentum of the rocket is changed only by
-the forces acting on it during the second-stage burning time and we may write
+the forces acting on it during the second-stage burning time and we may write\ednote{Equation~\eqref{ch4:eq:40}
+is rewritten per the Summary, with the time $\hat{t}$ elapsed since second-stage ignition as the variable of
+integration. The 1973 equation read $\int_{t_1}^{t_1+t_2} m_2\frac{dv}{dt}\,dt = \int_{t_1}^{t_1+t_2}
+F_2(t)\,dt - \int_{t_1}^{t_1+t_2} m_2g\,dt - \int_{t_1}^{t_1+t_2} k_2v^{2}\,dt$. Equation~\eqref{ch4:eq:43},
+which the Summary does not change, keeps the 1973 limits $t_1$ and $t_1 + t_2$.}
 \begin{equation}\label{ch4:eq:40}
-\int_{t_1}^{t_1+t_2} m_2\frac{dv}{dt}\,dt = \int_{t_1}^{t_1+t_2} F_2(t)\,dt
-  - \int_{t_1}^{t_1+t_2} m_2g\,dt - \int_{t_1}^{t_1+t_2} k_2v^{2}\,dt
+\int_{0}^{t_2} m_2\frac{dv}{d\hat{t}}\,d\hat{t} = \int_{0}^{t_2} F_2(\hat{t})\,d\hat{t}
+  - \int_{0}^{t_2} m_2g\,d\hat{t} - \int_{0}^{t_2} k_2v^{2}\,d\hat{t}
 \end{equation}
 The value of the integral on the left taken between the indicated limits is just $m_2(v_2 - v_1)$.
 It is now necessary to make the same truncation approximation as was made in
@@ -303,9 +345,23 @@ Replacing the dummy function $f(x)$ by $v^{2}$ and the dummy variable $x$ by $t$
 \begin{equation}\label{ch4:eq:43}
 \int_{t_1}^{t_1+t_2} v^{2}\,dt = \int_{0}^{t_1+t_2} v^{2}\,dt - \int_{0}^{t_1} v^{2}\,dt
 \end{equation}
-and using the same truncation procedure as in~\eqref{ch4:eq:23},
+and using the same truncation procedure as in~\eqref{ch4:eq:23},\ednote{Equations~\eqref{ch4:eq:44}
+to~\eqref{ch4:eq:47} are corrected per the Summary. The 1973 equations read (44)
+$\int_{t_1}^{t_1+t_2} v^{2}\,dt = (y_1 + y_2)v_2 - y_1v_1$, (45) $m_2v_2 - m_2v_1 = F_2t_2 - m_2gt_2 -
+k_2[(y_1 + y_2)v_2 - y_1v_1]$, (46) $v_2 = \bigl[t_2(F_2 - m_2g) + m_2v_1 + k_2y_1v_1\bigr]\big/\bigl[m_2
++ k_2(y_1 + y_2)\bigr]$ and (47) $m_2y_2 - m_2v_1t_2 = \frac{t_2^{2}}{2}(F_2 - m_2g) - k_2y_1y_2 -
+k_2\frac{y_2^{2}}{2} + k_2y_1v_1t_2$; the Summary says that (47) was evaluated correctly except for the
+terms in $y_1$. The left-hand side of the corrected~\eqref{ch4:eq:44} is the drag integral itself,
+with $k_2v^{2}$ written as $k_2v\,d\hat{y}/d\hat{t}$, where the 1973 one was the integral of $v^{2}$
+on the left of~\eqref{ch4:eq:43}. The 1973 sentence before~\eqref{ch4:eq:45} is kept although it
+no longer matches: it evaluates the integrals ``subject to the approximations of constant average
+thrust and mass'', while the corrected~\eqref{ch4:eq:45} has the total impulse $I_{t2}$, which the
+Summary writes ``instead of $F_2t_2$ for $\int_{0}^{t_2} F_2(\hat{t})\,d\hat{t}$'' so that, as in the
+single-stage case, the burnout velocity does not depend on the functional form of the thrust; the
+Summary introduces the constant average thrust $F_2$ only at~\eqref{ch4:eq:47}.}
 \begin{equation}\label{ch4:eq:44}
-\int_{t_1}^{t_1+t_2} v^{2}\,dt = (y_1 + y_2)v_2 - y_1v_1
+\int_{0}^{t_2} k_2v\frac{d\hat{y}}{d\hat{t}}\,d\hat{t} = k_2\hat{y}v\Big]_{0,v_1}^{y_2,v_2}
+  - k_2\int_{0}^{t_2}\hat{y}\frac{dv}{d\hat{t}}\,d\hat{t} \cong k_2y_2v_2
 \end{equation}
 It is essential to note here that we are integrating the drag \emph{as it would have been if the
 drag parameter $k$ had been $k_2$ throughout the flight}. The reason for this is that, at the
@@ -319,30 +375,45 @@ jettison of the first stage without assuming that the drag parameter has been $k
 point. Substituting the approximation~\eqref{ch4:eq:44} into~\eqref{ch4:eq:40} and evaluating the
 other integrals subject to the approximations of constant average thrust and mass, we obtain
 \begin{equation}\label{ch4:eq:45}
-m_2v_2 - m_2v_1 = F_2t_2 - m_2gt_2 - k_2[(y_1 + y_2)v_2 - y_1v_1]
+m_2v_2 - m_2v_1 = I_{t2} - m_2gt_2 - k_2y_2v_2
 \end{equation}
 which can be solved to give $v_2$ in the form
 \begin{equation}\label{ch4:eq:46}
-v_2 = \frac{t_2(F_2 - m_2g) + m_2v_1 + k_2y_1v_1}{m_2 + k_2(y_1 + y_2)}
+v_2 = \frac{I_{t2} - m_2gt_2 + m_2v_1}{m_2 + k_2y_2}
 \end{equation}
 Proceeding as in the single-stage case, we integrate~\eqref{ch4:eq:45} to obtain a solution for
 $y_2$:
 \begin{equation}\label{ch4:eq:47}
-m_2y_2 - m_2v_1t_2 = \frac{t_2^{2}}{2}(F_2 - m_2g) - k_2y_1y_2 - k_2\frac{y_2^{2}}{2} + k_2y_1v_1t_2
+m_2y_2 - m_2v_1t_2 = \frac{t_2^{2}}{2}(F_2 - m_2g) - k_2\frac{y_2^{2}}{2}
 \end{equation}
 You should note at this point that all quantities relating to the first-stage burnout values $v_1$
 and $y_1$ are to be treated as \emph{constants} and \emph{not} to be integrated as their respective
 functions. The first-stage burnout velocity and altitude are assumed to be already known, having
 been computed by treating the model as if it were single-staged and applying the methods of
-Section~\ref{ch4:sec:2.1}. Equation~\eqref{ch4:eq:47} can then be solved for $y_2$, yielding
+Section~\ref{ch4:sec:2.1}. Equation~\eqref{ch4:eq:47} can then be solved for $y_2$,
+yielding\ednote{Equations~\eqref{ch4:eq:48} to~\eqref{ch4:eq:51} are corrected per the Summary. The
+1973 equations read (48) $y_2 = \bigl[-(m_2 + k_2y_1) + \sqrt{R_2}\,\bigr]\big/k_2$, (49) $v_2 =
+\bigl[t_2(F_2 - m_2g) + m_2v_1 + k_2y_1v_1\bigr]\big/\sqrt{R_2}$, (50) $v_n = \bigl[t_n(F_n - m_ng) +
+m_nv_{n-1} + k_ny_{n-1}v_{n-1}\bigr]\big/\sqrt{R_n}$ and (51) $y_n = -[m_n + k_n(y_1 + \ldots +
+y_{n-1})]/k_n + \sqrt{R_n}\big/k_n$, where, writing the radicands here as $R_2$ and $R_n$, $R_2 = (m_2 +
+k_2y_1)^{2} + 2k_2t_2[\tfrac{t_2}{2}(F_2 - m_2g) + (k_2y_1v_1 - m_2v_1)]$ and $R_n = [m_n + k_n(y_1 +
+\ldots + y_{n-1})]^{2} + 2k_nt_n\{\tfrac{t_n}{2}(F_n - m_ng) + [k_n(y_1 + \ldots + y_{n-1})v_{n-1} -
+m_nv_{n-1}]\}$. In~(51) the radicand is printed without its right-hand brace after the bracket that
+follows $v_{n-1}$, which the 1973 errata sheet adds. The Summary does not define the $I_{tn}$ of
+the corrected~\eqref{ch4:eq:50}, evidently the total impulse of the $n$th-stage engine; the sentence
+after~\eqref{ch4:eq:51} defines $F_n$, $t_n$, $k_n$ and $m_n$ only. The 1973 prose is kept where it
+no longer matches: the paragraph before~\eqref{ch4:eq:48} still says that $y_1$ is to be treated as
+a constant, and the check after~\eqref{ch4:eq:49} still sets $y_1$ and $v_1$ to zero, although $y_1$ no longer appears (with $v_1 = 0$ the
+corrected~\eqref{ch4:eq:48} and~\eqref{ch4:eq:49} do reduce to~\eqref{ch4:eq:27}
+and~\eqref{ch4:eq:28}). After~\eqref{ch4:eq:49} the Summary asks for the discussion of limiting
+behavior to be revised to eliminate the reference to $y_1$, but gives no text.}
 \begin{equation}\label{ch4:eq:48}
-y_2 = \frac{-(m_2 + k_2y_1) + \sqrt{(m_2 + k_2y_1)^{2}
-  + 2k_2t_2\bigl[\tfrac{t_2}{2}(F_2 - m_2g) + (k_2y_1v_1 - m_2v_1)\bigr]}}{k_2}
+y_2 = \frac{-m_2 + \sqrt{m_2^{2} + 2k_2t_2\bigl[\tfrac{t_2}{2}(F_2 - m_2g) + m_2v_1\bigr]}}{k_2}
 \end{equation}
 Substituting~\eqref{ch4:eq:48} into~\eqref{ch4:eq:46} gives the second-stage burnout velocity as
 \begin{equation}\label{ch4:eq:49}
-v_2 = \frac{t_2(F_2 - m_2g) + m_2v_1 + k_2y_1v_1}{\sqrt{(m_2 + k_2y_1)^{2}
-  + 2k_2t_2\bigl[\tfrac{t_2}{2}(F_2 - m_2g) + (k_2y_1v_1 - m_2v_1)\bigr]}}
+v_2 = \frac{I_{t2} - m_2gt_2 + m_2v_1}{\sqrt{m_2^{2} + 2k_2t_2\bigl[\tfrac{t_2}{2}(F_2 - m_2g)
+  + m_2v_1\bigr]}}
 \end{equation}
 As a check on~\eqref{ch4:eq:48} and~\eqref{ch4:eq:49}, suppose we let $y_1$ and $v_1$ both be zero;
 we should then get back equations~\eqref{ch4:eq:27} and~\eqref{ch4:eq:28} for a single-staged
@@ -358,24 +429,15 @@ during the second-stage burn are then calculated by~\eqref{ch4:eq:48} and~\eqref
 third-stage altitude increment and burnout velocity are found using the same method by
 which~\eqref{ch4:eq:48} and~\eqref{ch4:eq:49} were derived. In more general terms, the burnout
 velocity of the $n$th stage of a multistaged rocket is given by
-\begingroup\small
 \begin{equation}\label{ch4:eq:50}
-v_n = \frac{t_n(F_n - m_ng) + m_nv_{n-1} + k_ny_{n-1}v_{n-1}}{\sqrt{[m_n + k_n(y_1 + \ldots
-  + y_{n-1})]^{2} + 2k_nt_n\bigl\{\tfrac{t_n}{2}(F_n - m_ng) + [k_n(y_1 + \ldots + y_{n-1})v_{n-1}
-  - m_nv_{n-1}]\bigr\}}}
+v_n = \frac{I_{tn} - m_ngt_n + m_nv_{n-1}}{\sqrt{m_n^{2} + 2k_nt_n\bigl[\tfrac{t_n}{2}(F_n - m_ng)
+  + m_nv_{n-1}\bigr]}}
 \end{equation}
-\endgroup
 and the altitude \emph{increment} gained between burnout of the $(n-1)$th stage and the $n$th-stage
 burnout is
-\begingroup\small
 \begin{equation}\label{ch4:eq:51}
-\begin{split}
-y_n = {}&\frac{-[m_n + k_n(y_1 + \ldots + y_{n-1})]}{k_n}\\
-&+ \frac{\sqrt{[m_n + k_n(y_1 + \ldots + y_{n-1})]^{2} + 2k_nt_n\bigl\{\tfrac{t_n}{2}(F_n - m_ng)
-  + [k_n(y_1 + \ldots + y_{n-1})v_{n-1} - m_nv_{n-1}]}}{k_n}
-\end{split}
+y_n = \frac{-m_n + \sqrt{m_n^{2} + 2k_nt_n\bigl[\tfrac{t_n}{2}(F_n - m_ng) + m_nv_{n-1}\bigr]}}{k_n}
 \end{equation}
-\endgroup
 where $F_n$ and $t_n$ are the average thrust and burning time of the $n$th-stage engine, $k_n$ is
 the drag parameter of the $n$th stage plus all subsequent stages, and $m_n$ is the average mass of
 the $n$th stage with all subsequent stages carried atop it.
@@ -397,13 +459,18 @@ model rocket having more than three operable stages in NAR-sanctioned competitio
 The Fehskens-Malewicki technique can be extended to multistaged model rockets by appropriately
 altering the limits between which the integral~\eqref{ch4:eq:19b} is evaluated. Using the same
 notation as in Section~\ref{ch4:sec:2.2.1} for a two-staged model, one obtains the integral in the
-form
+form\ednote{Equations~\eqref{ch4:eq:52} and~\eqref{ch4:eq:53} are rewritten per the Summary, with
+the time $\hat{t}$ elapsed since second-stage ignition as the variable of integration. The 1973
+equations read (52) $\int_{v_1}^{v_2} m_2\,dv/(F_2 - m_2g - k_2v^{2}) = \int_{t_1}^{t_1+t_2} dt$ and
+(53) $\bigl[m_2/\sqrt{k_2(F_2 - m_2g)}\,\bigr]\tanh^{-1}\bigl[v\sqrt{k_2/(F_2 - m_2g)}\,\bigr]_{v_1}^{v_2}$,
+an expression without a right-hand side.}
 \begin{equation}\label{ch4:eq:52}
-\int_{v_1}^{v_2}\frac{m_2\,dv}{F_2 - m_2g - k_2v^{2}} = \int_{t_1}^{t_1+t_2} dt
+\int_{v_1}^{v_2}\frac{m_2\,dv}{F_2 - m_2g - k_2v^{2}} = \int_{0}^{t_2} d\hat{t}
 \end{equation}
 Performing the indicated integration, we have
 \begin{equation}\label{ch4:eq:53}
 \frac{m_2}{\sqrt{k_2(F_2 - m_2g)}}\tanh^{-1}\biggl[v\sqrt{\frac{k_2}{F_2 - m_2g}}\,\biggr]_{v_1}^{v_2}
+  = t_2
 \end{equation}
 which, when expanded, yields
 \begin{equation}\label{ch4:eq:54}
@@ -417,10 +484,19 @@ v_2 = \sqrt{\frac{F_2 - m_2g}{k_2}}\,\tanh\biggl[\tfrac{t_2}{m_2}\sqrt{k_2(F_2 -
 \end{equation}
 
 Now the upper limit of integration on the left of~\eqref{ch4:eq:52} could have been taken as $v$,
-the velocity of the second stage at any time $t$ during its burn, while the upper limit on the
-right of~\eqref{ch4:eq:52} could accordingly have been taken as $t$, where it is understood that
-$t$ is a value of time that is greater than or equal to $t_1$ and less than or equal to
-$t_1 + t_2$. The resulting expression for $v$ is entirely analogous to~\eqref{ch4:eq:55}, but gives
+the velocity of the second stage at any time $\hat{t}$ during its burn, while the upper limit on the
+right of~\eqref{ch4:eq:52} could accordingly have been taken as $\hat{t}$, where it is understood
+that $\hat{t}$ is a value of time that is greater than or equal to 0 and less than or equal to
+$t_2$.\ednote{Changed per the Summary, which asks for the discussion of the upper limit $t$ to be
+changed to one of the upper limit $\hat{t}$, ``where $\hat{t}$ is greater than or equal to 0 and less
+than or equal to $t_2$''. The 1973 sentence read ``Now the upper limit of integration on the left
+of~(52) could have been taken as $v$, the velocity of the second stage at any time $t$ during its
+burn, while the upper limit on the right of~(52) could accordingly have been taken as $t$, where it
+is understood that $t$ is a value of time that is greater than or equal to $t_1$ and less than or
+equal to $t_1 + t_2$.'' Equation~\eqref{ch4:eq:56}, which the Summary does not change, keeps
+$t - t_1$ (that is, $\hat{t}$), and the sentence introducing~\eqref{ch4:eq:57} keeps the limits
+$t = t_1$ and $t = t_1 + t_2$.} The
+resulting expression for $v$ is entirely analogous to~\eqref{ch4:eq:55}, but gives
 the second-stage velocity as a function of time:
 \begin{equation}\label{ch4:eq:56}
 v = \sqrt{\frac{F_2 - m_2g}{k_2}}\,\tanh\biggl[\tfrac{t - t_1}{m_2}\sqrt{k_2(F_2 - m_2g)}
@@ -440,7 +516,7 @@ and through the use of the well-known identity
 where $A$ and $B$ represent any two quantities, \eqref{ch4:eq:57} may be cast into the simpler form
 \begin{equation}\label{ch4:eq:58}
 \begin{split}
-y_2 = {}&\frac{m_2}{k_2}\ln\biggl[\cosh\Bigl(\tfrac{t_2}{m_2}\sqrt{k_2(F_2 - m_2g)}\\
+y_2 = {}&\frac{m_2}{k_2}\ln\biggl[\cosh\Bigl(\tfrac{t_2}{m_2}\sqrt{k_2(F_2 - m_2g)}\Bigr)\\
 &+ v_1\sqrt{\frac{k_2}{F_2 - m_2g}}\,\sinh\Bigl(\tfrac{t_2}{m_2}\sqrt{k_2(F_2 - m_2g)}\Bigr)\biggr]
 \end{split}
 \end{equation}
@@ -457,7 +533,7 @@ while the altitude increment gained between the burnout of the $(n-1)$th stage a
 the $n$th stage is
 \begin{equation}\label{ch4:eq:60}
 \begin{split}
-y_n = {}&\frac{m_n}{k_n}\ln\biggl[\cosh\Bigl(\tfrac{t_n}{m_n}\sqrt{k_n(F_n - m_ng)}\\
+y_n = {}&\frac{m_n}{k_n}\ln\biggl[\cosh\Bigl(\tfrac{t_n}{m_n}\sqrt{k_n(F_n - m_ng)}\Bigr)\\
 &+ v_{n-1}\sqrt{\frac{k_n}{F_n - m_ng}}\,\sinh\Bigl(\tfrac{t_n}{m_n}\sqrt{k_n(F_n - m_ng)}\Bigr)
   \biggr]
 \end{split}

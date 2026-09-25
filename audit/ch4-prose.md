@@ -41,3 +41,29 @@ Repeated 8-grams involving Chapter 4: all legitimate, none fixed.
 - Table 2's repeated description cells ("Homogeneous response to", "Step of intensity", "Impulse of strength", "Coupled sinusoidal forcing ... omega_cres") and its repeated continuation header.
 
 After the fix, prose_diff printed "artwork page 628 (below 0.3 everywhere, excused)", with no likely dropped pages in any chapter.
+
+
+## After the corrections step (2026-09-24)
+
+Chapter 4 now has 68 pass, 37 inspect and 1 missing (628, still excused), with 12 skipped. audit/ch4-prose.md recorded 70/35/1. There are 100 windows to inspect (was 99) and 586 repeated 8-grams (was 472). To find the cause, I rebuilt the committed HEAD (git archive into the scratchpad) and compared every OCR 3-gram of PDF 529-646 between the two PDFs, then located each lost 3-gram in the new pdftotext output.
+
+(1) The pages whose text the sources replaced barely changed. prose_diff cannot see most of these corrections, for two reasons. First, each \ednote or \edcap quotes the 1973 wording word for word, and the tool matches 3-grams anywhere in the document. Second, the tokenizer drops digits and tokens shorter than 4 letters.
+- 545 (min 0.43, mean 0.67, was 0.68): the one lost 3-gram, "symbol write both", is replaced text. The 1973 "...single symbol F(t), so we can write (8) Both the engine thrust..." now survives only in the note, split by "then gave equation (8)". The other uncovered tokens are the OCR noise recorded in the audit ("motton", "subjact", "tenn", "statio", "di-rected", "long-itudinal", "rofessional ... ineers").
+- 546 (0.46/0.56): unchanged. The uncovered tokens are OCR noise ("external.ly", "fu.nctiona", "~ttack", "con~tructed", "iormed exn11citly"). The replaced 1973 top of p.514 is still matched through the note's quotation.
+- 563-569 (566 0.25/0.51, 567 0.14/0.26, 568 0.29/0.50, 569 0.11/0.51, 563 0.39/0.55; 564-565 pass): the rewritten (40) and (44)-(53) are hand-lettered displays that the OCR garbles. The upper-limit wording change (t to t-hat, t_1 to 0, t_1+t_2 to t_2) touches only tokens shorter than 4 characters, so the new sentence is token-identical to the 1973 one. The non-pass windows are the audited OCR noise ("weathercockinp tennency", "rockp", "comnetjtion", "throuff cation canoraso ricoatj"). The only other losses on 563-565 come from note markers glued to a word: "writeE6" and "yieldingE8" tokenize as "writee" and "yieldinge". On 565, a note continuation also falls between "(27) and (28)." and "The generalization". None of these is missing text.
+- 580 (1 window, 0.61, pass, as before): the uncovered tokens are the legend lettering inside the artwork. The 1994 caption and its \edcap are present.
+- 615: skipped (25 tokens).
+- 622 and 623: pass. Errata items 2-4 change only equation numbers, and I confirmed (139), (154) and (160) in the output.
+- 627 (0.36/0.46): unchanged. The table's header and row-label OCR noise ("wcres", "cilz lores", "rlthout"). The new cant angles and k values are digits.
+- 531-535 (Symbols) also changed because item 6 inserted entries and notes (A_e, E_o, P_a, P_e; F(t)). All still pass.
+
+(2) Other pages. The inserted footnotes moved the page breaks. Every 3-gram lost on a page not changed by the sources is now split by a running head or page number, or by a footnote or its continuation. I checked each one: 541, 552, 554, 556, 558, 582, 587, 599, 601, 608, 613, 614, 616, 619, 621, 626, 633, 635, 638, 640 and 644. Some of those footnotes are the new doubt notes: D9 (552), D6 (556), D4 (587), D5 (613), D7 (616), D1 (619), D3 (635) and D8 (644). The same effect raised other pages (538, 554, 597, 602, 636, 638). Two pages fell from pass to inspect, and both are layout only, with all text present:
+- 541 (min 0.61 to 0.57): "mathematically inclined. / General Differential Equations" now spans a page break. The remaining uncovered tokens are OCR noise ("eguat", "balli", "classi mechrntcs").
+- 558 (0.61 to 0.57): "the following form (29) / where the constants" spans a page break. The rest is OCR noise ("methematics scienr", "napierlan", "veloc").
+No window lost prose. The new repeated 8-grams are all legitimate:
+- the \ednote quotations of 1973 text that the 1994 text keeps
+- the standard "Neither the errata nor the supplements correct this ... kept as printed" wording, repeated in several notes
+- the A_e Symbols entry shared by Chapters 1 and 4
+- the 1994 Figure 4 caption against its \edcap quotation of the 1973 caption
+- the Figures 5-9 captions and Table 2 cells, rejoined across the moved running heads
+- the upper-limit sentence against its quotation.

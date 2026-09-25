@@ -1,6 +1,10 @@
 % chapters/ch4-sec4.tex -- 4. Coupling of Dynamic Oscillations to the Trajectory Equations; 4.1-4.4
 % (PDF 610-634, printed pp. 578-602), from the heading "4." (mid-PDF 610) up to but not including
 % the heading "5." (mid-PDF 634). Equations 132-166b, Tables 1-2.
+% Corrections applied (corrections/ch4.md): errata items 2-4 (PDF 664; the stale citations (175),
+% (189), (195) set as \eqref's to (139), (154), (160), silently); item 9 (PDF 712; Table 1 fin
+% cant angles and k, \edcap in the caption). Doubt notes: D5 ((134)), D7 ((145)), D1 ((156c)),
+% D2 ((200a), restyled), D10 (t_o = 0.1 s of Table 2's sinusoidal rows vs t = 0 of (166)).
 \section{Coupling of Dynamic Oscillations to the Trajectory Equations}\label{ch4:sec:4}
 
 Having obtained satisfactory solutions to all aspects of point-mass model rocket flight behavior
@@ -75,7 +79,12 @@ attack can be written as
 \end{equation}
 where the determination of the constants $k$ and $\epsilon$ has been discussed in
 Chapters~\ref{ch1} and~\ref{ch3}, and $\alpha$ is just $\alpha(t)$, the generalized angle of
-attack. It is also possible to replace $\cos(\alpha)$ by its power series expansion
+attack. It is also possible to replace $\cos(\alpha)$ by its power series
+expansion\ednote{The third term of the series is printed $\alpha^{4}/4$. The term $\alpha^{4}/24$ is
+evidently meant: the coefficient of $\alpha^{4}$ in the series of $\cos(\alpha)$ is $1/4! = 1/24$.
+The slip does not affect what follows, since the series is truncated after its $\alpha^{2}$ term
+in equation~\eqref{ch4:eq:135}. Neither the errata nor the supplements correct this; the equation
+is kept as printed.}
 \begin{equation}\label{ch4:eq:134}
 \cos(\alpha) = 1 - \frac{\alpha^{2}}{2} + \frac{\alpha^{4}}{4} - \ldots
 \end{equation}
@@ -113,7 +122,14 @@ is replaced by a finite interval $\Delta t$. In order to obtain solutions for ro
 rigid-body oscillations, however, it is necessary to add some additional computing steps derived
 from Euler's dynamical equations---equations~\eqref{ch2:eq:14} of Chapter~\ref{ch2}. Listed below
 is the computational procedure for completing a single iterative loop analogous to the
-drag-from-prior-velocity method of Section~\ref{ch4:sec:2.4}:
+drag-from-prior-velocity method of Section~\ref{ch4:sec:2.4}:\ednote{The last term of
+equation~\eqref{ch4:eq:145} is printed $+I_R\omega_y\omega_z$. The term $+I_R\omega_x\omega_z$ is
+evidently meant: the pitch equation of equations~\eqref{ch2:eq:14} of Chapter~\ref{ch2} has the
+gyroscopic term $-I_R\omega_Z\,d\alpha_X/dt$, and Euler's equations~\eqref{ch2:eq:6} of
+Section~\ref{ch2:sec:1.4} the term $-I_R\Omega_X\omega_Z$, so that the roll couples the yaw rate
+into the pitch equation, just as equation~\eqref{ch4:eq:144}, which agrees with
+Chapter~\ref{ch2}, couples the pitch rate into the yaw equation. Neither the errata nor the
+supplements correct this; the equation is kept as printed.}
 % (137)-(153) are one printed run (PDF 614-615, STYLE.md section 15): the statements (137)-(143)
 % start at one column, the "=" signs of (144)-(153) are lined up.
 \begin{align}
@@ -138,7 +154,7 @@ drag-from-prior-velocity method of Section~\ref{ch4:sec:2.4}:
 \alpha &= \sqrt{\alpha_x^{2} + \alpha_y^{2}} \label{ch4:eq:152}\\
 t &= t + \Delta t \label{ch4:eq:153}
 \end{align}
-Again, as in Section~\ref{ch4:sec:2.4}, expressions such as (175) are not equations as we
+Again, as in Section~\ref{ch4:sec:2.4}, expressions such as~\eqref{ch4:eq:139} are not equations as we
 understand them, but arithmetic assignment statements which instruct the computer to replace the
 ``old'' or ``former'' value of a variable with its ``new'' or ``present'' value. The notation of
 Chapter~\ref{ch2} has been used for all the expressions involving rigid-body dynamics: subscripts
@@ -204,7 +220,12 @@ state of angular displacement and angular velocity, without regard to the precis
 disturbance that caused it to assume that state, it is best to compute the \emph{homogeneous
 response} resulting from the initial conditions that have been assumed. For such a calculation we
 assume that, prior to some time $t_o$ after liftoff, the vehicle has been flying vertically
-straight and true. For values of $t$ less than $t_o$, therefore,
+straight and true. For values of $t$ less than $t_o$, therefore,\ednote{The third equation of
+this group is printed with the number (156c). The number (154c) is evidently meant: the equation
+completes equations~\eqref{ch4:eq:154a} and~\eqref{ch4:eq:154b}, which the text cites together as
+equations~\eqref{ch4:eq:154}, while equation~\eqref{ch4:eq:156} is a separate equation that
+follows below. Neither the errata nor the supplements correct this; the number is kept as
+printed.}
 % The third member of this group is printed "(156c)" (evidently 154c; the plain (156) follows on
 % PDF 619): the Chapter 3 (203)-(204) pattern, with \refstepcounter giving the group label (154)
 % and advancing the counter so that the next group is (155).
@@ -305,7 +326,7 @@ rocket is spinning.
 \subsubsection{Impulse Response}\label{ch4:sec:4.3.3}
 
 In order to determine a model's response to impulsive forcing occurring at the instant $t_o$ after
-liftoff we again assume the quiescent prior rotational state specified by equations (189). The
+liftoff we again assume the quiescent prior rotational state specified by equations~\eqref{ch4:eq:154}. The
 effect of the impulse, as discussed in Chapter~\ref{ch2}, will then be to produce a homogeneous
 response for time greater than $t_o$ with the following specialized set of initial conditions:
 \begin{subequations}\label{ch4:eq:160}
@@ -326,7 +347,7 @@ zero for all time:
 f_x(t) = f_y(t) = 0
 \end{equation}
 Actually, $f_x(t)$ and $f_y(t)$ are both effectively infinite at the time $t_o$, but the results of
-this have already been taken into account in equations (195).
+this have already been taken into account in equations~\eqref{ch4:eq:160}.
 
 Again, any values for $H_x$ and $H_y$---including zero for either one---will be acceptable as long
 as these values do not cause the overall angle of attack to exceed 0.2 radian during the subsequent
@@ -386,8 +407,12 @@ A_f &= A_o v^{2} \label{ch4:eq:165a}\\
 \omega_z &= \omega_{zo} v \label{ch4:eq:165b}
 \end{align}
 \end{subequations}
-Equation (200a)\ednote{No equation carries the number (200a); equation~\eqref{ch4:eq:165a} is
-evidently meant.} applies whether the disturbance is due to aerodynamic or to inertial causes,
+Equation (200a)\ednote{The 1973 text reads ``Equation (200a)''; the chapter has no equation
+(200a). Equation~\eqref{ch4:eq:165a} is evidently meant: it is the forcing amplitude
+$A_f = A_o v^{2}$ just given, whose proportionality to the square of the airspeed the sentence
+explains, and the printed number is 35 higher, as are the citations (189) and (195) in this
+section, which the errata sheet corrects to (154) and (160). Neither the errata nor the supplements correct this; the reference is kept
+as printed.} applies whether the disturbance is due to aerodynamic or to inertial causes,
 since the strength of the aerodynamic perturbation is proportional to the square of the airspeed
 and that of the inertial perturbation is proportional to the square of the roll rate, which in turn
 varies directly with airspeed.
@@ -395,7 +420,12 @@ varies directly with airspeed.
 Both types of perturbations are assumed to arise immediately upon liftoff and to persist
 throughout the flight, as such a mathematical model most accurately represents the actual behavior
 of sinusoidal forcing in the vast majority of cases of interest. Calculations should therefore be
-started at $t = 0$ with rotationally quiescent initial conditions:
+started at $t = 0$ with rotationally quiescent initial conditions:\ednote{Table~\ref{ch4:tab:2}
+gives $t_o = 0.1$ second, which its caption defines as the time at which the disturbance begins,
+for all five sinusoidal and coupled sinusoidal cases, whereas the text assumes sinusoidal forcing
+to arise immediately upon liftoff and starts the calculation at $t = 0$. The text does not say
+which start the tabulated results were computed with. Neither the errata nor the supplements
+correct this; the text and the table are kept as printed.}
 \begin{subequations}\label{ch4:eq:166}
 \begin{empheq}[right={\empheqrbrace\quad t = 0}]{align}
 \alpha_x &= \alpha_y = 0 \label{ch4:eq:166a}\\
@@ -428,7 +458,17 @@ Section~\ref{ch4:sec:4.2} appears in Table~\ref{ch4:tab:1}.
 \begin{table}[htbp]
   \centering
   \caption{Ballistic and dynamic characteristics of the rocket shown in Figure~\ref{ch3:fig:37}
-    of Chapter~\ref{ch3}.}
+    of Chapter~\ref{ch3}. \edcap{The fin cant angles and the values of $k$ with fin cant are
+    corrected per the supplement ``Corrections to rocket characteristics in Table I of Chapter 4,
+    on page 595 of original book'', which labels the two cant-angle rows
+    ``$\omega_c = \omega_{\mathrm{cres}}$'' and ``$\omega_c = 10\omega_{\mathrm{cres}}$''; the
+    table's $\omega_z$, the roll rate, is kept. The 1973 table gave the cant angles as 0.01945 rad =
+    $1.11\dg$ and 0.1945 rad = $11.1\dg$, and $k$ as $0.924 \times 10^{-4}$ kg/m with $1.11\dg$
+    cant and $1.288 \times 10^{-4}$ kg/m with $11.1\dg$ cant; $0.92 \times 10^{-4}$ kg/m without
+    fin cant is unchanged. The supplement adds: ``There will be consequential corrections to
+    altitudes attained by rockets with canted fins''. Those corrections are not supplied: the
+    results of Table~\ref{ch4:tab:2} for nonzero roll rates are those of the 1973 edition,
+    computed with the 1973 values, and are not recomputed here.}}
   \label{ch4:tab:1}
   \begin{tabular}{@{}l@{\qquad}l@{}}
     \toprule
@@ -451,12 +491,12 @@ Section~\ref{ch4:sec:4.2} appears in Table~\ref{ch4:tab:1}.
     $\omega_{\mathrm{cres}}$ & 0.325$v$ rad/sec for $v$ in m/sec \\
     $(\CDo)_{FB}$ & 0.45 without fin cant \\
     \begin{tabular}[c]{@{}l@{}}Fin cant angle for\\ $\omega_z = \omega_{\mathrm{cres}}$\end{tabular}
-      & 0.01945 rad = $1.11\dg$ \\
+      & 0.00993 radian = $0.569\dg$ \\
     \begin{tabular}[c]{@{}l@{}}Fin cant angle for\\ $\omega_z = 10\omega_{\mathrm{cres}}$\end{tabular}
-      & 0.1945 rad = $11.1\dg$ \\
+      & 0.0993 radian = $5.69\dg$ \\
     $k$ & \begin{tabular}[t]{@{}l@{}}$0.92 \times 10^{-4}$ kg/m without fin cant\\
-      $0.924 \times 10^{-4}$ kg/m with $1.11\dg$ cant\\
-      $1.288 \times 10^{-4}$ kg/m with $11.1\dg$ cant\end{tabular} \\
+      $0.921 \times 10^{-4}$ kg/m with $0.569\dg$ cant\\
+      $1.016 \times 10^{-4}$ kg/m with $5.69\dg$ cant\end{tabular} \\
     $\epsilon$ & $37.8 \times 10^{-4}$ (kg/m)/rad$^{2}$ \\
     \bottomrule
   \end{tabular}
@@ -467,6 +507,8 @@ disturbances. Although these results admittedly apply only to the particular roc
 Table~\ref{ch4:tab:1}, they do---in combination with the discussion of Chapter~\ref{ch2}---permit
 us to draw certain conclusions of general interest and applicability to model rocket design.
 
+% Table 1 (a float) must come out before Table 2 (a longtable, not a float), as in the book.
+\FloatBarrier
 % Table 2 is printed in two row-matched halves (PDF 628-629: columns 1-4; PDF 630-631: columns
 % 5-10; caption on PDF 629); it is set as one 10-column longtable (STYLE.md section 15).
 \begingroup\small

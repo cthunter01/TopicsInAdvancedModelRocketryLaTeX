@@ -1,6 +1,8 @@
 % chapters/ch4-intro-sec1.tex -- Introduction; 1. The General Differential Equations of Motion;
 % 1.1; 1.2 (PDF 537-552, printed pp. 505-520), up to but not including the heading "2." on PDF 552
 % (equations (16)-(17), printed above that heading, belong here). Equations 1-17, Figures 1-2.
+% Corrections: item 5 (the text after (7) to the top of p.514 replaced per PDF 700-702, pressure term per
+% PDF 666; (7a)-(7d) tagged n-labels, (8) keeps ch4:eq:8; one \ednote); D9 (F_p of (10) unused, \ednote).
 \unnumberedsection{Introduction}\label{ch4:sec:intro}
 
 The interest of model rocketeers in determining the flight paths that their models will follow,
@@ -178,21 +180,87 @@ motion for a rocket under thrust and subject to externally-applied forces as
 \begin{equation}\label{ch4:eq:7}
 m(t)\frac{d\vec{v}}{dt} = -\vec{c}\,\frac{dm_e}{dt} + \vec{E}
 \end{equation}
-The term $-\vec{c}(dm_e/dt)$ is just the \emph{thrust} of the rocket motor as it would be measured
-in a static test stand. Since the exhaust velocity $\vec{c}$ is directed \emph{backward} along the
-longitudinal axis of the rocket it is vectorially \emph{negative} with respect to $\vec{v}$. And
-since the rate of mass expulsion has been expressed as the \emph{positive} mass-flow rate
-$dm_e/dt$, equivalent to $\mdot$ as used by professional rocket engineers, the thrust is a
-\emph{positive} force tending to \emph{increase} $\vec{v}$---which, as practical rocketeers, we
-already know from experience. The thrust can be denoted by the single symbol $\vec{F}(t)$, so we
-can write
+If the nozzle of the rocket motor has been designed for ``optimum expansion'' or ``correct
+expansion'', so that the exhaust gas reaches the nozzle \emph{exit plane} at a pressure equal to
+the pressure of the surrounding atmosphere (also called the \emph{ambient} pressure), the term
+$-\vec{c}(dm_e/dt)$ will be equal to the \emph{thrust} of the rocket motor as it would be measured
+in a static test stand.\ednote{From the sentence after equation~\eqref{ch4:eq:7} (``If the
+nozzle \ldots'') to the end of the paragraph before Section~\ref{ch4:sec:1.1} the text and
+equations are those of Mandell's June 1994 ``Changes to text of Chapter~4'', which extend the
+thrust equation to exhaust pressures greater or less than the ambient pressure. The pressure term is written $(P_e - P_a)\vec{A}_e$ as directed by his note
+of 1~June 1994; the changes draw the arrow over the whole term. Equations~\eqref{ch4:eq:n7a}
+to~\eqref{ch4:eq:n7d} are new; in equation~\eqref{ch4:eq:n7a} the supplement prints $F(t)$
+without an arrow, and it is kept as printed. The 1973 text read ``The term $-\vec{c}(dm_e/dt)$ is just
+the \emph{thrust} of the rocket motor as it would be measured in a static test stand. Since the
+exhaust velocity $\vec{c}$ is directed \emph{backward} along the longitudinal axis of the rocket
+it is vectorially \emph{negative} with respect to $\vec{v}$. And since the rate of mass expulsion
+has been expressed as the \emph{positive} mass-flow rate $dm_e/dt$, equivalent to $\mdot$ as used
+by professional rocket engineers, the thrust is a \emph{positive} force tending to
+\emph{increase} $\vec{v}$---which, as practical rocketeers, we already know from experience. The
+thrust can be denoted by the single symbol $\vec{F}(t)$, so we can write'', then gave
+equation~\eqref{ch4:eq:8} as $m(t)\frac{d\vec{v}}{dt} = \vec{F}(t) + \vec{E}$, and went on ``Both
+the engine thrust and the externally-applied forces will be referred to as \emph{flight forces},
+as per the notation of Chapter~\ref{ch1}, in the following discussion. The externally-applied
+flight forces whose vector sum is here represented by $E$ will be resolved into two components:
+\emph{weight} and aerodynamic resistance, or \emph{drag}.'', with that $E$ printed without an
+arrow (the supplement likewise prints $E_o$ there without one).}
+That is,
+\begin{equation*}\tag{7a}\label{ch4:eq:n7a}
+F(t) = -\vec{c}(dm_e/dt)
+\end{equation*}
+If the exhaust gas pressure at the nozzle exit plane is \emph{not} equal to the ambient pressure,
+the thrust will be
+\begin{equation*}\tag{7b}\label{ch4:eq:n7b}
+\vec{F}(t) = -\vec{c}(dm_e/dt) + (P_e - P_a)\vec{A}_e
+\end{equation*}
+\begin{itemize}[nosep,leftmargin=4em,labelwidth=3.5em,labelsep=0.5em,align=left]
+  \item[Where] $\vec{A}_e$ = area of nozzle exit plane
+  \item[] $P_e$ = exhaust gas pressure at nozzle exit plane
+  \item[and] $P_a$ = ambient pressure
+\end{itemize}
+
+Most practical rocket motors have convergent/divergent nozzles that produce supersonic exhaust gas
+velocities. A rocket motor of this type will attain the maximum thrust possible for a given
+combustion chamber temperature and pressure and a given nozzle throat area when its nozzle is
+designed for optimum expansion. If the nozzle ``overexpands'' the exhaust, so that $P_e$ is less
+than $P_a$, the pressure difference across the nozzle exit plane acts in the direction opposite to
+the thrust and therefore reduces it. If the nozzle ``underexpands'' the exhaust, so that $P_e$ is
+greater than $P_a$, the pressure difference across the nozzle exit plane acts in the same
+direction as the thrust, but an underexpanding nozzle does not produce as high an exhaust velocity
+as a nozzle designed for optimum expansion. The net effect is again a reduction in thrust.
+
+Equation~\eqref{ch4:eq:7} above includes the term $(P_e - P_a)\vec{A}_e$ as one component of
+$\vec{E}$, the vector sum of all externally-applied forces. It is more convenient for calculation
+purposes, however, to extract it from $\vec{E}$ and write it as part of the thrust $\vec{F}(t)$ as
+in equation~\eqref{ch4:eq:n7b} above. Indeed, $(P_e - P_a)\vec{A}_e$ is part of the thrust
+measured in a static test stand and is referred to as the ``pressure component of thrust''. It is
+then possible to define an ``effective'' or ``equivalent'' exhaust velocity $\vec{c}_{\mathrm{eff}}$
+as
+\begin{equation*}\tag{7c}\label{ch4:eq:n7c}
+\vec{c}_{\mathrm{eff}} = \vec{c} - (P_e - P_a)\vec{A}_e/(dm_e/dt)
+\end{equation*}
+and to write the equation for thrust in the form
+\begin{equation*}\tag{7d}\label{ch4:eq:n7d}
+\vec{F}(t) = -\vec{c}_{\mathrm{eff}}(dm_e/dt)
+\end{equation*}
+Since the effective exhaust velocity is directed \emph{backward} along the longitudinal axis of
+the rocket it is vectorially \emph{negative} with respect to $\vec{v}$. And since the rate of mass
+expulsion has been expressed as the \emph{positive} mass-flow rate $dm_e/dt$, equivalent to
+$\mdot$ as used by professional rocket engineers, the thrust is a \emph{positive} force tending to
+\emph{increase} $\vec{v}$---which, as practical rocketeers, we already know from experience. We can
+then write the vector differential equation of motion as
 \begin{equation}\label{ch4:eq:8}
-m(t)\frac{d\vec{v}}{dt} = \vec{F}(t) + \vec{E}
+m(t)(d\vec{v}/dt) = \vec{F}(t) + \vec{E}_o
 \end{equation}
-Both the engine thrust and the externally-applied forces will be referred to as \emph{flight
-forces}, as per the notation of Chapter~\ref{ch1}, in the following discussion. The
-externally-applied flight forces whose vector sum is here represented by $E$ will be resolved into
-two components: \emph{weight} and aerodynamic resistance, or \emph{drag}.
+\begin{itemize}[nosep,leftmargin=4em,labelwidth=3.5em,labelsep=0.5em,align=left]
+  \item[Where] $\vec{E}_o$ = vector sum of all externally-applied forces \emph{other than} the pressure
+    component of thrust
+\end{itemize}
+Both the engine thrust and the externally-applied forces other than the pressure component of
+thrust will be referred to as \emph{flight forces} as per the notation of Chapter~\ref{ch1}, in
+the following discussion. The externally-applied flight forces whose vector sum is here
+represented by $E_o$ will be resolved into two components: \emph{weight} and aerodynamic
+resistance, or \emph{drag}.
 
 \subsection{Mathematical Representation of the Flight Forces}\label{ch4:sec:1.1}
 
@@ -309,7 +377,12 @@ the conventional notation for the derivatives would be convenient.
 
 Substituting~\eqref{ch4:eq:9}, \eqref{ch4:eq:10}, \eqref{ch4:eq:14} and~\eqref{ch4:eq:15}
 into~\eqref{ch4:eq:12} and~\eqref{ch4:eq:13} results in general differential equations of motion
-in the form
+in the form\ednote{The text says that equation~\eqref{ch4:eq:10} is substituted, but the
+perpendicular thrust component $F_p$ appears in neither equations~\eqref{ch4:eq:12}
+and~\eqref{ch4:eq:13} nor equations~\eqref{ch4:eq:16} and~\eqref{ch4:eq:17}. Only the tangential
+component $F_t = F(t)\cos\alpha$ of equation~\eqref{ch4:eq:9} enters them, so the component of
+thrust normal to the trajectory is dropped without comment. Neither the errata nor the supplements
+correct this; the text is kept as printed.}
 \begin{align}
 m(t)\frac{dv_y}{dt} &= F(t)\cos\alpha\,(\dot{y}/v) - m(t)g - [k + \epsilon f(\alpha)]v\dot{y}
   \label{ch4:eq:16}\\
