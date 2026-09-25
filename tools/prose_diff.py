@@ -21,9 +21,10 @@ Usage: python3 tools/prose_diff.py [--chapter ch1 ...] [--pdf build/main.pdf]
 Writes build/prose-chN.md and prints the per-page table.
 Exit status: 1 if some page with at least two windows has all of them below 0.3 (a likely dropped
 page); 2 on a setup error (missing PDF, draft or chapter); 0 otherwise.  A chapter's optional
-"artwork_pages" object in inventory/chapters.json ({"274": "reason"}) names pages whose OCR text is
-lettering inside a figure crop; such a page is still scored and listed, but with its reason
-instead of as a likely dropped page.
+"artwork_pages" object in inventory/chapters.json ({"274": "reason"}) names pages whose OCR cannot
+match the compiled text for a checked reason (lettering inside a figure crop; a letter-spaced OCR of
+a typed table); such a page is still scored and listed, but with its reason instead of as a likely
+dropped page.
 """
 import argparse
 import json

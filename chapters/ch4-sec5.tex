@@ -1,1 +1,241 @@
-% ch4-sec5 -- stub, to be transcribed (milestone M4)
+% chapters/ch4-sec5.tex -- 5. Recapitulation and Qualitative Features of the Analytical Results;
+% 5.1 Bengen's Maxima; 5.2 Model Rocket Design Optimization; 5.2.1-5.2.6 (PDF 634-645, printed
+% pp. 602-613), from the heading "5." (mid-PDF 634) to the end of the chapter text. No numbered
+% equations; Figure 16.
+\section{Recapitulation and Qualitative Features of the Analytical Results}\label{ch4:sec:5}
+
+Now that the methods of Chapters~\ref{ch2} and~\ref{ch3}, and the present chapter, have placed at
+our disposal methods for predicting the dynamic behavior, drag, and altitude capability of any
+model rocket we may turn our attention to the qualitative features of the results obtained in
+order to ascertain the relative importance of each characteristic, or \emph{parameter}, of the
+vehicle to its overall altitude performance. The flight dynamics and aerodynamics chapters each
+presented criteria for good design practice in relation to their own subject matter. This section
+will attempt to integrate those criteria with some that are basic to the ballistic characteristics
+of model rockets and to arrive at some fundamental, unified design rules.
+
+\subsection{Bengen's Maxima}\label{ch4:sec:5.1}
+
+If one were to construct a graph of \emph{total altitude as a function of initial mass for various
+values of the drag constant $k$}, given a specific model rocket engine type, a curious effect would
+be noticed: there is an optimum, nonzero weight that gives maximum altitude performance. If the
+model is either heavier \emph{or lighter} than the optimum weight, its altitude capability will be
+less than it would be at the optimum. The existence of such optimum points was first noted by
+Bengen in 1965. Malewicki, working independently, published explicit examples of graphs displaying
+the altitude maxima in 1966 as model rocket manufacturer's reports. It is also true, as you can see
+from the sample plot presented in Figure 19,\ednote{This chapter has no Figure 19. The sample plot
+meant is evidently Figure~\ref{ch4:fig:16}, the plot of Bengen's maxima that
+Section~\ref{ch4:sec:5.2.3} cites. The reference is kept as printed.} that \emph{the optimum weight
+decreases as the value of $k$ decreases} until, in the limit as $k$ approaches zero, the optimum
+weight also approaches zero. It \emph{is} actually possible, for most values of $k$ to which
+practical model rockets can be built, to build a rocket that is \emph{too light} for maximum
+altitude performance! It is a remarkable coincidence, as noted by Stine in his \emph{Handbook of
+Model Rocketry} even prior to Bengen and Malewicki, that many model rockets just happen to be
+constructed near the ballistically optimum point.
+
+The effect which produces Bengen's maxima can be explained qualitatively in the following manner.
+A typical model rocket gains most of its altitude during the coasted portion of the flight. The
+coasted altitude increment depends heavily upon two things (other than the deceleration due to
+gravity, which is constant for all model rockets): the \emph{burnout momentum} and the \emph{drag}
+due to the burnout velocity. It actually depends analytically on the burnout mass, the burnout
+velocity, and the drag parameter $k$. If the vehicle is extremely light, its burnout velocity will
+be large since the burnout velocity increases monotonically with decreasing weight (i.e., the
+burnout velocity always increases as the weight decreases). The low weight, however, will prevent
+the burnout \emph{momentum} from being very large. The \emph{drag}, on the other hand, will be
+extremely high due to its quadratic dependence on velocity. As a result, the momentum of the rocket
+is \emph{dissipated}, or used up, very rapidly and the coasted altitude is disappointingly low.
+This is the same effect that insures that a whiffle ball or ping-pong ball cannot travel very far
+regardless of how hard it is hit. The extreme limit of this behavior would be the example of a
+feather being shot out of a cannon: the muzzle velocity is tremendous but the momentum of the
+feather is almost instantly overcome by its large drag.
+
+If we now have a rocket that is very \emph{heavy}, its burnout velocity will be relatively
+\emph{low}. Its large mass, however, insures that its burnout \emph{momentum} will be about the
+same as that of the lighter rocket (actually, with the exception of the momentum lost to drag and
+gravity during the burning phase, the two rockets will have \emph{identical} values of burnout
+momentum; this must be true since the total impulse of the engine is just the total momentum
+change imparted to the rocket by its engine). The low burnout velocity insures that aerodynamic
+drag will dissipate the burnout momentum much more slowly than is the case for the light rocket.
+The deceleration of \emph{gravity}, however, will dissipate the burnout momentum at a rate much
+\emph{greater} than in the case of the light rocket---and again the altitude performance suffers.
+
+Thus, the optimum liftoff mass lies somewhere between the two extremes. Since the methods of
+Section~\ref{ch4:sec:2} of this chapter have given us closed-form, algebraic solutions for
+altitude performance in cases of vertical flight, it is theoretically possible to obtain a
+closed-form expression for the ballistically optimum liftoff mass. When one attempts this in
+practice, however, it is found that the resulting expression is far more complicated than the
+original total altitude function and requires a prohibitive amount of time and effort to solve in
+any given case. While such an expression satisfies the letter of the definition, ``closed-form
+solution'', it literally covers pages when written out; it does not satisfy the \emph{intent} of
+the definition as used in this book, which requires a practical closed-form solution to be quicker
+and easier to use than numerical or graphical methods from which the same result could be
+obtained.
+
+The most convenient method yet found for determining the optimum liftoff mass of a model rocket is
+to consult a graph of the kind described at the beginning of this section. Sets of such plots are
+currently available from Estes Industries, Incorporated of Penrose, Colorado as Technical Report
+TR-10, \emph{Altitude Prediction Charts}; and from the Centuri Engineering Company of Phoenix,
+Arizona as Technical Information Report TIR-100, \emph{Model Rocket Altitude Performance}.
+Ambitious modelers can prepare their own charts for engine types not listed in these reports,
+using the methods of Section~\ref{ch4:sec:2} except in very high-performance cases, where numerical
+interval methods must be used due to drag divergence at transonic speeds. It is also suggested
+that calculations be restricted to values of liftoff mass greater than the mass of the loaded
+engine alone (which is the least possible mass of any actual model) and that values of $k$ be kept
+above a reasonable minimum associated with the lowest possible drag coefficient to which a model
+rocket can, as a practical matter, be designed.
+
+\subsection{Model Rocket Design Optimization}\label{ch4:sec:5.2}
+
+With the sum total of the information presented throughout this volume ready to our hand, we are
+now in a position to formulate a general design procedure which, if adhered to, will enable the
+model rocketeer to formulate designs which are optimized from the standpoint of the altitude they
+are capable of achieving with the specific model rocket engine for which they are designed to be
+flown. It is important to remember that our criterion of optimization is \emph{altitude
+capability} alone. The material presented in this book, properly applied, permits the synthesis of
+rocket designs that may be considered ``superior'', or even ``best'', for applications depending
+solely upon maximum altitude achieved. Examples of such applications are micrometeorological
+sounding and the National Association of Rocketry's altitude and payload competition events. There
+exist applications in the field of model rocketry, however, for which the rocket with the greatest
+altitude capability is not necessarily the best one. Examples that come immediately to mind in this
+category are the NAR parachute, boost/glider, and rocket glider duration events, in which the
+model's altitude capability must be balanced against the need for a parachute or aerodynamic
+surfaces large enough to insure a slow descent and a good probability of the descending model's
+being caught by thermals. With the caution that our optimization techniques are valid only for
+models in which altitude capability is the sole criterion of excellence, then, we present the
+following design optimization procedure.
+
+\subsubsection{Initial Design Definition}\label{ch4:sec:5.2.1}
+
+Given the purpose for which your model is to be used and the model rocket engine with which it is
+to be flown, make a rough sketch of your first impression of what it should look like. Refine the
+sketch as necessary, adding dimensions (the dimensions are, of course, approximate and may be
+changed later as necessary). Simplicity is the rule at this stage in the design: avoid \emph{all}
+unnecessary complication of shape and arrangement. A way-out, Buck Rogers design may make a fine
+sport, demonstration, or display model, but it will rarely if ever come out looking very good when
+judged solely on the basis of its altitude capability. Also avoid unnecessary \emph{size}, making
+the design as compact as possible consistent with adequate provisions for a good, reliable recovery
+system and any payload that is to be carried.
+
+\subsubsection{Drag Coefficient}\label{ch4:sec:5.2.2}
+
+Using the techniques presented in Section~\ref{ch3:sec:6} of Chapter~\ref{ch3}, estimate the
+coefficient of drag of your model at a zero angle of attack. You should be somewhat conservative
+regarding your assumptions of skin-friction drag at this point, both to allow for small
+imperfections encountered in finishing the model and to allow for the deterioration of the
+rocket's surface that will occur from flight to flight. In designing model rockets for maximum
+altitude performance the lowest possible drag coefficient is desirable, and to this end you should
+not hesitate to experiment with variations on the initial design formulated in
+Section~\ref{ch4:sec:5.2.1}. Avoid the use of launch lugs on high-performance models if at all
+possible by launching from a low-friction tower or closed-breech mechanism, or at least try to
+incorporate a ``pop-off'' or ``shuck-off'' lug design if a lugless launching device is not
+available. Remember that, if you do use a fixed launch lug system, you will probably have to accept
+an increment in drag coefficient $(\Delta\CD)_{\mathrm{lug}}$ on the order of 0.25 as given in
+Section~\ref{ch3:sec:4.3.3} of Chapter~\ref{ch3}. Since it is sometimes possible to design model
+rockets with values of $\CD$ less than 0.4, provided no launch lug is present, you can see that the
+presence of a fixed lug exacts a considerable penalty in terms of altitude performance.
+
+\subsubsection{Weight Optimization}\label{ch4:sec:5.2.3}
+
+Use the first-estimate value of $\CD$ obtained in Section~\ref{ch4:sec:5.2.2} to compute the drag
+parameter $k$ (it will be recalled that $k$ is equal to $\tfrac{1}{2}\rho\CD A_r$, where $A_r$ is
+the reference cross-sectional area and $\rho$ is the density of the atmosphere). If you will be
+launching from a site considerably above sea level, or if your model will reach an extremely great
+altitude (of which you have a rough idea), be sure to adjust your value of $\rho$ from its
+sea-level value of 1.225 kilograms per cubic meter. Remember that $k$, for use with charts such as
+Figure~\ref{ch4:fig:16}, must be computed using MKS units. If you have a single-staged,
+single-engined model you may then use a Malewicki chart (as plots such as Figure~\ref{ch4:fig:16}
+have come to be called) to select the optimum weight for your rocket directly by locating Bengen's
+maximum for that particular value of $k$. If you are using clustering or staging, some numerical
+experimentation with different values of liftoff mass using the methods described in
+Section~\ref{ch4:sec:2} will be required. For some rockets having very low values of $k$, it may
+not be possible to achieve the optimum weight (for instance, when the weight of the payload and
+engine alone are found to total more than the optimum). In such cases, the model must simply be
+built as light as practicable consistent with adequate structural strength. For rockets to which
+weight must be added to optimize the liftoff mass, adding nose weight is usually best since this
+permits adequate stability to be attained with smaller fins than would otherwise be the case, and
+thus lessens drag.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch4/fig16.png}
+  \caption{Maximum altitude attained in vertical flight vs.\ liftoff mass for models using the Type
+    B4 engine; an example of Bengen's maxima. Curves have been plotted for models having several
+    values of the drag parameter $k$; the $k$ values, in kg/m, have been noted on the curves. Since
+    the line on which all Bengen's maxima lie is to the right of the line representing the initial
+    mass of the engine itself (for all values of $k$ to which model rockets can actually be built),
+    Bengen's maxima are practical considerations that must be taken into account when designing
+    model rockets for maximum altitude performance. Graphs of this type were first compiled by
+    Douglas J. Malewicki and are therefore called ``Malewicki charts''.}
+  \label{ch4:fig:16}
+\end{figure}
+
+\subsubsection{Dynamic Stability Optimization}\label{ch4:sec:5.2.4}
+
+Determine the values of the dynamic parameters $C_1$, $C_2$, $I_L$, and $I_R$ for your tentative
+design according to the methods presented in Section~\ref{ch2:sec:5} of Chapter~\ref{ch2}. Adjust
+these values by altering the mass distribution, length, fin size, fin shape, and fin placement as
+necessary to obtain a static stability margin of about one caliber or slightly more, a damping
+ratio $\zeta$ between 0.05 and 0.3, and a desirable value of the natural frequency $\omega_n$. We
+would suggest, based on experience to date, that the most desirable natural frequencies for
+vehicles of model rocket size lie between $0.002v$ and $0.01v$, where $v$ is the airspeed of the
+model given in \emph{centimeters} per second (remember that CGS units are used throughout
+Chapter~\ref{ch2}). The equivalent limits for airspeeds given in meters per second are $0.2v$ and
+$1.0v$. A lower value usually means the longitudinal moment of inertia is too great for the
+corrective moment coefficient, so that the model cannot respond to the moments applied by its fins
+with sufficient rapidity for safe and stable flight at average, present-day launch departure
+velocities. A higher value usually means the longitudinal moment of inertia is too low, so the
+model is easily disturbed, or that the corrective moment coefficient is too large, usually
+indicating too-large fins that cause excessive drag. If you wish to use a roll rate to reduce
+horizontal dispersion, check to insure that it is not too near the coupled resonant frequency
+$\omega_{\mathrm{cres}}$. You may also wish to check the roll rates induced by various assumed
+slight fin misalignments to guard against the possibility of resonance due to unintentional roll.
+
+\subsubsection{Reduction of Drag at Angle of Attack}\label{ch4:sec:5.2.5}
+
+Consistent with the requirements of the preceding steps, attempt to select or refine the fin design
+such that the increase in drag with angle of attack is minimized. Since, for any given value of
+$k$, the reduction in altitude performance due to dynamic oscillations depends strongly on the
+ratio of $\epsilon$ to $k$, a model with a relatively small value of this ratio has an advantage
+over one with a larger value (provided the two vehicles have identical resistance to in-flight
+disturbances). Elliptical fins are often used to help here, since it is known that an
+\emph{airplane wing} that is not twisted and has a moderate aspect ratio will have the lowest
+induced drag due to lift if its planform is elliptical.
+
+\subsubsection{Philosophy of Design and Flight}\label{ch4:sec:5.2.6}
+
+You have no doubt noticed that the procedures outlined in each of the
+Sections~\ref{ch4:sec:5.2.1} through~\ref{ch4:sec:5.2.5} tend to alter the design of the model from
+what it was at the previous stage of the procedure. The possibility thus exists that optimization
+of the design at any given stage, using information from the previous stage, may to a certain
+extent invalidate the figures taken from the previous stage. To ``home in'' on an optimum design to
+an arbitrary degree of precision it is therefore generally necessary to perform several design
+\emph{iterations}; that is, to go through the process outlined in Sections~\ref{ch4:sec:5.2.1}
+through~\ref{ch4:sec:5.2.5} several times, using the status of the design from the previous
+iteration, or ``pass'', to perform the next iteration. A great deal of this is done in professional
+industry, but the modeler can, at his option, choose the number and precision of his iterations at
+will, depending on how precise he desires his optimization to be. For many purposes, of course, a
+bare minimum of analysis, not even using all the methods and procedures outlined in this book, will
+suffice to produce a reasonably good design. For contest work, however, or record-setting attempts
+and scientific payload lofting, many rocketeers will want to take full advantage of the most
+advanced and painstaking analytical methods of design available.
+
+No matter how careful the design of his vehicle has been, however, there exist certain conditions
+encountered at the launch site which may sometimes force the modeler to depart from strictly
+altitude-optimized design to achieve the desired results in actual operation. If a strong
+horizontal wind exists at the time of launch, for instance, a model designed for a low-thrust,
+long-burning engine will often achieve a higher altitude if launched with a high-thrust,
+short-burning engine of identical specific impulse, since it will not then have time to respond
+completely to the horizontal wind encounter during the burning phase of flight. An example would be
+the substitution of a B14 engine in a model optimized for a B4, in case of strong winds at the
+launch site. There also exist instances in which it is wise for the modeler to render his design
+deliberately off-optimum in order to remain below cloud cover or within the capabilities of limited
+tracking facilities. Such cases, however, are entirely a matter of the rocketeer's intuition and
+expertise gained through experience and we do not see fit to discuss them in a book devoted
+strictly to the optimization of the actual altitude capability of model rockets.
+
+In closing, the authors of this volume would like to state that it is not their intention to end
+all questions of model rocket design with the material presented herein. To the best of our
+knowledge and belief based on experience to date, the techniques and information presented in this
+book form a valid framework within which each model rocketeer can construct his own philosophy of
+altitude optimization. A great deal remains to be said, however, for the value of intuition and
+experience, and much experimental and analytical research remains to be done in model rocketry, a
+field that is at once a science, a sport, a hobby, and a fine art.

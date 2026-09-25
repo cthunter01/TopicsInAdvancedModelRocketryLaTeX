@@ -196,6 +196,9 @@
         646,
         646
       ]
+    },
+    "artwork_pages": {
+      "628": "Table 2, first half (not figure lettering): the OCR letter-spaces the typed cells ('descri ption', 'i ntensi ty', 'I mpulse'), so almost no 3-grams match; the header and all 17 rows were checked against the scan and are in the ch4:tab:2 longtable"
     }
   }
 }

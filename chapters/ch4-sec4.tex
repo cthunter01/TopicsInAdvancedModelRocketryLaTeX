@@ -1,1 +1,626 @@
-% ch4-sec4 -- stub, to be transcribed (milestone M4)
+% chapters/ch4-sec4.tex -- 4. Coupling of Dynamic Oscillations to the Trajectory Equations; 4.1-4.4
+% (PDF 610-634, printed pp. 578-602), from the heading "4." (mid-PDF 610) up to but not including
+% the heading "5." (mid-PDF 634). Equations 132-166b, Tables 1-2.
+\section{Coupling of Dynamic Oscillations to the Trajectory Equations}\label{ch4:sec:4}
+
+Having obtained satisfactory solutions to all aspects of point-mass model rocket flight behavior
+under the assumption of a uniformly zero angle of attack, we are now in a position to consider the
+effects of the rigid-body motion discussed in Chapter~\ref{ch2} in the calculation of altitude
+capability.
+
+It would be senseless---and well-nigh impossible---to attempt to present equations for the
+detailed calculation of a rocket's altitude performance under conditions of completely general
+in-flight disturbances because of the virtually infinite variety of forcing functions which may
+cause oscillations of the vehicle. The winds at different altitudes have different speeds and
+directions, which moreover change from moment to moment; it is therefore not possible for a
+modeler to know precisely the wind profile his vehicle will encounter in any given flight.
+Impulsive forcing due to launch departure and staging effects, and the precise nature of the
+forcing due to slight propulsive malfunctions such as solid-particle ejection, are also impossible
+to predict with any precision. Because of these uncertainties in the nature of the disturbances
+encountered in flight, a detailed method for the precise calculation of the maximum altitude
+attained by a rocket subjected to completely general forcing functions would be useless. It is a
+far more meaningful and fruitful task to solve for the reduction in altitude caused by several
+standard and well-defined forcing functions, with the object of \emph{revealing the structural and
+aerodynamic characteristics of the vehicle that contribute to the reduction in altitude, thereby
+facilitating the design of rockets which are least affected by in-flight disturbances}. It is to
+this purpose that the solutions of this section will be directed. Derivations of the solutions
+will be carried out for a set of standard forcing functions which form the \emph{basis} for all
+possible rigid-body rotative disturbances encountered in model rocket flight, which is to say that
+any possible forcing function can be synthesized from some combination of this set of standard
+disturbances.
+
+\subsection{The Differential Equations of Motion with Perturbation Terms}\label{ch4:sec:4.1}
+
+In Section~\ref{ch4:sec:1.2} we wrote down the general differential equations of motion which
+included perturbation terms due to increases in drag and the reduction of effective thrust due to
+pitching and yawing of the vehicle. Later in this section we shall attempt the solution of these
+equations. First, however, a review of the assumptions which led to the formation of the vertical
+equation of motion~\eqref{ch4:eq:16} is in order. It is important to remember that
+equation~\eqref{ch4:eq:16} is \emph{not} the exact differential equation of vertical motion; it
+is an approximation. The dynamic analysis of Chapter~\ref{ch2} is valid \emph{only} provided that
+the model's \CG{} does not move laterally too much during any given disturbance. In actuality, the
+momentary deflections of an oscillating rocket will cause it to head in a direction that is not
+tangent to the intended direction of flight and the \CG{} \emph{will} move slightly to the side
+before the angle of attack passes through zero on its way toward the opposite extreme of the
+oscillation. \emph{This effect will contribute to the reduction in altitude} caused by the
+disturbance and will appear as an additional term not originally included in
+equation~\eqref{ch4:eq:16}. The treatments of this section will, however, be restricted to cases
+for which the dynamic analyses of Chapter~\ref{ch2} are valid. It will therefore be assumed that
+the model's frequency of oscillation is sufficiently high, and its amplitude sufficiently small,
+that the oscillatory horizontal translations of the \CG{} are negligibly slight. Such an
+assumption is justified, since (as was shown in Chapter~\ref{ch2}) a too-low oscillation frequency
+or a critically-damped or overdamped response is incompatible with dynamically stable flight.
+
+It will thus be assumed that the rocket's \CG{} is travelling in a purely vertical direction and
+develops no lateral components of velocity. Under such an assumption,
+equation~\eqref{ch4:eq:16} becomes an exact description of the rocket's vertical motion. We are
+then free to consider the method by which we will solve~\eqref{ch4:eq:16}.
+
+Since a stable rocket will, as shown in Chapter~\ref{ch2}, practically never experience pitch or
+yaw angles exceeding $12\dg$, it is possible to expand some of the terms of
+equation~\eqref{ch4:eq:16} containing functions of $\alpha(t)$ as factors, in powers of
+$\alpha(t)$, where $\alpha(t)$ is the generalized yaw-pitch angle which equals
+\begin{equation}\label{ch4:eq:132}
+\alpha(t) = \sqrt{[\alpha_x(t)]^{2} + [\alpha_y(t)]^{2}}
+\end{equation}
+and $\alpha_x(t)$ and $\alpha_y(t)$ are the yaw and pitch angles of the model as functions of
+time.
+
+As stated in Chapter~\ref{ch1} and confirmed in greater detail in Chapter~\ref{ch3}, the function
+$f(\alpha)$ appearing in~\eqref{ch4:eq:16} can be represented to a high order of accuracy by a
+quadratic function in $\alpha(t)$, so that the approximate drag as a function of the angle of
+attack can be written as
+\begin{equation}\label{ch4:eq:133}
+\text{Drag} = (k + \epsilon\alpha^{2})v^{2}
+\end{equation}
+where the determination of the constants $k$ and $\epsilon$ has been discussed in
+Chapters~\ref{ch1} and~\ref{ch3}, and $\alpha$ is just $\alpha(t)$, the generalized angle of
+attack. It is also possible to replace $\cos(\alpha)$ by its power series expansion
+\begin{equation}\label{ch4:eq:134}
+\cos(\alpha) = 1 - \frac{\alpha^{2}}{2} + \frac{\alpha^{4}}{4} - \ldots
+\end{equation}
+and to truncate the expansion after its $\alpha^{2}$ term, since $\alpha$ will never exceed 0.2
+radian for cases amenable to analysis by the methods of Chapter~\ref{ch2}:
+\begin{equation}\label{ch4:eq:135}
+\cos(\alpha) \cong 1 - \frac{\alpha^{2}}{2}
+\end{equation}
+
+Equation~\eqref{ch4:eq:16} may then be written as
+\begin{equation}\label{ch4:eq:136}
+m(t)\frac{dv}{dt} = F(t)\left[1 - \frac{\alpha^{2}}{2}\right] - m(t)g - (k + \epsilon\alpha^{2})v^{2}
+\end{equation}
+where the $y$ subscript has been discarded as unnecessary due to the fact that we are here
+considering cases of vertical flight only.
+
+Despite the simplifying approximations made to obtain it, equation~\eqref{ch4:eq:136} is
+sufficiently complicated that no practical, closed-form solution to it has yet been found. As in
+Section~\ref{ch4:sec:3}, therefore, we shall have to resort to numerical solutions obtained by
+incremental methods similar to those of Section~\ref{ch4:sec:2.4}. While it is not possible to
+visualize the sensitive parameters influencing a model's behavior as concisely when such
+computer-oriented techniques are used as it would be if an accurate and reasonably simple
+closed-form solution were available, it will be found that one \emph{can} gain by example some
+feeling for the effects of various disturbances on the altitude capability of representative model
+rockets. Such numerical data, interpreted in the light of the analytical results of
+Chapter~\ref{ch2}, enable us to fulfill our stated purpose of extracting criteria of use in
+designing models which possess maximum resistance to in-flight perturbations.
+
+\subsection{A Numerical Method for the Digital Computation of Altitude Performance in Cases of
+Oscillating Rockets}\label{ch4:sec:4.2}
+
+Like the vertical equation of motion for non-oscillating rockets, equation~\eqref{ch4:eq:136} can
+be solved to any desired accuracy using numerical techniques in which the differential time $dt$
+is replaced by a finite interval $\Delta t$. In order to obtain solutions for rockets undergoing
+rigid-body oscillations, however, it is necessary to add some additional computing steps derived
+from Euler's dynamical equations---equations~\eqref{ch2:eq:14} of Chapter~\ref{ch2}. Listed below
+is the computational procedure for completing a single iterative loop analogous to the
+drag-from-prior-velocity method of Section~\ref{ch4:sec:2.4}:
+% (137)-(153) are one printed run (PDF 614-615, STYLE.md section 15): the statements (137)-(143)
+% start at one column, the "=" signs of (144)-(153) are lined up.
+\begin{align}
+&\Delta v = \Delta t\left\{F(t)\left[1 - \frac{\alpha^{2}}{2}\right] - m(t)g
+  - (k + \epsilon\alpha^{2})v^{2}\right\}\Big/m(t) \label{ch4:eq:137}\\
+&\Delta y = \Delta t\left(v + \frac{\Delta v}{2}\right) \label{ch4:eq:138}\\
+&v = v + \Delta v \label{ch4:eq:139}\\
+&y = y + \Delta y \label{ch4:eq:140}\\
+&\text{calculate } C_1 \label{ch4:eq:141}\\
+&\text{calculate } C_2 \label{ch4:eq:142}\\
+&\text{calculate or input } \omega_z \label{ch4:eq:143}\\
+\Delta\omega_x &= \Delta t[f_x(t) - C_2\omega_x - C_1\alpha_x - I_R\omega_y\omega_z]/I_L
+  \label{ch4:eq:144}\\
+\Delta\omega_y &= \Delta t[f_y(t) - C_2\omega_y - C_1\alpha_y + I_R\omega_y\omega_z]/I_L
+  \label{ch4:eq:145}\\
+\Delta\alpha_x &= \Delta t\left[\omega_x + \frac{\Delta\omega_x}{2}\right] \label{ch4:eq:146}\\
+\Delta\alpha_y &= \Delta t\left[\omega_y + \frac{\Delta\omega_y}{2}\right] \label{ch4:eq:147}\\
+\omega_x &= \omega_x + \Delta\omega_x \label{ch4:eq:148}\\
+\omega_y &= \omega_y + \Delta\omega_y \label{ch4:eq:149}\\
+\alpha_x &= \alpha_x + \Delta\alpha_x \label{ch4:eq:150}\\
+\alpha_y &= \alpha_y + \Delta\alpha_y \label{ch4:eq:151}\\
+\alpha &= \sqrt{\alpha_x^{2} + \alpha_y^{2}} \label{ch4:eq:152}\\
+t &= t + \Delta t \label{ch4:eq:153}
+\end{align}
+Again, as in Section~\ref{ch4:sec:2.4}, expressions such as (175) are not equations as we
+understand them, but arithmetic assignment statements which instruct the computer to replace the
+``old'' or ``former'' value of a variable with its ``new'' or ``present'' value. The notation of
+Chapter~\ref{ch2} has been used for all the expressions involving rigid-body dynamics: subscripts
+$x$ and $y$ \emph{do not} refer to the Cartesian axes used in the general equations of nonvertical
+motion, but rather to the pitch and yaw axes of the vehicle; $\omega$ denotes angular velocity;
+$\alpha$ denotes angular displacement or angle of attack; the $f(t)$ are forcing functions or
+perturbing moments that may vary with time; $C_1$ is the corrective moment coefficient; $C_2$ is
+the damping moment coefficient; $I_L$ is the longitudinal moment of inertia; and $I_R$ is the
+radial moment of inertia.
+
+You should note that equations~\eqref{ch4:eq:144} and~\eqref{ch4:eq:145} are approximate in that
+they assume constant, average values for $I_L$ and $I_R$ (the moments of inertia actually change
+slightly as the propellant is expended). Exact, time-varying values could be used---as could the
+exact expressions for thrust reduction and drag increase due to angle of attack---but the increase
+in accuracy obtained thereby is not worth the consequent increase in complexity. The computer is
+going to have to perform the calculations~\eqref{ch4:eq:137} through~\eqref{ch4:eq:153} a great
+many times, so even a slight time saving in a few steps of the loop can add up to worthwhile
+savings in time and expense over the full course of a computer ``run''.
+
+Steps~\eqref{ch4:eq:141}, \eqref{ch4:eq:142}, and~\eqref{ch4:eq:143} require the use of formulae
+developed in Chapter~\ref{ch2}. Specifically, $C_1$ is proportional to the square of the velocity
+according to the relation expressed in equation~\eqref{ch2:eq:95} of Chapter~\ref{ch2}, while
+$C_2$ depends on both the velocity and the motor characteristics as given in
+equations~\eqref{ch2:eq:97} through~\eqref{ch2:eq:101} of that chapter. In cases where the roll
+rate $\omega_z$ is induced by canted fins it may be calculated from equations~\eqref{ch2:eq:115}
+through~\eqref{ch2:eq:117} of Chapter~\ref{ch2}; if induced by other means it must be determined
+by a formula appropriate to the method of roll forcing. If the assumption of zero roll rate is to
+be made the value $\omega_z = 0$ must be input (or you can write a special program for use with
+non-rolling rockets only, in which the equations assume $\omega_z$ equal to zero).
+
+As you can determine by working a few numerical examples, the angular velocities---called pitch,
+yaw, and roll \emph{rates} by engineers---can become quite high for model rockets near burnout
+velocity. The method of theoretical velocity increments presented in Section~\ref{ch4:sec:2.4}
+therefore loses its computational advantage over the drag-from-prior-velocity method when applied
+to cases of oscillating rockets. That advantage consisted of a tolerance for relatively large time
+increments while maintaining good accuracy, and it is lost when oscillating rockets are considered
+because short intervals are required for an accurate determination of the angle of attack. The
+modification of the theoretical-velocity-increment method for oscillating vehicles will not,
+therefore, be presented here. For best results, $\Delta t$ as used in~\eqref{ch4:eq:137}
+through~\eqref{ch4:eq:153} should be of the order of 0.001 second---and it is unlikely that the
+theoretical-velocity-increment method would tolerate much more than this. For hand calculations it
+is of course impractical to attempt the use of $\Delta t$'s less than 0.1 second. Those who perform
+such calculations should not, therefore, expect too much in the way of accuracy from the procedure
+detailed above.
+
+\subsection{Solutions for Standard Forcing Functions}\label{ch4:sec:4.3}
+
+In order to apply the method of Section~\ref{ch4:sec:4.2} in computing the altitude performance of
+a model rocket perturbed by one of the standard forcing functions described in Chapter~\ref{ch2} it
+is necessary to select specific functional forms for $f_x(t)$ and $f_y(t)$ and specific initial
+values for $\omega_x$, $\omega_y$, $\alpha_x$, and $\alpha_y$. The remainder of this section will
+present such formulae and values for use in determining the effects of a homogeneous response and
+of responses to each of the standard forcing functions considered in Chapter~\ref{ch2}. Our
+treatment will be restricted to single-staged models (although the method of
+Section~\ref{ch4:sec:4.2} is completely general and can be applied to rockets of any number of
+stages), since all information of design interest to model rocketeers concerning dynamic response
+is obtainable from the study of single-stage cases.
+
+\subsubsection{Homogeneous Response for General Initial Conditions}\label{ch4:sec:4.3.1}
+
+When one is primarily concerned with the behavior of a model once it has been placed in a given
+state of angular displacement and angular velocity, without regard to the precise nature of the
+disturbance that caused it to assume that state, it is best to compute the \emph{homogeneous
+response} resulting from the initial conditions that have been assumed. For such a calculation we
+assume that, prior to some time $t_o$ after liftoff, the vehicle has been flying vertically
+straight and true. For values of $t$ less than $t_o$, therefore,
+% The third member of this group is printed "(156c)" (evidently 154c; the plain (156) follows on
+% PDF 619): the Chapter 3 (203)-(204) pattern, with \refstepcounter giving the group label (154)
+% and advancing the counter so that the next group is (155).
+\refstepcounter{equation}\label{ch4:eq:154}%
+\begin{empheq}[right={\empheqrbrace\quad t < t_o}]{align*}
+\alpha_x &= \alpha_y = 0 \tag{154a}\label{ch4:eq:154a}\\
+\omega_x &= \omega_y = 0 \tag{154b}\label{ch4:eq:154b}\\
+f_x(t) &= f_y(t) = 0 \tag{156c}\label{ch4:eq:156c}
+\end{empheq}
+Equations~\eqref{ch4:eq:154} are said to specify the rocket's state prior to $t_o$ as
+\emph{rotationally quiescent}; it follows that the iterative procedure described in
+Section~\ref{ch4:sec:4.2} produces values of $v$ and $y$ identical to those obtained by the methods
+of Section~\ref{ch4:sec:2.4} for all values of $t$ up through $t_o$.
+
+In the instant before $t_o$, it is assumed that some unspecified occurrence disturbs the rocket
+from a straight-and-true attitude, leaving it with nonzero angular displacements and velocities as
+follows:
+\begin{subequations}\label{ch4:eq:155}
+\begin{empheq}[right={\empheqrbrace\quad t = t_o}]{align}
+\alpha_x &= \alpha_{xo} \label{ch4:eq:155a}\\
+\alpha_y &= \alpha_{yo} \label{ch4:eq:155b}\\
+\omega_x &= \omega_{xo} \label{ch4:eq:155c}\\
+\omega_y &= \omega_{yo} \label{ch4:eq:155d}
+\end{empheq}
+\end{subequations}
+where the zero-subscripted quantities are the initial values of angular displacement and velocity
+to be considered. These values must be chosen by the person performing the calculation and are
+arbitrary except for the restriction that they cannot be so large as to cause the model to have an
+angle of attack greater than 0.2 radian at any time during the subsequent oscillation. Since a
+homogeneous response is defined as a response for which there is no forcing function, the yaw and
+pitch forcing remain uniformly zero for all values of time, after as well as before $t_o$:
+\begin{equation}\label{ch4:eq:156}
+f_x(t) = f_y(t) = 0 \qquad (t \ge t_o)
+\end{equation}
+Computations of this kind may be performed for either zero or nonzero roll rate. In either case, no
+generality will be lost and the response behavior will be more easily interpreted if you assume
+nonzero initial angular displacement and angular velocity about one axis only; it is merely for the
+sake of completeness that I have taken into account both the pitch and the yaw axis in setting
+initial conditions.
+
+\subsubsection{Step Response}\label{ch4:sec:4.3.2}
+
+In order to compute the response of a model to step forcing that suddenly arises at some time $t_o$
+into the flight we again assume that the rocket is in a rotationally quiescent state for all time
+prior to $t_o$; equations~\eqref{ch4:eq:154} thus remain valid for this problem. At the moment the
+step forcing begins the model will still be in an undisturbed state, so the initial conditions are
+\begin{subequations}\label{ch4:eq:157}
+\begin{empheq}[right={\empheqrbrace\quad t = t_o}]{align}
+\alpha_x &= \alpha_y = 0 \label{ch4:eq:157a}\\
+\omega_x &= \omega_y = 0 \label{ch4:eq:157b}
+\end{empheq}
+\end{subequations}
+The forcing functions, however, become nonzero at this instant and persist as long as the step is
+assumed to last---i.e., until some time $t_1$ at which the forcing ``steps down'' again to zero (or
+until flight apex occurs, which is equivalent to setting $t_1$ equal to the duration of the upward
+flight). Then
+\begin{subequations}\label{ch4:eq:158}
+\begin{empheq}[right={\empheqrbrace\quad t_o \le t \le t_1}]{align}
+f_x(t) &= M_x \label{ch4:eq:158a}\\
+f_y(t) &= M_y \label{ch4:eq:158b}
+\end{empheq}
+\end{subequations}
+where $M_x$ and $M_y$ are the disturbing \emph{torques}, or moments, about the yaw and pitch axes,
+respectively, and
+\begin{equation}\label{ch4:eq:159}
+f_x(t) = f_y(t) = 0 \qquad (t \ge t_1)
+\end{equation}
+In cases of non-spinning rockets where the step forcing is due to slight aerodynamic asymmetries,
+the strength of the perturbing moments will vary as the square of the airspeed. Where the step
+arises from a uniform horizontal wind the magnitudes of $M_x$ and $M_y$ will be constant throughout
+the time during which the wind is blowing.
+
+It is important to note that step forcing is \emph{not} an accurate representation of the action
+of a horizontal wind upon the model except for relatively short times---on the order of a few
+tenths of a second for most model rockets. You may remember from the discussion of step responses
+in Chapter~\ref{ch2} that true step forcing applied for a sufficiently long time causes the vehicle
+to assume an angle of attack equal to $M/C_1$, where $M$ is the disturbing moment. A horizontal
+wind, however, adds vectorially to the model's airspeed and \emph{changes the direction} in which
+the rocket must fly to be at \emph{zero} angle of attack; its long-term effect is therefore to make
+the model tip over into a nonvertical trajectory (we as model rocketeers are used to referring to
+this as \emph{weathercocking}), lowering its altitude by this means as well as by the decreased
+effective thrust and increased drag due to the oscillatory response. The steady angle of attack
+predicted by the step-response treatment produces a considerable overestimate of the aerodynamic
+drag on the perturbed rocket, though, and this drag overestimate nearly always more than
+compensates for the failure to consider the nonverticality of the flight path. For this reason it
+is acceptable to use step forcing to simulate horizontal wind effects in making performance
+degradation estimates despite the admitted analytical inaccuracy of the technique.
+
+In making step response calculations you may choose $M_x$ and $M_y$ arbitrarily, subject only to
+the restriction that they be small enough to make sure the rocket will not exceed an angle of
+attack of 0.2 radian at any time during the response. It admittedly takes some numerical
+experimentation to establish such upper bounds, but the work is unavoidable if the validity of
+Chapter~\ref{ch2}'s dynamic analyses is to be guaranteed. By reasoning similar to that of
+Section~\ref{ch4:sec:4.3.1} it may be concluded that no information regarding the response will be
+lost if one of the disturbing torques is considered to be zero; this is true whether or not the
+rocket is spinning.
+
+\subsubsection{Impulse Response}\label{ch4:sec:4.3.3}
+
+In order to determine a model's response to impulsive forcing occurring at the instant $t_o$ after
+liftoff we again assume the quiescent prior rotational state specified by equations (189). The
+effect of the impulse, as discussed in Chapter~\ref{ch2}, will then be to produce a homogeneous
+response for time greater than $t_o$ with the following specialized set of initial conditions:
+\begin{subequations}\label{ch4:eq:160}
+\begin{empheq}[right={\empheqrbrace\quad t = t_o}]{align}
+\alpha_x &= \alpha_y = 0 \label{ch4:eq:160a}\\
+\omega_x &= \frac{H_x}{I_L} \label{ch4:eq:160b}\\
+\omega_y &= \frac{H_y}{I_L} \label{ch4:eq:160c}
+\end{empheq}
+\end{subequations}
+where $H_x$ and $H_y$ are the components of the impulse about the yaw and pitch axes,
+respectively.
+
+Because of the unique nature of impulsive forcing (the impulse is a mathematical idealization
+involving the assumption of an infinite disturbing moment applied for an infinitesimal time
+period), an impulse response must be computed by setting the yaw and pitch forcing functions to
+zero for all time:
+\begin{equation}\label{ch4:eq:161}
+f_x(t) = f_y(t) = 0
+\end{equation}
+Actually, $f_x(t)$ and $f_y(t)$ are both effectively infinite at the time $t_o$, but the results of
+this have already been taken into account in equations (195).
+
+Again, any values for $H_x$ and $H_y$---including zero for either one---will be acceptable as long
+as these values do not cause the overall angle of attack to exceed 0.2 radian during the subsequent
+response.
+
+\subsubsection{Response to Sinusoidal Forcing}\label{ch4:sec:4.3.4}
+
+Although a wide variety of sinusoidal disturbances could be hypothesized for cases of both rolling
+and non-rolling rockets, the model rocketeer will find that all the information relating to
+sinusoidal forcing that is of interest in designing high-performance models can be obtained by
+analyzing two specialized cases:
+\begin{enumerate}[label=(\alph*)]
+  \item Sinusoidal forcing of a non-rolling rocket about one axis only, in which the amplitude of
+    the forcing varies as the square of the airspeed and its frequency varies directly with the
+    airspeed; and
+  \item Sinusoidal forcing of a rolling rocket in which the sinusoidal nature of the forcing is due
+    to the roll rate itself, so that sinusoidal moments exist about the pitch and yaw axes of
+    angular frequency equal to the roll rate and of amplitude proportional to the square of the
+    airspeed.
+\end{enumerate}
+
+A disturbance of the first type may be characterized by the following set of forcing functions:
+\begin{subequations}\label{ch4:eq:162}
+\begin{align}
+f_x(t) &= A_f\sin\omega_f t \label{ch4:eq:162a}\\
+f_y(t) &= 0 \label{ch4:eq:162b}
+\end{align}
+\end{subequations}
+where the disturbance has been assumed to occur about the yaw axis. The proportionality of the
+forcing amplitude $A_f$ and the forcing frequency $\omega_f$ to the rocket's velocity can be
+expressed as
+\begin{subequations}\label{ch4:eq:163}
+\begin{equation}\label{ch4:eq:163a}
+A_f = A_o v^{2}
+\end{equation}
+and
+\begin{equation}\label{ch4:eq:163b}
+\omega_f = \omega_o v
+\end{equation}
+\end{subequations}
+where $A_o$ and $\omega_o$ are constants of proportionality which may be thought of as the values
+of $A_f$ and $\omega_f$ at an airspeed of one meter per second.
+
+A disturbance of the second type exhibits forcing functions of the form
+\begin{subequations}\label{ch4:eq:164}
+\begin{align}
+f_x(t) &= A_f\sin\omega_z t \label{ch4:eq:164a}\\
+f_y(t) &= A_f\cos\omega_z t \label{ch4:eq:164b}
+\end{align}
+\end{subequations}
+Since spin in model rockets is almost invariably induced by aerodynamic means, the roll rate may
+be considered linearly proportional to velocity for most cases of interest. The same sort of
+proportionality scheme used for the non-rolling case can then be used here:
+\begin{subequations}\label{ch4:eq:165}
+\begin{align}
+A_f &= A_o v^{2} \label{ch4:eq:165a}\\
+\omega_z &= \omega_{zo} v \label{ch4:eq:165b}
+\end{align}
+\end{subequations}
+Equation (200a)\ednote{No equation carries the number (200a); equation~\eqref{ch4:eq:165a} is
+evidently meant.} applies whether the disturbance is due to aerodynamic or to inertial causes,
+since the strength of the aerodynamic perturbation is proportional to the square of the airspeed
+and that of the inertial perturbation is proportional to the square of the roll rate, which in turn
+varies directly with airspeed.
+
+Both types of perturbations are assumed to arise immediately upon liftoff and to persist
+throughout the flight, as such a mathematical model most accurately represents the actual behavior
+of sinusoidal forcing in the vast majority of cases of interest. Calculations should therefore be
+started at $t = 0$ with rotationally quiescent initial conditions:
+\begin{subequations}\label{ch4:eq:166}
+\begin{empheq}[right={\empheqrbrace\quad t = 0}]{align}
+\alpha_x &= \alpha_y = 0 \label{ch4:eq:166a}\\
+\omega_x &= \omega_y = 0 \label{ch4:eq:166b}
+\end{empheq}
+\end{subequations}
+
+It should be noted that the calculations presented here differ somewhat from the analyses of
+Chapter~\ref{ch2}'s Sections~\ref{ch2:sec:3.1.4} and~\ref{ch2:sec:3.2.4} in that we are considering
+the \emph{complete} response to sinusoidal forcing rather than the \emph{steady-state} response
+only; our numerical calculations will therefore pick up so-called \emph{starting transients} which
+are not considered in the discussion of Chapter~\ref{ch2}. The basic character of the response will
+not, however, be greatly altered and it is very nearly correct to consider the method of this
+section the numerical equivalent to the closed-form analyses of Chapter~\ref{ch2}.
+
+\subsection{The Effect of Dynamic Oscillations on the Altitude Performance of a Typical Model
+Rocket}\label{ch4:sec:4.4}
+
+In order to give the reader some ``feel'' for the magnitude of the performance degradations
+resulting from the various in-flight disturbances that cause pitching and yawing oscillations in
+model rockets, this section will present the results of sample calculations based on
+representative disturbances encountered by a typical model rocket. The trial rocket illustrated in
+Figure~\ref{ch3:fig:37} of Chapter~\ref{ch3} was chosen as a representative design; reasonable
+values of inertial and propulsive characteristics were then supplied which, in addition to the
+drag parameters and normal force coefficients computable from the model's geometry, permitted a
+complete characterization of the vehicle for computational purposes. A complete list of the
+vehicle parameters used in solving the coupled equations of motion by the incremental method of
+Section~\ref{ch4:sec:4.2} appears in Table~\ref{ch4:tab:1}.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Ballistic and dynamic characteristics of the rocket shown in Figure~\ref{ch3:fig:37}
+    of Chapter~\ref{ch3}.}
+  \label{ch4:tab:1}
+  \begin{tabular}{@{}l@{\qquad}l@{}}
+    \toprule
+    Characteristic & Value \\
+    \midrule
+    Liftoff mass & 40 g = 0.04 kg \\
+    Burnout mass & 31.67 g = 0.03167 kg \\
+    Engine thrust & 4.0 N (average) \\
+    Burning time & 1.20 sec \\
+    Propellant mass & 8.33 g = .00833 kg \\
+    Static stability margin & 2.06 cm = 1.0 caliber \\
+    $C_1$ & 396$v^{2}$ dyn-cm for $v$ in m/sec \\
+    $C_{2A}$ & 242$v$ dyn-cm-sec for $v$ in m/sec \\
+    $C_{2R}$ & 661 dyn-cm-sec (average) \\
+    $I_L$ & 3640 g-cm$^{2}$ (average) \\
+    $I_R$ & 42.4 g-cm$^{2}$ (average) \\
+    $\zeta$ & 0.101 neglecting jet damping \\
+    $\zeta_c$ & 0.1004 neglecting jet damping \\
+    $\omega_{\mathrm{res}}$ & 0.327$v$ rad/sec for $v$ in m/sec \\
+    $\omega_{\mathrm{cres}}$ & 0.325$v$ rad/sec for $v$ in m/sec \\
+    $(\CDo)_{FB}$ & 0.45 without fin cant \\
+    \begin{tabular}[c]{@{}l@{}}Fin cant angle for\\ $\omega_z = \omega_{\mathrm{cres}}$\end{tabular}
+      & 0.01945 rad = $1.11\dg$ \\
+    \begin{tabular}[c]{@{}l@{}}Fin cant angle for\\ $\omega_z = 10\omega_{\mathrm{cres}}$\end{tabular}
+      & 0.1945 rad = $11.1\dg$ \\
+    $k$ & \begin{tabular}[t]{@{}l@{}}$0.92 \times 10^{-4}$ kg/m without fin cant\\
+      $0.924 \times 10^{-4}$ kg/m with $1.11\dg$ cant\\
+      $1.288 \times 10^{-4}$ kg/m with $11.1\dg$ cant\end{tabular} \\
+    $\epsilon$ & $37.8 \times 10^{-4}$ (kg/m)/rad$^{2}$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Table~\ref{ch4:tab:2} summarizes the results of calculations performed for various cases of input
+disturbances. Although these results admittedly apply only to the particular rocket described in
+Table~\ref{ch4:tab:1}, they do---in combination with the discussion of Chapter~\ref{ch2}---permit
+us to draw certain conclusions of general interest and applicability to model rocket design.
+
+% Table 2 is printed in two row-matched halves (PDF 628-629: columns 1-4; PDF 630-631: columns
+% 5-10; caption on PDF 629); it is set as one 10-column longtable (STYLE.md section 15).
+\begingroup\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{4.1cm}cc
+    S[table-format=1.3]S[table-format=3.1]S[table-format=2.1]S[table-format=1.2]
+    S[table-format=3.1]S[table-format=3.1]S[table-format=2.2]@{}}
+  \caption{The effect of various disturbances on the performance of the rocket shown in
+    Figure~\ref{ch3:fig:37} of Chapter~\ref{ch3}. In all cases where disturbances or roll rates are
+    velocity-dependent the velocity is given in meters per second, and the amplitudes of
+    sinusoidal forcing functions are given in dyn-cm. $t_o$ is the time at which the disturbance
+    begins; $\alpha_{\max}$ is the maximum angle of attack produced by the disturbance.}
+  \label{ch4:tab:2}\\
+  \toprule
+  \begin{tabular}[b]{@{}l@{}}Description of disturbance\\ or response\end{tabular}
+    & \begin{tabular}[b]{@{}c@{}}$\omega_z$\\ (rad/sec)\end{tabular}
+    & \begin{tabular}[b]{@{}c@{}}$t_o$\\ (sec)\end{tabular}
+    & {\begin{tabular}[b]{@{}c@{}}$\alpha_{\max}$\\ (rad)\end{tabular}}
+    & {\begin{tabular}[b]{@{}c@{}}$v_b$\\ (m/sec)\end{tabular}}
+    & {\begin{tabular}[b]{@{}c@{}}$y_b$\\ (m)\end{tabular}}
+    & {\begin{tabular}[b]{@{}c@{}}$t_c$\\ (sec)\end{tabular}}
+    & {\begin{tabular}[b]{@{}c@{}}$y_c$\\ (m)\end{tabular}}
+    & {\begin{tabular}[b]{@{}c@{}}$y_{\max}$\\ (m)\end{tabular}}
+    & {\begin{tabular}[b]{@{}c@{}}Percent\\ reduction\\ in $y_{\max}$\end{tabular}} \\
+  \midrule
+  \endfirsthead
+  \multicolumn{10}{@{}l}{\tablename~\thetable\ (continued)}\\
+  \toprule
+  \begin{tabular}[b]{@{}l@{}}Description of disturbance\\ or response\end{tabular}
+    & \begin{tabular}[b]{@{}c@{}}$\omega_z$\\ (rad/sec)\end{tabular}
+    & \begin{tabular}[b]{@{}c@{}}$t_o$\\ (sec)\end{tabular}
+    & {\begin{tabular}[b]{@{}c@{}}$\alpha_{\max}$\\ (rad)\end{tabular}}
+    & {\begin{tabular}[b]{@{}c@{}}$v_b$\\ (m/sec)\end{tabular}}
+    & {\begin{tabular}[b]{@{}c@{}}$y_b$\\ (m)\end{tabular}}
+    & {\begin{tabular}[b]{@{}c@{}}$t_c$\\ (sec)\end{tabular}}
+    & {\begin{tabular}[b]{@{}c@{}}$y_c$\\ (m)\end{tabular}}
+    & {\begin{tabular}[b]{@{}c@{}}$y_{\max}$\\ (m)\end{tabular}}
+    & {\begin{tabular}[b]{@{}c@{}}Percent\\ reduction\\ in $y_{\max}$\end{tabular}} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endlastfoot
+  No disturbance
+    & 0 & --- & 0.000 & 111.4 & 78.1 & 6.46 & 265.5 & 343.6 & 0.00 \\[2pt]
+  Homogeneous response to\newline $\alpha_{xo} = 0.2$ rad
+    & 0 & 0.1 & 0.200 & 110.3 & 76.9 & 6.44 & 262.8 & 339.6 & 1.17 \\[2pt]
+  Homogeneous response to\newline $\alpha_{xo} = 0.2$ rad
+    & 0 & 1.2 & 0.200 & 111.4 & 78.1 & 6.35 & 254.3 & 332.4 & 3.26 \\[2pt]
+  Step of intensity\newline 39.6$v^{2}$ dyn-cm
+    & 0 & 0.1 & 0.155 & 105.3 & 75.7 & 5.67 & 211.0 & 286.7 & 16.58 \\[2pt]
+  Step of intensity\newline 51.0$v^{2}$ dyn-cm
+    & 0 & 0.1 & 0.200 & 101.7 & 74.2 & 5.28 & 186.1 & 260.3 & 24.25 \\[2pt]
+  Step of intensity\newline 39.6$v^{2}$ dyn-cm
+    & 0 & 1.2 & 0.177 & 111.4 & 78.1 & 5.75 & 220.4 & 298.4 & 13.16 \\[2pt]
+  Step of intensity\newline 45.0$v^{2}$ dyn-cm
+    & 0 & 1.2 & 0.200 & 111.4 & 78.1 & 5.59 & 210.3 & 288.4 & 16.08 \\[2pt]
+  Impulse of strength\newline 2510 dyn-cm-sec
+    & 0 & 0.1 & 0.062 & 111.3 & 77.9 & 6.46 & 265.2 & 343.1 & 0.15 \\[2pt]
+  Impulse of strength\newline 8080 dyn-cm-sec
+    & 0 & 0.1 & 0.200 & 109.9 & 76.7 & 6.43 & 261.9 & 338.6 & 1.46 \\[2pt]
+  Impulse of strength\newline 26,600 dyn-cm-sec
+    & 0 & 1.2 & 0.175 & 111.4 & 78.1 & 6.35 & 254.7 & 332.8 & 3.14 \\[2pt]
+  Impulse of strength\newline 30,400 dyn-cm-sec
+    & 0 & 1.2 & 0.200 & 111.4 & 78.1 & 6.32 & 251.5 & 329.5 & 4.10 \\[2pt]
+  Sinusoidal forcing of\newline $A_f = 15.9v^{2}$, $\omega_f = \omega_{\mathrm{res}}$
+    & 0 & 0.1 & 0.143 & 111.1 & 77.9 & 6.33 & 257.8 & 335.7 & 2.30 \\[2pt]
+  Sinusoidal forcing of\newline $A_f = 26.7v^{2}$, $\omega_f = \omega_{\mathrm{res}}$
+    & 0 & 0.1 & 0.200 & 110.5 & 77.6 & 6.08 & 242.9 & 320.5 & 6.72 \\[2pt]
+  Homogeneous response to\newline $\alpha_{xo} = 0.2$ rad
+    & 3.25$v$ & 0.1 & 0.200 & 105.0 & 74.9 & 5.68 & 211.2 & 286.1 & 16.74 \\[2pt]
+  Homogeneous response to\newline $\alpha_{xo} = 0.2$ rad
+    & 3.25$v$ & 1.2 & 0.200 & 106.0 & 76.0 & 5.60 & 204.6 & 280.6 & 18.34 \\[2pt]
+  Step of intensity\newline 39.6$v^{2}$ dyn-cm
+    & 3.25$v$ & 0.1 & 0.155 & 100.6 & 73.8 & 5.13 & 176.9 & 250.7 & 27.05 \\[2pt]
+  Step of intensity\newline 51.0$v^{2}$ dyn-cm
+    & 3.25$v$ & 0.1 & 0.200 & 97.4 & 72.5 & 4.84 & 159.1 & 231.6 & 32.60 \\[2pt]
+  Step of intensity\newline 39.6$v^{2}$ dyn-cm
+    & 3.25$v$ & 1.2 & 0.176 & 106.0 & 76.1 & 5.20 & 183.8 & 259.8 & 24.39 \\[2pt]
+  Step of intensity\newline 45.0$v^{2}$ dyn-cm
+    & 3.25$v$ & 1.2 & 0.200 & 106.0 & 76.1 & 5.08 & 176.8 & 252.9 & 26.41 \\[2pt]
+  Impulse of strength\newline 2510 dyn-cm-sec
+    & 3.25$v$ & 0.1 & 0.062 & 105.9 & 75.9 & 5.69 & 212.9 & 288.8 & 15.95 \\[2pt]
+  Impulse of strength\newline 8080 dyn-cm-sec
+    & 3.25$v$ & 0.1 & 0.200 & 104.7 & 74.7 & 5.67 & 210.6 & 285.4 & 16.95 \\[2pt]
+  Impulse of strength\newline 26,600 dyn-cm-sec
+    & 3.25$v$ & 1.2 & 0.175 & 106.0 & 76.1 & 5.61 & 205.0 & 281.0 & 18.23 \\[2pt]
+  Impulse of strength\newline 30,400 dyn-cm-sec
+    & 3.25$v$ & 1.2 & 0.200 & 106.0 & 76.1 & 5.58 & 202.5 & 278.6 & 18.92 \\[2pt]
+  Coupled sinusoidal forcing\newline of $A_f = 15.9v^{2}$, $\omega_z = \omega_{\mathrm{cres}}$
+    & 0.325$v$ & 0.1 & 0.141 & 110.7 & 77.7 & 6.19 & 249.5 & 327.2 & 4.78 \\[2pt]
+  Coupled sinusoidal forcing\newline of $A_f = 26.7v^{2}$, $\omega_z = \omega_{\mathrm{cres}}$
+    & 0.325$v$ & 0.1 & 0.220 & 109.7 & 77.1 & 5.83 & 228.3 & 305.4 & 11.12 \\[2pt]
+  Coupled sinusoidal forcing\newline of $A_f = 23.8v^{2}$, $\omega_z = \omega_{\mathrm{cres}}$
+    & 0.325$v$ & 0.1 & 0.200 & 110.0 & 77.3 & 5.93 & 234.4 & 311.7 & 9.29 \\
+\end{longtable}
+\endgroup
+
+Since the drag increase due to angle of attack is proportional both to the square of $\alpha$ and
+to the square of the airspeed, for instance, it follows that a transient disturbance producing a
+given maximum angle of attack will reduce a model's overall altitude capability more when it
+occurs near burnout (when the velocity is high) than near liftoff (when the velocity is low).
+Because the corrective moment coefficient $C_1$ increases as the square of the airspeed, however, a
+much stronger disturbance is required to produce a given maximum angle of attack near burnout than
+near liftoff---and a disturbance of a given \emph{strength} occurring near burnout will produce a
+reduction in performance roughly equivalent to that resulting from a disturbance of the same
+strength occurring near liftoff. The quadratic dependence of drag upon angle of attack also means
+that a disturbance of a given type occurring at a given time after liftoff will produce a
+performance degradation roughly proportional to the square of its strength.
+
+Given a set of in-flight disturbances of different types, all of which arise at the same time into
+the flight and produce identical values of the maximum angle of attack in response, the severity
+of the resulting performance degradations may be ranked according to the type of forcing function
+involved as follows:
+\begin{enumerate}[label=(\alph*)]
+  \item impulse (least severe)
+  \item step of constant intensity
+  \item sinusoid
+  \item step of intensity proportional to $v^{2}$ (most severe)
+\end{enumerate}
+
+A rocket that is spinning about its longitudinal axis will have a greater drag at zero angle of
+attack than will the same vehicle if constructed so as not to roll. That the drag increase
+associated with fitting a model with angled ``spin fins'' can be considerable has already been
+shown by the analysis of Section~\ref{ch3:sec:5.3} of Chapter~\ref{ch3}. If, however (as has been
+noted by Thomas McKim), the product of $I_R$ and $\omega_z$ is great enough to cause the
+\emph{angular momentum} about the longitudinal axis to be very large, the maximum \emph{angle of
+attack} due to a transient disturbance of a given strength will be significantly \emph{reduced}
+over what it would have been without roll. During much of the response, therefore, the overall
+drag of the rolling rocket may be less than the drag associated with the same vehicle built so as
+not to spin. The response will, however, also \emph{persist} for a \emph{longer time} than it would
+in the case of zero roll rate because the inverse time constant of the slower mode of oscillation
+is reduced as the product $I_R\omega_z$ is increased. Both effects are due to the fact that the
+presence of angular momentum about the roll axis \emph{causes the model to act as if it had a
+larger longitudinal moment of inertia than its actual value of $I_L$} and thereby decreases the
+amplitude, frequency, and decay rate of the response. Model rockets which are well designed to
+begin with almost always suffer, rather than benefit, from the use of spin since the reduction in
+maximum angle of attack due to any given disturbance is more than offset by the increased duration
+of the transient response and the increase in drag at zero angle of attack associated with
+spinning the model by aerodynamic means. There are a few exceptions to this rule; for example, the
+use of spin fins and/or spin motors in the first stage of a heavy, multistaged model that might
+otherwise suffer excessively from step or impulse forcing during its relatively slow liftoff. In
+most cases where the incorporation of spin into a design improves its performance, however, it
+will be found that it is because the design has not been optimized in the non-spinning
+configuration.
+
+Finally, the ability of a given model to resist a disturbance of a given type can be evaluated
+from the following brief summary of the results of Chapter~\ref{ch2}:
+\begin{enumerate}[label=(\alph*)]
+  \item Resistance to step forcing increases with an increasing corrective moment coefficient
+    $C_1$;
+  \item Resistance to impulsive forcing increases with an increase in the product $I_L\omega$,
+    where $\omega = \sqrt{\frac{C_1}{I_L} - \frac{C_2^{2}}{4I_L^{2}}}$; and
+  \item Resistance to sinusoidal forcing increases with an increase in the product
+    $C_1\zeta\sqrt{1 - \zeta^{2}}$, where $\zeta = \frac{C_2}{2\sqrt{C_1I_L}}$.
+\end{enumerate}
+The effect of a nonzero roll rate is to increase the apparent value of the longitudinal moment of
+inertia, thereby lessening the angular frequency of the slower pitch and yaw oscillation modes and
+decreasing the effective damping.

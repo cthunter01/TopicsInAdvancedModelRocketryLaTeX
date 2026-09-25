@@ -32,9 +32,18 @@ Doubts (from the prep survey; the faithful pass keeps each as printed)
 
 | # | Unit | PDF | Doubt | Status |
 |---|---|---|---|---|
-| D1 | ch4-sec4 | 618 | the third member of the (154) brace group is printed "(156c)"; it is evidently (154c) (the text cites "equations (154)" and a separate (156) follows on PDF 619) | todo (note) |
+| D1 | ch4-sec4 | 618 | the third member of the (154) brace group is printed "(156c)"; it is evidently (154c) (the text cites "equations (154)" and a separate (156) follows on PDF 619) | note |
 | D2 | ch4-sec4 | 625 | "Equation (200a)" cites a number 35 higher than the equation meant, (165a), as do the three citations errata items 2-4 correct | \ednote in the faithful pass (stale reference) |
 | D3 | ch4-sec5 | 635 | "the sample plot presented in Figure 19": Chapter 4 has no Figure 19; Figure 16 is meant | \ednote in the faithful pass (stale reference) |
-| D4 | ch4-sec2b | 587 | the legend line "Figures 5.5 - 5.9:" uses a numbering the chapter has nowhere else (the text and captions say Figures 5 through 9) | todo |
-| D5 | ch4-sec4 | 613 | (134) prints the series of cos(alpha) with alpha^4/4 where alpha^4/24 is meant (harmless after the truncation to (135)) | todo |
-| D6 | ch4-sec2a | 556 | (25): the inner and outer upper limits are both printed t_b, despite the prose about dummy variables | todo (check) |
+| D4 | ch4-sec2b | 587 | the legend line "Figures 5.5 - 5.9:" uses a numbering the chapter has nowhere else (the text and captions say Figures 5 through 9) | note |
+| D5 | ch4-sec4 | 613 | (134) prints the series of cos(alpha) with alpha^4/4 where alpha^4/24 is meant (harmless after the truncation to (135)) | note |
+| D6 | ch4-sec2a | 556 | (25): the inner and outer upper limits are both printed t_b, despite the prose about dummy variables | check (note if confirmed) |
+| D7 | ch4-sec4 | 615 | (145) prints the gyroscopic term $+I_R\omega_y\omega_z$; the Euler equations of Chapter 2 ((14) and the equations of Section 1.4) give $I_R\omega_x\omega_z$ in the pitch equation ((144) agrees with Chapter 2) | note |
+| D8 | ch4-sec5 | 642 | "Section 5 of Chapter 2" is cited for working out $C_1$, $C_2$, $I_L$ and $I_R$ of a design on paper; that is Section 4 (Analytical Determination), Section 5 being the experimental one | note (stale reference) |
+| D9 | ch4-intro-sec1 | 552 | the text says (9), (10), (14) and (15) are substituted into (12)-(13), but $F_p$ of (10) appears in neither (12)-(13) nor (16)-(17): the thrust component normal to the axis is dropped without comment | note |
+| D10 | ch4-sec4 | 625, 628-629 | Table 2 gives $t_o = 0.1$ s for the sinusoidal and coupled-sinusoidal rows (12, 13, 24-26), while PDF 625 says such perturbations arise immediately upon liftoff and (166) starts at $t = 0$ | check (note if confirmed) |
+| D11 | ch4-sec2a | 565-567 | the radicands of (48)-(51) print $-m_2v_1$ ($-m_nv_{n-1}$) where $+$ is correct; (50) prints $k_ny_{n-1}v_{n-1}$ where $k_n(y_1 + \ldots + y_{n-1})v_{n-1}$ generalizes (46); (53) is printed as an expression without "= $t_2$"; (44) keeps $y_1v_1$ at the lower limit | item 7 |
+| D12 | ch4-intro-sec1 | 546 | "whose vector sum is here represented by E" prints E without an arrow | item 5 (the replaced top of p.514) |
+| D13 | ch4-sec2a | 568-569 | the parenthesis opened after the first cosh of (58) and (60) is never closed | fix silently (typographical) in the corrections step |
+| D14 | several | 554, 558, 564, 601, 640, 646 | silent typographical fixes: "in equations (20)" at a sentence start (554), "methematics" (558), "mass. we obtain" (564), "use A Malewicki chart" (640), "Chicago.," in Reference 4 (646) in the faithful pass; "0.453 Kg" (601) to be set "kg" silently in the corrections step | fixed silently / fix silently |
+| D15 | several | various | minor, recorded without notes: $F_2(t)$ in (40) not in the Symbols list; $k_1$ undefined (564); the overlap of (158) and (159) at $t = t_1$ (620); Table 2 row 25 $\alpha_{\max} = 0.220$ above the 0.2 rad limit; last-digit rounding in Table 2's percent reductions and in the PDF 587 key table; "slightly more than doubled" (601); "identical specific impulse" (644); Reference 1's "Phoenix" | no note |

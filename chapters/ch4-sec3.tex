@@ -1,1 +1,291 @@
-% ch4-sec3 -- stub, to be transcribed (milestone M4)
+% chapters/ch4-sec3.tex -- 3. The Non-Oscillating Rocket: Solutions for Vehicles Launched at Any
+% Angle from the Vertical; 3.1, 3.2 (PDF 596), 3.3 (PDF 600), up to but not including the heading
+% "4." (mid-PDF 610); printed pp. 564-578. Equations (16)-(17) restated (\tag, no label), 90-131;
+% Figures 10-15.
+\section{The Non-Oscillating Rocket: Solutions for Vehicles Launched at Any Angle from the
+Vertical}\label{ch4:sec:3}
+
+\subsection{The Differential Equations of Motion}\label{ch4:sec:3.1}
+
+As stated in Section~\ref{ch4:sec:1}, the general differential equations of motion for the vertical
+and horizontal components of a model rocket's motion in flight are, respectively,
+\begin{equation*}
+m(t)\frac{dv_y}{dt} = F(t)\frac{\dot{y}}{v}\cos\alpha - m(t)g - [k + \epsilon f(\alpha)]v\dot{y}
+  \tag{16}
+\end{equation*}
+and
+\begin{equation*}
+m(t)\frac{dv_x}{dt} = F(t)\frac{\dot{x}}{v}\cos\alpha - [k + \epsilon f(\alpha)]v\dot{x} \tag{17}
+\end{equation*}
+Under the assumption that the model does not oscillate, or experience rigid-body rotations, during
+its flight~\eqref{ch4:eq:16} and~\eqref{ch4:eq:17} reduce to
+\begin{align}
+m(t)\frac{dv_y}{dt} &= F(t)\frac{\dot{y}}{v} - m(t)g - kv\dot{y} \label{ch4:eq:90}\\
+m(t)\frac{dv_x}{dt} &= F(t)\frac{\dot{x}}{v} - kv\dot{x} \label{ch4:eq:91}
+\end{align}
+
+\subsection{Numerical Methods for the Digital Computation of Nonvertical
+Trajectories}\label{ch4:sec:3.2}
+
+In Section~\ref{ch4:sec:2} of this chapter we were able to determine closed-form, approximate
+solutions to the equations of motion that were sufficiently accurate, simple, and general for
+practical use. In the case of equations~\eqref{ch4:eq:90} and~\eqref{ch4:eq:91} we shall not be so
+fortunate. Extensive investigation on the part of several researchers has failed to reveal any
+closed-form, approximate, analytical solution to~\eqref{ch4:eq:90} and~\eqref{ch4:eq:91} which is
+sufficiently accurate (even) for hobby purposes and still sufficiently easy to work by hand to
+offer a perceptible advantage over computer interval techniques. The solutions of this section
+will therefore be based on numerical techniques analogous to those of Section~\ref{ch4:sec:2.4},
+intended primarily for use with automatic computing machinery. One can also carry out such
+iterative calculations by hand, of course, but those who wish to do so must necessarily accept
+either a considerable amount of work or the degradation in accuracy concomitant with the use of
+coarser time intervals.
+
+The generalization of either of the computation schemes of Section~\ref{ch4:sec:2.4} to
+nonvertical flight is a relatively simple matter of separating the motion of the rocket into its
+vertical and horizontal components. Once this has been done, a single ``loop'', or
+\emph{iteration}, of the theoretical-velocity-increment method appears in the following form:
+\begin{align}
+\Delta\dot{y}_t &= \frac{\Delta t\bigl[F(t)\frac{\dot{y}}{v} - m(t)g\bigr]}{m(t)}
+  \label{ch4:eq:92}\\
+\Delta\dot{x}_t &= \frac{\Delta t\bigl[F(t)\frac{\dot{x}}{v}\bigr]}{m(t)} \label{ch4:eq:93}\\
+v_t &= \sqrt{(\dot{x} + \Delta\dot{x}_t)^{2} + (\dot{y} + \Delta\dot{y}_t)^{2}} \label{ch4:eq:94}\\
+\text{Drag} &= kv_t^{2} \label{ch4:eq:95}\\
+\Delta\dot{y}_a &= \frac{\Delta t\bigl[F(t)\frac{\dot{y}}{v} - m(t)g
+  - kv_t^{2}\frac{\dot{y}}{v}\bigr]}{m(t)} \label{ch4:eq:96}\\
+\Delta\dot{x}_a &= \frac{\Delta t\bigl[F(t)\frac{\dot{x}}{v} - kv_t^{2}\frac{\dot{x}}{v}\bigr]}{m(t)}
+  \label{ch4:eq:97}\displaybreak[1]\\
+\Delta y &= \Delta t\left[\dot{y} + \frac{\Delta\dot{y}_a}{2}\right] \label{ch4:eq:98}\\
+\Delta x &= \Delta t\left[\dot{x} + \frac{\Delta\dot{x}_a}{2}\right] \label{ch4:eq:99}\\
+y &= y + \Delta y \label{ch4:eq:100}\\
+x &= x + \Delta x \label{ch4:eq:101}\\
+\dot{y} &= \dot{y} + \Delta\dot{y}_a \label{ch4:eq:102}\\
+\dot{x} &= \dot{x} + \Delta\dot{x}_a \label{ch4:eq:103}\\
+v &= \sqrt{(\dot{x})^{2} + (\dot{y})^{2}} \label{ch4:eq:104}\\
+t &= t + \Delta t \label{ch4:eq:105}
+\end{align}
+where
+\begin{itemize}[nosep,leftmargin=*,label={}]
+  \item $\Delta\dot{x}_t$ = drag-free ``theoretical'' horizontal velocity increment
+  \item $\Delta\dot{y}_t$ = drag-free vertical velocity increment
+  \item $\Delta\dot{x}_a$ = actual horizontal velocity increment
+  \item $\Delta\dot{y}_a$ = actual vertical velocity increment
+\end{itemize}
+and the other variables are as in Section~\ref{ch4:sec:2.4}.
+
+Likewise, the drag-from-prior-velocity method---the second technique of
+Section~\ref{ch4:sec:2.4}---generalizes to nonvertical flight according to the set of equations
+presented below:
+\begin{align}
+\Delta\dot{y} &= \frac{\Delta t\bigl[F(t)\frac{\dot{y}}{v} - m(t)g - kv\dot{y}\bigr]}{m(t)}
+  \label{ch4:eq:106}\\
+\Delta\dot{x} &= \frac{\Delta t\bigl[F(t)\frac{\dot{x}}{v} - kv\dot{x}\bigr]}{m(t)}
+  \label{ch4:eq:107}\\
+\Delta y &= \Delta t\left[\dot{y} + \frac{\Delta\dot{y}}{2}\right] \label{ch4:eq:108}\\
+\Delta x &= \Delta t\left[\dot{x} + \frac{\Delta\dot{x}}{2}\right] \label{ch4:eq:109}\\
+\dot{y} &= \dot{y} + \Delta\dot{y} \label{ch4:eq:110}\displaybreak[1]\\
+\dot{x} &= \dot{x} + \Delta\dot{x} \label{ch4:eq:111}\\
+v &= \sqrt{(\dot{x})^{2} + (\dot{y})^{2}} \label{ch4:eq:112}\\
+y &= y + \Delta y \label{ch4:eq:113}\\
+x &= x + \Delta x \label{ch4:eq:114}\\
+t &= t + \Delta t \label{ch4:eq:115}
+\end{align}
+
+In order to begin calculations from zero velocity on the ground it is necessary to simulate the
+presence of the launch rod for the first meter or so of motion by using a slightly different set
+of equations that assumes a fixed trajectory angle equal to the initial angle of launch
+$\theta_o$. Such a scheme suitable for use with the method of theoretical velocity increments is
+\begin{align}
+\Delta v_t &= \frac{\Delta t[F(t) - m(t)g\cos\theta_o]}{m(t)} \label{ch4:eq:116}\\
+\text{Drag} &= k(v + \Delta v_t)^{2} \label{ch4:eq:117}\\
+\Delta v_a &= \frac{\Delta t[F(t) - m(t)g\cos\theta_o - k(v + \Delta v_t)^{2}]}{m(t)}
+  \label{ch4:eq:118}\\
+\Delta y &= \Delta t\left[v + \frac{\Delta v_a}{2}\right]\cos\theta_o \label{ch4:eq:119}\\
+\Delta x &= \Delta t\left[v + \frac{\Delta v_a}{2}\right]\sin\theta_o \label{ch4:eq:120}\\
+v &= v + \Delta v_a \label{ch4:eq:121}\\
+y &= y + \Delta y \label{ch4:eq:122}\\
+x &= x + \Delta x \label{ch4:eq:123}\\
+t &= t + \Delta t \label{ch4:eq:124}
+\end{align}
+while the launch phase of a nonvertical flight may be represented using the method of drag from
+prior velocity as
+\begin{align}
+&\Delta v = \frac{\Delta t[F(t) - m(t)g\cos\theta_o - kv^{2}]}{m(t)} \label{ch4:eq:125}\\
+&\Delta y = \Delta t\left[v + \frac{\Delta v}{2}\right]\cos\theta_o \label{ch4:eq:126}\\
+&\Delta x = \Delta t\left[v + \frac{\Delta v}{2}\right]\sin\theta_o \label{ch4:eq:127}\\
+&v = v + \Delta v \label{ch4:eq:128}\\
+&y = y + \Delta y \label{ch4:eq:129}\\
+&x = x + \Delta x \label{ch4:eq:130}\\
+&t = t + \Delta t \label{ch4:eq:131}
+\end{align}
+
+As was the case with the vertical solutions, both the computing schemes presented herein can be
+extended to multistaged vehicles and to the coasting phase of flight by altering the thrust and
+mass functions appropriately at staging or at burnout. Again, the latter method requires a smaller
+time interval than the former for good accuracy; 0.1 or 0.01 second may be used with the first
+method, while .001 second is recommended for use with the second. The thrust and mass functions to
+be used with either of the above methods are the same as those described in
+Section~\ref{ch4:sec:2.4}; they do not, therefore, require any further discussion here.
+
+\subsection{Examples of Nonvertical Model Rocket Trajectories}\label{ch4:sec:3.3}
+
+The second of the numerical methods discussed in Section~\ref{ch4:sec:3.2} has been employed to
+calculate a number of representative nonvertical model rocket flight paths. The same five engine
+types used in Section~\ref{ch4:sec:2.5} were considered; i.e., the B14, B4, D4, F100, and F7. Due
+to the vast quantity of data that would have to be generated to account for a full range of
+variation in each and every parameter relevant to nonvertical flight, the calculations were
+restricted to certain cases deemed to be of particular interest or illustrative value in practical
+model rocketry.
+
+The decision was first made to perform all burning-phase calculations under the assumption of an
+initial launch angle of $30\dg$ to the vertical, this being the greatest deviation from vertical
+launch permitted by the Safety Code of the National Association of Rocketry, as well as by most of
+the laws governing the practice of model rocketry. The initial angle $\theta_o$ of $30\dg$ thus
+represents the most severe condition of nonverticality possible within the rules of the hobby.
+
+Three cases were then computed for each engine: one representing the \emph{best-performing}
+rocket, one representing a \emph{typical} rocket, and one representing the
+\emph{worst-performing} rocket considered possible for that engine. For the first case, an initial
+mass $m_o$ equal to the mass of the engine alone and a drag parameter $k$ corresponding to a drag
+coefficient of about 0.3 in sea-level air with a body tube glove-fit to the engine were used. For
+the second, both quantities were slightly more than doubled; for the third, a value of $m_o$ equal
+to the manufacturer's maximum recommended liftoff weight and a value of $k$ approximately 40 times
+that of the first case were used. An exception was made in the case of the F100 engine, where the
+maximum value of $m_o$ was taken as 453 grams (0.453 Kg), this being the maximum legal liftoff mass
+for model rockets in the United States.
+
+The results of the calculations are displayed in Figures~\ref{ch4:fig:10}
+through~\ref{ch4:fig:14}. As one would expect, the influence of a nonvertical launch on subsequent
+flight behavior and altitude performance is least severe for cases involving short-burning-time
+engines. As the burn time increases, the flight paths are seen to develop considerable
+burning-phase curvature. The low thrust and 9-second burning time of the type F7 engine makes a
+nonvertical launch a very risky proposition indeed, particularly in cases of medium- or
+heavy-weight rockets; the high drag and weight case of Figure~\ref{ch4:fig:14}, in fact, results
+in catastrophic behavior---a dive into the ground under power, more commonly and colloquially
+called a ``power prang''. You should note, when examining Figures~\ref{ch4:fig:10}
+through~\ref{ch4:fig:14}, that all trajectories have been continued until impact with the ground
+is predicted, as if there were no parachute ejection or other recovery system activation. Times in
+seconds from launch have been marked on the curves to enable the reader to predict the position of
+the rocket at recovery system activation for any given time delay. Needless to say, safety
+considerations require the selection of a delay time such that the rocket does not strike the
+ground before the recovery system activates---a rule which applies to all model rocket flights,
+whether vertical or not.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch4/fig10.png}
+  \caption{Non-vertical trajectories for $30\dg$ launch angle; models using Type B14 engine.
+    Curve (a): $m_o = .020$ kg, $k = .00005$ kg/m; burnout range $x_b$ is 23 m, burnout altitude
+    $y_b$ is 40 m. Curve (b): $m_o = .050$ kg, $k = .00012$ kg/m; $x_b = 9$ m, $y_b = 15$ m.
+    Curve (c): $m_o = .140$ kg, $k = .002$ kg/m; $x_b = 3$ m, $y_b = 5$ m. The engine burning
+    time is 0.35 second. The time of flight apex, and the time of predicted impact on the ground
+    if there were no recovery system activation, in seconds, are marked on the curves.}
+  \label{ch4:fig:10}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch4/fig11.png}
+  \caption{Non-vertical trajectories for $30\dg$ launch angle; models using Type B4 engine.
+    Curve (a): $m_o = .021$ kg, $k = .00005$ kg/m; $x_b = 82$ m, $y_b = 131$ m. Curve (b):
+    $m_o = .050$ kg, $k = .00012$ kg/m; $x_b = 35$ m, $y_b = 51$ m. Curve (c): $m_o = .100$ kg,
+    $k = .002$ kg/m; $x_b = 15$ m, $y_b = 19$ m. The engine burning time is 1.20 sec.}
+  \label{ch4:fig:11}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch4/fig12.png}
+  \caption{Non-vertical trajectories for $30\dg$ launch angle; models using Type D4 engine.
+    Curve (a): $m_o = .032$ kg, $k = .00007$ kg/m; $x_b = 236$ m, $y_b = 342$ m. Curve (b):
+    $m_o = .065$ kg, $k = .00017$ kg/m; $x_b = 133$ m, $y_b = 160$ m. Curve (c): $m_o = .125$ kg,
+    $k = .0027$ kg/m; $x_b = 57$ m, $y_b = 38$ m. The engine burning time is 2.90 sec.}
+  \label{ch4:fig:12}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch4/fig13.png}
+  \caption{Non-vertical trajectories for $30\dg$ launch angle; models using Type F100 engine.
+    Curve (a): $m_o = .110$ kg, $k = .00012$ kg/m; $x_b = 61$ m, $y_b = 103$ m. Curve (b):
+    $m_o = .230$ kg, $k = .0003$ kg/m; $x_b = 28$ m, $y_b = 47$ m. Curve (c): $m_o = .453$ kg,
+    $k = .0045$ kg/m; $x_b = 13$ m, $y_b = 21$ m. The engine burning time is 0.50 sec.}
+  \label{ch4:fig:13}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch4/fig14.png}
+  \caption{Non-vertical trajectories for $30\dg$ launch angle; models using Type F7 engine.
+    Curve (a): $m_o = .110$ kg, $k = .00012$ kg/m; $x_b = 1050$ m, $y_b = 1079$ m. Curve (b):
+    $m_o = .230$ kg, $k = .0003$ kg/m; $x_b = 696$ m, $y_b = 311$ m. Curve (c): $m_o = .300$ kg,
+    $k = .0045$ kg/m; the model impacts on the ground under power 6.84 seconds after liftoff. The
+    engine burning time is 9.00 sec.}
+  \label{ch4:fig:14}
+\end{figure}
+
+The behavior in nonvertical flight of models using long-burning engines bears some further
+discussion because of its safety implications. The severe change in trajectory angle experienced
+during the burning phase of flight by models using long-burning engines is due to a phenomenon
+known to professional rocketry as the ``gravity turn'', a term which describes the following
+sequence of events:
+
+In a rocket whose trajectory initially makes some angle $\theta_o$ with the local vertical there
+is a component of gravity $g\sin\theta_o$ \emph{normal} (i.e., perpendicular) to the instantaneous
+direction of flight, and which therefore tends to cause the subsequent flight path to curve
+further away from the vertical. When this happens $\theta$ becomes \emph{greater} than
+$\theta_o$, causing the quantity $g\sin\theta$ to \emph{increase}. Also, since the vertical
+component of thrust is given by $F(t)\cos\theta$, the effective thrust in the vertical direction
+is \emph{decreased}. Both these effects cause the trajectory to curve even \emph{further} away
+from the vertical, a process which is illustrated in Figure~\ref{ch4:fig:15}---and which, for a
+low-thrust, long-burning engine, may eventuate in a power-on impact.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch4/fig15.png}
+  \caption{Rocket undergoing a gravity turn. In (a) the rocket is subjected to a component of
+    gravity perpendicular to its instantaneous velocity vector, and which therefore tends to bend
+    its flight path further away from the vertical. Also, since it is already flying at an angle
+    $\theta_o$ to the vertical, not all of its thrust $F$ is effective against gravity. The rocket
+    therefore tips over to position (b), in which there is an even greater component of gravity
+    perpendicular to its instantaneous velocity vector, and in which even less of its thrust is
+    effective against gravity---thus causing the turn to continue.}
+  \label{ch4:fig:15}
+\end{figure}
+
+In professional aerospace engineering, the gravity turn is an intentional maneuver performed for
+the purpose of helping to change a booster vehicle's course so as to enable a satellite to be
+injected into its orbit in a direction that is more or less parallel to a line tangent to the
+Earth's surface. In model rocketry, however, the gravity turn is an \emph{undesirable} effect and
+even a potential \emph{safety hazard} in cases of long-burning engines or multistaged vehicles. A
+great many three-staged model rockets, and even some two-staged designs, are so adversely affected
+by gravity turning that their topmost stages are often observed to be travelling nearly
+horizontally or even downward under thrust before burnout of the last-stage engine occurs---a
+fact mentioned earlier in connection with safety limitations on the number of stages a model may
+have. The same is true of many single-staged models using the low-thrust, long-burning E or F
+engines such as the F7. In the past, modelers have tended to build such vehicles somewhat too
+heavy for their intended engines and/or with excessive positive static stability margins. The
+latter characteristic often makes vertical flight impossible even when a vertical launch is
+attempted, since even a light breeze will cause the slowly-ascending model to ``weathercock'', or
+turn upwind, as soon as it leaves the launcher---thereby creating the nonzero $\theta_o$ required
+for the beginning of a sometimes-disastrous gravity turn. The reader will recall that the dangers
+of weathercocking and gravity-turning have caused models of more than three stages to be
+prohibited under the N.A.R. Sporting Code. Similarly, the dangers of gravity-turning and
+high-speed horizontal flight at low altitudes are responsible for the regulations prohibiting the
+launching of model rockets at angles greater than $30\dg$ away from the vertical.
+
+Those readers who are familiar with the elementary physics equations for the calculation of
+projectile motion under drag-free conditions will notice a fundamental difference between those
+portions of the curves of Figures~\ref{ch4:fig:10} through~\ref{ch4:fig:14} lying above the
+burnout points and those that would result if $k$ were assumed to be zero. The trajectory of a
+drag-free, constant-mass projectile, neglecting the Earth's curvature, will be in the shape of an
+inverted parabola---which is to say that, if there were no drag, the portions of the trajectories
+above the burnout points would be symmetrical about a vertical line drawn through the flight apex.
+In cases of nonzero drag, however, this symmetry is lost; the trajectory falls off more steeply
+after the flight apex, giving the flight path the appearance of being compressed in the
+$x$-direction, or ``humped over'', in the later stages of flight. A trajectory computed for finite
+drag will also lie entirely below (or ``inside'') the zero-drag flight path.
+% PDF 609 is a short page ending here; PDF 610 continues without a paragraph indent.
+The asymmetry, as can be seen from the figures, becomes more pronounced as the ratio $k/m_b$
+increases. The term ``whiffle-ball effect'', derived from the similarity of this behavior to the
+flight of a whiffle ball or ping-pong ball, has sometimes been used informally to describe this
+phenomenon.

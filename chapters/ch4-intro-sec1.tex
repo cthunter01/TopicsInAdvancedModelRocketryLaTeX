@@ -1,1 +1,323 @@
-% ch4-intro-sec1 -- stub, to be transcribed (milestone M4)
+% chapters/ch4-intro-sec1.tex -- Introduction; 1. The General Differential Equations of Motion;
+% 1.1; 1.2 (PDF 537-552, printed pp. 505-520), up to but not including the heading "2." on PDF 552
+% (equations (16)-(17), printed above that heading, belong here). Equations 1-17, Figures 1-2.
+\unnumberedsection{Introduction}\label{ch4:sec:intro}
+
+The interest of model rocketeers in determining the flight paths that their models will follow,
+once launched, dates back to the earliest days of the hobby itself. Questions of trajectory
+analysis, and particularly the question of altitude capability determination, antedate all other
+topics in the literature of model rocketry.
+
+The first technical report issued by the then-infant National Association of Rocketry (\#TR-1,
+first printed in 1958), entitled ``Basic Model Rocket Flight Calculations'' and written by former
+NAR President G. Harry Stine, described a simple technique for computing the burnout velocity,
+burnout altitude, and maximum altitude of a model rocket under the assumptions of zero drag and a
+perfectly vertical flight path. The effect of drag in this treatment was allowed for by observing
+that a typical model rocket attains only 40 to 60 percent of the altitude calculated under the
+drag-free assumption. The report also contained drag data obtained from testing a model Aerobee-Hi
+in the subsonic wind tunnel of the United States Air Force Academy, as well as a brief discussion
+of the effects of nonvertical launch on a model's trajectory.
+
+Stine observed that, to take the effects of drag into account more accurately, it would be
+necessary either to apply the techniques of integral calculus or to divide the time of flight into
+small intervals (a tenth of a second or less each) during which the velocity of the model, and
+hence the drag on it, could be assumed constant. With the mass of the model approximated by a
+constant in each interval computable from the rate of mass expulsion, the simplified form of
+Newton's second law ($\vec{F} = m\vec{a}$) could then be applied to determine the acceleration,
+velocity, and altitude of the rocket at any time during the flight. The interval method was
+discussed in greater detail in Stine's \emph{Handbook of Model Rocketry}, whose first edition
+appeared in 1965.
+
+During the period 1958 through 1964 the interval method was virtually the only analytical tool
+available to model rocketeers who wished to take the effects of drag and mass variation accurately
+into account in computing model rocket flight paths. This technique can be quite accurate if the
+intervals used are sufficiently small; it provides, in fact, an exact solution ``in the limit'' as
+the intervals become \emph{vanishingly} small. Unfortunately, as the \emph{size} of the intervals
+decreases the \emph{number} of intervals required to describe the entire flight
+\emph{increases}, so that a modeler desiring a really high order of accuracy in his trajectory
+calculations would find himself faced with the task of performing hundreds---or even
+\emph{thousands}---of calculations. Such a procedure involves a prohibitive amount of drudgery for
+a human being, but it is well suited to automatic computing machines that can perform the thousands
+of relatively simple calculations required in a matter of only a few seconds for any given rocket.
+The step-by-step results obtained for the vertical upward flight of a typical model rocket as
+determined by an IBM 1620 computing system appeared in the first edition of the \emph{Handbook of
+Model Rocketry} and served well to illustrate the accuracy attainable with the interval method.
+
+Still, the user of the interval technique must either perform many hours of calculations himself
+or have access to and the ability to use an electronic computer for each case he desires to
+analyze. Since most model rocketeers do not have free access to computers or a knowledge of how to
+use them, this constitutes an essential practical shortcoming of the technique.
+
+Efforts on the part of advanced model rocketeers to overcome this difficulty by using the
+techniques of integral calculus to derive \emph{closed-form} analytical solutions (i.e., single
+algebraic formulae) for the burnout velocity, burnout altitude, maximum altitude, and flight path of
+a model rocket began about 1964, and during the period 1964--1965 Leonard G. Fehskens and Douglas
+J. Malewicki, working independently, succeeded in obtaining such solutions for vertical flight.
+Malewicki subsequently prepared his results for publication in graphical form, and they appeared
+as technical reports published by two of the large model rocket manufacturers: Estes Industries,
+Inc., of Penrose, Colorado, and the Centuri Engineering Company of Phoenix, Arizona.
+
+The present author began investigating the problems of model rocket trajectory analysis in the
+fall of 1965. A number of different solutions to the equations of vertical motion were obtained
+between 1965 and 1968, some of the earlier work in this period being done in collaboration with
+Fehskens and with William P. Bengen. In this chapter I have taken the liberty of presenting all the
+most important results obtained during the 1965--1968 period, as well as those derived during the
+actual preparation of this book, both for historical completeness and because I believe the
+multiplicity of approaches will enhance the reader's physical insight into the problems involved.
+Most of the material contained in the present chapter was formally prepared for publication during
+1968 and 1969, and it was during this period that the investigations into the behavior of model
+rockets in nonvertical flight and into the importance of altitude reduction due to dynamic
+oscillations were begun.
+
+The equations describing the point-mass motion of a model rocket along its flight path, like many
+of the equations in this book, are \emph{differential} equations and as such require either
+calculus or numerical techniques for their solution. As in the previous chapters, it is possible to
+facilitate the solutions to some extent through the use of \emph{linearization} approximations,
+and such approximations have been used wherever they are consistent with the desired accuracy. It
+will be found, however, that the equations of motion contain an essential nonlinearity due to the
+quadratic dependence of aerodynamic drag upon velocity. The presence of this nonlinearity increases
+the difficulty and mathematical complexity of the solutions, necessitating the use of such
+techniques as the \emph{change of variable} and \emph{estimation} and \emph{truncation of
+integrals}. All approximations and other techniques used during the derivation of solutions will
+be identified in the text as they are used, for the information of those advanced rocketeers who
+have a special interest in the mathematics involved. As has been our policy throughout the book,
+however, special emphasis will also be placed on the algebraic \emph{results} obtained from the
+calculus derivations, for the practical use of modelers who are not so mathematically inclined.
+
+\section{The General Differential Equations of Motion}\label{ch4:sec:1}
+
+The general differential equations of motion for a free, ballistic rocket follow directly from the
+fundamental principle of classical mechanics: Newton's second law of motion. It is well to acquire
+a good intuitive, physical understanding of this principle before launching into the mathematical
+complexities involved in obtaining particular solutions to the equations of motion. I have
+therefore taken the liberty of presenting the following detailed derivation of Newton's second law
+as applied to rocket-propelled bodies:
+
+Consider a rocket as shown in Figure~\ref{ch4:fig:1}a, at some instant of time which we shall
+denote as $t$. At this time the rocket has a mass $m(t)$ (read ``$m$ as a function of $t$'' or
+simply ``$m$ of $t$'', meaning that the mass of the rocket varies with time) and a (vector)
+velocity $\vec{v}$ with respect to an observer stationary on the ground---and therefore a vector
+momentum given by
+\begin{equation}\label{ch4:eq:1}
+\vec{p} = m(t)\vec{v}
+\end{equation}
+The rocket will, in general, also be acted upon by a number of externally-applied forces, whose
+vector sum we shall denote by $\vec{E}$.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch4/fig01.png}
+  \caption{Model rocket in flight, with its engine thrusting under the influence of
+    externally-applied forces. Panel (a) shows the rocket at time $t$; (b) shows it a short time
+    later at time $t + dt$.}
+  \label{ch4:fig:1}
+\end{figure}
+
+Now suppose we wait for some very short interval of time $dt$ (which mathematicians call a
+\emph{differential} of time; an interval of ``infinitesimal'' or ``vanishingly small'' duration)
+and observe our rocket again at time $t + dt$, when the rocket appears as in
+Figure~\ref{ch4:fig:1}b. We shall find that a number of changes have occurred during the interval
+despite its extreme brevity. For one thing, the rocket's velocity has changed by a differential
+increment $d\vec{v}$, so its velocity is now $\vec{v} + d\vec{v}$. For another, a differential
+quantity of mass $dm_e$ has been expelled from the motor nozzle during $dt$, decreasing the vehicle
+mass to $m(t) - dm_e$. The rocket's vector momentum at time $t + dt$ is therefore
+\begin{align}
+\vec{p} + d\vec{p} &= [m(t) - dm_e](\vec{v} + d\vec{v}) \label{ch4:eq:2}\\
+&= m(t)\vec{v} - \vec{v}\,dm_e + m(t)\,d\vec{v} - dm_e\,d\vec{v} \notag
+\end{align}
+Subtracting equation~\eqref{ch4:eq:1} from~\eqref{ch4:eq:2}, we find that the rocket has acquired
+a differential increment of momentum given by
+\begin{equation*}
+d\vec{p} = m(t)\,d\vec{v} - \vec{v}\,dm_e - dm_e\,d\vec{v}
+\end{equation*}
+The term $dm_e\,d\vec{v}$ involves a product of two differential quantities and is of negligible
+magnitude compared to the other terms; it may therefore be discarded without loss of accuracy,
+resulting in
+\begin{equation}\label{ch4:eq:3}
+d\vec{p} = m(t)\,d\vec{v} - \vec{v}\,dm_e
+\end{equation}
+
+Now according to classical mechanics, momentum is \emph{conserved}; that is, the total momentum of
+the \emph{system} consisting of the rocket and all its surroundings must remain constant. This
+being the case, the momentum increment $d\vec{p}$ must have had some quantitatively identifiable
+sources outside the rocket airframe itself---and the sum total of the momentum increments
+contributed by these sources must precisely equal $d\vec{p}$. There are in fact two such sources
+in the case of the rocket: the momentum \emph{flux} due to the exhaust and the action of the
+externally-applied forces.
+
+As we have already noted, the rocket motor has expelled a mass increment $dm_e$ during the interval
+$dt$. It has, moreover, expelled this mass at a high velocity---the \emph{exhaust velocity}
+$\vec{c}$ with respect to the \emph{rocket}, which is a velocity $(\vec{c} + \vec{v})$ with
+respect to our hypothetical observer standing stationary on the ground. An increment of momentum
+\begin{equation}\label{ch4:eq:4}
+d\vec{p}_e = (\vec{c} + \vec{v})\,dm_e
+\end{equation}
+has therefore been transferred \emph{from} the rocket \emph{to} the exhaust stream by the expulsion
+of mass from the rocket nozzle: $d\vec{p}_e$ as given by~\eqref{ch4:eq:4} has been \emph{added} to
+the exhaust stream and \emph{subtracted} from the rocket.
+
+The vector sum of all the externally applied forces, $\vec{E}$, acting over the interval $dt$,
+produces an \emph{impulse} $\vec{E}\,dt$. This impulse is equal to the momentum increment imparted
+by the externally applied forces to the rocket. We may then write
+\begin{equation}\label{ch4:eq:5}
+d\vec{p}_E = \vec{E}\,dt
+\end{equation}
+
+Now $d\vec{p}_E$ has been \emph{added} to the rocket during $dt$, while $d\vec{p}_e$ has been
+\emph{subtracted} from it, and the sum total of the two effects is precisely equal to the total
+momentum change experienced by the rocket during the interval. That is,
+\begin{equation*}
+d\vec{p} = d\vec{p}_E - d\vec{p}_e
+\end{equation*}
+or
+\begin{equation}\label{ch4:eq:6}
+m(t)\,d\vec{v} - \vec{v}\,dm_e = \vec{E}\,dt - (\vec{c} + \vec{v})\,dm_e
+\end{equation}
+Collecting terms and dividing by $dt$, we obtain the general, vector differential equation of
+motion for a rocket under thrust and subject to externally-applied forces as
+\begin{equation}\label{ch4:eq:7}
+m(t)\frac{d\vec{v}}{dt} = -\vec{c}\,\frac{dm_e}{dt} + \vec{E}
+\end{equation}
+The term $-\vec{c}(dm_e/dt)$ is just the \emph{thrust} of the rocket motor as it would be measured
+in a static test stand. Since the exhaust velocity $\vec{c}$ is directed \emph{backward} along the
+longitudinal axis of the rocket it is vectorially \emph{negative} with respect to $\vec{v}$. And
+since the rate of mass expulsion has been expressed as the \emph{positive} mass-flow rate
+$dm_e/dt$, equivalent to $\mdot$ as used by professional rocket engineers, the thrust is a
+\emph{positive} force tending to \emph{increase} $\vec{v}$---which, as practical rocketeers, we
+already know from experience. The thrust can be denoted by the single symbol $\vec{F}(t)$, so we
+can write
+\begin{equation}\label{ch4:eq:8}
+m(t)\frac{d\vec{v}}{dt} = \vec{F}(t) + \vec{E}
+\end{equation}
+Both the engine thrust and the externally-applied forces will be referred to as \emph{flight
+forces}, as per the notation of Chapter~\ref{ch1}, in the following discussion. The
+externally-applied flight forces whose vector sum is here represented by $E$ will be resolved into
+two components: \emph{weight} and aerodynamic resistance, or \emph{drag}.
+
+\subsection{Mathematical Representation of the Flight Forces}\label{ch4:sec:1.1}
+
+The various forces acting on a model rocket in flight were described in Chapter~\ref{ch1}. We now
+proceed to represent these forces as explicit functions of time, angle of attack, mass, and so on.
+Once these representations have been constructed the general, componentized differential equations
+of motion can be formed explicitly according to the general law expressed in
+equation~\eqref{ch4:eq:8}.
+
+The first of the flight forces to be considered will be the thrust of the engine. The thrust is
+usually a rather complicated function of time, whose general form may be expressed by the
+functional notation $F(t)$, and in a properly designed model whose engine is functioning normally
+is directed along the longitudinal principal axis (centerline) of the rocket. Disturbances due to
+winds, misaligned fins, asymmetries, and other factors as discussed in Chapter~\ref{ch2} will cause
+the longitudinal axis of the vehicle to deviate from the tangent to the trajectory at the point of
+interest---that is, such disturbances will cause the model to develop an angle of attack. Such a
+rigid-body rotation will thus produce components of thrust in other than the intended direction of
+flight, and in particular will reduce the effective thrust in the direction of the trajectory
+according to
+\begin{align}
+F_t &= F(t)\cos\alpha \label{ch4:eq:9}\\
+F_p &= F(t)\sin\alpha \label{ch4:eq:10}
+\end{align}
+where the subscripts $t$ and $p$ denote thrust components tangential and perpendicular to the
+trajectory at the point of interest, respectively, $\alpha$ is a generalized angle of pitch or yaw
+(or both), and $F(t)$ is the thrust of the engine expressed explicitly as a function of time.
+
+Also of importance in determining the trajectory is the weight of the vehicle. The weight of a
+model rocket is always a function of time, as the quantity of propellant expended during the engine
+burning phase continuously decreases the rocket's weight. The weight vector always points in the
+negative vertical (downward) direction, and may be denoted simply by $m(t)g$, where $m(t)$ is the
+model's mass as a function of time and $g$ is the acceleration of the Earth's gravity field.
+
+Perhaps the most interesting of the flight forces, and also the most difficult to handle
+analytically, is aerodynamic drag. As described in Chapter~\ref{ch3}, it is a function of the
+model's velocity, its shape and size, the smoothness of its finish, and so on. For purposes of
+analytical convenience the net effect of all these various influences will be accounted for by
+expressing the drag force as $kv^{2}$, as was done in Chapter~\ref{ch1}, where the lumped parameter
+$k$ is a function of Reynolds number, atmospheric density, shape, etc. The drag force is subject to
+the same perturbing influences as the thrust, namely the rigid-body rotations which change the
+cross-sectional frontal area and effective shape of the model, resulting in an increase in drag
+with angle of attack. The total drag force on a model flying at an angle of attack can thus be
+characterized as
+\begin{equation}\label{ch4:eq:11}
+D = (k + \epsilon f(\alpha))v^{2}
+\end{equation}
+where $\epsilon$ is some constant and $f(\alpha)$ is some function of the angle of attack.
+
+The flight forces just considered are referred to as \emph{external} forces; that is, they
+represent \emph{net forces acting on the rocket's center of mass} (for all practical purposes the
+center of mass is identical to the center of gravity, or \CG). These forces interact with, and are
+thus said to be \emph{coupled to}, the detailed dynamic moments which cause the rigid-body motions
+discussed in Chapter~\ref{ch2}. The rigid-body rotations, however, do not affect the motion of the
+\CG{} directly; they can only influence it through their interaction with the external forces. This
+interaction, as discussed in Chapter~\ref{ch1}, occurs through the increase in drag and the side
+force associated with changes in the angle of attack. Hence, it is sufficient to consider the
+forces already discussed in order to obtain a suitable representation of the rocket's point-mass
+motion, as we have already accounted for the interaction of the rigid-body rotations with the
+external forces in the terms previously considered. The increase in drag with angle of attack has
+already been expressed in equation~\eqref{ch4:eq:11}. Side force, as can be deduced from the
+treatments in Chapter~\ref{ch2}, is an oscillatory phenomenon of extremely short duration in any one
+transverse direction for any reasonably well-designed model rocket. It can therefore be disregarded
+under the same rationale by which the effects of lateral translation were neglected in
+Chapter~\ref{ch2}.
+
+\subsection{Selection of the Coordinate System and Formation of the General Differential Equations
+of Motion}\label{ch4:sec:1.2}
+
+In order to write down the differential equations of motion, one must first select a suitable
+coordinate system with respect to which the different components of the model's motion will be
+taken. An exact description of the trajectory of any flying body would require taking into account
+the curvature and rotation rate of the Earth; spherical polar coordinates would thus seem a likely
+choice. A model rocket, however, never attains altitudes sufficiently great to warrant
+considerations of planetary curvature and rotation in the computation of its flight path, so we
+might just as well select a rectilinear, Cartesian coordinate system as our reference frame. Such a
+coordinate frame will be used for all subsequent analysis in this chapter. In addition, the
+horizontal Cartesian axis will be taken to lie in the plane of the rocket's trajectory, so only one
+horizontal coordinate need be used. The horizontal axis will be referred to as the $x$-axis; the
+vertical axis will be called the $y$-axis.
+
+The differential equations of motion can then be formed along the two mutually perpendicular axes,
+yielding a horizontal, or $x$-component of motion and a vertical, or $y$-component of motion:
+\begin{align}
+m(t)\frac{dv_y}{dt} &= F_t\cos\theta - m(t)g - [k + \epsilon f(\alpha)]v^{2}\cos\theta
+  \label{ch4:eq:12}\\
+m(t)\frac{dv_x}{dt} &= F_t\sin\theta - [k + \epsilon f(\alpha)]v^{2}\sin\theta \label{ch4:eq:13}
+\end{align}
+where $\theta$ is the value of the angle between the tangent to the trajectory and the $y$-axis at
+the instant of time under consideration. Figure~\ref{ch4:fig:2} illustrates this
+componentization of the rocket's motion. The cosine and sine in terms of the velocity $v$ along the
+trajectory and the vertical and horizontal components of $v$, which may be written as $\dot{y}$ and
+$\dot{x}$, respectively, are
+\begin{align}
+\cos\theta &= \frac{\dot{y}}{v} \label{ch4:eq:14}\\
+\sin\theta &= \frac{\dot{x}}{v} \label{ch4:eq:15}
+\end{align}
+The placing of a dot over a variable is one of the standard calculus notations for denoting the
+variable's time derivative; the notation $\dot{x}$ is thus a shorthand way of writing $dx/dt$, and
+so on. Similarly, multiple dots are used to denote multiple differentiations with respect to time;
+hence $\ddot{x}$ is equivalent to $d^{2}x/dt^{2}$, etc. The dot shorthand for time differentiation
+will be used extensively throughout the treatments of this chapter, as it saves considerable
+writing when the formulae being discussed become longer and more complicated than those for which
+the conventional notation for the derivatives would be convenient.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch4/fig02.png}
+  \caption{Resolution of a model rocket's flight path, or \emph{trajectory}, along rectangular
+    Cartesian coordinates. The horizontal distance $x$ travelled from the launch point is the
+    \emph{range}; the vertical distance $y$ travelled from the launch point is the \emph{altitude}
+    of the model.}
+  \label{ch4:fig:2}
+\end{figure}
+
+Substituting~\eqref{ch4:eq:9}, \eqref{ch4:eq:10}, \eqref{ch4:eq:14} and~\eqref{ch4:eq:15}
+into~\eqref{ch4:eq:12} and~\eqref{ch4:eq:13} results in general differential equations of motion
+in the form
+\begin{align}
+m(t)\frac{dv_y}{dt} &= F(t)\cos\alpha\,(\dot{y}/v) - m(t)g - [k + \epsilon f(\alpha)]v\dot{y}
+  \label{ch4:eq:16}\\
+m(t)\frac{dv_x}{dt} &= F(t)\cos\alpha\,(\dot{x}/v) - [k + \epsilon f(\alpha)]v\dot{x}
+  \label{ch4:eq:17}
+\end{align}
+It must be noted here that the generalized angle of attack $\alpha$ is assumed to be decoupled from
+the rest of the terms in the equations. That is, any rigid-body rotational oscillations of the
+model are assumed to be rapid in comparison to the rate at which the model's velocity is changing
+and the \emph{effects of pitch or yaw on the rocket's velocity are, to a first-order approximation,
+decoupled from the actual determination of the pitching and yawing angles}.

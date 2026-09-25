@@ -132,7 +132,8 @@ and flagged with `\ednote{...}` naming the probable target.
   once. Figures whose artwork contains formulas stay as images in version 1.
 - A figure printed as separately captioned panels ("Figure 5(a):", "Figure 5(b):" ...) is one figure environment
   per panel with `\figurepanel{a}` (then `{b}`, `{c}`) before `\caption` and the label `chN:fig:5a`, `chN:fig:5b` ...;
-  cite a panel as `Figure~\ref{ch4:fig:5a}` (it prints 5(a)).
+  cite a panel as `Figure~\ref{ch4:fig:5a}` (it prints 5(a)); cite the whole set as `Figure~\hyperref[ch4:fig:5a]{5}`
+  ("Figures 5 through 9": `\hyperref[ch4:fig:5a]{5} through~\hyperref[ch4:fig:9a]{9}`).
 
 ## 8. Tables
 
@@ -308,7 +309,7 @@ Chapter 4's prose, Symbols list, equations (9)-(11), "where" lists and Tables 1-
 - **Functions and calculus**:
   - Functions: `\ln` (for the script "ℓn"), `\tanh`, `\cosh`, `\sinh`, `\tanh^{-1}`, `\tan^{-1}` in (64) as printed (not `\arctan`), `\sin`, `\cos`, `\sqrt`. `e^{Ht}` has an italic e. The prose's "tanh( ), ln( ), cosh( )" are `$\tanh(\ )$`, `$\ln(\ )$`, `$\cosh(\ )$`.
   - The curled hand d is an italic `d`.
-  - Integral limits go at the side, as in Chapters 1 and 3 (`\int_{t_1}^{t_1+t_2}`, `\int_{v_b}^{0}`), with no `\limits`, even where the typescript stacks them ((40), (43), (44), (52)): typographic, not a discrepancy. The evaluation bars are `kyv\Big]_{0,0}^{y_b,v_b}` in (23) and `\Big]_{v_1}^{v_2}` in (53).
+  - Integral limits go at the side, as in Chapters 1 and 3 (`\int_{t_1}^{t_1+t_2}`, `\int_{v_b}^{0}`), with no `\limits`, even where the typescript stacks them ((40), (43), (44), (52)): typographic, not a discrepancy. The evaluation bars are `kyv\Big]_{0,0}^{y_b,v_b}` in (23) and a full bracket pair `\biggl[\ldots\biggr]_{v_1}^{v_2}` in (53), as printed.
   - Relations: `\cong` in (135), `\Delta t \to 0` (PDF 585), `\le`, `\ge`, `<`.
   - Derivatives: `\dot{x}`, `\dot{y}`, `\ddot{x}`, `\dot{u}`, `\ddot{u}`; `dv_y/dt`, `dv_x/dt` with a lowercase v even where the lettering draws it large.
 - **Riccati and Fehskens-Malewicki constants**: `u`, `A_1`, `A_2`, `H`, as in `u = A_1e^{Ht} + A_2e^{-Ht}`, `H = \frac{1}{m}\sqrt{k(F - mg)}` and `v = \frac{m}{k}\frac{\dot{u}}{u}`. `A` and `B` in the unnumbered cosh identity (PDF 568) are plain capitals. `C_1` and `C_2` are capitals even where (144)-(145) letter them small; the typed C that looks like O is C.
