@@ -214,7 +214,7 @@ def main():
 
     chapters = json.loads(CHAPTERS.read_text())
     if args.chapter:
-        keys = [c if c.startswith("ch") else f"ch{c}" for c in args.chapter]
+        keys = [c if (c.startswith("ch") or c in chapters) else f"ch{c}" for c in args.chapter]
         unknown = [k for k in keys if k not in chapters]
         if unknown:
             die(f"unknown chapter(s) {', '.join(unknown)}; known: {', '.join(chapters)}")
