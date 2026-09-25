@@ -1,1 +1,260 @@
-% frontmatter/about-this-edition.tex -- milestone M5
+% frontmatter/about-this-edition.tex -- editorial preface of the LaTeX edition (not in the scan)
+% Sources: README.md, STYLE.md, corrections/ch1.md-ch4.md, inventory/ch1-renumber.json,
+% figures/vectorize-todo.md, backmatter/supplement/*.tex, frontmatter/titlepage-2025.tex,
+% main.tex, chapters/*.tex, audit/*.md and the git history.
+\chapter{About This Edition}\label{front:about}
+
+This is a newly typeset edition of \emph{Topics in Advanced Model Rocketry}, by Gordon K. Mandell,
+George J. Caporaso and William P. Bengen, first published by The MIT Press in 1973. It is made from
+the scan of the book that was released in 2025 under the title \emph{Topics in Advanced Model
+Rocketry: T + 52 Years} and that, as its title page says, was digitized by Christopher L.
+Feyerchak. The 1973 work was copyrighted by The Massachusetts Institute of Technology, which
+transferred all rights to the authors in 1986; in 2025 the authors relinquished the copyright and
+dedicated the work to the public domain, as the notice that follows the title page states. The
+scan is a single file of 712 pages, \texttt{Topics\_in\_Advanced\_Model\_Rocketry.pdf}, with the
+SHA-256 checksum
+\begin{center}
+  \small\texttt{51b26ed677ca17e7db7638ecc3454bbf77c8eedf78b19b3415b49dd7430c60ae}
+\end{center}
+This is the first version of the edition, prepared in 2026.
+
+\section*{Contents of This Volume}
+
+The volume follows the order of the scan. It opens with the front matter of 2025: the half-title,
+the title page and the public-domain notice, a historical perspective and photographs of the
+authors. The front matter of the 1973 edition follows, then this note and a table of contents made
+for this edition, which takes the place of the 1973 one; the blank pages of the scan are left out.
+Next comes the 1973 book itself: Chapter~\ref{ch1}, ``An Introduction to the Dynamics of Model
+Rocket Flight'', by Caporaso and Mandell; Chapter~\ref{ch2}, ``A Unified Approach to Aerodynamic
+Stability'', by Mandell; Chapter~\ref{ch3}, ``The Aerodynamic Drag of Model Rockets'', by Bengen;
+Chapter~\ref{ch4}, ``Elements of Trajectory Analysis'', by Caporaso; then the four appendixes and
+the figure credits.
+
+The last Part, \hyperref[supp]{\emph{Errata and Supplement}}, reproduces the errata sheet issued
+with the 1973 edition and the corrections and additions that the authors wrote later. Its
+typewritten pages are transcribed, and its handwritten pages and displays are set in type. Only
+some of these documents are signed and dated: Gordon Mandell's changes to Chapters~\ref{ch1}
+and~\ref{ch4} (June 1994), his note on the notation of the pressure term (1 June 1994) and his
+corrections to Chapter~\ref{ch2} of 15 February 2022. The others show no author or date. Among
+them are the correction to page 40 of Chapter~\ref{ch1} and the other corrections to
+Chapter~\ref{ch2}, typewritten and handwritten, which the scan places after the 1994 changes to
+Chapter~\ref{ch1}. The editor's notes cite these by their titles.
+
+\section*{How the Text Was Produced}
+
+The text was transcribed from the page images of the scan. The mathematics, most of which the 1973
+book letters by hand, was read symbol by symbol, magnified wherever a subscript or a Greek letter
+was in doubt, and set in type. Each part of the transcription, and each correction applied to it,
+was then checked against the scan in separate audit passes, which compared the typeset pages with
+the page images. The audit reports, and the correction lists named below, are kept with the
+edition's source files.
+
+\section*{Conventions}
+
+The wording, spelling, punctuation, units and paragraphing are those of the authors. Obvious typing
+slips are corrected without comment. Among them is the one correction of the errata sheet that falls
+outside the chapters, ``rockey'' for ``rocket'' in the 1973 Preface. A few slips of the
+same kind in formulas and units are also corrected without comment: a parenthesis that is never
+closed, ``Kg'' for ``kg'', and a symbol whose capital or small letter differs, for the same
+quantity, from the form the chapter's Symbols list gives. Words that the typescript underlines, for
+emphasis or in a title, are set in italics. Sections keep the book's numbers (``1.'', ``2.1'',
+``3.1.2''). The book is laid out one-sided, for reading on a screen, and most cross-references are
+links.
+
+The running heads and the page numbers of the 1973 edition are not reproduced, and its page breaks
+are not marked; only the correction pages for Chapter~\ref{ch3} in the last Part keep the page
+numbers printed on them. Where an editor's note, or one of the documents in the last Part, cites a
+page, it is a page of the 1973 edition unless the note says otherwise. Such a page cannot be looked
+up directly in this edition; the outline under ``Corrections Applied'' below gives the section,
+equation or figure that each correction concerns.
+
+Equations are numbered at the right margin (the 1973 book numbers them at the left), in one series
+per chapter and without a chapter prefix, as in the 1973 book; figures and tables are numbered in
+the same way. Equations that a correction inserts between existing ones carry the authors' numbers:
+\eqref{ch1:eq:n2a} in Chapter~\ref{ch1}, \eqref{ch3:eq:n144A} and \eqref{ch3:eq:n144B} in
+Chapter~\ref{ch3}, \eqref{ch4:eq:n7a} to \eqref{ch4:eq:n7d} in Chapter~\ref{ch4}. Where the authors
+renumber, their numbering is followed: after the correction to page 40 of Chapter~\ref{ch1}, the
+equations that the 1973 edition numbers (21) and (22) are \eqref{ch1:eq:21} and \eqref{ch1:eq:22}.
+Where a correction gives a new equation a number that an unchanged 1973 equation keeps, the new
+equation is marked with a prime: \eqref{ch2:eq:n89} to \eqref{ch2:eq:n92} in Chapter~\ref{ch2},
+\eqref{ch3:eq:n155} and \eqref{ch3:eq:n156} in Chapter~\ref{ch3}. A misprinted equation number that
+no source corrects is kept as printed and explained in a note: in Chapter~\ref{ch4} the third member
+of the group (154) is numbered \eqref{ch4:eq:156c}, where (154c) is meant.
+
+\section*{Notation}
+
+The typewriter and the hand lettering of the 1973 book often do not show whether a letter is a
+capital (x or X, z or Z), or whether a small circle is the letter o or the digit 0. In each chapter
+such a symbol is set in one form throughout. As a rule it is the form that the chapter's own
+Symbols list gives, and because the lists differ, so do the chapters. Two conventions of this
+edition take precedence: every o subscript of Chapter~\ref{ch1} is set as a zero, and so is the
+subscript of the zero-lift drag coefficient $\CDo$ wherever it occurs.
+\begin{itemize}
+  \item In Chapter~\ref{ch1} the o subscripts, which the typewriter types as a small letter o, are
+    set as zeros: $m_0$, $g_0$, $R_0$, $\CDo$.
+  \item In Chapter~\ref{ch2} the axis subscripts of the angles and angular velocities are capitals
+    ($\alpha_X$, $\Omega_Y$, and $\omega_Z$ for the roll rate), and initial values carry a zero
+    ($\alpha_{X0}$, $\Omega_{Y0}$). Subscripts that the book types, rather than letters by hand,
+    keep their printed form, as in $f_x(t)$ and $I_{Lo}$. The amplitude ratio, which the book
+    writes as two separate letters, is set $\mathit{AR}$, and the aspect ratio as the joined
+    $\AR$.
+  \item In Chapter~\ref{ch3} the zero-lift drag coefficient $\CDo$ (with $(\CDo)_B$, $(\CDo)_F$
+    and $(\CDo)_{FB}$) is the only symbol with a zero subscript; every other o subscript is the
+    letter o ($x_o$, $p_o$, $\rho_o$, $\tau_o$). The roll rate is $\omega_Z$, as in
+    Chapter~\ref{ch2}.
+  \item In Chapter~\ref{ch4}, as its Symbols list prints them, the axis subscripts are lowercase
+    ($\alpha_x$, $\omega_y$, and $\omega_z$ for the roll rate) and every o subscript is the letter
+    o ($t_o$, $m_o$, $\alpha_{xo}$); only the $(\CDo)_{FB}$ of Table~\ref{ch4:tab:1} has a zero.
+\end{itemize}
+The initial mass, which the Symbols lists of Chapters~\ref{ch1} and~\ref{ch4} type alike, is thus
+$m_0$ in Chapter~\ref{ch1} and $m_o$ in Chapter~\ref{ch4}, and the roll rate is $\omega_Z$ in
+Chapters~\ref{ch2} and~\ref{ch3} and $\omega_z$ in Chapter~\ref{ch4}. These differences are
+deliberate.
+
+\section*{Editor's Notes}
+
+Editorial notes are footnotes that begin ``\emph{Editor's note:}'' and are numbered E1, E2,
+\ldots{} afresh in each chapter, separately from the authors' own footnotes. In figure captions, in
+some table entries and in the last Part, a note is set in square brackets instead:
+[\emph{Editor's note:} \ldots]. Most notes are of three kinds; the others explain a point of
+notation or refer the reader to a related place in the book.
+\begin{itemize}
+  \item \emph{Corrections.} Where the errata sheet or one of the authors' later documents changes
+    the text, the change is made, and a note says so and quotes what the 1973 edition read: every
+    replaced equation in full, and the replaced prose in full or, for a long passage, the sentences
+    whose content changed. Corrections that are purely typographical are made without a note.
+  \item \emph{Doubts.} Where a formula or a statement appears to be wrong and no source corrects
+    it, it is kept as printed, and a note explains what is evidently meant and why. Citations of
+    equations, figures and sections that point to the wrong place are treated in the same way.
+    Minor numerical discrepancies that change no conclusion (last digits, roundings, and a few
+    small mismatches between the text and a figure) are left as printed without a note; they are
+    recorded in the correction lists.
+  \item \emph{Damage.} A few characters cut off at the edge of a scanned page are restored, and a
+    note says from what.
+\end{itemize}
+
+\section*{Corrections Applied}
+
+The corrections of the errata sheet and of the authors' later documents are applied in the
+chapters, each at its place, with the notes described above. In outline:
+\begin{description}
+  \item[Chapter~\ref{ch1}.] Mandell's changes of June 1994 add the pressure term to the thrust
+    equation~\eqref{ch1:eq:1} in Section~\ref{ch1:sec:2.1} and to its scalar, fore-and-aft
+    form~\eqref{ch1:eq:2}. In~\eqref{ch1:eq:1} the term is written $(P_e - P_a)\vec{A}_e$, with the
+    arrow over $A_e$ only, as his note of 1 June 1994 directs; the 1994 pages themselves, reproduced
+    in the last Part, draw the arrow over the whole term. The changes extend the text around these
+    equations with the exhaust and ambient pressures and a paragraph on over- and underexpansion. They add
+    equation~\eqref{ch1:eq:n2a}, $\mdot = F/c$; replace Figure~\ref{ch1:fig:2} and its caption;
+    define the specific impulse per unit weight of propellant, with new equations~\eqref{ch1:eq:5}
+    to \eqref{ch1:eq:7} that relate it to the effective exhaust velocity $c_{\mathrm{eff}}$; and add
+    five symbols to the Symbols list. The correction to page 40, which shows no author or date,
+    rewrites the normal force equation~\eqref{ch1:eq:20} of Section~\ref{ch1:sec:2.3} in terms of
+    the normal force coefficient $C_N$ and adds equations~\eqref{ch1:eq:n21} and
+    \eqref{ch1:eq:n22}, which introduce the normal force curve slope $\CNa$; as it directs, the
+    equations that follow are renumbered, so that the 1973 (21) and (22) are now
+    \eqref{ch1:eq:21} and \eqref{ch1:eq:22}. The errata sheet corrects a symbol in the Symbols
+    list.
+  \item[Chapter~\ref{ch2}.] The errata sheet adds the term $M_s/C_1$ to
+    equation~\eqref{ch2:eq:30} (Section~\ref{ch2:sec:3.1.2}), adds primes to $A$, $B$ and $C$ in
+    four equations of Section~\ref{ch2:sec:3.2.1}, and supplies a missing $\alpha$ in
+    the caption of Figure~\ref{ch2:fig:13}. The undated corrections to the chapter rewrite the
+    introduction to the Barrowman method at the start of Section~\ref{ch2:sec:4.1}, which now
+    defines $\CNa$ as the \emph{normal force curve slope}, the slope of the normal force coefficient
+    $C_N$ against angle of attack. In the rest of that section and in the captions of
+    Figures~\ref{ch2:fig:34} to~\ref{ch2:fig:36}, ``normal force coefficient'' becomes ``normal
+    force curve slope'', except in the paragraph on body tube sections and in the section heading.
+    The fin equations are replaced by eight new ones, which define the aspect ratio anew and admit
+    six fins. The first four are \eqref{ch2:eq:85} to \eqref{ch2:eq:88}; the last four, which the
+    correction numbers (89) to (92), are shown as \eqref{ch2:eq:n89} to \eqref{ch2:eq:n92}, because
+    the 1973 equations (89) to (92) that follow are unchanged and keep their numbers.
+    Figure~\ref{ch2:fig:36} is replaced by the drawing that accompanies these corrections.
+    Mandell's correction of 15 February 2022 replaces the passages of Section~\ref{ch2:sec:6.3}
+    that give the equilibrium roll rate and its coefficients, equations~\eqref{ch2:eq:115} to
+    \eqref{ch2:eq:117}: it removes errors in (115) and (116) and extends the roll rate from canted
+    fins to aerodynamically induced roll in general. It also adds Figure~\ref{ch2:fig:52}, which
+    the 1973 text cites but does not contain, and Reference~\ref{ch2:ref:12}.
+  \item[Chapter~\ref{ch3}.] The errata sheet corrects two sentences, one in which a pressure change
+    was reversed (Section~\ref{ch3:sec:4.2}) and one that gave the wrong direction in a diagram
+    (Section~\ref{ch3:sec:4.3.1}); its other corrections, two in the Symbols list and three of
+    single words, are typographical. The supplement pages for the chapter replace 1973 page 356 and
+    the top of page 357, in Section~\ref{ch3:sec:3.5.3}, with equations~\eqref{ch3:eq:97} to
+    \eqref{ch3:eq:102b}, of which \eqref{ch3:eq:102a} and \eqref{ch3:eq:102b} now take the
+    skin-friction coefficients at the critical Reynolds number. They add the induced-drag
+    equations~\eqref{ch3:eq:n144A} and \eqref{ch3:eq:n144B} and the span efficiency factor $e = 0.863$ to
+    Section~\ref{ch3:sec:5.2.2}. They rewrite the treatment of drag due to fin cant in
+    Section~\ref{ch3:sec:5.3} from equation~\eqref{ch3:eq:152} on, with new forms of
+    \eqref{ch3:eq:152} to \eqref{ch3:eq:154} and two further equations, shown as
+    \eqref{ch3:eq:n155} and \eqref{ch3:eq:n156} because the 1973 (155) and (156) of
+    Section~\ref{ch3:sec:5.4} are unchanged. They add seven entries to the Symbols list and correct
+    the meaning of an eighth. In the worked example of Section~\ref{ch3:sec:6.2}, the Datcom method
+    applied to the Javelin rocket, they restore a factor 4 in the wetted-area ratio of the body and
+    replace Steps 1 to 3 on pages 451--452, which the 1973 edition computed from a wrong body
+    skin-friction coefficient (.00154 for .00236); the overall zero-lift drag coefficient
+    $(\CDo)_{FB}$ becomes .605, where the 1973 edition had .570.
+  \item[Chapter~\ref{ch4}.] The errata sheet corrects three citations of equation numbers, without
+    notes, and adds a missing brace to equation~\eqref{ch4:eq:51}, which the Summary below also
+    rewrites. Mandell's changes of June 1994 rewrite the text that follows
+    equation~\eqref{ch4:eq:7}: the new equations~\eqref{ch4:eq:n7a} to \eqref{ch4:eq:n7d} add the
+    pressure component of thrust, again written $(P_e - P_a)\vec{A}_e$, and define the effective
+    exhaust velocity $\vec{c}_{\mathrm{eff}}$, and equation~\eqref{ch4:eq:8} now has the sum
+    $\vec{E}_o$ of the external forces other than the pressure component. Six symbols are added to
+    the Symbols list, and the meaning of $F(t)$ is changed. The ``Summary'' of corrections to the
+    altitude equations for two-stage and multistage rockets, which shows no author or date, is
+    applied to Section~\ref{ch4:sec:2.2} as far as its concrete corrections go.
+    Equations~\eqref{ch4:eq:40} and \eqref{ch4:eq:44} to \eqref{ch4:eq:53} are rewritten with the time
+    $\hat{t} = t - t_1$ and the altitude $\hat{y} = y - y_1$ counted from second-stage ignition,
+    and with the total impulse of the upper stage. The drag integral \eqref{ch4:eq:44} has 0 where
+    the 1973 edition has $y_1$, so that every term in $y_1$ disappears from the equations that
+    follow; the sign of $m_2v_1$ ($m_nv_{n-1}$) under the radicals of \eqref{ch4:eq:48} to
+    \eqref{ch4:eq:51} is corrected; and \eqref{ch4:eq:53} receives its right-hand side, $t_2$.
+    Figure~\ref{ch4:fig:4} is replaced by a larger copy of the same drawing, whose caption adds a
+    sentence relating the figure to the text. In Table~\ref{ch4:tab:1} the fin cant angles become
+    0.00993 radian ($0.569\dg$) and 0.0993 radian ($5.69\dg$), and the corresponding values of $k$
+    become $0.921 \times 10^{-4}$ and $1.016 \times 10^{-4}$ kg/m.
+\end{description}
+
+\section*{What Is Not Applied}
+
+A few instructions in the correction documents are not carried out, and the notes at the places
+concerned say so.
+\begin{itemize}
+  \item Besides its corrections, the Summary for Chapter~\ref{ch4} plans new material, for which it
+    gives equations and directions but no finished text: moving the notation and the discussion of
+    the physics of two-stage flight from Section~\ref{ch4:sec:2.2.1} up to
+    Section~\ref{ch4:sec:2.2}; revising the discussion of limiting behavior; moving the
+    generalization to three or more stages; a new Section 2.2.3 on the features and limiting
+    behavior of multistage solutions and on terminal velocity; a new Section 2.2.4 on upper stages
+    whose thrust is equal to or less than their weight; and a treatment of the coasting phase by
+    the Caporaso-Bengen method. None of this is done; the equations it gives for these plans can
+    be read in the last Part. Apart from the corrected equations, four entries added to the list of
+    notation and one sentence about an upper limit of integration, the 1973 text of
+    Section~\ref{ch4:sec:2.2} is kept, including a discussion that the Summary calls unnecessary
+    after its rewrite and a few sentences that no longer match the corrected equations; the notes
+    point these out.
+  \item The correction of Table~\ref{ch4:tab:1} states that the altitudes attained by rockets with
+    canted fins change as a consequence. Those changes are not supplied: the results of
+    Table~\ref{ch4:tab:2} for rolling rockets are those of the 1973 edition, computed with the 1973
+    values, and are not recomputed.
+  \item The undated handwritten correction to equations (115) to (117) of Chapter~\ref{ch2} is
+    superseded by Mandell's correction of 15 February 2022 to the same passage and is not applied;
+    it is reproduced in the last Part.
+  \item No correction updates the Symbols lists of Chapters~\ref{ch1} and~\ref{ch2} for the normal
+    force curve slope, so their entries keep the 1973 wording, with notes. Likewise the sentence of
+    Chapter~\ref{ch2} that limits fin sets to three or four fins, which the new fin equations
+    extend to six, is unchanged, with a note.
+\end{itemize}
+The 1973 forms of the replaced figures, Figure~\ref{ch1:fig:2} of Chapter~\ref{ch1},
+Figure~\ref{ch2:fig:36} of Chapter~\ref{ch2} and Figure~\ref{ch4:fig:4} of Chapter~\ref{ch4}, are
+reproduced in the last Part beside their replacements.
+
+\section*{Figures}
+
+In this first version of the edition the figures and the photographic plates are reproduced from
+the scan, each cropped from its page; the replacement figures are cropped from the supplement pages,
+and Figure~\ref{ch2:fig:52} of Chapter~\ref{ch2} is the chart that accompanies the 2022 correction.
+The tables and the Symbols lists are typeset. Many figures carry formulas or tables in the artwork
+itself, and these stay part of the images: a list kept for a later version names 31 such figures in
+Chapter~\ref{ch2} alone, from the formulas beneath the flywheel of Figure~\ref{ch2:fig:5} to the
+table of measurements in Figure~\ref{ch2:fig:46}, and Figures~\ref{ch3:fig:29}, \ref{ch3:fig:31},
+\ref{ch3:fig:39}b, \ref{ch3:fig:44} and~\ref{ch3:fig:45} of Chapter~\ref{ch3} contain tables drawn
+in the artwork. A later version may redraw the figures and set their lettering in type.

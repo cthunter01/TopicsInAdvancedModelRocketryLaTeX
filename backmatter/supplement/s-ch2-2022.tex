@@ -1,1 +1,142 @@
-% backmatter/supplement/s-ch2-2022.tex -- stub (M5)
+% backmatter/supplement/s-ch2-2022.tex -- Mandell, "Corrections to Pages 251 Through 254 and 259",
+% 15 February 2022 (PDF 683--686; PDF 687 is the larger copy of Figure 52, from which the image is taken)
+\chapter{Corrections to Pages 251 Through 254 and 259}\label{supp:ch2-2022}
+
+{\itshape\noindent These corrections include corrections to Equations~\eqref{ch2:eq:115}
+and~\eqref{ch2:eq:116} to remove the errors reported by Alan V. Jones on February 18, 1986, the
+addition of Figure~\ref{ch2:fig:52} to correct the omission reported by Tom on the Rocketry Forum
+website in 2021 and relayed to me by Dave Fitch on August 3, 2021, generalization of the
+equilibrium roll rate equation to include all fin-induced roll, the addition of
+Reference~\ref{ch2:ref:12} to Page 259, and improvements to the text.\par}
+
+\bigskip
+\begin{center}
+[Replace the text on Page 251 with the following:]
+\end{center}
+
+\noindent spin in model rockets.\ \edcap{Page 251 of the 1973 edition begins in mid-sentence;
+page 250 ends ``Stabilization is not, however, the only motive for inducing''. The corrected text
+is in Section~\ref{ch2:sec:6.3}.} It has been found that rolling models are less subject to
+``dispersion'' by horizontal winds and tipoff during launch and staging than those which are not,
+where by ``dispersion'' I mean the horizontal distance of the rocket from its launch site at the
+time of recovery system actuation. The roll rates used in dispersion-reduction are much lower than
+those used in roll stabilization, since the rockets to which they are applied are already
+statically stable; the inertial effect is generally slight and its only purpose is to induce just
+enough roll coupling to distribute the effects of disturbances in a radially symmetrical fashion
+about the intended direction of flight.
+
+A roll rate may be induced in a model rocket in a variety of ways. The major aerodynamic
+techniques in current use include airfoiled fins, canted fins, and ``spinnerons'' (that is, fin
+tabs) as illustrated in Figure~\ref{ch2:fig:51}. Canted main propulsion or outrigger engines have
+also been used to ``spin up'' model rockets, and flywheel-like devices have been installed whereby
+a product $I_R\omega_z$ \emph{other} than that of the rocket airframe itself has been used to
+provide inertial coupling. The number and variety of roll-inducing techniques possible is so
+great, indeed, that it is impossible to write down any single analytical expression accounting
+for them all. In the particular case of aerodynamically-induced roll, however, Barrowman analysis
+permits computation of the equilibrium roll rate as
+\begin{equation*}\tag{115}
+\omega_z = \frac{6\theta V\bar{Y}_T(1 + \lambda)k_r}
+  {[(1 + 3\lambda)s^{2} + 4(1 + 2\lambda)s r_t + 6(1 + \lambda)r_t^{2}]k_d}
+\end{equation*}
+
+\bigskip
+\noindent\begin{minipage}{\textwidth}% the instruction, the figure and its title stay on one page
+\begin{center}
+[Add Figure~\ref{ch2:fig:52} to Page 252 below Figure~\ref{ch2:fig:51}:]
+\end{center}
+
+\begin{center}
+\includegraphics[width=0.95\textwidth,height=0.5\textheight,keepaspectratio]{figures/supplement/ch2-fig52-2022.png}\par
+\smallskip
+Figure 52: Roll Rates to Avoid to Keep $\mathit{AR}_c$ from Exceeding $1.25/C_1$
+\end{center}
+\end{minipage}\par\medskip
+
+\noindent Values of $\beta_c = \omega_z/\omega_{nc}$ within the range bounded by the curve should be
+avoided to prevent roll from amplifying pitch and yaw angles more than 25\%. For
+$\zeta_c \ge 0.4472$, roll does not amplify pitch and yaw angles more than 25\% for any value of
+$\beta_c$.
+
+\medskip
+\noindent\emph{Note}: A larger and higher-quality image of Figure~\ref{ch2:fig:52} with a more
+visible grid is appended to these correction pages. \edcap{The image above is taken from that
+larger copy, which follows these pages in the source scan (its page 687); it is not repeated
+here.}
+
+\bigskip
+\begin{center}
+[Replace the text on Page 253\\
+and the portion of the paragraph at the top of page 254 with the following:]
+\end{center}
+
+\noindent where:
+\begin{itemize}[leftmargin=0pt,label={}]
+  \item $\theta$ = the angle, in radians, at which the fins are canted with respect to the
+  rocket's longitudinal axis when roll is induced by canted fins
+  \item $\theta = -(\alpha_0)$ when roll is induced by airfoiled fins or fins equipped with
+  spinnerons
+  \item $\alpha_0$ = the angle, in radians, at which each airfoiled or spinneron-equipped fin
+  would have to be canted to keep the rocket's roll rate zero. For practical purposes, this angle
+  is identical to what aerodynamicists call the ``angle of zero lift''. Methods of determining the
+  angle of zero lift are presented in Reference~\ref{ch2:ref:12}.
+  \item $V$ = the rocket's airspeed
+\end{itemize}
+\noindent $k_r$, the roll forcing interference coefficient, is given by
+\begin{equation*}\tag{116}
+\begin{split}
+k_r = (1/\pi^{2})\Bigl\{&(\pi^{2}/4)[(\tau + 1)/\tau]^{2}
+  + (\pi/\tau^{2})[(\tau^{2} + 1)/(\tau - 1)]^{2}\arcsin[(\tau^{2} - 1)/(\tau^{2} + 1)]\\
+&- (2\pi/\tau)(\tau + 1)/(\tau - 1) + [8/(\tau - 1)^{2}]\ln[(\tau^{2} + 1)/(2\tau)]\\
+&+ \{(\tau^{2} + 1)/[\tau(\tau - 1)]\}^{2}\{\arcsin[(\tau^{2} - 1)/(\tau^{2} + 1)]\}^{2}\\
+&- \{4(\tau + 1)/[\tau(\tau - 1)]\}\arcsin[(\tau^{2} - 1)/(\tau^{2} + 1)]\Bigr\}
+\end{split}
+\end{equation*}
+and $k_d$, the roll damping interference coefficient, is given by
+\begin{equation*}\tag{117}
+k_d = 1 + \frac{[(\tau - \lambda)/\tau] - [(1 - \lambda)/(\tau - 1)]\ln(\tau)}
+  {[(\tau + 1)(\tau - \lambda)/2] - (1 - \lambda)(\tau^{3} - 1)/[3(\tau - 1)]}
+\end{equation*}
+$\bar{Y}_t$ is given by equation~\eqref{ch2:eq:90}, $\lambda$ is the ratio $c_t/c_r$, and $\tau$ is
+the ratio $(s + r_t)/r_t$. The reader should refer back to Figure~\ref{ch2:fig:36} in
+Section~\ref{ch2:sec:4.1} for additional information concerning the notation used in
+equations~\eqref{ch2:eq:115} through~\eqref{ch2:eq:117}.
+
+Given the ability to regulate the roll rate of a proposed rocket, the designer will next want to
+know what roll rates are favorable to good performance. This question is generally answered by
+eliminating those ranges of roll rate which are \emph{deleterious} to good performance and
+stating that the ranges then remaining are acceptable. The roll rate that should be avoided at
+all costs is, of course, the roll-coupled resonant rate. In models where roll is produced by the
+fins this is relatively easy to do, as both the resonant frequency and the roll rate are linear
+functions of airspeed. $\omega_z$ can thus be kept as nearly zero as possible (the most common
+course of action), uniformly much lower than $\omega_{\mathrm{cres}}$ (the technique adopted when
+dispersion-reduction is desired), or uniformly much higher than $\omega_{\mathrm{cres}}$. This last
+technique is not recommended, as it results in large coupling moments, a high-drag configuration,
+and (often) tangling of the shrouds of parachute recovery systems. The range of
+$\beta_c = \omega_z/\omega_{nc}$ to be avoided to ensure that rolling will not amplify pitch and
+yaw angles caused by disturbances more than 25\% is illustrated in Figure~\ref{ch2:fig:52}.
+Perhaps you can now see the danger of resonance associated with too high a value of $I_L$: a very
+high longitudinal moment of inertia means a very low roll-coupled resonant frequency, and it is
+entirely possible that small fin cant angles arising from imperfections in construction will be
+just sufficient to produce the low roll rate needed for resonance. Figure~\ref{ch2:fig:52} also
+suggests a simple rule of thumb for preventing a rolling rocket from developing excessive pitch
+and yaw angles (``coning'' about the intended direction of flight) even if it has a very low
+$\zeta_c$, while avoiding the problems caused by excessive roll rate: keep $\omega_z$ less than
+$0.44\omega_{nc}$, or greater than $1.35\omega_{nc}$ but not over $2.0\omega_{nc}$.
+
+\begin{center}
+[The remainder of the text on Page 254 is unchanged]
+\end{center}
+
+\bigskip
+\begin{center}
+[Add Reference~\ref{ch2:ref:12} to the List of References on Page 259:]
+\end{center}
+
+\begin{enumerate}[label=\arabic*.,start=12,leftmargin=*]
+  \item Abbott, Ira H., and Von Doenhoff, Albert E., \emph{Theory of Wing Sections}, Dover
+  Publications, Inc., New York, 1959.
+\end{enumerate}
+
+\bigskip
+\noindent Gordon K. Mandell\\
+February 15, 2022

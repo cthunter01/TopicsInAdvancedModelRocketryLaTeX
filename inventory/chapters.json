@@ -262,6 +262,48 @@
       664,
       712
     ],
-    "units": {}
+    "units": {
+      "backmatter/supplement/s-errata": [
+        664,
+        665
+      ],
+      "backmatter/supplement/s-vector-note": [
+        666,
+        666
+      ],
+      "backmatter/supplement/s-ch1": [
+        667,
+        675
+      ],
+      "backmatter/supplement/s-ch2-1994": [
+        676,
+        682
+      ],
+      "backmatter/supplement/s-ch2-2022": [
+        683,
+        687
+      ],
+      "backmatter/supplement/s-ch3": [
+        688,
+        698
+      ],
+      "backmatter/supplement/s-ch4-thrust": [
+        699,
+        702
+      ],
+      "backmatter/supplement/s-ch4-summary": [
+        703,
+        710
+      ],
+      "backmatter/supplement/s-ch4-fig-table": [
+        711,
+        712
+      ]
+    },
+    "artwork_pages": {
+      "665": "a second typing of the 1973 errata sheet of PDF 664, deliberately not transcribed twice: the closing editor's note of backmatter/supplement/s-errata.tex describes it (same sixteen entries in the same order and with the same corrected text; its five different line counts and its wording of the page 534 entry are quoted), checked against the scan; the OCR also letter-spaces the typing ('sholj', 'rigbt')",
+      "687": "the larger copy of the 2022 Figure 52 chart (the crop source of figures/supplement/ch2-fig52-2022.png); its only text is the chart title, transcribed under the figure in backmatter/supplement/s-ch2-2022.tex, and the axis lettering inside the image",
+      "712": "the typed correction of Chapter 4 Table 1 (heading, a two-column table and the bracketed note), all present in backmatter/supplement/s-ch4-fig-table.tex and checked against the scan; the OCR letter-spaces the cells ('Characteris ti c', 'c ant', 'alt i tudes', 'ro ckets') and reads the table column by column, so only the heading's 3-grams match"
+    }
   }
 }

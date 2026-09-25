@@ -44,7 +44,7 @@
 
 % ---- structure ------------------------------------------------------------
 \newcommand{\chapterauthor}[1]{\begin{center}\large #1\end{center}\vspace{1em}}
-\newcommand{\unnumberedsection}[1]{\phantomsection\addcontentsline{toc}{section}{#1}\section*{#1}}
+\newcommand{\unnumberedsection}[1]{\FloatBarrier\phantomsection\addcontentsline{toc}{section}{#1}\section*{#1}}
 
 % ---- editorial apparatus --------------------------------------------------
 \DeclareNewFootnote{Ed}

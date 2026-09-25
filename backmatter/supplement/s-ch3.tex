@@ -1,1 +1,342 @@
-% backmatter/supplement/s-ch3.tex -- stub (M5)
+% backmatter/supplement/s-ch3.tex -- the supplement documents for Chapter 3 (PDF 688-698; no author or date shown):
+% replacement page 356 and top of page 357 (688-689); corrections and additions to Section 5.2.2 (690); corrections
+% to drag due to fin cant, Section 5.3 (691-693); corrections and additions to the symbol table (694); corrections
+% to pages 445, 449, 451 and 452 (695-698). Printed equation numbers are \tag'ged without labels (the chapters own
+% the labels); the printed page numbers of the replaced pages are kept as centred lines.
+
+\chapter{[Replacement Page 356 and Top of Page 357]}\label{supp:ch3-356}
+
+\begin{center}
+-356-
+\end{center}
+
+One can estimate the skin-friction drag on a flat plate of length $= \ell$
+on which boundary-layer transition occurs if it is assumed that, behind the
+transition point, the turbulent boundary layer behaves \emph{as if it had been
+turbulent all the way from the leading edge}. Since the laminar region reduces
+the drag from what it would be if the entire boundary layer were turbulent,
+we can just substitute the laminar drag from the leading edge to the
+transition point for the turbulent drag over the same distance (\ref{ch3:ref:15}).
+The incremental decrease in drag force due to the laminar region is then
+\begin{equation*}\tag{97}
+\Delta D = -\frac{\rho}{2}U_\infty^{2}b\,x_{\mathrm{crit}}
+  \left[(C_f)_{\mathrm{turb}} - (C_f)_{\mathrm{lam}}\right]
+\end{equation*}
+where $(C_f)_{\mathrm{turb}}$ and $(C_f)_{\mathrm{lam}}$ are the respective coefficients of turbulent and
+laminar skin friction calculated at the transition point, which is located a distance
+$x_{\mathrm{crit}}$ downstream from the leading edge.
+
+The change in overall skin-friction coefficient becomes
+\begin{equation*}\tag{98}
+\Delta C_f = -\frac{x_{\mathrm{crit}}}{\ell}\left[(C_f)_{\mathrm{turb}} - (C_f)_{\mathrm{lam}}\right]
+\end{equation*}
+or
+\begin{equation*}\tag{99}
+\Delta C_f = -\frac{R_{\mathrm{crit}}}{R_\ell}\left[(C_f)_{\mathrm{turb}} - (C_f)_{\mathrm{lam}}\right]
+\end{equation*}
+Then, letting
+\begin{equation*}\tag{100}
+B = R_{\mathrm{crit}}\left[(C_f)_{\mathrm{turb}} - (C_f)_{\mathrm{lam}}\right]
+\end{equation*}
+we derive the overall skin-friction coefficient as (\ref{ch3:ref:15}):
+\begin{equation*}\tag{101}
+C_f = \frac{0.074}{R_\ell^{1/5}} - \frac{B}{R_\ell}
+\end{equation*}
+where the laminar and turbulent skin-friction coefficients used in calculating
+$B$ are evaluated from the previously derived expressions, equations~\eqref{ch3:eq:86}
+and~\eqref{ch3:eq:63}, by setting $R = R_{\mathrm{crit}}$ instead of $R_\ell$:
+
+\begin{center}
+-357-
+\end{center}
+\begin{align*}
+(C_f)_{\mathrm{turb}} &= \frac{0.074}{(R_{\mathrm{crit}})^{1/5}} \tag{102a}\\
+(C_f)_{\mathrm{lam}} &= \frac{1.328}{(R_{\mathrm{crit}})^{1/2}} \tag{102b}
+\end{align*}
+
+\begin{center}
+[REMAINDER OF TEXT ON PAGE 357 IS UNCHANGED]
+\end{center}
+
+\chapter{Corrections and Additions to Section 5.2.2 of Chapter 3}\label{supp:ch3-522}
+
+\begin{center}
+[Remove the second sentence of the second paragraph of\\
+Section~\ref{ch3:sec:5.2.2}, that reads ``One cannot, however, obtain an\\
+expression for $C_{Di}$ unless he has specific knowledge of\\
+the \emph{distribution} of lift on the fin.'' Replace it with\\
+the following text:]
+\end{center}
+
+\noindent The induced drag coefficient of a fin flying at an angle of attack $\alpha$
+such that its lift coefficient is $C_L$ is given by
+\begin{equation*}\tag{144A}
+C_{Di} = \frac{C_L^{2}}{\pi e\AR}
+\end{equation*}
+
+\noindent
+\begin{tabular}{@{}p{5em}@{}r@{${}={}$}>{\raggedright\arraybackslash}p{0.72\linewidth}@{}}
+where & $\AR$ & aspect ratio, the span of a ``wing'' formed by a pair
+of diametrically-opposed fins divided by the average fin chord, also equal to
+$(\text{span})^{2}/(\text{area})$\\[1ex]
+and & $e$ & span efficiency factor
+\end{tabular}
+
+\medskip
+\noindent The quantity $e\AR$ is the \textbf{effective aspect ratio} of an
+``equivalent'' wing whose lift is distributed across its span in the shape of
+an ellipse. In practice, $e$ is almost always less than 1.0. Since
+\begin{equation*}
+C_L = \left(\frac{dC_L}{d\alpha}\right)\alpha
+\end{equation*}
+equation (144A) can also be written in terms of $\alpha$ as
+\begin{equation*}\tag{144B}
+C_{Di} = \left(\frac{dC_L}{d\alpha}\right)^{2}\frac{\alpha^{2}}{\pi e\AR}
+\end{equation*}
+
+\begin{center}
+[Add the constant $e = 0.863$ to the bottom of page 412 of the\\
+original book, where a row of two constants presently appears.\\
+The revised row of constants should look like this:]
+\end{center}
+\begin{equation*}
+\frac{d\alpha\dg}{dC_L} = 18.6 \qquad\qquad \frac{d\CD}{dC_L^{2}} = 0.123 \qquad\qquad e = 0.863
+\end{equation*}
+
+\chapter{Corrections to Drag Due to Fin Cant in Chapter 3, Section 5.3}\label{supp:ch3-53}
+
+\begin{center}
+[Replace text starting with equation~\eqref{ch3:eq:152} on page 422 of the\\
+original book, with the following:]
+\end{center}
+\begin{equation*}\tag{152}
+\omega_Z = 0.327259\,U\theta
+\end{equation*}
+For $\omega_Z = 100$ radians/second at $U = 6000$ cm./sec., a fin cant angle $\theta$ of 0.05093
+radian ($2.918\dg$) is required. Now the effective angle of attack of the fins is always
+\emph{less} than the cant angle, since the airflow itself is ``canted'' as seen by the fins affixed
+to the rotating rocket. To be more precise, the angle of attack varies with the radius from the
+rocket's centerline according to
+\begin{equation*}
+\alpha(r) = \theta - \arctan\left(\frac{\omega_Z r}{U}\right)
+\end{equation*}
+For $\arctan\left(\frac{\omega_Z r}{U}\right) \le$ about $15\dg$ ($= 0.262$ radian), or
+$\left(\frac{\omega_Z r}{U}\right) \le$ about 0.268,
+$\arctan\left(\frac{\omega_Z r}{U}\right) \cong \frac{\omega_Z r}{U}$
+
+\medskip
+\noindent That is, the ``small angle approximation'' is valid. Then the equation for $\alpha(r)$ can be
+linearized to give
+\begin{equation*}\tag{153}
+\alpha(r) = \theta - \frac{\omega_Z r}{U} \qquad \text{radian}
+\end{equation*}
+without significant loss of accuracy.
+
+For the simple, rectangular fins of our trial rocket, the \emph{average} effective angle of attack
+can be used to determine the largest component of the induced drag, and to determine the fin-body
+interference drag, due to fin cant. Remembering that the fins are assumed to extend through the
+body tube for the purpose of calculating induced drag, each one of the four canted fins is assumed
+to run from the rocket's centerline to the fin tip. The effective angle of attack $\alpha(r)$ at the
+centerline (where $r = 0$) is just $\theta = 0.05093$ radian, while $\alpha(r)$ at the fin tip is
+$-0.00857$ radian. The negative effective angle of attack near the tip creates the roll damping
+moment that balances the roll forcing moment to produce the equilibrium roll rate $\omega_Z$ given
+by equation~\eqref{ch2:eq:115} of Chapter~\ref{ch2} and equation (152) above. Since
+$\alpha(r)$ varies linearly with radial distance from the centerline, the average effective angle
+of attack $\bar{\alpha}$ is just
+\begin{equation*}
+\bar{\alpha} = (0.05093 - 0.00857)/2 = 0.02118\un{radian}
+\end{equation*}
+In equation~\eqref{ch3:eq:145} the induced drag of two diametrically opposed fins of the trial
+rocket was found to be $6.51\alpha^{2}$. In the case of canted fins, all four fins are at the angle
+of attack $\bar{\alpha}$; equation~\eqref{ch3:eq:145} must therefore be doubled to give
+\begin{equation*}\tag{154}
+(C_{Di}')_{\mathrm{cant}} = 13.02\bar{\alpha}^{2}
+\end{equation*}
+
+The linear variation of $\alpha(r)$ with radial distance from the centerline also makes the fins
+appear to the relative airstream as if they were twisted. This \emph{aerodynamic twist}, denoted
+$\Delta\alpha$, gives rise to an additional component of induced drag. Although less than the
+component of induced drag due to the average effective angle of attack, this additional induced
+drag component can be of significant magnitude. Hoerner~(\ref{ch3:ref:9}) gives the approximate
+value of the coefficient of induced drag due to twist as
+\begin{equation*}
+(C_{Di})_{\mathrm{twist}} = (4 \times 10^{-5})(\Delta\alpha)^{2}
+\qquad \text{for $\Delta\alpha$ given in degrees}
+\end{equation*}
+For $\Delta\alpha$ given in radians, the equation becomes
+\begin{equation*}
+(C_{Di})_{\mathrm{twist}} = 0.1313(\Delta\alpha)^{2}
+\end{equation*}
+This coefficient is based on the fin area. To convert it to a coefficient based on the maximum body
+cross-sectional area we must multiply it by $S_F/S_m$, where $S_F$ is the total area of all four
+canted fins:
+\begin{align*}
+(C_{Di}')_{\mathrm{twist}} &= (C_{Di})_{\mathrm{twist}}\,\frac{4\,(3.57 \times 2.54)}{\pi(1.03)^{2}}\\
+&= 10.8828\,(C_{Di})_{\mathrm{twist}}\\
+(C_{Di}')_{\mathrm{twist}} &= 1.43(\Delta\alpha)^{2} \tag{155}
+\end{align*}
+
+From equation~\eqref{ch3:eq:147}, we obtain the fin-body interference drag component due to the 4
+canted fins as
+\begin{align*}
+(\Delta C_{Di})_{\mathrm{cant}} &= 2(8.38\bar{\alpha}^{2})\\
+&= 16.76\bar{\alpha}^{2}
+\end{align*}
+
+The total drag increase due to fin cant is then
+\begin{equation*}\tag{156}
+(\Delta\CD)_{\mathrm{cant}} = (C_{Di}')_{\mathrm{cant}} + (C_{Di}')_{\mathrm{twist}}
++ (\Delta C_{Di})_{\mathrm{cant}}
+\end{equation*}
+which, for our trial rocket, becomes
+\begin{equation*}
+(\Delta\CD)_{\mathrm{cant}} = (13.02 + 16.76)\bar{\alpha}^{2} + 1.43(\Delta\alpha)^{2}
+\end{equation*}
+The average effective angle of attack $\bar{\alpha}$ has been calculated as 0.02118 radian. The
+total aerodynamic twist $\Delta\alpha$ is the difference between the effective angle of attack at
+the centerline and the effective angle of attack at the fin tip:
+\begin{align*}
+\Delta\alpha &= 0.05093 - (-0.00857)\\
+&= 0.0595\un{radian}
+\end{align*}
+Then
+\begin{align*}
+(\Delta\CD)_{\mathrm{cant}} &= (13.02 + 16.76)(0.02118)^{2} + 1.43(0.0595)^{2}\\
+&= 0.018433
+\end{align*}
+If the rocket's zero-incidence drag coefficient is 0.75 without fin cant, this means a 2.46\%
+increase in $\CDo$. If a spin rate double that used in the above calculations were desired, it
+would be necessary to incur four times this drag penalty, or an increase of 9.84\% in $\CDo$. If
+triple the example spin rate were desired, it would be necessary to incur nine times the example's
+drag penalty, or an increase of 22.14\% in $\CDo$. These figures indicate that, while the effects
+of rotation themselves may not be significant, the effects of the mechanism by which rotation is
+induced may be considerable.
+
+\begin{center}
+[Continue with the sentence beginning with ``Furthermore\ldots.''\\
+on page 424 of the original book.]
+\end{center}
+
+\noindent\edcap{In Chapter~\ref{ch3} the equations numbered (155) and (156) above are shown as
+\eqref{ch3:eq:n155} and~\eqref{ch3:eq:n156}, because equations~\eqref{ch3:eq:155}
+and~\eqref{ch3:eq:156} of Section~\ref{ch3:sec:5.4}, which this correction leaves unchanged, keep
+those numbers.}
+
+\chapter{Corrections and Additions to Symbol Table of Chapter 3}\label{supp:ch3-symbols}
+
+\begin{center}
+\begin{tabular}{@{}l >{\raggedright\arraybackslash}p{0.75\linewidth}@{}}
+\toprule
+\textbf{Symbol} & \textbf{Meaning}\\
+\midrule
+$(C_{Di}')_{\mathrm{cant}}$ & increase in induced drag coefficient due to canting of fins\\[0.8ex]
+$(C_{Di})_{\mathrm{twist}}$ & increase in induced drag coefficient due to fin aerodynamic twist,
+based on fin area in side view\\[0.8ex]
+$(C_{Di}')_{\mathrm{twist}}$ & increase in induced drag coefficient due to fin aerodynamic twist,
+based on maximum frontal cross-sectional area\\[0.8ex]
+$\Delta C_{Di}$ & interference drag coefficient due to angle of attack\\[0.8ex]
+$(\Delta C_{Di})_{\mathrm{cant}}$ & increase in interference drag coefficient due to canting of fins\\[0.8ex]
+$(\Delta\CD)_{\mathrm{cant}}$ & total increase in drag coefficient due to canting of fins\\[0.8ex]
+$e$ & span efficiency factor used in calculating induced drag due to fin ``lift'' or side force\\[0.8ex]
+$\Delta\alpha$ & aerodynamic twist of fins\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\chapter{[Corrections to Pages 445, 449, 451 and 452]}\label{supp:ch3-445}
+
+\begin{center}
+-445-
+\end{center}
+
+\begin{center}
+[NO CHANGE UNTIL THE HANDWRITTEN EQUATION FOLLOWING THE LINE\\
+``For the cylindrical body we find from~\eqref{ch3:eq:170}''. THIS LINE PRESENTLY READS:
+\end{center}
+\begin{equation*}
+\left(\frac{S_s}{S_m}\right)_{\mathrm{CYL}} = 4\,\frac{\ell}{d_m} = \frac{22.61}{1.93} = 46.9
+\end{equation*}
+\begin{center}
+CHANGE THE LINE TO READ AS FOLLOWS:]
+\end{center}
+\begin{equation*}
+\left(\frac{S_s}{S_m}\right)_{\mathrm{CYL}} = 4\,\frac{\ell}{d_m} = 4\,\frac{22.61}{1.93} = 46.9
+\end{equation*}
+\begin{center}
+[REMAINDER OF TEXT ON PAGE 445 IS UNCHANGED]
+\end{center}
+
+\bigskip
+\begin{center}
+-449-
+\end{center}
+
+\begin{center}
+[NO CHANGE UNTIL THE LINE IMMEDIATELY FOLLOWING THE FIRST HANDWRITTEN\\
+EQUATION. THIS LINE PRESENTLY READS:
+
+\medskip
+From equation~\eqref{ch3:eq:100} we find $B = 1735$; since $R_\ell = 1.27 \times 10^{6}$,
+
+\medskip
+CHANGE THE LINE TO READ AS FOLLOWS:]
+\end{center}
+
+\noindent From equation~\eqref{ch3:eq:100} we find $B = 1735$. Then, since $R_\ell = 1.27 \times 10^{6}$,
+
+\begin{center}
+[REMAINDER OF TEXT ON PAGE 449 IS UNCHANGED]
+\end{center}
+
+\bigskip
+\begin{center}
+-451-
+\end{center}
+
+\noindent Step~1:\quad forebody drag coefficient $(C_{Df})_b$
+
+\noindent The body skin-friction coefficient is given by
+\begin{equation*}
+(C_f)_B = (C_f)_{\mathrm{LAM.}} = \frac{1.328}{\sqrt{31.75 \times 10^{4}}} = .00236
+\end{equation*}
+so the forebody drag coefficient is
+\begin{equation*}
+(C_{Df})_b = .00236 \times 1.055 \times 59.7 = .149
+\end{equation*}
+This represents a decrease of 0.045, or 23.2\%, from the transition-flow calculated value of
+$(C_{Df})_b$.
+
+\medskip\noindent Step~2:\quad base drag coefficient $C_{Db}$
+\begin{equation*}
+C_{Db} = \frac{.029}{\sqrt{.149}} = .075
+\end{equation*}
+This is an \emph{increase} of 0.009, or 13.6\% over the transition-flow calculated value.
+
+\medskip\noindent Step~3:\quad fin drag coefficient $(\CDo)_F$
+
+\noindent The fin skin-friction coefficient is
+\begin{equation*}
+(C_f)_F = \frac{1.328}{\sqrt{3.03 \times 10^{4}}} = .00763
+\end{equation*}
+Then
+\begin{equation*}
+(\CDo)_F = 2 \times .00763 \times 1.158 \times \frac{63}{2.92} = .381
+\end{equation*}
+This is an increase of 0.191, or \emph{more than double} the value calculated for 60
+meters/second.
+
+From these calculations we obtain an overall drag coefficient of
+\begin{equation*}
+(\CDo)_{FB} = .149 + .075 + .381 = .605
+\end{equation*}
+
+\begin{center}
+-452-
+\end{center}
+
+This is a substantial disagreement with the experimental result---the calculated value exceeds the
+measured value by more than 44\%.
+
+\begin{center}
+[REMAINDER OF TEXT ON PAGE 452 IS UNCHANGED]
+\end{center}

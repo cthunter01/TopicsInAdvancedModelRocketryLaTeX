@@ -31,3 +31,5 @@ Notes
 | F1 | PDF 56 (p.26), the limit-of-a-sum display | printed with numeral subscripts $F_1\,\Delta t_1$ inside $\sum_1^m$ and a plain $t$ as the integral's upper limit; $F_i\,\Delta t_i$ (and $t_b$) are almost certainly meant | keep as printed; \ednote in the introducing sentence | applied 2026-09-23 (audited: audit/ch1-*-corrections-round*.md) |
 | F2 | PDF 68-69 (pp.38-39), Reynolds-number thresholds | laminar "less than $5 \times 10^5$" but turbulent "greater than $5 \times 10^6$" | keep as printed; \ednote noting the inconsistency | applied 2026-09-23 (audited: audit/ch1-*-corrections-round*.md) |
 | F3 | Symbols list and text | the typewriter's lowercase-o subscripts ($C_{Do}$, $R_o$, $g_o$, $m_o$) are typeset as subscript zero throughout | no note needed (typesetting convention, applied consistently) | done |
+
+Attribution (2026-09-25): the cover note (PDF 667) signed "Gordon Mandell, June 1994" covers the changes on PDF 668-674; the correction to page 40 (PDF 675) shows no author or date, and the notes cite it by its title.

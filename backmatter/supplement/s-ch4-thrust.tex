@@ -1,1 +1,125 @@
-% backmatter/supplement/s-ch4-thrust.tex -- stub (M5)
+% backmatter/supplement/s-ch4-thrust.tex -- Mandell's ``Changes to Text of Chapter 4'' (June 1994): the cover
+% note (PDF 699, signed ``Gordon Mandell / June 1994''), the replacement text after equation (7) with (7a)-(7d)
+% and (8) and the new top of page 514 (PDF 700-701), and the symbols to add (PDF 702). All typewritten.
+% The pressure term is set as these pages write it, with the arrow over the whole term,
+% \overrightarrow{(P_e - P_a)A_e} (his note of 1 June 1994, supp:vector, later asks for (P_e - P_a)\vec{A}_e).
+% The arrows over A_e and E_o (short over the capital on PDF 700-701, longer on PDF 702) are set \vec{A}_e,
+% \vec{E}_o, the chapters' forms. The arrow over c_eff runs over the letter and the subscript in all four places
+% (PDF 700 inline, (7c), (7d); PDF 702), so it is set \overrightarrow{c_{\mathrm{eff}}} as drawn (the chapter
+% text keeps \vec{c}_{\mathrm{eff}}). Kept as printed: F(t) without an arrow in (7a), E_o without one on PDF 701.
+\chapter{Changes to Text of Chapter 4}\label{supp:ch4}
+
+The equation for rocket thrust that originally appeared in \emph{Topics in Advanced Model Rocketry} was
+restricted to the case where the rocket's exhaust expands through the divergent section of the nozzle until
+it crosses the nozzle exit plane at a pressure equal to the ambient atmospheric pressure. This condition is
+called ``optimal expansion'' or ``correct expansion'' and many model rocket motors closely approach it. Some
+readers were, however, dissatisfied with the restriction so I wrote these changes to the text of
+Chapter~\ref{ch4} to include cases where the exhaust pressure is greater or less than the ambient pressure.
+
+\bigskip
+\noindent Gordon Mandell\\
+June 1994
+
+\bigskip
+\begin{center}
+[Change text after equation 7 on page 513 to the following:]
+\end{center}
+
+If the nozzle of the rocket motor has been designed for ``optimum expansion'' or ``correct expansion'', so
+that the exhaust gas reaches the nozzle \emph{exit plane} at a pressure equal to the pressure of the
+surrounding atmosphere (also called the \emph{ambient} pressure), the term $-\vec{c}(dm_e/dt)$ will be equal
+to the \emph{thrust} of the rocket motor as it would be measured in a static test stand. That is,
+\begin{equation*}\tag{7a}
+F(t) = -\vec{c}(dm_e/dt)
+\end{equation*}
+If the exhaust gas pressure at the nozzle exit plane is \emph{not} equal to the ambient pressure, the thrust
+will be
+\begin{equation*}\tag{7b}
+\vec{F}(t) = -\vec{c}(dm_e/dt) + \overrightarrow{(P_e - P_a)A_e}
+\end{equation*}
+\begin{itemize}[nosep,leftmargin=4em,labelwidth=3.5em,labelsep=0.5em,align=left]
+  \item[Where] $\vec{A}_e$ = area of nozzle exit plane
+  \item[] $P_e$ = exhaust gas pressure at nozzle exit plane
+  \item[and] $P_a$ = ambient pressure
+\end{itemize}
+\medskip
+
+Most practical rocket motors have convergent/divergent nozzles that produce supersonic exhaust gas
+velocities. A rocket motor of this type will attain the maximum thrust possible for a given combustion
+chamber temperature and pressure and a given nozzle throat area when its nozzle is designed for optimum
+expansion. If the nozzle ``overexpands'' the exhaust, so that $P_e$ is less than $P_a$, the pressure
+difference across the nozzle exit plane acts in the direction opposite to the thrust and therefore reduces
+it. If the nozzle ``underexpands'' the exhaust, so that $P_e$ is greater than $P_a$, the pressure difference
+across the nozzle exit plane acts in the same direction as the thrust, but an underexpanding nozzle does not
+produce as high an exhaust velocity as a nozzle designed for optimum expansion. The net effect is again a
+reduction in thrust.
+
+Equation~\eqref{ch4:eq:7} above includes the term $\overrightarrow{(P_e - P_a)A_e}$ as one component of
+$\vec{E}$, the vector sum of all externally-applied forces. It is more convenient for calculation purposes,
+however, to extract it from $\vec{E}$ and write it as part of the thrust $\vec{F}(t)$ as in equation (7b)
+above. Indeed, $\overrightarrow{(P_e - P_a)A_e}$ is part of the thrust measured in a static test stand and
+is referred to as the ``pressure component of thrust''. It is then possible to define an ``effective'' or
+``equivalent'' exhaust velocity $\overrightarrow{c_{\mathrm{eff}}}$ as
+\begin{equation*}\tag{7c}
+\overrightarrow{c_{\mathrm{eff}}} = \vec{c} - \overrightarrow{(P_e - P_a)A_e}/(dm_e/dt)
+\end{equation*}
+and to write the equation for thrust in the form
+\begin{equation*}\tag{7d}
+\vec{F}(t) = -\overrightarrow{c_{\mathrm{eff}}}(dm_e/dt)
+\end{equation*}
+Since the effective exhaust velocity is directed \emph{backward} along the longitudinal axis of the rocket
+it is vectorially \emph{negative} with respect to $\vec{v}$. And since the rate of mass expulsion has been
+expressed as the \emph{positive} mass-flow rate $dm_e/dt$, equivalent to $\mdot$ as used by professional
+rocket engineers, the thrust is a \emph{positive} force tending to \emph{increase} $\vec{v}$---which, as
+practical rocketeers, we already know from experience. We can then write the vector differential equation
+of motion as
+\begin{equation*}\tag{8}
+m(t)(d\vec{v}/dt) = \vec{F}(t) + \vec{E}_o
+\end{equation*}
+\begin{itemize}[nosep,leftmargin=4em,labelwidth=3.5em,labelsep=0.5em,align=left]
+  \item[Where] $\vec{E}_o$ = vector sum of all externally-applied forces \emph{other than} the pressure
+    component of thrust
+\end{itemize}
+\medskip
+
+Both the engine thrust and the externally-applied forces other than the pressure component of thrust will
+be referred to as \emph{flight forces} as per the notation of Chapter~\ref{ch1},
+
+\begin{center}
+[End of text on page 513]
+
+\medskip
+[Change text at the top of page 514 to the following:]
+\end{center}
+
+\noindent in the following discussion. The externally-applied flight forces whose vector sum is here
+represented by $E_o$ will be resolved into two components: \emph{weight} and aerodynamic resistance, or
+\emph{drag}.
+
+\begin{center}
+[The rest of the text on page 514 is unchanged.]
+\end{center}
+
+\bigskip
+The table of symbols for Chapter~\ref{ch4} will need to have the following symbols added:
+\begin{center}
+\begin{tabular}{@{}l p{0.7\linewidth}@{}}
+\toprule
+$\vec{A}_e$ & nozzle exit plane area written as a vector whose direction is forward along the vehicle
+  centerline \\
+$\vec{E}_o$ & vector sum of all externally-applied forces other than pressure component of thrust \\
+$\vec{F}(t)$ & thrust as a function of time \\
+$P_a$ & ambient pressure \\
+$P_e$ & pressure of exhaust gas at nozzle exit plane \\
+$\overrightarrow{c_{\mathrm{eff}}}$ & effective exhaust velocity, \emph{also} called equivalent exhaust velocity \\
+\bottomrule
+\end{tabular}
+\end{center}
+The meaning of $F(t)$ will need to be changed to
+\begin{center}
+\begin{tabular}{@{}l p{0.7\linewidth}@{}}
+\toprule
+$F(t)$ & magnitude of thrust as a function of time \\
+\bottomrule
+\end{tabular}
+\end{center}

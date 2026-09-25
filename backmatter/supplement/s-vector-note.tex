@@ -1,1 +1,26 @@
-% backmatter/supplement/s-vector-note.tex -- stub (M5)
+% backmatter/supplement/s-vector-note.tex -- Mandell's note on the vector notation of the pressure term
+% (PDF 666, typewritten, signed "Gordon Mandell / June 1, 1994"). The typed arrow of the first display and
+% of the prose spans A_e; it is set \vec{A}_e, the form the chapters use for this symbol (STYLE.md section 15).
+% The displays are gather* rather than equation* so that the long arrow keeps the full display skip below the
+% short line "rather than" (equation* uses the short skip there and the arrow meets that line).
+\chapter{Vector Notation for Pressure Term of Rocket Thrust}\label{supp:vector}
+
+In the parts of Chapters~\ref{ch1} and~\ref{ch4} that have been rewritten to account for the presence of a
+pressure term in the equation for rocket thrust, that pressure term should be written
+\begin{gather*}
+(P_e - P_a)\vec{A}_e
+\end{gather*}
+rather than
+\begin{gather*}
+\overrightarrow{(P_e - P_a)A_e}
+\end{gather*}
+as I originally wrote it. On rereading these Chapter~\ref{ch1} and~\ref{ch4} corrections and additions, I
+concluded that it is unnecessary and redundant to continue the vector arrow over the entire expression because
+all the directional information necessary to define the pressure term as a vector quantity is carried by the
+unit vector normal to the exhaust plane which makes it possible to write the exhaust plane area $\vec{A}_e$ as a
+vector. The pressures $P_e$ and $P_a$ are intended to be regarded as essentially hydrostatic rather than as
+components of a pressure tensor, and therefore convey no directional information.
+
+\bigskip
+\noindent Gordon Mandell\\
+June 1, 1994

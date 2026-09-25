@@ -1,1 +1,358 @@
-% backmatter/supplement/s-ch4-summary.tex -- stub (M5)
+% backmatter/supplement/s-ch4-summary.tex -- "Summary: Corrections and Additions to Altitude Equations for 2-Stage
+% and Multistage Rockets" (PDF 703-710; typewritten with handwritten displays; no author or date shown).
+% Every display is unnumbered, as on the page. Notation follows STYLE.md section 15 (Chapter 4); the upright
+% subscripts term, fterm and BC are word subscripts; v_{(n-1)} of the rewritten (50)-(51) keeps its printed
+% parentheses. Equation citations without a page number are \eqref's to the chapter; "page 531" etc. stay literal.
+% A few short displays that follow a short text line are gather* (full display skip) rather than equation*.
+\chapter{Summary: Corrections and Additions to Altitude Equations for 2-Stage and Multistage Rockets}
+\label{supp:ch4-summary}
+\markright{\MakeUppercase{Summary: Corrections and Additions to Altitude Equations}}% the full title overruns the running head
+
+\noindent\edcap{The equation rewrites of this Summary, with the definitions of $\hat{t}$, $\hat{y}$ and
+$I_{t2}$ and the change to the discussion of the upper limit, are applied in Section~\ref{ch4:sec:2.2} of
+Chapter~\ref{ch4}; its plans for new material are not carried out there (see the editor's note in
+Section~\ref{ch4:sec:2.2.1}).}
+
+\phantomsection
+\section*{Second-Stage Burning-Phase Solutions}\label{supp:ch4-summary:burning}
+
+In hindsight, better physical insight into the correct limits of integration for solving the multistage
+altitude performance equations could have been afforded by formulating the upper-stage burning-phase
+equations as an initial-value problem. At $t = t_1$, when the second-stage engine ignites, the rocket is
+traveling at an ``initial velocity'' of $v_1$. If we define the time elapsed since the ignition of the
+second-stage engine as $\hat{t} = (t - t_1)$ and the additional altitude gained since the ignition of the
+second-stage engine as $\hat{y} = (y - y_1)$, we can summarize the changes in the rocket's velocity and
+altitude that occur during the second-stage burning time as follows:
+\begin{itemize}
+  \item $v$ changes from $v_1$ to $v_2$ as $\hat{t}$ increases from 0 to $t_2$.
+  \item $\hat{y}$ increases from 0 to $y_2$ as $\hat{t}$ increases from 0 to $t_2$.
+\end{itemize}
+
+This formulation automatically supplies the correct limits of integration for both the Caporaso-Bengen and
+the Fehskens-Malewicki solutions, and it simplifies the second-stage equations by expressing them in a form
+that is identical to that of the single-stage equations except for the existence of a nonzero initial
+velocity in the second-stage equations.
+
+I plan to move the notation used for two-staged rockets from Section~\ref{ch4:sec:2.2.1} to
+Section~\ref{ch4:sec:2.2}, since it is used for both the Fehskens-Malewicki and the Caporaso-Bengen
+solution, and to add the following variables:
+\begin{itemize}[nosep,leftmargin=4em,labelwidth=3em,labelsep=0.35em,align=right]% hanging indent, as printed
+  \item[$v$ =] velocity at any time during the burning of the second-stage engine
+  \item[$\hat{y}$ =] altitude gained since the ignition of the second-stage engine (not the total altitude
+  above the launch point)
+  \item[$\hat{t}$ =] time elapsed since the ignition of the second-stage engine
+\end{itemize}
+
+I also plan to move the discussion of the physics of two-staged flight from~\ref{ch4:sec:2.2.1}
+to~\ref{ch4:sec:2.2}, since it applies to all methods of solution.
+
+\phantomsection
+\section*{Extended Caporaso-Bengen Solution}\label{supp:ch4-summary:cb}
+
+Rewrite equation~\eqref{ch4:eq:40} on page 531 of the original text as
+\begin{equation*}
+\int_{0}^{t_2} m_2\frac{dv}{d\hat{t}}\,d\hat{t} = \int_{0}^{t_2} F_2(\hat{t})\,d\hat{t}
+  - \int_{0}^{t_2} m_2g\,d\hat{t} - \int_{0}^{t_2} k_2v^{2}\,d\hat{t}
+\end{equation*}
+This makes the discussion of the additive properties of integrals taken between adjacent limits, and the
+later discussion of treating $k$ as if it had been $k_2$ throughout the flight, unnecessary.
+
+Rewrite equation~\eqref{ch4:eq:44} on page 532 of the original text as
+\begin{equation*}
+\int_{0}^{t_2} k_2v\frac{d\hat{y}}{d\hat{t}}\,d\hat{t} = k_2\hat{y}v\Big]_{0,v_1}^{y_2,v_2}
+  - k_2\int_{0}^{t_2}\hat{y}\frac{dv}{d\hat{t}}\,d\hat{t} \cong k_2y_2v_2
+\end{equation*}
+This is a correction. The original evaluation of the truncated drag integral was wrong. The second stage's
+momentum is changed during the burning time of the second-stage engine only by the forces acting on it
+during that time. At $\hat{t} = 0$ $v = v_1$ but $\hat{y} = 0$. Because the increment of altitude gained
+since second-stage ignition is zero at the moment of ignition, zero should have appeared instead of $y_1$ in
+the original presentation of~\eqref{ch4:eq:44}. Our physical intuition tells us that $y_1$ should not
+affect the value of $v_2$ or $y_2$, since the equations as presented do not explicitly account for the
+reduction of atmospheric density with increasing altitude, and the correctly-truncated drag integral
+confirms that this is indeed the case. Correcting equation~\eqref{ch4:eq:44} causes all terms in $y_1$ to
+disappear from the subsequent equations and thus simplifies their algebra.
+
+Corrected equation~\eqref{ch4:eq:45} of the original text becomes
+\begin{equation*}
+m_2v_2 - m_2v_1 = I_{t2} - m_2gt_2 - k_2y_2v_2
+\end{equation*}
+where I have substituted $I_{t2}$, the total impulse of the second-stage engine, instead of $F_2t_2$ for
+$\int_{0}^{t_2} F_2(\hat{t})\,d\hat{t}$. As in the single-stage case, the burnout velocity does not depend on
+the exact functional form of the thrust, but the burnout altitude does. Corrected
+equation~\eqref{ch4:eq:46} then becomes
+\begin{equation*}
+v_2 = \frac{I_{t2} - m_2gt_2 + m_2v_1}{m_2 + k_2y_2}
+\end{equation*}
+When $F_2(\hat{t})$ is approximated by the constant, average value $F_2$ as in the single-stage case and
+corrected equation~\eqref{ch4:eq:45} is integrated, corrected equation~\eqref{ch4:eq:47} becomes
+\begin{equation*}
+m_2y_2 - m_2v_1t_2 = \frac{t_2^{2}}{2}(F_2 - m_2g) - k_2\frac{y_2^{2}}{2}
+\end{equation*}
+This equation was actually evaluated correctly in the original text, except for the terms in $y_1$. The
+time-dependent variables were all assumed to be functions of $(t - t_1)$ and the integration was performed
+between 0 and the variable upper limit $(t - t_1)$. Once the functional forms of the integrals had been thus
+determined, they were evaluated between a lower limit of 0 and an upper limit of $[(t_1 + t_2) - t_1] =
+t_2$. The approach was essentially the same as the one I propose to use for the rewrite, except that no new
+name was assigned to the quantity $(t - t_1)$.
+
+Rewrite corrected equation~\eqref{ch4:eq:48} on page 533 of the original text as
+\begin{equation*}
+y_2 = \frac{-m_2 + \sqrt{m_2^{2} + 2k_2t_2\bigl[\tfrac{t_2}{2}(F_2 - m_2g) + m_2v_1\bigr]}}{k_2}
+\end{equation*}
+This introduces another correction. The original equation has an algebraic sign error in the last term of
+the square root. The quantity shown as $-m_2v_1$ should be $+m_2v_1$. Larry Curcio saw this error before I
+did, as his marked xerox copy of page 533 shows. I only discovered it when I rederived the equation.
+
+Rewrite corrected equation~\eqref{ch4:eq:49} as
+\begin{equation*}
+v_2 = \frac{I_{t2} - m_2gt_2 + m_2v_1}{\sqrt{m_2^{2} + 2k_2t_2\bigl[\tfrac{t_2}{2}(F_2 - m_2g) + m_2v_1\bigr]}}
+\end{equation*}
+Revise the discussion of limiting behavior to eliminate the reference to $y_1$. Rewrite corrected
+equation~\eqref{ch4:eq:50} as
+\begin{equation*}
+v_n = \frac{I_{tn} - m_ngt_n + m_nv_{(n-1)}}{\sqrt{m_n^{2} + 2k_nt_n\bigl[\tfrac{t_n}{2}(F_n - m_ng)
+  + m_nv_{(n-1)}\bigr]}}
+\end{equation*}
+and rewrite corrected equation~\eqref{ch4:eq:51} as
+\begin{equation*}
+y_n = \frac{-m_n + \sqrt{m_n^{2} + 2k_nt_n\bigl[\tfrac{t_n}{2}(F_n - m_ng) + m_nv_{(n-1)}\bigr]}}{k_n}
+\end{equation*}
+
+\phantomsection
+\section*{Extended Fehskens-Malewicki Solution}\label{supp:ch4-summary:fm}
+
+Rewrite equation~\eqref{ch4:eq:52} as
+\begin{gather*}
+\int_{v_1}^{v_2}\frac{m_2\,dv}{F_2 - m_2g - k_2v^{2}} = \int_{0}^{t_2} d\hat{t}
+\end{gather*}
+and rewrite equation~\eqref{ch4:eq:53} as
+\begin{equation*}
+\frac{m_2}{\sqrt{k_2(F_2 - m_2g)}}\tanh^{-1}\biggl[v\sqrt{\frac{k_2}{F_2 - m_2g}}\,\biggr]_{v_1}^{v_2}
+  = t_2
+\end{equation*}
+Change discussion of upper limit $t$ to upper limit $\hat{t}$, where $\hat{t}$ is greater than or equal to 0
+and less than or equal to $t_2$.
+
+Move the discussion of the generalization of the equations to rockets of three or more stages to the end of
+the new section on qualitative features, limiting behavior, and terminal velocity.
+
+\phantomsection
+\section*{Qualitative Features and Limiting Behavior of Multistage Solutions.\\ Considerations of Terminal
+Velocity}\label{supp:ch4-summary:terminal}
+
+Add a Section 2.2.3 which discusses qualitative features and limiting behavior of multistage solutions, and
+treats the subject of approach to terminal velocity from below and from above. State that attainment of
+terminal velocity
+\begin{gather*}
+v_{\mathrm{term}} = \sqrt{\frac{F_2 - m_2g}{k_2}}
+\end{gather*}
+requires the assumption of constant average thrust. Show that, when corrected equation~\eqref{ch4:eq:49} is
+modified to incorporate that assumption and is written as
+\begin{equation*}
+v_2 = \frac{t_2(F_2 - m_2g) + m_2v_1}{\sqrt{m_2^{2} + 2k_2t_2\bigl[\tfrac{t_2}{2}(F_2 - m_2g) + m_2v_1\bigr]}}
+\end{equation*}
+then when $v_1 = v_{\mathrm{term}}$, the substitution of $k_2v_1^{2}$ for $(F_2 - m_2g)$
+in~\eqref{ch4:eq:48} and~\eqref{ch4:eq:49} simplifies them to
+\begin{equation*}
+y_2 = v_1t_2
+\end{equation*}
+and
+\begin{equation*}
+v_2 = v_1
+\end{equation*}
+Note that the extended Caporaso-Bengen solution predicts terminal velocity exactly, because truncating the
+drag integral causes no error when the velocity is constant $[(dv/dt) = 0]$.
+
+Show that the extended Fehskens-Malewicki solution can also be written in terms of $v_{\mathrm{term}}$ as
+\begin{equation*}
+v_2 = (v_{\mathrm{term}})\tanh\biggl[\frac{k_2t_2}{m_2}v_{\mathrm{term}}
+  + \tanh^{-1}\biggl(\frac{v_1}{v_{\mathrm{term}}}\biggr)\biggr]
+\end{equation*}
+and
+\begin{equation*}
+y_2 = \frac{m_2}{k_2}\ln\biggl[\cosh\biggl(\frac{k_2t_2}{m_2}v_{\mathrm{term}}\biggr)
+  + \frac{v_1}{v_{\mathrm{term}}}\sinh\biggl(\frac{k_2t_2}{m_2}v_{\mathrm{term}}\biggr)\biggr]
+\end{equation*}
+As $v_1$ approaches $v_{\mathrm{term}}$ from below, the inverse hyperbolic tangent in the velocity equation
+increases without bound and dominates the quantity in brackets:
+\begin{equation*}
+\frac{k_2t_2}{m_2}v_{\mathrm{term}} + \tanh^{-1}\biggl(\frac{v_1}{v_{\mathrm{term}}}\biggr)
+  \quad\longrightarrow\quad \tanh^{-1}\biggl(\frac{v_1}{v_{\mathrm{term}}}\biggr)
+\end{equation*}
+so that
+\begin{equation*}
+v_2 \longrightarrow (v_{\mathrm{term}})\tanh\biggl[\tanh^{-1}\biggl(\frac{v_1}{v_{\mathrm{term}}}\biggr)\biggr]
+\end{equation*}
+and $v_2$ approaches $v_1$. Direct substitution of $v_1$ for $v_{\mathrm{term}}$ in the altitude increment
+equation gives the result
+\begin{equation*}
+y_2 = \frac{m_2}{k_2}\ln\biggl[\cosh\biggl(\frac{k_2t_2}{m_2}v_1\biggr)
+  + \sinh\biggl(\frac{k_2t_2}{m_2}v_1\biggr)\biggr]
+\end{equation*}
+from which, using the exponential definitions of $\cosh$ and $\sinh$, we obtain
+\begin{equation*}
+y_2 = \frac{m_2}{k_2}\ln\Bigl[e^{\bigl(\frac{k_2t_2}{m_2}v_1\bigr)}\Bigr]
+\end{equation*}
+from which
+\begin{equation*}
+y_2 = v_1t_2
+\end{equation*}
+The extended Fehskens-Malewicki solution therefore also predicts terminal velocity exactly, despite the
+singularity in the inverse hyperbolic tangent at $(v_1/v_{\mathrm{term}}) = 1$.
+
+Describe the case of the low-thrust sustainer and approach to terminal velocity from above. Explain that the
+extended Caporaso-Bengen solution has no singularity in either its velocity equation or its altitude
+increment equation at terminal velocity, and that the equations have the same functional forms when $v_1$ is
+greater than $v_{\mathrm{term}}$ that they do when $v_1$ is less than $v_{\mathrm{term}}$. Discuss
+degradation in accuracy of extended Caporaso-Bengen solution when $v_1$ is much greater than
+$v_{\mathrm{term}}$ due to inaccuracy of truncated drag integral when $dv/dt$ is of large magnitude.
+Numerical experimentation to date indicates $v_1$ must not be greater than $\sqrt{2}\cdot(v_{\mathrm{term}})$
+for extended Caporaso-Bengen solution to produce acceptably accurate results.
+
+Note that the extended Fehskens-Malewicki velocity equation (state equation numbers) derived on the
+assumption that $v_1$ is less than $v_{\mathrm{term}}$ cannot be used when $v_1$ is greater than
+$v_{\mathrm{term}}$ because the inverse hyperbolic tangent is undefined for an argument greater than 1.
+Explain that the integral
+\begin{equation*}
+\int_{v_1}^{v_2}\frac{m_2\,dv}{F_2 - m_2g - k_2v^{2}}
+\end{equation*}
+of the extended Fehskens-Malewicki velocity equation has a different functional form when the quantity
+\begin{equation*}
+F_2 - m_2g - k_2v^{2}
+\end{equation*}
+is less than zero. In such cases the integral is
+\begin{equation*}
+\frac{m_2}{\sqrt{k_2(F_2 - m_2g)}}\coth^{-1}\biggl[v\sqrt{\frac{k_2}{F_2 - m_2g}}\,\biggr]_{v_1}^{v_2}
+\end{equation*}
+from which the velocity is obtained as
+\begin{equation*}
+v_2 = \sqrt{\frac{F_2 - m_2g}{k_2}}\,\coth\biggl[\tfrac{t_2}{m_2}\sqrt{k_2(F_2 - m_2g)}
+  + \coth^{-1}\biggl(v_1\sqrt{\frac{k_2}{F_2 - m_2g}}\biggr)\biggr]
+\end{equation*}
+The altitude increment gained during the second-stage burn can also be determined from this equation, by
+integrating it from $\hat{t} = 0$ to $\hat{t} = t_2$:
+\begin{equation*}
+y_2 = \frac{m_2}{k_2}\ln\left\{\frac{\sinh\Bigl[\tfrac{t_2}{m_2}\sqrt{k_2(F_2 - m_2g)}
+  + \coth^{-1}\Bigl(v_1\sqrt{\frac{k_2}{F_2 - m_2g}}\Bigr)\Bigr]}{\sinh\Bigl[\coth^{-1}\Bigl(v_1
+  \sqrt{\frac{k_2}{F_2 - m_2g}}\Bigr)\Bigr]}\right\}
+\end{equation*}
+and through the use of the well-known identity
+\begin{equation*}
+\sinh(A + B) = \sinh(A)\cosh(B) + \cosh(A)\sinh(B)
+\end{equation*}
+where $A$ and $B$ represent any two quantities, the altitude equation may be cast into the simpler form
+\begin{equation*}
+y_2 = \frac{m_2}{k_2}\ln\biggl[v_1\sqrt{\frac{k_2}{F_2 - m_2g}}\,\sinh\Bigl(\tfrac{t_2}{m_2}
+  \sqrt{k_2(F_2 - m_2g)}\Bigr) + \cosh\Bigl(\tfrac{t_2}{m_2}\sqrt{k_2(F_2 - m_2g)}\Bigr)\biggr]
+\end{equation*}
+which is identical to equation~\eqref{ch4:eq:58} on page 536 of the original text---the same result
+obtained for $v_1$ less than $v_{\mathrm{term}}$. This is expected, since the altitude equation does not
+have a singularity at $v_1 = v_{\mathrm{term}}$ as the velocity equation does.
+
+Add the generalization of extended Fehskens-Malewicki solution to rockets of three or more stages here.
+
+\phantomsection
+\section*{Upper Stages With Very Low Thrust}\label{supp:ch4-summary:low-thrust}
+
+Add a section 2.2.4 which discusses upper stages with thrust equal to or less than weight. These cases are of
+primarily academic interest, but they could apply to upper stages using low-thrust engines to minimize drag
+and to analyses of the effect of tracking smoke (generally assumed to have negligible thrust) on the
+coasting phase of flight.
+
+Note that the functional forms of the extended Fehskens-Malewicki velocity \emph{and} altitude increment
+equations change when the thrust becomes equal to the weight $(F_2 - m_2g = 0)$. Derive and present the
+Fehskens-Malewicki solution for the case where thrust = weight:
+\begin{equation*}
+v_2 = \frac{v_1}{1 + \frac{k_2}{m_2}v_1t_2}
+\end{equation*}
+and
+\begin{equation*}
+y_2 = \frac{m_2}{k_2}\ln\biggl(1 + \frac{k_2}{m_2}v_1t_2\biggr)
+\end{equation*}
+Note that the ``terminal velocity'' has now become zero and the rocket's velocity decays like that of a
+submarine or airship whose engines are suddenly shut down.
+
+Present the generalization of the extended Fehskens-Malewicki equations to rockets of three or more stages.
+
+Derive and present the extended Caporaso-Bengen solution for the case where thrust = weight:
+\begin{equation*}
+v_2 = \frac{v_1}{\sqrt{1 + \tfrac{2k_2}{m_2}v_1t_2}}
+\end{equation*}
+and
+\begin{equation*}
+y_2 = \frac{m_2}{k_2}\biggl(\sqrt{1 + \tfrac{2k_2}{m_2}v_1t_2} - 1\biggr)
+\end{equation*}
+Note that the Caporaso-Bengen solution was originally derived to provide an accurate, approximate
+closed-form solution for vertical rocket flight in cases where the rocket's thrust substantially exceeds its
+weight and drag. While the extended Caporaso-Bengen solution remains accurate for most practical cases of
+upper stages ignited at airspeeds exceeding their terminal velocities, the accuracy of the Caporaso-Bengen
+solution decreases as the thrust becomes so small that it approaches the weight because the error due to
+truncation of the drag integral becomes more significant even at moderate values of $dv/dt$. For thrust
+less than 1.25 times the rocket's weight the Caporaso-Bengen equations will produce acceptably accurate
+results only if $v_1$ is not greater than $v_{\mathrm{fterm}}/\sqrt{2}$, where $v_{\mathrm{fterm}}$ is the
+downward terminal velocity the rocket would approach in free fall (i.e., with zero thrust) if its recovery
+device did not deploy:
+\begin{equation*}
+v_{\mathrm{fterm}} = \sqrt{\frac{m_2g}{k_2}}
+\end{equation*}
+Present the generalization of the extended Caporaso-Bengen equations to rockets of three or more stages.
+
+Note that the functional forms of the extended Fehskens-Malewicki velocity and altitude increment equations
+change again when the rocket's thrust is less than its weight (the case of ``boosted coasting''). Derive and
+present the extended Fehskens-Malewicki solution for the case where thrust is less than weight:
+\begin{equation*}
+v_2 = \sqrt{\frac{m_2g - F_2}{k_2}}\,\tan\biggl[\tan^{-1}\biggl(v_1\sqrt{\frac{k_2}{m_2g - F_2}}\biggr)
+  - \frac{t_2}{m_2}\sqrt{k_2(m_2g - F_2)}\biggr]
+\end{equation*}
+and
+\begin{equation*}
+y_2 = \frac{m_2}{2k_2}\ln\left[\frac{v_1^{2} + \dfrac{m_2g - F_2}{k_2}}{v_2^{2} + \dfrac{m_2g - F_2}{k_2}}
+  \right]
+\end{equation*}
+Derive and present the extended Fehskens-Malewicki solution for the maximum altitude increment and boosted
+coasting time:
+\begin{equation*}
+t_{\mathrm{BC}} = \frac{m_2}{\sqrt{k_2(m_2g - F_2)}}\tan^{-1}\biggl(v_1\sqrt{\frac{k_2}{m_2g - F_2}}\biggr)
+\end{equation*}
+and
+\begin{equation*}
+y_{\mathrm{BC}} = \frac{m_2}{2k_2}\ln\biggl(\frac{k_2v_1^{2}}{m_2g - F_2} + 1\biggr)
+\end{equation*}
+Present the generalization of the extended Fehskens-Malewicki equations to rockets of three or more stages.
+
+Derive and present the extended Caporaso-Bengen solution for the case where thrust is less than weight:
+\begin{equation*}
+v_2 = \frac{m_2v_1 - (m_2g - F_2)t_2}{\sqrt{m_2^{2} + 2k_2t_2\bigl[m_2v_1 - \tfrac{t_2}{2}(m_2g - F_2)\bigr]}}
+\end{equation*}
+and
+\begin{equation*}
+y_2 = \frac{-m_2 + \sqrt{m_2^{2} + 2k_2t_2\bigl[m_2v_1 - \tfrac{t_2}{2}(m_2g - F_2)\bigr]}}{k_2}
+\end{equation*}
+Derive and present the extended Caporaso-Bengen solution for the maximum altitude increment and the boosted
+coasting time:
+\begin{gather*}
+t_{\mathrm{BC}} = \frac{m_2v_1}{m_2g - F_2}
+\end{gather*}
+and
+\begin{equation*}
+y_{\mathrm{BC}} = \frac{m_2}{k_2}\biggl(\sqrt{\frac{k_2v_1^{2}}{m_2g - F_2} + 1} - 1\biggr)
+\end{equation*}
+Note that the Caporaso-Bengen solution for this case predicts the same ``boosted'' coasting time as would
+occur with zero drag, and an altitude increment greater than that which will actually be attained but less
+than that which would occur with zero drag. Note again that acceptable accuracy can be obtained from the
+Caporaso-Bengen solution for this case only if $v_1$ is not greater than $v_{\mathrm{fterm}}/\sqrt{2}$.
+
+\phantomsection
+\section*{Solutions for a Non-Oscillating Rocket in the Coasting Phase}\label{supp:ch4-summary:coasting}
+
+Add a treatment of the extended Caporaso-Bengen solution for the maximum altitude increment and coasting
+time:
+\begin{gather*}
+t_c = \frac{v_b}{g}
+\end{gather*}
+and
+\begin{equation*}
+y_c = \frac{m_b}{k}\biggl(\sqrt{\frac{kv_b^{2}}{m_bg} + 1} - 1\biggr)
+\end{equation*}
+Note that acceptable accuracy can be obtained from the Caporaso-Bengen equations for this case only if $v_b$
+is not greater than $v_{\mathrm{fterm}}/\sqrt{2}$.
