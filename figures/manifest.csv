@@ -131,7 +131,7 @@ ch3-fig55,525,12.0,18.0,486.7,225.6,line,ch3-sec8,figures/ch3/fig55.png,"auto; h
 ch4-fig01,543,20.0,20.0,480.0,401.0,line,ch4-intro-sec1,figures/ch4/fig01.png,added by hand (seeder missed caption OCR'd as 'Figure ls'); panels (a) top and (b) bottom in one crop; box ends above caption at y=408
 ch4-fig02,551,12.0,18.0,486.7,369.0,line,ch4-intro-sec1,figures/ch4/fig02.png,auto; bottom raised to 369 (caption top 375)
 ch4-fig03,574,12.0,18.0,487.2,369.0,line,ch4-sec2b,figures/ch4/fig03.png,auto; bottom raised to 369 (caption top 373.5)
-ch4-fig04,580,64.0,18.0,494.4,220.3,line,ch4-sec2b,figures/ch4/fig04.png,auto; x0 moved in by hand to exclude a scanner speck at x=60.5 left of the F (N) axis label
+ch4-fig04,580,64.0,18.0,494.4,220.3,line,supplement,figures/ch4/fig04.png,"auto; x0 moved in by hand to exclude a scanner speck at x=60.5 left of the F (N) axis label; replaced in Chapter 4 by sup-ch4-fig04-1994, reproduced in the supplement Part"
 ch4-fig05a,588,12.0,18.0,330.0,209.0,line,ch4-sec2b,figures/ch4/fig05a.png,hand: seeder missed the caption (lettered 'Figure 5(a):'); upper plot of PDF 588 above its caption at y=212.9; x1 tightened by hand to exclude a scanner speck at x=341 right of the artwork (artwork ends x=316)
 ch4-fig05b,588,12.0,250.0,487.2,431.0,line,ch4-sec2b,figures/ch4/fig05b.png,hand: seeder missed the caption (OCR 'Figure S(b):'); lower plot of PDF 588 between the 5(a) caption block (ends 243.5) and its caption at y=434.7
 ch4-fig05c,589,12.0,18.0,487.2,210.0,line,ch4-sec2b,figures/ch4/fig05c.png,hand: seeder missed the caption ('Figure 5 ( c) :'); upper plot of PDF 589 above its caption at y=213.2
@@ -154,3 +154,4 @@ ch4-fig13,605,12.0,18.0,487.2,218.3,line,ch4-sec3,figures/ch4/fig13.png,auto
 ch4-fig14,605,12.0,313.6,487.2,519.7,line,ch4-sec3,figures/ch4/fig14.png,auto
 ch4-fig15,607,12.0,18.0,486.7,222.0,line,ch4-sec3,figures/ch4/fig15.png,auto
 ch4-fig16,641,12.0,18.0,487.2,391.0,line,ch4-sec5,figures/ch4/fig16.png,auto
+sup-ch4-fig04-1994,711,40.0,55.0,580.0,400.0,line,ch4-sec2b,figures/supplement/ch4-fig04-1994.png,"replacement Figure 4 (PDF 711); the page number -548- at the top and the caption below y=406 are excluded (MediaBox 612.48x792.48)"

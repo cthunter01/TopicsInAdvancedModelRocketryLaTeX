@@ -47,3 +47,30 @@ Doubts (from the prep survey; the faithful pass keeps each as printed)
 | D13 | ch4-sec2a | 568-569 | the parenthesis opened after the first cosh of (58) and (60) is never closed | fix silently (typographical) in the corrections step |
 | D14 | several | 554, 558, 564, 601, 640, 646 | silent typographical fixes: "in equations (20)" at a sentence start (554), "methematics" (558), "mass. we obtain" (564), "use A Malewicki chart" (640), "Chicago.," in Reference 4 (646) in the faithful pass; "0.453 Kg" (601) to be set "kg" silently in the corrections step | fixed silently / fix silently |
 | D15 | several | various | minor, recorded without notes: $F_2(t)$ in (40) not in the Symbols list; $k_1$ undefined (564); the overlap of (158) and (159) at $t = t_1$ (620); Table 2 row 25 $\alpha_{\max} = 0.220$ above the 0.2 rad limit; last-digit rounding in Table 2's percent reductions and in the PDF 587 key table; "slightly more than doubled" (601); "identical specific impulse" (644); Reference 1's "Phoenix" | no note |
+
+Decisions for the corrections step (2026-09-24)
+- Errata items 2-4 replace stale equation numbers with the right ones. They are typographical: apply them silently,
+  as \eqref's to (139), (154) and (160). Stale citations that no source corrects keep their faithful-pass notes
+  ((200a), D2; "Figure 19", D3) or get one ("Section 5 of Chapter 2", D8).
+- Item 5 (the June 1994 thrust text): (7a)-(7d) exist only in the corrected text and are `equation*` with \tag and the
+  labels ch4:eq:n7a to ch4:eq:n7d. The rewritten (8) keeps ch4:eq:8. The pressure term is $(P_e - P_a)\vec{A}_e$ (PDF 666).
+  One \ednote quotes the 1973 text from after (7) to the top of p.514, including the 1973 (8).
+- Item 7 (the multistage Summary). Apply its equation rewrites: (40), (44)-(53). Keep the 1973 labels; the corrected
+  (45)-(53) replace their 1973 forms in place. The rewritten equations use the Summary's new variables $\hat{t} = t - t_1$
+  and $\hat{y} = y - y_1$ and the total impulse $I_{t2}$. Add their definitions, in the Summary's words, to the notation
+  key of Section 2.2.1; the Summary would move the key to Section 2.2, a plan that is not carried out. Also apply the
+  Summary's one concrete wording change: the upper limit $t$ becomes $\hat{t}$ in the discussion of (53)-(55).
+  Instructions without supplied text ("revise the discussion of limiting behavior", "move the discussion ...", the new
+  Sections 2.2.3-2.2.4, the terminal-velocity, thrust = weight and thrust < weight cases, the coasting-phase
+  treatment) are not carried out. The 1973 discussion around (41)-(43), which the Summary calls unnecessary after the
+  rewrite, is kept. One \ednote at the start of Section 2.2.1 says what the Summary corrects and why: the truncated drag
+  integral should have 0 where it has $y_1$, and the sign of $m_2v_1$ in (48)-(51) is wrong. The note also says which
+  Summary items are not applied and that the supplement Part reproduces the Summary in full. Each rewritten equation's
+  1973 form is quoted, in the same note or in short notes at (44) and (48). Errata item 1 (the brace of (51)) is
+  subsumed by the rewritten (51); mention it in the (51) note.
+- Item 8: include figures/supplement/ch4-fig04-1994.png (manifest row sup-ch4-fig04-1994, already cropped). Transcribe
+  the 1994 caption in full, with an \edcap that quotes the 1973 caption and says whether the artwork changed.
+- Item 9: replace the three Table 1 values. An \edcap in the table caption gives the 1973 values and the source's note
+  that the altitudes of rockets with canted fins change accordingly (the Table 2 figures are not recomputed).
+- Doubts: notes for D1, D4, D5, D7, D8, D9; checks D6 and D10 (note only if confirmed); D13 and "0.453 Kg" fixed
+  silently; D15 no notes. Restyle the faithful-pass notes for D2 and D3 to the doubt-note style.
