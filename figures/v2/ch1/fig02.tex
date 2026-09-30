@@ -1,0 +1,26 @@
+% Chapter 1, Figure 2 of 1973 (scan: figures/ch1/fig02.png, PDF 44), shown in the Errata and Supplement Part
+% beside its 1994 replacement (figures/v2/supplement/ch1-fig02-1994.tex, which draws the same rocket).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \def\L{5.6}\def\r{0.17}\def\P{4.4}
+  \pic[rotate=-90] at (0,\L) {rocket={model, length=\L, diameter={2*\r}, nose length=1.0, root chord=0.75,
+      tip chord=0.25, span=0.55, sweep=0.5, plume=\P, plume bulge=1.8}};
+  % the slug of exhaust Delta m_e, a third of the way down the plume (clipped to it), and the two arrows
+  \begin{scope}[rotate=-90]
+    \clip \plumeshapeb{1.8}{\r}{\P};
+    \fill[wash] (1.2,-1) rectangle (1.8,1);
+    \draw[thin line] (1.2,-1) -- (1.2,1) (1.8,-1) -- (1.8,1);
+  \end{scope}
+  \draw[thin line, rotate=-90] \plumeshapeb{1.8}{\r}{\P};
+  \node[font=\footnotesize] at (0,-1.5) {$\Delta m_e$};
+  \draw[vec] (0,-1.05) -- (0,-0.05);
+  \node[font=\small, anchor=west] at (0.3,-0.5) {$\vec{F}$};
+  \draw[vec] (0,-1.95) -- (0,-2.95);
+  \node[font=\small, anchor=west] at (0.3,-2.5) {$\vec{c}$};
+  % axes
+  \draw[thin vec] (1.6,1.9) -- (1.6,2.9) node[above] {$+y$};
+  \draw[thin vec] (1.6,1.9) -- (2.8,1.9) node[right] {$+x$};
+\end{tikzpicture}
+\end{document}

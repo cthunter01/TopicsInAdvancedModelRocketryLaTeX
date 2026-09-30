@@ -1,0 +1,18 @@
+% Chapter 3, Figure 2: standard atmospheric density against altitude (scan: figures/ch3/fig02.png, PDF 311).
+% Curve: fig02.py (U.S. Standard Atmosphere, 1962).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr grid, grid=both,
+      width=4.2in, height=2.4in,
+      xmin=0, xmax=2500, xtick distance=500,
+      ymin=0.70, ymax=1.00, ytick={0.70,0.80,0.90,1.00}, minor ytick={0.75,0.85,0.95},
+      yticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=2},
+      xlabel={Altitude (meters)},
+      ylabel={$\dfrac{\rho}{\rho_o}$}, ylabel style={rotate=-90, anchor=east}]
+    \addplot[series1] table[x=h, y=rho, col sep=comma] {figures/v2/ch3/fig02.csv};
+    \node[fill=white, inner sep=2pt, anchor=west] at (axis cs:250,0.80) {$\rho_o = 1.225014\un{kg/m^3}$};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

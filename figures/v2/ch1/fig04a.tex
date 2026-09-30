@@ -1,0 +1,29 @@
+% Chapter 1, Figure 4, panels (a) and (b) (scan: figures/ch1/fig04a.png, PDF 54). B4 curve:
+% figures/v2/common/b4-1973.csv. The eight rectangles of (b) span the widths measured on the scan, each as high as
+% makes its area the lettered value (listed in the lettering in the order .160, .348, .234, .213, .360,
+% .440, .330, 3.115, which is not left to right).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \pgfplotsset{b4 panel/.style={tamr, width=2.25in, height=1.55in, xmin=0, xmax=1.2, xtick={0,0.4,0.8,1.2},
+      xticklabel style={/pgf/number format/.cd, fixed, precision=1}, ymin=0, ymax=16, ytick distance=4,
+      xlabel={$t$ (sec)}, ylabel={$F$ (N)}, clip=false}}
+  \begin{axis}[b4 panel, name=a]
+    \addplot[series1] table[x=t, y=F, col sep=comma] {figures/v2/common/b4-1973.csv};
+    \node[panel, anchor=north east] at (rel axis cs:1,1) {(a)};
+  \end{axis}
+  \begin{axis}[b4 panel, name=b, at={(a.east)}, anchor=west, xshift=0.95in]
+    \foreach \a/\b/\area in {0/0.071/0.160, 0.071/0.108/0.234, 0.108/0.144/0.360, 0.144/0.178/0.440,
+                              0.178/0.213/0.348, 0.213/0.277/0.330, 0.277/1.13/3.115, 1.13/1.20/0.213} {
+      \edef\temp{\noexpand\draw[draw=ink2, line width=0.4pt, fill=s1!12]
+        (axis cs:\a,0) rectangle (axis cs:\b,{\area/(\b-\a)});}\temp
+    }
+    \addplot[series1] table[x=t, y=F, col sep=comma] {figures/v2/common/b4-1973.csv};
+    \node[panel, anchor=north east] at (rel axis cs:1,1) {(b)};
+  \end{axis}
+  \node[anchor=south west, align=left, font=\small] at ([yshift=4pt]b.north west)
+    {$I_t \cong .160 + .348 + .234 + .213$\\ $\phantom{I_t \cong{}} + .360 + .440 + .330 + 3.115$\\
+     $\phantom{I_t} = 5.20$ N-sec};
+\end{tikzpicture}
+\end{document}

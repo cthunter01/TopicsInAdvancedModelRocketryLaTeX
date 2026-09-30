@@ -6,8 +6,9 @@
   \def\axisangle{27}  % rocket axis above the horizontal
   \def\alphaangle{33} % angle of attack
   % the rocket, nose up and to the right; its body runs back from the nose along 180+27 degrees
-  \pic[rotate=180+\axisangle] {rocket={length=6.4, diameter=0.4, nose length=1.2,
-      root chord=0.95, tip chord=0.45, span=0.6, sweep=0.5}};
+  \pic[rotate=180+\axisangle] {rocket={model, centerline=false}};
+  \draw[centerline] (180+\axisangle:0.1) -- (180+\axisangle:6.3);
+  \draw[thin line] (\axisangle:0.9) -- (0,0) (180+\axisangle:6.4) -- (180+\axisangle:7.3);   % the axis, extended
   % centre of gravity, 62 percent of the length back from the nose
   \coordinate (cg) at (180+\axisangle:0.62*6.4);
   % velocity vector

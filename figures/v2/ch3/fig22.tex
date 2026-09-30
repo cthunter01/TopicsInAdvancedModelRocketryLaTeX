@@ -1,0 +1,29 @@
+% Chapter 3, Figure 22: skin-friction coefficient of a flat plate (scan: figures/ch3/fig22.png, PDF 386).
+% A laminar, eq. (63): C_f = 1.328/sqrt(R); B turbulent, eq. (86): C_f = 0.074 R^(-1/5);
+% C transition, eq. (101): C_f = 0.074 R^(-1/5) - B/R with B = 1740 (caption; R_crit = 5 x 10^5).
+% True log axes (the 1973 paper's intermediate lines are not at log positions: corrections/v2-figures.md).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{loglogaxis}[tamr grid, grid=both,
+      width=5.4in, height=3.5in,
+      xmin=1e4, xmax=1e7, ymin=0.2, ymax=20,
+      xtick={1e4,2e4,3e4,4e4,6e4,8e4,1e5,2e5,3e5,4e5,6e5,8e5,1e6,2e6,3e6,4e6,6e6,8e6,1e7},
+      xticklabels={$10^4$,2,3,4,6,8,$10^5$,2,3,4,6,8,$10^6$,2,3,4,6,8,$10^7$},
+      % the printed chart's rulings: 1, 1.5, 2, 2.5, 3, 3.5, 4, 5 ... 9 in each decade
+      minor xtick={1.5e4,2.5e4,3.5e4,5e4,7e4,9e4,1.5e5,2.5e5,3.5e5,5e5,7e5,9e5,1.5e6,2.5e6,3.5e6,5e6,7e6,9e6},
+      ytick={0.2,0.3,0.4,0.6,0.8,1,2,3,4,6,8,10,20},
+      yticklabels={0.2,0.3,0.4,0.6,0.8,1.0,2,3,4,6,8,10.0,20},
+      minor ytick={0.25,0.35,0.5,0.7,0.9,1.5,2.5,3.5,5,7,9,15},
+      xlabel={$R_\ell = \dfrac{U_\infty \ell}{\nu}$},
+      ylabel={$1000\,C_f$}]
+    \addplot[series1, solid, domain=1e4:1e7, samples=60] {1000*1.328/sqrt(x)};
+    \addplot[series2, solid, domain=5e5:1e7, samples=40] {1000*0.074*x^(-0.2)};
+    \addplot[series3, solid, domain=5e5:1e7, samples=80] {1000*(0.074*x^(-0.2) - 1740/x)};
+    \node[curve tag] at (axis cs:1.6e5,{1000*1.328/sqrt(1.6e5)}) {A};
+    \node[curve tag] at (axis cs:8e5,{1000*0.074*8e5^(-0.2)}) {B};
+    \node[curve tag] at (axis cs:3e6,{1000*(0.074*3e6^(-0.2) - 1740/3e6)}) {C};
+  \end{loglogaxis}
+\end{tikzpicture}
+\end{document}

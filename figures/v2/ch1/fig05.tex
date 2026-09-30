@@ -1,0 +1,27 @@
+% Chapter 1, Figure 5: thrust-time curves of three engines (scan: figures/ch1/fig05.png, PDF 57).
+% Curves: figures/v2/common/b4.csv (b4.py), b14.csv and e62.csv (engines.py), digitized.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \pgfplotsset{thrust/.style={tamr, width=4.2in, height=1.25in, xlabel={$t$ (sec)}, ylabel={$F$ (N)},
+      xticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=1}, ymin=0}}
+  \begin{axis}[thrust, name=a, xmin=0, xmax=1.2, xtick distance=0.2, ymax=16, ytick distance=4, clip=false]
+    \addplot[series1] table[x=t, y=F, col sep=comma] {figures/v2/common/b4.csv};
+    \node at (axis cs:0.55,1.8) {B4};
+    \node[panel, anchor=north east] at (rel axis cs:1,1) {(a)};
+  \end{axis}
+  \begin{axis}[thrust, name=b, at={(a.south west)}, anchor=north west, yshift=-0.55in,
+      width=1.4in, xmin=0, xmax=0.4, xtick distance=0.1, ymax=40, ytick distance=10]
+    \addplot[series1] table[x=t, y=F, col sep=comma] {figures/v2/common/b14.csv};
+    \node at (axis cs:0.2,9) {B14};
+    \node[panel, anchor=north east] at (rel axis cs:1,1) {(b)};
+  \end{axis}
+  \begin{axis}[thrust, name=c, at={(b.south west)}, anchor=north west, yshift=-0.55in,
+      width=2.1in, xmin=0, xmax=0.6, xtick distance=0.1, ymax=120, ytick distance=30]
+    \addplot[series1] table[x=t, y=F, col sep=comma] {figures/v2/common/e62.csv};
+    \node at (axis cs:0.3,30) {E62};
+    \node[panel, anchor=north east] at (rel axis cs:1,1) {(c)};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

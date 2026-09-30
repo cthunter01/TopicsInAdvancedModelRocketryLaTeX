@@ -1,0 +1,37 @@
+% Chapter 1, Figure 9: weathercocking (scan: figures/ch1/fig09.png, PDF 77). (a) the rocket leaving the
+% launcher; its velocity V, the wind U (drawn in the wind's direction, ending at the origin) and the sum
+% V + (-U); (b) the path, turning into the wind. The wind blows from the right in both panels.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \tikzset{wind/.style={draw=ink2, line width=0.6pt, -{Stealth[length=4.5pt,width=3pt]}}}
+  % (a)
+  \fill[wash] (-0.8,0) rectangle (0.8,0.18);
+  \draw[outline] (-0.8,0) rectangle (0.8,0.18);
+  \draw[outline] (-0.1,0.18) rectangle (0.1,0.28);                 % the hub
+  \draw[outline] (0,0.28) -- (0,4.4);                               % the rod
+  \draw[outline, fill=white] (0,0.62) .. controls (0,0.36) and (0.12,0.18) .. (0.34,0.18) -- (0.1,0.18) -- (0.1,0.28) -- (0,0.28) -- cycle;  % fillet
+  \pic[rotate=-90] at (0,6.9) {rocket={model, length=1.6, diameter=0.12, nose length=0.35, root chord=0.3,
+      tip chord=0.1, span=0.18, sweep=0.2, centerline=false, plume=0.8}};
+  \coordinate (o) at (0,7.3);
+  \draw[guide] (0,9.5) -- (1.1,9.5) -- (1.1,7.3);
+  \draw[vec] (o) -- (0,9.5) node[left=2pt, pos=0.9] {$\vec{V}$};
+  \draw[vec] (1.1,7.3) -- (o);
+  \node[right=2pt] at (1.1,7.3) {$\vec{U}$};
+  \draw[vec] (o) -- (1.1,9.5);
+  \node[anchor=west, fill=white, inner sep=1pt] at (0.72,8.25) {$\vec{V} + (-\vec{U})$};
+  \foreach \y in {1.2,2.3,3.4,4.5,5.6} \draw[wind] (3.4,\y) -- (2.1,\y);
+  \node[rotate=90, font=\small] at (3.8,3.4) {Wind};
+  \node[panel] at (3.9,0.1) {(a)};
+  % (b)
+  \begin{scope}[shift={(5.6,0)}]
+    \draw[curve, draw=s1] (0,0) .. controls (0.4,3.2) and (1.6,6.2) .. (3.6,8.6) coordinate (end);
+    \pic[rotate=180+50] at ($(end)+(50:0.9)$) {rocket={model, length=0.9, diameter=0.09, nose length=0.2,
+        root chord=0.18, tip chord=0.06, span=0.12, sweep=0.12, centerline=false}};
+    \foreach \y in {1.2,2.35,3.5,4.65,5.8,6.95,8.1} \draw[wind] (5.4,\y) -- (4.1,\y);
+    \node[rotate=90, font=\small] at (5.8,4.65) {Wind};
+    \node[panel] at (5.9,0.1) {(b)};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

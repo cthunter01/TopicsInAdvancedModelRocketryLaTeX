@@ -1,0 +1,60 @@
+% Chapter 1, Figure 2 as replaced in June 1994 (scan: figures/supplement/ch1-fig02-1994.png, PDF 674): the
+% momentum term (left), the pressure term (centre) and the total thrust (right), with the equation beneath.
+% Used in Chapter 1 and in the Errata and Supplement Part. The equation is lettered by Mandell's own rule of
+% June 1994 (the pressure term (P_e - P_a) with the arrow over A_e only), in both places (the owner's decision
+% at the pilot gate, 2026-09-30), although the 1994 drawing carried the arrow over the whole term.
+% The rocket is that of the 1973 figure (figures/v2/ch1/fig02.tex).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \def\L{5.6}\def\r{0.17}\def\P{4.4}\def\n{1.0}
+  \newcommand{\rocketat}[1]{\pic[rotate=-90] at (#1,\L) {rocket={model, length=\L, diameter={2*\r}, nose length=\n,
+      root chord=0.75, tip chord=0.25, span=0.55, sweep=0.5, plume=\P, plume bulge=1.8}};}
+  % left: the momentum term
+  \rocketat{0}
+  \begin{scope}[rotate=-90]
+    \clip \plumeshapeb{1.8}{\r}{\P};
+    \fill[pattern={Lines[angle=45,distance=2.2pt,line width=0.3pt]}, pattern color=ink2] (1.2,-1) rectangle (1.8,1);
+    \draw[thin line] (1.2,-1) -- (1.2,1) (1.8,-1) -- (1.8,1);
+  \end{scope}
+  \node[font=\footnotesize, fill=white, inner sep=0.5pt] at (0,-1.5) {$\Delta m_e$};
+  \draw[thin line, rotate=-90] \plumeshapeb{1.8}{\r}{\P};
+  \draw[vec] (0,-1.95) -- (0,-2.95);
+  \node[font=\small, anchor=west] at (0.3,-2.5) {$\vec{c}$};
+  \draw[thin vec] (1.7,1.9) -- (1.7,2.9) node[above] {$+y$};
+  \draw[thin vec] (1.7,1.9) -- (2.9,1.9) node[right] {$+x$};
+  % centre: the pressure term; ambient pressure all round the rocket, exhaust pressure on the exit plane
+  \begin{scope}[shift={(4.6,0)}]
+    \rocketat{0}
+    \pgfmathsetmacro\rho{(\r*\r+\n*\n)/(2*\r)}
+    \foreach \i in {0,...,15} {
+      \pgfmathsetmacro\d{\i<4 ? 0.3+0.3*\i : 1.55+0.35*(\i-4)}
+      \pgfmathsetmacro\w{\d<\n ? sqrt(max(0,\rho*\rho-(\n-\d)^2))+\r-\rho : \r}
+      \draw[thin vec, -{Stealth[length=3pt,width=2pt]}] ({-\w-0.38},\L-\d) -- ({-\w-0.03},\L-\d);
+      \draw[thin vec, -{Stealth[length=3pt,width=2pt]}] ({\w+0.38},\L-\d) -- ({\w+0.03},\L-\d);
+    }
+    \draw[thin vec, -{Stealth[length=3pt,width=2pt]}] (0,\L+0.4) -- (0,\L+0.03);
+    \node[font=\small] at (-0.95,2.6) {$P_a$};
+    \draw[thin line, -{Stealth[length=3.5pt,width=2.4pt]}] (-0.13,-0.5) -- (-0.13,-0.03);
+    \draw[thin line, -{Stealth[length=3.5pt,width=2.4pt]}] (0.13,-0.5) -- (0.13,-0.03);
+    \draw[draw=ink, line width=1.1pt, -{Stealth[length=4.5pt,width=3.4pt]}] (0,-0.6) -- (0,-0.03);
+    \node[font=\small] at (0,-0.95) {$\vec{A}_e$};
+    \node[font=\small] at (0,-1.7) {$P_e$};
+  \end{scope}
+  % right: the total thrust
+  \begin{scope}[shift={(9.2,0)}]
+    \rocketat{0}
+    \draw[vec] (0,-0.9) -- (0,-0.03);
+    \node[font=\small] at (0,-1.2) {$\vec{F}$};
+  \end{scope}
+  % the equation
+  \begin{scope}[every node/.style={font=\small, anchor=base}]
+    \node at (0,-5.2) {$-\vec{c}\,(dm_e/dt)$};
+    \node at (4.6,-5.2) {$(P_e - P_a)\vec{A}_e$};
+    \node at (2.3,-5.2) {$+$};
+    \node at (6.9,-5.2) {$=$};
+    \node at (9.2,-5.2) {$\vec{F}$};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

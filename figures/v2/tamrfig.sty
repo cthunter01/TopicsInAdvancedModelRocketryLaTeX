@@ -34,7 +34,7 @@
 \definecolor{ink}{HTML}{0B0B0B}        % text, outlines, vectors
 \definecolor{ink2}{HTML}{52514E}       % secondary ink: tick labels, centre lines, dimensions
 \definecolor{muted}{HTML}{898781}      % axis lines, ticks, leaders
-\definecolor{gridc}{HTML}{E1E0D9}      % gridlines (hairline, solid)
+\definecolor{gridc}{HTML}{CFCEC6}      % gridlines (hairline, solid)
 \definecolor{wash}{HTML}{F0EFEC}       % light fill (shaded regions)
 % categorical series, fixed order (validated on white 2026-09-30; aqua < 3:1: label it directly)
 \definecolor{s1}{HTML}{2A78D6}         % blue
@@ -55,32 +55,44 @@
   outline/.style={draw=ink, line width=0.6pt},
   curve/.style={line width=1pt},
   % vectors (forces, velocities): heavier ink, stealth heads
-  vec/.style={draw=ink, line width=1pt, -{Stealth[length=6pt,width=4pt]}},
+  vec/.style={draw=ink, line width=1.3pt, -{Stealth[length=7pt,width=4.6pt]}},
   thin vec/.style={draw=ink, line width=0.6pt, -{Stealth[length=5pt,width=3.2pt]}},
   % centre line of a body of revolution
   centerline/.style={draw=ink2, line width=0.4pt, dash pattern=on 9pt off 2pt on 1.5pt off 2pt},
   % dimension lines and their extension lines
   dimension/.style={draw=ink2, line width=0.4pt, {Stealth[length=4pt,width=2.4pt]}-{Stealth[length=4pt,width=2.4pt]}},
   extension/.style={draw=ink2, line width=0.3pt},
+  % asymptotes, reference levels, construction lines (in plots and drawings)
+  guide/.style={draw=ink2, line width=0.4pt, dash pattern=on 3pt off 2pt},
   % leader from a callout label to a point
-  leader/.style={draw=muted, line width=0.4pt},
+  leader/.style={draw=ink2, line width=0.45pt},
   % hatching (a cut surface, a boundary layer, a shaded area); 45 and 135 degrees only
   hatch/.style={pattern={Lines[angle=45,distance=3pt,line width=0.3pt]}, pattern color=ink2},
   hatch back/.style={pattern={Lines[angle=135,distance=3pt,line width=0.3pt]}, pattern color=ink2},
   % a circled reference letter as printed ((a), (b) ... on a figure)
   panel/.style={font=\small\itshape, inner sep=1pt},
+  % a circled curve or point letter (A, B, (a) ...) that the text cites
+  curve tag/.style={circle, draw=ink, line width=0.4pt, fill=white, inner sep=0.8pt, minimum size=11pt,
+    font=\footnotesize},
   point/.style={circle, fill=ink, inner sep=0pt, minimum size=3pt},
   open point/.style={circle, draw=ink, fill=white, line width=0.5pt, inner sep=0pt, minimum size=4pt},
-  % the centre-of-gravity mark (a circle with a centre dot), as printed on the rockets
-  cg mark/.style={circle, draw=ink, fill=white, line width=0.5pt, inner sep=0pt, minimum size=5pt,
+  % the marks printed on the rockets: centre of pressure (a circle with a centre dot) and centre of
+  % gravity (a quartered circle); \node[cp mark] at (P) {};
+  cp mark/.style={circle, draw=ink, fill=white, line width=0.5pt, inner sep=0pt, minimum size=5pt,
     path picture={\fill[ink] (path picture bounding box.center) circle (0.7pt);}},
+  cg mark/.style={circle, draw=ink, fill=white, line width=0.5pt, inner sep=0pt, minimum size=5.5pt,
+    path picture={\fill[ink] (path picture bounding box.center) -- (path picture bounding box.north)
+      arc[start angle=90, end angle=0, radius=2.75pt] -- cycle
+      (path picture bounding box.center) -- (path picture bounding box.south)
+      arc[start angle=270, end angle=180, radius=2.75pt] -- cycle;}},
   % an angle arc with arrowheads at both ends, e.g. \draw[angle arc] (P) ++(a1:r) arc (a1:a2:r);
   angle arc/.style={draw=ink, line width=0.5pt, {Stealth[length=4pt,width=2.6pt]}-{Stealth[length=4pt,width=2.6pt]}},
 }
 
-% \dimline[<label position>]{<from>}{<to>}{<label>}: a dimension line with its value centred on it
-\newcommand{\dimline}[4][above]{%
-  \draw[dimension] #2 -- #3 node[midway, #1, font=\footnotesize, fill=white, inner sep=1.5pt] {#4};}
+% \dimline[<label options>]{<from>}{<to>}{<label>}: a dimension line with its label set in a gap at the
+% middle (the default) or placed by the options (e.g. [above], [pos=0.3])
+\newcommand{\dimline}[4][]{%
+  \draw[dimension] #2 -- #3 node[midway, font=\small, fill=white, inner sep=1.5pt, #1] {#4};}
 
 % ---- pgfplots -------------------------------------------------------------------
 \pgfplotsset{
@@ -88,8 +100,8 @@
   tamr/.style={
     scale only axis,
     axis lines*=left,
-    axis line style={draw=muted, line width=0.5pt},
-    tick style={draw=muted, line width=0.4pt},
+    axis line style={draw=ink2, line width=0.7pt},
+    tick style={draw=ink2, line width=0.55pt},
     major tick length=3pt, minor tick length=1.8pt,
     tick align=outside,
     ticklabel style={font=\footnotesize, text=ink2},
@@ -97,8 +109,7 @@
     every axis title/.style={font=\small, at={(0.5,1)}, above, yshift=2pt},
     legend style={draw=none, fill=white, fill opacity=0.9, text opacity=1, font=\footnotesize,
       legend cell align=left},
-    /pgf/number format/.cd, 1000 sep={}, use period,
-    /pgfplots/.cd,
+    /pgf/number format/1000 sep={},        % the book prints 1000, 2500 (no separator)
     scaled ticks=false,
     clip mode=individual,
     every axis plot/.append style={curve},
@@ -108,8 +119,8 @@
   tamr grid/.style={
     tamr,
     grid=major,
-    major grid style={draw=gridc, line width=0.35pt},
-    minor grid style={draw=gridc, line width=0.25pt},
+    major grid style={draw=gridc, line width=0.4pt},
+    minor grid style={draw=gridc, line width=0.3pt},
     axis on top=false,
   },
   % the same with a closed box (used when the printed chart is a boxed grid)
@@ -118,7 +129,7 @@
   tamr sketch/.style={
     tamr,
     axis lines=middle,
-    axis line style={draw=ink2, line width=0.5pt, -{Stealth[length=5pt,width=3pt]}},
+    axis line style={draw=ink2, line width=0.7pt, -{Stealth[length=5pt,width=3pt]}},
     xtick=\empty, ytick=\empty,
     xlabel style={anchor=west, at={(ticklabel* cs:1.0)}},
     ylabel style={anchor=south, at={(ticklabel* cs:1.0)}, rotate=-90},
@@ -128,66 +139,96 @@
   series2/.style={s2, dashed},
   series3/.style={s3, dash dot},
   family1/.style={r1}, family2/.style={r2}, family3/.style={r3}, family4/.style={r4}, family5/.style={r5},
-  guide/.style={draw=ink2, line width=0.4pt, dashed},   % asymptotes, reference levels, construction lines
 }
 
-% ---- the rocket ---------------------------------------------------------------------
-% \pic[<transform>]{rocket={<keys>}}: side view of a model rocket, nose tip at the pic's origin, the
-% body along +x (rotate=-90 stands it nose up). Lengths in the picture's units (default cm).
-%   length (whole rocket), diameter, nose length, nose = ogive | cone | parabolic | ellipsoid,
-%   root chord, tip chord, span (one fin, from the body surface), sweep (leading-edge offset of the tip
-%   from the root's leading edge), fins = 2 (two fins in profile) | 3 (adds a fin seen edge-on on the
-%   centre line), centerline (true/false), nose joint (true/false: line where the nose meets the body).
-\newif\ifrk@cl \newif\ifrk@nj
-\pgfkeys{/rocket/.is family, /rocket,
-  length/.store in=\rk@L, length=30,
-  diameter/.store in=\rk@d, diameter=2.5,
-  nose length/.store in=\rk@n, nose length=7,
-  nose/.store in=\rk@shape, nose=ogive,
-  root chord/.store in=\rk@cr, root chord=5,
-  tip chord/.store in=\rk@ct, tip chord=2.5,
-  span/.store in=\rk@s, span=4,
-  sweep/.store in=\rk@sw, sweep=2.5,
-  fins/.store in=\rk@fins, fins=2,
-  centerline/.is if=rk@cl, centerline=true,
-  nose joint/.is if=rk@nj, nose joint=true,
-}
-% nose profile y(x) for 0 <= x <= n, radius r (pgfmath, x in the plot variable \x)
-\def\rk@profile{%
-  \edef\rk@r{\fpeval{\rk@d/2}}%
-  \ifnum\pdfstrcmp{\rk@shape}{cone}=0
+% ---- rockets --------------------------------------------------------------------------
+% Side views, nose tip at the origin, axis along +x (rotate=-90 stands a rocket nose up).
+%
+% \rocketoutline[<nose>]{<stations>}: the outline of a body of revolution. <stations> is a list x/r: the
+%   first is the nose base, each later one the radius at that x, joined by straight lines (tubes, shoulders,
+%   boattails); a joint line is drawn at every station; the last is the tail. <nose> = ogive (default) |
+%   cone | parabolic | ellipsoid.
+% \rocketfins{<x tail>}{<r>}{<root chord>}{<tip chord>}{<span>}{<sweep>}: the two fins in profile, root
+%   on the body radius r ending at x tail, span from the body surface, sweep = the tip's leading edge aft of
+%   the root's. (sweep = root chord - tip chord gives a trailing edge square to the body.)
+% \pic{rocket={<keys>}}: a one-tube rocket from the two, with its centre line; keys below.
+
+% nose profile y(\x) for 0 <= \x <= n, base radius r (pgfmath expression in \rk@y)
+\def\rk@setnose#1#2#3{% shape, n, r
+  \edef\rk@n{#2}\edef\rk@r{#3}%
+  \ifnum\pdfstrcmp{#1}{cone}=0
     \def\rk@y{\rk@r*\x/\rk@n}%
-  \else\ifnum\pdfstrcmp{\rk@shape}{parabolic}=0
+  \else\ifnum\pdfstrcmp{#1}{parabolic}=0
     \def\rk@y{\rk@r*sqrt(\x/\rk@n)}%
-  \else\ifnum\pdfstrcmp{\rk@shape}{ellipsoid}=0
+  \else\ifnum\pdfstrcmp{#1}{ellipsoid}=0
     \def\rk@y{\rk@r*sqrt(max(0,1-(1-\x/\rk@n)^2))}%
   \else % tangent ogive: rho = (r^2+n^2)/(2r), y = sqrt(rho^2-(n-x)^2) + r - rho
     \edef\rk@rho{\fpeval{(\rk@r*\rk@r+\rk@n*\rk@n)/(2*\rk@r)}}%
     \def\rk@y{sqrt(max(0,\rk@rho*\rk@rho-(\rk@n-\x)^2))+\rk@r-\rk@rho}%
   \fi\fi\fi}
+\newcommand{\rocketoutline}[2][ogive]{%
+  \foreach \rk@px/\rk@pr [count=\rk@i] in {#2} {\ifnum\rk@i=1 \xdef\rk@nb{\rk@px}\xdef\rk@rb{\rk@pr}\fi}%
+  \rk@setnose{#1}{\rk@nb}{\rk@rb}%
+  \foreach \rk@s in {1,-1} {%
+    \draw[outline, yscale=\rk@s] plot[domain=0:\rk@nb, samples=40, smooth] (\x, {\rk@y})
+      \foreach \rk@px/\rk@pr in {#2} { -- (\rk@px, \rk@pr) };}%
+  \foreach \rk@px/\rk@pr in {#2} {\draw[outline] (\rk@px, \rk@pr) -- (\rk@px, -\rk@pr);}}
+\newcommand{\rocketfins}[6]{%
+  \pgfmathsetmacro\rk@le{#1-#3}\pgfmathsetmacro\rk@tle{\rk@le+#6}\pgfmathsetmacro\rk@tte{\rk@tle+#4}%
+  \pgfmathsetmacro\rk@tip{#2+#5}%
+  \foreach \rk@s in {1,-1}
+    \draw[outline, yscale=\rk@s] (\rk@le, #2) -- (\rk@tle, \rk@tip) -- (\rk@tte, \rk@tip) -- (#1, #2);}
+
+% \plumeshape{<r>}{<length>}: path of an exhaust plume from a nozzle exit of radius r at the origin along +x:
+% a slender spindle widening to about 1.3 r a third of the way down, then drawn to a point (the plumes of Ch1
+% Fig 10); \plumeshapeb{<bulge>}{<r>}{<length>} widens to <bulge> x r (Ch1 Fig 2: 1.8). Use either to draw
+% the plume or to clip to it. (Plain macros: TikZ must expand them inside a path.)
+\newcommand{\plumeshapeb}[3]{(0,#2) .. controls ({0.25*#3},{1.45*#1*#2}) and ({0.62*#3},{0.85*#1*#2}) .. ({#3},0)
+  .. controls ({0.62*#3},{-0.85*#1*#2}) and ({0.25*#3},{-1.45*#1*#2}) .. (0,-#2)}
+\newcommand{\plumeshape}[2]{\plumeshapeb{1.3}{#1}{#2}}
+
+% \pic{rocket={...}}: length, diameter, nose length, nose, root chord, tip chord, span, sweep, fins = 2 | 3
+% (3 adds the fin seen edge-on on the centre line), centerline (true/false), plume (length of the exhaust
+% plume, 0 = none), plume bulge (its width over the nozzle's, default 1.3), lug (length of a launch lug, 0 = none); model = the Chapter 1 rocket. Named points:
+% -nose, -tail, -exit (the nozzle exit, = -tail).
+\newif\ifrk@cl
+\pgfkeys{/rocket/.is family, /rocket,
+  length/.store in=\rk@L, length=30,
+  diameter/.store in=\rk@d, diameter=2.5,
+  nose length/.store in=\rk@nl, nose length=7,
+  nose/.store in=\rk@shape, nose=ogive,
+  root chord/.store in=\rk@cr, root chord=5,
+  tip chord/.store in=\rk@ct, tip chord=2.5,
+  span/.store in=\rk@sp, span=4,
+  sweep/.store in=\rk@sw, sweep=2.5,
+  fins/.store in=\rk@fins, fins=2,
+  centerline/.is if=rk@cl, centerline=true,
+  plume/.store in=\rk@plume, plume=0,
+  plume bulge/.store in=\rk@bulge, plume bulge=1.3,
+  lug/.store in=\rk@lug, lug=0,
+  % the stylised model rocket of the Chapter 1 figures (and wherever a generic model rocket is drawn)
+  model/.style={length=6.4, diameter=0.4, nose length=1.2, root chord=0.95, tip chord=0.45, span=0.6, sweep=0.5},
+}
 \tikzset{
   pics/rocket/.style={code={%
     \pgfkeys{/rocket,#1}%
-    \rk@profile
-    \pgfmathsetmacro\rk@tail{\rk@L}%
-    \pgfmathsetmacro\rk@le{\rk@L-\rk@cr}%        root leading edge
-    \pgfmathsetmacro\rk@tle{\rk@le+\rk@sw}%      tip leading edge
-    \pgfmathsetmacro\rk@tte{\rk@tle+\rk@ct}%     tip trailing edge
-    \pgfmathsetmacro\rk@tipy{\rk@r+\rk@s}%
-    % nose, upper and lower halves
-    \draw[outline] plot[domain=0:\rk@n, samples=40, smooth] (\x, {\rk@y})
-                   -- (\rk@tail, \rk@r) -- (\rk@tail, -\rk@r)
-                   -- plot[domain=\rk@n:0, samples=40, smooth] (\x, {-(\rk@y)});
-    \ifrk@nj \draw[outline] (\rk@n, \rk@r) -- (\rk@n, -\rk@r); \fi
-    % fins in profile
-    \draw[outline] (\rk@le, \rk@r) -- (\rk@tle, \rk@tipy) -- (\rk@tte, \rk@tipy) -- (\rk@tail, \rk@r);
-    \draw[outline] (\rk@le, -\rk@r) -- (\rk@tle, -\rk@tipy) -- (\rk@tte, -\rk@tipy) -- (\rk@tail, -\rk@r);
-    \ifnum\rk@fins>2 \draw[outline] (\rk@le, 0) -- (\rk@tail, 0); \fi
+    \pgfmathsetmacro\rk@rad{\rk@d/2}%
+    \rocketoutline[\rk@shape]{\rk@nl/\rk@rad, \rk@L/\rk@rad}%
+    \rocketfins{\rk@L}{\rk@rad}{\rk@cr}{\rk@ct}{\rk@sp}{\rk@sw}%
+    \ifnum\rk@fins>2 \draw[outline] ({\rk@L-\rk@cr}, 0) -- (\rk@L, 0); \fi
     \ifrk@cl \draw[centerline] (-0.08*\rk@L, 0) -- (1.08*\rk@L, 0); \fi
-    % named points: nose tip, tail, fin root leading edge
+    % exhaust plume: a spindle from the nozzle, as wide as the body, bulging a little, to a point
+    \ifdim\rk@plume pt>0pt
+      \draw[thin line, shift={(\rk@L,0)}] \plumeshapeb{\rk@bulge}{\rk@rad}{\rk@plume};
+    \fi
+    % launch lug: a short tube on the body surface (lug = its length), ahead of the fins
+    \ifdim\rk@lug pt>0pt
+      \draw[outline] ({\rk@L-\rk@cr-0.4*\rk@L}, \rk@rad) rectangle ++(\rk@lug, {0.35*\rk@rad});
+    \fi
     \coordinate (-nose) at (0,0);
-    \coordinate (-tail) at (\rk@tail, 0);
-    \coordinate (-finle) at (\rk@le, \rk@r);
+    \coordinate (-tail) at (\rk@L, 0);
+    \coordinate (-exit) at (\rk@L, 0);
   }},
 }
+
 \endinput

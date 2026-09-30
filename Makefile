@@ -41,7 +41,7 @@ figures:
 # ---- version 2 figures -------------------------------------------------------------------------
 # figures/v2/<dir>/<name>.tex is a standalone document (\usepackage{tamrfig}) compiled from the
 # repository root; its PDF sits beside it (gitignored). It is rebuilt when the source, its data files
-# (<name>.csv, <name>-*.csv), the style or the notation macros change.
+# (<name>.csv, <name>-*.csv), the shared data (figures/v2/common/*.csv), the style or the notation macros change.
 FIG_SRC := $(wildcard figures/v2/*/*.tex)
 FIG_PDF := $(FIG_SRC:.tex=.pdf)
 F ?= ch1/fig01
@@ -49,7 +49,8 @@ F ?= ch1/fig01
 figs: $(FIG_PDF)
 
 .SECONDEXPANSION:
-figures/v2/%.pdf: figures/v2/%.tex $$(wildcard figures/v2/$$*.csv figures/v2/$$*-*.csv) figures/v2/tamrfig.sty macros.tex
+figures/v2/%.pdf: figures/v2/%.tex $$(wildcard figures/v2/$$*.csv figures/v2/$$*-*.csv) $(wildcard figures/v2/common/*.csv) \
+                   figures/v2/tamrfig.sty macros.tex
 	@mkdir -p build/v2/$(dir $*)
 	@TEXINPUTS=.:figures/v2: pdflatex -interaction=nonstopmode -file-line-error -halt-on-error \
 	  -output-directory=build/v2/$(dir $*) $< >/dev/null \
@@ -63,7 +64,7 @@ fig: figures/v2/$(F).pdf
 
 # rerun the scripts that compute or digitize curve data
 figdata:
-	@for s in $(wildcard figures/v2/*/*.py); do echo "$$s"; python3 $$s || exit 1; done
+	@for s in $(wildcard figures/v2/common/*.py) $(filter-out figures/v2/common/%,$(wildcard figures/v2/*/*.py)); do echo "$$s"; python3 $$s || exit 1; done
 
 clean:
 	rm -rf build

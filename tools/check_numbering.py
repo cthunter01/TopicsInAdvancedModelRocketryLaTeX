@@ -399,7 +399,8 @@ def check_v2_figures(manifest, includes):
                 details.append(f"{where}: inventory status is {inv.get('status') if inv else 'missing'}, not audited")
         if not pdf.exists():
             continue  # reported by check 4 or 9
-        deps = [p for p in [src, *style, *src.parent.glob(src.stem + ".csv"), *src.parent.glob(src.stem + "-*.csv")]
+        common = list((ROOT / "figures" / "v2" / "common").glob("*.csv"))
+        deps = [p for p in [src, *style, *common, *src.parent.glob(src.stem + ".csv"), *src.parent.glob(src.stem + "-*.csv")]
                 if p.exists()]
         stale = [str(p.relative_to(ROOT)) for p in deps if p.stat().st_mtime > pdf.stat().st_mtime]
         if stale:

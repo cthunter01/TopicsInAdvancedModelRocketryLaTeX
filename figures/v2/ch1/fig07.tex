@@ -1,0 +1,26 @@
+% Chapter 1, Figure 7: resolution of the normal force (scan: figures/ch1/fig07.png, PDF 70).
+% The rocket and its attitude are those of Figure 6. N is perpendicular to the axis, S = N cos(alpha)
+% perpendicular to V, and D_1 = N sin(alpha) parallel to V (backwards), so that N = S + D_1.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \def\axisangle{27}\def\alphaangle{33}\def\N{2.4}
+  \pic[rotate=180+\axisangle] {rocket={model, centerline=false}};
+  \draw[centerline] (180+\axisangle:0.1) -- (180+\axisangle:6.3);
+  \draw[thin line] (\axisangle:0.9) -- (0,0) (180+\axisangle:6.4) -- (180+\axisangle:7.3);   % the axis, extended
+  \coordinate (cg) at (180+\axisangle:0.62*6.4);
+  \coordinate (cp) at (180+\axisangle:0.75*6.4);
+  \draw[vec] (cg) -- ++(\axisangle+\alphaangle:3.7) node[above right=-1pt] {$\vec{V}$};
+  % normal force and its components at the centre of pressure
+  \coordinate (Ntip) at ($(cp)+(\axisangle-90:\N)$);
+  \coordinate (Stip) at ($(cp)+(\axisangle+\alphaangle-90:{\N*cos(\alphaangle)})$);
+  \draw[vec] (cp) -- (Ntip) node[pos=0.55, left=2pt] {$\vec{N}$};
+  \draw[vec] (cp) -- (Stip) node[pos=0.6, above right=0pt] {$\vec{S} = \vec{N}\cos\alpha$};
+  \draw[vec] (Stip) -- (Ntip) node[pos=0.55, right=3pt] {$\vec{D}_1 = \vec{N}\sin\alpha$};
+  \draw[draw=ink, line width=0.5pt] (cp) ++(\axisangle-90:1.0)
+    arc[start angle=\axisangle-90, end angle=\axisangle+\alphaangle-90, radius=1.0] node[pos=0.5, below right=-1pt] {$\alpha$};
+  \node[cg mark] at (cg) {};
+  \node[cp mark] at (cp) {};
+\end{tikzpicture}
+\end{document}

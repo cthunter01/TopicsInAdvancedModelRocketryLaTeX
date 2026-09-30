@@ -7,6 +7,10 @@ All pixel coordinates are those of the crop figures/<dir>/<name>.png (150 dpi, o
       Print the long horizontal and vertical lines (axes, gridlines, frames) with their centre, thickness
       and extent: read the tick values off them to write the calibration.
 
+  digitize.py ticks <crop> [--xaxis ROW] [--yaxis COL] [--gap PX] [--depth PX] [--span LO,HI]
+      List the tick marks along an axis line found by "lines": ink groups in a thin band just outside and
+      just inside it (wide groups, marked (wN), are usually lettering or a curve, not ticks).
+
   digitize.py trace <calib.json> --axes KEY --seed PX,PY [--to PX] [--dir right|left] [--mode cols|rows]
                     [--max-jump PX] [--gap PX] [--step PX] [--smooth N] [--dark T] --out FILE.csv
       Follow one curve from a seed pixel on it, column by column (--mode rows: row by row, for steep
@@ -101,6 +105,35 @@ def cmd_lines(a):
         print(f"{name}: {len(ls)}")
         for c, t, s, e in ls:
             print(f"  at {c:7.1f}  thick {t}  from {s} to {e}  (len {e - s + 1})")
+
+
+def cmd_ticks(a):
+    """Tick marks along an axis line: ink groups in thin bands just outside and just inside the line."""
+    img = load_gray(a.crop)
+    dark = img < a.dark
+
+    def groups(mask1d, off):
+        idx = np.flatnonzero(mask1d) + off
+        out, cur = [], []
+        for i in idx:
+            if cur and i - cur[-1] > 1:
+                out.append(cur); cur = []
+            cur.append(i)
+        if cur:
+            out.append(cur)
+        return [f"{sum(c) / len(c):.1f}" + ("" if len(c) <= 4 else f"(w{len(c)})") for c in out]
+
+    lo, hi = (int(v) for v in a.span.split(",")) if a.span else (0, None)
+    if a.xaxis is not None:
+        r = a.xaxis
+        for name, (r0, r1) in (("below", (r + a.gap, r + a.gap + a.depth)), ("above", (r - a.gap - a.depth, r - a.gap))):
+            band = dark[max(r0, 0):r1, lo:hi].any(axis=0)
+            print(f"x axis at row {r}, ticks {name} (rows {r0}-{r1}): columns " + " ".join(groups(band, lo)))
+    if a.yaxis is not None:
+        c = a.yaxis
+        for name, (c0, c1) in (("left", (c - a.gap - a.depth, c - a.gap)), ("right", (c + a.gap, c + a.gap + a.depth))):
+            band = dark[lo:hi, max(c0, 0):c1].any(axis=1)
+            print(f"y axis at column {c}, ticks {name} (columns {c0}-{c1}): rows " + " ".join(groups(band, lo)))
 
 
 # ---- calibration ----------------------------------------------------------------------------------------
@@ -271,7 +304,8 @@ def cmd_overlay(a):
         bad |= p95 > a.tol
         print(f"{label or path}: {dv.size} points; distance to ink mean {dv.mean():.2f} px, 95% {p95:.2f} px "
               f"({p95 * PX_MM:.2f} mm), max {dv.max():.2f} px  {flag}")
-    out = ROOT / (a.out or f"build/v2/overlay/{pathlib.Path(a.calib).stem}-{a.axes}.png")
+    cal = pathlib.Path(a.calib)
+    out = ROOT / (a.out or f"build/v2/overlay/{cal.parent.name}-{cal.name.removesuffix('.calib.json').removesuffix('.json')}-{a.axes}.png")
     out.parent.mkdir(parents=True, exist_ok=True)
     base.save(out)
     print(f"overlay -> {out.relative_to(ROOT) if out.is_relative_to(ROOT) else out}")
@@ -283,6 +317,10 @@ def main(argv=None):
     sub = p.add_subparsers(dest="cmd", required=True)
     s = sub.add_parser("lines"); s.add_argument("crop"); s.add_argument("--min-len", type=int, default=0)
     s.add_argument("--dark", type=int, default=128)
+    s = sub.add_parser("ticks"); s.add_argument("crop"); s.add_argument("--xaxis", type=int); s.add_argument("--yaxis", type=int)
+    s.add_argument("--gap", type=int, default=2); s.add_argument("--depth", type=int, default=4)
+    s.add_argument("--span", help="lo,hi: only this range of columns (x axis) or rows (y axis)")
+    s.add_argument("--dark", type=int, default=140)
     s = sub.add_parser("trace"); s.add_argument("calib"); s.add_argument("--axes", default="main")
     s.add_argument("--seed", required=True); s.add_argument("--to", type=int)
     s.add_argument("--dir", choices=["right", "left"], default="right")
@@ -295,7 +333,7 @@ def main(argv=None):
     s.add_argument("--axes", default="main"); s.add_argument("--out"); s.add_argument("--dark", type=int, default=128)
     s.add_argument("--tol", type=float, default=3.0)
     a = p.parse_args(argv)
-    return {"lines": cmd_lines, "trace": cmd_trace, "overlay": cmd_overlay}[a.cmd](a) or 0
+    return {"lines": cmd_lines, "ticks": cmd_ticks, "trace": cmd_trace, "overlay": cmd_overlay}[a.cmd](a) or 0
 
 
 if __name__ == "__main__":

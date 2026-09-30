@@ -1,0 +1,30 @@
+% Chapter 4, Figure 6(a): percent error in v_b, B4 engine (scan: figures/ch4/fig06a.png).
+% Curves: fig06.py (the book's interval method against eqs. (20), (21), (27), (28), (67)).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr,
+      width=4.0in, height=2.5in,
+      xmin=0.02, xmax=0.10, xtick={0.02,0.04,...,0.10}, minor xtick={0.03,0.05,...,0.09},
+      xticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=2},
+      ymin=-15, ymax=15, ytick distance=5,
+      xlabel={$m_o$ (kg)}, ylabel={Percent error in $v_b$},
+      legend pos=south east, legend style={nodes={inner sep=1pt}}]
+    \draw[muted, line width=0.4pt] (axis cs:0.02,0) -- (axis cs:0.10,0);
+    \addplot[series1] table[x=m0, y=fm_kmax, col sep=comma] {figures/v2/ch4/fig06a.csv};
+    \addlegendentry{Fehskens-Malewicki}
+    \addplot[series2] table[x=m0, y=cb_kmax, col sep=comma] {figures/v2/ch4/fig06a.csv};
+    \addlegendentry{Caporaso-Bengen}
+    \addplot[series1] table[x=m0, y=fm_kmin, col sep=comma] {figures/v2/ch4/fig06a.csv};
+    \addplot[series2] table[x=m0, y=cb_kmin, col sep=comma] {figures/v2/ch4/fig06a.csv};
+    % k labels with a leader to each method's curve for that k
+    \node (kmax) at (axis cs:0.056,4.9) {\footnotesize $k_{\max}$};
+    \draw[leader] (kmax.north) -- (axis cs:0.060,7.975);
+    \draw[leader] (kmax.west) -- (axis cs:0.046,2.440);
+    \node (kmin) at (axis cs:0.036,-6.2) {\footnotesize $k_{\min}$};
+    \draw[leader] (kmin.north) -- (axis cs:0.036,-2.52);
+    \draw[leader] (kmin.north west) -- (axis cs:0.026,1.946);
+  \end{axis}
+\end{tikzpicture}
+\end{document}

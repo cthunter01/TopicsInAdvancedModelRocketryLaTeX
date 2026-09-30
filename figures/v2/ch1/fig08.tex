@@ -1,0 +1,22 @@
+% Chapter 1, Figure 8: forces on a model rocket in flight (scan: figures/ch1/fig08.png, PDF 75).
+% Rocket and attitude of Figures 6 and 7: V from the C.G.; W straight down from the C.G.; D (against V) and
+% S (perpendicular to V) from the C.P.; the thrust F along the axis, into the tail.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \def\axisangle{27}\def\alphaangle{33}
+  \pic[rotate=180+\axisangle] {rocket={model, centerline=false}};
+  \draw[centerline] (180+\axisangle:6.3) -- (\axisangle:1.6);
+  \coordinate (cg) at (180+\axisangle:0.62*6.4);
+  \coordinate (cp) at (180+\axisangle:0.75*6.4);
+  \coordinate (tail) at (180+\axisangle:6.4);
+  \draw[vec] (cg) -- ++(\axisangle+\alphaangle:4.0) node[above right=-1pt] {$\vec{V}$};
+  \draw[vec] (cg) -- ++(0,-1.5) node[pos=0.8, left=1pt] {$\vec{W}$};
+  \draw[vec] (cp) -- ++(180+\axisangle+\alphaangle:2.5) node[pos=0.8, right=2pt] {$\vec{D}$};
+  \draw[vec] (cp) -- ++(\axisangle+\alphaangle-90:2.7) node[pos=0.75, above right=0pt] {$\vec{S}$};
+  \draw[vec] ($(tail)+(180+\axisangle:2.6)$) -- (tail) node[pos=0.45, below right=0pt] {$\vec{F}$};
+  \node[cg mark] at (cg) {};
+  \node[cp mark] at (cp) {};
+\end{tikzpicture}
+\end{document}

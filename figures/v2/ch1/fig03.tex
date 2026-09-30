@@ -1,0 +1,47 @@
+% Chapter 1, Figure 3: the derivative from a graph (a) and from a table (b) (scan: figures/ch1/fig03.png).
+% (a) mass curve: fig03.py (through the table of (b)); tangent line at t = 0.4 sec with the lettered slope
+% -9 g/sec, i.e. m = 12.8 - 9(t - 0.4); the dashed legs span Delta t = 0.6 sec (0.2 to 0.8), Delta m = -5.4 g.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  % (a)
+  \begin{axis}[tamr, name=a, width=3.0in, height=2.1in,
+      xmin=0, xmax=1.2, ymin=0, ymax=21, ytick distance=3,
+      xticklabels={0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2}, xtick={0,0.2,...,1.2},
+      xlabel={$t$ (sec)}, ylabel={$m$ (g)}, ylabel style={rotate=-90, anchor=east}]
+    \addplot[series1] table[x=t, y=m, col sep=comma] {figures/v2/ch1/fig03.csv};
+    \node[panel, anchor=north east] at (rel axis cs:1,1) {(a)};
+    \addplot[series2, solid, domain=0.03:1.2, samples=2] {12.8 - 9*(x - 0.4)};
+    \draw[guide] (axis cs:0.2,14.6) -- (axis cs:0.2,9.2) -- (axis cs:0.8,9.2);
+    \node[anchor=east, font=\small] at (axis cs:0.2,11.9) {$\Delta m$};
+    \node[anchor=north, font=\small] at (axis cs:0.5,9.2) {$\Delta t$};
+    \node[point] at (axis cs:0.4,12.8) {};
+    \draw[leader, -{Stealth[length=4pt,width=2.6pt]}] (axis cs:1.36,4.6) -- (axis cs:1.36,7.0) -- (axis cs:1.046,7.0);
+    \node[anchor=north, font=\small] at (axis cs:1.36,4.6) {Tangent line};
+  \end{axis}
+  \node[anchor=north west, align=left, font=\small] at ([xshift=0.55in]a.north east)
+    {$\Delta m = -5.4$ g\\[2pt] $\Delta t = 0.6$ sec\\[6pt] $\left.\dfrac{dm}{dt}\right]_{t=0.4} \cong -9$ g/sec};
+  % (b)
+  \begin{scope}[shift={($(a.south west)+(0.55in,-1.05in)$)}, every node/.style={font=\small}]
+    \def\dy{0.5}
+    \node[anchor=east] at (0.9,0) {$t$ (sec)};
+    \node[anchor=west] at (1.15,0) {$m$ (g)};
+    \draw[thin line] (-0.6,-0.28) -- (2.5,-0.28);
+    \draw[thin line] (1.0,0.3) -- (1.0,{-7*\dy-0.35});
+    \foreach \t/\m [count=\i] in {0.0/21.0, 0.2/15.1, 0.4/12.8, 0.6/11.3, 0.8/10.2, 1.0/9.4, 1.2/9.0} {
+      \node[anchor=east] (t\i) at (0.75,{-\i*\dy-0.05}) {\t};
+      \node[anchor=east] (m\i) at (1.95,{-\i*\dy-0.05}) {\m};
+    }
+    % Delta t spans the rows 0.2 to 0.6, Delta m the masses 15.1 to 11.3
+    \draw[extension] (t2.west) -- ++(-0.55,0);  \draw[extension] (t4.west) -- ++(-0.55,0);
+    \draw[dimension] ($(t2.west)+(-0.45,0)$) -- ($(t4.west)+(-0.45,0)$) node[midway, fill=white, inner sep=1pt] {$\Delta t$};
+    \draw[extension] (m2.east) -- ++(0.65,0);  \draw[extension] (m4.east) -- ++(0.65,0);
+    \draw[dimension] ($(m2.east)+(0.55,0)$) -- ($(m4.east)+(0.55,0)$) node[midway, fill=white, inner sep=1pt] {$\Delta m$};
+    \node[anchor=north west, align=left] at (3.6,-0.3)
+      {$\Delta m = 11.3 - 15.1 = -3.8$ g\\[2pt] $\Delta t = 0.6 - 0.2 = 0.4$ sec\\[6pt]
+       $\left.\dfrac{dm}{dt}\right]_{t=0.4} \cong -9.5$ g/sec};
+  \end{scope}
+  \node[panel, anchor=south east] at ([xshift=2.45in, yshift=-2.62in]a.south east) {(b)};
+\end{tikzpicture}
+\end{document}

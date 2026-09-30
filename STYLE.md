@@ -352,3 +352,59 @@ Chapter 4's prose, Symbols list, equations (9)-(11), "where" lists and Tables 1-
 - **Figures**: artwork labels stay in the images (Figure 2's ẏ = V_y, and the K/k, m_o and y_max of Figures 3-16). Symbols in typed captions follow this section: `$m_o$`, `$k_{\min}$`, `$x_b$`, `$y_b$`, `$\theta_o = 30\dg$`.
 - **Table 2** (PDF 628-631, printed in two halves of about 5 columns) is one table of about 10 columns with its caption above: a `longtable` in `\small`, inside a `landscape` environment (pdflscape, loaded in the preamble) if it does not fit a portrait page. Table 1 is an ordinary table.
 - **Macros**: no new macro is needed. The preamble's `\Isp`, `\CD`, `\CDo`, `\mdot`, `\dg` and `\un`, plus amsmath's `\tfrac`, `\text` and `\hat` (the last for the corrected (52)-(53)), cover the chapter. The brace groups use `empheq` and wide tables `pdflscape`, both loaded in preamble.tex.
+
+## 16. Version 2 figures (settled at the pilot, 2026-09-30)
+
+The line figures are redrawn as vector art in a modern style (the owner's decision): the same content, a
+uniform modern look. Photographs and plates stay scanned. The plan is `~/.claude/plans/tamr-v2-figures.md`;
+the per-figure record is `figures/v2/inventory.csv`; doubts and decisions are in `corrections/v2-figures.md`.
+
+- **Files.** One standalone document per figure, `figures/v2/<dir>/<name>.tex` (the crop it replaces is
+  `figures/<dir>/<name>.png`), `\documentclass[11pt]{standalone}` + `\usepackage{tamrfig}`, compiled from the
+  repository root by `make figs` into `figures/v2/<dir>/<name>.pdf` (gitignored). Data files are named from the
+  root. Curve data: `<name>.py` writes `<name>.csv` (or `<name>-*.csv`); curves shared by several figures live
+  in `figures/v2/common/` (the B4, B14, E62 thrust curves). `make figdata` reruns the scripts.
+- **Content invariants.** Keep every curve, printed label and value, axis quantity, unit and range, log scale,
+  panel letter and circled reference letter, vector and its label, dimension and its value, the meaning of
+  hatching, every formula and table in the artwork (typeset), and anything the caption or text relies on
+  (a caption's "dashed" stays true). Figure lettering keeps the figure's own symbols (`corrections/v2-figures.md`,
+  standing rules). Formulas and tables in the artwork are typeset in the book's notation (`\vec{V}`, `\cong`,
+  `\CP`, `\CG`).
+- **Size.** Drawn at final size, at most 6.5 in wide (the text block), included without scaling:
+  `\includegraphics{figures/v2/<dir>/<name>.pdf}`.
+- **Type.** newtx text and math (the book's); labels `\small`, tick labels `\footnotesize`; panel letters
+  `(a)`, `(b)` in italic (`panel` style): at the upper right inside a plot's axes, at the lower right of a
+  drawing's panel (where the 1973 drawings put their circled letters), on one baseline across a row.
+- **Colour and ink** (`tamrfig.sty`). Ink `ink` (#0B0B0B) for outlines, vectors and text; `ink2` (#52514E) for
+  axes (0.7pt), ticks (0.55pt), tick labels, centre lines, dimension and leader lines; gridlines `gridc`
+  (#CFCEC6, 0.4pt major, 0.3pt minor, solid). The owner asked for the grid a step darker and the axes bolder
+  and darker than the first cut: keep that contrast. Data curves 1pt in the categorical colours in fixed
+  order: `s1` blue, `s2` orange, `s3` aqua (aqua only with a direct label); an ordered family of up to five
+  curves takes `r1`-`r5` (light to dark); a larger family is one colour with a label on each curve. Two
+  methods compared keep the printed solid/dashed as secondary encoding (`series1` solid, `series2` dashed).
+  Text never takes a series colour.
+- **Plots** (pgfplots): `tamr` (open left and bottom axes), `tamr grid` (a design chart read for values:
+  hairline grid at the printed spacing), `tamr box`, `tamr sketch` (qualitative: arrowed axes, no numeric
+  ticks). Tick labels with a leading zero (0.25, not .25); no thousands separator (2500). Curve labels
+  directly on or beside the curve, set in a white knock-out only where no other curve passes; circled
+  reference letters the text cites use `curve tag`. Reference levels and asymptotes: `guide`. True log axes
+  (the 1973 "log" paper of Ch3 Figs 22, 26, 51, 52, 55 is not logarithmic between decades).
+- **Drawings** (TikZ): outlines `outline` (0.6pt); force and velocity vectors `vec` (1.3pt, stealth head);
+  lighter arrows `thin vec`; centre lines `centerline` (dash-dot); dimensions `\dimline` (label in a gap at the
+  middle) with `extension` lines; callout leaders `leader`; hatching `hatch`/`hatch back` (45 and 135 degrees
+  only); C.G. `cg mark` (quartered circle), C.P. `cp mark` (circle with centre dot); angles `angle arc`.
+  Rockets: `\pic{rocket={model, ...}}` (the Chapter 1 model rocket; keys: length, diameter, nose, nose length,
+  root chord, tip chord, span, sweep, fins, centerline, plume, lug), `\rocketoutline[<nose>]{<x/r stations>}`
+  and `\rocketfins` for stepped bodies, `\plumeshape` for exhaust plumes. A pic takes its position but not its
+  orientation from an enclosing rotation: give the rotation in the pic's own options. 3D drawings use a true
+  orthographic view (Ch2 Fig 3: elevation 32 degrees, azimuth 45 degrees), right-handed axes as the book
+  defines them.
+- **Curve data.** Computed from the book's equations or tables when they determine the curve (the script
+  names the equations); a qualitative sketch gets parameters matched to the scan; otherwise digitized with
+  `tools/v2/digitize.py` (`lines`, `ticks`, `trace`, `overlay`; calibration `<name>.calib.json` against the
+  crop). Every computed or digitized curve is overlaid on the scan: 95% of its points within 3 px (0.5 mm), or
+  the mismatch goes to `corrections/v2-figures.md`.
+- **Review.** `make fig F=<dir>/<name>` renders the figure beside its crop (`build/v2/png/`);
+  `python3 tools/v2/review.py <keys>` builds a side-by-side review PDF; audits are
+  `audit/v2-<dir>-<name>-roundN.md`; `check_numbering.py` check 10 accepts a switched figure only when its
+  inventory status is audited.

@@ -27,7 +27,23 @@ slips), **v1** (a question about the text, not the figure).
    curve; the redraw makes it tangent), Ch2 Fig 48 (the scale bar is about 6% longer than the drawing's scale;
    the redraw is drawn to its dimensions with a true scale bar). **rule**
 5. **One engine, one curve.** The B4 thrust curve is traced slightly differently in Ch1 Figs 4, 5 and Ch4 Fig 4;
-   the redraws share one digitized B4 curve. **rule**
+   the redraws share one digitized B4 curve (`figures/v2/common/b4.csv`, from the 1994 Ch4 Fig 4). **Exception:**
+   Ch1 Fig 4 is a worked example whose lettered results (the rectangle areas of (b), the 49.7 squares of (c), the
+   weights of (d)) were read off its own tracing, which falls from the spike more slowly: its four panels use
+   that tracing (`b4-1973.csv`, from panel (a); area 5.19 N-sec), on which the rectangles fit (audit round 1).
+   **rule**
+
+## Pilot gate decisions (user, 2026-09-30)
+
+- Formulas from outside the book that the book relies on (the 1962 US Standard Atmosphere for Ch3 Figs 2, 7, 8;
+  Lamb's prolate spheroid for Ch3 Fig 35; slender-body theory for Ch3 Fig 40; Mangler's scaling for Ch3 Figs 20,
+  21(b)): **compute from the formulas** (checked against the scan by overlay; named in About This Edition).
+- Computed curves that differ visibly from the 1973 art (Ch2 Figs 25, 49; Ch3 Fig 22; Ch4 Fig 6 and the like):
+  **use the computed curves**.
+- Standing rules 1-5 (with the Ch1 Fig 4 exception to rule 5): **approved**.
+- Ch1 Fig 2 (1994): **the arrow only over $A_e$**, in Chapter 1 and in the supplement Part alike (one form of the
+  drawing; the 1994 drawing's long arrow over the whole pressure term is not kept). The typed text of the
+  supplement Part, which reproduces the 1994 document, is unchanged.
 
 ## Decisions for the gates
 
@@ -37,8 +53,8 @@ slips), **v1** (a question about the text, not the figure).
   scaling of the flat-plate profile. Proposal: compute them from the cited source when the overlay against the
   scan passes (95% of points within 0.5 mm), and say so in "About This Edition"; otherwise digitize. **gate**
 - **Ch1 Fig 2 (1994).** The artwork's arrow spans the whole pressure term; the chapter caption writes
-  $(P_e - P_a)\vec{A}_e$ under Mandell's 1994 vector-notation rule (arrow over $A_e$ only). The redraw follows
-  the rule. **gate** (pilot)
+  $(P_e - P_a)\vec{A}_e$ under Mandell's 1994 vector-notation rule (arrow over $A_e$ only). Decided at the pilot
+  gate: the redraw follows the rule, in both places.
 - **Ch2 Fig 25** (pilot sample). Computed from eq. (48b), the tails beyond $\beta \approx 1.6$ lie up to
   $0.1/C_1$ below the 1973 curves (at $\beta = 1.95$: computed 0.36, 0.34, 0.29, 0.25, 0.21, 0.12 against drawn
   0.46, 0.42, 0.35, 0.29, 0.24, 0.16, in units of $1/C_1$, for $\zeta = 0$ to 2); $\zeta = 2$ is drawn low near
@@ -54,6 +70,14 @@ slips), **v1** (a question about the text, not the figure).
   three captioned burnout points and the whole of curve (c), but for curves (a) and (b) the printed apex, impact
   point and times differ badly after burnout (curve (a): computed apex 418 m at 7.07 s, printed 368 m at 5.60 s).
   Recompute (and the printed times then disagree with the drawing) or digitize the printed curves. **gate**
+- **Ch4 Fig 6** (pilot sample 6(a)). Computed with the book's own method (`figures/v2/ch4/trajectory.py`: the
+  interval method (83)-(87) with the mass by eq. (74), which reproduces Table 2's "No disturbance" row; the
+  approximations (20), (21), (27), (28), (67)), the curves keep the printed shapes but sit up to about 1
+  percentage point from them: the overlay on the scan puts 95% of the points 4-6 px (0.7-1.0 mm) from the ink
+  for all four curves, the k_min pair about 0.6 point low throughout. The book does not state the twenty liftoff
+  masses, the percent-error formula (100 (approx - exact)/exact reproduces the shapes) or its 360/65 program's
+  details; no single variant tried (g, a mass linear in time, thrust at the interval's end, dt) closes the gap
+  at both ends. Keep the computed curves (the proposal) or trace the printed ones. **gate** (pilot)
 - **Ch4 Figs 5, 7-10, 12-14** (engines B14, D4, F100, F7): the book does not give their thrust curves,
   propellant masses (and, for Fig 8, the transonic drag model), so these are digitized; Ch4 Figs 6, 11 and 16
   (B4) are computable. **rule** (compute-else-digitize)
@@ -63,6 +87,8 @@ slips), **v1** (a question about the text, not the figure).
 - Ch1 Fig 4(b): the lettered areas are not listed left to right and sum to 5.20 N-sec against the engine's 5.0;
   kept as printed.
 - Ch1 Fig 9: the caption relies on the C.P. and C.G., which are not drawn; kept as printed.
+- Ch1 Fig 4(c): the curve (the figure's own tracing, 5.19 N-sec) encloses about 52 of the 0.1 N-sec squares,
+  against the lettered count of 49.7 (4.97 N-sec); the book's count is kept.
 - Ch2 Fig 36 (1973): eq. (89) needs $x_t$, which the figure does not mark; kept as printed.
 - Ch2 Fig 7: the curve must flatten to zero slope near 0.3 rad, which ch2-sec5.tex:252-255 relies on; the
   digitized curve keeps it.
