@@ -24,7 +24,8 @@ people (and agents) work on the book in parallel and end with one consistent doc
   precedes it.
 - A unit file starts with its own heading (`\section{...}`, `\subsection{...}` or `\unnumberedsection{...}`) and
   contains **no** `\newcommand`, `\def`, `\let`, `\usepackage`, `\renewcommand` (checked
-  mechanically). All macros live in `preamble.tex`.
+  mechanically). All macros live in `preamble.tex` (the notation macros in `macros.tex`, which the redrawn
+  figures share).
 - Self-check before hand-off: `make unit U=chapters/chN-<unit> PRE='\def\chapstart{N}\def\eqstart{K}\def\figstart{J}'`
   must succeed (K, J = the numbers of the last equation/figure before the unit). Pages render to
   `build/unit/<unit>-*.png`; look at them.

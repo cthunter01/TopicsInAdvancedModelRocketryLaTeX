@@ -41,6 +41,11 @@ checks 1-2 but still get the source checks 4-7):
   9  front and back matter: every manifest output whose owner is "front" or "supplement" is included
      by \\includegraphics exactly once across frontmatter/*.tex and backmatter/**/*.tex, and every
      \\includegraphics path there exists on disk
+  10 version 2 figures (full build only): every \\includegraphics of a figures/v2/**.pdf (chapters,
+     front and back matter) names a PDF newer than its .tex source, its data files, figures/v2/tamrfig.sty
+     and macros.tex, with every font embedded, no wider than the 6.5 in text block, whose manifest row
+     has an inventory row (figures/v2/inventory.csv) with status audited or switched; reports how many
+     manifest line figures are switched
   8  the log: undefined references/citations, multiply defined labels, duplicate PDF
      destinations (pdfTeX "destination with the same identifier", e.g. a \\tag inside a numbered
      equation, which sends links to the wrong equation) and TeX errors fail;
@@ -346,6 +351,77 @@ def graphic_exists(path):
     if not p.suffix:
         return any(p.with_suffix(ext).exists() for ext in GRAPHIC_EXTS)
     return False
+
+
+def row_stems(row):
+    """Stems that count as including a manifest row: its v1 crop, or (version 2) the vector redraw
+    figures/v2/<dir>/<name>.pdf of the crop figures/<dir>/<name>.png. A row included by both counts twice."""
+    out = row["output"].strip().replace("\\", "/")
+    stems = {graphic_stem(out), graphic_stem("figures/" + out)}
+    crop = graphic_stem(out if out.startswith("figures/") else "figures/" + out)
+    stems.add("figures/v2/" + crop[len("figures/"):])
+    return stems
+
+
+TEXTWIDTH_PT = 6.5 * 72
+
+
+def check_v2_figures(manifest, includes):
+    """Check 10 (see the module docstring). includes: [(relpath, line, path)] across the whole book."""
+    import subprocess
+    inv_path = ROOT / "figures" / "v2" / "inventory.csv"
+    inventory = {}
+    if inv_path.exists():
+        with open(inv_path, newline="", encoding="utf-8") as f:
+            inventory = {r["id"]: r for r in csv.DictReader(f)}
+    by_stem = {}
+    for row in manifest:
+        if row["output"]:
+            for st in row_stems(row):
+                if st.startswith("figures/v2/"):
+                    by_stem[st] = row
+    style = [ROOT / "figures" / "v2" / "tamrfig.sty", ROOT / "macros.tex"]
+    details, failed, switched = [], False, set()
+    for relpath, line, path in includes:
+        stem = graphic_stem(path)
+        if not stem.startswith("figures/v2/"):
+            continue
+        where = f"{relpath}:{line}: {path}"
+        pdf, src = ROOT / (stem + ".pdf"), ROOT / (stem + ".tex")
+        row = by_stem.get(stem)
+        if row is None:
+            details.append(f"info: {where} is not the redraw of a manifest row")
+        else:
+            switched.add(row["id"])
+            inv = inventory.get(row["id"])
+            if inv is None or inv.get("status") not in ("audited", "switched"):
+                failed = True
+                details.append(f"{where}: inventory status is {inv.get('status') if inv else 'missing'}, not audited")
+        if not pdf.exists():
+            continue  # reported by check 4 or 9
+        deps = [p for p in [src, *style, *src.parent.glob(src.stem + ".csv"), *src.parent.glob(src.stem + "-*.csv")]
+                if p.exists()]
+        stale = [str(p.relative_to(ROOT)) for p in deps if p.stat().st_mtime > pdf.stat().st_mtime]
+        if stale:
+            failed = True
+            details.append(f"{where}: older than {', '.join(stale)} (make figs)")
+        try:
+            info = subprocess.run(["pdfinfo", str(pdf)], capture_output=True, text=True, check=True).stdout
+            m = re.search(r"Page size:\s+([\d.]+) x ([\d.]+) pts", info)
+            if m and float(m.group(1)) > TEXTWIDTH_PT + 1:
+                failed = True
+                details.append(f"{where}: {float(m.group(1)) / 72:.2f} in wide, wider than the text block")
+            fonts = subprocess.run(["pdffonts", str(pdf)], capture_output=True, text=True, check=True).stdout
+            bad = [ln.split()[0] for ln in fonts.splitlines()[2:] if len(ln.split()) >= 7 and ln.split()[-5] != "yes"]
+            if bad:
+                failed = True
+                details.append(f"{where}: fonts not embedded: {', '.join(bad)}")
+        except (OSError, subprocess.CalledProcessError) as e:
+            details.append(f"info: {where}: pdfinfo/pdffonts failed ({e})")
+    line_rows = [r for r in manifest if r["output"] and r.get("kind") == "line"]
+    summary = (f"{len(switched & {r['id'] for r in line_rows})} of {len(line_rows)} manifest line figures switched "
+               f"to vector; inventory {'has ' + str(len(inventory)) + ' rows' if inventory else 'not found'}")
+    return (FAIL if failed else OK), summary, details
 
 
 def graphic_stem(path):
@@ -667,7 +743,7 @@ def main(argv=None):
     # stale-build warning
     if not args.aux:
         aux_mtime = roots[0].stat().st_mtime
-        newer = sorted(rel(p) for p in list((ROOT / "chapters").glob("*.tex")) + [ROOT / "preamble.tex", ROOT / "main.tex"]
+        newer = sorted(rel(p) for p in list((ROOT / "chapters").glob("*.tex")) + [ROOT / "preamble.tex", ROOT / "macros.tex", ROOT / "main.tex"]
                        if p.exists() and p.stat().st_mtime > aux_mtime)
         if newer:
             stamp = time.strftime("%Y-%m-%d %H:%M", time.localtime(aux_mtime))
@@ -759,7 +835,7 @@ def main(argv=None):
         for row in owned:
             if not row["output"]:
                 continue
-            stems = {graphic_stem(row["output"]), graphic_stem("figures/" + row["output"])}
+            stems = row_stems(row)
             hits = [(f, l) for f, l, p in all_includes if graphic_stem(p) in stems]
             if len(hits) != 1:
                 failed = True
@@ -773,8 +849,7 @@ def main(argv=None):
             details.append(f"info: {len(inferred)} of {len(owned)} manifest rows have no owner unit; "
                            f"chapter taken from the id/output column")
         n_inc = 0
-        manifest_stems = {graphic_stem(r["output"]) for r in manifest if r["output"]} | \
-                         {graphic_stem("figures/" + r["output"]) for r in manifest if r["output"]}
+        manifest_stems = set().union(*(row_stems(r) for r in manifest if r["output"]))
         for relpath, text in ch_tex:
             for line, path in find_includegraphics(text):
                 n_inc += 1
@@ -856,7 +931,7 @@ def main(argv=None):
                         details.append(f"{rel(p)}:{line}: \\includegraphics{{{path}}} does not exist on disk")
             fb_rows = [r for r in manifest if r["owner"] in ("front", "supplement") and r["output"]]
             for row in fb_rows:
-                stems = {graphic_stem(row["output"]), graphic_stem("figures/" + row["output"])}
+                stems = row_stems(row)
                 hits = [(f, l) for f, l, p in fb_includes if graphic_stem(p) in stems]
                 if len(hits) != 1:
                     failed = True
@@ -866,6 +941,10 @@ def main(argv=None):
             report.add(section, 9, "front and back matter figures", FAIL if failed else OK,
                        f"{len(fb_rows)} manifest outputs owned by front/supplement, "
                        f"{len(fb_includes)} \\includegraphics in {len(fb_files)} front/back files", details)
+
+            # check 10: version 2 figures
+            status, summary, details = check_v2_figures(manifest, all_includes + fb_includes)
+            report.add(section, 10, "version 2 figures", status, summary, details)
 
     if problems:
         report.add("input problems", "-", "inputs", INFO, f"{len(problems)} note(s)", problems)

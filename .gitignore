@@ -14,3 +14,5 @@ figures/pages/
 *.lot
 *.lop
 __pycache__/
+# version 2 figure PDFs are built by make figs
+figures/v2/**/*.pdf

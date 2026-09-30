@@ -1,4 +1,5 @@
-% preamble.tex -- packages and ALL macros. Nothing under chapters/ may define a macro.
+% preamble.tex -- packages and ALL macros (the notation macros in macros.tex). Nothing under chapters/
+% may define a macro.
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{mathtools}            % loads amsmath
@@ -61,17 +62,8 @@
   \DeclareRobustCommand{\draftnote}[1]{\errmessage{draftnote left in final build: #1}}
 \fi
 
-% ---- notation macros (complete list; documented in STYLE.md) --------------
-\newcommand{\AR}{\mathit{A\mkern-3mu R}}   % aspect-ratio ligature
-\newcommand{\CNa}{C_{N\alpha}}              % normal force curve slope
-\newcommand{\mdot}{\dot{m}}                 % mass flow rate
-\newcommand{\Isp}{I_{\mathrm{sp}}}          % specific impulse
-\newcommand{\CD}{C_{D}}                     % drag coefficient
-\newcommand{\CDo}{C_{D_0}}                  % zero-lift drag coefficient
-\newcommand{\un}[1]{\,\mathrm{#1}}          % unit inside math: 5\un{cm}
-\newcommand{\dg}{^{\circ}}                  % degree sign in math
-\newcommand{\CG}{C.G.}                      % centre of gravity (text)
-\newcommand{\CP}{C.P.}                      % centre of pressure (text)
+% ---- notation macros: macros.tex (shared with the figures, figures/v2/tamrfig.sty) ----
+\input{macros}
 
 % ---- hyperref last ----------------------------------------------------------
 \usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black,

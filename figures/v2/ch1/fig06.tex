@@ -1,0 +1,20 @@
+% Chapter 1, Figure 6: angle of attack (scan: figures/ch1/fig06.png, PDF 64)
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \def\axisangle{27}  % rocket axis above the horizontal
+  \def\alphaangle{33} % angle of attack
+  % the rocket, nose up and to the right; its body runs back from the nose along 180+27 degrees
+  \pic[rotate=180+\axisangle] {rocket={length=6.4, diameter=0.4, nose length=1.2,
+      root chord=0.95, tip chord=0.45, span=0.6, sweep=0.5}};
+  % centre of gravity, 62 percent of the length back from the nose
+  \coordinate (cg) at (180+\axisangle:0.62*6.4);
+  % velocity vector
+  \draw[vec] (cg) -- ++(\axisangle+\alphaangle:3.6) node[above right=-1pt] {$\vec{V}$};
+  % angle of attack between the axis and the velocity
+  \draw[angle arc] (cg) ++(\axisangle:2.5) arc[start angle=\axisangle, end angle=\axisangle+\alphaangle, radius=2.5]
+    node[pos=0.5, above right=-1pt] {$\alpha$};
+  \node[cg mark] at (cg) {};
+\end{tikzpicture}
+\end{document}

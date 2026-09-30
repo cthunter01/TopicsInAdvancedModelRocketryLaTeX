@@ -37,9 +37,22 @@ sha256: `51b26ed677ca17e7db7638ecc3454bbf77c8eedf78b19b3415b49dd7430c60ae`
     make final          # build with every \draftnote turned into a hard error
     make pages          # extract native page bitmaps to figures/pages/ (needs the source PDF)
     make figures        # crop figures listed in figures/manifest.csv
+    make figs           # version 2: compile the redrawn figures figures/v2/**/*.tex to PDF (all, chapter, final, unit do this first)
+    make fig F=ch1/fig06    # one redrawn figure, rendered beside its scan crop in build/v2/png/
+    make figdata        # rerun the scripts that compute or digitize curve data (figures/v2/**/*.py)
 
-Toolchain used: TeX Live 2026 (pdflatex, newtx, manyfoot, newfloat, placeins), latexmk 4.87,
-poppler 26.08 (pdfimages, pdftotext, pdftoppm), Python 3 with Pillow 12.3 and numpy.
+Toolchain used: TeX Live 2026 (pdflatex, newtx, manyfoot, newfloat, placeins; TikZ and pgfplots 1.18 for
+version 2), latexmk 4.87, poppler 26.08 (pdfimages, pdftotext, pdftoppm, pdfinfo, pdffonts), Python 3 with
+Pillow 12.3, numpy and (version 2 tools) scipy.
+
+## Version 2 (in progress)
+
+Version 2 redraws the line figures as vector artwork (TikZ and pgfplots, in a modern style; photographs and
+plates stay scanned). The sources are `figures/v2/<dir>/<name>.tex`, one standalone document per figure in
+the house style `figures/v2/tamrfig.sty`; `figures/v2/inventory.csv` lists every figure with what it holds,
+where its curve data come from and its status. A figure replaces its crop in the book once it is audited.
+Curve data are computed from the book's equations where they determine the curve, otherwise traced from
+the scan with `tools/v2/digitize.py`, which also overlays any curve on the scan to check it.
 
 ## Layout
 

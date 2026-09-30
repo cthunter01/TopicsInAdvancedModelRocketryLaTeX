@@ -1,0 +1,193 @@
+% tamrfig.sty -- house style of the redrawn figures (version 2). STYLE.md section 16 documents it.
+%
+% Every figure is a standalone document compiled from the repository root (make figs), so data files
+% are named from the root: \addplot table {figures/v2/ch3/fig02.csv};
+%
+%   \documentclass[11pt]{standalone}
+%   \usepackage{tamrfig}
+%   \begin{document}
+%   \begin{tikzpicture} ... \end{tikzpicture}
+%   \end{document}
+%
+% Figures are drawn at their final size (the book's text block is \booktextwidth = 6.5in wide) and
+% included without scaling.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tamrfig}[2026/09/30 TAMR version 2 figure style]
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage{mathtools}
+\RequirePackage{newtxtext}
+\RequirePackage{newtxmath}
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,calc,intersections,positioning,patterns.meta,decorations.pathreplacing,
+  decorations.markings,backgrounds,3d,perspective}
+\usepgfplotslibrary{groupplots,fillbetween}
+\input{macros}
+
+\newlength{\booktextwidth}\setlength{\booktextwidth}{6.5in}
+
+% ---- colours ------------------------------------------------------------------
+% ink and chrome
+\definecolor{ink}{HTML}{0B0B0B}        % text, outlines, vectors
+\definecolor{ink2}{HTML}{52514E}       % secondary ink: tick labels, centre lines, dimensions
+\definecolor{muted}{HTML}{898781}      % axis lines, ticks, leaders
+\definecolor{gridc}{HTML}{E1E0D9}      % gridlines (hairline, solid)
+\definecolor{wash}{HTML}{F0EFEC}       % light fill (shaded regions)
+% categorical series, fixed order (validated on white 2026-09-30; aqua < 3:1: label it directly)
+\definecolor{s1}{HTML}{2A78D6}         % blue
+\definecolor{s2}{HTML}{EB6834}         % orange
+\definecolor{s3}{HTML}{1BAF7A}         % aqua
+% ordinal ramp for an ordered family of up to five curves (light -> dark; validated)
+\definecolor{r1}{HTML}{86B6EF}
+\definecolor{r2}{HTML}{5598E7}
+\definecolor{r3}{HTML}{2A78D6}
+\definecolor{r4}{HTML}{1C5CAB}
+\definecolor{r5}{HTML}{0D366B}
+
+% ---- line weights --------------------------------------------------------------
+\tikzset{
+  every picture/.style={line cap=round, line join=round, font=\small, color=ink},
+  hair/.style={line width=0.3pt},
+  thin line/.style={line width=0.45pt},
+  outline/.style={draw=ink, line width=0.6pt},
+  curve/.style={line width=1pt},
+  % vectors (forces, velocities): heavier ink, stealth heads
+  vec/.style={draw=ink, line width=1pt, -{Stealth[length=6pt,width=4pt]}},
+  thin vec/.style={draw=ink, line width=0.6pt, -{Stealth[length=5pt,width=3.2pt]}},
+  % centre line of a body of revolution
+  centerline/.style={draw=ink2, line width=0.4pt, dash pattern=on 9pt off 2pt on 1.5pt off 2pt},
+  % dimension lines and their extension lines
+  dimension/.style={draw=ink2, line width=0.4pt, {Stealth[length=4pt,width=2.4pt]}-{Stealth[length=4pt,width=2.4pt]}},
+  extension/.style={draw=ink2, line width=0.3pt},
+  % leader from a callout label to a point
+  leader/.style={draw=muted, line width=0.4pt},
+  % hatching (a cut surface, a boundary layer, a shaded area); 45 and 135 degrees only
+  hatch/.style={pattern={Lines[angle=45,distance=3pt,line width=0.3pt]}, pattern color=ink2},
+  hatch back/.style={pattern={Lines[angle=135,distance=3pt,line width=0.3pt]}, pattern color=ink2},
+  % a circled reference letter as printed ((a), (b) ... on a figure)
+  panel/.style={font=\small\itshape, inner sep=1pt},
+  point/.style={circle, fill=ink, inner sep=0pt, minimum size=3pt},
+  open point/.style={circle, draw=ink, fill=white, line width=0.5pt, inner sep=0pt, minimum size=4pt},
+  % the centre-of-gravity mark (a circle with a centre dot), as printed on the rockets
+  cg mark/.style={circle, draw=ink, fill=white, line width=0.5pt, inner sep=0pt, minimum size=5pt,
+    path picture={\fill[ink] (path picture bounding box.center) circle (0.7pt);}},
+  % an angle arc with arrowheads at both ends, e.g. \draw[angle arc] (P) ++(a1:r) arc (a1:a2:r);
+  angle arc/.style={draw=ink, line width=0.5pt, {Stealth[length=4pt,width=2.6pt]}-{Stealth[length=4pt,width=2.6pt]}},
+}
+
+% \dimline[<label position>]{<from>}{<to>}{<label>}: a dimension line with its value centred on it
+\newcommand{\dimline}[4][above]{%
+  \draw[dimension] #2 -- #3 node[midway, #1, font=\footnotesize, fill=white, inner sep=1.5pt] {#4};}
+
+% ---- pgfplots -------------------------------------------------------------------
+\pgfplotsset{
+  % base: open axes (left and bottom), recessive chrome, book fonts
+  tamr/.style={
+    scale only axis,
+    axis lines*=left,
+    axis line style={draw=muted, line width=0.5pt},
+    tick style={draw=muted, line width=0.4pt},
+    major tick length=3pt, minor tick length=1.8pt,
+    tick align=outside,
+    ticklabel style={font=\footnotesize, text=ink2},
+    label style={font=\small, text=ink},
+    every axis title/.style={font=\small, at={(0.5,1)}, above, yshift=2pt},
+    legend style={draw=none, fill=white, fill opacity=0.9, text opacity=1, font=\footnotesize,
+      legend cell align=left},
+    /pgf/number format/.cd, 1000 sep={}, use period,
+    /pgfplots/.cd,
+    scaled ticks=false,
+    clip mode=individual,
+    every axis plot/.append style={curve},
+    cycle list={{s1,solid},{s2,dashed},{s3,dash dot}},
+  },
+  % a design chart the reader reads values from: hairline grid at the printed spacing
+  tamr grid/.style={
+    tamr,
+    grid=major,
+    major grid style={draw=gridc, line width=0.35pt},
+    minor grid style={draw=gridc, line width=0.25pt},
+    axis on top=false,
+  },
+  % the same with a closed box (used when the printed chart is a boxed grid)
+  tamr box/.style={tamr grid, axis lines*=box},
+  % a qualitative sketch: axes through the origin with arrowheads, no numeric ticks
+  tamr sketch/.style={
+    tamr,
+    axis lines=middle,
+    axis line style={draw=ink2, line width=0.5pt, -{Stealth[length=5pt,width=3pt]}},
+    xtick=\empty, ytick=\empty,
+    xlabel style={anchor=west, at={(ticklabel* cs:1.0)}},
+    ylabel style={anchor=south, at={(ticklabel* cs:1.0)}, rotate=-90},
+  },
+  % series by role
+  series1/.style={s1, solid},
+  series2/.style={s2, dashed},
+  series3/.style={s3, dash dot},
+  family1/.style={r1}, family2/.style={r2}, family3/.style={r3}, family4/.style={r4}, family5/.style={r5},
+  guide/.style={draw=ink2, line width=0.4pt, dashed},   % asymptotes, reference levels, construction lines
+}
+
+% ---- the rocket ---------------------------------------------------------------------
+% \pic[<transform>]{rocket={<keys>}}: side view of a model rocket, nose tip at the pic's origin, the
+% body along +x (rotate=-90 stands it nose up). Lengths in the picture's units (default cm).
+%   length (whole rocket), diameter, nose length, nose = ogive | cone | parabolic | ellipsoid,
+%   root chord, tip chord, span (one fin, from the body surface), sweep (leading-edge offset of the tip
+%   from the root's leading edge), fins = 2 (two fins in profile) | 3 (adds a fin seen edge-on on the
+%   centre line), centerline (true/false), nose joint (true/false: line where the nose meets the body).
+\newif\ifrk@cl \newif\ifrk@nj
+\pgfkeys{/rocket/.is family, /rocket,
+  length/.store in=\rk@L, length=30,
+  diameter/.store in=\rk@d, diameter=2.5,
+  nose length/.store in=\rk@n, nose length=7,
+  nose/.store in=\rk@shape, nose=ogive,
+  root chord/.store in=\rk@cr, root chord=5,
+  tip chord/.store in=\rk@ct, tip chord=2.5,
+  span/.store in=\rk@s, span=4,
+  sweep/.store in=\rk@sw, sweep=2.5,
+  fins/.store in=\rk@fins, fins=2,
+  centerline/.is if=rk@cl, centerline=true,
+  nose joint/.is if=rk@nj, nose joint=true,
+}
+% nose profile y(x) for 0 <= x <= n, radius r (pgfmath, x in the plot variable \x)
+\def\rk@profile{%
+  \edef\rk@r{\fpeval{\rk@d/2}}%
+  \ifnum\pdfstrcmp{\rk@shape}{cone}=0
+    \def\rk@y{\rk@r*\x/\rk@n}%
+  \else\ifnum\pdfstrcmp{\rk@shape}{parabolic}=0
+    \def\rk@y{\rk@r*sqrt(\x/\rk@n)}%
+  \else\ifnum\pdfstrcmp{\rk@shape}{ellipsoid}=0
+    \def\rk@y{\rk@r*sqrt(max(0,1-(1-\x/\rk@n)^2))}%
+  \else % tangent ogive: rho = (r^2+n^2)/(2r), y = sqrt(rho^2-(n-x)^2) + r - rho
+    \edef\rk@rho{\fpeval{(\rk@r*\rk@r+\rk@n*\rk@n)/(2*\rk@r)}}%
+    \def\rk@y{sqrt(max(0,\rk@rho*\rk@rho-(\rk@n-\x)^2))+\rk@r-\rk@rho}%
+  \fi\fi\fi}
+\tikzset{
+  pics/rocket/.style={code={%
+    \pgfkeys{/rocket,#1}%
+    \rk@profile
+    \pgfmathsetmacro\rk@tail{\rk@L}%
+    \pgfmathsetmacro\rk@le{\rk@L-\rk@cr}%        root leading edge
+    \pgfmathsetmacro\rk@tle{\rk@le+\rk@sw}%      tip leading edge
+    \pgfmathsetmacro\rk@tte{\rk@tle+\rk@ct}%     tip trailing edge
+    \pgfmathsetmacro\rk@tipy{\rk@r+\rk@s}%
+    % nose, upper and lower halves
+    \draw[outline] plot[domain=0:\rk@n, samples=40, smooth] (\x, {\rk@y})
+                   -- (\rk@tail, \rk@r) -- (\rk@tail, -\rk@r)
+                   -- plot[domain=\rk@n:0, samples=40, smooth] (\x, {-(\rk@y)});
+    \ifrk@nj \draw[outline] (\rk@n, \rk@r) -- (\rk@n, -\rk@r); \fi
+    % fins in profile
+    \draw[outline] (\rk@le, \rk@r) -- (\rk@tle, \rk@tipy) -- (\rk@tte, \rk@tipy) -- (\rk@tail, \rk@r);
+    \draw[outline] (\rk@le, -\rk@r) -- (\rk@tle, -\rk@tipy) -- (\rk@tte, -\rk@tipy) -- (\rk@tail, -\rk@r);
+    \ifnum\rk@fins>2 \draw[outline] (\rk@le, 0) -- (\rk@tail, 0); \fi
+    \ifrk@cl \draw[centerline] (-0.08*\rk@L, 0) -- (1.08*\rk@L, 0); \fi
+    % named points: nose tip, tail, fin root leading edge
+    \coordinate (-nose) at (0,0);
+    \coordinate (-tail) at (\rk@tail, 0);
+    \coordinate (-finle) at (\rk@le, \rk@r);
+  }},
+}
+\endinput
