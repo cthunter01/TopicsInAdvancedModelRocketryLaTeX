@@ -118,7 +118,7 @@ and flagged with `\ednote{...}` naming the probable target.
 ```latex
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch1/fig02.png}
+  \includegraphics{figures/v2/ch1/fig02.pdf}
   \caption{Origin of rocket thrust. In a time interval $\Delta t$ the rocket expels ...}
   \label{ch1:fig:2}
 \end{figure}
@@ -129,8 +129,9 @@ and flagged with `\ednote{...}` naming the probable target.
 - Panel letters (a), (b) stay inside the artwork. A figure printed over two pages is one figure
   with two `\includegraphics` stacked. Photographs use `\begin{plate}...\end{plate}` with the same
   structure and `\label{chN:plate:1}`.
-- The image file is the one named in `figures/manifest.csv` for that figure; include it exactly
-  once. Figures whose artwork contains formulas stay as images in version 1.
+- A line figure includes its redrawn PDF, `figures/v2/<dir>/<name>.pdf` (section 16), at its natural size;
+  a plate includes the scanned crop named in `figures/manifest.csv` (`width=..,height=..,keepaspectratio`). Include
+  each exactly once (`tools/v2/switch.py` rewrites a crop's include to the PDF).
 - A figure printed as separately captioned panels ("Figure 5(a):", "Figure 5(b):" ...) is one figure environment
   per panel with `\figurepanel{a}` (then `{b}`, `{c}`) before `\caption` and the label `chN:fig:5a`, `chN:fig:5b` ...;
   cite a panel as `Figure~\ref{ch4:fig:5a}` (it prints 5(a)); cite the whole set as `Figure~\hyperref[ch4:fig:5a]{5}`
@@ -353,7 +354,7 @@ Chapter 4's prose, Symbols list, equations (9)-(11), "where" lists and Tables 1-
 - **Table 2** (PDF 628-631, printed in two halves of about 5 columns) is one table of about 10 columns with its caption above: a `longtable` in `\small`, inside a `landscape` environment (pdflscape, loaded in the preamble) if it does not fit a portrait page. Table 1 is an ordinary table.
 - **Macros**: no new macro is needed. The preamble's `\Isp`, `\CD`, `\CDo`, `\mdot`, `\dg` and `\un`, plus amsmath's `\tfrac`, `\text` and `\hat` (the last for the corrected (52)-(53)), cover the chapter. The brace groups use `empheq` and wide tables `pdflscape`, both loaded in preamble.tex.
 
-## 16. Version 2 figures (settled at the pilot, 2026-09-30)
+## 16. Version 2 figures (settled at the pilot, 2026-09-30; all 147 switched 2026-10-01)
 
 The line figures are redrawn as vector art in a modern style (the owner's decision): the same content, a
 uniform modern look. Photographs and plates stay scanned. The plan is `~/.claude/plans/tamr-v2-figures.md`;
@@ -419,9 +420,9 @@ the per-figure record is `figures/v2/inventory.csv`; doubts and decisions are in
   behind), `\getview` (the view direction). They read the view from the x, y, z vectors, so they also work in
   another parallel view (Ch2 Fig 43's).
 - **Tables in figures**: `booktabs` rules and `siunitx` `S` columns (loaded by `tamrfig`; `\sisetup` locally).
-- **Figure-local helpers.** Define a helper once in `tamrfig.sty` when a second figure needs it. A figure may
-  still define its own macro under a kit name with `\newcommand` (Ch2 Figs 1, 6, 43, 44, 48 do): its definition
-  wins.
+- **Figure-local helpers.** Define a helper once in `tamrfig.sty` when a second figure needs it. A figure's own
+  helper must not take a kit name (`\newcommand` stops with "already defined"): Ch2 Figs 1, 6, 43, 44 and 48,
+  drawn before the kit, prefix theirs `\fig` (`\figanglemark`, `\figblk`, `\figcylx`, `\figdimout` ...).
 - **Pitfalls.** Inside a pgfplots `axis`, drawing commands are deferred to `\end{axis}`, so a `\foreach`
   variable is gone when they run (`\k`, the T1 ogonek accent, and `\i` fail outright): loop with
   `\pgfplotsinvokeforeach{<list>}{... #1 ...}`, or `\edef\temp{\noexpand\draw ...}\temp`. Under the house

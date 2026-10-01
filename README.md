@@ -11,12 +11,14 @@ authors' later corrections (Mandell's of June 1994 and 15 February 2022, and the
 
 ## Status
 
-Version 1.0: the complete book (front matter, Chapters 1-4, appendixes, figure credits, and the Errata and
+Version 2.0: the complete book (front matter, Chapters 1-4, appendixes, figure credits, and the Errata and
 Supplement Part) with the corrections applied. The corrections of the errata sheet and of the later documents
 are made in the chapters, each with an editor's note that quotes what the 1973 edition read (purely
 typographical ones without a note); the few instructions not carried out are named in the notes and in
-"About This Edition". The text, mathematics, tables and Symbols lists are typeset; the figures and
-photographs are cropped from the scan (`figures/manifest.csv`), and version 2 will vectorize the figures.
+"About This Edition". The text, mathematics, tables and Symbols lists are typeset; the line figures
+are redrawn as vector art with their lettering in type (version 2, below), and the plates and photographs
+are cropped from the scan (`figures/manifest.csv`). Version 1.0 (tag `v1.0`) reproduced every figure from
+the scan.
 The text was transcribed from the page images and checked against the scan in separate audit passes, one
 report per unit and round in `audit/`; the per-chapter correction lists, with the decision taken on each
 item and on each doubt, are in `corrections/`. `make all` also runs `tools/check_numbering.py` (every
@@ -45,14 +47,18 @@ Toolchain used: TeX Live 2026 (pdflatex, newtx, manyfoot, newfloat, placeins; Ti
 version 2), latexmk 4.87, poppler 26.08 (pdfimages, pdftotext, pdftoppm, pdfinfo, pdffonts), Python 3 with
 Pillow 12.3, numpy and (version 2 tools) scipy.
 
-## Version 2 (in progress)
+## Version 2
 
-Version 2 redraws the line figures as vector artwork (TikZ and pgfplots, in a modern style; photographs and
-plates stay scanned). The sources are `figures/v2/<dir>/<name>.tex`, one standalone document per figure in
+Version 2 redraws the 147 line figures as vector artwork (TikZ and pgfplots, in a modern style; photographs
+and plates stay scanned). The sources are `figures/v2/<dir>/<name>.tex`, one standalone document per figure in
 the house style `figures/v2/tamrfig.sty`; `figures/v2/inventory.csv` lists every figure with what it holds,
-where its curve data come from and its status. A figure replaces its crop in the book once it is audited.
-Curve data are computed from the book's equations where they determine the curve, otherwise traced from
-the scan with `tools/v2/digitize.py`, which also overlays any curve on the scan to check it.
+where its curve data come from and its status. A figure replaced its crop in the book once it was audited
+(`tools/v2/switch.py`; check 10 of `tools/check_numbering.py` keeps every switched figure audited, built
+from its current sources, with embedded fonts and within the text width). Curve data are computed from the
+book's equations, or from the outside formulas it relies on, where they determine the curve, otherwise traced
+from the scan with `tools/v2/digitize.py`, which also overlays any curve on the scan to check it. Every
+difference from the 1973 artwork, and each decision taken on one, is in `corrections/v2-figures.md`; the
+figure audits are `audit/v2-*.md`.
 
 ## Layout
 

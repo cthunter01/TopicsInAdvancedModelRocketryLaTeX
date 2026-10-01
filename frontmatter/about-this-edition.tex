@@ -1,6 +1,6 @@
 % frontmatter/about-this-edition.tex -- editorial preface of the LaTeX edition (not in the scan)
 % Sources: README.md, STYLE.md, corrections/ch1.md-ch4.md, inventory/ch1-renumber.json,
-% figures/vectorize-todo.md, backmatter/supplement/*.tex, frontmatter/titlepage-2025.tex,
+% figures/v2/inventory.csv, corrections/v2-figures.md, backmatter/supplement/*.tex, frontmatter/titlepage-2025.tex,
 % main.tex, chapters/*.tex, audit/*.md and the git history.
 \chapter{About This Edition}\label{front:about}
 
@@ -16,7 +16,9 @@ SHA-256 checksum
 \begin{center}
   \small\texttt{51b26ed677ca17e7db7638ecc3454bbf77c8eedf78b19b3415b49dd7430c60ae}
 \end{center}
-This is the first version of the edition, prepared in 2026.
+This is the second version of the edition, prepared in 2026. It differs from the first version, of
+the same year, in its figures, which are redrawn (see ``Figures'' below), and in one equation of
+Chapter~\ref{ch3}, which the editor corrects.
 
 \section*{Contents of This Volume}
 
@@ -253,12 +255,50 @@ reproduced in the last Part beside their replacements.
 
 \section*{Figures}
 
-In this first version of the edition the figures and the photographic plates are reproduced from
-the scan, each cropped from its page; the replacement figures are cropped from the supplement pages,
-and Figure~\ref{ch2:fig:52} of Chapter~\ref{ch2} is the chart that accompanies the 2022 correction.
-The tables and the Symbols lists are typeset. Many figures carry formulas or tables in the artwork
-itself, and these stay part of the images: a list kept for a later version names 31 such figures in
-Chapter~\ref{ch2} alone, from the formulas beneath the flywheel of Figure~\ref{ch2:fig:5} to the
-table of measurements in Figure~\ref{ch2:fig:46}, and Figures~\ref{ch3:fig:29}, \ref{ch3:fig:31},
-\ref{ch3:fig:39}b, \ref{ch3:fig:44} and~\ref{ch3:fig:45} of Chapter~\ref{ch3} contain tables drawn
-in the artwork. A later version may redraw the figures and set their lettering in type.
+The line figures are redrawn, and all their lettering is set in type, including the formulas and
+tables that many of them carry in the artwork, from the formulas beneath the flywheel of
+Figure~\ref{ch2:fig:5} of Chapter~\ref{ch2} to the tables of Figures~\ref{ch3:fig:29},
+\ref{ch3:fig:31}, \ref{ch3:fig:39}b, \ref{ch3:fig:44} and~\ref{ch3:fig:45} of Chapter~\ref{ch3}.
+The replacement figures and the 1973 forms reproduced in the last Part, and Figure~\ref{ch2:fig:52}
+of Chapter~\ref{ch2}, the chart that accompanies the 2022 correction, are redrawn in the same way. The
+photographic plates, Plate~\ref{ch2:plate:1} of Chapter~\ref{ch2} and Plates~\ref{ch3:plate:1}
+to~\ref{ch3:plate:6} of Chapter~\ref{ch3}, and the photographs of the authors are reproduced from
+the scan. The lettering keeps the symbols that the 1973 figures print, even where the text writes
+the same quantity differently. A drawing whose geometry contradicts its own lettering or the text,
+as in Figures~\ref{ch4:fig:2} and~\ref{ch4:fig:15}b of Chapter~\ref{ch4}, is drawn consistently,
+and a line that the text calls dotted is dotted where the 1973 figure dashes it. The vector arrow of the
+pressure term in the 1994 replacement for Figure~\ref{ch1:fig:2} of Chapter~\ref{ch1} stands over
+$A_e$ alone, as Mandell's note on the notation of the pressure term directs, in the chapter and in
+the last Part.
+
+Where the book's own equations determine a curve, the curve is computed from them, and the result is
+checked by laying it over the page image of the scan. The response curves of
+Chapter~\ref{ch2}, the boundary-layer and drag curves of Chapter~\ref{ch3}, and
+Figures~\hyperref[ch4:fig:6a]{6}, \ref{ch4:fig:11} and~\ref{ch4:fig:16} of Chapter~\ref{ch4}, which that
+chapter's methods give for the Type B4 engine, are of this kind. A few curves are computed from
+sources that the book relies on without printing their formulas: the 1962 U.S. Standard Atmosphere
+for Figures~\ref{ch3:fig:2} to~\ref{ch3:fig:4}, \ref{ch3:fig:7} and~\ref{ch3:fig:8} of
+Chapter~\ref{ch3}, Lamb's coefficients for the prolate spheroid for Figure~\ref{ch3:fig:35},
+slender-body theory for Figure~\ref{ch3:fig:40}, Mangler's transformation for the cone in
+Figures~\ref{ch3:fig:20} and~\ref{ch3:fig:21}b, and the potential flow about a Rankine half-body for
+Figure~\ref{ch3:fig:28}. All other curves are traced from the scan: the measured thrust curves, the
+results of tests and flights, the curves that the authors take from other works, and the curves of
+Chapter~\ref{ch4} for engines whose thrust curves the book does not give.
+
+Where a computed curve differs from the 1973 drawing, the computed curve is drawn. In most figures
+the two differ by no more than the width of a line. The larger differences are these. In
+Chapter~\ref{ch2} the curves of Figures~\ref{ch2:fig:25} and~\ref{ch2:fig:31} lie up to $0.1/C_1$
+below the 1973 ones beyond a frequency ratio of about 1.6; the curve of Figure~\ref{ch2:fig:49}
+reaches $9.6/C_1$ at $\zeta = 0.052$, by equation~\eqref{ch2:eq:50}, where the 1973 one reaches
+$8/C_1$; and the centers of pressure in Figures~\ref{ch2:fig:34} to~\ref{ch2:fig:36} are placed by
+equations~\eqref{ch2:eq:82}, \eqref{ch2:eq:84} and~\eqref{ch2:eq:90}. In Chapter~\ref{ch3} curve A
+of Figure~\ref{ch3:fig:22} lies about a tenth of a decade below the 1973 one, and
+Figure~\ref{ch3:fig:46} plots the exact equations~\eqref{ch3:eq:171a} and~\eqref{ch3:eq:171d} for
+the ellipsoid and the cone, so that the caption's ``approximate'' now applies to the ogive line
+alone. In Chapter~\ref{ch4} the curves of Figure~\hyperref[ch4:fig:6a]{6} lie up to about one percentage
+point from the 1973 ones. In Figure~\ref{ch4:fig:11} trajectories (a) and (b) follow the 1973
+curves to burnout and part from them afterwards, and the times marked on the curves are the
+computed ones: trajectory (a) reaches its apex, at 418 meters, after 7.07 seconds and returns to
+the ground after 19.16 seconds, where the 1973 figure has about 370 meters, 5.60 seconds and
+16.70 seconds. The figures' sources, and a list of every difference from the 1973 artwork, are kept
+with the edition's source files.

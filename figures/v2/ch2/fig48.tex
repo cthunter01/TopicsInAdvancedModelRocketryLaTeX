@@ -29,12 +29,12 @@
     dim arrow/.style={draw=ink2, line width=0.4pt, -{Stealth[length=4pt,width=2.4pt]}},
     lab/.style={font=\small, inner sep=1.5pt},
   }
-  % \dimout{<P1>}{<P2>}: a dimension too short for its label: two arrows from outside, pointing at P1 and P2
-  \newcommand{\dimout}[2]{%
+  % \figdimout{<P1>}{<P2>}: a dimension too short for its label: two arrows from outside, pointing at P1 and P2
+  \newcommand{\figdimout}[2]{%
     \draw[dim arrow] ($#1!-3.6mm!#2$) -- #1;
     \draw[dim arrow] ($#2!-3.6mm!#1$) -- #2;}
-  % \callout[<leader options>]{<point>}{<label height>}{<label>}: leader with a horizontal shoulder
-  \newcommand{\callout}[4][]{%
+  % \figcallout[<leader options>]{<point>}{<label height>}{<label>}: leader with a horizontal shoulder
+  \newcommand{\figcallout}[4][]{%
     \draw[leader, #1] #2 -- (7.8,#3) -- (10.2,#3) node[lab, anchor=west] {#4};}
   \def\tip{37.25}\def\nb{28.98}\def\R{1.24}\def\ec{-8.75}   % tip, nose base, body radius, end view centre
   \def\cg{12.42}\def\cp{4.83}                                % C.G. and C.P. above the tail
@@ -81,7 +81,7 @@
   \dimline[rotate=90]{(-10.3,\nb)}{(-10.3,\tip)}{8.27}
   \dimline[rotate=90]{(-10.3,0)}{(-10.3,\nb)}{28.98}
   \dimline[rotate=90]{(-8.4,0)}{(-8.4,7)}{7.00}
-  \dimout{(-8.4,\nb-1.27)}{(-8.4,\nb)}
+  \figdimout{(-8.4,\nb-1.27)}{(-8.4,\nb)}
   \node[lab, rotate=90, anchor=east] at (-8.4,\nb-1.27-1.25) {1.27};
 
   % ---- dimensions: fins --------------------------------------------------------------------------------
@@ -89,7 +89,7 @@
   \draw[extension] (6.32+0.35,2.54) -- (8.9,2.54);
   \draw[extension] (6.32+0.35,0) -- (10.9,0);
   \dimline[rotate=90]{(10.6,0)}{(10.6,5.08)}{5.08}
-  \dimout{(8.6,0)}{(8.6,2.54)}
+  \figdimout{(8.6,0)}{(8.6,2.54)}
   \node[lab, rotate=90, anchor=east] at (8.6,-1.25) {2.54};
   \draw[extension] (\R,-0.35) -- (\R,-1.85) (6.32,-0.35) -- (6.32,-1.85);
   \dimline{(\R,-1.55)}{(6.32,-1.55)}{5.08}
@@ -98,7 +98,7 @@
   \begin{scope}[shift={(0,\ec)}]
     % fin thickness, at the tip of the left fin
     \draw[extension] (-6.32-0.3,0.08) -- (-7.8,0.08) (-6.32-0.3,-0.08) -- (-7.8,-0.08);
-    \dimout{(-7.5,-0.08)}{(-7.5,0.08)}
+    \figdimout{(-7.5,-0.08)}{(-7.5,0.08)}
     \node[lab, rotate=90, anchor=west] at (-7.5,1.33) {0.16};
     % diameters: outside, inside, casing
     \foreach \r/\y/\lab/\ys in {1.24/-2.9/2.48/-0.35, 1.205/-4.2/2.41/-0.35, 1.05/-5.5/2.10/-0.95} {
@@ -109,12 +109,12 @@
   \end{scope}
 
   % ---- callouts ----------------------------------------------------------------------------------------
-  \callout{({nose(6.8)},\tip-6.8)}{34.05}{Estes BNC-50X}
-  \callout{(\R,21.35)}{24.95}{Estes BT-50}
-  \callout[shorten <=2.9pt]{(0,\cg)}{16.95}{\CG}
-  \callout{(1.05,7)}{11.6}{Flight Systems}
+  \figcallout{({nose(6.8)},\tip-6.8)}{34.05}{Estes BNC-50X}
+  \figcallout{(\R,21.35)}{24.95}{Estes BT-50}
+  \figcallout[shorten <=2.9pt]{(0,\cg)}{16.95}{\CG}
+  \figcallout{(1.05,7)}{11.6}{Flight Systems}
   \node[lab, anchor=west] at (10.2,10.3) {21\,$\times$\,70-mm casing};
-  \callout[shorten <=2.7pt]{(0,\cp)}{8.3}{\CP}
+  \figcallout[shorten <=2.7pt]{(0,\cp)}{8.3}{\CP}
 
   % ---- scale bar (true: 8 cm = 8 units) and title -----------------------------------------------------------
   \begin{scope}[shift={(14.2,-3.6)}]

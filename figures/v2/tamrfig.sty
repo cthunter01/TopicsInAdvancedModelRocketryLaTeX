@@ -604,17 +604,4 @@
   \rk@X{\rk@Lt}{0}{0}{0}\path \rk@pt coordinate (-tail);
 }
 
-% ---- a figure's own definitions ---------------------------------------------------------------------------
-% A figure may define, with \newcommand, a macro of the same name as one of the kit's (Ch2 Figs 1, 6, 43, 44
-% and 48 keep their own \anglemark, \cylx, \blk, \dimout, \callout ...): for these names \newcommand quietly
-% replaces the kit's macro instead of stopping with "already defined".
-\edef\tamr@soft{\detokenize{,anglemark,dimout,callout,breakline,cylx,cyly,cylz,ringx,ringy,ringz,blk,getview,%
-  silangle,}}
-\let\tamr@ifdefinable\@ifdefinable
-\long\def\@ifdefinable#1#2{%
-  \edef\tamr@name{,\expandafter\@gobble\string#1,}%
-  \@expandtwoargs\in@{\tamr@name}{\tamr@soft}%
-  \ifin@\expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi{#2}{\tamr@ifdefinable{#1}{#2}}}
-\let\@@ifdefinable\@ifdefinable % (\renewcommand restores \@ifdefinable from \@@ifdefinable)
-
 \endinput

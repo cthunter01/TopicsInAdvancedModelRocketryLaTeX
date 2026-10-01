@@ -60,9 +60,9 @@
       \pgfmathsetmacro\hh{#4*(\hin+(\hout-\hin)*\k/#5)}%
       \draw[hatchline] ($ {\hh}*(#1) $) -- ($ {\hh}*(#2) $) -- ($ {\hh}*(#3) $);}%
     \draw[chord] ($ {#4}*(#1) $) -- ($ {#4}*(#2) $) -- ($ {#4}*(#3) $);}
-  % \anglemark[trim]{u}{v}{angle}{L}{label}{label options}: an arc at \arcr L from u towards v in their plane,
+  % \figanglemark[trim]{u}{v}{angle}{L}{label}{label options}: an arc at \arcr L from u towards v in their plane,
   % stopping trim degrees short of v, with its label in a gap at the middle of the arc
-  \newcommand\anglemark[7][0]{%
+  \newcommand\figanglemark[7][0]{%
     \coordinate (w) at ($ {1/sin(#4)}*(#3) + {-cot(#4)}*(#2) $);
     \pgfmathsetmacro\aend{#4-#1}%
     \draw[angle arc] ($ {\arcr*#5}*(#2) $) \foreach \k in {1,...,16} { -- ($ {\arcr*#5*cos(\k*\aend/16)}*(#2) + {\arcr*#5*sin(\k*\aend/16)}*(w) $) };
@@ -94,12 +94,12 @@
   \draw[de line] (O) -- ($ {\LB+0.24}*(e) $) node[right, inner sep=1.5pt] {\labe};
   \draw[fold] (O) -- ($ {\LC+0.24}*(f) $) node[above left, inner sep=0.5pt] {\labf};
   % ---- the angles ----
-  \anglemark{A}{d}{\pitch}{\LA}{\angAd}{}
-  \anglemark{d}{D}{\roll}{\LA}{\angdD}{}
-  \anglemark{B}{e}{\ayaw}{\LB}{\angBe}{}
-  \anglemark{e}{E}{\roll}{\LB}{\angeE}{}
-  \anglemark{C}{f}{\ayaw}{\LC}{\angCf}{}
-  \anglemark[\ftrim]{f}{F}{\pitch}{\LC}{\angfF}{}
+  \figanglemark{A}{d}{\pitch}{\LA}{\angAd}{}
+  \figanglemark{d}{D}{\roll}{\LA}{\angdD}{}
+  \figanglemark{B}{e}{\ayaw}{\LB}{\angBe}{}
+  \figanglemark{e}{E}{\roll}{\LB}{\angeE}{}
+  \figanglemark{C}{f}{\ayaw}{\LC}{\angCf}{}
+  \figanglemark[\ftrim]{f}{F}{\pitch}{\LC}{\angfF}{}
   % ---- the rocket along F, C.G. at O, seen from astern ----
   \coordinate (tip) at ($ {\stip}*(F) $);
   \coordinate (s1t) at ($ {\stail}*(F)+{\rad}*(n) $); \coordinate (s2t) at ($ {\stail}*(F)-{\rad}*(n) $);
