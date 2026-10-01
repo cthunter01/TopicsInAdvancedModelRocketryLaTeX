@@ -1,0 +1,58 @@
+% Chapter 2, Figure 45: reducing the wind-tunnel data (scan: figures/ch2/fig45.png).
+% The rocket pivots with the pulley wheel about the shaft at the wheel's centre (origin), on the wind axis;
+% the weight M in the pan hangs from the rim (radius R) and turns the nose up by alpha degrees. Lengths are
+% the scan's pixels (150 per inch) measured from the shaft, drawn 1.25 times the printed size (as Ch2
+% Fig 39): the rocket 366 long, the shaft 216.5 behind the nose tip, the axis 10.3 degrees nose up.
+% The rocket passes behind the wheel (its body lines there dashed).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.0212cm, y=0.0212cm]
+  \def\tilt{10.28}\def\nose{216.5}\def\R{63.4}
+  % the rocket, nose up to the left: stations along its axis from the nose tip, in tens of pixels
+  % (the ogive's arithmetic overflows TeX in pixel units)
+  \begin{scope}[shift={(180-\tilt:\nose)}, rotate=-\tilt, scale=10]
+    \rocketoutline{5.4/0.935, 36.6/0.935}
+    \rocketfins{36.6}{0.935}{4.6}{1.9}{3.5}{2.7}
+  \end{scope}
+  % the pulley wheel in front of it; the body lines behind the wheel dashed
+  \draw[outline, fill=white] (0,0) circle (\R);
+  \begin{scope}
+    \clip (0,0) circle (\R);
+    \draw[hidden, shift={(180-\tilt:\nose)}, rotate=-\tilt] (54,9.35) -- (366,9.35) (54,-9.35) -- (366,-9.35);
+  \end{scope}
+  % centre lines: the wind axis (the wheel's horizontal one), the wheel's vertical one, the rocket's axis
+  \draw[centerline] (-291,0) -- (302,0);
+  \draw[centerline] (0,90) -- (0,-90);
+  \draw[centerline] (180-\tilt:\nose) -- (-\tilt:246);
+  \draw[thin line] (180-\tilt:\nose) -- (180-\tilt:278);   % the axis extended ahead of the nose
+  \node[anchor=north west, inner sep=0pt] at (-291,-5) {Wind axis};
+  % the deflection angle, between the extended axis and the wind axis
+  \draw[angle arc] (180:260) arc[start angle=180, end angle=180-\tilt, radius=260]
+    node[pos=0.5, fill=white, inner sep=1pt] {$\alpha^\circ$};
+  % cords from the rim: counterweight on the left, balance pan on the right
+  \draw[outline] (-\R,0) -- (-\R,-90.9);
+  \draw[outline] (-\R,-90.9) -- (-72.4,-102.5) -- (-72.4,-130) -- (-54.4,-130) -- (-54.4,-102.5) -- cycle
+    (-72.4,-102.5) -- (-54.4,-102.5);
+  \draw[outline] (\R,0) -- (\R,-90.9);
+  \begin{scope}[shift={(\R,0)}]
+    % the weight: body, neck and knob
+    \draw[outline, fill=white] (-14.2,-142.5) rectangle (14.2,-120);
+    \draw[outline, fill=white] (-3,-120) rectangle (3,-110);
+    \draw[outline, fill=white] (0,-106.5) ellipse (4.6 and 3.2);
+    % the pan: three strings from the ring, the rim seen edge-on and the bowl
+    \draw[outline] (-36.25,-142.5) -- (0,-90.9) -- (36.25,-142.5) (0,-90.9) -- (0,-142.5);
+    \draw[outline] (-36.25,-142.5) -- (36.25,-142.5);
+    \draw[outline] (-36.25,-142.5) arc[start angle=227.2, end angle=312.8, radius=53.4];
+  \end{scope}
+  % callouts
+  \draw[leader] (58.6:\R) -- (58,90) node[anchor=south west, inner sep=1.5pt] {$R$ (cm)};
+  \draw[leader] (\R+5,-129) -- (122,-129) node[anchor=west, inner sep=1.5pt] {$M$ (g)};
+  % the data reduction
+  \node[anchor=north west, inner sep=0pt] at (-200,176) {%
+    \begin{tabular}{@{}l@{\;}l@{}}
+      Deflection angle (rad) & $= \dfrac{\alpha^\circ}{57.3}$\\[5pt]
+      Moment (dyn-cm) & $= M \times 980 \times R$
+    \end{tabular}};
+\end{tikzpicture}
+\end{document}

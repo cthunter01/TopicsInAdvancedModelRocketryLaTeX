@@ -1,0 +1,58 @@
+% Chapter 2, Figure 42: notation for the contributions to the radial moment of inertia, eqs. (105a), (105b),
+% (107), (108a) (scan: figures/ch2/fig42.png). An exploded side view: the ellipsoidal nosecone with its
+% shoulder (a solid cylinder), a gap, and the body tube (a hollow cylinder, its bore in hidden lines)
+% carrying the fins (the caption's set of four; the side view shows two). The shoulder's radius is the
+% tube's inner radius. Lettering as printed: lowercase r_o, r_i (eq. (105b) and Fig 41: R_o, R_i;
+% standing rule 2).
+% Lengths are the scan's pixels (150 per inch) measured from the nose tip, drawn 1.25 times the printed
+% size (the scale of Fig 39).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\tikzset{dim arrow/.style={draw=ink2, line width=0.4pt, -{Stealth[length=4pt,width=2.4pt]}}}
+\begin{document}
+\begin{tikzpicture}[x=0.0212cm, y=0.0212cm]
+  \def\R{13.5}\def\Ri{11}
+  \draw[centerline] (-19,0) -- (564,0);
+  % the nosecone (half an ellipse, drawn exactly) and its shoulder
+  \draw[outline] (54,\R) arc[start angle=90, end angle=270, x radius=54, y radius=\R] -- cycle;
+  \draw[outline] (54,-\Ri) rectangle (73,\Ri);
+  % the body tube (bore hidden) and two of its fins
+  \draw[outline] (128,-\R) rectangle (478,\R);
+  \draw[hidden] (128,\Ri) -- (478,\Ri) (128,-\Ri) -- (478,-\Ri);
+  \rocketfins{478}{\R}{74}{28.5}{58.5}{45.5}
+  \begin{scope}[every node/.style={font=\small, inner sep=1.5pt}]
+    % R of the nose and R of the shoulder: arrows outside, the upper arrow's line carried up to its name
+    \draw[extension] (57,\R) -- (87,\R) (76,\Ri) -- (105,\Ri);
+    \draw[dim arrow] (83,126) -- (83,\R);
+    \draw[leader] (83,126) -- (87,126) node[anchor=west] {$R$ of ellipsoidal nose};
+    \draw[dim arrow] (83,-16) -- (83,0);
+    \draw[dim arrow] (101,90) -- (101,\Ri);
+    \draw[leader] (101,90) -- (105,90) node[anchor=west] {$R$ of solid cylinder};
+    \draw[dim arrow] (101,-16) -- (101,0);
+    % the named components
+    \draw[leader] (220,\R) -- (245,54) node[anchor=north west, align=left, yshift=5.5pt]
+      {Hollow\\cylinder};
+    \node[anchor=base west] (pf1) at (367,142) {Planform};
+    \node[anchor=base west] (pf2) at ([yshift=-12pt]pf1.base west) {area of};
+    \node[anchor=base west] (pf3) at ([yshift=-12pt]pf2.base west) {one fin $= A_f$};
+    \draw[leader] (452,36) -- (pf3.south);
+  \end{scope}
+  % r_o, r_i of the tube (arrows outside, from the centre line; labels above the upper tails)
+  \draw[extension] (481,\R) -- (499,\R) (481,\Ri) -- (524,\Ri);
+  \draw[dim arrow] (495,38) -- (495,\R) node[at start, anchor=south, inner sep=1.5pt] {$r_o$};
+  \draw[dim arrow] (495,-12) -- (495,0);
+  \draw[dim arrow] (520,38) -- (520,\Ri) node[at start, anchor=south, inner sep=1.5pt] {$r_i$};
+  \draw[dim arrow] (520,-12) -- (520,0);
+  % r_t (centre line to the fin root; label below the lower tail) and the span s (label in the gap)
+  \draw[extension] (481,-\R) -- (567,-\R) (481,-72) -- (567,-72);
+  \draw[dim arrow] (535,19) -- (535,0);
+  \draw[dim arrow] (535,-30) -- (535,-\R) node[at start, anchor=north, inner sep=1.5pt] {$r_t$};
+  \dimline{(557,-\R)}{(557,-72)}{$s$}
+  % the chords: c_t (arrows outside), c_r
+  \draw[extension] (449.5,-75) -- (449.5,-103) (478,-75) -- (478,-122) (404,-16.5) -- (404,-122);
+  \draw[dim arrow] (437,-98.5) -- (449.5,-98.5);
+  \draw[dim arrow] (490.5,-98.5) -- (478,-98.5);
+  \node[inner sep=1.5pt] at (463.75,-98.5) {$c_t$};
+  \dimline{(404,-118.5)}{(478,-118.5)}{$c_r$}
+\end{tikzpicture}
+\end{document}

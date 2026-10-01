@@ -1,0 +1,22 @@
+% Chapter 2, Figure 19: overdamped response to a step disturbance in yaw (scan: figures/ch2/fig19.png).
+% Curve: fig19.py, eq. (35) with eqs. (25), (36a), (36b), zeta = 2.1 (matched to the scan on the family time axis),
+% in units of M_s/C_1 against omega_n t; the dashed line is the asymptote M_s/C_1, approached from below.
+% One layout and time scale for Figs 16-19 (same axes, t to 2.75 pi/omega_n): Fig 18 has the same C_1/I_L,
+% so this curve starts with the same curvature and then rises more slowly (the caption).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr sketch,
+      width=3.8in, height=2.5in,
+      xmin=0, xmax=9.35, ymin=-0.36, ymax=2.62,
+      ytick={1}, yticklabels={$\dfrac{M_s}{C_1}$},
+      xlabel={$t$ (sec)}, ylabel={$\alpha_X$ (rad)},
+      % tamr sketch's rotate=-90 turns this label to read downward: reset it to upright, above the arrow
+      every axis y label/.style={at={(ticklabel* cs:1.0)}, anchor=south}]
+    \draw[guide] (axis cs:0,1) -- (axis cs:8.63938,1);
+    \addplot[series1] table[x=t, y=alpha, col sep=comma] {figures/v2/ch2/fig19.csv};
+    \node[anchor=east, font=\footnotesize, text=ink2] at (axis cs:0,0) {0};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

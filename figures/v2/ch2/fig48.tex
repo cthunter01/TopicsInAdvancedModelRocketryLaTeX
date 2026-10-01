@@ -1,0 +1,132 @@
+% Chapter 2, Figure 48: dynamic test rocket DTV-1 (scan: figures/ch2/fig48.png).
+% Drawn to its lettered dimensions at 1:3 (coordinates are the rocket's centimetres: x across, y up from the
+% tail, axis x = 0), so the scale bar is true (standing rule 4: the 1973 bar is about 6% long).
+%   Body: nose 8.27 (tip to tube), shoulder 1.27 into the tube (hidden), BT-50 tube 28.98, overall 37.25,
+%   OD 2.48, ID 2.41 (the wall, 0.035, is below the drawing's resolution at 1:3 and is not drawn apart from
+%   the outline); engine casing 2.10 x 7.00 (hidden), its two inner lines at 5.82 and 1.34 above the tail as
+%   measured on the scan (unlettered); fins root chord 5.08, tip chord 2.54 (trailing edge square at the
+%   tail), span 5.08, thickness 0.16, four fins (two in profile, one edge-on on the axis).
+%   Not dimensioned, placed as measured on the scan (14.17 px/cm): C.G. 24.83 and C.P. 32.42 from the tip
+%   (7.59 apart, 3.1 calibers; the text's static margin is three calibers).
+%   The nose (BNC-50X) is the scan's profile: the mean of the tangent ogive and the ellipsoid of the same
+%   length and base, which fits the scan to about half a pixel (the scan lies between the two).
+%   End view below, centred 8.75 under the tail as printed: body circle, casing circle (hidden), four fins,
+%   all four at the 5.08 span (the 1973 end view runs its left fin about 2.7 too long, out to the 0.16
+%   dimension). The tube's inner wall (2.41) lies 0.035 inside the outline, under a line width at 1:3: as in
+%   the 1973 art, its hidden line in the side view and its extension lines in the end view merge with the
+%   outline's.
+% Overlay on the scan at its 14.17 px/cm (redraw ink against the scan's ink): body and nose 99.7%, fins and
+% casing 95.6% (the misses are the leaders, whose shoulders sit elsewhere), end view 100% within 3 px.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.333333cm, y=0.333333cm,
+    declare function={rn=1.24; nl=8.27; rho=(rn*rn+nl*nl)/(2*rn);
+      og(\s)=sqrt(max(0,rho*rho-(nl-\s)^2))+rn-rho;
+      el(\s)=rn*sqrt(max(0,1-(1-\s/nl)^2));
+      nose(\s)=0.5*og(\s)+0.5*el(\s);}]
+  \tikzset{
+    dim arrow/.style={draw=ink2, line width=0.4pt, -{Stealth[length=4pt,width=2.4pt]}},
+    lab/.style={font=\small, inner sep=1.5pt},
+  }
+  % \dimout{<P1>}{<P2>}: a dimension too short for its label: two arrows from outside, pointing at P1 and P2
+  \newcommand{\dimout}[2]{%
+    \draw[dim arrow] ($#1!-3.6mm!#2$) -- #1;
+    \draw[dim arrow] ($#2!-3.6mm!#1$) -- #2;}
+  % \callout[<leader options>]{<point>}{<label height>}{<label>}: leader with a horizontal shoulder
+  \newcommand{\callout}[4][]{%
+    \draw[leader, #1] #2 -- (7.8,#3) -- (10.2,#3) node[lab, anchor=west] {#4};}
+  \def\tip{37.25}\def\nb{28.98}\def\R{1.24}\def\ec{-8.75}   % tip, nose base, body radius, end view centre
+  \def\cg{12.42}\def\cp{4.83}                                % C.G. and C.P. above the tail
+
+  % ---- centre lines -------------------------------------------------------------------------------
+  \draw[centerline] (0,\tip+0.9) -- (0,\ec-7.2);
+  \draw[centerline] (-1.6,\ec) -- (7.4,\ec);
+
+  % ---- side view --------------------------------------------------------------------------------------
+  % nose (s = distance from the tip, sampled densely near the tip) and its joint with the tube
+  \foreach \sg in {1,-1}
+    \draw[outline] plot[domain=0:1, samples=60, smooth, variable=\t] ({\sg*nose(nl*\t*\t)}, {\tip-nl*\t*\t});
+  \draw[outline] (-\R,\nb) -- (\R,\nb);
+  \draw[hidden] (-1.205,\nb-1.27) -- (1.205,\nb-1.27);                 % end of the nose shoulder
+  % body tube
+  \draw[outline] (-\R,\nb) -- (-\R,0) -- (\R,0) -- (\R,\nb);
+  % engine casing (hidden) with its inner lines
+  \draw[hidden] (-1.05,0) -- (-1.05,7) -- (1.05,7) -- (1.05,0);
+  \draw[hidden] (-1.05,5.82) -- (1.05,5.82) (-1.05,1.34) -- (1.05,1.34);
+  % fins: two in profile, one edge-on
+  \foreach \sg in {1,-1}
+    \draw[outline] (\sg*\R,5.08) -- (\sg*6.32,2.54) -- (\sg*6.32,0) -- (\sg*\R,0);
+  \draw[outline, line width=0.4pt, fill=white] (-0.08,0) rectangle (0.08,5.08);
+  % C.G. and C.P.
+  \node[cg mark] (CG) at (0,\cg) {};
+  \node[cp mark] (CP) at (0,\cp) {};
+
+  % ---- end view (from the tail) ------------------------------------------------------------------------
+  \begin{scope}[shift={(0,\ec)}]
+    \foreach \a in {0,90,180,270}
+      \draw[outline, line width=0.4pt, fill=white, rotate=\a] (\R,-0.08) rectangle (6.32,0.08);
+    \draw[outline, fill=white] (0,0) circle (\R);
+    \draw[hidden] (0,0) circle (1.05);
+    \draw[centerline] (-1.6,0) -- (1.6,0) (0,-1.6) -- (0,1.6);
+  \end{scope}
+
+  % ---- dimensions: left of the side view -----------------------------------------------------------------
+  \draw[extension] (-0.35,\tip) -- (-12.5,\tip);
+  \draw[extension] (-\R-0.35,\nb) -- (-10.6,\nb);
+  \draw[extension] (-\R-0.35,\nb-1.27) -- (-8.7,\nb-1.27);
+  \draw[extension] (-\R-0.35,7) -- (-8.7,7);
+  \draw[extension] (-6.32-0.35,0) -- (-12.5,0);
+  \dimline[rotate=90]{(-12.2,0)}{(-12.2,\tip)}{37.25}
+  \dimline[rotate=90]{(-10.3,\nb)}{(-10.3,\tip)}{8.27}
+  \dimline[rotate=90]{(-10.3,0)}{(-10.3,\nb)}{28.98}
+  \dimline[rotate=90]{(-8.4,0)}{(-8.4,7)}{7.00}
+  \dimout{(-8.4,\nb-1.27)}{(-8.4,\nb)}
+  \node[lab, rotate=90, anchor=east] at (-8.4,\nb-1.27-1.25) {1.27};
+
+  % ---- dimensions: fins --------------------------------------------------------------------------------
+  \draw[extension] (\R+0.35,5.08) -- (10.9,5.08);
+  \draw[extension] (6.32+0.35,2.54) -- (8.9,2.54);
+  \draw[extension] (6.32+0.35,0) -- (10.9,0);
+  \dimline[rotate=90]{(10.6,0)}{(10.6,5.08)}{5.08}
+  \dimout{(8.6,0)}{(8.6,2.54)}
+  \node[lab, rotate=90, anchor=east] at (8.6,-1.25) {2.54};
+  \draw[extension] (\R,-0.35) -- (\R,-1.85) (6.32,-0.35) -- (6.32,-1.85);
+  \dimline{(\R,-1.55)}{(6.32,-1.55)}{5.08}
+
+  % ---- dimensions: end view ----------------------------------------------------------------------------
+  \begin{scope}[shift={(0,\ec)}]
+    % fin thickness, at the tip of the left fin
+    \draw[extension] (-6.32-0.3,0.08) -- (-7.8,0.08) (-6.32-0.3,-0.08) -- (-7.8,-0.08);
+    \dimout{(-7.5,-0.08)}{(-7.5,0.08)}
+    \node[lab, rotate=90, anchor=west] at (-7.5,1.33) {0.16};
+    % diameters: outside, inside, casing
+    \foreach \r/\y/\lab/\ys in {1.24/-2.9/2.48/-0.35, 1.205/-4.2/2.41/-0.35, 1.05/-5.5/2.10/-0.95} {
+      \draw[extension] (-\r,\ys) -- (-\r,\y-0.3) (\r,\ys) -- (\r,\y-0.3);
+      \draw[dim arrow] (-\r-1.1,\y) -- (-\r,\y);
+      \draw[dim arrow] (\r+1.1,\y) -- (\r,\y) node[lab, pos=0, anchor=west] {\lab};
+    }
+  \end{scope}
+
+  % ---- callouts ----------------------------------------------------------------------------------------
+  \callout{({nose(6.8)},\tip-6.8)}{34.05}{Estes BNC-50X}
+  \callout{(\R,21.35)}{24.95}{Estes BT-50}
+  \callout[shorten <=2.9pt]{(0,\cg)}{16.95}{\CG}
+  \callout{(1.05,7)}{11.6}{Flight Systems}
+  \node[lab, anchor=west] at (10.2,10.3) {21\,$\times$\,70-mm casing};
+  \callout[shorten <=2.7pt]{(0,\cp)}{8.3}{\CP}
+
+  % ---- scale bar (true: 8 cm = 8 units) and title -----------------------------------------------------------
+  \begin{scope}[shift={(14.2,-3.6)}]
+    \node[lab, anchor=south] at (4,0.95) {Scale (cm)};
+    \foreach \i in {0,1,2,3} {
+      \pgfmathtruncatemacro\odd{mod(\i,2)}
+      \ifnum\odd=0 \fill[ink] (2*\i,0.45) rectangle ++(2,0.45);
+      \else \fill[ink] (2*\i,0) rectangle ++(2,0.45); \fi
+    }
+    \draw[ink, line width=0.5pt] (0,0) rectangle (8,0.9);
+    \foreach \v in {0,2,4,6,8} \node[font=\footnotesize, anchor=north, inner sep=2pt] at (\v,0) {\v};
+  \end{scope}
+  \node[font=\small, anchor=base] at (18.2,-11.9) {\underline{DTV-1}};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,150 @@
+% Chapter 2, Figure 1: a set of Euler's angles (scan: figures/ch2/fig01.png, cited ch2-intro-sec1.tex:104-137).
+% A drawing (no curve data). The 1973 drawing is a true orthographic view: its nine axis directions fit the view
+% of Figure 3 (elevation 32 deg, azimuth 45 deg) to 0.85 deg rms with a yaw of -10.7 deg, a pitch of 12.2 deg and
+% a roll of 12.1 deg. Drawn with -11, 14 and 14 deg (pitch and roll 2 deg wider, to give the angle labels room):
+% the drawn directions are within 1.6 deg rms (3.1 deg at most, D) of the scan's. TikZ x = B, y = C, z = A: the
+% right-handed space axes, placed as Figure 3's E, F, D (the body axes start out coincident with them).
+% The rotations of Sec. 1.1:
+%   yaw alpha_D about D (= A):   e = B cos(yaw) + C sin(yaw),       f = C cos(yaw) - B sin(yaw)
+%   pitch alpha_E about Oe:      F = f cos(pitch) + A sin(pitch),   d = A cos(pitch) - f sin(pitch)
+%   roll alpha_F about F:        D = d cos(roll) + e sin(roll),     E = e cos(roll) - d sin(roll)
+% (the 1973 yaw turns E away from F, the negative sense of Figure 3; kept: the text gives no signs, and a
+% positive yaw folds the B-e-E and C-f-F sectors back over themselves in this view).
+% Each sector is two plane triangles folded along the line Od, Oe or Of (dashed: the text's "dashed line Of"),
+% hatched parallel to their outer edges, so that the hatching lies in the plane of the angle, and left clear
+% near the outer edge for the angle marks, as printed; each angle is marked by an arc in its own plane with its
+% label set in a gap at the middle (the printed dimension lines). Sector radii and axis lengths follow the scan;
+% drawn 1.32 times the printed size (1 unit = 100 scan pixels). The rocket lies along F with its C.G. at O and
+% its nose tip at the end of the C-f-F sector, seen from astern: body, fins and tail ring in the scan's
+% proportions (body and tail ring 17.5 scan pixels across, radius 0.088; four clipped-delta fins in the planes
+% of D and E). Its centre line runs from the nose tip to beyond the tail, so that F shows from O to its arrow.
+% Occlusion (standing rule 4): the 1973 art draws the hatched f-F face over the lower half of the forward body,
+% with the edge OF solid along the body's axis. In this right-handed view the face lies behind the body (1.74
+% body radii behind its lower silhouette), so the body is drawn in front of it and the f-F angle mark ends on
+% the nose's silhouette; F is shown through the body by the centre line.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x={(1.58053cm,0.83755cm)}, y={(-1.58053cm,0.83755cm)}, z={(0cm,1.89556cm)},
+  hatchline/.style={draw=ink2, line width=0.3pt},
+  chord/.style={draw=ink, line width=0.5pt},
+  fold/.style={draw=ink, line width=0.5pt, dash pattern=on 3pt off 2pt},
+  alab/.style={font=\small, fill=white, inner sep=0.6pt}]
+  % ---- lettering (Figure 6 is this drawing relabelled) ----
+  \def\labA{A}\def\labB{B}\def\labC{C}\def\labD{D}\def\labE{E}\def\labF{F}
+  \def\labd{d}\def\labe{e}\def\labf{f}
+  \tikzset{de line/.style={fold}} % the lines Od, Oe
+  \def\angAd{\alpha_E}\def\angdD{\alpha_F}\def\angBe{\alpha_D}\def\angeE{\alpha_F}\def\angCf{\alpha_D}\def\angfF{\alpha_E}
+  % ---- the rotations ----
+  \def\yaw{-11}\def\pitch{14}\def\roll{14}\pgfmathsetmacro\ayaw{abs(\yaw)}
+  \pgfmathsetmacro\eX{cos(\yaw)}\pgfmathsetmacro\eY{sin(\yaw)}
+  \pgfmathsetmacro\fX{-sin(\yaw)}\pgfmathsetmacro\fY{cos(\yaw)}
+  \pgfmathsetmacro\FX{\fX*cos(\pitch)}\pgfmathsetmacro\FY{\fY*cos(\pitch)}\pgfmathsetmacro\FZ{sin(\pitch)}
+  \pgfmathsetmacro\dX{-\fX*sin(\pitch)}\pgfmathsetmacro\dY{-\fY*sin(\pitch)}\pgfmathsetmacro\dZ{cos(\pitch)}
+  \pgfmathsetmacro\DX{\dX*cos(\roll)+\eX*sin(\roll)}\pgfmathsetmacro\DY{\dY*cos(\roll)+\eY*sin(\roll)}
+  \pgfmathsetmacro\DZ{\dZ*cos(\roll)}
+  \pgfmathsetmacro\EX{\eX*cos(\roll)-\dX*sin(\roll)}\pgfmathsetmacro\EY{\eY*cos(\roll)-\dY*sin(\roll)}
+  \pgfmathsetmacro\EZ{-\dZ*sin(\roll)}
+  \coordinate (O) at (0,0,0);
+  \coordinate (A) at (0,0,1); \coordinate (B) at (1,0,0); \coordinate (C) at (0,1,0);
+  \coordinate (d) at (\dX,\dY,\dZ); \coordinate (e) at (\eX,\eY,0); \coordinate (f) at (\fX,\fY,0);
+  \coordinate (D) at (\DX,\DY,\DZ); \coordinate (E) at (\EX,\EY,\EZ); \coordinate (F) at (\FX,\FY,\FZ);
+  % sector radii (A-d-D, B-e-E, C-f-F), the overshoot of the axes beyond them, and the fractions of the
+  % radius at which the hatching starts and stops and the angle arcs are drawn
+  \def\LA{2.45}\def\LB{3.0}\def\LC{3.33}\def\ovs{0.32}
+  \def\hin{0.1}\def\hout{0.81}\def\arcr{0.91}
+  % ---- the rocket's geometry (drawn last) ----
+  % camera direction c; n = F x c / |F x c| (the body's silhouette offset), q = F x n
+  \pgfmathsetmacro\cX{-cos(32)*cos(45)}\pgfmathsetmacro\cY{-cos(32)*sin(45)}\pgfmathsetmacro\cZ{sin(32)}
+  \pgfmathsetmacro\nX{\FY*\cZ-\FZ*\cY}\pgfmathsetmacro\nY{\FZ*\cX-\FX*\cZ}\pgfmathsetmacro\nZ{\FX*\cY-\FY*\cX}
+  \pgfmathsetmacro\nlen{sqrt(\nX*\nX+\nY*\nY+\nZ*\nZ)}
+  \pgfmathsetmacro\nX{\nX/\nlen}\pgfmathsetmacro\nY{\nY/\nlen}\pgfmathsetmacro\nZ{\nZ/\nlen}
+  \pgfmathsetmacro\qX{\FY*\nZ-\FZ*\nY}\pgfmathsetmacro\qY{\FZ*\nX-\FX*\nZ}\pgfmathsetmacro\qZ{\FX*\nY-\FY*\nX}
+  \coordinate (n) at (\nX,\nY,\nZ); \coordinate (q) at (\qX,\qY,\qZ);
+  % stations along F: nose tip (at the end of the C-f-F sector), nose base (and the nose's control point nc
+  % ahead of it), tail; body radius; fins (root chord, tip chord, span, sweep of the tip's leading edge:
+  % trailing edge square to the body)
+  \def\stip{\LC}\def\snb{2.66}\def\nc{0.4}\def\stail{-1.3}\def\rad{0.088}
+  \def\crd{0.8}\def\ctp{0.32}\def\spn{0.56}\def\swp{0.48}
+  % ---- helpers ----
+  % \sector{P}{M}{Q}{L}{N}: the two faces O-P-M and O-M-Q, hatched parallel to their outer edges with N+1
+  % lines from \hin to \hout of the radius L, meeting on the fold OM; the outer edges.
+  \newcommand\sector[5]{%
+    \foreach \k in {0,...,#5} {%
+      \pgfmathsetmacro\hh{#4*(\hin+(\hout-\hin)*\k/#5)}%
+      \draw[hatchline] ($ {\hh}*(#1) $) -- ($ {\hh}*(#2) $) -- ($ {\hh}*(#3) $);}%
+    \draw[chord] ($ {#4}*(#1) $) -- ($ {#4}*(#2) $) -- ($ {#4}*(#3) $);}
+  % \anglemark[trim]{u}{v}{angle}{L}{label}{label options}: an arc at \arcr L from u towards v in their plane,
+  % stopping trim degrees short of v, with its label in a gap at the middle of the arc
+  \newcommand\anglemark[7][0]{%
+    \coordinate (w) at ($ {1/sin(#4)}*(#3) + {-cot(#4)}*(#2) $);
+    \pgfmathsetmacro\aend{#4-#1}%
+    \draw[angle arc] ($ {\arcr*#5}*(#2) $) \foreach \k in {1,...,16} { -- ($ {\arcr*#5*cos(\k*\aend/16)}*(#2) + {\arcr*#5*sin(\k*\aend/16)}*(w) $) };
+    \node[alab, #7] at ($ {\arcr*#5*cos(\aend/2)}*(#2) + {\arcr*#5*sin(\aend/2)}*(w) $) {$#6$};}
+  % the arc from f to F ends on the nose's silhouette: page offset of the silhouette = the nose's radius r at
+  % the station arcr LC (+ half the outline); the nose is a Bezier from (snb, rad) to (stip, 0) with one
+  % control point (snb+nc, rad), used twice: s(t) = snb (1-t)^3 + 3 (snb+nc) t (1-t) + stip t^3 = arcr LC
+  % (Newton), r = rad (1 - t^3); page distance of the arc from the axis F = arcr LC sin(pitch - s) k,
+  % k = |P(d) x P(F)| / |P(F)|
+  \pgfmathsetmacro\PdX{0.70711*(\dX-\dY)}\pgfmathsetmacro\PdY{0.37471*(\dX+\dY)+0.84805*\dZ}
+  \pgfmathsetmacro\PFX{0.70711*(\FX-\FY)}\pgfmathsetmacro\PFY{0.37471*(\FX+\FY)+0.84805*\FZ}
+  \pgfmathsetmacro\kperp{abs(\PdX*\PFY-\PdY*\PFX)/sqrt(\PFX*\PFX+\PFY*\PFY)}
+  \pgfmathsetmacro\tnose{0.5}
+  \foreach \k in {1,...,4} {\pgfmathsetmacro\tn{\tnose}%
+    \pgfmathparse{\tn-(\snb*(1-\tn)^3+3*(\snb+\nc)*\tn*(1-\tn)+\stip*\tn^3-\arcr*\LC)
+      /(-3*\snb*(1-\tn)^2+3*(\snb+\nc)*(1-2*\tn)+3*\stip*\tn^2)}\xdef\tnose{\pgfmathresult}}
+  \pgfmathsetmacro\ftrim{asin((\rad*(1-\tnose^3)+0.005)/(\arcr*\LC*\kperp))}
+  % ---- the three sectors ----
+  \sector{A}{d}{D}{\LA}{37}
+  \sector{B}{e}{E}{\LB}{44}
+  \sector{C}{f}{F}{\LC}{48}
+  % ---- the space axes, the body axes D and E, and the dashed lines Od, Oe, Of ----
+  \draw[thin vec] (O) -- ($ {\LA+\ovs}*(A) $) node[above] {\labA};
+  \draw[thin vec] (O) -- ($ {\LB+\ovs}*(B) $) node[right] {\labB};
+  \draw[thin vec] (O) -- ($ {\LC+\ovs}*(C) $) node[left] {\labC};
+  \draw[thin vec] (O) -- ($ {\LA+\ovs}*(D) $) node[above] {\labD};
+  \draw[thin vec] (O) -- ($ {\LB+\ovs}*(E) $) node[right] {\labE};
+  \draw[de line] (O) -- ($ {\LA+0.24}*(d) $) node[above, inner sep=1.5pt] {\labd};
+  \draw[de line] (O) -- ($ {\LB+0.24}*(e) $) node[right, inner sep=1.5pt] {\labe};
+  \draw[fold] (O) -- ($ {\LC+0.24}*(f) $) node[above left, inner sep=0.5pt] {\labf};
+  % ---- the angles ----
+  \anglemark{A}{d}{\pitch}{\LA}{\angAd}{}
+  \anglemark{d}{D}{\roll}{\LA}{\angdD}{}
+  \anglemark{B}{e}{\ayaw}{\LB}{\angBe}{}
+  \anglemark{e}{E}{\roll}{\LB}{\angeE}{}
+  \anglemark{C}{f}{\ayaw}{\LC}{\angCf}{}
+  \anglemark[\ftrim]{f}{F}{\pitch}{\LC}{\angfF}{}
+  % ---- the rocket along F, C.G. at O, seen from astern ----
+  \coordinate (tip) at ($ {\stip}*(F) $);
+  \coordinate (s1t) at ($ {\stail}*(F)+{\rad}*(n) $); \coordinate (s2t) at ($ {\stail}*(F)-{\rad}*(n) $);
+  \coordinate (s1n) at ($ {\snb}*(F)+{\rad}*(n) $); \coordinate (s2n) at ($ {\snb}*(F)-{\rad}*(n) $);
+  % \fin{w}: the fin in the plane of F and the unit vector w (+-D, +-E), trailing edge square to the body
+  \newcommand\fin[1]{%
+    \draw[outline, fill=white] ($ {\stail+\crd}*(F)+{\rad}*(#1) $) -- ($ {\stail+\crd-\swp}*(F)+{\rad+\spn}*(#1) $)
+      -- ($ {\stail+\crd-\swp-\ctp}*(F)+{\rad+\spn}*(#1) $) -- ($ {\stail}*(F)+{\rad}*(#1) $) -- cycle;}
+  \coordinate (mD) at (-\DX,-\DY,-\DZ); \coordinate (mE) at (-\EX,-\EY,-\EZ);
+  % fins behind the body (+E, -D), body and nose, fins in front (+D, -E), the tail seen from astern
+  \fin{E} \fin{mD}
+  \def\bodypath{(s1t) -- (s1n) .. controls ($(s1n)+{\nc}*(F)$) .. (tip) .. controls ($(s2n)+{\nc}*(F)$) .. (s2n) -- (s2t)}
+  \fill[white] \bodypath -- cycle;
+  \draw[outline] \bodypath;
+  \draw[outline] ($ {\snb}*(F)-{\rad}*(n) $) \foreach \s in {195,210,...,360} { -- ($ {\snb}*(F)+{\rad*cos(\s)}*(n)+{\rad*sin(\s)}*(q) $) };
+  \draw[centerline] (tip) -- ($ {\stail}*(F) $); % F through the body, from the nose tip
+  % OA, Od and OD leave the body through its near half (their radial directions face the viewer; OB, OC, OE,
+  % Oe, Of leave through the far half and stay hidden), so they show over the body from where they leave it
+  % (O + rad/|u x F| u: |A x F| = cos(pitch), d and D are normal to F) out past the silhouette; Od keeps its
+  % dash phase (rad |P(d)| of the page from O, 1 unit = 63.598 pt along a page-parallel line)
+  \pgfmathsetmacro\dphase{\rad*sqrt(\PdX*\PdX+\PdY*\PdY)*63.598}
+  \draw[draw=ink, line width=0.6pt] ($ {\rad/cos(\pitch)}*(A) $) -- ($ {0.2}*(A) $);
+  \draw[draw=ink, line width=0.6pt] ($ {\rad}*(D) $) -- ($ {0.2}*(D) $);
+  \draw[de line, dash phase=\dphase pt] ($ {\rad}*(d) $) -- ($ {0.2}*(d) $);
+  \fin{D} \fin{mE}
+  \draw[outline, fill=white] ($ {\stail}*(F)+{\rad}*(n) $) \foreach \s in {15,30,...,345} { -- ($ {\stail}*(F)+{\rad*cos(\s)}*(n)+{\rad*sin(\s)}*(q) $) } -- cycle;
+  \draw[centerline] ($ {\stail}*(F) $) -- ($ {\stail-0.5}*(F) $);
+  % the F axis beyond the nose
+  \draw[thin vec] (tip) -- ($ {\stip+\ovs}*(F) $) node[above left, inner sep=1pt] {\labF};
+  % origin at the C.G.
+  \node[cg mark] at (O) {};
+  \node[anchor=north east, inner sep=0pt] at ($ {-\rad-0.02}*(n) $) {O}; % clear of the body's lower silhouette
+\end{tikzpicture}
+\end{document}

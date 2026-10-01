@@ -1,0 +1,55 @@
+% Chapter 2, Figure 5: angular acceleration of a flywheel (scan: figures/ch2/fig05.png).
+% The orthographic view of Figure 3 (elevation 32 deg, azimuth 45 deg; TikZ x right and away, y left and
+% away, z up). The wheel turns on the y axis, its front face (the plane y = 0) towards the viewer, a short
+% hub standing out of the face; the wheel is opaque, so the axis is hidden behind it.
+% The moment M and the angular velocity omega(t) (curved arrows on the face) turn the wheel clockwise on the
+% page, a positive rotation about +y (x towards -z). The fixed reference line (dashed) is horizontal, along
+% x, in the plane of the face; the line fixed on the wheel has turned from it through alpha(t) in the same
+% sense (the 1973 arc has one arrowhead, at the wheel's line). alpha is drawn at 25 degrees (the scan: 24).
+% The formulas are those of chapters/ch2-intro-sec1.tex:310-321, set beneath the wheel as printed.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x={(1.15cm,0.61cm)}, y={(-1.15cm,0.61cm)}, z={(0cm,1.38cm)}]
+  \def\phis{48.5}                      % silhouette angle of a body along y in this view
+  \def\R{1}\def\t{0.5}                 % wheel: radius, thickness (back face at y = t)
+  \def\rh{0.07}\def\lh{0.5}            % hub: radius, length out of the face
+  \def\al{25}                          % alpha(t) as drawn
+  \def\Lr{2.15}                        % length of the two radial lines
+  % axis: the part behind the wheel is hidden by its fill
+  \draw[centerline] (0,2.3,0) -- (0,0,0);
+  % the wheel: back rim (visible half), silhouettes, front face
+  \draw[outline, fill=white] ({-\R*cos(\phis)},0,{-\R*sin(\phis)})
+    -- plot[domain=0:180, samples=61] ({\R*cos(\phis+180-\x)}, \t, {\R*sin(\phis+180-\x)})
+    -- ({\R*cos(\phis)},0,{\R*sin(\phis)}) -- cycle;
+  \draw[outline, fill=white, canvas is xz plane at y=0] (0,0) circle[radius=\R];
+  \begin{scope}[canvas is xz plane at y=0]
+    % fixed horizontal reference line and the line on the wheel, turned through alpha(t)
+    \draw[guide] (0:\rh) -- (0:\Lr);
+    \draw[outline] (-\al:\rh) -- (-\al:\Lr);
+    \draw[draw=ink, line width=0.5pt, -{Stealth[length=4pt,width=2.6pt]}]
+      (0:1.85) arc[start angle=0, end angle=-\al, radius=1.85];
+    % applied moment and angular velocity: clockwise on the page
+    \draw[thin vec] (-58:0.5) arc[start angle=-58, end angle=-342, radius=0.5];
+    \draw[thin vec] (-45:0.76) arc[start angle=-45, end angle=-343, radius=0.76];
+  \end{scope}
+  \node[right=1pt] at ({1.85*cos(\al/2)},0,{-1.85*sin(\al/2)}) {$\alpha(t)$};
+  \node at ({0.3*cos(42)},0,{0.3*sin(42)}) {$M$};
+  \node[anchor=south west, inner sep=1pt] (w) at ({1.12*cos(30)},0,{1.12*sin(30)}) {$\omega(t)$};
+  \draw[leader, shorten >=1pt] (w.south west) -- ({0.76*cos(38)},0,{0.76*sin(38)});
+  % hub: a short cylinder standing out of the face towards the viewer
+  \draw[outline, fill=white] ({-\rh*cos(\phis)},0,{-\rh*sin(\phis)}) -- ({-\rh*cos(\phis)},-\lh,{-\rh*sin(\phis)})
+    -- ({\rh*cos(\phis)},-\lh,{\rh*sin(\phis)}) -- ({\rh*cos(\phis)},0,{\rh*sin(\phis)});
+  \draw[outline, canvas is xz plane at y=0] (\phis:\rh) arc[start angle=\phis, end angle=\phis+180, radius=\rh];
+  \draw[outline, fill=white, canvas is xz plane at y=-\lh] (0,0) circle[radius=\rh];
+  % axis through the hub and out in front
+  \draw[centerline] (0,0,0) -- (0,-2.9,0);
+  % the formulas, beneath the wheel
+  \node[anchor=north west, inner sep=0pt, font=\small] at (-2.55cm,-1.6cm) {\setlength{\jot}{1pt}$\begin{aligned}
+    \omega &= \gamma t\\
+    &= \frac{M}{I}\,t\\
+    \alpha &= \frac{\gamma}{2}\,t^{2}\\
+    &= \frac{M}{2I}\,t^{2}
+  \end{aligned}$};
+\end{tikzpicture}
+\end{document}

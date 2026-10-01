@@ -1,0 +1,66 @@
+{
+ "crop": "figures/ch2/fig22.png",
+ "note": "No numeric scale is printed. 'main': calibrated at the scan's own marks: the origin, the t_m vertical and the alpha_Xm level (values from eqs. (41)-(43) in the units of fig22.py). 'fit': the scales of a least-squares fit of the computed curve's shape to the scan (the axis tilt measured on the scan).",
+ "axes": {
+  "main": {
+   "xlog": false,
+   "ylog": false,
+   "points": [
+    [
+     58.3,
+     179.8,
+     0,
+     0
+    ],
+    [
+     112.0,
+     179.48,
+     1.0,
+     0
+    ],
+    [
+     57.73,
+     84.94,
+     0,
+     0.36788
+    ],
+    [
+     112.0,
+     84.94,
+     1.0,
+     0.36788
+    ]
+   ]
+  },
+  "fit": {
+   "xlog": false,
+   "ylog": false,
+   "points": [
+    [
+     58.3,
+     179.8,
+     0,
+     0
+    ],
+    [
+     352.9,
+     178.03,
+     6,
+     0
+    ],
+    [
+     57.6,
+     62.92,
+     0,
+     0.5
+    ],
+    [
+     352.2,
+     61.15,
+     6,
+     0.5
+    ]
+   ]
+  }
+ }
+}

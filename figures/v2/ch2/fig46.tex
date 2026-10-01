@@ -1,0 +1,85 @@
+% Chapter 2, Figure 46: graphical reduction of the wind-tunnel data (scan: figures/ch2/fig46.png).
+% (a) the table as printed; (b) its points (x marks; the origin unmarked, as printed) and the faired curve,
+% digitized from the scan's panel (b) (fig46.py -> fig46.csv; the points fig46-points.csv); (c) the
+% straightedge laid tangent to the curve at the origin and the line drawn along it, slope
+% C_1 = 5 x 10^6 dyn-cm (50 in the plot's units, 10^5 dyn-cm per rad): computed, y = 50 x. The straightedge is
+% drawn to the scan's (graduations every 18.55 px of its 150 dpi crop, the long ones every other); it hides
+% the curve's lower part, the axes at the origin and the 0.0 tick label, as printed.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\usepackage{booktabs}
+\usepackage{siunitx}
+\begin{document}
+\begin{tikzpicture}
+  \newlength{\figW}\setlength{\figW}{3.75in}   % the axes: 1.25 times the scan's (447.5 x 184 px at 150 dpi)
+  \newlength{\figH}\setlength{\figH}{1.54in}
+  \pgfmathsetmacro\rang{atan2(\figH/2, \figW/3)}   % the line y = 50 x on the page
+  \pgfmathsetlengthmacro\u{\figW/447.5}          % one pixel of the scan
+  \pgfplotsset{panel46/.style={tamr, width=\figW, height=\figH, xmin=0, xmax=0.3, ymin=0, ymax=10,
+      xtick={0,0.1,0.2,0.3}, ytick={0,5,10},
+      xticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=1},
+      xlabel={Deflection angle (rad)}, ylabel={Moment ($10^5$ dyn-cm)}, clip=false},
+    points46/.style={only marks, mark=x, mark size=2.3pt, mark options={draw=ink, line width=0.6pt, solid}}}
+  % (b)
+  \begin{axis}[panel46, name=b]
+    \addplot[series1] table[x=x, y=y, col sep=comma] {figures/v2/ch2/fig46.csv};
+    \addplot[points46] table[x=x, y=y, col sep=comma, skip coords between index={0}{1}]
+      {figures/v2/ch2/fig46-points.csv};
+    \node[panel, anchor=north east] at (rel axis cs:1,1) {(b)};
+  \end{axis}
+  % (a), above (b)
+  \node[anchor=south, font=\small, inner sep=0pt] (tab) at ([yshift=0.28in]b.north) {%
+    \sisetup{group-digits=none}%
+    \begin{tabular}{@{}S[table-format=1.3]@{\hspace{3.5em}}S[table-format=1.4, print-zero-integer=false]@{}}
+      \toprule
+      {Moment ($10^5$ dyn-cm)} & {Deflection angle (rad)} \\
+      \midrule
+      0.0   & .0000 \\
+      1.250 & .0240 \\
+      2.500 & .0490 \\
+      3.750 & .0770 \\
+      4.375 & .0875 \\
+      5.000 & .1000 \\
+      5.625 & .1135 \\
+      6.250 & .1340 \\
+      6.875 & .1610 \\
+      7.500 & .1852 \\
+      8.125 & .2315 \\
+      \bottomrule
+    \end{tabular}};
+  \node[panel, anchor=south east] at (tab.south -| b.east) {(a)};
+  \path ([yshift=1pt]tab.north);   % room for the top rule
+  % (c): the curve (its lower part to be hidden by the straightedge) and the construction at 0.1 rad
+  \begin{axis}[panel46, name=c, at={(b.south west)}, anchor=north west, yshift=-0.72in, xtick={0.1,0.2,0.3}]
+    % the curve below the line only: where it runs a hair above it (0.05-0.12 rad) the straightedge's
+    % edge covers it, as printed
+    \begin{scope}
+      \clip (axis cs:0,0) -- (axis cs:0.3,15) -- (axis cs:0.3,0) -- cycle;
+      \addplot[series1] table[x=x, y=y, col sep=comma] {figures/v2/ch2/fig46.csv};
+    \end{scope}
+    \draw[guide] (axis cs:0,5) -- (axis cs:0.1,5) -- (axis cs:0.1,0);
+    \coordinate (O) at (axis cs:0,0);
+  \end{axis}
+  % the straightedge, its edge on the line through the origin: a graduated band and a plain one
+  \begin{scope}[shift={(O)}, rotate=\rang, x=\u, y=\u]
+    \draw[outline, fill=wash] (-27.5,0) rectangle (270.5,-27);
+    \begin{scope}[draw=ink2, line width=0.4pt]
+      \draw (-27.5,-18) -- (270.5,-18);
+      \foreach \k in {0,...,14} {
+        \pgfmathsetmacro\s{-9.5 + 18.55*\k}
+        \ifodd\k \draw (\s,0) -- (\s,-18); \else \draw (\s,0) -- (\s,-8.5); \fi
+      }
+    \end{scope}
+  \end{scope}
+  % the points, the line drawn along the straightedge (beyond its end), the result
+  \begin{axis}[panel46, hide axis, at={(c.south west)}, anchor=south west]
+    \addplot[s2, curve, dash pattern=on 7pt off 2pt on 1.5pt off 2pt, domain=0.1542:0.212, samples=2] {50*x};
+    \addplot[points46] table[x=x, y=y, col sep=comma, skip coords between index={0}{1}]
+      {figures/v2/ch2/fig46-points.csv};
+    \node[anchor=east, inner sep=1pt] at (axis cs:0.186,9.75) {Linear approximation};
+    \node[anchor=west, inner sep=1pt] at (axis cs:0.112,3.3)
+      {$C_1 = \dfrac{5\times10^5}{0.1} = 5\times10^6$ dyn-cm};
+    \node[panel, anchor=north east] at (rel axis cs:1,1) {(c)};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

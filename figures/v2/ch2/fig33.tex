@@ -1,0 +1,54 @@
+% Chapter 2, Figure 33: center of pressure locations for some common nose shapes (scan: figures/ch2/fig33.png).
+% Four noses, tip up, one fineness L/d = 2.4 (measured on the scan). The outlines are generated exactly from
+% their definitions by fig33.py (cone; tangent ogive; paraboloid of revolution with its vertex at the tip;
+% half prolate spheroid): fig33-cone.csv, -ogive.csv, -paraboloid.csv, -ellipsoid.csv, in units of L.
+% The C.P. of each is placed at its printed distance from the tip, eqs. (80a)-(80d): 2/3 L, .466 L, 1/2 L,
+% 1/3 L. Overlay on the scan (fig33.calib.json): 95% of the points within 0, 0, 2 and 2 px.
+% Drawn in units of the nose length L = 3.6 cm (1.16 times the printed size).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=3.6cm, y=3.6cm]
+  \def\R{0.208333}                           % base radius, L/4.8
+  \def\dx{-0.31}                             % the C.P. dimension line, left of the centre line
+  % \nose{<centre x>}{<csv>}: the centre line first, then the outline over it (drawn from the csv in a hidden
+  % axis whose units are the picture's)
+  \newcommand{\nose}[2]{%
+    \draw[centerline] (#1,0.2) -- (#1,-1.2);
+    \begin{axis}[hide axis, x=3.6cm, y=3.6cm, disabledatascaling, anchor=origin, at={(#1,0)},
+        xmin=-0.25, xmax=0.25, ymin=-1, ymax=0, enlargelimits=false, clip=false]
+      \addplot[outline, mark=none] table[x=r, y=y, col sep=comma] {figures/v2/ch2/fig33-#2.csv};
+    \end{axis}
+    \draw[outline] (#1-\R,-1) -- (#1+\R,-1);}
+  % \cpdim{<centre x>}{<C.P. from the tip>}{<tip gap>}{<label>}: C.P. and its dimension from the tip
+  \newcommand{\cpdim}[4]{%
+    \draw[extension] (#1-#3,0) -- (#1+\dx-0.06,0);
+    \draw[extension] (#1-0.028,-#2) -- (#1+\dx-0.06,-#2);   % 2.9 pt short of the mark's centre
+    \dimline{(#1+\dx,0)}{(#1+\dx,-#2)}{$#4$}
+    \node[cp mark] at (#1,-#2) {};
+    \node[anchor=north, fill=white, inner sep=1pt] at (#1,-#2-0.035) {\CP$_n$};}
+  % \name{<centre x>}{<letter>}{<shape>}
+  \newcommand{\name}[3]{%
+    \node[panel, anchor=north] (p) at (#1,-1.25) {(#2)};
+    \node[anchor=north, inner sep=1pt] at (p.south) {#3};}
+  % (a) conical
+  \nose{0}{cone}
+  \cpdim{0}{0.666667}{0.025}{\tfrac{2}{3}L}
+  \name{0}{a}{Conical}
+  % (b) tangent ogive
+  \nose{0.85}{ogive}
+  \cpdim{0.85}{0.466}{0.025}{.466L}
+  \name{0.85}{b}{Tangent ogive}
+  % (c) paraboloidal
+  \nose{1.7}{paraboloid}
+  \cpdim{1.7}{0.5}{0.035}{\tfrac{1}{2}L}
+  \name{1.7}{c}{Paraboloidal}
+  % (d) ellipsoidal, with the nose length L dimensioned on the right
+  \nose{2.55}{ellipsoid}
+  \cpdim{2.55}{0.333333}{0.045}{\tfrac{1}{3}L}
+  \name{2.55}{d}{Ellipsoidal}
+  \draw[extension] (2.55+0.045,0) -- (2.55+0.43,0);
+  \draw[extension] (2.55+\R+0.025,-1) -- (2.55+0.43,-1);
+  \dimline{(2.55+0.37,0)}{(2.55+0.37,-1)}{$L$}
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,18 @@
+% Chapter 2, Figure 8: damping moment against angular velocity (scan: figures/ch2/fig08.png).
+% Curve: fig08.py (a measured curve, digitized from the scan: no equation; tangent at zero C_2 = 1.25x10^4
+% dyn-cm-sec, eq. (9) with the Fig 9 lettering). The same data as Fig 9's true M_d.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr,
+      width=3.8in, height=2.3in,
+      xmin=0, xmax=150, xtick={0,50,100,150}, minor xtick={25,75,125},
+      ymin=0, ymax=2e6, ytick={0,1e6,2e6}, minor ytick={0.5e6,1.5e6},
+      yticklabels={0, $1\times10^6$, $2\times10^6$},
+      xlabel={Angular velocity $\Omega_X$ (rad/sec)},
+      ylabel={Damping moment $M_d$ (dyn-cm)}]
+    \addplot[series1] table[x=Omega, y=Md, col sep=comma] {figures/v2/ch2/fig08.csv};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

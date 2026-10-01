@@ -1,0 +1,23 @@
+% Chapter 2, Figure 52 (Mandell's 2022 figure; scan: figures/supplement/ch2-fig52-2022.png), used in the chapter
+% (ch2:fig:52) and in the supplement Part: the roll rates to avoid to keep AR_c from exceeding 1.25/C_1.
+% Curve: ch2-fig52-2022.py, eq. (73b) set equal to 1.25/C_1 (the caption), zeta_c = sqrt(0.64 - (beta_c^2 - 1)^2)/(2 beta_c)
+% (not eqs. (115)-(117)); feet sqrt(0.2) = 0.447 and sqrt(1.8) = 1.342, peak 0.4472 at sqrt(0.6) = 0.775 (eqs.
+% (74a), (75)). Axes and grid as the 2022 chart (a gridline every 0.5 in beta_c and 0.05 in zeta_c); its axis titles
+% (lowercase omega_z, as printed there) are kept; the spreadsheet's point markers and three-decimal ticks are not.
+% Axes 4.2 x 3.0 in, the size of the chapter's other single frequency-response plots (Figs 25 and 31).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr grid,
+      width=4.2in, height=3.0in,
+      xmin=0, xmax=2.5, xtick={0,0.5,...,2.5},
+      xticklabels={0, 0.5, 1.0, 1.5, 2.0, 2.5},
+      ymin=0, ymax=0.5, ytick={0,0.05,...,0.5},
+      yticklabels={0, 0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50},
+      xlabel={Coupled Frequency Ratio $\beta_c = (\omega_z/\omega_{nc})$},
+      ylabel={Coupled Damping Ratio $\zeta_c$}]
+    \addplot[series1] table[x=beta, y=zeta, col sep=comma] {figures/v2/supplement/ch2-fig52-2022.csv};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

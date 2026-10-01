@@ -1,0 +1,54 @@
+% Chapter 2, Figure 2: definition of a right-handed coordinate system (scan: figures/ch2/fig02.png).
+% The orthographic view of Figure 3 (elevation 32 deg, azimuth 45 deg): TikZ x = B, y = C, z = A, so that
+% A x B = C (chapters/ch2-intro-sec1.tex:201-207). A right-hand screw lies along C, its slotted head at the
+% origin and its point towards C; the open arrow round the head, in the A-B plane, turns A towards B
+% (on the page: clockwise), and the screw then advances along +C.
+% The thread is the visible half of a right-handed helix about +C: polar angle psi (x = r cos psi,
+% z = r sin psi) falls as y rises, and the surface faces the viewer for 48.5 < psi < 228.5 deg.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x={(1.15cm,0.61cm)}, y={(-1.15cm,0.61cm)}, z={(0cm,1.38cm)}]
+  \def\phis{48.5}                       % silhouette angle of a body along y in this view
+  \def\rh{0.24}\def\hh{0.15}            % head: radius, height (face at y = 0)
+  \def\rs{0.115}\def\ys{1.42}\def\yt{1.71} % shank: radius, end of the thread, point
+  \def\p{0.1}                           % thread pitch
+  \def\re{0.64}                         % the turning arrow
+  % shank (cylinder), point (cone) and the crease between them
+  \coordinate (u0) at ({\rs*cos(\phis)},\hh,{\rs*sin(\phis)});
+  \coordinate (u1) at ({\rs*cos(\phis)},\ys,{\rs*sin(\phis)});
+  \coordinate (l0) at ({-\rs*cos(\phis)},\hh,{-\rs*sin(\phis)});
+  \coordinate (l1) at ({-\rs*cos(\phis)},\ys,{-\rs*sin(\phis)});
+  \coordinate (pt) at (0,\yt,0);
+  \draw[outline, fill=white] (u0) -- (u1) -- (pt) -- (l1) -- (l0) -- cycle;
+  \draw[thin line, canvas is xz plane at y=\ys] (\phis:\rs) arc[start angle=\phis, end angle=\phis+180, radius=\rs];
+  % thread crests: the visible half of each turn, from the lower silhouette (psi = 228.5) to the upper
+  \foreach \k in {0,...,11} {
+    \pgfmathsetmacro\yk{\hh+0.04+\k*\p}
+    \draw[hair] plot[domain=0:180, samples=19, smooth]
+      ({\rs*cos(\phis+180-\x)}, {\yk+\p*\x/360}, {\rs*sin(\phis+180-\x)});
+  }
+  % head: a short cylinder, slotted face towards the viewer
+  \coordinate (h1) at ({\rh*cos(\phis)},0,{\rh*sin(\phis)});
+  \coordinate (h2) at ({-\rh*cos(\phis)},0,{-\rh*sin(\phis)});
+  \draw[outline, fill=white] (h2) -- plot[domain=0:180, samples=37] ({\rh*cos(\phis+180-\x)}, \hh, {\rh*sin(\phis+180-\x)})
+    -- (h1) -- cycle;
+  \draw[outline, fill=white, canvas is xz plane at y=0] (0,0) circle[radius=\rh];
+  \begin{scope}[canvas is xz plane at y=0]
+    \def\w{0.03}\pgfmathsetmacro\L{sqrt(\rh*\rh-\w*\w)}
+    \path ($(150:\L)+(60:\w)$) coordinate (sa) ($(150:-\L)+(60:\w)$) coordinate (sb)
+          ($(150:-\L)+(60:-\w)$) coordinate (sc) ($(150:\L)+(60:-\w)$) coordinate (sd);
+    \fill[wash] (sa) -- (sb) -- (sc) -- (sd) -- cycle;
+    \draw[thin line] (sa) -- (sb) (sc) -- (sd);
+  \end{scope}
+  % the turn: A towards B, round the head in the A-B plane; it passes in front of the shank
+  \begin{scope}[canvas is xz plane at y=0]
+    \draw[white, line width=2.4pt] (267:\re) arc[start angle=267, end angle=-62, radius=\re];
+    \draw[thin vec] (267:\re) arc[start angle=267, end angle=-62, radius=\re];
+  \end{scope}
+  % axes from the origin (the centre of the head's face); C continues from the point of the screw
+  \draw[thin vec] (0,0,0) -- (0,0,2.6) node[above] {A};
+  \draw[thin vec] (0,0,0) -- (2.8,0,0) node[right] {B};
+  \draw[thin vec] (pt) -- (0,2.8,0) node[above left=-1pt] {C};
+\end{tikzpicture}
+\end{document}

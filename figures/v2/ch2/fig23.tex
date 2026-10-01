@@ -1,0 +1,40 @@
+% Chapter 2, Figure 23: overdamped response to an impulse (scan: figures/ch2/fig23.png).
+% Curve: fig23.py, eq. (40) with tau_1, tau_2 by eq. (25), zeta = 1.7. Units (no scale is printed): t in
+% 1/omega_n, alpha_X in H/(I_L omega_n), the frame shared with Figs 21 and 22 (one rocket, three dampings:
+% Fig 22's H/I_L and C_1/I_L with a larger C_2, so the maximum comes sooner and is smaller and the return is
+% more gradual, as the caption says; the initial slope H/I_L, eq. (37b), is 1; y axis to -0.42 as in Fig 21,
+% running below 0 as printed, formulas beneath it). Marks t_m, alpha_Xm by eqs. (43a), (43b), joined to the
+% peak by solid lines as printed (peak line); the line "Slope = H/I_L" is the tangent at the origin. The
+% formulas are eqs. (43b), (43a) as lettered (the figure writes ln(tau_1/tau_2) with a slash).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \pgfmathsetmacro\z{1.7}
+  \pgfmathsetmacro\s{sqrt(\z^2-1)}
+  \pgfmathsetmacro\ta{1/(\z-\s)}                          % tau_1, eq. (25)
+  \pgfmathsetmacro\tb{1/(\z+\s)}                          % tau_2, eq. (25)
+  \pgfmathsetmacro\r{\ta/\tb}
+  \pgfmathsetmacro\tm{\ta*\tb*ln(\r)/(\ta-\tb)}           % eq. (43a)
+  \pgfmathsetmacro\am{\ta*\tb/(\ta-\tb)*(\r^(-\tb/(\ta-\tb)) - \r^(-\ta/(\ta-\tb)))}   % eq. (43b)
+  \pgfmathsetmacro\ts{0.66}                              % top of the tangent line
+  \begin{axis}[tamr sketch, name=ax,
+      x=0.46in, y=1.8in, xmin=0, xmax=8.6, ymin=-0.42, ymax=0.8,
+      xlabel={$t$ (sec)}, ylabel={$\alpha_X$ (rad)},
+      xtick={\tm}, xticklabels={$t_m$}, ytick={0,\am}, yticklabels={$0$, $\alpha_{Xm}$},
+      hide obscured y ticks=false,
+      every axis y label/.style={at={(axis cs:0,0.8)}, anchor=south, inner sep=2pt}]
+    \draw[peak line] (axis cs:0,\am) -- (axis cs:\tm,\am) -- (axis cs:\tm,0);
+    \addplot[series2, solid, domain=0:\ts, samples=2] {x};
+    \addplot[series1] table[x=t, y=alpha, col sep=comma] {figures/v2/ch2/fig23.csv};
+    \node[anchor=west, inner sep=2pt] at (axis cs:\ts,\ts) {Slope $= \dfrac{H}{I_L}$};
+  \end{axis}
+  \node[anchor=north west, font=\small] at ([xshift=0.35in, yshift=-6pt]ax.south west)
+    {$\begin{aligned}
+      \alpha_{Xm} &= \frac{H\tau_1\tau_2}{I_L(\tau_1 - \tau_2)}
+        \left[\left(\frac{\tau_1}{\tau_2}\right)^{-\frac{\tau_2}{\tau_1 - \tau_2}}
+        - \left(\frac{\tau_1}{\tau_2}\right)^{-\frac{\tau_1}{\tau_1 - \tau_2}}\right]\\[4pt]
+      t_m &= \frac{\tau_1\tau_2\ln(\tau_1/\tau_2)}{\tau_1 - \tau_2}
+    \end{aligned}$};
+\end{tikzpicture}
+\end{document}

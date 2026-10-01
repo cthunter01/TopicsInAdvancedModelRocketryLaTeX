@@ -1,0 +1,40 @@
+% Chapter 2, Figure 47: the convention for alpha_0 and alpha_1 in the damping experiment (scan:
+% figures/ch2/fig47.png). One rocket, pivoted on the wind axis at its C.G. (origin), drawn in the original
+% deflected position (nose down by alpha_0, solid) and at the greatest overshoot (nose up by alpha_1, a
+% phantom line); both angles are measured from the wind axis and taken as positive. Lengths are the scan's
+% pixels (150 per inch) from the pivot, drawn 1.25 times the printed size (as Ch2 Fig 39): the rocket of
+% Fig 45, 366 long, pivoted 221 behind the nose tip; alpha_0 = 17.6 and alpha_1 = 12.7 degrees as printed.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.0212cm, y=0.0212cm]
+  \def\azero{17.55}\def\aone{12.74}\def\nose{221}\def\R{261.6}
+  % \therocket: nose tip at the origin, axis along +x, in tens of pixels (the ogive's arithmetic overflows
+  % TeX in pixel units)
+  \newcommand{\therocket}{%
+    \rocketoutline{5.4/0.925, 36.6/0.925}
+    \rocketfins{36.6}{0.925}{4.6}{1.9}{3.55}{2.7}}
+  % the position at greatest overshoot: the outline style set to the house phantom line, in ink
+  \begin{scope}[shift={(180-\aone:\nose)}, rotate=-\aone, scale=10, outline/.style={phantom, draw=ink}]
+    \therocket
+  \end{scope}
+  % the original deflected position
+  \begin{scope}[shift={(180+\azero:\nose)}, rotate=\azero, scale=10]
+    \therocket
+  \end{scope}
+  % the wind axis and the rockets' axes, each extended ahead of the nose to its angle
+  \draw[centerline] (-333,0) -- (292,0) node[anchor=south east, inner sep=0pt, yshift=4pt, text=ink] {Wind axis};
+  \foreach \a in {-\aone, \azero} {
+    \draw[centerline] (180+\a:\nose) -- (\a:210);
+    \draw[thin line] (180+\a:\nose) -- (180+\a:276);
+  }
+  % the angles, from the wind axis
+  \draw[angle arc] (180:\R) arc[start angle=180, end angle=180-\aone, radius=\R]
+    node[pos=0.5, fill=white, inner sep=1pt] {$\alpha_1$};
+  \draw[angle arc] (180:\R) arc[start angle=180, end angle=180+\azero, radius=\R]
+    node[pos=0.5, fill=white, inner sep=1pt] {$\alpha_0$};
+  % names of the positions
+  \node[anchor=north west, align=left, inner sep=0pt] at (-187,110) {Position at\\ greatest\\ overshoot};
+  \node[anchor=north west, align=left, inner sep=0pt] at (-189,-75) {Original\\ deflected\\ position};
+\end{tikzpicture}
+\end{document}

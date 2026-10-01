@@ -62,6 +62,13 @@
   % dimension lines and their extension lines
   dimension/.style={draw=ink2, line width=0.4pt, {Stealth[length=4pt,width=2.4pt]}-{Stealth[length=4pt,width=2.4pt]}},
   extension/.style={draw=ink2, line width=0.3pt},
+  % an outline in an alternate position, or a part shown for context only (long dash, two short); set the colour
+  % (ink, or ink2 for context) with draw=
+  phantom/.style={line width=0.6pt, dash pattern=on 14pt off 2.2pt on 2.4pt off 2.2pt on 2.4pt off 2.2pt},
+  % a hidden edge (short dashes)
+  hidden/.style={draw=ink, line width=0.45pt, dash pattern=on 2.6pt off 1.6pt},
+  % a line from a marked point to the axes (a peak's value and time), solid as the 1973 art draws them
+  peak line/.style={draw=ink2, line width=0.4pt},
   % asymptotes, reference levels, construction lines (in plots and drawings)
   guide/.style={draw=ink2, line width=0.4pt, dash pattern=on 3pt off 2pt},
   % leader from a callout label to a point

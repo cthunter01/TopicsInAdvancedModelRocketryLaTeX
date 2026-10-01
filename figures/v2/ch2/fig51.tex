@@ -1,0 +1,54 @@
+% Chapter 2, Figure 51: aerodynamic techniques for inducing roll (scan: figures/ch2/fig51.png).
+% One rocket, nose up, drawn three times with a different fin detail; coordinates are tens of the scan's
+% pixels (150 per inch; tail at y = 0, axis at x = 0 of each), drawn 1.65 times the printed size.
+% Rocket as measured on the three copies: length 21.5, nose 5.45, body diameter 1.85; fins root chord 3.2,
+% tip chord 1.25, span 2.15, trailing edge square at the tail.
+%   Airfoiled fins: the fin facing the reader, edge-on, shows its root section: a flat-bottomed airfoil (the
+%     NACA four-digit thickness form, 12 percent thick, flat side to the right, as printed) along the root chord.
+%   Canted fins: the edge-on fin slants 13.4 degrees across the axis (0.76 over the root chord, as printed);
+%     the side fins' roots are the two slanted lines on the body (0.92 to 0.6 of the radius, as printed).
+%   Spinnerons: a tab on the trailing edge of each fin, chord 0.85, bent 33 degrees: the side fins' tabs
+%     foreshortened (0.71 deep, inner edge cut back, as printed); the edge-on fin's tab and that of the fin
+%     behind it, bent opposite ways, show below the tail.
+% The edge-on fins (each seen along its span, so showing its section) are the subject of the figure and are
+% drawn in the outline weight, as heavy as the body (the 1973 art inks them heavier still). The three
+% labels share one baseline.
+% Overlay on the scan (each rocket aligned separately, redraw ink against the scan's ink): 100% of the
+% redraw's ink within 3 px of the scan's for all three rockets (mean 0.1-0.2 px).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.28cm, y=0.28cm,
+    declare function={yt(\s)=5*0.12*(0.2969*sqrt(\s)-0.1260*\s-0.3516*\s^2+0.2843*\s^3-0.1036*\s^4);}]
+  \tikzset{edge fin/.style={outline, fill=white}}
+  \def\L{21.5}\def\R{0.925}\def\cr{3.2}
+  % \model{<x of the axis>}{<label>}: the rocket, tail at y = 0, and its label below
+  \newcommand{\model}[2]{%
+    \pic[rotate=-90] at (#1,\L) {rocket={length=\L, diameter=1.85, nose length=5.45, root chord=\cr,
+        tip chord=1.25, span=2.15, sweep=1.95, centerline=false}};
+    \node[font=\small, anchor=base, inner sep=0pt] at (#1,-2.75) {#2};}
+
+  % ---- airfoiled fins
+  \model{0}{Airfoiled fins}
+  \draw[edge fin] plot[domain=0:1, samples=50, smooth, variable=\t] ({0.15-2*\cr*yt(\t*\t)}, {\cr-\cr*\t*\t})
+    -- cycle;
+
+  % ---- canted fins
+  \model{16}{Canted fins}
+  \begin{scope}[shift={(16,0)}]
+    \draw[edge fin] (-0.38-0.07,\cr) -- (-0.38+0.07,\cr) -- (0.38+0.07,0) -- (0.38-0.07,0) -- cycle;
+    \draw[outline] plot[domain=0:1, samples=12, smooth] ({-\R*sin(67-30*\x)}, {\cr*(1-\x)});
+    \draw[outline] plot[domain=0:1, samples=12, smooth] ({\R*sin(37+30*\x)}, {\cr*(1-\x)});
+  \end{scope}
+
+  % ---- spinnerons
+  \model{32}{Spinnerons}
+  \begin{scope}[shift={(32,0)}]
+    \draw[edge fin] (-0.08,0) rectangle (0.08,\cr);
+    \foreach \sg in {1,-1}
+      \draw[outline, xscale=\sg] (1.15,0) -- (1.55,-0.71) -- (3.075,-0.71) -- (3.075,0);
+    \foreach \a in {33,-33}
+      \draw[edge fin, rotate=\a] (-0.08,0) rectangle (0.08,-0.85);
+  \end{scope}
+\end{tikzpicture}
+\end{document}

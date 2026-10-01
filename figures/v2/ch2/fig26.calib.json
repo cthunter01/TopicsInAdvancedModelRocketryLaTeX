@@ -1,0 +1,6 @@
+{"crop": "figures/ch2/fig26.png",
+ "note": "Fitted, not read off ticks (the scan has no time or angle scale): origin and t-axis tilt fitted to the drawn axes; angle unit 54.4 px, the drawn alpha_Y0 tick of Figs 26 and 27 (alpha_Y0 = 1; alpha_X0 = 0.65 at 35.3 px); time unit 34.28 px, from the joint fit of the roll-coupled solution to the four scans (I_L = C_1 = 1, so the unit is sqrt(I_L/C_1)).",
+ "axes": {
+  "upper": {"points": [[73, 156.6, 0, 0], [484.4, 153, 12, 0], [73, 102.2, 0, 1], [73, 265.4, 0, -2]]},
+  "lower": {"points": [[68.5, 557.6, 0, 0], [479.9, 555.03, 12, 0], [68.5, 503.2, 0, 1], [68.5, 666.4, 0, -2]]}
+ }}

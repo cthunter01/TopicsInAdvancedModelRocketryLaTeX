@@ -1,0 +1,27 @@
+% Chapter 2, Figure 17: underdamped response to a step disturbance in yaw (scan: figures/ch2/fig17.png).
+% Curve: fig17.py, eq. (30) with eqs. (16), (17), (31a), (31b), zeta = 0.233 (matched to the scan's overshoot),
+% in units of M_s/C_1 against omega_n t. First peak (M_s/C_1)(1 + e^{-pi D/omega}) = 1.4711 M_s/C_1 at
+% pi/omega = 3.2305/omega_n (eqs. (32a), (32b)); the dashed line is the offset axis M_s/C_1 it homes in on
+% (guide); the lines from the peak to the axes are solid as printed (peak line).
+% One layout and time scale for Figs 16-19 (same axes, t to 2.75 pi/omega_n). The tick label keeps the art's
+% parentheses (eq. (32b) prints square brackets).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr sketch,
+      width=3.8in, height=2.5in,
+      xmin=0, xmax=9.35, ymin=-0.36, ymax=2.62,
+      xtick={3.23051}, xticklabels={$\dfrac{\pi}{\omega}$},
+      ytick={1,1.47109},
+      yticklabels={$\dfrac{M_s}{C_1}$, $\dfrac{M_s}{C_1}\bigl(1 + e^{-\frac{\pi D}{\omega}}\bigr)$},
+      xlabel={$t$ (sec)}, ylabel={$\alpha_X$ (rad)},
+      % tamr sketch's rotate=-90 turns this label to read downward: reset it to upright, above the arrow
+      every axis y label/.style={at={(ticklabel* cs:1.0)}, anchor=south}]
+    \draw[guide] (axis cs:0,1) -- (axis cs:8.63938,1);
+    \draw[peak line] (axis cs:0,1.47109) -- (axis cs:3.23051,1.47109) -- (axis cs:3.23051,0);
+    \addplot[series1] table[x=t, y=alpha, col sep=comma] {figures/v2/ch2/fig17.csv};
+    \node[anchor=east, font=\footnotesize, text=ink2] at (axis cs:0,0) {0};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

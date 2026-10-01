@@ -1,0 +1,175 @@
+% Chapter 2, Figure 44: the moment balance and test rocket, exploded (scan: figures/ch2/fig44.png).
+% A true orthographic view, elevation 32 deg, azimuth 45 deg (the house 3D view of Ch2 Figs 3 and 43):
+% TikZ x along the shaft towards the rocket (drawn up to the right), y along the rocket's axis towards the
+% nose (up to the left), z up; right-handed. One unit is one scan pixel of true length, drawn 1.3 times the
+% printed size. Hidden lines by painting back to front with white fills.
+% The box: two bearing support plates (124 x 124 x 5) at x = -5..0 and 170..175, joined by the top and
+% bottom panels (170 x 112 x 6, flush with the plates' top and bottom edges, set in 6 from their sides);
+% open at the sides, so the shaft (radius 4.5) is seen inside, under the top panel as in the 1973 art. The
+% near plate carries the dial (radius 44, graduated every 10 deg); the far plate, nearest the rocket, the
+% bolt holes of the caption at y = -36 (seen, as in the art) and +36 (behind the top panel). Along the
+% shaft, exploded as printed: the pulley wheel (radius 65) at x = -155; the angle indicator (a collar with
+% the pointer, which lies along the rocket's axis) at x = -72..-54; a ball bearing in its mount by each
+% plate (x = -26..-20 and 255..261); the mounting plug (a hub between two shoulders) at x = 295, with the
+% forebody (tube and tangent ogive nose, radius 10) and the afterbody (four fins, the engine in the tail)
+% slid off it along the rocket's axis. The cord over the wheel carries the counterweight on the +y side
+% and the balance pan (three strings) on the -y side, where the rim is seen; the pan and counterweight
+% hang on the same sides as in Ch2 Fig 45. Centre lines: the shaft's axis through the exploded wheel and
+% indicator and beyond the plug; the rocket's axis.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+% projection: one unit = 1.3 scan pixels (150 per inch)
+\pgfmathsetmacro\su{1.3*2.54/150}
+\pgfmathsetmacro\pa{\su*cos(45)}
+\pgfmathsetmacro\pb{\su*sin(45)*sin(32)}
+\pgfmathsetmacro\ph{\su*cos(32)}
+% the silhouette angle of a cylinder along x or y (t measured from +y, resp. +x, towards +z); the half
+% t = \sil ... \sil+180 of a ring round such a cylinder faces the viewer
+\def\sil{48.53}
+\tikzset{scr/.style={x=\su cm, y=\su cm}}       % plain page coordinates for the callouts
+% \cylx[<style>]{y}{z}{x0}{x1}{r}: a cylinder along x, its near end (x0 < x1) seen
+\newcommand{\cylx}[6][]{%
+  \filldraw[outline, fill=white, #1]
+    plot[domain=\sil:\sil+180, samples=41, variable=\t] ({#5}, {(#2)+(#6)*cos(\t)}, {(#3)+(#6)*sin(\t)})
+    -- plot[domain=\sil+180:\sil+360, samples=41, variable=\t] ({#4}, {(#2)+(#6)*cos(\t)}, {(#3)+(#6)*sin(\t)})
+    -- cycle;
+  \draw[outline, #1] plot[domain=0:360, samples=73, variable=\t] ({#4}, {(#2)+(#6)*cos(\t)}, {(#3)+(#6)*sin(\t)})
+    -- cycle;}
+% \cyly[<style>]{x}{z}{y0}{y1}{r}: a cylinder along y, its near end (y0 < y1) seen
+\newcommand{\cyly}[6][]{%
+  \filldraw[outline, fill=white, #1]
+    plot[domain=\sil:\sil+180, samples=41, variable=\t] ({(#2)+(#6)*cos(\t)}, {#5}, {(#3)+(#6)*sin(\t)})
+    -- plot[domain=\sil+180:\sil+360, samples=41, variable=\t] ({(#2)+(#6)*cos(\t)}, {#4}, {(#3)+(#6)*sin(\t)})
+    -- cycle;
+  \draw[outline, #1] plot[domain=0:360, samples=73, variable=\t] ({(#2)+(#6)*cos(\t)}, {#4}, {(#3)+(#6)*sin(\t)})
+    -- cycle;}
+% \cylz[<style>]{x}{y}{z0}{z1}{r}: an upright cylinder, its top seen
+\newcommand{\cylz}[6][]{%
+  \filldraw[outline, fill=white, #1]
+    plot[domain=135:315, samples=41, variable=\t] ({(#2)+(#6)*cos(\t)}, {(#3)+(#6)*sin(\t)}, {#4})
+    -- plot[domain=315:495, samples=41, variable=\t] ({(#2)+(#6)*cos(\t)}, {(#3)+(#6)*sin(\t)}, {#5}) -- cycle;
+  \draw[outline, #1] plot[domain=0:360, samples=73, variable=\t] ({(#2)+(#6)*cos(\t)}, {(#3)+(#6)*sin(\t)}, {#5})
+    -- cycle;}
+% \ringx[<style>]{x}{y}{z}{r}: a circle in the plane x = const (an end face or a bore)
+\newcommand{\ringx}[5][]{%
+  \draw[#1] plot[domain=0:360, samples=73, variable=\t] ({#2}, {(#3)+(#5)*cos(\t)}, {(#4)+(#5)*sin(\t)}) -- cycle;}
+\newcommand{\ringy}[5][]{%
+  \draw[#1] plot[domain=0:360, samples=73, variable=\t] ({(#2)+(#5)*cos(\t)}, {#3}, {(#4)+(#5)*sin(\t)}) -- cycle;}
+% \blk{x0}{x1}{y0}{y1}{z0}{z1}: a rectangular block, its three seen faces (-x, -y, +z)
+\newcommand{\blk}[6]{%
+  \filldraw[outline, fill=white] (#1,#3,#5) -- (#1,#4,#5) -- (#1,#4,#6) -- (#1,#3,#6) -- cycle
+    (#1,#3,#5) -- (#2,#3,#5) -- (#2,#3,#6) -- (#1,#3,#6) -- cycle
+    (#1,#3,#6) -- (#2,#3,#6) -- (#2,#4,#6) -- (#1,#4,#6) -- cycle;}
+% the test rocket: axis at x = \Xr, z = 0; radius 9; forebody y = 34 .. 260 (nose 65 long, tangent ogive),
+% afterbody y = -34 .. -110 with four fins (root 42, tip 17, span 28, the trailing edge square at the tail)
+\def\Xr{295}\def\rr{10}\def\rs{4.5}  % rs: the shaft's radius
+\def\yfa{34}\def\yfb{195}\def\yft{260}
+\def\yaa{-34}\def\yat{-110}
+\def\fcr{48}\def\fct{16}\def\fsp{36}\def\fsw{32}
+% ogive radius at distance u from the tip, nose length n, base radius r (normalized: pgfmath's range)
+\def\og#1{(\nl*(sqrt(max(0,\ogR*\ogR-(1-(#1)/\nl)^2))+\rr/\nl-\ogR))}
+\pgfmathsetmacro\nl{\yft-\yfb}
+\pgfmathsetmacro\ogR{((\rr/\nl)^2+1)/(2*\rr/\nl)}
+\newcommand{\fin}[1]{% fin at angle #1 round the axis (0 = +x, 90 = +z)
+  \pgfmathsetmacro\fle{\yat+\fcr}\pgfmathsetmacro\ftle{\fle-\fsw}\pgfmathsetmacro\ftte{\ftle-\fct}%
+  \filldraw[outline, fill=white]
+    ({\Xr+\rr*cos(#1)}, \fle, {\rr*sin(#1)}) -- ({\Xr+(\rr+\fsp)*cos(#1)}, \ftle, {(\rr+\fsp)*sin(#1)})
+    -- ({\Xr+(\rr+\fsp)*cos(#1)}, \ftte, {(\rr+\fsp)*sin(#1)}) -- ({\Xr+\rr*cos(#1)}, \yat, {\rr*sin(#1)})
+    -- cycle;}
+\begin{document}
+\begin{tikzpicture}[x={(\pa cm,\pb cm)}, y={(-\pa cm,\pb cm)}, z={(0cm,\ph cm)}]
+  % ======== the test rocket and the mounting plug (furthest back) ========
+  % forebody: open aft end towards the plug
+  \filldraw[outline, fill=white]
+    ({\Xr+\rr*cos(\sil)}, \yfa, {\rr*sin(\sil)}) -- ({\Xr+\rr*cos(\sil)}, \yfb, {\rr*sin(\sil)})
+    -- plot[domain=\nl:0, samples=40, variable=\u] ({\Xr+\og{\u}*cos(\sil)}, {\yft-\u}, {\og{\u}*sin(\sil)})
+    -- plot[domain=0:\nl, samples=40, variable=\u] ({\Xr-\og{\u}*cos(\sil)}, {\yft-\u}, {-\og{\u}*sin(\sil)})
+    -- plot[domain=\sil+180:\sil+360, samples=41, variable=\t] ({\Xr+\rr*cos(\t)}, \yfa, {\rr*sin(\t)})
+    -- cycle;
+  \ringy[outline]{\Xr}{\yfa}{0}{\rr}
+  \ringy[thin line]{\Xr}{\yfa}{0}{\rr-1.4}
+  \draw[outline] plot[domain=\sil:\sil+180, samples=41, variable=\t] ({\Xr+\rr*cos(\t)}, \yfb, {\rr*sin(\t)});
+  % mounting plug: a hub on the shaft between two shoulders that the body sections slide onto
+  \cyly{\Xr}{0}{6}{20}{7.6}
+  \cyly{\Xr}{0}{-6}{6}{11}
+  \cyly{\Xr}{0}{-20}{-6}{7.6}
+  % afterbody: fins behind the body (+x, -z), the body, fins in front (+z, -x); the engine in the tail
+  \fin{0}\fin{270}
+  \cyly{\Xr}{0}{\yat}{\yaa}{\rr}
+  \ringy[thin line]{\Xr}{\yat}{0}{\rr-1.6}
+  \ringy[thin line]{\Xr}{\yat}{0}{2.6}
+  \fin{90}\fin{180}
+  % the shaft from the far bearing to the hub, the bearing in its mount, the shaft through the far plate
+  \cylx{0}{0}{261}{\Xr-10}{\rs}
+  \cylx{0}{0}{255}{261}{11}
+  \ringx[thin line]{255}{0}{0}{7.5}
+  \cylx{0}{0}{176}{255}{\rs}
+  % centre lines: the rocket's axis; the shaft's axis beyond the plug
+  \draw[centerline] (\Xr,{\yft+40},0) -- (\Xr,{\yat-45},0);
+  \draw[centerline] (\Xr,0,0) -- ({\Xr+55},0,0);
+  % ======== the box ========
+  \blk{170}{175}{-62}{62}{-62}{62}
+  \foreach \y in {-36,36} \ringx[outline]{170}{\y}{0}{2.6}
+  \blk{0}{170}{-56}{56}{-62}{-56}
+  \cylx{0}{0}{0}{170}{\rs}
+  \blk{0}{170}{-56}{56}{56}{62}
+  \blk{-5}{0}{-62}{62}{-62}{62}
+  % the dial on the near plate: a circle of radius 44 graduated every 10 deg
+  \ringx[thin line]{-5}{0}{0}{44}
+  \foreach \a in {0,10,...,350}
+    \draw[thin line] (-5,{40*cos(\a)},{40*sin(\a)}) -- (-5,{44*cos(\a)},{44*sin(\a)});
+  % ======== the near end of the shaft: bearing, angle indicator ========
+  \cylx{0}{0}{-20}{-5}{\rs}
+  \cylx{0}{0}{-26}{-20}{11}
+  \ringx[thin line]{-26}{0}{0}{7.5}
+  \cylx{0}{0}{-54}{-26}{\rs}
+  % pointer (along the rocket's axis) on its collar
+  \filldraw[outline, fill=white] (-63,5,-2.4) -- (-63,52,0) -- (-63,5,2.4) -- cycle;
+  \cylx{0}{0}{-72}{-54}{8}
+  \ringx[thin line]{-72}{0}{0}{\rs}
+  % ======== pulley wheel, cord, counterweight, balance pan ========
+  \def\Xp{-155}\def\Rp{65}
+  % counterweight on the +y side (its cord leaves the hidden side of the rim)
+  \draw[thin line] (\Xp,\Rp,0) -- (\Xp,\Rp,-116);
+  \cylz{\Xp}{\Rp}{-140}{-116}{8}
+  % the wheel and its hub
+  \cylx{0}{0}{\Xp-3}{\Xp+3}{\Rp}
+  \cylx{0}{0}{\Xp-11}{\Xp-3}{9}
+  \ringx[thin line]{\Xp-11}{0}{0}{\rs}
+  % the cord in the groove over the seen half of the rim, down to the balance pan
+  \draw[thin line] plot[domain=\sil:180, samples=40, variable=\t] (\Xp, {\Rp*cos(\t)}, {\Rp*sin(\t)})
+    -- (\Xp,-\Rp,-82);
+  % the pan: a shallow dish hung from a ring by three strings
+  \def\Zp{-160}\def\Rq{30}
+  \filldraw[outline, fill=white]
+    plot[domain=135:315, samples=61, variable=\t] ({\Xp+\Rq*cos(\t)}, {-\Rp+\Rq*sin(\t)}, {\Zp-6*sin(\t-135)})
+    -- plot[domain=315:495, samples=41, variable=\t] ({\Xp+\Rq*cos(\t)}, {-\Rp+\Rq*sin(\t)}, \Zp) -- cycle;
+  \draw[outline] plot[domain=0:360, samples=73, variable=\t] ({\Xp+\Rq*cos(\t)}, {-\Rp+\Rq*sin(\t)}, \Zp) -- cycle;
+  \foreach \a in {75,195,315}
+    \draw[thin line] (\Xp,-\Rp,-82) -- ({\Xp+\Rq*cos(\a)}, {-\Rp+\Rq*sin(\a)}, \Zp);
+  % the shaft's axis through the exploded wheel and indicator
+  \draw[centerline] ({\Xp-40},0,0) -- (-72,0,0);
+  % ======== callouts ========
+  \begin{scope}[every node/.style={font=\small, inner sep=1.5pt, align=left}]
+    \node[anchor=south] (fb) at ([scr]60,288) {Test rocket forebody};
+    \draw[leader] (fb.south) ++([scr]-8,0) -- (\Xr,165,{\rr});
+    \node[anchor=south west] (mp) at ([scr]148,240) {Mounting plug};
+    \draw[leader] ([scr]172,240) -- (\Xr,14,{7.6});
+    \node[anchor=south west, align=left] (ai) at ([scr]-205,110) {Angle indicator\\assembly};
+    % the leader ends on the pointer just clear of the collar (as printed), left of the near plate's edge
+    \draw[leader] (ai.south) ++([scr]30,0) -- (-63,17,0);
+    \node at (85,0,62) {Panel};
+    \node[anchor=south, align=center] (pw) at ([scr]-155,8) {Pulley\\wheel};
+    \node[anchor=north west, align=left] (tr) at ([scr]262,22) {Test rocket\\afterbody};
+    \draw[leader] (tr.north) ++([scr]4,0) -- (\Xr,-100,{-\rr-20});
+    \node[anchor=north west, align=left] (bb) at ([scr]200,-30) {Ball bearing in\\bearing mount};
+    \draw[leader] (bb.north west) ++([scr]18,0) -- (255,-4,-8);
+    \node[anchor=north west] (sh) at ([scr]140,-108) {Shaft};
+    \draw[leader] (sh.north west) ++([scr]4,0) -- (110,0,-3);
+    \node[anchor=north west, align=left] (bs) at ([scr]38,-150) {Bearing\\support\\plate};
+    \draw[leader] (bs.north west) ++([scr]6,0) -- (-5,-40,-60);
+    \node[anchor=north] at ([scr]-157,-162) {Counterweight};
+    \node[anchor=north] at ([scr]-64,-246) {Balance pan};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

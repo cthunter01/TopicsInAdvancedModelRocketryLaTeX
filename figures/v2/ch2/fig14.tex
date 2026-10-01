@@ -1,0 +1,26 @@
+% Chapter 2, Figure 14: divergent response in yaw of a statically unstable rocket (scan: figures/ch2/fig14.png).
+% Curve: fig14.py, eq. (24) alpha_X = A_1 e^{-t/tau_1} + A_2 e^{-t/tau_2} with eqs. (25), (26) and C_1 < 0 (tau_1 < 0):
+% C_1/I_L = -0.42, C_2/2I_L = 0.13, alpha_X0 = 0.37, Omega_X0 = 0.13 in the family's units (time 1/omega_n of
+% Figs 10-13); it leaves the top of the frame. The straight line is the tangent at t = 0, slope Omega_X0, drawn
+% to the printed length with its label at the right end.
+% Layout shared by Figs 10-14 (tamr sketch; 0.4 in per 1/omega_n, 0.576 in per unit of yaw angle;
+% the axis below zero shortened from the printed -2.25 to -1.8 units).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\pgfplotsset{free response/.style={tamr sketch, x=0.4in, y=0.576in,
+    xmin=0, xmax=9.6, ymin=-1.8, ymax=2.8,
+    xlabel={$t$ (sec)}, ylabel={$\alpha_X$ (rad)},
+    % the label above the arrow, upright (tamr sketch's rotate=-90 turns it on its side under axis lines=middle)
+    every axis y label/.style={at={(ticklabel* cs:1.0)}, anchor=south, inner sep=3pt}}}
+\tikzset{tangent/.style={s2, line width=1pt}}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[free response, ytick={0.37}, yticklabels={$\alpha_{X0}$}]
+    \addplot[series1] table[x=t, y=alpha, col sep=comma] {figures/v2/ch2/fig14.csv};
+    % tangent at t = 0: alpha_X0 + Omega_X0 t
+    \draw[tangent] (axis cs:0,0.37) -- (axis cs:3.45,0.8185)
+      node[anchor=west, text=ink, font=\small, inner sep=2pt] {Slope${}=\Omega_{X0}$};
+    \node[anchor=east, font=\footnotesize, text=ink2, inner sep=3pt] at (axis cs:0,0) {0};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

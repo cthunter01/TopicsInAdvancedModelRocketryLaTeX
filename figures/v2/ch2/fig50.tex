@@ -1,0 +1,58 @@
+% Chapter 2, Figure 50: improperly designed model rockets (scan: figures/ch2/fig50.png).
+% Six rockets, nose left, each with its C.G. (quartered circle) and C.P. (circle with dot) on the axis, a
+% circled lowercase letter above in the house curve tag (standing rule 2: the text cites them as A-F) and the
+% printed notes below.
+% Coordinates are the scan's pixels (150 per inch), measured from each rocket's nose tip (u along the axis,
+% v out from it), drawn 1.42 times the printed size. The C.P. is ahead of the C.G. only in (d).
+%   rocket  nose  length  radius  C.G.   C.P.   fins (root LE -> tip LE -> tip TE [-> aft edge] -> root TE)
+%   (a)     58    332     6.5     233.5  254.5  291.5 -> 319/24 -> 332/24 -> 332 (TE square at the tail)
+%   (b)     27.5  110     6       79.5   94     65 -> 110/31 -> 122/31 -> 122/14 -> 110 (overhang)
+%   (c)     56    220     6.5     139    193.5  174.5 -> 227/37 -> 238/37 -> 238/17.5 -> 220 (overhang)
+%   (d)     55    220.5   6.5     169    156.5  186 -> 207/20 -> 215/20 -> 220.5 (rounded tip)
+%   (e)     56.5  220     6.5     144.5  159    fore 57 -> 73/34 -> 83.5/34 -> 83.5; aft 166.5 -> 199.5/61 -> 220/61 -> 220
+%   (f)     56    223     6.5     142.5  157    160 -> 178/35.5 -> 194.5/35.5 -> 201 (ahead of the tail)
+% Overlay on the scan (each rocket aligned separately, redraw ink against the scan's ink): 99.9% (a) and 100%
+% (b)-(f) of the redraw's ink within 3 px of the scan's, mean 0.1-0.2 px. The notes are set as left-aligned
+% blocks centred under their rockets; the rows are closer together than printed.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.024cm, y=0.024cm]
+  \tikzset{
+    note/.style={font=\small, align=left, anchor=north, inner sep=0pt},
+  }
+  % \rkt{<tip x>}{<axis y>}{<nose length>}{<length>}{<radius>}{<fin path, upper half>}{<C.G.>}{<C.P.>}
+  \newcommand{\rkt}[8]{%
+    \begin{scope}[shift={(#1,#2)}]
+      % (\rocketoutline in tenths: its ogive radius squared overflows pgfmath in pixels)
+      \begin{scope}[scale=10]
+        \pgfmathsetmacro\rkn{#3/10}\pgfmathsetmacro\rkl{#4/10}\pgfmathsetmacro\rkr{#5/10}
+        \rocketoutline{\rkn/\rkr, \rkl/\rkr}
+      \end{scope}
+      \foreach \sg in {1,-1} \draw[outline, yscale=\sg] #6;
+      \node[cg mark] at (#7,0) {};
+      \node[cp mark] at (#8,0) {};
+    \end{scope}}
+  % \tag{<x>}{<y>}{<letter>}{<note>}{<y of the note>}
+  \newcommand{\tagnote}[5]{%
+    \node[curve tag] at (#1,#2) {#3};
+    \node[note] at (#1,#5) {#4};}
+  \def\Ya{0}\def\Yb{-218}\def\Yc{-436}          % the three rows' axes
+  % ---- (a), (b)
+  \rkt{17.5}{\Ya}{58}{332}{6.5}{(291.5,6.5) -- (319,24) -- (332,24) -- (332,6.5)}{233.5}{254.5}
+  \rkt{435.5}{\Ya}{27.5}{110}{6}{(65,6) -- (110,31) -- (122,31) -- (122,14) -- (110,6)}{79.5}{94}
+  \tagnote{183.5}{\Ya+54}{a}{$I_L$ too large:\\$\zeta$ too small\\resonance severe\\too heavy}{\Ya-40}
+  \tagnote{496.5}{\Ya+54}{b}{$I_L$ too small:\\easily disturbed\\$\zeta$ too large\\too light}{\Ya-40}
+  % ---- (c), (d)
+  \rkt{17.5}{\Yb}{56}{220}{6.5}{(174.5,6.5) -- (227,37) -- (238,37) -- (238,17.5) -- (220,6.5)}{139}{193.5}
+  \rkt{330.5}{\Yb}{55}{220.5}{6.5}{[rounded corners=2] (186,6.5) -- (207,20) -- (215,20) -- (220.5,6.5)}{169}{156.5}
+  \tagnote{136.5}{\Yb+60}{c}{$C_1$ too large:\\weathercocking severe}{\Yb-46}
+  \tagnote{440.75}{\Yb+60}{d}{$C_1$ negative:\\statically unstable}{\Yb-46}
+  % ---- (e), (f)
+  \rkt{11.5}{\Yc}{56.5}{220}{6.5}{(57,6.5) -- (73,34) -- (83.5,34) -- (83.5,6.5)
+      (166.5,6.5) -- (199.5,61) -- (220,61) -- (220,6.5)}{144.5}{159}
+  \rkt{324.5}{\Yc}{56}{223}{6.5}{(160,6.5) -- (178,35.5) -- (194.5,35.5) -- (201,6.5)}{142.5}{157}
+  \tagnote{121.5}{\Yc+84}{e}{$C_2$ too large:\\$\zeta$ too large\\drag excessive}{\Yc-70}
+  \tagnote{436}{\Yc+84}{f}{$C_2$ too small:\\$\zeta$ too small\\resonance severe}{\Yc-70}
+\end{tikzpicture}
+\end{document}

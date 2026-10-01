@@ -1,0 +1,18 @@
+% Chapter 2, Figure 7: corrective moment against angular deflection (scan: figures/ch2/fig07.png).
+% Curve: fig07.py (a measured curve, digitized from the scan: no equation; tangent at zero C_1 = 1x10^6 dyn-cm,
+% eq. (8) with the Fig 9 lettering; zero slope at 0.3 rad, ch2-sec5.tex). The same data as Fig 9's true M_c.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr,
+      width=3.8in, height=2.3in,
+      xmin=0, xmax=0.3, xtick={0,0.1,0.2,0.3}, minor xtick={0.05,0.15,0.25},
+      ymin=0, ymax=4e5, ytick={0,1e5,2e5,3e5,4e5},
+      yticklabels={0, $1\times10^5$, $2\times10^5$, $3\times10^5$, $4\times10^5$},
+      xlabel={Angular deflection $\alpha_X$ (rad)},
+      ylabel={Corrective moment $M_c$ (dyn-cm)}]
+    \addplot[series1] table[x=alpha, y=Mc, col sep=comma] {figures/v2/ch2/fig07.csv};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

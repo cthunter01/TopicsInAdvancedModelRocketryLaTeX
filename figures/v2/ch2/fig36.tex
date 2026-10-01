@@ -1,0 +1,78 @@
+% Chapter 2, Figure 36 of 1973 (scan: figures/ch2/fig36.png, page 194; after J.S. Barrowman): the notation for the
+% normal force coefficient and centre of pressure of a fin. Shown only in the Errata and Supplement Part, beside
+% its 1994 replacement (figures/v2/supplement/ch2-fig36-1994.tex, which Chapter 2 uses as Figure 36). The two
+% files draw the same fin at the same scale and differ only in the switch below: the 1973 lettering defines
+% AR = 2s/(c_r + c_t) (the aspect ratio of a single fin, as its caption says) and does not mark ell; the
+% mid-chord line is drawn, as printed, without the ell dimension.
+% Half of the rocket seen from the side, nose up: the body tube between the centre line and the body surface,
+% broken off at the top, and one trapezoidal fin with its tip chord parallel to the axis. The fin is the 1994
+% drawing's, so that the two compare directly (its scan pixels, 150 per inch, drawn 0.87 times: s = 262,
+% c_r = 322, c_t = 175, r_t = 58, and the tip leading edge x_t = 256 aft of the root's); the 1973 drawing's own
+% proportions differ by 4% at most (c_r/s 1.19, c_t/s 0.65, x_t/s 0.97, r_t/s 0.22 against 1.23, 0.67, 0.98,
+% 0.22). The centres of pressure are placed by the chapter's equations: eq. (89) for Zbar_T(B) - Z_T (with the
+% drawing's x_t, which the figure does not mark) and eq. (90) for Ybar_T; Gamma_c follows from the geometry.
+% The mid-chord line is a centre line (dash-dot).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+% the switch: 1994 (4s, ell dimensioned) or 1973 (2s, no ell)
+\newif\ifellmarked \ellmarkedfalse \def\ARnum{2s}%
+\begin{tikzpicture}[x=0.0147cm, y=0.0147cm]
+  % ---- the fin (root leading edge at the origin, span along +x, aft along -y) ----------------------------
+  \def\finS{262}\def\finCr{322}\def\finCt{175}\def\finXt{256}\def\finRt{58}
+  \pgfmathsetmacro\finK{(\finCr+2*\finCt)/(\finCr+\finCt)}
+  \pgfmathsetmacro\zcp{\finXt/3*\finK + (\finCr+\finCt-\finCr/(\finCr+\finCt)*\finCt)/6}   % eq. (89): Zbar - Z_T
+  \pgfmathsetmacro\ycp{\finS/3*\finK}                                                     % eq. (90): Ybar_T - r_t
+  \pgfmathsetmacro\gam{atan((\finXt+\finCt/2-\finCr/2)/\finS)}                            % Gamma_c
+  \coordinate (rle) at (0,0);
+  \coordinate (rte) at (0,-\finCr);
+  \coordinate (tle) at (\finS,-\finXt);
+  \coordinate (tte) at (\finS,{-\finXt-\finCt});
+  \coordinate (mr)  at (0,{-\finCr/2});
+  \coordinate (mt)  at (\finS,{-\finXt-\finCt/2});
+  \coordinate (cpT)  at (\ycp,-\zcp);
+  \coordinate (cpTB) at (-\finRt,-\zcp);
+  % ---- reference levels, extension lines, construction lines --------------------------------------------
+  \draw[extension] (-257,0) -- (rle);                                   % Z_T
+  \draw[extension, shorten >=2.75pt] (-257,-\zcp) -- (cpTB);            % Zbar_T(B)
+  \draw[extension] (-143,{-\finCr/2}) -- (92,{-\finCr/2});              % mid-root level (c_r/2, Gamma_c)
+  \draw[extension] (-198,-\finCr) -- (rte);                             % root trailing edge (c_r)
+  \draw[extension] (tle) ++(0,3) -- (\finS,63);                         % tip (s)
+  \foreach \y/\e in {-\finXt/380, {-\finXt-\finCt/2}/322, {-\finXt-\finCt}/380}
+    \draw[extension] (\finS+4,\y) -- (\e,\y);                           % tip chord (c_t/2, c_t)
+  \draw[guide] (\ycp,{-\finXt/\finS*\ycp}) -- (\ycp,{-\finCr-(\finXt+\finCt-\finCr)/\finS*\ycp});  % through C.P._T
+  % ---- body and fin -------------------------------------------------------------------------------------
+  \draw[centerline] (-\finRt,90) -- (-\finRt,-436);
+  \draw[outline] (-\finRt,60) -- (-48,60) -- (-42,74) -- (-34,32) -- (-26,89) -- (-19.5,46) -- (-13,61)
+    -- (0,61) -- (0,-436);                                              % break line and body surface
+  \draw[outline] (rle) -- (tle) -- (tte) -- (rte);
+  % mid-chord line (1994: with ell dimensioned along it)
+  \ifellmarked
+    \draw[centerline, {Stealth[length=4pt,width=2.4pt]}-{Stealth[length=4pt,width=2.4pt]}] (mr) -- (mt)
+      node[pos=0.68, fill=white, inner sep=1.5pt, text=ink] {$\ell$};
+  \else
+    \draw[centerline] (mr) -- (mt);
+  \fi
+  % ---- dimensions ---------------------------------------------------------------------------------------
+  \dimline{(0,33)}{(\finS,33)}{$s$}
+  \dimline{(-130,0)}{(-130,{-\finCr/2})}{$\dfrac{c_r}{2}$}
+  \dimline[pos=0.78]{(-186,0)}{(-186,-\finCr)}{$c_r$}
+  \dimline{(-\finRt,-286)}{(\ycp,-286)}{$\bar{Y}_T$}
+  \dimline{(-\finRt,-416)}{(0,-416)}{$r_t$}
+  \dimline{(307,-\finXt)}{(307,{-\finXt-\finCt/2})}{$\dfrac{c_t}{2}$}
+  \dimline{(365,-\finXt)}{(365,{-\finXt-\finCt})}{$c_t$}
+  \draw[angle arc] (mr) ++(0:64) arc[start angle=0, end angle=-\gam, radius=64];
+  \node at ($(mr)+({-\gam/2}:86)$) {$\Gamma_c$};
+  % ---- centres of pressure and callouts -----------------------------------------------------------------
+  \node[cp mark] at (cpTB) {};
+  \node[cp mark] at (cpT) {};
+  \draw[leader, shorten <=2.9pt] (cpTB) -- (-82,-212) node[anchor=north east, inner sep=1.5pt] {\CP$_{T(B)}$};
+  \draw[leader, shorten <=2.9pt] (cpT) -- (142,-212) node[anchor=north west, inner sep=1.5pt] {\CP$_T$};
+  \draw[leader, -{Stealth[length=4pt,width=2.6pt]}] (-215,-372) node[anchor=east, inner sep=1.5pt]
+    {Rocket centerline} -- (-\finRt,-372);
+  % ---- labels at the reference levels, and the aspect ratio ----------------------------------------------
+  \node[anchor=east, inner sep=2pt] at (-257,0) {$Z_T$};
+  \node[anchor=east, inner sep=2pt] at (-257,-\zcp) {$\bar{Z}_{T(B)}$};
+  \node[anchor=east] at (-345,-215) {$\AR = \dfrac{\ARnum}{c_r + c_t}$};
+\end{tikzpicture}
+\end{document}

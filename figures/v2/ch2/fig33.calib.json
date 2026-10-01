@@ -1,0 +1,7 @@
+{"crop": "figures/ch2/fig33.png",
+ "note": "one set of axes per nose: r and y = -z in units of the nose length L; tip (centre line at the tip row), base centre, and the tip row one L to the right (the scan is isotropic)",
+ "axes": {
+  "a": {"points": [[82.62, 54.77, 0, 0], [83.92, 238.45, 0, -1], [266.3, 54.77, 1, 0]]},
+  "b": {"points": [[238.85, 53.71, 0, 0], [239.89, 237.89, 0, -1], [423.03, 53.71, 1, 0]]},
+  "c": {"points": [[391.49, 53.45, 0, 0], [392.84, 237.48, 0, -1], [575.52, 53.45, 1, 0]]},
+  "d": {"points": [[538.75, 53.34, 0, 0], [541.21, 237.31, 0, -1], [722.72, 53.34, 1, 0]]}}}

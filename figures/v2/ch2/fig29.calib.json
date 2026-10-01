@@ -1,0 +1,6 @@
+{"crop": "figures/ch2/fig29.png",
+ "note": "Fitted, not read off ticks (the scan has no time or angle scale): origin and t-axis tilt fitted to the drawn axes; angle unit 54.4 px as in Figs 26 and 27 (H/I_L = 3.1 then falls on the drawn slope line); time unit 36.45 px, from the joint fit of the roll-coupled solution to the four scans (I_L = C_1 = 1, so the unit is sqrt(I_L/C_1)).",
+ "axes": {
+  "upper": {"points": [[68.5, 160.6, 0, 0], [505.94, 159.51, 12, 0], [68.5, 106.2, 0, 1], [68.5, 269.4, 0, -2]]},
+  "lower": {"points": [[69.5, 563.5, 0, 0], [506.94, 563.5, 12, 0], [69.5, 509.1, 0, 1], [69.5, 672.3, 0, -2]]}
+ }}

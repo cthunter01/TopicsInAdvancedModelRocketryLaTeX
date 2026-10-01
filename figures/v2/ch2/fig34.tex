@@ -1,0 +1,33 @@
+% Chapter 2, Figure 34: notation for the normal force curve slope and C.P. of a conical shoulder (scan:
+% figures/ch2/fig34.png). Nose direction up: the small forward end r_1 at the station Z_1, the large aft end
+% r_2 a length L behind it. Lengths are the scan's pixels (150 per inch; measured L = 217.5, r_1 = 93,
+% r_2 = 147; one frustum with Figure 35: L = 220, radii 93 and 148, r_1/r_2 = 0.628), drawn 1.16 times the
+% printed size. The C.P. is placed by eq. (82), Z_CS = Z_1 + L [2/3 - (1/3)(r_1/r_2)(r_1/r_2 + 1)]:
+% 0.326 L behind Z_1 (the 1973 drawing puts it at about 0.59 L; corrections/v2-figures.md).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.0197cm, y=0.0197cm]
+  \def\L{220}\def\rone{93}\def\rtwo{148}
+  \pgfmathsetmacro\rr{\rone/\rtwo}
+  \pgfmathsetmacro\zcp{\L*(2/3 - \rr*(\rr + 1)/3)}             % eq. (82): the C.P. behind Z_1
+  \def\xs{-220}                                                 % left end of the station lines
+  \pgfmathsetmacro\xL{\rtwo + 38}                               % the L dimension line
+  % centre line and outline (Z_1 at y = 0, the aft end at y = -L)
+  \draw[centerline] (0,56) -- (0,-\L-56);
+  \draw[outline] (-\rone,0) -- (\rone,0) -- (\rtwo,-\L) -- (-\rtwo,-\L) -- cycle;
+  % stations: Z_1 (the forward end) and Z_CS (the C.P.)
+  \draw[extension] (\xs,0) node[anchor=east, inner sep=2pt] {$Z_1$} -- (-\rone-4,0);
+  \draw[extension] (\xs,-\zcp) node[anchor=east, inner sep=2pt] {$\bar{Z}_{CS}$} -- (-5.7,-\zcp);
+  \node[cp mark] at (0,-\zcp) {};
+  \node[anchor=west, inner sep=1.5pt] at (5.5,-\zcp) {\CP$_{CS}$};
+  % r_1 above, r_2 below, L at the right
+  \draw[extension] (\rone,4) -- (\rone,54);
+  \dimline{(0,36)}{(\rone,36)}{$r_1$}
+  \draw[extension] (\rtwo,-\L-4) -- (\rtwo,-\L-56);
+  \dimline{(0,-\L-38)}{(\rtwo,-\L-38)}{$r_2$}
+  \draw[extension] (\rone+4,0) -- (\xL+18,0);
+  \draw[extension] (\rtwo+4,-\L) -- (\xL+18,-\L);
+  \dimline{(\xL,0)}{(\xL,-\L)}{$L$}
+\end{tikzpicture}
+\end{document}

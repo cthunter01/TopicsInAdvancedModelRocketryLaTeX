@@ -1,0 +1,44 @@
+% Chapter 2, Figure 27: damped roll-coupled response to general initial conditions (scan: figures/ch2/fig27.png).
+% Curves: fig27.py, eq. (51) with omega_1, omega_2 by eqs. (55), (56), D_1, D_2 by (57), phi_1, phi_2 by (58a), (58b),
+% A_1, A_2 by (59a), (59b): the rocket of Figs 26-29 (I_L = C_1 = 1, I_R omega_Z = 4/(3 sqrt 5), C_2 = 0.47: the
+% coupled, positively-stable case, D_1 = 0.166 for the slow mode, D_2 = 0.304 for the fast) and the initial
+% conditions of Fig 26 (alpha_X0 = 0.65, alpha_Y0 = 1, Omega_X0 = Omega_Y0 = 1.55; fig27-marks.csv), matched to the
+% scan. Both plots are the one motion. The straight lines are the true tangents at t = 0, slopes Omega_X0 and
+% Omega_Y0 (they lie on the 1973 lines).
+% Layout shared by Figs 26-29: two tamr sketch plots (alpha_X above, alpha_Y below) on one unscaled t axis
+% (0.27 in per unit of sqrt(I_L/C_1)), 0.36 in per unit of angle, both axes from -2.7 to 3.1 units.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\pgfplotsset{roll coupled/.style={tamr sketch, x=0.27in, y=0.36in,
+    xmin=0, xmax=13.6, ymin=-2.7, ymax=3.1,
+    xlabel={$t$ (sec)},
+    % the label above the arrow, upright (tamr sketch's rotate=-90 turns it on its side under axis lines=middle)
+    every axis y label/.style={at={(ticklabel* cs:1.0)}, anchor=south, inner sep=3pt}},
+  lower plot/.style={at={(X.south west)}, anchor=north west, yshift=-0.42in}}
+\tikzset{tangent/.style={s2, solid, line width=1pt},
+  % the label of a tangent at its top end, a node of its own (a plot's own nodes are clipped to the axes)
+  slope label/.style={anchor=west, text=ink, font=\small, inner sep=2pt},
+  zero label/.style={anchor=east, font=\footnotesize, text=ink2, inner sep=3pt}}
+\pgfplotstableread[col sep=comma]{figures/v2/ch2/fig27-marks.csv}\marks
+\foreach \key in {aX0,aY0,OX0,OY0,tend} {%
+  \pgfplotstablegetelem{0}{\key}\of\marks \expandafter\xdef\csname m@\key\endcsname{\pgfplotsretval}}
+\makeatletter
+\newcommand{\mk}[1]{\csname m@#1\endcsname}
+\makeatother
+\def\tanend{2.75}   % the tangents run up to this angle
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[roll coupled, name=X, ylabel={$\alpha_X$ (rad)}, ytick={\mk{aX0}}, yticklabels={$\alpha_{X0}$}]
+    \addplot[tangent, domain=0:{(\tanend-\mk{aX0})/\mk{OX0}}, samples=2] {\mk{aX0} + \mk{OX0}*x};
+    \node[slope label] at (axis cs:{(\tanend-\mk{aX0})/\mk{OX0}},\tanend) {Slope${}=\Omega_{X0}$};
+    \addplot[series1] table[x=t, y=aX, col sep=comma] {figures/v2/ch2/fig27.csv};
+    \node[zero label] at (axis cs:0,0) {0};
+  \end{axis}
+  \begin{axis}[roll coupled, lower plot, ylabel={$\alpha_Y$ (rad)}, ytick={\mk{aY0}}, yticklabels={$\alpha_{Y0}$}]
+    \addplot[tangent, domain=0:{(\tanend-\mk{aY0})/\mk{OY0}}, samples=2] {\mk{aY0} + \mk{OY0}*x};
+    \node[slope label] at (axis cs:{(\tanend-\mk{aY0})/\mk{OY0}},\tanend) {Slope${}=\Omega_{Y0}$};
+    \addplot[series1] table[x=t, y=aY, col sep=comma] {figures/v2/ch2/fig27.csv};
+    \node[zero label] at (axis cs:0,0) {0};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

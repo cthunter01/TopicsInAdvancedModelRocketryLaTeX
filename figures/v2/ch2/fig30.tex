@@ -1,0 +1,39 @@
+% Chapter 2, Figure 30: coupled phase angle against coupled frequency ratio (scan: figures/ch2/fig30.png).
+% Curves: fig30.py, eq. (73a), phi = arctan[2 zeta_c beta_c/(beta_c^2 - 1)] on the branch running continuously from
+% 0 to -pi (as for Figure 24: ch2-sec3b.tex:456-462); zeta_c = 0 is the step at beta_c = 1. The text says these
+% curves are "identical to" Figure 24's (ch2-sec3d.tex:419-422): this is Figure 24 with c subscripts. The figure
+% writes phi_c where eq. (73a) and the text write phi (standing rule 2: the figure's lettering is kept).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr,
+      width=4.2in, height=3.0in,
+      clip=false,                 % the zeta_c = 0 step runs along the top edge and the bottom axis
+      xmin=0, xmax=2, xtick={0,0.25,...,2},
+      xticklabels={0, 0.25, 0.50, 0.75, 1.00, 1.25, 1.50, 1.75, 2.00},
+      ymin=-3.14159265, ymax=0,
+      ytick={-3.14159265,-2.35619449,-1.57079633,-0.78539816,0},
+      yticklabels={$-\pi$, $-\dfrac{3\pi}{4}$, $-\dfrac{\pi}{2}$, $-\dfrac{\pi}{4}$, 0},
+      minor ytick={-2.74889357,-1.96349541,-1.17809725,-0.39269908},
+      xlabel={$\beta_c$},
+      ylabel={$\varphi_c$ (rad)}]
+    % reference level: phi_c = -pi/2, through which every curve passes at beta_c = 1
+    \draw[guide] (axis cs:0,-1.57079633) -- (axis cs:2,-1.57079633);
+    % zeta_c = 0: 0 for beta_c < 1, the drop at beta_c = 1, -pi (on the axis) beyond
+    \addplot[series1] table[x=beta, y=phi, col sep=comma] {figures/v2/ch2/fig30-z0.csv};
+    \pgfplotsinvokeforeach{z02, z05, z07, z1, z2}{
+      \addplot[series1] table[x=beta, y=#1, col sep=comma] {figures/v2/ch2/fig30.csv};
+    }
+    % direct labels: zeta_c = 0 beside the drop; the others at the right ends, top to bottom (as printed)
+    \begin{scope}[font=\footnotesize, inner sep=1pt, anchor=west]
+      \node at (axis cs:1.03,-0.72) {$\zeta_c = 0$};
+      \node at (axis cs:2.02,-1.930) {$\zeta_c = 2$};
+      \node at (axis cs:2.02,-2.185) {$\zeta_c = 1$};
+      \node at (axis cs:2.02,-2.390) {$\zeta_c = \sqrt{2}/2$};
+      \node at (axis cs:2.02,-2.595) {$\zeta_c = .5$};
+      \node at (axis cs:2.02,-2.880) {$\zeta_c = .2$};
+    \end{scope}
+  \end{axis}
+\end{tikzpicture}
+\end{document}

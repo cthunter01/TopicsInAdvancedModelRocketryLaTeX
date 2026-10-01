@@ -1,0 +1,37 @@
+% Chapter 2, Figure 32: notation and longitudinal coordinate system of the Barrowman method (scan:
+% figures/ch2/fig32.png). The rocket of Figs 37-39: outline, fins and scale are those of the approved
+% figures/v2/ch2/fig39.tex (lengths are the Fig 39 scan's pixels, 150 per inch, from the nose tip, drawn 1.25
+% times the printed size). The C.P. marks are schematic (the book gives no values): C.P.n, C.P.CS, C.P.CB and
+% C.P.T(B) sit where Fig 39 puts them (the 1973 Fig 32 agrees within 3 px after mapping station by station);
+% the overall C.P. is where this drawing (and Fig 38) puts it, just aft of the boattail, at 345. Z = 0 is the nose tip,
+% Z increases towards the tail (ch2-sec4.tex:146-155). Figure lettering kept: Z-bar_T(B) (eq. (92) Z-bar_T).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.0212cm, y=0.0212cm]
+  % body: ogive nose, forward tube, conical shoulder, main tube, conical boattail, aft tube; fins
+  \draw[centerline] (-14,0) -- (505,0);
+  \rocketoutline{54/12.5, 109/12.5, 144/17, 289/17, 326.5/13.5, 476/13.5}
+  \rocketfins{476}{13.5}{72}{15}{50}{57.5}
+  % the datum Z = 0 at the nose tip and the positive sense of Z
+  \draw[extension] (0,4) -- (0,182);
+  \node[anchor=south, inner sep=2pt] at (0,182) {$Z = 0$};
+  \draw[thin vec] (0,160) -- (44,160) node[anchor=west, inner sep=2pt] {$+Z$};
+  % dimensions from the nose tip, longest on top
+  \foreach \x/\h/\lab in {127/62/{\bar{Z}_{CS}}, 312/86/{\bar{Z}_{CB}}, 345/110/{\bar{Z}}, 450/134/{\bar{Z}_{T(B)}}} {
+    \draw[extension] (\x,4) -- (\x,\h+6);
+    \dimline{(0,\h)}{(\x,\h)}{$\lab$}
+  }
+  \draw[extension] (34,4) -- (34,44);
+  \dimline[pos=1, anchor=west, fill=none, xshift=2pt]{(0,38)}{(34,38)}{$\bar{Z}_n$}
+  % the centres of pressure and their names
+  \foreach \x in {34, 127, 312, 345, 450} \node[cp mark] at (\x,0) {};
+  \begin{scope}[every node/.style={font=\small, inner sep=1.5pt}]
+    \draw[leader, shorten <=2.9pt] (34,0) -- (70,-66) node[anchor=west] {\CP$_n$};
+    \draw[leader, shorten <=2.9pt] (127,0) -- (163,-66) node[anchor=west] {\CP$_{CS}$};
+    \draw[leader, shorten <=2.9pt] (312,0) -- (312,-66) node[anchor=north] {\CP$_{CB}$};
+    \draw[leader, shorten <=2.9pt] (345,0) -- (381,-66) node[anchor=west] {\CP};
+    \draw[leader, shorten <=2.9pt] (450,0) -- (486,-66) node[anchor=west] {\CP$_{T(B)}$};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

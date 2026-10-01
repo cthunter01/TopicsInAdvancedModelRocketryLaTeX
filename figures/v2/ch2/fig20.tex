@@ -1,0 +1,41 @@
+% Chapter 2, Figure 20: from steps of finite duration to an impulse (scan: figures/ch2/fig20.png).
+% Three sketches on one scale (units T_1 and M_s1), so that the equal areas are seen to be equal: (a) a pulse
+% M_s1 lasting T_1; (b) M_s2 = 2 M_s1 lasting T_2 = T_1/2 (the scan: 2.01 and 0.51); (c) the impulse of
+% strength H at t = 0, the heavy arrow reaching "infinity". Lettering as printed: T_1, T_2, M_s1, M_s2 (the
+% text says t_1 and M_s t_1: corrections/v2-figures.md, standing rule 2).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\pgfplotsset{
+  % one panel: a sketch on the common scale; y label at the top of the axis, x label at its end
+  pulse panel/.style={tamr sketch,
+    x=0.85in, y=0.5in, xmin=0, xmax=1.35, ymin=0, ymax=4.0,
+    xlabel={$t$ (sec)}, ylabel={$M_X$ (dyn-cm)},
+    hide obscured x ticks=false,
+    every axis y label/.style={at={(axis cs:0,4.0)}, anchor=south, inner sep=2pt, yshift=5pt}},
+}
+\begin{document}
+\begin{tikzpicture}
+  % (a)
+  \begin{axis}[pulse panel, name=a, xtick={0,1}, xticklabels={$0$, $T_1$}, ytick={1}, yticklabels={$M_{s1}$}]
+    \addplot[series1] coordinates {(0,0) (0,1) (1,1) (1,0)};
+    \node at (axis cs:0.5,0.5) {Area $= H$};
+    \node[panel, anchor=north east] at (rel axis cs:1,1) {(a)};
+  \end{axis}
+  % (b)
+  \begin{axis}[pulse panel, name=b, at={(a.south west)}, anchor=south west, xshift=1.95in,
+      xtick={0,0.5}, xticklabels={$0$, $T_2$}, ytick={2}, yticklabels={$M_{s2}$}]
+    \addplot[series1] coordinates {(0,0) (0,2) (0.5,2) (0.5,0)};
+    \node[align=center] at (axis cs:0.25,1.0) {Area\\$= H$};
+    \node[panel, anchor=north east] at (rel axis cs:1,1) {(b)};
+  \end{axis}
+  % (c)
+  \begin{axis}[pulse panel, name=c, at={(b.south west)}, anchor=south west, xshift=1.95in,
+      xtick={0}, xticklabels={$0$}]
+    \draw[s1, line width=1.8pt, -{Stealth[length=8pt,width=6pt]}] (axis cs:0,0) -- (axis cs:0,4.0);
+    % the intensity at the tip, set like the M_s1, M_s2 of (a) and (b)
+    \node[anchor=east, font=\footnotesize, text=ink2, inner sep=1pt] at ([xshift=-4pt]axis cs:0,3.9) {$\infty$};
+    \node[anchor=west] at (axis cs:0.06,2.0) {Strength $= H$};
+    \node[panel, anchor=north east] at (rel axis cs:1,1) {(c)};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

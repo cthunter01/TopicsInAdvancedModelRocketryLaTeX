@@ -1,0 +1,47 @@
+% Chapter 2, Figure 4: vector representation of positive angular velocity components
+% (scan: figures/ch2/fig04.png). The rocket, body axes and view are those of Figure 3 (ch2/fig03.tex, copied):
+% a true orthographic view (elevation 32 deg, azimuth 45 deg), TikZ x = E, y = F (towards the nose), z = D.
+% Each positive component is an arrow along its own axis from the centre of gravity, pointing the way a
+% right-hand screw turned in the sense of Figure 3's rotation would advance (chapters/ch2-intro-sec1.tex:
+% 209-213); lengths are arbitrary (the scan's proportions). omega_F lies on the rocket's axis, drawn over the
+% body towards the nose, as in the scan.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x={(1.15cm,0.61cm)}, y={(-1.15cm,0.61cm)}, z={(0cm,1.38cm)}]
+  % rocket: CG at the origin; nose tip at y = 3.7, nose base 2.8, tail 1.65 aft of the CG (as Figure 3)
+  \def\r{0.085}\def\yn{3.7}\def\ynb{2.95}\def\yt{-1.65}
+  \def\cr{0.75}\def\ct{0.3}\def\s{0.45}\def\sw{0.45}
+  \pgfmathsetmacro\yle{\yt+\cr}\pgfmathsetmacro\ytle{\yle-\sw}\pgfmathsetmacro\ytte{\ytle-\ct}
+  \def\phis{48.5} % silhouette angle of the body in this view
+  \coordinate (s1t) at ({\r*cos(\phis)},\yt,{\r*sin(\phis)});
+  \coordinate (s1n) at ({\r*cos(\phis)},\ynb,{\r*sin(\phis)});
+  \coordinate (s2t) at ({-\r*cos(\phis)},\yt,{-\r*sin(\phis)});
+  \coordinate (s2n) at ({-\r*cos(\phis)},\ynb,{-\r*sin(\phis)});
+  \coordinate (tip) at (0,\yn,0);
+  % centre line aft of the tail
+  \draw[centerline] (0,\yt,0) -- (0,\yt-1.5,0);
+  % fins behind the body: +E and -D
+  \draw[outline, fill=white] (\r,\yle,0) -- (\r+\s,\ytle,0) -- (\r+\s,\ytte,0) -- (\r,\yt,0) -- cycle;
+  \draw[outline, fill=white] (0,\yle,-\r) -- (0,\ytle,-\r-\s) -- (0,\ytte,-\r-\s) -- (0,\yt,-\r) -- cycle;
+  % body and nose
+  \def\nose{(s1t) -- (s1n) .. controls ($(s1n)+(0,0.4,0)$) .. (tip) .. controls ($(s2n)+(0,0.4,0)$) .. (s2n) -- (s2t)}
+  \fill[white] \nose -- cycle;
+  \draw[outline] \nose;
+  \draw[outline, canvas is xz plane at y=\ynb] (\phis:\r) arc[start angle=\phis, end angle=\phis+180, radius=\r];
+  \draw[outline, fill=white, canvas is xz plane at y=\yt] (0,0) circle[radius=\r];
+  % fins in front: +D and -E
+  \draw[outline, fill=white] (0,\yle,\r) -- (0,\ytle,\r+\s) -- (0,\ytte,\r+\s) -- (0,\yt,\r) -- cycle;
+  \draw[outline, fill=white] (-\r,\yle,0) -- (-\r-\s,\ytle,0) -- (-\r-\s,\ytte,0) -- (-\r,\yt,0) -- cycle;
+  % body axes from the centre of gravity
+  \draw[thin vec] (0,0,0) -- (0,0,2.3) node[above] {D};
+  \draw[thin vec] (0,0,0) -- (2.5,0,0) node[right] {E};
+  \draw[thin line] (tip) -- (0,\yn+0.9,0);
+  \draw[thin vec] (0,\yn+0.9,0) -- (0,\yn+1.5,0) node[above left=-1pt] {F};
+  % the positive angular velocity components as vectors along their axes
+  \draw[vec] (0,0,0) -- (0,0,1.2) node[right=2pt, pos=0.9] {$\omega_D$};
+  \draw[vec] (0,0,0) -- (1.3,0,0) node[below right=0pt, pos=0.92] {$\omega_E$};
+  \draw[vec] (0,0,0) -- (0,1.55,0) node[above=4pt, pos=0.88] {$\omega_F$};
+  \node[cg mark] at (0,0,0) {};
+\end{tikzpicture}
+\end{document}

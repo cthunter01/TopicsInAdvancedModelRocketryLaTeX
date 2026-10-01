@@ -82,7 +82,54 @@ slips), **v1** (a question about the text, not the figure).
   propellant masses (and, for Fig 8, the transonic drag model), so these are digitized; Ch4 Figs 6, 11 and 16
   (B4) are computable. **rule** (compute-else-digitize)
 
+## Chapter 2 (workflow wf_6ab5405f-ad9, 2026-09-30): for the Chapter 2 gate
+
+- **C.P. placed by the equations, not where 1973 drew it** (the pilot decision "computed over drawn" applied to
+  marks): Fig 34 C.P._CS by eq. (82) at 0.326 L behind Z_1 (drawn 0.589 L; the v1 note's Barrowman formula gives
+  0.538 L); Fig 35 C.P._CB by eq. (84) at 0.674 L (drawn 0.417 L; Barrowman 0.462 L); Fig 36 (1994 and 1973)
+  C.P._T by eq. (90) at 0.45 s from the root (drawn about 0.39 s; 2.2 mm outboard at final size). Each is a
+  one-line change back to the drawn position. **gate**
+- **One frame for a family:** Figs 21-23 share one omega_n and H/I_L (zeta = 0.25, 1, 1.7), so the three impulse
+  responses compare directly; the 1973 Fig 23 is drawn at its own larger scale. Figs 16-19 and 26-29 likewise
+  share one rocket each (the book gives no values for the sketches). **gate** (confirm)
+- **Fig 44** (exploded moment balance): the 1973 box is drawn in two projections with the bearing plates detached;
+  the redraw shows the box assembled in one projection, the other parts exploded as printed. Two bolt holes for the
+  caption's plural. **gate** (confirm)
+- **Fig 50 / Fig 43** circled letters: one form for both (the house circled tag; rule 2 keeps the lowercase).
+  Settled in the consistency pass.
+
+Chapter 2 gate (user, 2026-09-30): approved as proposed: C.P. marks by the equations (Figs 34, 35, 36), one
+frame per sketch family, Fig 44 assembled in one projection, the house circled tag for Figs 43 and 50.
+
+## Chapter 2: questions about the text (v1, outside the figure work)
+
+- **Ch2 Fig 10 caption** (ch2-sec3a.tex:184): "viewed from the negative y axis" cannot show a rotation about X;
+  +alpha_X moves the nose towards -Y, which is the viewer's right only when viewed from -X (the art and the redraw
+  show that sense). Possible corrections/ch2.md query. **v1**
+
 ## Minor (logged only)
+
+- Ch2 Fig 4: the angular-velocity components only, no resultant (as printed); house vectors replace the 1973
+  cone-and-ball heads (as in the approved Fig 3).
+- Ch2 Fig 5: which line is fixed is not stated; the redraw takes the up-right line as the fixed horizontal
+  (guide) and the lower one as the line on the wheel, turned through alpha in the sense of rotation.
+- Ch2 Fig 7/9: the true M_c is flat from 0.30 rad (Fig 7) and from 0.287 rad (1973 Fig 9, about 1.5% lower); the
+  redraws share the Fig 7 data. Fig 9's printed linear approximations are about 2% steeper than the lettered C_1,
+  C_2 (the lower ends at about 1.9e6 against 1.875e6 at 150 rad/sec); computed from the lettering.
+- Ch2 Fig 10: the 1973 sinusoid fits A = 1.73 alpha_X0 although its ticks letter A = 2.83 alpha_X0; the lettered
+  ratio is kept (points b and f move 1.4 and 0.7 mm). Its Slope = Omega_X0 line is drawn as the true tangent.
+- Ch2 Figs 11-14: computed curves within about 1 mm of the 1973 art (the envelope of Fig 11 lies up to 1 mm above
+  the drawn one; Fig 14's divergence turns up more steeply in the art); Figs 12, 13, 26 tangents drawn true.
+- Ch2 Figs 17, 19, 22: Fig 17's undershoot at 2 pi/omega (eq. (30)), drawn at 2.16; Fig 19 paired with Fig 18's
+  C_1/I_L; Fig 22's t_m mark on the computed peak (the 1973 mark is 4 px off its own curve).
+- Ch2 Fig 31: the zeta_c = .2 peak is 2.55/C_1 by eqs. (73b)/(75), drawn about 2.4/C_1 (as Fig 25).
+- Ch2 Fig 33: the tangent ogive's C.P. by the text's rule is 0.460 L at the drawn fineness 2.4; the printed
+  .466 L (the slender limit, 7/15) is drawn.
+- Ch2 Fig 48: the end view's left fin, drawn about 2.7 cm too long in 1973, has the 5.08 span of the others.
+- Ch2 Fig 49 (text): eq. (50) at zeta = 0.3 gives 1.7471, printed 1.746 (minor; corrections/ch2.md only).
+- Ch2 Fig 52 (2022): tick labels 0, 0.5, ... (the values of the chart's 0.000, 0.500 ...); the spreadsheet's
+  point markers are not drawn; omega_z kept lowercase as printed (rule 2).
+
 
 - Ch1 Fig 4(b): the lettered areas are not listed left to right and sum to 5.20 N-sec against the engine's 5.0;
   kept as printed.

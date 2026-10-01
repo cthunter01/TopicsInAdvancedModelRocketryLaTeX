@@ -1,0 +1,38 @@
+% Chapter 2, Figure 24: phase angle against frequency ratio (scan: figures/ch2/fig24.png).
+% Curves: fig24.py, eq. (48a), phi = arctan[2 zeta beta/(beta^2 - 1)] on the branch running continuously from 0 to
+% -pi (ch2-sec3b.tex:456-462), i.e. -atan2(2 zeta beta, 1 - beta^2); zeta = 0 is the step at beta = 1.
+% The layout is Figure 25's (the approved template); Figure 30 is this plot with c subscripts.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr,
+      width=4.2in, height=3.0in,
+      clip=false,                 % the zeta = 0 step runs along the top edge and the bottom axis
+      xmin=0, xmax=2, xtick={0,0.25,...,2},
+      xticklabels={0, 0.25, 0.50, 0.75, 1.00, 1.25, 1.50, 1.75, 2.00},
+      ymin=-3.14159265, ymax=0,
+      ytick={-3.14159265,-2.35619449,-1.57079633,-0.78539816,0},
+      yticklabels={$-\pi$, $-\dfrac{3\pi}{4}$, $-\dfrac{\pi}{2}$, $-\dfrac{\pi}{4}$, 0},
+      minor ytick={-2.74889357,-1.96349541,-1.17809725,-0.39269908},
+      xlabel={$\beta$},
+      ylabel={$\varphi$ (rad)}]
+    % reference level: phi = -pi/2, through which every curve passes at beta = 1
+    \draw[guide] (axis cs:0,-1.57079633) -- (axis cs:2,-1.57079633);
+    % zeta = 0: 0 for beta < 1, the drop at beta = 1, -pi (on the axis) beyond
+    \addplot[series1] table[x=beta, y=phi, col sep=comma] {figures/v2/ch2/fig24-z0.csv};
+    \pgfplotsinvokeforeach{z02, z05, z07, z1, z2}{
+      \addplot[series1] table[x=beta, y=#1, col sep=comma] {figures/v2/ch2/fig24.csv};
+    }
+    % direct labels: zeta = 0 beside the drop; the others at the right ends, top to bottom (as printed)
+    \begin{scope}[font=\footnotesize, inner sep=1pt, anchor=west]
+      \node at (axis cs:1.03,-0.72) {$\zeta = 0$};
+      \node at (axis cs:2.02,-1.930) {$\zeta = 2$};
+      \node at (axis cs:2.02,-2.185) {$\zeta = 1$};
+      \node at (axis cs:2.02,-2.390) {$\zeta = \sqrt{2}/2$};
+      \node at (axis cs:2.02,-2.595) {$\zeta = .5$};
+      \node at (axis cs:2.02,-2.880) {$\zeta = .2$};
+    \end{scope}
+  \end{axis}
+\end{tikzpicture}
+\end{document}

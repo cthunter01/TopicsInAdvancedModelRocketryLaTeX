@@ -1,0 +1,42 @@
+% Chapter 2, Figure 38: notation for the corrective moment coefficient and the static stability margin (scan:
+% figures/ch2/fig38.png). The rocket of Figs 32, 37 and 39: outline, fins and scale are those of the approved
+% figures/v2/ch2/fig39.tex (lengths are the Fig 39 scan's pixels, 150 per inch, from the nose tip, drawn 1.25
+% times the printed size). C.G. and C.P. are schematic (the book gives no values): the C.G. is Fig 39's (283),
+% the C.P. is where this drawing (and Fig 32) puts it, just aft of the boattail (345). r_r (the reference
+% radius, at the nose base: eqs. (95), (96) use A_r) is dimensioned on the forward tube from the centre line to
+% the surface, d_max across the main tube, both with outside arrows as printed (labels set horizontal).
+% The two formula lines of the artwork are typeset; ch2-sec4.tex:575-584 relies on the stability margin.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.0212cm, y=0.0212cm]
+  % an arrow of a dimension too short for its label: drawn from outside to the surface it measures
+  \tikzset{dim stub/.style={draw=ink2, line width=0.4pt, -{Stealth[length=4pt,width=2.4pt]}}}
+  % the two formulas
+  \node[anchor=south west, align=left, inner sep=0pt] at (36,112)
+    {$A_r = \pi r_r^2$\\[4pt]
+     Static stability margin in calibers $= \dfrac{\bar{Z} - \bar{W}}{d_{\max}}$};
+  % body: ogive nose, forward tube, conical shoulder, main tube, conical boattail, aft tube; fins
+  \draw[centerline] (-14,0) -- (505,0);
+  \rocketoutline{54/12.5, 109/12.5, 144/17, 289/17, 326.5/13.5, 476/13.5}
+  \rocketfins{476}{13.5}{72}{15}{50}{57.5}
+  % dimensions from the nose tip, longest on top
+  \draw[extension] (0,4) -- (0,92);
+  \foreach \x/\h/\lab in {283/62/{\bar{W}}, 345/86/{\bar{Z}}} {
+    \draw[extension] (\x,4) -- (\x,\h+6);
+    \dimline{(0,\h)}{(\x,\h)}{$\lab$}
+  }
+  % the reference radius (centre line to surface) and the maximum diameter
+  \draw[dim stub] (72,34.5) -- (72,12.5);
+  \draw[dim stub] (72,-34.5) -- (72,0) node[at start, anchor=north, inner sep=2pt] {$r_r$};
+  \draw[dim stub] (205,39) -- (205,17);
+  \draw[dim stub] (205,-39) -- (205,-17) node[at start, anchor=north, inner sep=2pt] {$d_{\max}$};
+  % the centre of gravity and the centre of pressure
+  \node[cg mark] at (283,0) {};
+  \node[cp mark] at (345,0) {};
+  \begin{scope}[every node/.style={font=\small, inner sep=1.5pt}]
+    \draw[leader, shorten <=2.9pt] (283,0) -- (283,-66) node[anchor=north] {\CG};
+    \draw[leader, shorten <=2.9pt] (345,0) -- (381,-66) node[anchor=west] {\CP};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

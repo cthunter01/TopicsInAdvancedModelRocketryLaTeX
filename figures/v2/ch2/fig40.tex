@@ -1,0 +1,39 @@
+% Chapter 2, Figure 40: notation for the propulsive (jet) damping moment coefficient, eqs. (99), (100)
+% (scan: figures/ch2/fig40.png). A one-tube rocket (ogive nose, one body tube, two swept fins), not the
+% Fig 39 outline; the exhaust jet leaves the nozzle exit at the aft end, a distance L_ne from the nose tip.
+% Lengths are the scan's pixels (150 per inch) measured from the nose tip, drawn 1.25 times the printed
+% size (the scale of Fig 39).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.0212cm, y=0.0212cm]
+  \def\L{384.5}\def\R{13.5}
+  % the exhaust jet: a bundle of wavy streaks widening from the nozzle exit (half-width 6 at the exit, 15
+  % at 200 behind it), plain line art ending at staggered lengths (the 1973 jet runs off the edge of the
+  % drawing); \x is the distance behind the exit
+  \begin{scope}[shift={(\L,0)}]
+    \foreach \e/\lam/\ph/\len in {0.9/52/0/196, 0.55/61/140/205, 0.18/47/250/186,
+                                  -0.18/57/60/205, -0.55/49/190/192, -0.9/63/300/200} {
+      \draw[draw=ink2, line width=0.4pt] plot[smooth, domain=0:\len, samples=60]
+        (\x, {\e*(5.5 + 0.045*\x) + (0.3 + 0.008*\x)*sin(\x*(360/\lam) + \ph)*min(1, \x/15)});
+    }
+  \end{scope}
+  % the rocket
+  \draw[centerline] (-18,0) -- (\L,0);
+  \rocketoutline{53.5/\R, \L/\R}
+  \rocketfins{\L}{\R}{56.5}{28}{42}{28.5}
+  % dimensions from the nose tip
+  \draw[extension] (0,4) -- (0,125.5);
+  \draw[extension] (264,5) -- (264,88.5);
+  \draw[extension] (\L,59) -- (\L,125.5);
+  \dimline{(0,82.5)}{(264,82.5)}{$\bar{W}$}
+  \dimline{(0,119.5)}{(\L,119.5)}{$L_{ne}$}
+  % the C.G. and the mass flow
+  \node[cg mark] at (264,0) {};
+  \begin{scope}[every node/.style={font=\small, inner sep=1.5pt}]
+    \draw[leader, shorten <=3.1pt] (264,0) -- (300,-66) node[anchor=west] {\CG};
+    \draw[leader] (414,-4) -- (447,-50) node[anchor=north west, align=left, yshift=5.5pt]
+      {$\mdot$ g/sec\\expelled from\\nozzle};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

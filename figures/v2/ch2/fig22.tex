@@ -1,0 +1,32 @@
+% Chapter 2, Figure 22: critically damped response to an impulse (scan: figures/ch2/fig22.png).
+% Curve: fig22.py, eq. (39) with D by eq. (16) (fully determined). Units (no scale is printed): t in 1/omega_n
+% = 1/D, alpha_X in H/(I_L omega_n), the frame shared with Figs 21 and 23 (one rocket, three dampings; the
+% initial slope H/I_L, eq. (37b), is 1; y axis to -0.42 as in Fig 21, running below 0 as printed, formulas
+% beneath it). Marks t_m = 1/D, alpha_Xm = H/(I_L D e) by eqs. (42a), (42b), joined to the peak by solid lines
+% as printed (peak line); the line "Slope = H/I_L" is the tangent at the origin. The formulas are eqs. (42b),
+% (42a) as lettered.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \pgfmathsetmacro\tm{1}                                 % eq. (42a)
+  \pgfmathsetmacro\am{1/exp(1)}                          % eq. (42b)
+  \pgfmathsetmacro\ts{0.66}                              % top of the tangent line
+  \begin{axis}[tamr sketch, name=ax,
+      x=0.46in, y=1.8in, xmin=0, xmax=8.6, ymin=-0.42, ymax=0.8,
+      xlabel={$t$ (sec)}, ylabel={$\alpha_X$ (rad)},
+      xtick={\tm}, xticklabels={$t_m$}, ytick={0,\am}, yticklabels={$0$, $\alpha_{Xm}$},
+      hide obscured y ticks=false,
+      every axis y label/.style={at={(axis cs:0,0.8)}, anchor=south, inner sep=2pt}]
+    \draw[peak line] (axis cs:0,\am) -- (axis cs:\tm,\am) -- (axis cs:\tm,0);
+    \addplot[series2, solid, domain=0:\ts, samples=2] {x};
+    \addplot[series1] table[x=t, y=alpha, col sep=comma] {figures/v2/ch2/fig22.csv};
+    \node[anchor=west, inner sep=2pt] at (axis cs:\ts,\ts) {Slope $= \dfrac{H}{I_L}$};
+  \end{axis}
+  \node[anchor=north west, font=\small] at ([xshift=0.35in, yshift=-6pt]ax.south west)
+    {$\begin{aligned}
+      \alpha_{Xm} &= \frac{H}{I_L D e}\\[4pt]
+      t_m &= \frac{1}{D}
+    \end{aligned}$};
+\end{tikzpicture}
+\end{document}

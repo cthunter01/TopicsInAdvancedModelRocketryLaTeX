@@ -1,0 +1,3 @@
+{"crop": "figures/ch2/fig10.png", 
+ "note": "Origin and axis directions fitted to the drawn axes; alpha scale from the alpha_X0 tick (alpha_X0 = 0.8); time scale: the drawn period, sinusoid fitted through the alpha_X0 tick (297.2 px per 2 pi/omega_n).", 
+ "axes": {"main": {"points": [[69.23, 210.61, 0, 0], [258.43, 210.43, 4, 0], [447.64, 210.24, 8, 0], [70.32, 153.01, 0, 0.8], [66.5, 354.62, 0, -2]]}}}

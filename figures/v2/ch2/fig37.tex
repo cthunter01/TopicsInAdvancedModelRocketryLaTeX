@@ -1,0 +1,38 @@
+% Chapter 2, Figure 37: notation and longitudinal coordinate system for the C.G. location (scan:
+% figures/ch2/fig37.png). The rocket of Figs 32, 38 and 39: outline, fins and scale are those of the approved
+% figures/v2/ch2/fig39.tex (lengths are the Fig 39 scan's pixels, 150 per inch, from the nose tip, drawn 1.25
+% times the printed size). The C.G. marks are schematic (the book gives no values) and sit where the 1973
+% drawing puts them, mapped station by station onto that outline; the overall C.G. is Fig 39's (283). As the
+% caption says, the two tubes forward of the boattail get no C.G. of their own and the tail section (tube,
+% engine, fins) is one unit, C.G.T. W = 0 is the nose tip, W increases towards the tail (ch2-sec4.tex:478-484).
+% Figure lettering kept: subscripts S, B, T (eq. (94) has W-bar_s, W-bar_b, and W-bar_t for the body tube).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.0212cm, y=0.0212cm]
+  % body: ogive nose, forward tube, conical shoulder, main tube, conical boattail, aft tube; fins
+  \draw[centerline] (-14,0) -- (505,0);
+  \rocketoutline{54/12.5, 109/12.5, 144/17, 289/17, 326.5/13.5, 476/13.5}
+  \rocketfins{476}{13.5}{72}{15}{50}{57.5}
+  % the datum W = 0 at the nose tip and the positive sense of W
+  \draw[extension] (0,4) -- (0,182);
+  \node[anchor=south, inner sep=2pt] at (0,182) {$W = 0$};
+  \draw[thin vec] (0,160) -- (44,160) node[anchor=west, inner sep=2pt] {$+W$};
+  % dimensions from the nose tip, longest on top
+  \foreach \x/\h/\lab in {131/62/{\bar{W}_S}, 283/86/{\bar{W}}, 304/110/{\bar{W}_B}, 420/134/{\bar{W}_T}} {
+    \draw[extension] (\x,4) -- (\x,\h+6);
+    \dimline{(0,\h)}{(\x,\h)}{$\lab$}
+  }
+  \draw[extension] (40,4) -- (40,44);
+  \dimline[pos=1, anchor=west, fill=none, xshift=2pt]{(0,38)}{(40,38)}{$\bar{W}_n$}
+  % the centres of gravity and their names
+  \foreach \x in {40, 131, 283, 304, 420} \node[cg mark] at (\x,0) {};
+  \begin{scope}[every node/.style={font=\small, inner sep=1.5pt}]
+    \draw[leader, shorten <=2.9pt] (40,0) -- (76,-66) node[anchor=west] {\CG$_n$};
+    \draw[leader, shorten <=2.9pt] (131,0) -- (167,-66) node[anchor=west] {\CG$_S$};
+    \draw[leader, shorten <=2.9pt] (283,0) -- (283,-66) node[anchor=north] {\CG};
+    \draw[leader, shorten <=2.9pt] (304,0) -- (340,-66) node[anchor=west] {\CG$_B$};
+    \draw[leader, shorten <=2.9pt] (420,0) -- (486,-66) node[anchor=west] {\CG$_T$};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

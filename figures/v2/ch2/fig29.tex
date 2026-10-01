@@ -1,0 +1,41 @@
+% Chapter 2, Figure 29: roll-coupled response to an impulse H in yaw (scan: figures/ch2/fig29.png).
+% Curves: fig29.py, eq. (67) with omega_1, omega_2 by eqs. (55), (56), D_1, D_2 by (57), phi by (65a) (= phi_1 =
+% phi_2, (65b)), A by (66a) (A_2 = -A, (66b)): the rocket of Figs 26-29 (I_L = C_1 = 1, I_R omega_Z = 4/(3 sqrt 5),
+% C_2 = 0.47), initial conditions alpha_X0 = alpha_Y0 = Omega_Y0 = 0, Omega_X0 = H/I_L = 3.1 (fig29-marks.csv),
+% matched to the scan. Both plots are the one motion. The straight line is the true tangent at the origin, slope
+% H/I_L (it lies on the 1973 line); the lower curve leaves the origin level (initial pitch rate zero).
+% Layout shared by Figs 26-29: two tamr sketch plots (alpha_X above, alpha_Y below) on one unscaled t axis
+% (0.27 in per unit of sqrt(I_L/C_1)), 0.36 in per unit of angle, both axes from -2.7 to 3.1 units.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\pgfplotsset{roll coupled/.style={tamr sketch, x=0.27in, y=0.36in,
+    xmin=0, xmax=13.6, ymin=-2.7, ymax=3.1,
+    xlabel={$t$ (sec)},
+    % the label above the arrow, upright (tamr sketch's rotate=-90 turns it on its side under axis lines=middle)
+    every axis y label/.style={at={(ticklabel* cs:1.0)}, anchor=south, inner sep=3pt}},
+  lower plot/.style={at={(X.south west)}, anchor=north west, yshift=-0.42in}}
+\tikzset{tangent/.style={s2, solid, line width=1pt},
+  % the label of a tangent at its top end, a node of its own (a plot's own nodes are clipped to the axes)
+  slope label/.style={anchor=west, text=ink, font=\small, inner sep=2pt},
+  zero label/.style={anchor=east, font=\footnotesize, text=ink2, inner sep=3pt}}
+\pgfplotstableread[col sep=comma]{figures/v2/ch2/fig29-marks.csv}\marks
+\foreach \key in {H,tend} {%
+  \pgfplotstablegetelem{0}{\key}\of\marks \expandafter\xdef\csname m@\key\endcsname{\pgfplotsretval}}
+\makeatletter
+\newcommand{\mk}[1]{\csname m@#1\endcsname}
+\makeatother
+\def\tanend{2.75}   % the tangents run up to this angle
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[roll coupled, name=X, ylabel={$\alpha_X$ (rad)}]
+    \addplot[tangent, domain=0:{\tanend/\mk{H}}, samples=2] {\mk{H}*x};
+    \node[slope label] at (axis cs:{\tanend/\mk{H}},\tanend) {Slope${}=\dfrac{H}{I_L}$};
+    \addplot[series1] table[x=t, y=aX, col sep=comma] {figures/v2/ch2/fig29.csv};
+    \node[zero label] at (axis cs:0,0) {0};
+  \end{axis}
+  \begin{axis}[roll coupled, lower plot, ylabel={$\alpha_Y$ (rad)}]
+    \addplot[series1] table[x=t, y=aY, col sep=comma] {figures/v2/ch2/fig29.csv};
+    \node[zero label] at (axis cs:0,0) {0};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

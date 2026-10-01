@@ -1,0 +1,47 @@
+% Chapter 2, Figure 11: underdamped response in yaw and its envelope (scan: figures/ch2/fig11.png).
+% Curves: fig11.py, eq. (15) alpha_X = A e^{-Dt} sin(omega t + phi) with eqs. (16)-(19), zeta = 0.227 (eq. (20)),
+% alpha_X0 = 1, Omega_X0 = 2.27 in the family's units (time 1/omega_n), fitted to the drawn curve; the envelope
+% A e^{-Dt} DOTTED as the caption says (standing rule 1; printed with short dashes), from just before its first
+% contact with the curve. Zeros t_1 = (pi - phi)/omega, t_2 = t_1 + pi/omega (fig11-marks.csv) carry the dimensions.
+% The straight line is the tangent at t = 0, slope Omega_X0.
+% Layout shared by Figs 10-14 (tamr sketch; 0.4 in per 1/omega_n, 0.576 in per unit of yaw angle;
+% the axis below zero shortened from the printed -2.25 to -1.8 units).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\pgfplotsset{free response/.style={tamr sketch, x=0.4in, y=0.576in,
+    xmin=0, xmax=9.6, ymin=-1.8, ymax=2.8,
+    xlabel={$t$ (sec)}, ylabel={$\alpha_X$ (rad)},
+    % the label above the arrow, upright (tamr sketch's rotate=-90 turns it on its side under axis lines=middle)
+    every axis y label/.style={at={(ticklabel* cs:1.0)}, anchor=south, inner sep=3pt}}}
+\tikzset{tangent/.style={s2, line width=1pt},
+  % the caption's "dotted line": round dots in the guide colour
+  envelope/.style={draw=ink2, line width=1.1pt, line cap=round, dash pattern=on 0pt off 2.6pt}}
+\pgfplotstableread[col sep=comma]{figures/v2/ch2/fig11-marks.csv}\marks
+\pgfplotstablegetelem{0}{t1}\of\marks \let\tone\pgfplotsretval
+\pgfplotstablegetelem{0}{t2}\of\marks \let\ttwo\pgfplotsretval
+\pgfplotstablegetelem{0}{alpha0}\of\marks \let\azero\pgfplotsretval
+\pgfplotstablegetelem{0}{Omega0}\of\marks \let\Wzero\pgfplotsretval
+\pgfplotstablegetelem{0}{A}\of\marks \let\Amp\pgfplotsretval
+\pgfplotstablegetelem{0}{D}\of\marks \let\Dmp\pgfplotsretval
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[free response, ytick={\azero}, yticklabels={$\alpha_{X0}$}]
+    \addplot[series1] table[x=t, y=alpha, col sep=comma] {figures/v2/ch2/fig11.csv};
+    % the envelope A e^{-Dt}, from just before its first contact with the curve (t_c = 1.23)
+    \addplot[envelope, restrict x to domain=0.95:9.2] table[x=t, y=env, col sep=comma] {figures/v2/ch2/fig11.csv};
+    \pgfmathsetmacro\tl{4.9}\pgfmathsetmacro\el{\Amp*exp(-\Dmp*\tl)}
+    \node[anchor=east, font=\small, inner sep=1.5pt] (lab) at (axis cs:4.1,1.72) {$Ae^{-Dt}$};
+    \draw[leader] (lab.east) -- (axis cs:4.35,1.72) -- (axis cs:\tl,\el);
+    % tangent at t = 0: alpha_X0 + Omega_X0 t
+    \pgfmathsetmacro\tt{0.66}
+    \draw[tangent] (axis cs:0,\azero) -- (axis cs:\tt,{\azero+\Wzero*\tt})
+      node[anchor=west, text=ink, font=\small, inner sep=2pt] {Slope${}=\Omega_{X0}$};
+    \node[anchor=east, font=\footnotesize, text=ink2, inner sep=3pt] at (axis cs:0,0) {0};
+    % time to the first zero and one-half period
+    \draw[extension] (axis cs:\tone,0) -- (axis cs:\tone,-1.64);
+    \draw[extension] (axis cs:\ttwo,0) -- (axis cs:\ttwo,-1.64);
+    \dimline{(axis cs:0,-1.5)}{(axis cs:\tone,-1.5)}{$\dfrac{\pi-\varphi}{\omega}$}
+    \dimline{(axis cs:\tone,-1.5)}{(axis cs:\ttwo,-1.5)}{$\dfrac{\pi}{\omega}$}
+  \end{axis}
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,45 @@
+% Chapter 2, Figure 9: the linearization approximations for the rocket of Figs 7 and 8 (scan: figures/ch2/fig09.png).
+% Curves: fig09.py. True M_c and M_d: the digitized curves of Figs 7 and 8 (fig07.py, fig08.py), the same data.
+% Linear approximations: eq. (8) M_c = C_1 alpha_X and eq. (9) M_d = C_2 Omega_X, the tangents at zero, with the
+% lettered C_1 = 1x10^6 dyn-cm and C_2 = 1.25x10^4 dyn-cm-sec. Limits of validity (dashed): 0.225 rad and
+% 87 rad/sec (the caption). Both lines solid as printed. The true curve and its tangent coincide from the origin
+% (to 0.20 rad and 60 rad/sec), so the tangent is drawn last and thinner, on top of the true curve, and shows as
+% a line through the origin along the shared segment.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  % upper: corrective moment (the axes of Fig 7)
+  \begin{axis}[tamr, name=upper,
+      width=3.8in, height=2.3in,
+      xmin=0, xmax=0.3, xtick={0,0.1,0.2,0.3}, minor xtick={0.05,0.15,0.25},
+      ymin=0, ymax=4e5, ytick={0,1e5,2e5,3e5,4e5},
+      yticklabels={0, $1\times10^5$, $2\times10^5$, $3\times10^5$, $4\times10^5$},
+      xlabel={Angular deflection $\alpha_X$ (rad)},
+      ylabel={Corrective moment $M_c$ (dyn-cm)}]
+    \draw[guide] (axis cs:0.225,0) -- (axis cs:0.225,2.97e5);
+    \dimline{(axis cs:0,2.8e5)}{(axis cs:0.225,2.8e5)}{Range of validity}
+    \addplot[series1] table[x=alpha, y=true, col sep=comma] {figures/v2/ch2/fig09-mc.csv};
+    \addplot[series2, solid, line width=0.5pt] table[x=alpha, y=linear, col sep=comma] {figures/v2/ch2/fig09-mc.csv};
+    \node[anchor=south east, align=center, inner sep=1pt] at (axis cs:0.3,3.07e5) {Linear\\approximation};
+    \node[anchor=north, inner sep=1pt] at (axis cs:0.281,2.32e5) {True $M_c$};
+    \node[inner sep=1pt] at (axis cs:0.152,0.60e5) {$C_1 = 1\times10^6$ dyn-cm};
+  \end{axis}
+  % lower: damping moment (the axes of Fig 8)
+  \begin{axis}[tamr, name=lower, at={(0,-3.25in)},
+      width=3.8in, height=2.3in,
+      xmin=0, xmax=150, xtick={0,50,100,150}, minor xtick={25,75,125},
+      ymin=0, ymax=2e6, ytick={0,1e6,2e6}, minor ytick={0.5e6,1.5e6},
+      yticklabels={0, $1\times10^6$, $2\times10^6$},
+      xlabel={Angular velocity $\Omega_X$ (rad/sec)},
+      ylabel={Damping moment $M_d$ (dyn-cm)}]
+    \draw[guide] (axis cs:87,0) -- (axis cs:87,1.5e6);
+    \dimline{(axis cs:0,1.35e6)}{(axis cs:87,1.35e6)}{Range of validity}
+    \addplot[series1] table[x=Omega, y=true, col sep=comma] {figures/v2/ch2/fig09-md.csv};
+    \addplot[series2, solid, line width=0.5pt] table[x=Omega, y=linear, col sep=comma] {figures/v2/ch2/fig09-md.csv};
+    \node[anchor=south east, align=center, inner sep=1pt] at (axis cs:131,1.71e6) {Linear\\approximation};
+    \node[anchor=north, inner sep=1pt] at (axis cs:138,1.30e6) {True $M_d$};
+    \node[align=center, inner sep=1pt] at (axis cs:60,0.27e6) {$C_2 = 1.25\times10^4$\\dyn-cm-sec};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

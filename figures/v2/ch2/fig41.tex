@@ -1,0 +1,64 @@
+% Chapter 2, Figure 41: notation for the contributions to the longitudinal moment of inertia, eqs. (102),
+% (103a), (103b) (scan: figures/ch2/fig41.png). The body tube and fins are context, in phantom lines (long
+% dash, two short); the three components are solid: the nosecone with its shoulder (a point mass at
+% C.G._n), the NAR payload (a solid cylinder, radius R, length L_cs) and the engine casing (a hollow
+% cylinder, radii R_o and R_i, its bore in hidden lines, length L_ch). Each component's C.G. is at its
+% midpoint. Lettering as printed: the figure's cs/ch subscripts and L_cs, L_ch stand for eq. (103)'s
+% c and L (standing rule 2).
+% Lengths are the scan's pixels (150 per inch) measured from the nose tip, drawn 1.25 times the printed
+% size (the scale of Fig 39).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\tikzset{dim arrow/.style={draw=ink2, line width=0.4pt, -{Stealth[length=4pt,width=2.4pt]}}}
+% \dimoutv{<x>}{<y>}{<label>}: a small radius, centre line to y, with its arrows outside, pointing in; the label
+% horizontal above the tail of the upper arrow (all three tails at y = 30, so the labels share a line)
+\newcommand{\dimoutv}[3]{\draw[dim arrow] (#1,30) -- (#1,#2) node[at start, anchor=south, inner sep=1.5pt] {#3};
+  \draw[dim arrow] (#1,-13) -- (#1,0);}
+\begin{document}
+\begin{tikzpicture}[x=0.0212cm, y=0.0212cm]
+  \def\R{13.25}
+  \draw[centerline] (-20,0) -- (584,0);
+  % context: the body tube and the fins (upper and lower), phantom
+  \draw[phantom, draw=ink2] (59,\R) -- (517,\R) -- (517,-\R) -- (59,-\R);
+  \foreach \s in {1,-1}
+    \draw[phantom, draw=ink2, yscale=\s] (451,\R) -- (489.5,\R+50) -- (517,\R+50) -- (517,\R);
+  % the components: nosecone and its shoulder, the payload, the engine casing (bore hidden)
+  \begin{scope}[scale=10]  % (in tenths: the ogive's radius squared would overflow pgfmath)
+    \rocketoutline{5.9/1.325, 5.9/1.1, 7.7/1.1}
+  \end{scope}
+  \draw[outline] (113,-11) rectangle (127,11);
+  \draw[outline] (414,-11) rectangle (517,11);
+  \draw[hidden] (414,7.25) -- (517,7.25) (414,-7.25) -- (517,-7.25);
+  % distances from the nose tip, longest on top
+  \draw[extension] (0,4) -- (0,116);
+  \foreach \x/\h/\lab in {49.5/38/{\bar{W}_n}, 120/62/{\bar{W}_{cs}}, 324/86/{\bar{W}}, 465.5/110/{\bar{W}_{ch}}} {
+    \draw[extension] (\x,5) -- (\x,\h+6);
+    \dimline{(0,\h)}{(\x,\h)}{$\lab$}
+  }
+  % R of the payload (arrows outside), its length L_cs below
+  \draw[extension] (111,11) -- (104,11);
+  \dimoutv{108}{11}{$R$}
+  \draw[extension] (113,-14) -- (113,-59) (127,-14) -- (127,-59);
+  \draw[dim arrow] (102,-55) -- (113,-55);
+  \draw[dim arrow] (138,-55) -- (127,-55);
+  \node[anchor=east, inner sep=1.5pt] at (101,-55) {$L_{cs}$};
+  % R_o and R_i of the casing (arrows outside), its length L_ch below
+  \draw[extension] (520,11) -- (547,11) (520,7.25) -- (577,7.25);
+  \dimoutv{543}{11}{$R_o$}
+  \dimoutv{573}{7.25}{$R_i$}
+  \draw[extension] (414,-14) -- (414,-105) (517,-66) -- (517,-105);
+  \dimline{(414,-101)}{(517,-101)}{$L_{ch}$}
+  % the centres of gravity
+  \foreach \x in {49.5, 120, 324, 465.5} \node[cg mark] at (\x,0) {};
+  \begin{scope}[every node/.style={font=\small, inner sep=1.5pt}]
+    \draw[leader, shorten <=3.1pt] (49.5,0) -- (62,-80) node[anchor=west] {\CG$_n$};
+    \draw[leader, shorten <=3.1pt] (120,0) -- (156,-80) node[anchor=west] {\CG$_{cs}$};
+    \draw[leader, shorten <=3.1pt] (324,0) -- (364,-80) node[anchor=west] {\CG};
+    \draw[leader, shorten <=3.1pt] (465.5,0) -- (535,-80) node[anchor=west] {\CG$_{ch}$};
+    % the named components
+    \draw[leader] (127,11) -- (152,50) node[anchor=west] {Solid cylinder};
+    \draw[leader] (436,11) -- (417,56) node[anchor=north east, align=right, yshift=5.5pt]
+      {Hollow\\cylinder};
+  \end{scope}
+\end{tikzpicture}
+\end{document}
