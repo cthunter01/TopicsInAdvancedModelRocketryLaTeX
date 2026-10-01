@@ -1,0 +1,27 @@
+% Chapter 3, Figure 14: the Blasius profile u/U_inf = f'(eta), eta vertical (scan: figures/ch3/fig14.png, PDF 352).
+% Curve: fig14.py, Table 1 (Howarth's solution of eq. (51)) interpolated by cubic Hermite polynomials with the
+% table's derivative columns; drawn until it meets the u/U_inf = 1.0 border (about eta = 5.8). Dashed: the
+% displacement thickness delta* sqrt(U_inf/(nu x)) = lim (eta - f) = 1.7208 by Table 1 (fig14-marks.csv),
+% lettered 1.73 as printed (corrections/v2-figures.md, minor). Frame shared with Fig 15 (and the height of
+% Figs 19-21).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\pgfplotstableread[col sep=comma]{figures/v2/ch3/fig14-marks.csv}\figmarks
+\pgfplotstablegetelem{0}{dstar}\of\figmarks \let\dstar\pgfplotsretval
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr grid, grid=both,
+      width=4.2in, height=2.7in,
+      xmin=0, xmax=1, xtick={0,0.2,0.4,0.6,0.8,1}, xticklabels={0, 0.2, 0.4, 0.6, 0.8, 1.0},
+      minor xtick={0.1,0.3,0.5,0.7,0.9},
+      ymin=0, ymax=8, ytick distance=1,
+      xlabel={$f'(\eta) = \dfrac{u}{U_\infty}$},
+      ylabel={$\eta = y\sqrt{\dfrac{U_\infty}{\nu x}}$}]
+    \draw[guide] (axis cs:0,\dstar) -- (axis cs:1,\dstar);
+    \addplot[series1] table[x=fp, y=eta, col sep=comma] {figures/v2/ch3/fig14.csv};
+    \node[fill=white, inner sep=1.5pt] at (axis cs:0.15,\dstar) {1.73};
+    % the displacement thickness, from the wall to the dashed line along the 0.8 grid line
+    \dimline{(axis cs:0.8,0)}{(axis cs:0.8,\dstar)}{$\delta^{*}\sqrt{\dfrac{U_\infty}{\nu x}}$}
+  \end{axis}
+\end{tikzpicture}
+\end{document}

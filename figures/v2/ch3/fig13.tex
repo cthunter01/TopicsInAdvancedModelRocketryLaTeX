@@ -1,0 +1,63 @@
+% Chapter 3, Figure 13: profiles of longitudinal velocity in a laminar boundary layer over one side of a flat
+% plate at zero angle of attack (scan: figures/ch3/fig13.png; after Schlichting).
+% Coordinates are the scan's pixels (150 per inch) from the plate's leading edge, x along the plate and y up from
+% it, drawn 1.4 times the printed size. Computed by fig13.py: the boundary-layer edge is eq. (54),
+% delta = 5 sqrt(nu x/U_inf), its scale set by the 1973 edge (delta = 5.85 sqrt(x) px; the 1973 edge flattens down
+% the plate and departs from the sqrt law by up to 21 px); the three profiles are Blasius's u/U_inf = f'(eta),
+% eta = 5 y/delta (Table 1), so that they are similar, as the text says. As in the 1973 art, each profile's knee
+% lies on the edge at its tip line: a profile is scaled with delta(x_s + U_inf). The stations, U_inf (the arrows'
+% full length) and the arrow rows are the scan's. The edge is drawn as a guide (dashed; the 1973 art dash-dots
+% it, and the house dash-dot is a centre line), as the boundary-layer edge of Figure 10.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+% the profile family's styles (Ch3 Figs 6, 9, 10, 13, 16, 17, 18, 25): the computed profile u(y) as a data curve
+% (s1, 1pt), its velocity arrows lighter with small heads; the base lines and the wall stay in ink
+\tikzset{
+  profile/.style={draw=s1, line width=1pt},
+  profile arrow/.style={draw=s1, line width=0.5pt, -{Stealth[length=3.4pt, width=2.4pt]}},
+  profile stroke/.style={draw=s1, line width=0.5pt},
+}
+\makeatletter
+% \csvline[<options>]{<file>}: the polyline through the x, y rows of a CSV file
+\newcommand{\csvline}[2][]{%
+  \pgfplotstableread[col sep=comma]{#2}\fig@tbl
+  \pgfplotstablegetrowsof{\fig@tbl}\pgfmathtruncatemacro\fig@n{\pgfplotsretval-1}%
+  \foreach \fig@i in {0,...,\fig@n}{%
+    \pgfplotstablegetelem{\fig@i}{x}\of\fig@tbl\let\fig@x\pgfplotsretval
+    \pgfplotstablegetelem{\fig@i}{y}\of\fig@tbl\let\fig@y\pgfplotsretval
+    \ifnum\fig@i=0 \xdef\fig@path{(\fig@x,\fig@y)}\else\xdef\fig@path{\fig@path -- (\fig@x,\fig@y)}\fi}%
+  \draw[#1] \fig@path;}
+% \csvarrows[<options>]{<file>}: an arrow from (x0, y) to (x0 + u, y) for each row
+\newcommand{\csvarrows}[2][]{%
+  \pgfplotstableread[col sep=comma]{#2}\fig@tbl
+  \pgfplotstablegetrowsof{\fig@tbl}\pgfmathtruncatemacro\fig@n{\pgfplotsretval-1}%
+  \foreach \fig@i in {0,...,\fig@n}{%
+    \pgfplotstablegetelem{\fig@i}{x0}\of\fig@tbl\let\fig@x\pgfplotsretval
+    \pgfplotstablegetelem{\fig@i}{y}\of\fig@tbl\let\fig@y\pgfplotsretval
+    \pgfplotstablegetelem{\fig@i}{u}\of\fig@tbl\let\fig@u\pgfplotsretval
+    \ifdim\fig@u pt>4pt \draw[#1] (\fig@x,\fig@y) -- ++(\fig@u,0);\fi}}
+\makeatother
+\begin{document}
+\begin{tikzpicture}[x=0.023707cm, y=0.023707cm]
+  \def\U{76}\def\top{150}
+  % ---- the plate: surface, hatching below, the leading edge ------------------------------------------------
+  \fill[hatch] (0,-8.6) rectangle (466,0);                       % about 2 mm, as the walls of Figs 6, 18, 25
+  \draw[outline] (0,0) -- (466,0);
+  % ---- the profiles: arrows, base lines, the lines through the arrow tips -----------------------------------
+  \csvarrows[profile arrow]{figures/v2/ch3/fig13-arrows.csv}
+  \foreach \xs in {-116.5, 38.5, 191.5, 343.5} \draw[outline] (\xs,0) -- (\xs,\top);
+  \draw[profile] (-116.5+\U,0) -- (-116.5+\U,\top);              % the uniform profile upstream
+  \foreach \i in {1,2,3} \csvline[profile]{figures/v2/ch3/fig13-p\i.csv}
+  % ---- the boundary-layer edge, delta(x) ---------------------------------------------------------------------
+  \csvline[guide]{figures/v2/ch3/fig13-edge.csv}
+  \dimline{(305.5,0)}{(305.5,102.2)}{$\delta(x)$}
+  % ---- axes at the leading edge --------------------------------------------------------------------------------
+  \draw[thin vec] (0,4) -- (0,80) node[above=1pt] {$y$};
+  \draw[thin vec] (0,-4) -- (0,-26) -- (38,-26) node[right=1pt] {$x$};   % just below the wall, as printed
+  \node[open point] at (0,0) {};
+  % ---- labels ----------------------------------------------------------------------------------------------------
+  \node[above=2pt] at (-116.5+\U/2,\top) {$U_\infty$};
+  \node[above=2pt] at (191.5+\U/2,\top) {$U_\infty$};
+  \node[anchor=west] at (118,27) {$u(x,y)$};
+\end{tikzpicture}
+\end{document}

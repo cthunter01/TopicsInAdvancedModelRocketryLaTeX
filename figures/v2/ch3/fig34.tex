@@ -1,0 +1,45 @@
+% Chapter 3, Figure 34: base drag coefficient against forebody friction drag coefficient (scan: figures/ch3/fig34.png).
+% Curve: fig34.py, eq. (125): C_Db = 0.029/sqrt(C_fb) (lettered .029, as printed), from C_Db = 0.30 to C_fb = 0.8.
+% Overlay on the scan (fig34.calib.json): 95% of points within 1.0 px. The experimental data of the caption are
+% not drawn (as printed).
+% Inset: the streamlined body of revolution with its truncated base, its profile measured on the scan (pointed
+% nose, r = R (1 - (1 - s/s_m)^3) to the maximum radius R at s_m = 0.45 of the length, then
+% r = R - (R - r_b) ((s - s_m)/(1 - s_m))^2 to the base, r_b = 0.47 R; fineness 6.3), drawn in the scan's
+% pixels at the plot's scale (1 px = 0.00944 in). Placed 0.04 left of and 0.015 below the 1973 place, so that the
+% leader reaches the base from inside the frame and the body sits between the 0.20 and 0.25 rulings; the body
+% and the note are white, so the grid stops at them (the 1973 art blanks the grid there).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr grid, grid=both,
+      width=4.2in, height=2.5in,
+      xmin=0, xmax=0.8, xtick={0,0.2,...,0.8}, minor xtick={0.1,0.3,...,0.7},
+      ymin=0, ymax=0.30, ytick={0,0.05,...,0.30},
+      yticklabels={0,0.05,0.10,0.15,0.20,0.25,0.30},
+      xlabel={$C_{fb}$},
+      ylabel={$C_{Db}$}, ylabel style={rotate=-90, anchor=east},
+      clip=false]
+    \addplot[series1] table[x=cfb, y=cdb, col sep=comma] {figures/v2/ch3/fig34.csv};
+    \node[anchor=west, fill=white, inner sep=2pt] at (axis cs:0.145,0.108)
+      {$C_{Db} = \dfrac{.029}{\sqrt{C_{fb}}}$};
+    \coordinate (nose) at (axis cs:0.36,0.225);
+    \coordinate (flow) at (axis cs:0.195,0.225);
+    \coordinate (note) at (axis cs:0.787,0.185);
+  \end{axis}
+  % the inset, in the scan's pixels (226 long, maximum radius 18, base radius 8.5)
+  \begin{scope}[shift={(nose)}, x=0.00944in, y=0.00944in,
+      declare function={L=226; R=18; rb=8.5; sm=0.45*L;
+        prof(\s)=(\s<=sm) ? R*(1-(1-\s/sm)^3) : R-(R-rb)*((\s-sm)/(L-sm))^2;}]
+    \draw[outline, fill=white] (L,{-rb}) -- plot[domain=L:0, samples=70, smooth] (\x, {-prof(\x)})
+      -- plot[domain=0:L, samples=70, smooth] (\x, {prof(\x)}) -- (L,rb) -- cycle;
+    \draw[centerline] (-12,0) -- (240,0);
+    \coordinate (base) at (L,0);
+  \end{scope}
+  % the free stream (a labelled velocity: vec, as the Fig 51 inset's U_inf)
+  \draw[vec] (flow) -- ++(55*0.00944in,0) node[midway, above=1pt, fill=white, inner sep=1pt] {$U$};
+  % the note and its leader to the base
+  \node[anchor=north east, align=left, fill=white, inner sep=1.5pt] (lab) at (note) {$C_{Db}$ calculated\\using base area};
+  \draw[leader arrow] (lab.north east) ++(-3pt,0) -- ([xshift=0.6pt, yshift=-2pt]base);
+\end{tikzpicture}
+\end{document}

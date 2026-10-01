@@ -1,0 +1,58 @@
+% Chapter 3, Figure 49: standard (a) and approximate (b) methods of finding the gross planform area sigma_F of
+% the Javelin fin (scan: figures/ch3/fig49.png).
+% Half of the rocket seen from the side, nose up, as in Figure 44: the body tube broken off at the top, its centre
+% line, one fin. Coordinates are the fin's centimetres (origin on the centre line at the base), drawn at 0.65:1
+% (1.3 times the 1973 drawing's 0.50:1). The fin is drawn to the dimensions of the text's region areas
+% (ch3-sec6b.tex: region I = 1/2 x 1.90 x 4.19, II = 2.07 x 4.19, III = 3.21 x 0.965), which the 1973 drawing
+% follows (measured on the scan at 29.4 px/cm: root leading edge 3.23 ahead of the base, I 1.87, overhang 0.76,
+% tube radius 0.99): root leading edge 3.21 ahead of the base, leading edge swept back 1.90 over the 4.19 span, tip
+% chord 2.07 parallel to the axis, trailing edge square to the axis 0.76 aft of the base, joined to the base corner
+% by a 45-degree chamfer (Figure 48 letters 3.30, 1.91 and a 0.68 chamfer: corrections/ch3.md D26, no note).
+% (a) the gross area: the leading edge and the chamfer extended (dashed) to the centre line; (b) the regions I
+% (right triangle, 1.90 x 4.19), II (rectangle 2.07 x 4.19, the chamfered corner filled in, dashed) and III
+% (rectangle 3.21 x 0.965 inside the tube), hatched as printed: I one way, II and III the other. Areas: (a) 15.21,
+% (b) 15.76 cm^2 (the text's sum), so (b) is the larger, as the caption says. Regions I-III, which the text
+% cites, carry the house circled tag. Overlay of the fin outline on the scan (29.5 and 29.2 px/cm in (a) and (b)):
+% 95th percentiles 1.1 and 2.2 px, all within 3 px.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.65cm, y=0.65cm, break amplitude=0.36]
+  \def\R{0.965}\def\rle{3.21}\def\sw{1.90}\def\ct{2.07}\def\sp{4.19}\def\oh{0.76}\def\ttop{5.8}
+  \pgfmathsetmacro\tip{\R+\sp}            % the tip's distance from the centre line
+  \pgfmathsetmacro\tle{\rle-\sw}          % tip leading edge, above the base
+  \pgfmathsetmacro\te{-\oh}               % trailing edge, below the base
+  \pgfmathsetmacro\lex{\rle+\R*\sw/\sp}   % the leading edge extended to the centre line
+  % one panel: #1 = a | b
+  \newcommand{\finpanel}[1]{%
+    % hatching first, outlines over it
+    \ifx a#1
+      \fill[hatch] (0,\lex) -- (\R,\rle) -- (\tip,\tle) -- (\tip,\te) -- ({\R+\oh},\te) -- (\R,0) -- (0,\R) -- cycle;
+    \else
+      \fill[hatch] (0,0) rectangle (\R,\rle);                          % III
+      \fill[hatch back] (\R,\rle) -- (\tip,\tle) -- (\R,\tle) -- cycle;  % I
+      \fill[hatch] (\R,\tle) rectangle (\tip,\te);                     % II
+    \fi
+    % body tube, broken off at the top
+    \draw[outline] (-\R,\ttop) -- (-\R,0) -- (\R,0) -- (\R,\ttop);
+    \breakline{(-\R,\ttop)}{(\R,\ttop)}
+    % the fin
+    \draw[outline] (\R,\rle) -- (\tip,\tle) -- (\tip,\te) -- ({\R+\oh},\te) -- (\R,0);
+    % construction lines
+    \ifx a#1
+      \draw[guide] (\R,\rle) -- (0,\lex) (\R,0) -- (0,\R);
+    \else
+      \draw[guide] (0,\rle) -- (\R,\rle) (\R,\tle) -- (\tip,\tle) (\R,0) -- (\R,\te) -- ({\R+\oh},\te);
+      \node[curve tag] at ({\R+\sp/3},{\tle+\sw/3}) {I};
+      \node[curve tag] at ({\R+0.55*\sp},{(\tle+\te)/2}) {II};
+      \node[curve tag] at ({\R/2},{0.5*\rle}) {III};
+    \fi
+    \draw[centerline] (0,-1.5) -- (0,\ttop+0.65);
+    \node[panel, anchor=base east] at (\tip,-1.45) {(#1)};
+  }
+  \finpanel{a}
+  \begin{scope}[xshift=8.6*0.65cm]
+    \finpanel{b}
+  \end{scope}
+\end{tikzpicture}
+\end{document}

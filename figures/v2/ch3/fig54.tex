@@ -1,0 +1,73 @@
+% Chapter 3, Figure 54: shock and expansion patterns about a sharp-nosed (a) and a blunt-nosed (b) body of
+% revolution (scan: figures/ch3/fig54.png). Line styles as the caption names them (standing rule 1): shocks and
+% compression waves solid; expansion waves and fans dotted (printed dashed); the wakes wavy (printed straight):
+% the shear layers that bound the dead-water region behind the base and the wake beyond its neck.
+% Drawn in the scan's pixels (150 per inch) from each base's centre, y up, 1.25 times the printed size, each
+% panel symmetric about its axis (the 1973 drawing leans about 1 degree). Measured on the scan: body radius 9.25;
+% (a) cone tip at 187, shoulder at 144, attached shock from the tip at 46.3 deg to the axis, ending at y = 89;
+% the three shoulder expansions fitted as quadratic Beziers from the shoulder corner (0.7 px rms), set here as
+% cubics; (b) ellipsoidal nose, tip 181, base 144; the bow shock fitted as the hyperbola
+% y = 185.7 - (sqrt(w^2 + 44.7^2) - 44.7)/1.071 (0.4 px), to y = 127; its three expansions as Beziers matched to the
+% scan. Base (both): fans at 32.3, 39.6, 45.5 deg from the axis from the base corners to y = -75 (fitted); shear
+% layers to the neck (half-width 3.9 at y = -47.5); recompression shocks from the neck at 27.4 deg; wake to -110.
+% Where the three lines of a fan leave one corner (the (a) shoulder, both bases), their dotted starts are staggered
+% by half a dot period (1.3pt) so the first dots do not fuse: the (a) shoulder lines start 1.5pt from the corner,
+% as the (b) expansions start off the nose, then 2.8pt, 4.1pt; the base fans 4pt, 5.3pt, 6.6pt.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\usetikzlibrary{decorations.pathmorphing}
+\begin{document}
+\begin{tikzpicture}[x=0.0212cm, y=0.0212cm]
+  \tikzset{
+    shock/.style={outline},
+    expansion/.style={dotted guide},
+    wake/.style={draw=ink, line width=0.45pt, decorate,
+      decoration={snake, amplitude=0.65pt, segment length=4pt}},
+  }
+  \def\R{9.25}
+  % the flow behind the flat base, in a panel's coordinates: one side, mirrored by xscale
+  \newcommand{\basewake}{%
+    \foreach \s in {1,-1} {
+      \begin{scope}[xscale=\s]
+        \foreach \a/\stag in {32.3/4pt, 39.6/5.3pt, 45.5/6.6pt}
+          \draw[expansion, shorten <=\stag] (\R,0) -- ({\R+75*tan(\a)},-75);
+        \draw[wake] (\R,0) -- (3.9,-47.5);
+        \draw[wake] (3.9,-47.5) -- (3.9,-110);
+        \draw[shock] (3.9,-47.5) -- ({3.9+62.5*tan(27.4)},-110);
+      \end{scope}
+    }
+    \draw[outline, thin line] (-3.9,-47.5) -- (3.9,-47.5);}
+  % ---- (a) conical nose: attached shock ----
+  \draw[centerline] (0,216) -- (0,-24);
+  \begin{scope}[shift={(0,187)}, rotate=-90]
+    \rocketoutline[cone]{43/\R, 187/\R}
+  \end{scope}
+  \draw[shock] (-102.55,89) -- (0,187) -- (102.55,89);
+  \foreach \s in {1,-1} {
+    \begin{scope}[xscale=\s]
+      \draw[expansion, shorten <=1.5pt] (-9.25,144) .. controls (-35.85,139.50) and (-65.29,121.67) .. (-97.58,90.50);
+      \draw[expansion, shorten <=2.8pt] (-9.25,144) .. controls (-35.22,134.53) and (-62.55,116.03) .. (-91.24,88.50);
+      \draw[expansion, shorten <=4.1pt] (-9.25,144) .. controls (-31.73,130.99) and (-54.27,112.65) .. (-76.85,88.98);
+    \end{scope}
+  }
+  \basewake
+  \node[panel, anchor=south east] at (103,-110) {(a)};
+  % ---- (b) rounded nose: detached (bow) shock ----
+  \begin{scope}[shift={(262,0)}]
+    \draw[centerline] (0,216) -- (0,-24);
+    \begin{scope}[shift={(0,181)}, rotate=-90]
+      \rocketoutline[ellipsoid]{37/\R, 181/\R}
+    \end{scope}
+    \draw[shock] plot[domain=-97.84:97.84, samples=81, smooth] (\x, {185.7-(sqrt(\x*\x+1998.09)-44.7)/1.071});
+    \foreach \s in {1,-1} {
+      \begin{scope}[xscale=\s]
+        \draw[expansion, shorten <=1.5pt] (-7.25,167) .. controls (-29.45,162.68) and (-56.03,149.68) .. (-87,128);
+        \draw[expansion, shorten <=1.5pt] (-8.56,158) .. controls (-27.07,152.69) and (-48.54,142.69) .. (-73,128);
+        \draw[expansion, shorten <=1.5pt] (-9.25,144) .. controls (-20.20,141.27) and (-34.11,135.60) .. (-51,127);
+      \end{scope}
+    }
+    \basewake
+    \node[panel, anchor=south east] at (103,-110) {(b)};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

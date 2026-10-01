@@ -1,0 +1,58 @@
+% Chapter 3, Figure 31: drag coefficient of the Javelin with various nosecones and fin profiles (scan:
+% figures/ch3/fig31.png; after Mercer). The table in the artwork, typeset (booktabs), every value as printed;
+% parentheses: with a launch lug, brackets: unsanded, unpainted, lug, no airfoiling (caption). The second and
+% third figures of a cell hang to the right of the column's values, which stay aligned.
+% The nose icons are drawn 1.25 times the printed size (one unit = one scan pixel at 150 dpi), pointing right, all on
+% one body diameter (27 px; the scan's 25-29 px), with the lengths measured on the scan and the kit's exact
+% nose shapes (\rocketoutline: profiles fitted to the scan's):
+%   BC-70 ellipsoid, length 58.5; BC-78 a band at the base (4), a straight taper to a joint (radius 0.74 of
+%   the base's, 41 long) and a tangent ogive (74); BC-72 tangent ogive (68.5); BC-76 ellipsoid (115);
+%   BC-74 tangent ogive (130); BC-79 a band at the base (4.5) and a cone (129.5);
+%   Hemisphere: body stub and a hemisphere (74.5 in all); 60 deg cone: stub and a cone of half-angle 30 deg;
+%   45 deg cone: stub and a cone of half-angle 45 deg (as drawn: the angles read from the base plane);
+%   Slightly rounded: front corners of radius 3.5 (0.13 d); Flat; Plug: the tube's open end (wall 3.5) with
+%   the plug face 18.5 inside it, in section.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begingroup
+\small
+\tikzset{icon/.style={x=0.021167cm, y=0.021167cm, baseline=-3.3pt}}
+\def\R{13.5}
+% \nose{<length>}{<\rocketoutline args>}: a nose pointing right, base at the left
+\newcommand{\nose}[2]{\begin{tikzpicture}[icon]
+    \begin{scope}[shift={(#1,0)}, xscale=-1] \rocketoutline#2 \end{scope}
+  \end{tikzpicture}}
+\newcommand{\shape}[1]{\begin{tikzpicture}[icon] \draw[outline] #1; \end{tikzpicture}}
+\newcommand{\hang}[1]{\rlap{\ #1}}
+\newcommand{\hd}[1]{{\renewcommand{\arraystretch}{1}\begin{tabular}[b]{@{}c@{}}#1\end{tabular}}}
+\renewcommand{\arraystretch}{1.85}
+% room at the right for the hanging figures of the last column
+\newlength{\ohang}\settowidth{\ohang}{\ (2.35) [2.76]}
+\newlength{\wtmp}\settowidth{\wtmp}{2.15}\addtolength{\ohang}{0.5\wtmp}
+\settowidth{\wtmp}{$\CD$ of Javelin with}\addtolength{\ohang}{-0.5\wtmp}
+\begin{tabular}{@{}ccc@{\hspace{3em}}c@{\hspace{\ohang}}}
+  \toprule
+  \hd{Nosecone\\ shape} & \hd{Nosecone\\ designation} & \hd{$\CD$ of Javelin with\\ airfoiled fins}
+    & \hd{$\CD$ of Javelin with\\ square edged fins} \\
+  \midrule
+  \nose{58.5}{[ellipsoid]{58.5/\R}} & BC-70 & 0.41 & 2.10 \\
+  \nose{119}{[ogive]{74/10, 115/\R, 119/\R}} & BC-78 & 0.41 & 2.13 \\
+  \nose{68.5}{[ogive]{68.5/\R}} & BC-72 & 0.42 & 2.12 \\
+  \nose{115}{[ellipsoid]{115/\R}} & BC-76 & 0.42 & 2.14 \\
+  \nose{130}{[ogive]{130/\R}} & BC-74 & 0.43\hang{(0.70)} & 2.15\hang{(2.35) [2.76]} \\
+  \nose{134}{[cone]{129.5/\R, 134/\R}} & BC-79 & 0.51 & 2.14 \\
+  \shape{(0,\R) -- (61,\R) arc[start angle=90, end angle=-90, radius=\R] -- (0,-\R) -- cycle}
+    & Hemisphere & 0.51 & 2.16 \\
+  \nose{74.4}{[cone]{23.4/\R, 74.4/\R}} & $60\dg$ cone & 0.59 & 2.24 \\
+  \nose{75}{[cone]{13.5/\R, 75/\R}} & $45\dg$ cone & 0.61 & 2.24 \\
+  \shape{(0,\R) -- (72.5,\R) arc[start angle=90, end angle=0, radius=3.5] -- (76,-\R+3.5)
+    arc[start angle=0, end angle=-90, radius=3.5] -- (0,-\R) -- cycle}
+    & Slightly rounded & 0.87 & 2.51 \\
+  \shape{(0,-\R) rectangle (74.5,\R)} & Flat & 1.32 & 2.77 \\
+  \shape{(0,\R) -- (73.5,\R) -- (73.5,\R-3.5) -- (55,\R-3.5) -- (55,-\R+3.5) -- (73.5,-\R+3.5)
+    -- (73.5,-\R) -- (0,-\R) -- cycle} & Plug & 1.75 & 3.26 \\
+  \bottomrule
+\end{tabular}%
+\endgroup
+\end{document}

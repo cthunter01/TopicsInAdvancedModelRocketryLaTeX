@@ -1,0 +1,20 @@
+% Chapter 3, Figure 7: absolute viscosity of the standard atmosphere against altitude (scan: figures/ch3/fig07.png,
+% PDF 322). Curve: fig07.py (U.S. Standard Atmosphere, 1962: Sutherland's formula mu = 1.458e-6 T^1.5/(T + 110.4)
+% with the temperature of Fig 3). Frame and note as Fig 2 (fig02.tex); mu_o as lettered.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr grid, grid=both,
+      width=4.2in, height=2.4in,
+      xmin=0, xmax=2500, xtick distance=500,
+      ymin=0.95, ymax=1.00, ytick={0.950,0.975,1.000}, minor ytick={0.9625,0.9875},
+      yticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=3},
+      xlabel={Altitude (meters)},
+      ylabel={$\dfrac{\mu}{\mu_o}$}, ylabel style={rotate=-90, anchor=east}]
+    \addplot[series1] table[x=h, y=mu, col sep=comma] {figures/v2/ch3/fig07.csv};
+    \node[fill=white, inner sep=2pt, anchor=west] at (axis cs:250,0.9625)
+      {$\mu_o = 1.78943 \times 10^{-5}\un{kg/(m\text{-}sec)}$};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

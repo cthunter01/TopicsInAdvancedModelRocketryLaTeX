@@ -1,0 +1,68 @@
+% Chapter 3, Figure 5: shearing deformation of an elastic solid (scan: figures/ch3/fig05.png, PDF 313).
+% The front face of the cube, seen square on. (a) unsheared: a square of side a with the four shearing
+% forces F along its faces (top to the right, right side up, bottom to the left, left side down), the face
+% area A_c and the right angle pi/2 at the lower left corner; tau = F/A_c above. (b) the same face under the
+% same forces, in a state of pure shear: the cube "will neither move away nor turn" (the text), so each side
+% turns through gamma/2 about the centre, the bottom and top sides counterclockwise, the vertical sides
+% clockwise, and the angle at the lower left closes to theta = pi/2 - gamma (the 1973 drawing: each side
+% turned 6.3-6.4 deg, theta about 77 deg; drawn with gamma = 13 deg). The forces of (b) lie along the turned
+% sides. gamma = pi/2 - theta above (b). Lettering as printed.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \def\a{2.9}      % side of the face (cm)
+  \def\g{13}       % shear strain gamma as drawn (deg)
+  \def\off{0.3}    % the force arrows' distance from the faces
+  \def\fl{0.92}    % force arrow length / side
+  \def\Dx{6.7}     % centre of (b)
+  \def\ar{0.95}    % radius of the angle arcs
+  % \forces{P0}{P1}{P2}{P3}: the four forces along the sides of the face P0 (lower left), P1 (lower right),
+  % P2 (upper right), P3 (upper left), each \off outside its side, with its label beyond it
+  \newcommand{\forces}[4]{%
+    % top: P3 -> P2, to the right; outward normal = left of the bottom-to-top direction
+    \draw[vec] ($ (#4)!{(1-\fl)/2}!(#3) + ($(#4)!\off cm!90:(#3)$) - (#4) $)
+            -- ($ (#4)!{(1+\fl)/2}!(#3) + ($(#4)!\off cm!90:(#3)$) - (#4) $)
+       node[midway, above=1pt] {$F$};
+    % right side: P1 -> P2, upwards
+    \draw[vec] ($ (#2)!{(1-\fl)/2}!(#3) + ($(#2)!\off cm!-90:(#3)$) - (#2) $)
+            -- ($ (#2)!{(1+\fl)/2}!(#3) + ($(#2)!\off cm!-90:(#3)$) - (#2) $)
+       node[midway, right=1pt] {$F$};
+    % bottom: P1 -> P0, to the left
+    \draw[vec] ($ (#2)!{(1-\fl)/2}!(#1) + ($(#2)!\off cm!90:(#1)$) - (#2) $)
+            -- ($ (#2)!{(1+\fl)/2}!(#1) + ($(#2)!\off cm!90:(#1)$) - (#2) $)
+       node[midway, below=1pt] {$F$};
+    % left side: P3 -> P0, downwards
+    \draw[vec] ($ (#4)!{(1-\fl)/2}!(#1) + ($(#4)!\off cm!-90:(#1)$) - (#4) $)
+            -- ($ (#4)!{(1+\fl)/2}!(#1) + ($(#4)!\off cm!-90:(#1)$) - (#4) $)
+       node[midway, left=1pt] {$F$};}
+  % ---- (a) the unsheared face ----
+  \coordinate (A0) at ({-\a/2},{-\a/2});
+  \coordinate (A1) at ({\a/2},{-\a/2});
+  \coordinate (A2) at ({\a/2},{\a/2});
+  \coordinate (A3) at ({-\a/2},{\a/2});
+  \draw[outline] (A0) -- (A1) -- (A2) -- (A3) -- cycle;
+  \forces{A0}{A1}{A2}{A3}
+  \draw[angle arc] ($(A0)+(0:\ar)$) arc[start angle=0, end angle=90, radius=\ar];
+  \node at ($(A0)+(45:{\ar+0.42})$) {$\dfrac{\pi}{2}$};
+  \node at (0,0.38) {Face area $= A_c$};
+  \node at (0,{\a/2+1.25}) {$\tau = \dfrac{F}{A_c}$};
+  % ---- (b) the sheared face: each side turned through gamma/2 about the centre ----
+  \begin{scope}[shift={(\Dx,0)}]
+    \pgfmathsetmacro\cg{cos(\g/2)}\pgfmathsetmacro\sg{sin(\g/2)}
+    % corners: P0 = -(a/2)(e1 + e2), e1 = (cos, sin) along the bottom, e2 = (sin, cos) up the left side
+    \coordinate (B0) at ({-\a/2*(\cg+\sg)},{-\a/2*(\sg+\cg)});
+    \coordinate (B1) at ({\a/2*(\cg-\sg)},{\a/2*(\sg-\cg)});
+    \coordinate (B2) at ({\a/2*(\cg+\sg)},{\a/2*(\sg+\cg)});
+    \coordinate (B3) at ({-\a/2*(\cg-\sg)},{-\a/2*(\sg-\cg)});
+    \draw[outline] (B0) -- (B1) -- (B2) -- (B3) -- cycle;
+    \forces{B0}{B1}{B2}{B3}
+    \draw[angle arc] ($(B0)+({\g/2}:\ar)$) arc[start angle={\g/2}, end angle={90-\g/2}, radius=\ar];
+    \node at ($(B0)+(45:{\ar+0.3})$) {$\theta$};
+    \node at (0,{\a/2+1.25}) {$\gamma = \dfrac{\pi}{2} - \theta$};
+  \end{scope}
+  % panel letters, lower right of each panel, on one baseline
+  \node[panel, anchor=base east] at ({\a/2+0.85},{-\a/2-1.15}) {(a)};
+  \node[panel, anchor=base east] at ({\Dx+\a/2+0.85},{-\a/2-1.15}) {(b)};
+\end{tikzpicture}
+\end{document}

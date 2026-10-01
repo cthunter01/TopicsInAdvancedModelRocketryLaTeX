@@ -1,0 +1,68 @@
+% Chapter 3, Figure 50: the General Configuration Rocket (GCR), its nomenclature and three variations
+% (scan: figures/ch3/fig50.png). The GCR is generic (the text gives it no proportions), so each rocket keeps the
+% scan's proportions: lengths are the scan's pixels (150 per inch), drawn 1.25 times the printed size, y up
+% (= minus the scan's row). Tangent-ogive noses (exact), cylinders, conical boattails, rectangular fins whose
+% trailing edges stand at the base; b is measured tip to tip across both fins (eq. (189): S_F = 2cb).
+%   main: d_m 26.5, l_n 83.5, l_s 290, l_t 36, d_b 19, fin c 46 (leading edge 10 ahead of the boattail), b 126,
+%         t 4.5 (the edge-on fin pair on the axis, its thickness exaggerated as printed so that t can be shown);
+%         in calibres l_n 3.2, l_s 10.9, l_t 1.4, l_b 15.5, d_b/d_m 0.72, c 1.7, b 4.8;
+%   (1) d 18.5, l_n 46.5, l_b 158.5, no boattail, c 17.5, b 73;
+%   (2) d 27, l_n 64, boattail from 242 to 299 (d_b 14.5), c 38 (all on the boattail), b 91;
+%   (3) d 19, l_n 92, boattail from 390.5 to 410 (d_b 16), c 38, b 73.
+% Lettering as printed: l_n, l_s, l_t (eqs. (181)-(188) write l_N, l_T: corrections D36, kept), l_b, d_m, d_b, t,
+% b, c, "Ogive", "Conical boattail".
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.021167cm, y=0.021167cm]
+  % \gcrocket{<tip x>}{<axis y>}{<r>}{<l_n>}{<boattail start>}{<l_b>}{<r_b>}{<fin leading edge>}{<b/2>}: a GCR
+  % with its nose tip at (<tip x>, <axis y>), stations measured from the tip; boattail start = l_b: none
+  \newcommand{\gcrocket}[9]{%
+    \begin{scope}[shift={(#1,#2)}]
+      \ifdim #5pt<#6pt \rocketoutline{#4/#3, #5/#3, #6/#7}\else \rocketoutline{#4/#3, #6/#3}\fi
+      \pgfmathsetmacro\rle{(#8<#5) ? #3 : #3-(#3-#7)*(#8-#5)/max(#6-#5,0.01)}%
+      \foreach \s in {1,-1} \draw[outline, yscale=\s] (#8,\rle) -- (#8,#9) -- (#6,#9) -- (#6,#7);
+    \end{scope}}
+
+  % ---- the GCR with its nomenclature ---------------------------------------------------------------------
+  \def\ax{-102}                                           % its axis
+  \draw[centerline] (60,\ax) -- (537,\ax);
+  \gcrocket{100}{\ax}{13.25}{83.5}{373.5}{409.5}{9.5}{363.5}{63}
+  \draw[edge fin] (463.5,\ax-2.25) rectangle (509.5,\ax+2.25);
+  % lengths: l_n, l_s, l_t above; l_b below
+  \draw[extension] (100,\ax+4) -- (100,-17);
+  \draw[extension] (100,\ax-4) -- (100,-190);
+  \draw[extension] (183.5,\ax+16.5) -- (183.5,-17);
+  \draw[extension] (473.5,\ax+16.5) -- (473.5,-17);
+  \draw[extension] (509.5,-35.5) -- (509.5,-17);
+  \draw[extension] (509.5,-169.5) -- (509.5,-190);
+  \dimline{(100,-23.5)}{(183.5,-23.5)}{$\ell_n$}
+  \dimline{(183.5,-23.5)}{(473.5,-23.5)}{$\ell_s$}
+  \dimline{(473.5,-23.5)}{(509.5,-23.5)}{$\ell_t$}
+  \dimline{(100,-184)}{(509.5,-184)}{$\ell_b$}
+  % diameters and fin thickness: arrows from outside, the letter beyond the upper one
+  \dimout{(324,\ax-13.25)}{(324,\ax+13.25)}{$d_m$}
+  \draw[extension] (513.5,\ax+9.5) -- (536,\ax+9.5) (513.5,\ax-9.5) -- (536,\ax-9.5);
+  \dimout{(530,\ax-9.5)}{(530,\ax+9.5)}{$d_b$}
+  \tikzset{dim stub length=6mm}
+  \dimout{(487.5,\ax-2.25)}{(487.5,\ax+2.25)}{$t$}
+  \tikzset{dim stub length=3.6mm}
+  % fin span (tip to tip) and chord
+  \draw[extension] (513.5,-39) -- (581,-39) (513.5,-165) -- (581,-165);
+  \dimline{(576,-39)}{(576,-165)}{$b$}
+  \dimout{(463.5,-152)}{(509.5,-152)}{$c$}
+  % names
+  \node[anchor=north east, inner sep=1pt] (og) at (156,-128) {Ogive};
+  \draw[leader] (og.north east) -- (163,\ax-12.9);
+  \node[align=center, anchor=north east, inner sep=1pt] (bt) at (432,-147) {Conical\\boattail};
+  \draw[leader] (bt.north east) -- (480,\ax-12.6);   % on the boattail just aft of the joint, ahead of the t line
+
+  % ---- three variations -------------------------------------------------------------------------------------
+  \draw[centerline] (12,-238.5) -- (210,-238.5);
+  \gcrocket{31}{-238.5}{9.25}{46.5}{158.5}{158.5}{9.25}{141}{36.5}
+  \draw[centerline] (265,-238.5) -- (605,-238.5);
+  \gcrocket{285}{-238.5}{13.5}{64}{242}{299}{7.25}{261}{45.5}
+  \draw[centerline] (57,-329) -- (535,-329);
+  \gcrocket{97}{-329}{9.5}{92}{390.5}{410}{8}{372}{36.5}
+\end{tikzpicture}
+\end{document}

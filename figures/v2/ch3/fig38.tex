@@ -1,0 +1,54 @@
+% Chapter 3, Figure 38: the origin of induced drag (scan: figures/ch3/fig38.png, PDF 429).
+% A streamlined fin section (rounded leading edge, constant thickness, a straight taper over the last 17% of
+% the chord to a sharp trailing edge; thickness 2.7% of the chord, as drawn) held at alpha = 12 deg to the
+% flow (measured on the scan). Lengths are the scan's pixels (150 per inch), drawn 1.4 times the printed size;
+% origin at the centre of pressure, chord 451.
+% The centre of pressure is placed by the book's equation: Ch2 eq. (89) for a rectangular fin (x_t = 0,
+% c_r = c_t = c) gives c/4 from the leading edge (the thin-airfoil value); the 1973 art draws it at 0.36 c.
+% The flow-direction line passes through it, so alpha is marked between that line and the chord line
+% extended ahead of the leading edge, about the C.P. The force F acts through the C.P., tilted back from the
+% normal to the flow by alpha_i, and is resolved into the lift L (normal to the flow) and the induced drag
+% D_i (along it): F = L + D_i, with the 1973 proportions (L 135, D_i 29: alpha_i = 12.1 deg). alpha_i is too
+% small an angle for an arc with both heads between L and F: it is marked by two arrows from outside, as a
+% short dimension is (\dimout).
+% Overlay on the scan (redraw ink within 3 px of the scan's ink, aligned on the section): the section 100%;
+% the C.P., the forces and the flow line sit 0.11 c (50 px) forward of the 1973 ones, with the C.P.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.023707cm, y=0.023707cm]
+  \def\al{12}\def\ch{451}\def\hth{6}           % alpha, chord, half-thickness
+  \def\Lv{135}\def\Dv{29}                      % L and D_i
+  \pgfmathsetmacro\ai{atan(\Dv/\Lv)}           % alpha_i
+  \pgfmathsetmacro\xte{0.83*\ch}               % start of the taper
+  \pgfmathsetmacro\Ra{0.25*\ch+72}             % radius of the alpha arc
+  % ---- the flow direction, through the C.P. ------------------------------------------------------------
+  \draw[thin vec] (-\Ra-14,0) -- (331,0);
+  \node[anchor=south east, inner sep=1.5pt] at (331,4) {Flow direction};
+  % ---- the chord line extended ahead of the leading edge, and alpha ---------------------------------------
+  \begin{scope}[rotate=-\al]
+    \draw[extension] (-0.25*\ch-4,0) -- (-\Ra-12,0);
+    % the section: origin at the C.P., the leading edge at -c/4
+    \begin{scope}[shift={(-0.25*\ch,0)}]
+      \draw[outline, hatch, preaction={fill=white}]
+        (\hth,\hth) -- (\xte,\hth) -- (\ch,0) -- (\xte,-\hth) -- (\hth,-\hth)
+        arc[start angle=-90, end angle=-270, radius=\hth] -- cycle;
+    \end{scope}
+  \end{scope}
+  \draw[angle arc] ({180-\al}:\Ra) arc[start angle={180-\al}, end angle=180, radius=\Ra];
+  \node[anchor=east, inner sep=1.5pt] at ({180-\al/2}:\Ra+3) {$\alpha$};
+  % ---- the forces ---------------------------------------------------------------------------------------
+  \node[cp mark] (cp) at (0,0) {};
+  \draw[vec, shorten <=2.5pt] (0,0) -- (0,\Lv);
+  \draw[vec, shorten <=2.5pt] (0,0) -- (\Dv,\Lv);
+  \draw[vec] (0,\Lv) -- (\Dv,\Lv);
+  \node[anchor=south, inner sep=2pt] at (\Dv/2,\Lv+3) {$\vec{D}_i$};
+  \node[anchor=east, inner sep=2pt] at (-4,0.62*\Lv) {$\vec{L}$};
+  \node[anchor=west, inner sep=2pt] at (0.62*\Dv+4,0.62*\Lv) {$\vec{F}$};
+  % alpha_i, between L and F (two arrows from outside)
+  \def\ri{62}
+  \draw[angle arc single] (112:\ri) arc[start angle=112, end angle=90, radius=\ri];
+  \draw[angle arc single] ({90-\ai-22}:\ri) arc[start angle={90-\ai-22}, end angle={90-\ai}, radius=\ri];
+  \node[anchor=west, inner sep=1.5pt] at ({90-\ai-22}:\ri+1) {$\alpha_i$};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,105 @@
+% Chapter 3, Figure 12: causes and constituents of model rocket drag (scan: figures/ch3/fig12.png).
+% The house model rocket (tamrfig `model', units of its length 6.4), nose left, with four fins: two in profile
+% and one edge-on on the axis (the fourth hidden), and a launch lug on the lower side ahead of the fins.
+% The boundary layer (fig12.py; thickness greatly exaggerated, as the caption says, and read off the scan) is
+% laminar from the nose tip to transition at x = 2.90, growing as x^(1/2) (eq. (54)), then turbulent, growing
+% as x^(4/5) (eq. (80)) from a virtual origin; the wake behind the base continues it. Laminar layer: light wash;
+% turbulent layer and wake: wash with short dashes (as printed). Behind the base, the recirculating base flow;
+% from the upper fin's tip, its tip vortex. The free stream V is inclined at alpha to the axis, which is
+% extended ahead of the nose; alpha is the arc about their intersection (the 1973 art marks it with a short
+% straight arrow ahead of the nose). V is lettered as a vector with an arrow (the scan's overbar), as Figures 1,
+% 11 and 38 and the Symbols list. Leaders are straight and headless (the house `leader', as printed and as the
+% other callouts of Chapters 2 and 3).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\tikzset{
+  bl edge/.style={draw=ink2, line width=0.45pt},          % the edge of the boundary layer and the wake
+  eddy/.style={draw=ink2, line width=0.4pt},              % turbulence
+  flow line/.style={draw=ink2, line width=0.5pt},         % the base bubble, the lug's wake, the tip vortex
+  eddy arrow/.style={flow line, -{Stealth[length=3pt,width=2.2pt]}},
+  lab/.style={font=\small, inner sep=1.5pt, align=left},
+}
+\makeatletter
+% \csvedge{<file>}: from the x, y rows of a CSV file, \edgeup (the path forward) and \edgedownrev (the
+% mirror image, backward)
+\newcommand{\csvedge}[1]{%
+  \pgfplotstableread[col sep=comma]{#1}\fig@tbl
+  \pgfplotstablegetrowsof{\fig@tbl}\pgfmathtruncatemacro\fig@n{\pgfplotsretval-1}%
+  \foreach \fig@i in {0,...,\fig@n}{%
+    \pgfplotstablegetelem{\fig@i}{x}\of\fig@tbl\let\fig@x\pgfplotsretval
+    \pgfplotstablegetelem{\fig@i}{y}\of\fig@tbl\let\fig@y\pgfplotsretval
+    \ifnum\fig@i=0 \xdef\edgeup{(\fig@x,\fig@y)}\xdef\edgedownrev{(\fig@x,-\fig@y)}%
+    \else\xdef\edgeup{\edgeup -- (\fig@x,\fig@y)}\xdef\edgedownrev{(\fig@x,-\fig@y) -- \edgedownrev}\fi}}
+% \csveddies[<options>]{<file>}: a dash from (x1, y) to (x2, y) for each row
+\newcommand{\csveddies}[2][]{%
+  \pgfplotstableread[col sep=comma]{#2}\fig@tbl
+  \pgfplotstablegetrowsof{\fig@tbl}\pgfmathtruncatemacro\fig@n{\pgfplotsretval-1}%
+  \foreach \fig@i in {0,...,\fig@n}{%
+    \pgfplotstablegetelem{\fig@i}{x1}\of\fig@tbl\let\fig@x\pgfplotsretval
+    \pgfplotstablegetelem{\fig@i}{x2}\of\fig@tbl\let\fig@u\pgfplotsretval
+    \pgfplotstablegetelem{\fig@i}{y}\of\fig@tbl\let\fig@y\pgfplotsretval
+    \draw[#1] (\fig@x,\fig@y) -- (\fig@u,\fig@y);}}
+\makeatother
+\csvedge{figures/v2/ch3/fig12-edge.csv}
+\begin{document}
+\begin{tikzpicture}[x=1.5cm, y=1.5cm,
+    declare function={rho=(0.2*0.2+1.2*1.2)/(2*0.2); og(\s)=sqrt(max(0,rho*rho-(1.2-\s)^2))+0.2-rho;}]
+  \def\L{6.4}\def\R{0.2}\def\xt{2.90}\def\dt{0.104}
+  \def\vx{5.8}\def\al{10}                          % the free stream: through (vx, 0) at alpha to the axis
+  % ---- boundary layer and wake: wash, the body white over it --------------------------------------------------
+  \fill[wash] \edgeup -- \edgedownrev -- cycle;
+  \fill[white] plot[domain=0:1.2, samples=40, smooth] (\x, {og(\x)}) -- (\L,\R) -- (\L,-\R) -- (1.2,-\R)
+    -- plot[domain=1.2:0, samples=40, smooth] (\x, {-og(\x)}) -- cycle;
+  % the base bubble: recirculating flow behind the base
+  \draw[flow line] (\L,\R) .. controls (6.85,\R) and (7.2,0.1) .. (7.2,0) .. controls (7.2,-0.1) and (6.85,-\R)
+    .. (\L,-\R);
+  % its two eddies: aft along the outside, forward along the axis
+  \draw[eddy arrow] (6.76,0.1) ++(165:0.2 and 0.062) arc[start angle=165, end angle=-125, x radius=0.2,
+    y radius=0.062];
+  \draw[eddy arrow] (6.76,-0.1) ++(-165:0.2 and 0.062) arc[start angle=-165, end angle=125, x radius=0.2,
+    y radius=0.062];
+  % turbulence in the turbulent layer and the wake; the edges; transition
+  \csveddies[eddy]{figures/v2/ch3/fig12-eddies.csv}
+  \draw[bl edge] \edgeup;
+  \draw[bl edge] \edgedownrev;
+  \draw[bl edge] (\xt,\R) -- (\xt,\R+\dt) (\xt,-\R) -- (\xt,-\R-\dt);
+  % ---- the rocket ------------------------------------------------------------------------------------------------
+  \foreach \s in {1,-1} \fill[white, yscale=\s] (5.45,\R) -- (5.95,0.8) -- (\L,0.8) -- (\L,\R) -- cycle;
+  \pic {rocket={model, centerline=false}};
+  \draw[centerline] (0.1,0) -- (6.3,0);
+  \draw[thin line] (-0.62,0) -- (0,0);                         % the axis, extended ahead of the nose
+  \draw[edge fin, line width=0.4pt] (5.45,-0.025) rectangle (\L,0.025);
+  % launch lug (lower side) and its wake
+  \draw[flow line] (4.85,-\R) .. controls (5.0,-\R) and (5.15,-0.225) .. (5.2,-0.235)
+    .. controls (5.15,-0.245) and (5.0,-0.27) .. (4.85,-0.27);
+  \draw[outline, fill=white] (4.25,-\R) rectangle (4.85,-0.27);
+  % tip vortex of the upper fin
+  \draw[flow line] plot[domain=0:50, samples=500, variable=\t]
+    ({\L + 0.035*\t + 0.07*(1-cos(\t r))}, {0.8 + 0.07*sin(\t r)});
+  % ---- free stream and angle of attack -------------------------------------------------------------------------------
+  \draw[thin vec] (-0.5,{-(\vx+0.5)*tan(\al)}) -- (2.7,{-(\vx-2.7)*tan(\al)})
+    node[below right=0pt and -2pt] {$\vec{V}$};
+  \anglemark[at={(\vx,0)}]{(180:1)}{(180+\al:1)}{6.2}{$\alpha$}
+  % ---- callouts --------------------------------------------------------------------------------------------------------
+  \node[lab, anchor=south] (pf) at (0.15,1.3) {pressure\\foredrag};
+  \draw[leader] (pf.south) -- (0.5,{og(0.5)});
+  \node[lab, anchor=south] (lam) at (1.9,1.3) {laminar\\boundary layer};
+  \draw[leader] (lam.south) -- (2.2,0.245);
+  \node[lab, anchor=south] (tr) at (3.3,0.95) {transition};
+  \draw[leader] (tr.south) -- (\xt,{\R+\dt});
+  \node[lab, anchor=south] (tu) at (4.5,1.3) {turbulent\\boundary layer};
+  \draw[leader] (tu.south) -- (4.85,0.34);
+  \node[lab, anchor=south west] (fb) at (5.4,1.3) {fin-body\\interference drag};
+  \draw[leader] ([xshift=6pt]fb.south west) -- (5.45,\R);
+  \node[lab, anchor=south] (tv) at (8.0,1.3) {fin tip vortex};
+  \draw[leader] (tv.south) -- (7.72,0.875);
+  % the label stands clear of alpha (about 4 mm), so that alpha is not read into its middle line
+  \node[lab, anchor=east, align=right] at (-0.74,-0.55) {drag due to\\angle of\\attack};
+  \node[lab, anchor=north] (sf) at (3.5,-0.95) {skin friction\\drag};
+  \draw[leader] (sf.north) -- (3.6,-\R);
+  \node[lab, anchor=north] (lug) at (5.25,-0.95) {parasitic pressure drag\\due to launch lug};
+  \draw[leader] ([xshift=-14pt]lug.north) -- (4.6,-0.27);
+  \node[lab, anchor=north] (bd) at (7.5,-0.95) {base drag};
+  \draw[leader] (bd.north) -- (6.98,-0.07);
+\end{tikzpicture}
+\end{document}

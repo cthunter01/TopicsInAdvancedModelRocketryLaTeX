@@ -1,0 +1,61 @@
+% Chapter 3, Figure 30: drag coefficient against rounding radius ratio, 2-D and 3-D bodies (scan:
+% figures/ch3/fig30.png; after Hoerner). Curves digitized from the scan by fig30.py (averages of experimental
+% data, no equation in the book): solid (series1) the 2-D half-streamlined section at R = 10^5, dashed
+% (series2) the 3-D streamlined body at R = 10^6, each identified, as printed, by a leader from its inset.
+% Overlay on the scan (fig30.calib.json): 95% of the points within 0 px (2-D) and 2 px (3-D, dashed) of the
+% ink; 95% of the traced ink centre line within 0.40 and 0.54 px of the curves.
+% The insets are drawn in the scan's pixels at the plot's scale (the axes are 374 x 270 px on the scan,
+% 4.2 in wide here: 1.684 times): inset 1 a flat front with corner radius r, parallel sides h apart and an
+% elliptical rear; inset 2 a body of revolution, flat front with rounded corners, cylinder and a tangent-ogive
+% afterbody to a point (fitted to the scan: length 64 px, rms 0.6 px). Each inset's U is a velocity vector (vec),
+% as the free-stream arrows of the other figures and the Fig 51 inset.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \def\u{0.028519cm}   % one scan pixel
+  \begin{axis}[tamr,
+      width=374*\u, height=270*\u,
+      xmin=0, xmax=0.5, xtick={0,0.1,...,0.5}, xticklabels={0,0.1,0.2,0.3,0.4,0.5},
+      ymin=0, ymax=1.2, ytick={0,0.2,...,1.2}, yticklabels={0,0.2,0.4,0.6,0.8,1.0,1.2},
+      xlabel={$\dfrac{r}{h}$},
+      ylabel={$\CDo$}, ylabel style={rotate=-90, anchor=east}]
+    \addplot[series1] table[x=x, y=y, col sep=comma] {figures/v2/ch3/fig30-2d.csv};
+    \addplot[series2] table[x=x, y=y, col sep=comma] {figures/v2/ch3/fig30-3d.csv};
+    \coordinate (O) at (axis cs:0,0);
+    \coordinate (L1) at (axis cs:0.1667,0.4069);   % on the 2-D curve (fig30-2d.csv)
+    \coordinate (L2) at (axis cs:0.4356,0.0523);   % on the 3-D curve (fig30-3d.csv)
+  \end{axis}
+  % the insets, in the scan's pixels (y down) from its axes' origin (86.5, 286.5)
+  \begin{scope}[shift={(O)}, x=\u, y=-\u, xshift=-86.5*\u, yshift=286.5*\u]
+    % ---- inset 1: 2-D half-streamlined section ----
+    \def\rc{3}
+    \draw[leader] (246,134.5) -- (L1);
+    \draw[outline] (270,108.5) -- (196+\rc,108.5) arc[start angle=270, end angle=180, radius=\rc]
+      -- (196,134.5-\rc) arc[start angle=180, end angle=90, radius=\rc] -- (270,134.5)
+      plot[domain=-90:90, samples=41, variable=\t] ({270+55*cos(\t)}, {121.5-13*sin(\t)});
+    \draw[vec] (160,121.5) -- (192,121.5);
+    \node[anchor=south, inner sep=2.5pt] at (166,121.5) {$U$};
+    \draw[leader] (180,94) -- (197,109.5);
+    \node[anchor=south east, inner sep=1pt] at (182,94) {$r$};
+    \draw[extension] (282,108.5) -- (352,108.5);
+    \draw[extension] (282,134.5) -- (352,134.5);
+    \dimout{(344,108.5)}{(344,134.5)}{}
+    \node[inner sep=1pt] at (344,121.5) {$h$};
+    \node[anchor=south west, align=left, inner sep=0pt] at (199,99) {2-D half-streamlined\\ section, $R = 10^{5}$};
+    % ---- inset 2: 3-D streamlined body ----
+    \def\R{13.2}\def\ya{203.3}
+    \pgfmathsetmacro\ogr{(\R*\R+64*64)/(2*\R)}
+    \draw[leader] (444,\ya+\R) -- (L2);
+    \draw[centerline] (381,\ya) -- (550,\ya);
+    \draw[outline] (463,\ya-\R) -- (383+\rc,\ya-\R) arc[start angle=270, end angle=180, radius=\rc]
+      -- (383,\ya+\R-\rc) arc[start angle=180, end angle=90, radius=\rc] -- (463,\ya+\R);
+    \foreach \sg in {1,-1}
+      \draw[outline] plot[domain=0:64, samples=41, variable=\s]
+        ({463+\s}, {\ya-\sg*(\ogr*sqrt(1-(\s/\ogr)^2)+\R-\ogr)});
+    \draw[vec] (329,\ya) -- (380,\ya);
+    \node[anchor=south, inner sep=2.5pt] at (335,\ya) {$U$};
+    \node[anchor=south west, align=left, inner sep=0pt] at (385,178) {3-D streamlined\\ body, $R = 10^{6}$};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

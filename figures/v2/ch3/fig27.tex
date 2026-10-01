@@ -1,0 +1,41 @@
+% Chapter 3, Figure 27: scheme for computing the pressure drag of a half-body (scan: figures/ch3/fig27.png;
+% after Prandtl and Tietjens). Lengths in units of the body radius R (0.4 cm), X aft of the nose, taken from the
+% scan (R = 18 px). The half-body is Fig 28's: the axisymmetric Rankine half-body, radius
+% w = R cos(t/2) at X = R/2 + R cos(t)/(2 sin(t/2)), t from 180 deg at the nose (a point source R/2 behind the
+% nose in a uniform stream); it is R to within 0.05% at the slot. The slot (the surrounding pressure penetrates
+% it) lies at the downstream face of the control surface; the body runs on to a break. The control surface is
+% dotted, as the text says ("as indicated by the dotted line"; printed dashed: standing rule 1). The walls of
+% the wide, hollow cylinder are drawn in section.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.4cm, y=0.4cm]
+  \def\xl{-6.6}\def\xr{25.6}      % ends of the tube
+  \def\wall{4.9}\def\wt{0.38}     % inner radius and thickness of its wall
+  \def\cvl{-4.36}\def\cvr{16.81}  % faces of the control surface
+  \def\cvh{4.66}                  % its top and bottom, just inside the wall
+  \def\sa{16.56}\def\sb{17.06}    % the slot
+  \def\tail{25.3}                 % the break
+  % the walls, in section
+  \foreach \s in {1,-1}
+    \draw[outline, hatch] (\xl,{\s*\wall}) rectangle (\xr,{\s*(\wall+\wt)});
+  % the control surface
+  \draw[dotted guide] (\cvl,-\cvh) rectangle (\cvr,\cvh);
+  % the half-body: nose to the slot, then on from the slot to the break
+  \draw[outline] (\sa,-1) -- (\sa,1)
+    -- plot[domain=3.57:180, samples=241, smooth, variable=\t] ({0.5+cos(\t)/(2*sin(\t/2))}, {cos(\t/2)})
+    -- plot[domain=180:356.43, samples=241, smooth, variable=\t] ({0.5+cos(\t)/(2*sin(\t/2))}, {cos(\t/2)})
+    -- cycle;
+  \draw[outline] (\tail,1) -- (\sb,1) -- (\sb,-1) -- (\tail,-1);
+  \breakline[break amplitude=0.4]{(\tail,1)}{(\tail,-1)}
+  % velocities, pressures, areas
+  \draw[vec] (-6.4,0) -- (-2.3,0);
+  \node[anchor=south, inner sep=2.5pt] at (-5.5,0) {$u_1$};
+  \draw[vec] (14.6,-2.95) -- (18.9,-2.95);
+  \node[anchor=south, inner sep=2.5pt] at (15.6,-2.95) {$u_2$};
+  \node at (-5.6,2.1) {$p_1$};
+  \node at (17.8,3.4) {$p_2$};
+  \draw[leader] (\cvl,-2.2) -- (-5.55,-3.55) node[anchor=north east, inner sep=1.5pt] {$A_1$};
+  \draw[leader] (\sb,0.25) -- (18.55,2.0) node[anchor=south west, inner sep=1.5pt] {$A_2$};
+\end{tikzpicture}
+\end{document}

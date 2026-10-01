@@ -1,0 +1,27 @@
+% Chapter 3, Figure 15: the transverse velocity (v/U_inf) sqrt(U_inf x/nu) against eta, eta vertical (scan:
+% figures/ch3/fig15.png, PDF 354). Curve: fig15.py, eq. (46), (v/U_inf) sqrt(U_inf x/nu) = (eta f' - f)/2, with f
+% and f' from Table 1 (interpolated as in fig14.py). Dashed: its asymptote, (1/2) lim (eta - f) = 0.8604 by
+% Table 1 (fig15-marks.csv), from the axis up to where the curve meets it; lettered 0.865 as printed (eq. (56);
+% corrections/v2-figures.md, minor). The 0.865 dimension runs along the eta = 7 grid line, as printed.
+% Frame shared with Fig 14.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\pgfplotstableread[col sep=comma]{figures/v2/ch3/fig15-marks.csv}\figmarks
+\pgfplotstablegetelem{0}{vinf}\of\figmarks \let\vinf\pgfplotsretval
+\pgfplotstablegetelem{0}{join}\of\figmarks \let\vjoin\pgfplotsretval
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr grid, grid=both,
+      width=4.2in, height=2.7in,
+      xmin=0, xmax=1, xtick={0,0.2,0.4,0.6,0.8,1}, xticklabels={0, 0.2, 0.4, 0.6, 0.8, 1.0},
+      minor xtick={0.1,0.3,0.5,0.7,0.9},
+      ymin=0, ymax=8, ytick distance=1,
+      xlabel={$\dfrac{v}{U_\infty}\sqrt{\dfrac{U_\infty x}{\nu}}$},
+      ylabel={$\eta = y\sqrt{\dfrac{U_\infty}{\nu x}}$}]
+    \draw[guide] (axis cs:\vinf,0) -- (axis cs:\vinf,\vjoin);
+    \addplot[series1] table[x=v, y=eta, col sep=comma] {figures/v2/ch3/fig15.csv};
+    % the asymptotic value, from the axis to the asymptote along the eta = 7 grid line
+    \dimline{(axis cs:0,7)}{(axis cs:\vinf,7)}{0.865}
+  \end{axis}
+\end{tikzpicture}
+\end{document}

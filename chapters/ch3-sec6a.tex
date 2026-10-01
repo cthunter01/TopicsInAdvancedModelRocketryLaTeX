@@ -74,7 +74,7 @@ in detail the calculation of $(\CDo)_F$ and $(\CDo)_B$, respectively.
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig43.png}
+  \includegraphics{figures/v2/ch3/fig43.pdf}
   \caption{Notation used in the Datcom method for computing the drag of
   simple model rockets at zero angle of attack. Note that the variable $b$ as
   used here refers to the span of a single fin, from root to tip; elsewhere in
@@ -126,7 +126,7 @@ $n\sigma_F$.
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig44.png}
+  \includegraphics{figures/v2/ch3/fig44.pdf}
   \caption{Obtaining the gross planform area of various fin shapes (shapes
   after G. Harry Stine).}
   \label{ch3:fig:44}
@@ -229,7 +229,7 @@ coefficient of a model rocket with an elliptical cross-section.
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig45.png}
+  \includegraphics{figures/v2/ch3/fig45.pdf}
   \caption{Definition of fineness ratio for various bodies of revolution. The
   fineness ratio of the nose is given by $\frac{\ell_n}{d_n}$; for the other
   three shapes the fineness ratio is defined as $\frac{\ell_b}{d_m}$.}
@@ -257,14 +257,19 @@ Since $(S_m)_{\mathrm{cyl.}} = \pi r_m^2 = \pi\frac{d_m^2}{4}$, we then have
 In Figure~\ref{ch3:fig:46} $S_s/S_m$ is plotted as a function of component
 fineness ratio for the cylinder, as well as for ellipsoidal, conical, and
 tangent-ogive nose and afterbody shapes. The following equations may also be
-used to determine $S_s/S_m$ for a variety of nosecone shapes:
+used to determine $S_s/S_m$ for a variety of nosecone shapes:\ednote{Equation~\eqref{ch3:eq:171b} is corrected by
+the editor. The 1973 edition prints it $(S_s/S_m)_{\mathrm{ELLIP.}} \cong \left(1 + \pi\frac{\ell}{d_m}\right)$. Its
+constant term is spurious: for $\ell/d_m \gg 1$ the arcsine in equation~\eqref{ch3:eq:171a} falls short of $\pi/2$
+by about $d_m/2\ell$, and this shortfall, multiplied by $2\ell/d_m$, contributes $-1$, which cancels the leading 1,
+so that \eqref{ch3:eq:171a} expands to $\pi\ell/d_m + (\pi/8)(d_m/\ell) + \cdots$. The 1973 form is 5 to 16 percent
+high at the fineness ratios from 6 down to 1.5 that Figure~\ref{ch3:fig:46} covers.}
 \begin{subequations}\label{ch3:eq:171}
 \begin{align}
 \left(\frac{S_s}{S_m}\right)_{\mathrm{ELLIP.}} &= 1
   + \frac{2\ell/d_m}{\sqrt{1 - \frac{d_m^2}{4\ell^2}}}
   \sin^{-1}\sqrt{1 - \frac{d_m^2}{4\ell^2}} \label{ch3:eq:171a}\\
 \left(\frac{S_s}{S_m}\right)_{\mathrm{ELLIP.}} &\cong
-  \left(1 + \pi\frac{\ell}{d_m}\right)
+  \pi\frac{\ell}{d_m}
   \qquad \text{for } \frac{\ell}{d_m} \gg 1 \label{ch3:eq:171b}\\
 \left(\frac{S_s}{S_m}\right)_{\mathrm{OGIVE}} &\cong 2.67\frac{\ell}{d_m}
   \qquad \text{for } \frac{\ell}{d_m} > 1.5 \label{ch3:eq:171c}\\
@@ -277,7 +282,7 @@ used to determine $S_s/S_m$ for a variety of nosecone shapes:
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig46.png}
+  \includegraphics{figures/v2/ch3/fig46.pdf}
   \caption{Ratio of surface area to maximum frontal area $S_s/S_m$ as a
   function of fineness ratio $\ell/d_m$ for various component shapes. The
   functions for ellipsoids, cones, and ogives are approximate and are
@@ -312,7 +317,7 @@ as we shall see in Section~\ref{ch3:sec:7}.
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.8\textwidth,height=0.85\textheight,keepaspectratio]{figures/ch3/fig47.png}
+  \includegraphics{figures/v2/ch3/fig47.pdf}
   \caption{Geometrical definitions of common nose shapes. (a): An ellipse is
   formed by passing a plane through a cone at an angle to the cone axis
   greater than the cone's half-angle. The ellipse is divided along its minor

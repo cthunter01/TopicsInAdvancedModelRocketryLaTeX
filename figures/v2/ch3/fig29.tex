@@ -1,0 +1,60 @@
+% Chapter 3, Figure 29: pressure foredrag coefficients of seven nose shapes (scan: figures/ch3/fig29.png; after
+% Hoerner). Seven bodies of one diameter d, nose down in the flow U (from below), each broken off at the top
+% (the house break line for a cut-off tube, \breakline, as Figs 27, 33, 49; the 1973 art shows the round-bar
+% break, a hatched lobe and an open lobe), with a centre line beyond both ends; the C_Do value row beneath, as
+% lettered. Left to right (the text's #1-#7):
+%   1 half ellipsoid of revolution, nose length 0.79 d (fitted to the scan's line centres: rms 0.2 px);
+%   2 hemisphere (rms 0.2 px); 3 flat face with corner radius r = 0.1 d (the scan's about 0.09 d; the
+%     text's critical r/h = 0.1, Fig 30); 4 cone, half-angle 22 deg;
+%   5 cone, half-angle 39 deg (both measured on the scan); 6 flat face, sharp corners; 7 flat face with a
+%     cavity open to the flow (the rim edge-on, the cavity's walls hidden), inner diameter 0.7 d, depth d.
+% Coordinates are the scan's pixels (150 per inch, y down) drawn 1.35 times the printed size; the bodies are
+% spaced evenly (the scan's centres lie within 4 px of these). The 1973 flow line has no arrowhead; U is drawn
+% as a velocity vector, pointing up (towards the noses).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.022860cm, y=-0.022860cm]
+  \def\R{19}        % body radius
+  \def\yc{41}       % the break (top of the body)
+  \def\yf{186.5}    % the nose front
+  % \body{<centre x>}{<nose path from the left side at the nose base to the right side at the nose base>}
+  %   {<nose base y>}: centre line (running through the break), outline, the break line across the top
+  \newcommand{\body}[3]{%
+    \draw[centerline] (#1,12) -- (#1,205);
+    \draw[outline] (#1+\R,\yc) -- (#1+\R,#3) #2 -- (#1-\R,\yc);
+    \breakline[break amplitude=0.5]{(#1-\R,\yc)}{(#1+\R,\yc)}}
+  % 1 half ellipsoid, nose length 30
+  \def\xa{88}
+  \body{\xa}{-- plot[domain=0:180, samples=61, variable=\t] ({\xa+\R*cos(\t)}, {\yf-30+30*sin(\t)})}{\yf-30}
+  % 2 hemisphere
+  \def\xb{162.4}
+  \body{\xb}{-- plot[domain=0:180, samples=61, variable=\t] ({\xb+\R*cos(\t)}, {\yf-\R+\R*sin(\t)})}{\yf-\R}
+  % 3 flat face, corner radius 0.1 d
+  \def\xc{236.8}\def\rc{3.8}
+  \body{\xc}{-- (\xc+\R,\yf-\rc) arc[start angle=0, end angle=90, radius=\rc] -- (\xc-\R+\rc,\yf)
+    arc[start angle=90, end angle=180, radius=\rc]}{\yf-\rc}
+  % 4 cone, half-angle 22 deg, with the joint at its base
+  \def\xd{311.2}\pgfmathsetmacro\Ld{\R/tan(22)}
+  \body{\xd}{-- (\xd,\yf) -- (\xd-\R,\yf-\Ld)}{\yf-\Ld}
+  \draw[outline] (\xd-\R,\yf-\Ld) -- (\xd+\R,\yf-\Ld);
+  % 5 cone, half-angle 39 deg
+  \def\xe{385.6}\pgfmathsetmacro\Le{\R/tan(39)}
+  \body{\xe}{-- (\xe,\yf) -- (\xe-\R,\yf-\Le)}{\yf-\Le}
+  \draw[outline] (\xe-\R,\yf-\Le) -- (\xe+\R,\yf-\Le);
+  % 6 flat face
+  \def\xf{460}
+  \body{\xf}{-- (\xf-\R,\yf)}{\yf}
+  % 7 flat face with a cavity open to the flow
+  \def\xg{534.4}
+  \body{\xg}{-- (\xg-\R,\yf)}{\yf}
+  \draw[hidden] (\xg-13.3,\yf) -- (\xg-13.3,\yf-38) -- (\xg+13.3,\yf-38) -- (\xg+13.3,\yf);
+  % the flow
+  \draw[vec] (40.5,150) -- (40.5,80);
+  \node[anchor=north, inner sep=2pt] at (40.5,150) {$U$};
+  % the value row
+  \node[anchor=base east] at (54,243) {$\CDo =$};
+  \foreach \x/\v in {88/-.05, 162.4/+.01, 236.8/.20, 311.2/.20, 385.6/.34, 460/.90, 534.4/1.0}
+    \node[anchor=base] at (\x,243) {$\v$};
+\end{tikzpicture}
+\end{document}

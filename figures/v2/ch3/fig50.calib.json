@@ -1,0 +1,3 @@
+{"crop": "figures/ch3/fig50.png",
+ "note": "the drawing's units are the scan's pixels: x = column, y = minus the row",
+ "axes": {"px": {"points": [[0, 0, 0, 0], [600, 0, 600, 0], [0, 370, 0, -370], [600, 370, 600, -370]]}}}

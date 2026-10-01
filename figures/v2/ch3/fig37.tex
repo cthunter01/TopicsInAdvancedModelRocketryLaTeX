@@ -1,0 +1,74 @@
+% Chapter 3, Figure 37: the trial rocket (scan: figures/ch3/fig37.png, PDF 427). (a) dimensioned side view;
+% (b) the same rocket at an angle of attack alpha to the flow.
+% Drawn to its lettered dimensions, in the rocket's centimetres: (a) at 1:3, (b) at 1:6 (the 1973 (b) is
+% drawn at half the scale of (a)). Tangent ogive nose 8.9 (tip to the nose-body joint), overall length 33.0,
+% body diameter 2.06 (r = 1.03, as the text uses), four rectangular fins of root chord 2.54 and span 2.54 from
+% the body surface (b = 7.14 = 2.06 + 2 x 2.54, sec5a/5b), trailing edges at the tail; two fins in profile, a
+% third edge-on on the centre line (0.16 thick, as Ch2 Fig 48's), the fourth hidden. x_o = .51 l_b at
+% 0.51 x 33 = 16.8 (the text's 16.8 cm, eq. (140)). The 2.06 dimension stands at 24.1 and the span's at 35.0,
+% where the 1973 drawing puts them.
+% (b): rotated about its C.G. through alpha = 10 deg (measured on the scan); the C.G. mark is unlabelled in the
+% art and is placed where the 1973 drawing has it, 20.3 from the tip (0.61 l_b; the book gives no C.G. for this
+% rocket). The flow-direction line and the rocket's axis cross at the C.G.; alpha is marked between them
+% ahead of the nose; the flow-direction line carries an arrowhead (as in Fig 38; the 1973 line has none).
+% Overlay on the scan at its 14.74 px/cm (redraw ink, text aside, within 3 px of the scan's ink): (a) 99.2%
+% (rocket) and 99.5% (dimensions), (b) 99.9%. The scan's body is drawn 1.93 thick; the redraw's is the lettered
+% 2.06.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.333333cm, y=0.333333cm]
+  \def\R{1.03}\def\Ln{8.9}\def\Lb{33}\def\crd{2.54}\def\spn{2.54}
+  \pgfmathsetmacro\fle{\Lb-\crd}                   % fin leading edge, 30.46
+  \pgfmathsetmacro\ft{\R+\spn}                    % fin tip, 3.57
+  \pgfmathsetmacro\xo{0.51*\Lb}                  % x_o, 16.83
+  % the tangent ogive's radius at s from the tip (for the callout)
+  \pgfmathsetmacro\ogr{(\R*\R+\Ln*\Ln)/(2*\R)}
+  \pgfmathsetmacro\rs{sqrt(\ogr*\ogr-(\Ln-4.6)^2)+\R-\ogr}
+
+  % ======== (a) ========
+  \draw[centerline] (-1.3,0) -- (36.4,0);
+  \rocketoutline{\Ln/\R, \Lb/\R}
+  \rocketfins{\Lb}{\R}{\crd}{\crd}{\spn}{0}
+  \draw[edge fin] (\fle,-0.08) rectangle (\Lb,0.08);
+  % x, measured aft from the nose tip
+  \draw[extension] (0,4.75) -- (0,-7.75);
+  \draw[thin vec] (0,4.2) -- (3.9,4.2) node[anchor=west, inner sep=1.5pt] {$x$};
+  % callouts
+  \draw[leader] (4.6,\rs) -- (6.6,2.75) node[anchor=west, inner sep=1.5pt] {Tangent ogive};
+  \draw[leader] (\xo,-\R) -- (\xo,-4.85) node[anchor=north, inner sep=1.5pt] {$x_o = .51\ell_b$};
+  % body diameter
+  \dimout{(24.1,\R)}{(24.1,-\R)}{2.06}
+  % lengths
+  \draw[extension] (\Ln,-\R-0.35) -- (\Ln,-5.96);
+  \dimline{(0,-5.66)}{(\Ln,-5.66)}{8.9}
+  \draw[extension] (\fle,-\ft-0.35) -- (\fle,-5.96);
+  \draw[extension] (\Lb,-\ft-0.35) -- (\Lb,-7.73);
+  \dimout{(\Lb,-5.66)}{(\fle,-5.66)}{2.54}
+  \dimline{(0,-7.43)}{(\Lb,-7.43)}{33.0}
+  % fin span, from the body surface to the tip of the lower fin
+  \draw[extension] (\Lb+0.35,-\R) -- (35.6,-\R);
+  \draw[extension] (\Lb+0.35,-\ft) -- (35.6,-\ft);
+  \dimout{(35,-\R)}{(35,-\ft)}{}
+  \node[rotate=90, anchor=east, inner sep=1.5pt] at (35,-\ft-1.15) {2.54};
+  \node[panel, anchor=base east] at (38.2,-7.75) {(a)};
+
+  % ======== (b): the C.G. at (16.35, -15.4), half the scale of (a) ========
+  \begin{scope}[shift={(16.35,-15.4)}, scale=0.5]
+    \def\al{10}\def\cg{20.3}
+    \draw[thin vec] (180:30.4) -- (0:22.8)
+      node[anchor=west, align=left, inner sep=1.5pt, yshift=-5.5pt] {Flow\\direction};
+    \draw[centerline] ({180-\al}:31) -- ({-\al}:20);
+    \begin{scope}[rotate=-\al, shift={(-\cg,0)}]
+      \rocketoutline{\Ln/\R, \Lb/\R}
+      \rocketfins{\Lb}{\R}{\crd}{\crd}{\spn}{0}
+      \draw[edge fin] (\fle,-0.08) rectangle (\Lb,0.08);
+    \end{scope}
+    \node[cg mark] at (0,0) {};
+    % alpha, between the flow direction and the rocket's axis
+    \draw[angle arc] ({180-\al}:27.8) arc[start angle={180-\al}, end angle=180, radius=27.8];
+    \node[anchor=east, inner sep=1.5pt] at ({180-\al/2}:28.2) {$\alpha$};
+    \node[panel, anchor=base east] at (38.2,-6) {(b)};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

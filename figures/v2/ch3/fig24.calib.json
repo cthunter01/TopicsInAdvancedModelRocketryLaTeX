@@ -1,0 +1,4 @@
+{"crop": "figures/ch3/fig24.png",
+ "note": "gridline crossings read on the crop (the scan is turned about 0.4 degrees: the affine fit takes it out)",
+ "axes": {"main": {"points": [[37.92, 17.52, 0, 1], [453.71, 14.93, 180, 1], [36.31, 304.81, 0, -3], [451.62, 301.48, 180, -3],
+                              [176.4, 88.3, 60, 0], [313.8, 230.5, 120, -2]]}}}

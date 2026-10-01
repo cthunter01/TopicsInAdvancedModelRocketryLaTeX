@@ -1,0 +1,29 @@
+% Chapter 3, Figure 21: laminar velocity profiles, (a) flat plate, (b) cone (scan: figures/ch3/fig21.png,
+% PDF 395). Curves: fig21.py. (a) u/U = f'(2 eta_2-D), Table 1 with eq. (96) (Fig 14's curve with eta halved);
+% (b) u/U = f'(2 sqrt(3) eta_3-D), the cone's profile by Mangler's sqrt(3) scaling (outside the book; owner's
+% decision). Each is drawn until it meets the u/U = 1.0 border (about eta = 2.7 and 1.55). The printed U has no
+% subscript (kept). One frame for both panels; the panel letters, circled at eta = 3 in 1973, in the house
+% panel style at the upper right (anchor north east at rel axis 1,1, as Fig 53); white-filled because the
+% u/U = 0.9 gridline runs through them.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \pgfplotsset{profile/.style={tamr grid, grid=both,
+      width=1.74in, height=2.7in,
+      xmin=0, xmax=1, xtick={0,0.5,1}, xticklabels={0, 0.5, 1.0},
+      minor xtick={0.1,0.2,0.3,0.4,0.6,0.7,0.8,0.9},
+      ymin=0, ymax=4, ytick distance=1, minor ytick={0.5,1.5,2.5,3.5},
+      xlabel={$\dfrac{u}{U}$},
+      ylabel style={rotate=-90, anchor=east}}}
+  \begin{axis}[profile, name=a, ylabel={$\eta_{\mathrm{2\text{-}D}}$}]
+    \addplot[series1] table[x=u, y=eta, col sep=comma] {figures/v2/ch3/fig21-a.csv};
+    \node[panel, anchor=north east, fill=white] at (rel axis cs:1,1) {(a)};
+  \end{axis}
+  \begin{axis}[profile, name=b, at={(a.south east)}, anchor=south west, xshift=0.95in,
+      ylabel={$\eta_{\mathrm{3\text{-}D}}$}]
+    \addplot[series1] table[x=u, y=eta, col sep=comma] {figures/v2/ch3/fig21-b.csv};
+    \node[panel, anchor=north east, fill=white] at (rel axis cs:1,1) {(b)};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

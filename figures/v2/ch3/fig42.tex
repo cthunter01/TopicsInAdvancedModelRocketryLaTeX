@@ -1,0 +1,18 @@
+% Chapter 3, Figure 42: drag coefficient of a finless projectile against the spin ratio u/U (scan:
+% figures/ch3/fig42.png, PDF 451). Curve: fig42.py, a measured curve (after Hoerner; no equation in the book)
+% digitized from the scan (fig42.calib.json) and fitted as a cubic. Grid at the printed spacing (0.5, 0.1).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr grid, grid=both,
+      width=4.2in, height=2.6in,
+      xmin=0, xmax=3, xtick={0,1,2,3}, minor xtick={0.5,1.5,2.5},
+      ymin=0, ymax=0.8, ytick={0,0.1,...,0.8},
+      yticklabels={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8},
+      xlabel={$\dfrac{u}{U}$},
+      ylabel={$\CD$}, ylabel style={rotate=-90, anchor=east}]
+    \addplot[series1] table[x=x, y=cd, col sep=comma] {figures/v2/ch3/fig42.csv};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

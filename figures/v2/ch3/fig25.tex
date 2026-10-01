@@ -1,0 +1,84 @@
+% Chapter 3, Figure 25: the development of boundary-layer separation from a surface due to a positive (adverse)
+% pressure gradient (scan: figures/ch3/fig25.png; after Hoerner).
+% fig25.py: the wall and the dashed boundary-layer edge fitted to the scan; the profiles a-e are Falkner-Skan
+% solutions of eqs. (38)-(39): a full (beta = +0.05), b inflected (-0.12), c the separation profile with zero
+% wall gradient, eq. (110), d and e with reversed flow at the wall (the lower branch, beta = -0.13, -0.07); the
+% streamlines are contours of the stream function of the profiles followed continuously along the wall, turning
+% on the line of stationary fluid u = 0 (dash-dot). Data: fig25-*.csv. Overlay on the scan (fig25.calib.json),
+% 95% within: wall 2.8 px, edge 2.2, profiles a-e 2.8, 2.0, 2.2, 8.1, 2.8, u = 0 line 11.0, streamlines 7.2
+% (the scan's freehand streamlines and its deeper reversed flow at d). Drawn in the scan's pixels, y up from
+% the flat wall, 1.2 times the printed size. The station letters a-e are points the text cites ("point a", "the
+% separation point c", "points d and e"): curve tag, set clear of the hatched band. "vortex" has a straight
+% leader to the innermost U-shaped (recirculating) streamline, as the 1973 streamline runs to the label.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+% the profile family's styles (Ch3 Figs 16, 17, 18, 25); a streamline, and the line of stationary fluid
+\tikzset{
+  profile/.style={draw=s1, line width=1pt},
+  profile arrow/.style={draw=s1, line width=0.5pt, -{Stealth[length=3.4pt, width=2.4pt]}},
+  profile stroke/.style={draw=s1, line width=0.5pt},
+  streamline/.style={draw=ink, line width=0.5pt},
+  stream head/.style={draw=ink, line width=0.5pt, -{Stealth[length=4.4pt, width=3pt]}},
+  stationary/.style={draw=ink, line width=0.6pt, dash pattern=on 9pt off 2pt on 1.5pt off 2pt},
+}
+\pgfplotstableread[col sep=comma]{figures/v2/ch3/fig25-arrows.csv}\arrows
+\pgfplotstableread[col sep=comma]{figures/v2/ch3/fig25-heads.csv}\heads
+\pgfplotstableread[col sep=comma]{figures/v2/ch3/fig25-points.csv}\points
+\pgfplotsset{canvas/.style={hide axis, x=0.02032cm, y=0.02032cm, disabledatascaling, anchor=origin,
+  at={(0,0)}, xmin=0, xmax=1, ymin=0, ymax=1, enlargelimits=false, clip=false}}
+% \segments{<table>}{<style>}: a line or an arrow for each row x0, y0, x1, y1 (head = 0: no head)
+\newcommand{\segments}[3][]{%
+  \pgfplotstablegetrowsof{#2}\pgfmathtruncatemacro\nrows{\pgfplotsretval-1}%
+  \foreach \r in {0,...,\nrows} {%
+    \pgfplotstablegetelem{\r}{x0}\of#2\let\ax\pgfplotsretval
+    \pgfplotstablegetelem{\r}{y0}\of#2\let\ay\pgfplotsretval
+    \pgfplotstablegetelem{\r}{x1}\of#2\let\bx\pgfplotsretval
+    \pgfplotstablegetelem{\r}{y1}\of#2\let\by\pgfplotsretval
+    \def\ah{1}\ifx\relax#1\relax\else\pgfplotstablegetelem{\r}{head}\of#2\let\ah\pgfplotsretval\fi
+    \ifnum\ah=1 \draw[#3] (\ax,\ay) -- (\bx,\by); \else \draw[profile stroke] (\ax,\ay) -- (\bx,\by); \fi
+  }}
+\begin{document}
+\begin{tikzpicture}[x=0.02032cm, y=0.02032cm]
+  % named points
+  \pgfplotstablegetrowsof{\points}\pgfmathtruncatemacro\nrows{\pgfplotsretval-1}
+  \foreach \r in {0,...,\nrows} {
+    \pgfplotstablegetelem{\r}{name}\of\points\let\pn\pgfplotsretval
+    \pgfplotstablegetelem{\r}{x}\of\points\let\px\pgfplotsretval
+    \pgfplotstablegetelem{\r}{y}\of\points\let\py\pgfplotsretval
+    \coordinate (\pn) at (\px,\py);
+  }
+  % the wall, the boundary-layer edge, the line of stationary fluid, the streamlines
+  \begin{axis}[canvas]
+    \addplot[hatch, draw=none, mark=none] table[x=x, y=y, col sep=comma] {figures/v2/ch3/fig25-band.csv};
+    \addplot[outline, mark=none] table[x=x, y=y, col sep=comma] {figures/v2/ch3/fig25-wall.csv};
+    \addplot[guide, mark=none] table[x=x, y=y, col sep=comma] {figures/v2/ch3/fig25-edge.csv};
+    \addplot[streamline, mark=none, unbounded coords=jump] table[x=x, y=y, col sep=comma]
+      {figures/v2/ch3/fig25-stream.csv};
+    \addplot[stationary, mark=none] table[x=x, y=y, col sep=comma] {figures/v2/ch3/fig25-zero.csv};
+  \end{axis}
+  \segments{\heads}{stream head}
+  \foreach \p in {rev1, rev2, rev3} \draw[thin vec] (\p) -- (\p t);
+  % the profiles
+  \segments[head]{\arrows}{profile arrow}
+  \begin{axis}[canvas]
+    \pgfplotsinvokeforeach{a,b,c,d,e}{
+      \addplot[profile, mark=none] table[x=x, y=y, col sep=comma] {figures/v2/ch3/fig25-#1.csv};}
+  \end{axis}
+  \foreach \p in {a,b,c,d,e} {
+    \draw[outline] (\p) -- (\p top);
+    \node[curve tag] at ($(\p)!13pt!180:(\p top)$) {\p};
+  }
+  % labels
+  \dimline{(30,0)}{(30,53)}{$\delta$}
+  \draw[vec] (68,73) -- (106,73) node[midway, above=1pt] {$U_\infty$};
+  \draw[vec] (73,22) -- (100,22) node[midway, above=1pt] {$u$};
+  \node[anchor=south, font=\small] at (440,108) {Undisturbed outer flow};
+  \draw[thin vec] (362,82) -- (398,82);
+  \draw[thin vec] (462,84) -- (498,84);
+  \draw[thin vec] (540,44) -- (578,44);
+  \draw[thin vec] (pg0) -- (pg1);
+  \node[anchor=north east, align=left, font=\small, inner sep=1.5pt] at ($(pg0)+(12,-8)$)
+    {Positive\\pressure\\gradient};
+  \draw[leader] (vortex) -- ++(16,16) node[anchor=west, font=\small, inner sep=1.5pt] {vortex};
+\end{tikzpicture}
+\end{document}

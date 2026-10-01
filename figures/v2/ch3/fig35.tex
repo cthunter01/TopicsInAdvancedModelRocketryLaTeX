@@ -1,0 +1,20 @@
+% Chapter 3, Figure 35: the apparent mass factor (k_2 - k_1) against body fineness ratio (scan: figures/ch3/fig35.png).
+% Curve: fig35.py, Lamb's prolate-spheroid inertia coefficients k_1 = alpha_o/(2 - alpha_o), k_2 = beta_o/(2 - beta_o)
+% (the book's source, Hopkins/Munk, prints no formula; owner's decision), from l_b/d = 4 as printed: 0.778 at 4,
+% 0.971 at 16 (the text's 0.97). Overlay on the scan (fig35.calib.json): 95% of points within 1.4 px.
+% Same frame as Figure 36.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr grid, grid=both,
+      width=4.2in, height=2.6in,
+      xmin=0, xmax=20, xtick={0,4,...,20}, minor xtick={2,6,...,18},
+      ymin=0.6, ymax=1.0, ytick={0.6,0.8,1.0}, minor ytick={0.7,0.9},
+      yticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=1},
+      xlabel={$\dfrac{\ell_b}{d}$},
+      ylabel={$(k_2 - k_1)$}]
+    \addplot[series1] table[x=f, y=k, col sep=comma] {figures/v2/ch3/fig35.csv};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

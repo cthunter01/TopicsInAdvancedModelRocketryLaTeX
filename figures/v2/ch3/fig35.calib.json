@@ -1,0 +1,5 @@
+{"crop": "figures/ch3/fig35.png",
+ "note": "The 1973 rulings are not evenly spaced (47.5 px per 2 at the left, 44.5 at the right) and fan out slightly; x is read piecewise between the drawn verticals, each taken at the row where the curve crosses it, y between the drawn horizontals.",
+ "axes": {"main": {"points": [[91.8, 160.5, 0, 0.8], [554.7, 160.8, 20, 0.8], [236.4, 160.6, 6, 0.8], [234.1, 16.4, 6, 1.0], [238.6, 305.3, 6, 0.6]],
+                   "xgrid": [[91.8, 0], [139.3, 2], [188.6, 4], [235.6, 6], [282.5, 8], [328.4, 10], [373.3, 12], [418.6, 14], [462.3, 16], [506.6, 18], [551.2, 20]],
+                   "ygrid": [[305.0, 0.6], [233.3, 0.7], [160.6, 0.8], [89.0, 0.9], [16.6, 1.0]]}}}

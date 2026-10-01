@@ -1,0 +1,72 @@
+% Chapter 3, Figure 51: drag coefficients of the GCR-x rocket against Reynolds number (scan: figures/ch3/fig51.png).
+% Curves: fig51.py -> fig51.csv, the chapter's GCR-x equations as printed (after eqs. (199)-(205)):
+% (C_Df)_b = 82.8 (C_f)_B, C_Db = .0149/sqrt((C_Df)_b), (C_Do)_B = (C_Df)_b + C_Db, (C_Do)_F = 46.4 (C_f)_F,
+% (C_Do)_FB = (C_Do)_B + (C_Do)_F (eq. (205)); (C_f)_B by eqs. (203a)/(203b) (switch at 5 x 10^5, B = 1735),
+% (C_f)_F by eqs. (204a)/(204b) as the text writes them for the GCR-x (switch at 5.14 x 10^6). They reproduce
+% Table 6 to 0.003 on the plotted range. Overlaid on the scan against its drawn gridlines (fig51.calib.json),
+% 95% of the points of each curve lie within 2-3 px of the 1973 ink.
+% True log x axis (the 1973 paper's intermediate lines are not at log positions: corrections/v2-figures.md
+% rule 3), the printed rulings 1, 1.5, 2, 2.5, 3, 3.5, 4, 5 ... 9 kept as the grid; frame and x axis as Ch3 Fig 22.
+% Encoding: the total solid (s1); the body's curves in s2 ((C_Do)_B long dashes, C_Db long dash-dot, as
+% printed), the fins' in s3 (short dashes, as printed): the 1973 dash patterns kept as the second encoding.
+% Region markers (2), (3) as printed: the body transition zone 5 x 10^5 to 5 x 10^6 (the caption's bounds) and
+% the fin transition zone from 5 x 10^6 on. Inset: the GCR-x drawn to its proportions (sec6c: l_N/d_m 3.5,
+% l_s/d_m 11.5, l_T/d_m 3, d_b/d_m .8, c/d_m 1.75, b/d_m 5), as the 1973 inset is, on a blanked patch of grid.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \tikzset{
+    body long/.style={s2, curve, dash pattern=on 7pt off 2.5pt},
+    body base/.style={s2, curve, dash pattern=on 7pt off 2pt on 1.5pt off 2pt},
+    fin short/.style={s3, curve, dash pattern=on 3pt off 2pt},
+    curve label/.style={font=\small, inner sep=1.5pt, fill=white},   % knocks the grid out behind the lettering
+  }
+  \begin{semilogxaxis}[tamr grid, grid=both,
+      width=5.4in, height=3.5in,
+      xmin=1e4, xmax=1e7, ymin=0, ymax=1.6,
+      xtick={1e4,2e4,3e4,4e4,6e4,8e4,1e5,2e5,3e5,4e5,6e5,8e5,1e6,2e6,3e6,4e6,6e6,8e6,1e7},
+      xticklabels={$10^4$,2,3,4,6,8,$10^5$,2,3,4,6,8,$10^6$,2,3,4,6,8,$10^7$},
+      % the printed chart's rulings: 1, 1.5, 2, 2.5, 3, 3.5, 4, 5 ... 9 in each decade
+      minor xtick={1.5e4,2.5e4,3.5e4,5e4,7e4,9e4,1.5e5,2.5e5,3.5e5,5e5,7e5,9e5,1.5e6,2.5e6,3.5e6,5e6,7e6,9e6},
+      ytick={0,0.2,...,1.6}, yticklabels={0,0.2,0.4,0.6,0.8,1.0,1.2,1.4,1.6},
+      minor ytick={0.1,0.3,...,1.5},
+      xlabel={$R_\ell$},
+      ylabel={$\CD$}, ylabel style={rotate=-90, anchor=east}]
+    % the inset's patch: the grid blanked from 1.5 x 10^5 to the right edge, 1.0 to 1.5, set in by half a ruling
+    % so the four rulings that bound it keep their full weight
+    \fill[white] ([shift={(0.2pt,0.2pt)}]axis cs:1.5e5,1.0) rectangle ([shift={(-0.2pt,-0.2pt)}]axis cs:1e7,1.5);
+    % curves
+    \addplot[body base] table[x=R, y=CDb, col sep=comma] {figures/v2/ch3/fig51.csv};
+    \addplot[fin short] table[x=R, y=CDoF, col sep=comma] {figures/v2/ch3/fig51.csv};
+    \addplot[body long] table[x=R, y=CDoB, col sep=comma] {figures/v2/ch3/fig51.csv};
+    \addplot[series1] table[x=R, y=CDoFB, col sep=comma] {figures/v2/ch3/fig51.csv};
+    % curve labels
+    \node[curve label, anchor=west] at (axis cs:1.85e4,1.5) {$(\CDo)_F$};
+    \node[curve label, anchor=west] at (axis cs:4.9e4,1.5) {$(\CDo)_{FB}$};
+    \node[curve label, anchor=south west] at (axis cs:1.4e4,1.0) {$(\CDo)_B$};
+    \node[curve label, anchor=south west] at (axis cs:1.08e4,0.032) {$C_{Db}$};
+    % region markers: the body transition zone (2) and the fin transition zone (3), open to the right
+    \draw[extension] (axis cs:5e5,0.605) -- (axis cs:5e5,0.695) (axis cs:5e6,0.605) -- (axis cs:5e6,0.695);
+    \draw[dimension] (axis cs:5e5,0.65) -- (axis cs:5e6,0.65);
+    \draw[dim stub] (axis cs:1e7,0.65) -- (axis cs:5e6,0.65);
+    \coordinate (edge3) at (axis cs:1e7,0.65);
+    \node[curve tag] at (axis cs:{sqrt(5e5*5e6)},0.65) {2};
+    \node[curve tag] at (axis cs:{sqrt(5e6*1e7)},0.65) {3};
+    % anchors for the inset
+    \coordinate (flow) at (axis cs:2.1e5,1.22);
+    \coordinate (tip) at (axis cs:6.2e5,1.22);
+  \end{semilogxaxis}
+  \draw[ink2, line width=0.4pt] (edge3) -- ++(4mm,0);   % region (3) runs on past the chart
+  % ---- inset: U_infinity and the GCR-x (units of d_m; nose tip at the origin, axis along +x) ---------------
+  \draw[vec] (flow) -- ++(1.15cm,0) node[midway, above=2pt, text=ink] {$U_\infty$};
+  \begin{scope}[shift={(tip)}, x=0.262cm, y=0.262cm]
+    \draw[centerline] (-0.9,0) -- (19.4,0);
+    \rocketoutline{3.5/0.5, 15/0.5, 18/0.4}
+    % two rectangular fins on the boattail, trailing edges at the base, tip to tip b = 5
+    \foreach \s in {1,-1}
+      \draw[outline, yscale=\s] (16.25,{0.5-0.1*1.25/3}) -- (16.25,2.5) -- (18,2.5) -- (18,0.4);
+    \node[anchor=south] at (9,0.75) {GCR-x};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

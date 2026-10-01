@@ -1,0 +1,3 @@
+{"crop": "figures/ch3/fig13.png",
+ "note": "drawing coordinates in scan pixels from the plate's leading edge (the open circle, pixel 128.5, 182): x along the plate, y up from its surface",
+ "axes": {"main": {"points": [[128.5, 182, 0, 0], [428.5, 182, 300, 0], [128.5, 32, 0, 150]]}}}

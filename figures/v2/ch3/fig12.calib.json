@@ -1,0 +1,3 @@
+{"crop": "figures/ch3/fig12.png",
+ "note": "drawing coordinates in the house model rocket's units (length 6.4): the scan's rocket is 415 px long, nose tip at pixel 113, axis at row 148.5 (64.8 px per unit)",
+ "axes": {"main": {"points": [[113, 148.5, 0, 0], [527.7, 148.5, 6.4, 0], [113, 83.7, 0, 1]]}}}

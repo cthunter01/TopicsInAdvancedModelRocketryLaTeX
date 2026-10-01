@@ -1,0 +1,49 @@
+% Chapter 3, Figure 1: definition of drag and the variables that determine its magnitude (scan:
+% figures/ch3/fig01.png, PDF 312).
+% The house model rocket (tamrfig `model', units of its length 6.4), nose up and to the right, its axis 52 degrees
+% above the horizontal and the velocity 23 degrees steeper (alpha), as measured on the scan; the axis is extended
+% beyond the nose and the tail as a thin line, the centre line inside the body (as Chapter 1 Figures 6-8).
+% The velocity V starts at the C.G., the drag D at the C.P., opposite to V (drag is defined as the force against
+% the motion and taken to act at the C.P., ch3-intro-sec2a.tex:142-157). The two lines, printed without heads,
+% are drawn as the house vectors and lettered as vectors with arrows (the scan's overbars), as the Symbols list,
+% eqs. (26)-(27), Figures 11, 12 and 38 and Chapter 1 Figure 6 (STYLE s.14: \vec wherever an arrow is drawn).
+% C.P. by Barrowman's method (Chapter 2, eqs. (79), (80b), (88), (89'), (90'), (92'), (89), (92)) for this rocket
+% with three fins: Zbar = 5.20 = 0.813 L from the nose tip (the scan draws it at 0.81 L; with four fins it would be
+% 0.836 L). C.G. 0.72 L, as measured on the scan (nothing in the book places it).
+% The list is typeset; its underlined heading is set as a heading over a rule.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=1.2cm, y=1.2cm]
+  \def\axisangle{52}\def\alphaangle{23}
+  % the rocket, nose tip at the origin, body back along 180+52 degrees
+  \pic[rotate=180+\axisangle] {rocket={model, centerline=false}};
+  \draw[centerline] (180+\axisangle:0.1) -- (180+\axisangle:6.3);
+  \draw[thin line] (\axisangle:0.75) -- (0,0) (180+\axisangle:6.4) -- (180+\axisangle:7.35);  % the axis, extended
+  \coordinate (cg) at (180+\axisangle:0.72*6.4);
+  \coordinate (cp) at (180+\axisangle:0.813*6.4);
+  % velocity (from the C.G.) and drag (from the C.P., against the velocity)
+  \draw[vec] (cg) -- ++(\axisangle+\alphaangle:3.75) node[above left=-1pt and -3pt] {$\vec{V}$};
+  \draw[vec] (cp) -- ++(180+\axisangle+\alphaangle:2.4) node[below right=-1pt and -2pt] {$\vec{D}$};
+  % angle of attack, between the velocity and the axis
+  \anglemark[at=(cg)]{(\axisangle:1)}{(\axisangle+\alphaangle:1)}{3.0}{$\alpha$}
+  \node[cg mark] at (cg) {};
+  \node[cp mark] at (cp) {};
+  \node[anchor=west, inner sep=1.5pt] at ($(cg)+(0.30,0)$) {\CG};
+  \node[anchor=west, inner sep=1.5pt] at ($(cp)+(0.30,-0.02)$) {\CP};
+  % the list
+  \node[anchor=north west, inner sep=0pt] at (0.75,-0.35) {%
+    \begin{tabular}{@{}l@{\hspace{0.45em}}l@{}}
+      \multicolumn{2}{@{}l@{}}{Drag is determined by:}\\
+      \midrule
+      \textbullet & rocket size\\
+      \textbullet & rocket shape\\
+      \textbullet & airspeed\\
+      \textbullet & finish smoothness\\
+      \textbullet & angle of attack ($\alpha$)\\
+      \textbullet & density of air\\
+      \textbullet & viscosity of air\\
+      \textbullet & speed of sound
+    \end{tabular}};
+\end{tikzpicture}
+\end{document}

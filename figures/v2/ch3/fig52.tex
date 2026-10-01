@@ -1,0 +1,34 @@
+% Chapter 3, Figure 52: drag force on the GCR-x rocket against Reynolds number (scan: figures/ch3/fig52.png).
+% Curves: fig52.py -> fig52.csv. D_e by eq. (210), D = 3.33 x 10^-13 C_D R^2, with C_D = (C_Do)_FB from the GCR-x
+% equations (fig51.py: Table 6's values); D_a the same with the constant (C_Do)_FB = 0.473 (caption; eq. (211)
+% rounds 3.33 x 10^-13 x .473 to 1.58 x 10^-13, 0.3% more). They reproduce Table 7 to 0.9% wherever the plot
+% shows them. Overlaid on the scan against its drawn gridlines (fig52.calib.json): 95% of the points within 2.2 px
+% (D_e) and 2.0 px (D_a); above 0.5 N the 1973 curves run right of their own Table 7 (see the doubts).
+% True log x axis (the 1973 paper's intermediate lines are not at log positions: corrections/v2-figures.md rule 3);
+% frame and x axis as Ch3 Figs 22 and 51. The two methods keep the printed solid/dashed (series1, series2) and
+% the printed legend at the lower right.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{semilogxaxis}[tamr grid, grid=both,
+      width=5.4in, height=3.5in,
+      xmin=1e4, xmax=1e7, ymin=0, ymax=0.8,
+      xtick={1e4,2e4,3e4,4e4,6e4,8e4,1e5,2e5,3e5,4e5,6e5,8e5,1e6,2e6,3e6,4e6,6e6,8e6,1e7},
+      xticklabels={$10^4$,2,3,4,6,8,$10^5$,2,3,4,6,8,$10^6$,2,3,4,6,8,$10^7$},
+      % the printed chart's rulings: 1, 1.5, 2, 2.5, 3, 3.5, 4, 5 ... 9 in each decade
+      minor xtick={1.5e4,2.5e4,3.5e4,5e4,7e4,9e4,1.5e5,2.5e5,3.5e5,5e5,7e5,9e5,1.5e6,2.5e6,3.5e6,5e6,7e6,9e6},
+      ytick={0,0.1,...,0.8}, yticklabels={0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8},
+      xlabel={$R_\ell$},
+      ylabel={$D$ (N)}, ylabel style={rotate=-90, anchor=east},
+      % the key: the kit's legend style restated without its fill opacity=0.9, so the PDF is flat (no /ca < 1)
+      every axis legend/.style={shape=rectangle, draw=none, fill=white, cells={anchor=west},
+        inner xsep=3pt, inner ysep=2pt, nodes={inner sep=1pt, text depth=0.15em}, font=\small},
+      legend pos=south east]
+    \addplot[series1] table[x=R, y=De, col sep=comma] {figures/v2/ch3/fig52.csv};
+    \addlegendentry{$D_e$}
+    \addplot[series2] table[x=R, y=Da, col sep=comma] {figures/v2/ch3/fig52.csv};
+    \addlegendentry{$D_a$}
+  \end{semilogxaxis}
+\end{tikzpicture}
+\end{document}

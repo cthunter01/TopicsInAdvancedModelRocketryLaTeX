@@ -1,0 +1,12 @@
+{"crop": "figures/ch3/fig55.png",
+ "note": "Drawn on the 1973 'log' paper whose intermediate rulings are not at log positions (corrections/v2-figures.md, standing rule 3). The ruled lines lean slightly (the vertical ones 3-5.5 px over the chart's height) and the horizontal ones are not quite parallel. 'grid': the column of each vertical line (t = 1, 1.5, 2, 2.5, 3, 3.5, 4, 5 ... 10 s) at rows 24 and 308 and the row of each horizontal line (k/m = 0.1, 0.09 ... 0.001) at columns 108 and 540, for a check interpolating between the drawn lines (bilinear in the lean). 'axes' (tools/v2/digitize.py): xgrid read at row 250, where the curves are steep, ygrid at column 330. The affine 'points' of axes.main are only digitize.py's fallback fit (46.7 px residual, since the paper is not logarithmic between decades); xgrid and ygrid replace it.",
+ "grid": {"rows": [24, 308], "t": [1, 1.5, 2, 2.5, 3, 3.5, 4, 5, 6, 7, 8, 9, 10],
+          "vcols": [[100.5, 214.5, 293, 329, 356, 379, 401, 434.5, 463.5, 488, 508.5, 526.5, 544],
+                    [104.5, 219.5, 298.5, 333.5, 361.5, 384.5, 406.5, 439.5, 467.5, 492, 511.5, 529.5, 546.5]],
+          "cols": [108, 540], "km": [0.1, 0.09, 0.08, 0.07, 0.06, 0.05, 0.04, 0.035, 0.03, 0.025, 0.02, 0.015, 0.01, 0.009, 0.008, 0.007, 0.006, 0.005, 0.004, 0.0035, 0.003, 0.0025, 0.002, 0.0015, 0.001],
+          "hrows": [[21.5, 27.5, 33, 40, 48, 57.5, 68.5, 76.5, 84.5, 93, 105, 130.5, 166.5, 172, 178, 184.5, 193.5, 202.5, 213.5, 221.5, 229.5, 238, 250, 275.5, 312],
+                    [19.5, 26, 32.5, 39, 47.5, 56.5, 68.5, 75.5, 83.5, 93, 105.5, 131.5, 167.5, 172.5, 179, 186, 194.5, 204, 216, 223, 230.5, 239.5, 251.5, 277, 313.5]]},
+ "axes": {"main": {"xlog": true, "ylog": true,
+   "points": [[104.5, 312.0, 1, 0.001], [100.5, 21.5, 1, 0.1], [544, 19.5, 10, 0.1], [546.5, 313.5, 10, 0.001], [296.0, 166.8, 2, 0.01]],
+   "xgrid": [[103.7, 1], [218.5, 1.5], [297.4, 2], [332.6, 2.5], [360.4, 3], [383.4, 3.5], [405.4, 4], [438.5, 5], [466.7, 6], [491.2, 7], [510.9, 8], [528.9, 9], [546.0, 10]],
+   "ygrid": [[20.5, 0.1], [26.7, 0.09], [32.7, 0.08], [39.5, 0.07], [47.7, 0.06], [57.0, 0.05], [68.5, 0.04], [76.0, 0.035], [84.0, 0.03], [93.0, 0.025], [105.3, 0.02], [131.0, 0.015], [167.0, 0.01], [172.3, 0.009], [178.5, 0.008], [185.3, 0.007], [194.0, 0.006], [203.3, 0.005], [214.8, 0.004], [222.3, 0.0035], [230.0, 0.003], [238.8, 0.0025], [250.8, 0.002], [276.3, 0.0015], [312.8, 0.001]]}}}

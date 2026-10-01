@@ -1,0 +1,60 @@
+% Chapter 3, Figure 28: streamlines and pressure distribution about a half-body (scan: figures/ch3/fig28.png;
+% after Prandtl and Tietjens). Computed by fig28.py: the axisymmetric Rankine half-body (a point source in a
+% uniform stream, potential theory), lengths in units of R, the body's radius far downstream, X aft of the nose.
+% (a) the body, four streamlines below the axis (upstream radii 0.35-1.40 R, as drawn) and the surface pressure
+% p/((rho/2)u_o^2) = 1 - (u/u_o)^2 against X, its zero line on the axis (4.23 R per unit, the drawn scale);
+% (b) the same pressure set off along the outward normal at every 0.12 R of the surface, 1.5 R per unit (the
+% drawn positive lobe): the positive lobe's envelope dashed, the suction lobe's solid, then dashed where the
+% suction dies away (as printed).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\newcommand{\R}{0.62cm}
+\pgfplotsset{halfbody/.style={hide axis, x=\R, y=\R, disabledatascaling, anchor=origin, clip=false,
+    xmin=-4.4, xmax=16.6, every axis plot/.append style={mark=none}}}
+\tikzset{streamline/.style={draw=ink, line width=0.5pt},
+  pressure stroke/.style={draw=s1, line width=0.35pt},
+  positive envelope/.style={s1, line width=0.8pt, dash pattern=on 2.6pt off 1.6pt},
+  suction envelope/.style={s1, line width=0.8pt},
+  suction tail/.style={s1, line width=0.8pt, dash pattern=on 2.6pt off 1.6pt}}
+\def\cpunit{4.23}   % (a): R per unit of p/((rho/2)u_o^2)
+\begin{document}
+\begin{tikzpicture}
+  % ---- (a) ------------------------------------------------------------------------------------------------
+  \begin{axis}[halfbody, at={(0,0)}, ymin=-2, ymax=4.4]
+    \draw[centerline] (-1.6,0) -- (16.6,0);
+    \draw[vec] (-4.4,0) -- (-2.2,0);
+    \node[anchor=south, inner sep=3pt] at (-3.6,0) {$u_o$};
+    % body and streamlines (below the axis)
+    \addplot[outline] table[x=X, y=w, col sep=comma] {figures/v2/ch3/fig28-body.csv};
+    \addplot[outline] table[x=X, y expr=-\thisrow{w}, col sep=comma] {figures/v2/ch3/fig28-body.csv};
+    \pgfplotsinvokeforeach{1,2,3,4}{
+      \addplot[streamline] table[x=X, y expr=-\thisrow{s#1}, col sep=comma] {figures/v2/ch3/fig28-stream.csv};
+    }
+    % the pressure graph: ordinate at the nose, zero on the axis
+    \draw[draw=ink2, line width=0.7pt] (0,0) -- (0,\cpunit);
+    \pgfplotsinvokeforeach{0.2,0.4,0.6,0.8,1.0}{
+      \draw[draw=ink2, line width=0.55pt] (0,{#1*\cpunit}) -- ++(-3pt,0)
+        node[anchor=east, font=\footnotesize, text=ink2, inner sep=2pt] {#1};
+    }
+    \node[anchor=east, inner sep=0pt] at (-1.2,{0.62*\cpunit}) {$\dfrac{p}{(\rho/2)u_o^2}$};
+    \addplot[series1, curve] table[x=X, y expr=\cpunit*\thisrow{cp}, col sep=comma] {figures/v2/ch3/fig28-cp.csv};
+    \node[panel, anchor=north east] at (15.6,-2.05) {(a)};
+  \end{axis}
+  % ---- (b) ------------------------------------------------------------------------------------------------
+  \begin{axis}[halfbody, at={(0,-3.2cm)}, ymin=-1.6, ymax=1.6]
+    \draw[centerline] (-4.4,0) -- (16.6,0);
+    % pressure strokes, then the body over their feet
+    \addplot[pressure stroke, quiver={u=\thisrow{dX}, v=\thisrow{dw}}, -]
+      table[x=X, y=w, col sep=comma] {figures/v2/ch3/fig28-strokes.csv};
+    \addplot[pressure stroke, quiver={u=\thisrow{dX}, v=-\thisrow{dw}}, -]
+      table[x=X, y expr=-\thisrow{w}, col sep=comma] {figures/v2/ch3/fig28-strokes.csv};
+    \pgfplotsinvokeforeach{1,-1}{
+      \addplot[positive envelope] table[x=X, y expr=#1*\thisrow{w}, col sep=comma] {figures/v2/ch3/fig28-envpos.csv};
+      \addplot[suction envelope] table[x=X, y expr=#1*\thisrow{w}, col sep=comma] {figures/v2/ch3/fig28-envneg.csv};
+      \addplot[suction tail] table[x=X, y expr=#1*\thisrow{w}, col sep=comma] {figures/v2/ch3/fig28-envtail.csv};
+      \addplot[outline] table[x=X, y expr=#1*\thisrow{w}, col sep=comma] {figures/v2/ch3/fig28-body.csv};
+    }
+    \node[panel, anchor=north east] at (15.6,-1.75) {(b)};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

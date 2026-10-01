@@ -1,0 +1,5 @@
+{"crop": "figures/ch3/fig28.png",
+ "note": "drawing (a): nose at column 126.8 on the axis at row 127.2, body radius R = 26 px (x, y in units of R, X aft of the nose, w up); (a) pressure: ordinate ticks 0 to 1.0 at rows 127.4 to 17.5 (110 px per unit); drawing (b): nose at column 128, axis at row 269.3, R = 26.2 px",
+ "axes": {"a": {"points": [[126.8, 127.2, 0, 0], [516.8, 127.2, 15, 0], [126.8, 101.2, 0, 1]]},
+          "acp": {"points": [[126.8, 127.4, 0, 0], [516.8, 127.4, 15, 0], [126.8, 17.4, 0, 1]]},
+          "b": {"points": [[128.0, 269.3, 0, 0], [521.0, 269.3, 15, 0], [128.0, 243.1, 0, 1]]}}}

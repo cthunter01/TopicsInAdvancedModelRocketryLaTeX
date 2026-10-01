@@ -1,0 +1,78 @@
+% Chapter 3, Figure 45: the fineness ratio of bodies of revolution (scan: figures/ch3/fig45.png): l_n/d_n for the
+% nose, l_b/d_m for the others. The 1973 artwork is a ruled 2 x 2 grid of named cells (a table drawn in the
+% artwork, STYLE.md section 14), set as Figure 44's: booktabs rules, no vertical rules or boxes, the names under
+% the drawings. Each body: its outline, centre line (dash-dot), the length dimensioned above (extension lines from
+% the nose tip and the tail or base), the diameters by arrows from outside (\dimout, the label beside the upper
+% arrow's tail, where the 1973 leaders put it, clear of the length dimension), the base diameter between extension
+% lines beyond the base.
+% Coordinates are the scan's pixels (150 per inch) from the nose tip on the axis, y up, drawn 1.3 times the printed
+% size. The bodies are unlabelled sketches: smooth shapes fitted to the scan (every outline within 1.5 px of the
+% scan's ink, 95th percentiles 0.2-1.0 px):
+%   Closed body: length 232, radius 36; ahead of the maximum (90 from the tip) a semi-ellipse, aft of it the
+%     parabola r = 36 (1 - u^2), u = (s - 90)/142, to a point.
+%   Nose: an ellipsoid (semi-ellipse, the scan's profile; a tangent ogive of the same length and base misses the
+%     ink by up to 4.6 px, 95th percentile 4.4 px), length 180, base radius 36.
+%   Blunt base I: a tangent ogive, length 67.5, on a cylinder of radius 18.25; overall 193.
+%   Blunt base II: as the closed body ahead of the maximum (90, radius 36), then r = 36 (1 - 0.5139 u^2),
+%     u = (s - 90)/87, to a flat base of radius 17.5 at 177.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.022cm, y=0.022cm]
+  \def\W{300}\def\H{196}\def\hl{84}   % cell width and height; the height of the length dimensions
+  % \lendim{<end x>}{<end height>}{<label>}: the length, from the nose tip to the tail or base
+  \newcommand{\lendim}[3]{%
+    \draw[extension] (0,4) -- (0,\hl+4) (#1,#2+4) -- (#1,\hl+4);
+    \dimline{(0,\hl)}{(#1,\hl)}{#3}}
+  % \basedim{<base x>}{<base radius>}{<offset>}{<label>}: a base diameter between extension lines
+  \newcommand{\basedim}[4]{%
+    \draw[extension] (#1+4,#2) -- (#1+#3+7,#2) (#1+4,-#2) -- (#1+#3+7,-#2);
+    \dimout[anchor=west]{(#1+#3,-#2)}{(#1+#3,#2)}{#4}}
+  \newcommand{\cellname}[1]{\node[anchor=base, font=\small] at (110,-75) {#1};}
+  % ---- Closed body ----------------------------------------------------------------------------------------
+  \begin{scope}[shift={(40,0)}]
+    \draw[centerline] (-14,0) -- (246,0);
+    \foreach \sg in {1,-1}
+      \draw[outline, yscale=\sg] plot[domain=0:90, samples=46, variable=\t] ({90*(1-cos(\t))}, {36*sin(\t)})
+        -- plot[domain=0:1, samples=40, variable=\u] ({90+142*\u}, {36*(1-\u*\u)});
+    \lendim{232}{0}{$\ell_b$}
+    \dimout[anchor=west]{(90,-36)}{(90,36)}{$d_m$}
+    \cellname{Closed body}
+  \end{scope}
+  % ---- Nose -----------------------------------------------------------------------------------------------
+  \begin{scope}[shift={(\W+40,0)}]
+    \draw[centerline] (-14,0) -- (226,0);
+    \draw[outline] plot[domain=0:90, samples=60, variable=\t] ({180*(1-cos(\t))}, {36*sin(\t)})
+      -- plot[domain=90:0, samples=60, variable=\t] ({180*(1-cos(\t))}, {-36*sin(\t)}) -- cycle;
+    \lendim{180}{36}{$\ell_n$}
+    \basedim{180}{36}{20}{$d_n$}
+    \cellname{Nose}
+  \end{scope}
+  % ---- Blunt base I ---------------------------------------------------------------------------------------
+  \begin{scope}[shift={(40,-\H)}, declare function={og(\s)=10*sqrt(13.39519^2-((67.5-\s)/10)^2)+18.25-133.9519;}]
+    \draw[centerline] (-14,0) -- (239,0);
+    \draw[outline] plot[domain=0:67.5, samples=40] (\x, {og(\x)}) -- (193,18.25) -- (193,-18.25) -- (67.5,-18.25)
+      -- plot[domain=67.5:0, samples=40] (\x, {-og(\x)}) -- cycle;
+    \lendim{193}{18.25}{$\ell_b$}
+    \dimout[anchor=west]{(116,-18.25)}{(116,18.25)}{$d_m$}
+    \basedim{193}{18.25}{20}{$d_b$}
+    \cellname{Blunt base I\quad$(d_m = d_b)$}
+  \end{scope}
+  % ---- Blunt base II --------------------------------------------------------------------------------------
+  \begin{scope}[shift={(\W+40,-\H)}]
+    \draw[centerline] (-14,0) -- (223,0);
+    \draw[outline] plot[domain=0:90, samples=46, variable=\t] ({90*(1-cos(\t))}, {36*sin(\t)})
+      -- plot[domain=0:1, samples=30, variable=\u] ({90+87*\u}, {36*(1-0.5139*\u*\u)})
+      -- plot[domain=1:0, samples=30, variable=\u] ({90+87*\u}, {-36*(1-0.5139*\u*\u)})
+      -- plot[domain=90:0, samples=46, variable=\t] ({90*(1-cos(\t))}, {-36*sin(\t)}) -- cycle;
+    \lendim{177}{17.5}{$\ell_b$}
+    \dimout[anchor=west]{(90,-36)}{(90,36)}{$d_m$}
+    \basedim{177}{17.5}{20}{$d_b$}
+    \cellname{Blunt base II\quad$(d_m \ne d_b)$}
+  \end{scope}
+  % ---- rules (booktabs: \heavyrulewidth 0.08em, \lightrulewidth 0.05em) --------------------------------------
+  \draw[ink, line width=0.876pt] (0,104) -- (2*\W,104);
+  \draw[ink, line width=0.548pt] (0,104-\H) -- (2*\W,104-\H);
+  \draw[ink, line width=0.876pt] (0,104-2*\H) -- (2*\W,104-2*\H);
+\end{tikzpicture}
+\end{document}

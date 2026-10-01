@@ -1,0 +1,54 @@
+% Chapter 3, Figure 53: C_D/C_Ds against Mach number for finned bodies with ogive and half-round noses
+% (scan: figures/ch3/fig53.png). Curves: fig53.py.
+% (a) Experimental (Hoerner): digitized from the 1973 art (fig53.calib.json, read between the drawn gridlines);
+%     1.0 below M = 0.9; the two curves one line up to their split at M 1.04, as printed. Inset: the rocket
+%     pictured, drawn to the scan's (scan pixels from the nose tip): tangent ogive nose with a hatched band on
+%     its aft half, tube, clipped-delta fins (trailing edge square to the body), the thick line on the axis
+%     from the fins aft past the base as printed (a support sting?); the grid is blanked behind it, as printed.
+% (b) Computed: eqs. (214a)-(214b) (ogive) and (215a)-(215b) (half-round), 1.0 below M = 0.9.
+% Ogive solid (series1), half-round dashed (series2), as printed; one frame for both panels.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \pgfplotsset{panel53/.style={tamr grid,
+      width=4.2in, height=2.25in,
+      xmin=0, xmax=2, ymin=0, ymax=2.4,
+      xtick={0,0.2,...,2.0}, xticklabels={0,0.2,0.4,0.6,0.8,1.0,1.2,1.4,1.6,1.8,2.0},
+      ytick={0,0.4,...,2.4}, yticklabels={0,0.4,0.8,1.2,1.6,2.0,2.4},
+      xlabel={$M$},
+      ylabel={$\dfrac{\CD}{C_{Ds}}$}, ylabel style={rotate=-90, anchor=east}}}
+  % (a) experimental
+  \begin{axis}[panel53, name=a]
+    % the grid blanked behind the inset, to the right edge (the M = 2.0 ruling), set in by half a ruling
+    % so the ruling it ends on keeps its full weight
+    \fill[white] ([shift={(0.2pt,0.2pt)}]axis cs:0.85,0.29) rectangle ([shift={(-0.2pt,-0.2pt)}]axis cs:2.0,0.95);
+    \addplot[series1] table[x=M, y=r, col sep=comma] {figures/v2/ch3/fig53-a-ogive.csv};
+    \addplot[series2] table[x=M, y=r, col sep=comma] {figures/v2/ch3/fig53-a-half.csv};
+    \node[anchor=south, fill=white, inner sep=1.5pt] at (axis cs:1.67,2.13) {Half-round};
+    \node[anchor=south, fill=white, inner sep=1.5pt] at (axis cs:1.74,1.32) {Ogive};
+    \node[panel, anchor=north east] at (rel axis cs:1,1) {(a)};
+    \coordinate (tip) at (axis cs:1.09,0.632);
+  \end{axis}
+  % the inset rocket, in the scan's pixels from the nose tip (1.40 times the printed size, as the axes)
+  \begin{scope}[shift={(tip)}, x=0.009354in, y=0.009354in]
+    \def\R{6.8}\def\N{44}
+    \edef\rhoo{\fpeval{(\R*\R+\N*\N)/(2*\R)}}
+    \fill[hatch] plot[domain=21:\N, samples=24] (\x, {\fpeval{sqrt(\rhoo*\rhoo-(\N-\x)^2)+\R-\rhoo}})
+      -- plot[domain=\N:21, samples=24] (\x, {\fpeval{-(sqrt(\rhoo*\rhoo-(\N-\x)^2)+\R-\rhoo)}}) -- cycle;
+    \draw[centerline] (-48,0) -- (127,0);
+    \rocketoutline{\N/\R, 150/\R}
+    \draw[outline] (21,{\fpeval{sqrt(\rhoo*\rhoo-(\N-21)^2)+\R-\rhoo}}) -- (21,{\fpeval{-(sqrt(\rhoo*\rhoo-(\N-21)^2)+\R-\rhoo)}});
+    \rocketfins{150}{\R}{22.6}{3.6}{20.4}{19.0}
+    \draw[ink, line width=0.9pt, line cap=butt] (127,0) -- (185,0);
+  \end{scope}
+  % (b) the approximations (214), (215)
+  \begin{axis}[panel53, name=b, at={(a.south west)}, anchor=north west, yshift=-0.62in]
+    \addplot[series1] table[x=M, y=r, col sep=comma] {figures/v2/ch3/fig53-b-ogive.csv};
+    \addplot[series2] table[x=M, y=r, col sep=comma] {figures/v2/ch3/fig53-b-half.csv};
+    \node[anchor=south, fill=white, inner sep=1.5pt] at (axis cs:1.67,2.13) {Half-round};
+    \node[anchor=south, fill=white, inner sep=1.5pt] at (axis cs:1.74,1.33) {Ogive};
+    \node[panel, anchor=north east] at (rel axis cs:1,1) {(b)};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

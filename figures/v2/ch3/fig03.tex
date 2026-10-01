@@ -1,0 +1,17 @@
+% Chapter 3, Figure 3: standard atmospheric temperature against altitude (scan: figures/ch3/fig03.png, PDF 312).
+% Curve: fig03.py (U.S. Standard Atmosphere, 1962: T = 288.15 - 0.0065 h, the text's 1 deg C per 154 m).
+% Frame as Fig 2 (fig02.tex); the printed "T (deg K)" kept, upright as printed.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr grid, grid=both,
+      width=4.2in, height=2.4in,
+      xmin=0, xmax=2500, xtick distance=500,
+      ymin=270, ymax=290, ytick={270,280,290}, minor ytick={275,285},
+      xlabel={Altitude (meters)},
+      ylabel={$T$ ($^{\circ}$K)}, ylabel style={rotate=-90, anchor=east}]
+    \addplot[series1] table[x=h, y=T, col sep=comma] {figures/v2/ch3/fig03.csv};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

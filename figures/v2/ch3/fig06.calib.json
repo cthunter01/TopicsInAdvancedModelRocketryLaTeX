@@ -1,0 +1,4 @@
+{"crop": "figures/ch3/fig06.png",
+ "note": "u/U across, y/h up: the profile's base line (x = 204.5) on the lower plate (y = 247.5) and the upper plate (y = 68.0); U = 190 px, the length of the U arrow (x = 202-391 at y = 31.5) and of the profile at the upper plate",
+ "axes": {"main": {"xlog": false, "ylog": false,
+   "points": [[204.5, 247.5, 0.0, 0.0], [204.5, 68.0, 0.0, 1.0], [394.5, 247.5, 1.0, 0.0], [394.5, 68.0, 1.0, 1.0]]}}}

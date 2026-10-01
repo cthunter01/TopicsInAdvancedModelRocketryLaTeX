@@ -1,0 +1,41 @@
+% Chapter 3, Figure 6: shearing deformation of a viscous fluid, after Schlichting (scan: figures/ch3/fig06.png,
+% PDF 314). Two long parallel plates a distance h apart, hatched on their outer sides (the walls); the lower
+% plate fixed, the upper moving to the right at U. The velocity profile is the caption's u = Uy/h exactly: a
+% straight line from zero at the lower plate to U at the upper, with nine velocity arrows at y = h/10 ... 9h/10
+% (as printed), each of length U y/h. The U arrow above the upper plate is drawn to the profile's scale (as
+% printed: the same length as U at the upper plate). The h dimension between the plates; the y axis arrow
+% at the left. Drawn 1.15 times the printed size (the scan: h = 179.5 px, U = 1.064 h). The profile in the
+% Chapter 3 profile family's styles (Figs 6, 9, 16, 17, 18, 25): the profile u(y) as a data curve (s1, 1pt),
+% its velocity arrows s1, lighter, with small heads; the base line u = 0 an outline.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\tikzset{
+  profile/.style={draw=s1, line width=1pt},
+  profile arrow/.style={draw=s1, line width=0.5pt, -{Stealth[length=3.4pt, width=2.4pt]}},
+}
+\begin{document}
+\begin{tikzpicture}
+  \def\W{11.0}     % length of the plates as drawn (cm)
+  \def\h{3.5}      % h
+  \def\U{3.72}     % U, to the profile's scale (1.064 h, as printed)
+  \def\xo{3.74}    % the profile's base line (u = 0)
+  \def\hb{0.22}    % depth of the hatched band of each wall
+  % the walls: hatched on the outer side of each plate
+  \fill[hatch] (0,\h) rectangle (\W,{\h+\hb});
+  \fill[hatch] (0,{-\hb}) rectangle (\W,0);
+  \draw[outline] (0,\h) -- (\W,\h);
+  \draw[outline] (0,0) -- (\W,0);
+  % velocity profile u = U y/h: base line, arrows at y = k h/10, the profile line
+  \draw[outline] (\xo,0) -- (\xo,\h);
+  \foreach \k in {1,...,9}
+    \draw[profile arrow] (\xo,{\k*\h/10}) -- ({\xo+\k*\U/10},{\k*\h/10});
+  \draw[profile] (\xo,0) -- ({\xo+\U},\h);
+  \node[anchor=west] at ({\xo+0.55*\U+0.12},{0.55*\h}) {$u$};
+  % the upper plate's velocity
+  \draw[vec] (\xo,{\h+0.62}) -- ({\xo+\U},{\h+0.62}) node[midway, above=2pt] {$U$};
+  % the gap h
+  \dimline{(9.57,0)}{(9.57,\h)}{$h$}
+  % the y axis
+  \draw[thin vec] (2.27,0) -- (2.27,1.0) node[anchor=west, inner sep=2pt] {$y$};
+\end{tikzpicture}
+\end{document}

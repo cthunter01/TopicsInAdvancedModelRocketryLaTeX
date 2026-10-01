@@ -1,0 +1,68 @@
+% Chapter 3, Figure 18: stable and unstable boundary-layer velocity profiles (scan: figures/ch3/fig18.png).
+% The profiles are Falkner-Skan similarity solutions of the boundary-layer equations (38)-(39)
+% (f''' + f f'' + beta (1 - f'^2) = 0), beta fitted to the scan: (a) beta = -0.1983, adverse pressure gradient,
+% with its point of inflection (f''' = 0) marked where the equation puts it; (b) beta = +0.07, favourable, full
+% and without inflection (fig18.py -> fig18-a.csv, fig18-b.csv, the arrows fig18-arrows.csv, the marked points
+% fig18-marks.csv). delta at u = 0.99 U_inf. Overlay on the scan (fig18.calib.json): 95% of the points within
+% 3.2 px (a) and 2.2 px (b); the computed inflection point lies about 19 px below and left of the drawn circle.
+% Drawn in the scan's pixels, y up from the wall, 1.2 times the printed size.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+% the profile family's styles (Ch3 Figs 16, 17, 18, 25): the computed profile u(y) as a data curve (s1, 1pt), its
+% velocity arrows lighter with small heads, evenly spaced (10 px = 2 mm); a wall is a line with a hatched band
+\tikzset{
+  profile/.style={draw=s1, line width=1pt},
+  profile arrow/.style={draw=s1, line width=0.5pt, -{Stealth[length=3.4pt, width=2.4pt]}},
+  profile stroke/.style={draw=s1, line width=0.5pt},
+}
+\newcommand{\wall}[2]{% \wall{<x left>}{<x right>}: the wall at y = 0, hatched below
+  \fill[hatch] (#1,-10) rectangle (#2,0);
+  \draw[outline] (#1,0) -- (#2,0);}
+\pgfplotstableread[col sep=comma]{figures/v2/ch3/fig18-arrows.csv}\arrows
+\pgfplotstableread[col sep=comma]{figures/v2/ch3/fig18-marks.csv}\marks
+\newcommand{\markpt}[2]{% \markpt{<row of fig18-marks.csv>}{<coordinate name>}
+  \pgfplotstablegetelem{#1}{x}\of\marks\let\mx\pgfplotsretval
+  \pgfplotstablegetelem{#1}{y}\of\marks\let\my\pgfplotsretval
+  \coordinate (#2) at (\mx,\my);}
+\begin{document}
+\begin{tikzpicture}[x=0.02032cm, y=0.02032cm]
+  % walls
+  \wall{11}{238}
+  \wall{323}{535}
+  % arrows of both profiles
+  \pgfplotstablegetrowsof{\arrows}\pgfmathtruncatemacro\nrows{\pgfplotsretval-1}
+  \foreach \r in {0,...,\nrows} {
+    \pgfplotstablegetelem{\r}{x0}\of\arrows\let\ax\pgfplotsretval
+    \pgfplotstablegetelem{\r}{y}\of\arrows\let\ay\pgfplotsretval
+    \pgfplotstablegetelem{\r}{x1}\of\arrows\let\bx\pgfplotsretval
+    \pgfplotstablegetelem{\r}{head}\of\arrows\let\ah\pgfplotsretval
+    \ifnum\ah=1 \draw[profile arrow] (\ax,\ay) -- (\bx,\ay); \else \draw[profile stroke] (\ax,\ay) -- (\bx,\ay); \fi
+  }
+  % the profiles u(y)
+  \begin{axis}[hide axis, x=0.02032cm, y=0.02032cm, disabledatascaling, anchor=origin, at={(0,0)},
+      xmin=0, xmax=1, ymin=0, ymax=1, enlargelimits=false, clip=false]
+    \addplot[profile, mark=none] table[x=x, y=y, col sep=comma] {figures/v2/ch3/fig18-a.csv};
+    \addplot[profile, mark=none] table[x=x, y=y, col sep=comma] {figures/v2/ch3/fig18-b.csv};
+  \end{axis}
+  % y axes (the profiles' base lines)
+  \foreach \x in {32, 344} {
+    \draw[thin vec] (\x,0) -- (\x,242);
+    \node[anchor=south, inner sep=2pt] at (\x,242) {$y$};
+    \node[anchor=south, inner sep=3pt] at (\x+83,215) {$U_\infty$};
+  }
+  % (a): delta, the point of inflection
+  \markpt{0}{da}\markpt{1}{infl}\markpt{2}{db}
+  \draw[extension] ($(da)+(4,0)$) -- (231,142.5);
+  \dimline{(223,0)}{(223,142.5)}{$\delta$}
+  \node[open point] at (da) {};
+  \node[anchor=north west, align=left, inner sep=1.5pt, font=\small] (pi) at (128,50) {Point of\\inflection};
+  \draw[leader, shorten <=2.2pt] (infl) -- (pi.north west);
+  \node[open point] at (infl) {};
+  \node[anchor=west, inner sep=2pt] at (184,106) {$u(y)$};
+  \node[panel, anchor=north east] at (238,-14) {(a)};
+  % (b)
+  \node[open point] at (db) {};
+  \node[anchor=west, inner sep=2pt] at (499,96) {$u(y)$};
+  \node[panel, anchor=north east] at (535,-14) {(b)};
+\end{tikzpicture}
+\end{document}

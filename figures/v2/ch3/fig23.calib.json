@@ -1,0 +1,3 @@
+{"crop": "figures/ch3/fig23.png",
+ "note": "cylinder centre at (336.5, 138.5), radius a = 65.5 px (A at column 271, C at 402); x, y in units of a",
+ "axes": {"main": {"points": [[336.5, 138.5, 0, 0], [402.0, 138.5, 1, 0], [336.5, 73.0, 0, 1], [271.0, 138.5, -1, 0]]}}}

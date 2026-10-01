@@ -1,0 +1,4 @@
+{"crop": "figures/ch3/fig16.png",
+ "note": "drawing units of fig16.tex: the scan's pixels, y up from the axis (scan row 198.5)",
+ "axes": {"main": {"xlog": false, "ylog": false,
+                   "points": [[0, 198.5, 0, 0], [500, 198.5, 500, 0], [0, 0, 0, 198.5]]}}}

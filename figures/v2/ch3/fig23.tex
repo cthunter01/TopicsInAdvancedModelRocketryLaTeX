@@ -1,0 +1,72 @@
+% Chapter 3, Figure 23: flow about a circular cylinder held transverse to the airstream (scan:
+% figures/ch3/fig23.png; after Schlichting). Geometry: fig23.py, in units of the cylinder radius a (1.25 cm).
+% The streamlines are the plane potential flow past a doublet and a source (the cylinder with its boundary layer
+% and dead water as one displacing body), fitted to the drawn streamlines; the hatched region (boundary layer and
+% dead water) is bounded by the dividing streamline, curling into two lobes behind the cylinder; the velocity
+% profile standing on the cylinder at B is the Blasius profile of Table 1 across the layer's thickness there.
+% Points A, B, C (phi = 0, 90, 180 deg of Fig 24) and the separation point S (where the 1973 art puts it) are
+% marked on the surface and tagged inside the cylinder; the curved arrows show the reversed flow in the eddies.
+% The profile at B in the profile family's styles (Ch3 Figs 16, 17, 18, 25): the profile u(y) in s1 (1pt), carried
+% on at U_inf (the box's right side) above the layer, as Figs 16, 18 and 25 carry theirs; the velocity lines
+% headless, as printed, in s1 (profile stroke), the top one closing the box; the base line (the wall normal at B)
+% and the cylinder in ink.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\pgfplotstableread[col sep=comma]{figures/v2/ch3/fig23-marks.csv}\marks
+\foreach \key in {xfront,delta,boxw,boxtop,sx,sy,xcusp,ulabx,ulaby,x0,x1} {%
+  \pgfplotstablegetelem{0}{\key}\of\marks \expandafter\xdef\csname m@\key\endcsname{\pgfplotsretval}}
+\makeatletter
+\newcommand{\mk}[1]{\csname m@#1\endcsname}
+\makeatother
+% the profile family's styles (Ch3 Figs 16, 17, 18, 25)
+\tikzset{
+  profile/.style={draw=s1, line width=1pt},
+  profile arrow/.style={draw=s1, line width=0.5pt, -{Stealth[length=3.4pt, width=2.4pt]}},
+  profile stroke/.style={draw=s1, line width=0.5pt},
+}
+\tikzset{streamline/.style={draw=ink, line width=0.5pt},
+  % a small arrowhead on a streamline, 0.95 a from its upstream end (x = -4.0 a)
+  flow arrow/.style={postaction={decorate}, decoration={markings,
+      mark=at position 1.19cm with {\arrow{Stealth[length=4.2pt, width=3pt]}}}},
+  % an arrow over the hatching: a white casing under a thin vector
+  eddy/.style={thin vec, preaction={draw=white, line width=2pt, -}}}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[hide axis, x=1.25cm, y=1.25cm, disabledatascaling, anchor=origin, clip=false,
+      xmin=-4.95, xmax=4.75, ymin=-2.1, ymax=2.1, every axis plot/.append style={mark=none}]
+    % streamlines: four above and four below, the stagnation streamline ahead and the wake's centre line
+    \pgfplotsinvokeforeach{1,2,3,4}{
+      \addplot[streamline, flow arrow] table[x=x, y=s#1, col sep=comma] {figures/v2/ch3/fig23-stream.csv};
+      \addplot[streamline, flow arrow] table[x=x, y expr=-\thisrow{s#1}, col sep=comma] {figures/v2/ch3/fig23-stream.csv};
+    }
+    \draw[streamline, flow arrow] (\mk{x0},0) -- (\mk{xfront},0);
+    \draw[streamline] (\mk{xcusp},0) -- (\mk{x1},0);
+    \node[fill=white, inner sep=1pt] at (\mk{ulabx},\mk{ulaby}) {$U_\infty$};
+    % boundary layer and dead water, then the cylinder over it
+    \addplot[outline, hatch] table[x=x, y=y, col sep=comma] {figures/v2/ch3/fig23-wake.csv} -- cycle;
+    \draw[outline, fill=white] (0,0) circle[radius=1];
+    \draw[centerline] (-0.56,0) -- (0.56,0);
+    \draw[centerline] (0,-0.86) -- (0,0.56);
+    % the separated layer's outer flow, downstream from beside S (as printed), and the reversed flow round each
+    % eddy (clockwise above, mirrored below)
+    \pgfplotsinvokeforeach{1,-1}{
+      \draw[eddy] (0.86,{#1*0.84}) -- (1.16,{#1*0.71});
+      \draw[eddy] (1.19,{#1*0.38}) .. controls (1.22,{#1*0.58}) and (1.44,{#1*0.62}) .. (1.66,{#1*0.46});
+    }
+    % the velocity profile at B: a white box standing on the cylinder (clearing the hatching and the streamlines),
+    % its velocity lines, the top one closing the box, the profile (Table 1, then U_inf to the top), the base line
+    \addplot[fill=white, draw=none] table[x=x, y=y, col sep=comma] {figures/v2/ch3/fig23-box.csv} -- cycle;
+    \addplot[profile stroke, quiver={u=\thisrow{len}, v=0}, -]
+      table[x=x, y=y, col sep=comma] {figures/v2/ch3/fig23-ticks.csv};
+    \draw[profile stroke] (0,\mk{boxtop}) -- (\mk{boxw},\mk{boxtop});
+    \addplot[profile, line join=round] table[x=x, y=y, col sep=comma] {figures/v2/ch3/fig23-profile.csv}
+      -- (\mk{boxw},\mk{boxtop});
+    \draw[outline] (0,1) -- (0,\mk{boxtop});
+    % the points A, B, C and S
+    \node[point] at (-1,0) {};  \node[curve tag] at (-0.79,0) {A};
+    \node[point] at (0,1) {};   \node[curve tag] at (0,0.79) {B};
+    \node[point] at (1,0) {};   \node[curve tag] at (0.79,0) {C};
+    \node[point] at (\mk{sx},\mk{sy}) {};  \node[curve tag] at ({0.79*\mk{sx}},{0.79*\mk{sy}}) {S};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,42 @@
+% Chapter 3, Figure 47: geometrical definitions of common nose shapes (scan: figures/ch3/fig47.png).
+% Five cells: (a)-(c) one cone cut by a plane at three inclinations (ellipse, parabola, hyperbola; the section
+% hatched), (a) the ellipse face-on, divided along its minor axis; (d) a circle, its chord and the hatched
+% half-segment; (e) a right triangle; at the foot of each cell the nose the section's half (the hatched
+% region) generates when revolved about the axis.
+% All the geometry is computed by fig47.py (exact conic sections, hidden lines by ray casting, the house view
+% of tamrfig.sty) and written to fig47.csv as page coordinates (cm) with a style code; this file draws each
+% code in its house style:
+%   1 outline; 2 hidden (edges of the kept piece of the cone hidden by the plane or by the cone); 7 phantom
+%   in ink2 (the piece cut away, on the viewer's side of the plane, a part shown for context, as Ch2 Fig 41;
+%   dashed in the 1973 art);
+%   3 phantom (the generating half after half a turn, the circle the base sweeps); 4 centerline (axes);
+%   5 hatch (the sections, cut surfaces); 6 thin line (the right-angle mark); 11-15 the rotation arrows.
+% The 1973 cells are ruled; here the cells are separated by rules (as Ch2 Fig 43), the panel letters at the
+% lower right of each cell on one baseline.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+% one style code of the table: the other rows become NaN (gaps, with unbounded coords=jump)
+\pgfplotsset{only code/.style={x filter/.code={\ifnum\thisrow{s}=#1\relax\else\def\pgfmathresult{nan}\fi}}}
+\begin{document}
+\begin{tikzpicture}
+  \def\cw{3.15}      % cell width (cm), as in fig47.py
+  \begin{axis}[hide axis, x=1cm, y=1cm, disabledatascaling, anchor=origin, at={(0,0)}, clip=false,
+      unbounded coords=jump, xmin=0, xmax=15.75, ymin=-9.3, ymax=0, enlargelimits=false]
+    \def\tab{figures/v2/ch3/fig47.csv}
+    \addplot[hatch, draw=none, mark=none, only code=5] table[x=x, y=y, col sep=comma] {\tab};
+    \addplot[centerline, mark=none, only code=4] table[x=x, y=y, col sep=comma] {\tab};
+    \addplot[hidden, mark=none, only code=2] table[x=x, y=y, col sep=comma] {\tab};
+    \addplot[phantom, draw=ink2, mark=none, only code=7] table[x=x, y=y, col sep=comma] {\tab};
+    \addplot[phantom, draw=ink, mark=none, only code=3] table[x=x, y=y, col sep=comma] {\tab};
+    \addplot[outline, mark=none, only code=1] table[x=x, y=y, col sep=comma] {\tab};
+    \addplot[thin line, draw=ink, mark=none, only code=6] table[x=x, y=y, col sep=comma] {\tab};
+    \pgfplotsinvokeforeach{11,...,15}{
+      \addplot[thin vec, mark=none, only code=#1] table[x=x, y=y, col sep=comma] {\tab};
+    }
+  \end{axis}
+  % rules between the cells; panel letters
+  \foreach \k in {1,...,4} \draw[draw=ink2, line width=0.5pt] (\k*\cw, -0.25) -- (\k*\cw, -9.3);
+  \foreach \l [count=\k] in {a,...,e}
+    \node[panel, anchor=south east] at (\k*\cw - 0.12, -9.3) {(\l)};
+\end{tikzpicture}
+\end{document}

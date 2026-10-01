@@ -1,0 +1,59 @@
+% Chapter 3, Figure 43: the notation of the Datcom method for the zero-lift drag of a simple model rocket (scan:
+% figures/ch3/fig43.png). Side view, nose left: tangent-ogive nose, cylinder, short conical boattail; two
+% clipped-delta fins in the plane of the drawing, their roots straight at the body radius and running aft over the
+% boattail to the base, their trailing edges square to the axis at the base; the other pair edge-on on the centre
+% line, its thickness t exaggerated (the house edge-on fin, a white-filled strip as Ch2 Figs 48, 51; printed as a
+% thin lens). The chain l_n, l_s, l_t and the overall l_b below; c_r, c_t above the fin; b, the span of one fin
+% from root to tip (the caption), beside its trailing edge; d_m and d_b by arrows from outside (\dimout, the label
+% beside the lower arrow's tail, as printed); t dimensioned across the strip the same way, as printed (scan x 463):
+% two short arrows inside the body pointing at the strip's faces, the lower one continued by a straight leader down
+% past the lower fin's leading edge to the letter (the 1973 line ends in a shoulder; the house leader is straight).
+% Lettering as printed: l_n, l_t (the equations write l_N, l_T: corrections/ch3.md D36, kept as in Figure 50).
+% Coordinates are the scan's pixels (150 per inch) from the nose tip on the axis, y up, drawn 1.3 times the
+% printed size: nose 92 long, cylinder to 441.5, boattail to the base at 484.5; radius 17.75, base radius 13.75
+% (d_b/d_m = 0.77); fin root chord 82.5 (leading edge at 402), tip chord 26, span 54, leading edge swept 56.5.
+% Overlay on the scan (redraw outlines against the scan's ink): nose (the exact tangent ogive) 95th percentile
+% 0.6 px, body and boattail 0.5 px, fins 0.5 and 1.4 px; all within 3 px.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.022cm, y=0.022cm]
+  \def\R{17.75}\def\Rb{13.75}\def\nb{92}\def\bt{441.5}\def\L{484.5}   % radii; nose base, boattail, base
+  \def\rle{402}\def\tle{458.5}\def\sp{54}                              % fin: root and tip leading edges, span
+  \pgfmathsetmacro\tip{\R+\sp}
+  % ---- centre line, body, fins --------------------------------------------------------------------------
+  \draw[centerline] (-34,0) -- (566,0);
+  \rocketoutline{\nb/\R, \bt/\R, \L/\Rb}
+  \foreach \sg in {1,-1}
+    \draw[outline, yscale=\sg] (\bt,\R) -- (\rle,\R) -- (\tle,\tip) -- (\L,\tip) -- (\L,\R) -- cycle;
+  % the pair seen edge-on, over the centre line (thickness exaggerated)
+  \draw[edge fin] (\rle,-2.2) rectangle (\L,2.2);
+  % ---- extension lines ----------------------------------------------------------------------------------
+  \draw[extension] (0,-4) -- (0,-139)              % nose tip
+    (\nb,-\R-4) -- (\nb,-112)                       % nose base
+    (\bt,-\R-4) -- (\bt,-112)                       % boattail start
+    (\L,-\tip-4) -- (\L,-139)                       % base
+    (\rle,\R+4) -- (\rle,128)                       % root leading edge
+    (\L,\tip+4) -- (\L,128)                         % trailing edge
+    (\tle,\tip+4) -- (\tle,102)                     % tip leading edge
+    (\L+4,\tip) -- (511,\tip) (\L+4,\R) -- (511,\R) % b
+    (\L+4,\Rb) -- (530,\Rb) (\L+4,-\Rb) -- (530,-\Rb);  % d_b
+  % ---- dimensions ---------------------------------------------------------------------------------------
+  \dimline{(0,-108)}{(\nb,-108)}{$\ell_n$}
+  \dimline{(\nb,-108)}{(\bt,-108)}{$\ell_s$}
+  \dimline{(\bt,-108)}{(\L,-108)}{$\ell_t$}
+  \dimline{(0,-135)}{(\L,-135)}{$\ell_b$}
+  \dimline{(\rle,124)}{(\L,124)}{$c_r$}
+  \dimout{(\tle,98)}{(\L,98)}{}
+  \node[font=\small, inner sep=1.5pt] at ({(\tle+\L)/2},98) {$c_t$};
+  \dimline{(507,\R)}{(507,\tip)}{$b$}
+  \dimout[anchor=west]{(278.5,\R)}{(278.5,-\R)}{$d_m$}
+  \dimout[anchor=west]{(523,\Rb)}{(523,-\Rb)}{$d_b$}
+  % fin thickness: arrows from outside, their tails inside the body (2.6 mm: 11.8 units, tails at +-14.0); the
+  % lower continued down to t
+  \begin{scope}[dim stub length=2.6mm]
+    \dimout{(419,2.2)}{(419,-2.2)}{}
+  \end{scope}
+  \draw[leader] (419,-14) -- (419,-56) node[anchor=north, font=\small, inner sep=1.5pt] {$t$};
+\end{tikzpicture}
+\end{document}

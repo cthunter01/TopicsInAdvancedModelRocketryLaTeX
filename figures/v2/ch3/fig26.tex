@@ -1,0 +1,33 @@
+% Chapter 3, Figure 26: drag coefficient against Reynolds number for (a) circular cylinders and (b) spheres
+% (scan: figures/ch3/fig26.png; average experimental curves after Schlichting). Curves: fig26.py, digitized
+% against the 1973 paper's drawn rulings (its "log" grid is not logarithmic between decades: standing rule 3)
+% and replotted on true log axes. The two panels share the abscissa and the C_D scale (1.75 in per unit).
+% Panel letters in the house placement (anchor north east at rel axis 1,1, as Fig 53), white-filled because the
+% 8 x 10^5 and 9 x 10^5 rulings run through them.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\pgfplotsset{reynolds/.style={tamr grid, grid=both,
+    width=5.2in, xmin=1e3, xmax=1e6, ymin=0,
+    xtick={1e3,2e3,3e3,4e3,6e3,8e3,1e4,2e4,3e4,4e4,6e4,8e4,1e5,2e5,3e5,4e5,6e5,8e5,1e6},
+    xticklabels={$10^3$,2,3,4,6,8,$10^4$,2,3,4,6,8,$10^5$,2,3,4,6,8,$10^6$},
+    % the printed chart's rulings: 1, 1.5, 2, 2.5, 3, 3.5, 4, 5 ... 9 in each decade
+    minor xtick={1.5e3,2.5e3,3.5e3,5e3,7e3,9e3,1.5e4,2.5e4,3.5e4,5e4,7e4,9e4,1.5e5,2.5e5,3.5e5,5e5,7e5,9e5},
+    yticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=1},
+    xlabel={$R_D = \dfrac{U_\infty D}{\nu}$},
+    ylabel={$C_D$}, ylabel style={rotate=-90, anchor=east}}}
+\begin{document}
+\begin{tikzpicture}
+  % (a) circular cylinders
+  \begin{semilogxaxis}[reynolds, name=a, height=2.45in, ymax=1.4, ytick={0,0.2,...,1.4},
+      yticklabels={0,0.2,0.4,0.6,0.8,1.0,1.2,1.4}]
+    \addplot[series1] table[x=R, y=CD, col sep=comma] {figures/v2/ch3/fig26-a.csv};
+    \node[panel, anchor=north east, fill=white] at (rel axis cs:1,1) {(a)};
+  \end{semilogxaxis}
+  % (b) spheres
+  \begin{semilogxaxis}[reynolds, at={(a.south west)}, anchor=north west, yshift=-0.95in,
+      height=1.4in, ymax=0.8, ytick={0,0.2,...,0.8}, yticklabels={0,0.2,0.4,0.6,0.8}]
+    \addplot[series1] table[x=R, y=CD, col sep=comma] {figures/v2/ch3/fig26-b.csv};
+    \node[panel, anchor=north east, fill=white] at (rel axis cs:1,1) {(b)};
+  \end{semilogxaxis}
+\end{tikzpicture}
+\end{document}

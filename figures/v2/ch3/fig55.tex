@@ -1,0 +1,38 @@
+% Chapter 3, Figure 55: the "drop chart", drop time against k/m for drop distances of 10, 25, 50 and 100 m
+% (scan: figures/ch3/fig55.png). Curves: fig55.py, eq. (230) solved for t, t = arccosh(exp(x k/m))/sqrt(g k/m),
+% g = 9.8 m/s^2. True log axes (the 1973 paper's intermediate lines are not at log positions: corrections/
+% v2-figures.md, standing rule 3); the grid keeps the printed rulings (1, 1.5, 2, 2.5, 3, 3.5, 4, 5 ... 9 in
+% each decade) and labels. An ordered family: r2-r5, labelled on the curves as printed (on white).
+% The computed curves differ from the 1973 art above k/m of about 0.04, where the printed curves bend further right
+% (at k/m = 0.094 drawn 1.75, 3.74, 6.31 s for 10, 25, 50 m against 1.66, 3.17, 5.62 s from eq. (230); the 100 m
+% curve meets t = 10 s at 0.068 drawn, 0.084 computed); below about 0.02 they agree to 0.03 s. Computed curves
+% kept (gate decision); the mismatch is reported for corrections/v2-figures.md.
+% The y title is set upright, the unit under the fraction (as Fig 53 and the approved Fig 2); printed rotated.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{loglogaxis}[tamr grid, grid=both,
+      width=4.2in, height=2.75in,
+      xmin=1, xmax=10, ymin=1e-3, ymax=1e-1,
+      xtick={1,2,3,4,5,6,8,10}, xticklabels={1,2,3,4,5,6,8,10},
+      minor xtick={1.5,2.5,3.5,7,9},
+      ytick={1e-3,2e-3,3e-3,4e-3,6e-3,8e-3,1e-2,2e-2,3e-2,4e-2,6e-2,8e-2,1e-1},
+      yticklabels={$10^{-3}$,2,3,4,6,8,$10^{-2}$,2,3,4,6,8,$10^{-1}$},
+      minor ytick={1.5e-3,2.5e-3,3.5e-3,5e-3,7e-3,9e-3,1.5e-2,2.5e-2,3.5e-2,5e-2,7e-2,9e-2},
+      xlabel={$t$ (sec)},
+      ylabel={$\dfrac{k}{m}$\\($\mathrm{m}^{-1}$)}, ylabel style={rotate=-90, anchor=east, align=center}]
+    \addplot[r2] table[x=t, y=km, col sep=comma] {figures/v2/ch3/fig55-10.csv};
+    \addplot[r3] table[x=t, y=km, col sep=comma] {figures/v2/ch3/fig55-25.csv};
+    \addplot[r4] table[x=t, y=km, col sep=comma] {figures/v2/ch3/fig55-50.csv};
+    \addplot[r5] table[x=t, y=km, col sep=comma] {figures/v2/ch3/fig55-100.csv};
+    % the drop distances (m), beside each curve at k/m = 0.012 as printed
+    \begin{scope}[every node/.style={anchor=west, fill=white, inner sep=1.2pt}]
+      \node at (axis cs:1.49,0.012) {10};
+      \node at (axis cs:2.43,0.012) {25};
+      \node at (axis cs:3.61,0.012) {50};
+      \node at (axis cs:5.60,0.012) {100};
+    \end{scope}
+  \end{loglogaxis}
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,3 @@
+{"crop": "figures/ch3/fig48.png",
+ "note": "the rocket's centimetres: x from the nose tip (column 50) to the base (column 515.5, 31.75 cm), y up from the axis (row 177.5); 14.66 px/cm both ways",
+ "axes": {"rocket": {"points": [[50, 177.5, 0, 0], [515.5, 177.5, 31.75, 0], [50, 31.0, 0, 9.993], [515.5, 31.0, 31.75, 9.993]]}}}

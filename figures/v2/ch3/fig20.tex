@@ -1,0 +1,19 @@
+% Chapter 3, Figure 20: eta_k against R_k/sqrt(R_x) for the cone (scan: figures/ch3/fig20.png, PDF 394).
+% Curve: fig20.py, R_k/sqrt(R_x) = 2 eta_k f'(2 sqrt(3) eta_k): the construction of Fig 19 (eqs. (91), (92),
+% (94)-(96), Table 1) with the cone's profile by Mangler's sqrt(3) scaling of the flat plate's (outside the book;
+% owner's decision). The text's example 1.73 gives eta_k = 0.966 (text 0.96). Frame shared with Fig 19.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr grid,
+      width=4.2in, height=2.7in,
+      xmin=0, xmax=6, xtick distance=1,
+      ymin=0, ymax=3.2, ytick={0,0.4,0.8,1.2,1.6,2.0,2.4,2.8,3.2},
+      yticklabels={0, 0.4, 0.8, 1.2, 1.6, 2.0, 2.4, 2.8, 3.2},
+      xlabel={$(R_k/\sqrt{R_x})_{\mathrm{3\text{-}D}}$},
+      ylabel={$\eta_{\mathrm{3\text{-}D}}$}, ylabel style={rotate=-90, anchor=east}]
+    \addplot[series1] table[x=r, y=eta, col sep=comma] {figures/v2/ch3/fig20.csv};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

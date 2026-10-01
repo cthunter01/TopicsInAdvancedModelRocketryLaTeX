@@ -1,0 +1,71 @@
+% Chapter 3, Figure 33: flow about the base of a model rocket with a conical boattail (scan: figures/ch3/fig33.png).
+% Coordinates are the scan's pixels (150 per inch), x aft from the scan's left edge, y up from the axis (scan row
+% 188), drawn 1.25 times the printed size. Measured on the scan and drawn symmetric about the axis:
+%   body tube radius 53, broken off at x = 32 (the house break line for a cut-off tube; the 1973 art shows a
+%   hatched elliptical cut); the boattail from x = 125 (joint) to the flat base at x = 277, radius 53 to 40, so
+%   epsilon = atan(13/152) = 4.9 deg (the text: about 5 to 10 deg);
+%   two clipped-delta fins in profile: leading edge from the body at x = 52 to the tip at (277, 177), tip chord
+%   to x = 417, trailing edge to the base corner;
+%   the outer edge of the boundary layer and free shear layer: the mean of the scan's upper and lower lines
+%   (they differ by 1 px at most), smoothed (residual under 1 px): 83 over the tube, 74 at the delta dimension
+%   (x = 252; the boundary layer is 29 thick at the joint and 32 there: it thickens over the boattail, as the
+%   caption says), 27 at the right;
+%   the dividing streamlines from the base corners to R (x = 462 on the axis): a quadratic Bezier fitted to the
+%   scan (rms 0.25 px);
+%   the two circulation loops 5 below the dividing streamline (as printed, without arrowheads), p_b in each;
+%   the velocity profile across the shear layer at x = 325: from the dividing streamline (u = 0) to the outer
+%   edge (u = U, 36 px), u = U (1 - (1 - eta)^2.5), three velocity lines as printed (headless); drawn in the
+%   chapter's profile styles (Ch3 Figs 06, 09, 16-18, 25): the profile in s1 at 1pt, the velocity lines s1 0.5pt,
+%   the base line in ink.
+% R is the point the caption cites ("reattaching at point R"): curve tag (house rule for cited points).
+% Overlay on the scan (the redraw rendered at 120 dpi, its own scale back to the scan's): 95.3% of its ink within
+% 3 px of the scan's ink (the misses are the lettering and the break line).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+% the chapter's velocity-profile styles (as Ch3 Figs 16, 17, 18, 25)
+\tikzset{
+  profile/.style={draw=s1, line width=1pt},
+  profile arrow/.style={draw=s1, line width=0.5pt, -{Stealth[length=3.4pt, width=2.4pt]}},
+  profile stroke/.style={draw=s1, line width=0.5pt},
+}
+\begin{document}
+\begin{tikzpicture}[x=0.0212cm, y=0.0212cm]
+  \def\eps{4.888}   % boattail angle, deg
+  % ---- centre line ------------------------------------------------------------------------------------------
+  \draw[centerline] (0,0) -- (570,0);
+  % ---- fins (in profile; the roots lie on the body) ---------------------------------------------------------
+  \foreach \s in {1,-1}
+    \draw[outline, yscale=\s] (52,53) -- (277,177) -- (417,177) -- (277,40);
+  % ---- body: tube broken off at the left, joint, conical boattail, flat base -----------------------------------
+  \draw[outline] (32,53) -- (125,53) -- (277,40) -- (277,-40) -- (125,-53) -- (32,-53);
+  \draw[outline] (125,53) -- (125,-53);
+  \tikzset{break amplitude=0.32}
+  \breakline{(32,53)}{(32,-53)}
+  % ---- the flow: outer edge of the boundary layer and shear layer, dividing streamlines to R ------------------
+  \foreach \s in {1,-1} {
+    \draw[thin line, yscale=\s] plot[smooth, tension=0.6] coordinates {(14,82.9) (37,82.9) (60,82.9) (90,82.6) (120,81.9)
+      (150,81.0) (180,79.5) (210,77.6) (240,75.1) (270,72.0) (300,68.2) (330,63.6) (360,58.2) (390,52.0)
+      (420,45.3) (450,38.9) (480,33.4) (510,29.6) (540,27.8) (566,27.3)};
+    \draw[thin line, yscale=\s] (277,40) .. controls (362.8,29.8) and (424.4,16.5) .. (462,0);
+    % circulation loop (top edge 5 below the dividing streamline)
+    \draw[thin line, yscale=\s, rounded corners=2.6pt] (284,4.5) -- (284,32.6) -- (300,32.1) -- (320,29.4)
+      -- (340,26.3) -- (360,22.9) -- (380,19.0) -- (400,14.6) -- (409,12.4) -- (409,4.5) -- cycle;
+    \node at (309,{\s*18}) {$p_b$};
+  }
+  % ---- velocity profile across the free shear layer --------------------------------------------------------
+  \foreach \t in {0.3,0.55,0.8}
+    \draw[profile stroke] (325,{33.6+24.4*\t}) -- ({325+36*(1-(1-\t)*(1-\t)*sqrt(1-\t))},{33.6+24.4*\t});
+  \draw[outline] (325,33.6) -- (325,64.4);
+  \draw[profile] plot[domain=0:1, samples=30, smooth, variable=\t]
+    ({325+36*(1-(1-\t)*(1-\t)*sqrt(1-\t))}, {33.6+24.4*\t});
+  % ---- point R --------------------------------------------------------------------------------------------
+  \node[curve tag] at (479,14) {R};
+  % ---- boattail angle epsilon: arrows from outside onto the extended tube line and the boattail surface -------
+  \draw[extension] (127,53) -- (203,53);
+  \draw[angle arc single] (125,53) ++(19:63) arc[start angle=19, end angle=0, radius=63];
+  \draw[angle arc single] (125,53) ++(-26:63) arc[start angle=-26, end angle=-\eps, radius=63];
+  \node[anchor=north, inner sep=1.5pt] at ($(125,53)+(-26:63)$) {$\epsilon$};
+  % ---- boundary-layer thickness delta at the end of the boattail -------------------------------------------
+  \dimline{(252,-42.14)}{(252,-73.95)}{$\delta$}
+\end{tikzpicture}
+\end{document}

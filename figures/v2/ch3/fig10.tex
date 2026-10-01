@@ -1,0 +1,65 @@
+% Chapter 3, Figure 10: the concept of free-stream velocity (scan: figures/ch3/fig10.png).
+% The house model rocket (tamrfig `model', units of its length 6.4), nose left, with the velocity profiles above
+% and below the body at the scan's station behind the nose joint. Computed by fig10.py: inside the boundary
+% layer (laminar there) the profile is Blasius's, u = V f'(5y'/delta) from Table 1 (y' from the surface), with the
+% thickness greatly exaggerated as the caption says (delta = 1.6 diameters, the scan's); V, the arrow rows and the
+% station are the scan's. The boundary-layer edge below the body is a guide (dashed), as printed and as in
+% Figure 13. The "Free stream" brace continues down into an arrow (the free stream extends outward), as printed.
+% The axis is extended beyond the nose and the tail as a thin line, the centre line inside the body (as printed,
+% and as Figures 1 and 12 and Chapter 1 Figures 6-8).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+% the profile family's styles (Ch3 Figs 6, 9, 10, 13, 16, 17, 18, 25): the computed profile u(y) as a data curve
+% (s1, 1pt), its velocity arrows lighter with small heads; the base lines stay in ink
+\tikzset{
+  profile/.style={draw=s1, line width=1pt},
+  profile arrow/.style={draw=s1, line width=0.5pt, -{Stealth[length=3.4pt, width=2.4pt]}},
+  profile stroke/.style={draw=s1, line width=0.5pt},
+  % a brace beside a profile, its tip pointing left at the label
+  label brace/.style={draw=ink2, line width=0.5pt, decorate,
+    decoration={brace, amplitude=4pt, raise=0pt}},
+}
+\makeatletter
+% \csvline[<options>]{<file>}: the polyline through the x, y rows of a CSV file
+\newcommand{\csvline}[2][]{%
+  \pgfplotstableread[col sep=comma]{#2}\fig@tbl
+  \pgfplotstablegetrowsof{\fig@tbl}\pgfmathtruncatemacro\fig@n{\pgfplotsretval-1}%
+  \foreach \fig@i in {0,...,\fig@n}{%
+    \pgfplotstablegetelem{\fig@i}{x}\of\fig@tbl\let\fig@x\pgfplotsretval
+    \pgfplotstablegetelem{\fig@i}{y}\of\fig@tbl\let\fig@y\pgfplotsretval
+    \ifnum\fig@i=0 \xdef\fig@path{(\fig@x,\fig@y)}\else\xdef\fig@path{\fig@path -- (\fig@x,\fig@y)}\fi}%
+  \draw[#1] \fig@path;}
+% \csvarrows[<options>]{<file>}: an arrow from (x0, y) to (x0 + u, y) for each row
+\newcommand{\csvarrows}[2][]{%
+  \pgfplotstableread[col sep=comma]{#2}\fig@tbl
+  \pgfplotstablegetrowsof{\fig@tbl}\pgfmathtruncatemacro\fig@n{\pgfplotsretval-1}%
+  \foreach \fig@i in {0,...,\fig@n}{%
+    \pgfplotstablegetelem{\fig@i}{x0}\of\fig@tbl\let\fig@x\pgfplotsretval
+    \pgfplotstablegetelem{\fig@i}{y}\of\fig@tbl\let\fig@y\pgfplotsretval
+    \pgfplotstablegetelem{\fig@i}{u}\of\fig@tbl\let\fig@u\pgfplotsretval
+    \draw[#1] (\fig@x,\fig@y) -- ++(\fig@u,0);}}
+\makeatother
+\begin{document}
+\begin{tikzpicture}[x=1.5cm, y=1.5cm]
+  \def\xs{2.33}\def\V{1.16}\def\R{0.2}\def\dl{0.65}\def\top{2.6}
+  % ---- the rocket ----------------------------------------------------------------------------------------------
+  \pic {rocket={model, centerline=false}};
+  \draw[centerline] (0.1,0) -- (6.3,0);
+  \draw[thin line] (-0.51,0) -- (0,0) (6.4,0) -- (6.91,0);       % the axis, extended (as Figures 1 and 12)
+  % ---- the profiles: arrows, base lines, the lines through the arrow tips -----------------------------------
+  \csvarrows[profile arrow]{figures/v2/ch3/fig10-arrows.csv}
+  \draw[outline] (\xs,\R) -- (\xs,\top) (\xs,-\R) -- (\xs,-\top);
+  \csvline[profile]{figures/v2/ch3/fig10-profile.csv}
+  \csvline[profile, yscale=-1]{figures/v2/ch3/fig10-profile.csv}
+  % V: the full length of a free-stream arrow, on the uppermost row
+  \dimline{(\xs,2.435)}{(\xs+\V,2.435)}{$V$}
+  % the edge of the boundary layer below the body
+  \draw[guide] (\xs,-\R-\dl) -- (\xs+\V,-\R-\dl);
+  % ---- the braces ------------------------------------------------------------------------------------------------
+  \draw[label brace] (\xs-0.1,-\R-\dl+0.01) -- (\xs-0.1,-\R-0.01)
+    node[midway, left=5pt] {Boundary layer};
+  \draw[label brace] (\xs-0.1,-2.35) -- (\xs-0.1,-\R-\dl-0.02)
+    node[midway, left=5pt] {Free stream};
+  \draw[ink2, line width=0.5pt, -{Stealth[length=4pt,width=2.6pt]}] (\xs-0.1,-2.35) -- (\xs-0.1,-\top-0.05);
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,69 @@
+% Chapter 3, Figure 16: notation used in determining the friction drag of an object of finite thickness in
+% laminar flow, eq. (58) (scan: figures/ch3/fig16.png).
+% fig16.py: the body is the scan's teardrop fitted as a half ellipse (nose) and two circular arcs (tail);
+% the element ds on its upper surface at x = 240 with the true tangent there (phi = 22.5 deg, standing rule 4);
+% the local profile normal to the surface is the Blasius profile of Table 1 (u/U = f'(eta), eta = 0 to 7).
+% Data: fig16-body.csv, fig16-profile.csv, fig16-arrows.csv, fig16-points.csv. Overlay on the scan
+% (fig16.calib.json): 95% of the points within 2.0 px (body) and 1.0 px (profile). Drawn in the scan's pixels,
+% y up from the axis, 1.2 times the printed size.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+% the profile family's styles (Ch3 Figs 16, 17, 18, 25)
+\tikzset{
+  profile/.style={draw=s1, line width=1pt},
+  profile arrow/.style={draw=s1, line width=0.5pt, -{Stealth[length=3.4pt, width=2.4pt]}},
+  profile stroke/.style={draw=s1, line width=0.5pt},
+}
+\pgfplotstableread[col sep=comma]{figures/v2/ch3/fig16-arrows.csv}\arrows
+\pgfplotstableread[col sep=comma]{figures/v2/ch3/fig16-points.csv}\points
+\pgfplotsset{canvas/.style={hide axis, x=0.02032cm, y=0.02032cm, disabledatascaling, anchor=origin,
+  at={(0,0)}, xmin=0, xmax=1, ymin=0, ymax=1, enlargelimits=false, clip=false}}
+\begin{document}
+\begin{tikzpicture}[x=0.02032cm, y=0.02032cm]
+  % named points (and the angle phi)
+  \pgfplotstablegetrowsof{\points}\pgfmathtruncatemacro\nrows{\pgfplotsretval-1}
+  \foreach \r in {0,...,\nrows} {
+    \pgfplotstablegetelem{\r}{name}\of\points\let\pn\pgfplotsretval
+    \pgfplotstablegetelem{\r}{x}\of\points\let\px\pgfplotsretval
+    \pgfplotstablegetelem{\r}{y}\of\points\let\py\pgfplotsretval
+    \ifnum\pdfstrcmp{\pn}{phi}=0 \xdef\phiang{\px}\else \coordinate (\pn) at (\px,\py); \fi
+  }
+  % the body, hatched, with the element's strip cleared
+  \begin{axis}[canvas]
+    \addplot[hatch, draw=none, mark=none] table[x=x, y=y, col sep=comma] {figures/v2/ch3/fig16-body.csv};
+  \end{axis}
+  \fill[white] (P) -- (P2) -- (P2d) -- (Pd) -- cycle;
+  \draw[thin line] (P) -- (Pd) (P2) -- (P2d);
+  \begin{axis}[canvas]
+    \addplot[outline, mark=none] table[x=x, y=y, col sep=comma] {figures/v2/ch3/fig16-body.csv};
+  \end{axis}
+  \dimline[draw=none, fill=none]{(dl)}{(dr)}{}
+  \node[font=\small, inner sep=1pt] at (dslab) {$ds$};
+  % the axis, the free stream and x
+  \draw[centerline] (78,0) -- (494,0);
+  \draw[vec] (8,0) -- (62,0) node[midway, above=1pt] {$U_\infty$};
+  \draw[thin vec] (506,0) -- (548,0) node[right=1pt] {$x$};
+  % the tangent at the element: dashed back to the axis, tau_o along it; the angle phi (arrows from outside)
+  \draw[guide] (V) -- (P);
+  \draw[thin vec] (P) -- (tau) node[anchor=south west, inner sep=1.5pt] {$\tau_o$};
+  \draw[angle arc single] (V) ++(\phiang+16:62) arc[start angle=\phiang+16, end angle=\phiang, radius=62];
+  \draw[angle arc single] (V) ++(-16:62) arc[start angle=-16, end angle=0, radius=62];
+  \node[inner sep=1pt] at ($(V)+(\phiang/2:52)$) {$\phi$};
+  % the local profile: arrows, the curve u(y), its base line along the normal
+  \pgfplotstablegetrowsof{\arrows}\pgfmathtruncatemacro\nrows{\pgfplotsretval-1}
+  \foreach \r in {0,...,\nrows} {
+    \pgfplotstablegetelem{\r}{x0}\of\arrows\let\ax\pgfplotsretval
+    \pgfplotstablegetelem{\r}{y0}\of\arrows\let\ay\pgfplotsretval
+    \pgfplotstablegetelem{\r}{x1}\of\arrows\let\bx\pgfplotsretval
+    \pgfplotstablegetelem{\r}{y1}\of\arrows\let\by\pgfplotsretval
+    \pgfplotstablegetelem{\r}{head}\of\arrows\let\ah\pgfplotsretval
+    \ifnum\ah=1 \draw[profile arrow] (\ax,\ay) -- (\bx,\by); \else \draw[profile stroke] (\ax,\ay) -- (\bx,\by); \fi
+  }
+  \begin{axis}[canvas]
+    \addplot[profile, mark=none] table[x=x, y=y, col sep=comma] {figures/v2/ch3/fig16-profile.csv};
+  \end{axis}
+  \draw[outline] (P) -- (T);
+  \node[anchor=south, inner sep=2pt] at (Ux) {$U(x)$};
+  \node[anchor=west, inner sep=2pt] at (uy) {$u(y)$};
+\end{tikzpicture}
+\end{document}

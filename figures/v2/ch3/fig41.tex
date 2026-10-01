@@ -1,0 +1,35 @@
+% Chapter 3, Figure 41: drag coefficient against angle of attack (scan: figures/ch3/fig41.png, PDF 448).
+% Curves: fig41.py. Dashed, the trial rocket of Figure 37 (semiempirical): computed, 0.75 + eq. (149),
+% C_D(alpha) = 16.83 alpha^2 + 8.9 alpha^3 (alpha in rad; Table 4's total column). Solid, Stine's Aerobee-Hi
+% experiment: digitized from the scan (fig41.calib.json) and fitted through the common zero-lift 0.75.
+% Solid and dashed as printed (two methods compared: series1, series2). "Aerobee-Hi" as the caption and text: the
+% letterer's i is a tall stroke without a dot throughout the figure (Stine, experiment, Figure, semiempirical), so
+% the last letter, which the inventory read as a capital I, is that i. "Figure 37" is kept as literal lettering.
+% Grid at the printed spacing (1 deg, 0.1).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+% the leaders end on the curves at 4.8 deg (Stine) and 6.5 deg (Figure 37, mid-dash), as printed: rows 48 and 65 of the data
+\pgfplotstableread[col sep=comma]{figures/v2/ch3/fig41.csv}\curves
+\pgfplotstablegetelem{48}{stine}\of\curves \let\stineend\pgfplotsretval
+\pgfplotstablegetelem{65}{trial}\of\curves \let\trialend\pgfplotsretval
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr grid, grid=both,
+      width=4.2in, height=2.6in,
+      xmin=0, xmax=10, xtick={0,1,...,10},
+      ymin=0, ymax=1.6, ytick={0,0.2,...,1.6}, minor ytick={0.1,0.3,...,1.5},
+      yticklabels={0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6},
+      xlabel={$\alpha$ (deg)},
+      ylabel={$\CD$}, ylabel style={rotate=-90, anchor=east}]
+    \addplot[series1] table[x=alpha, y=stine, col sep=comma] {figures/v2/ch3/fig41.csv};
+    \addplot[series2] table[x=alpha, y=trial, col sep=comma] {figures/v2/ch3/fig41.csv};
+    % labels in white knock-outs (as printed), straight leaders to their curves
+    \node[fill=white, align=left, inner sep=2pt, anchor=south west] (stine) at (axis cs:4.15,1.20)
+      {Stine\\ Aerobee-Hi\\ experiment};
+    \draw[leader] ([xshift=6pt]stine.south west) -- (axis cs:4.8,\stineend);
+    \node[fill=white, align=left, inner sep=2pt, anchor=north west] (rocket) at (axis cs:5.6,0.70)
+      {Rocket of\\ Figure 37\\ semiempirical};
+    \draw[leader] ([xshift=-14pt]rocket.north east) -- (axis cs:6.5,\trialend);
+  \end{axis}
+\end{tikzpicture}
+\end{document}

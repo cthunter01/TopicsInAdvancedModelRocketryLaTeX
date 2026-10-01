@@ -1,0 +1,18 @@
+% Chapter 3, Figure 4: standard atmospheric sound speed against altitude (scan: figures/ch3/fig04.png, PDF 317).
+% Curve: fig04.py (eq. (213), c = c_std sqrt(T/T_std) with c_std = 340 m/sec, T_std = 288.15 K, and the
+% U.S. Standard Atmosphere, 1962 temperature of Fig 3). Frame as Fig 2 (fig02.tex); the y title set upright
+% like those of Figs 2, 3, 7 and 8 so the five atmosphere charts read as a set (the 1973 art rotates it).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr grid, grid=both,
+      width=4.2in, height=2.4in,
+      xmin=0, xmax=2500, xtick distance=500,
+      ymin=330, ymax=340, ytick={330,335,340}, minor ytick={332.5,337.5},
+      xlabel={Altitude (meters)},
+      ylabel={$c$ (m/sec)}, ylabel style={rotate=-90, anchor=east}]
+    \addplot[series1] table[x=h, y=c, col sep=comma] {figures/v2/ch3/fig04.csv};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

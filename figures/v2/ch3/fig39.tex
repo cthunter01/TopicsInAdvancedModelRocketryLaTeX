@@ -1,0 +1,174 @@
+% Chapter 3, Figure 39: trailing vortices and effective aspect ratio (scan: figures/ch3/fig39.png, PDF 431;
+% after Hoerner). Lengths are the scan's pixels (150 per inch, y up), drawn 1.2 times the printed size.
+% (a) A slab wing of aspect ratio 3 (span 3, chord 1, thickness 0.06) in the house orthographic view (tamr
+% view=1.19: span along x, the flow along -y, z up; the 1973 perspective is close to it), shedding a vortex from
+% each tip, under the free stream U (a vector along -y; the 1973 arrow is a hollow double line). The 1973
+% letter is U-bar; it is set $\vec{U}$, the book's vector notation (Symbols list, Ch1 Fig 6, Ch3 Figs 11, 38). Each
+% vortex is a helix round its core (dash-dot): the cores leave the tips' trailing-edge corners, descend at a
+% constant rate (the constant downwash of a vortex pair: 0.065 chord per chord) and tuck in by 0.1 chord as
+% they roll up; the helix radius grows to 0.12 chord, pitch 0.36 chord (the slope of the trails, the size and
+% spacing of the loops matched to the scan); 5 chords drawn. Seen from behind (from -y) the left vortex (-x)
+% turns clockwise and the right one counterclockwise (the caption): the helices are wound that way, and a
+% ring of two arrows round each core (3.5 and 3.2 chords downstream) shows the sense.
+% (b) Six tips on wings of aspect ratio 3, numbered 1-6: above, each tip's section seen from the front (the
+% wing broken off inboard, \breakline); below, its planform (flow downward; the wing cut inboard, the thick
+% front of its section hatched on the cut, as printed), the tip's outermost line carried downstream (solid)
+% and the vortex core (dotted: the caption's "dotted line", standing rule 1; printed dashed), and Delta AR
+% as lettered (= for tips 1-4, \cong for 5 and 6). Tip 1 is square; the outlines of tips 2-6 and the six
+% cores are digitized from the scan (fig39.py -> fig39-tip2..6.csv, fig39-core1..6.csv, in each column's own
+% coordinates). The sections are drawn to the thickness (14) and the shapes measured on the scan, their tips
+% on the planforms' outermost lines and their breaks over the planforms' cuts. y (tip 3) is the core's
+% inboard position at the trailing edge, carried down by an extension line from the trailing edge, as
+% printed. The six columns are set at an even pitch (94.5; the 1973 columns are 88-100 apart).
+% Overlay on the scan (tools/v2/digitize.py overlay, fig39.calib.json, one set of axes per column): the tip
+% outlines 95% within 0-1 px, the cores within 2 px. The rendered redraw, column by column (its ink within 3 px
+% of the scan's): tips, cores and sections 98-100% (section 6: 86%, its 1973 break runs 15 px past the cut);
+% the cuts 85-100% (the 1973 cut is a wavy freehand line, the redraw's straight).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.02032cm, y=0.02032cm]
+  \tikzset{tip line/.style={draw=ink2, line width=0.45pt}}
+
+  % ======================================== (a) ========================================
+  \begin{scope}[shift={(171,-73)}, tamr view=1.19,
+      declare function={
+        dl(\s)=0.1*(1-exp(-\s/0.8));      % tuck-in
+        rh(\s)=0.12*(1-exp(-\s/0.3));     % helix radius
+        hz(\s)=-0.065*\s;                 % descent
+        th(\s)=360*\s/0.36;}]             % turn (deg)
+    % the wing
+    \blk{-1.5}{1.5}{-0.5}{0.5}{-0.03}{0.03}
+    % the free stream
+    \draw[vec] (0.15,1.85,0.1) -- (0.15,0.85,0.1);
+    \node[anchor=south west, inner sep=2pt] at (0.15,1.35,0.12) {$\vec{U}$};
+    % right vortex (+x): counterclockwise seen from behind, theta increasing downstream
+    \draw[centerline] (1.5,-0.5,0) -- plot[domain=0:5.3, samples=40, variable=\s] ({1.5-dl(\s)}, {-0.5-\s}, {hz(\s)});
+    \draw[outline] plot[domain=0:5, samples=700, variable=\s]
+      ({1.5-dl(\s)+rh(\s)*cos(th(\s))}, {-0.5-\s}, {hz(\s)+rh(\s)*sin(th(\s))});
+    % left vortex (-x): clockwise seen from behind, theta decreasing downstream
+    \draw[centerline] (-1.5,-0.5,0) -- plot[domain=0:5.3, samples=40, variable=\s] ({-1.5+dl(\s)}, {-0.5-\s}, {hz(\s)});
+    \draw[outline] plot[domain=0:5, samples=700, variable=\s]
+      ({-1.5+dl(\s)+rh(\s)*cos(180-th(\s))}, {-0.5-\s}, {hz(\s)+rh(\s)*sin(180-th(\s))});
+    % the sense of rotation: a ring round each core (gaps where the core crosses it)
+    \def\rr{0.27}
+    \pgfmathsetmacro\sR{3.2}\pgfmathsetmacro\xR{1.5-dl(\sR)}\pgfmathsetmacro\zR{hz(\sR)}
+    \foreach \a/\b in {-16/113, 164/293}
+      \draw[thin vec] plot[domain=\a:\b, samples=30, variable=\t] ({\xR+\rr*cos(\t)}, {-0.5-\sR}, {\zR+\rr*sin(\t)});
+    \pgfmathsetmacro\sL{3.5}\pgfmathsetmacro\xL{-1.5+dl(\sL)}\pgfmathsetmacro\zL{hz(\sL)}
+    \foreach \a/\b in {113/-16, 293/164}
+      \draw[thin vec] plot[domain=\a:\b, samples=30, variable=\t] ({\xL+\rr*cos(\t)}, {-0.5-\sL}, {\zL+\rr*sin(\t)});
+  \end{scope}
+  \node[panel, anchor=base east] at (632,-362) {(a)};
+
+  % the rule between the panels
+  \draw[draw=ink2, line width=0.5pt] (11,-374) -- (632,-374);
+
+  % ======================================== (b) ========================================
+  % Each column is drawn in the scan's coordinates relative to the tip's reference line (fig39.py: TIPX), shifted
+  % so that its tip line (at \X, the outline's outermost point) falls on the even pitch: \col{<tip line>}{<x_min>}.
+  \newcommand{\col}[2]{\def\X{#2}\pgfmathsetmacro\S{#1-(#2)}}
+  % \csvpath{<csv>}{<style>}: a digitized path of the current column, plotted in a hidden axis whose units are
+  % the picture's (the origin placed at the column's)
+  \newcommand{\csvpath}[2]{%
+    \begin{axis}[hide axis, x=0.02032cm, y=0.02032cm, disabledatascaling, anchor=origin, at={(\S,0)},
+        xmin=-20, xmax=80, ymin=-760, ymax=0, enlargelimits=false, clip=false]
+      \addplot[#2, mark=none] table[x=x, y=y, col sep=comma] {figures/v2/ch3/fig39-#1.csv};
+    \end{axis}}
+  % the hatched section at the cut: a teardrop (the NACA four-digit thickness form, closed) over the first 32% of
+  % the chord, 9.2 thick
+  \newcommand{\cutsection}[1]{% x of the cut
+    \draw[outline, hatch, preaction={fill=white}]
+      plot[domain=0:1, samples=30, variable=\v] ({#1+46*(0.2969*\v-0.1260*\v^2-0.3516*\v^4+0.2843*\v^6-0.1036*\v^8)},
+        {-487-35.7*\v*\v})
+      -- plot[domain=1:0, samples=30, variable=\v] ({#1-46*(0.2969*\v-0.1260*\v^2-0.3516*\v^4+0.2843*\v^6-0.1036*\v^8)},
+        {-487-35.7*\v*\v}) -- cycle;}
+  % the planform's straight parts: the leading edge from x_m, the cut, the trailing edge back to x_m
+  \newcommand{\planform}[2]{% x_m, cut
+    \draw[outline] (#1,-487) -- (#2,-487) -- (#2,-598.5) -- (#1,-598.5);
+    \cutsection{#2}}
+  % the break of a section (end view; the section's top at -415.5, bottom at -429.5)
+  \newcommand{\secbreak}[1]{\breakline[break amplitude=0.6]{(#1,-415.5)}{(#1,-429.5)}}
+  % the tip line from row #1 to the foot, the tip number left of the cut #2, the Delta AR label
+  \newcommand{\tipmarks}[5]{% from row, cut, number, relation, value
+    \draw[tip line] (\X,-#1) -- (\X,-749);
+    \node[anchor=base east, inner sep=0pt] at (#2-6,-594) {#3};
+    \node[anchor=north west, align=left, inner sep=1pt] at (\X+27,-699) {$\Delta\AR #4$\\$#5$};}
+
+  % ---- tip 1: square ----
+  \col{47}{0}
+  \begin{scope}[shift={(\S,0)}]
+    \draw[outline] (68,-415.5) -- (\X,-415.5) -- (\X,-429.5) -- (68,-429.5);
+    \secbreak{68}
+    \draw[outline] (\X,-487) rectangle (68,-598.5);
+    \cutsection{68}
+    \tipmarks{598.5}{68}{1}{=}{+0.04}
+  \end{scope}
+  \csvpath{core1}{dotted guide}
+
+  % ---- tip 2: rounded corners (section: corner radius 4.5) ----
+  \col{141.5}{-0.73}
+  \begin{scope}[shift={(\S,0)}]
+    \draw[outline] (67,-415.5) -- (\X+4.5,-415.5) arc[start angle=90, end angle=180, radius=4.5]
+      -- (\X,-425) arc[start angle=180, end angle=270, radius=4.5] -- (67,-429.5);
+    \secbreak{67}
+    \planform{30}{67}
+    \tipmarks{551}{67}{2}{=}{-0.18}
+  \end{scope}
+  \csvpath{tip2}{outline}
+  \csvpath{core2}{dotted guide}
+
+  % ---- tip 3: round (section: a semicircle) ----
+  \col{236}{-1.51}
+  \begin{scope}[shift={(\S,0)}]
+    \draw[outline] (65,-415.5) -- (\X+7,-415.5) arc[start angle=90, end angle=270, radius=7] -- (65,-429.5);
+    \secbreak{65}
+    \planform{44.5}{65}
+    \tipmarks{549}{65}{3}{=}{-0.20}
+    % y: the core's inboard position at the trailing edge (fig39-core3.csv: 13.97), carried down
+    \draw[extension] (38.4,-598.5) -- (13.97,-598.5) -- (13.97,-672);
+    \dimout{(\X,-660)}{(13.97,-660)}{}
+    \node[inner sep=0pt] at ({(\X+13.97)/2},-660) {$y$};
+  \end{scope}
+  \csvpath{tip3}{outline}
+  \csvpath{core3}{dotted guide}
+
+  % ---- tip 4: pointed at mid-thickness (section: a lens of two parabolic arcs, 36 long) ----
+  \col{330.5}{-1.20}
+  \begin{scope}[shift={(\S,0)}]
+    \draw[outline] (68.5,-415.5) -- (\X+36,-415.5) .. controls (\X+12,-415.5) and (\X+6,-417.83)
+      .. (\X,-422.5) .. controls (\X+6,-427.17) and (\X+12,-429.5) .. (\X+36,-429.5) -- (68.5,-429.5);
+    \secbreak{68.5}
+    \planform{48}{68.5}
+    \tipmarks{548}{68.5}{4}{=}{-0.19}
+  \end{scope}
+  \csvpath{tip4}{outline}
+  \csvpath{core4}{dotted guide}
+
+  % ---- tip 5: sharp upper edge (section: flat top, the lower surface a parabolic arc 48 long) ----
+  \col{425}{-1.22}
+  \begin{scope}[shift={(\S,0)}]
+    \draw[outline] (71,-415.5) -- (\X,-415.5) .. controls (\X+16,-424.83) and (\X+32,-429.5)
+      .. (\X+48,-429.5) -- (71,-429.5);
+    \secbreak{71}
+    \planform{45}{71}
+    \tipmarks{557}{71}{5}{\cong}{0.0}
+  \end{scope}
+  \csvpath{tip5}{outline}
+  \csvpath{core5}{dotted guide}
+
+  % ---- tip 6: pointed at mid-thickness (section: a lens of two parabolic arcs, 46 long) ----
+  \col{519.5}{-1.52}
+  \begin{scope}[shift={(\S,0)}]
+    \draw[outline] (60.5,-415.5) -- (\X+46,-415.5) .. controls (\X+15.33,-415.5) and (\X+7.67,-417.83)
+      .. (\X,-422.5) .. controls (\X+7.67,-427.17) and (\X+15.33,-429.5) .. (\X+46,-429.5) -- (60.5,-429.5);
+    \secbreak{60.5}
+    \planform{30}{60.5}
+    \tipmarks{571}{60.5}{6}{\cong}{0.0}
+  \end{scope}
+  \csvpath{tip6}{outline}
+  \csvpath{core6}{dotted guide}
+
+  \node[panel, anchor=base east] at (632,-762) {(b)};
+\end{tikzpicture}
+\end{document}

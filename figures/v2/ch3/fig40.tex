@@ -1,0 +1,25 @@
+% Chapter 3, Figure 40: fin-body interference factors against d/b (scan: figures/ch3/fig40.png, PDF 447).
+% Curves: fig40.py, slender-body theory (Pitts, Nielsen and Kaattari, NACA Report 1307, the source of the Datcom
+% chart the 1973 figure is after): K_F(B) by the report's K_W(B) formula, K_B(F) = (1 + d/b)^2 - K_F(B); both meet
+% at (1.0, 2.0). Grid at the printed spacing (0.05 in d/b, 0.1 in K), labels every 0.1 and 0.2 as printed.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr grid, grid=both,
+      width=4.2in, height=2.6in,
+      xmin=0, xmax=1, xtick={0,0.1,...,1.0}, minor xtick={0.05,0.15,...,0.95},
+      xticklabels={0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0},
+      ymin=0, ymax=2, ytick={0,0.2,...,2.0}, minor ytick={0.1,0.3,...,1.9},
+      yticklabels={0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0},
+      xlabel={$\dfrac{d}{b}$},
+      ylabel={$K_{F(B)}$\\ or\\ $K_{B(F)}$},
+      ylabel style={rotate=-90, anchor=east, align=center}]
+    \addplot[s1, solid] table[x=tau, y=KFB, col sep=comma] {figures/v2/ch3/fig40.csv};
+    \addplot[s2, solid] table[x=tau, y=KBF, col sep=comma] {figures/v2/ch3/fig40.csv};
+    % direct labels, as printed: K_F(B) below its curve, K_B(F) to the right of its curve
+    \node[fill=white, inner sep=1.5pt] at (axis cs:0.30,1.12) {$K_{F(B)}$};
+    \node[fill=white, inner sep=1.5pt] at (axis cs:0.645,0.86) {$K_{B(F)}$};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

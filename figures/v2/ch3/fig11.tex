@@ -1,0 +1,74 @@
+% Chapter 3, Figure 11: notation of the surface integrals (26)-(27) (scan: figures/ch3/fig11.png, PDF 333).
+% A nose body truncated at its base, in the house orthographic view (elevation 32 deg, azimuth 45 deg): TikZ x
+% along the body's axis from the tip (0,0,0) to the base (L,0,0), y and z the transverse axes through the base
+% centre (the three lines of the 1973 art, drawn as centre lines). The body is the paraboloid r = R sqrt(x/L)
+% with L/R = 5 (fineness 2.5): of the exact nose shapes, the one that matches the 1973 outline (fig11.py: the
+% 1973 drawing is this body in this very view; overlay mean 1.0 px, 95% within 2.8 px). Its outline is exact:
+% the silhouettes, where the surface normal (-r', cos phi, sin phi) is normal to the view c, satisfy
+% cos(phi - phi_c) = -(c_x/|c_yz|) r' (phi_c the direction of c round the axis), joined round the blunt
+% tip, and the base rim, seen where its normal faces the viewer, hidden (dashed) on the far side.
+% The element dS on the surface at x = 1.57 R, phi = 98.5 deg (where the 1973 art draws it; fig11.py), its
+% sides along the meridian and round the body; the unit normal n and the unit tangent t (along the meridian,
+% towards the base) from its centre, drawn the same length. V, the free stream, along the axis ahead of the
+% nose. The art letters the vectors with overbars; set with arrows as in the caption and text (\vec).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[tamr view=0.83]
+  \def\R{1}\def\L{5}            % base radius, length
+  \def\xs{1.57}\def\ps{98.5}    % the element dS: station, angle round the axis (from +y towards +z)
+  \def\hx{0.2}\def\hp{12}       % its half length along the meridian, half angle round the body
+  \def\lv{0.85}                 % length of the unit vectors n and t as drawn
+  % the view: c = (cx, cy, cz); the silhouettes: cos(phi - phc) = -k/u, u = sqrt(x/L), k = cx R/(2 L |c_yz|)
+  \getview
+  \pgfmathsetmacro\amp{sqrt(\viewy*\viewy+\viewz*\viewz)}
+  \pgfmathsetmacro\phc{atan2(\viewz,\viewy)}
+  \pgfmathsetmacro\kk{-\viewx*\R/(2*\L*\amp)}
+  \pgfmathsetmacro\psb{acos(-\kk)}            % the silhouettes meet the base rim at phc +- psb
+  % the body's outline: the seen arc of the base rim, one silhouette to the tip, the other back
+  \draw[outline, fill=white]
+    plot[domain={-\psb}:{\psb}, samples=61, variable=\t] (\L, {\R*cos(\phc+\t)}, {\R*sin(\phc+\t)})
+    -- plot[domain=1:0, samples=90, variable=\w]
+       ({\L*(\kk+(1-\kk)*\w*\w)^2},
+        {\R*(\kk+(1-\kk)*\w*\w)*cos(\phc+acos(max(-1,-\kk/(\kk+(1-\kk)*\w*\w))))},
+        {\R*(\kk+(1-\kk)*\w*\w)*sin(\phc+acos(max(-1,-\kk/(\kk+(1-\kk)*\w*\w))))})
+    -- plot[domain=0:1, samples=90, variable=\w]
+       ({\L*(\kk+(1-\kk)*\w*\w)^2},
+        {\R*(\kk+(1-\kk)*\w*\w)*cos(\phc-acos(max(-1,-\kk/(\kk+(1-\kk)*\w*\w))))},
+        {\R*(\kk+(1-\kk)*\w*\w)*sin(\phc-acos(max(-1,-\kk/(\kk+(1-\kk)*\w*\w))))})
+    -- cycle;
+  % the far half of the base rim, hidden
+  \draw[hidden] plot[domain={\psb}:{360-\psb}, samples=61, variable=\t] (\L, {\R*cos(\phc+\t)}, {\R*sin(\phc+\t)});
+  % centre lines: the body's axis and the transverse axes through the base centre, each drawn outwards from
+  % the centre so that they cross on a dash
+  \draw[centerline] (\L,0,0) -- (-0.45,0,0);
+  \draw[centerline] (\L,0,0) -- ({\L+2.4},0,0);
+  \draw[centerline] (\L,0,0) -- (\L,2.3,0);
+  \draw[centerline] (\L,0,0) -- (\L,-2.3,0);
+  \draw[centerline] (\L,0,0) -- (\L,0,1.65);
+  \draw[centerline] (\L,0,0) -- (\L,0,-2.1);
+  % the element dS: x = xs -+ hx, phi = ps -+ hp on the surface r = R sqrt(x/L)
+  \tikzset{declare function={rb(\x)=\R*sqrt((\x)/\L);}}
+  \draw[outline, fill=wash]
+    plot[domain={\xs-\hx}:{\xs+\hx}, samples=9, variable=\x] (\x, {rb(\x)*cos(\ps-\hp)}, {rb(\x)*sin(\ps-\hp)})
+    -- plot[domain={\ps-\hp}:{\ps+\hp}, samples=9, variable=\t]
+       ({\xs+\hx}, {rb(\xs+\hx)*cos(\t)}, {rb(\xs+\hx)*sin(\t)})
+    -- plot[domain={\xs+\hx}:{\xs-\hx}, samples=9, variable=\x] (\x, {rb(\x)*cos(\ps+\hp)}, {rb(\x)*sin(\ps+\hp)})
+    -- plot[domain={\ps+\hp}:{\ps-\hp}, samples=9, variable=\t]
+       ({\xs-\hx}, {rb(\xs-\hx)*cos(\t)}, {rb(\xs-\hx)*sin(\t)})
+    -- cycle;
+  % its centre, the unit normal n = (-r', cos, sin)/sqrt(1 + r'^2) and the unit tangent t = (1, r' cos, r' sin)/...
+  \pgfmathsetmacro\rs{\R*sqrt(\xs/\L)}
+  \pgfmathsetmacro\dr{\R/(2*sqrt(\xs*\L))}
+  \pgfmathsetmacro\nn{sqrt(1+\dr*\dr)}
+  \coordinate (P) at (\xs, {\rs*cos(\ps)}, {\rs*sin(\ps)});
+  \draw[thin vec] (P) -- ++({-\lv*\dr/\nn}, {\lv*cos(\ps)/\nn}, {\lv*sin(\ps)/\nn})
+    node[anchor=south east, inner sep=1pt] {$\vec{n}$};
+  \draw[thin vec] (P) -- ++({\lv/\nn}, {\lv*\dr*cos(\ps)/\nn}, {\lv*\dr*sin(\ps)/\nn})
+    node[anchor=west, inner sep=2pt] {$\vec{t}$};
+  \node[anchor=north east, inner sep=1pt] at ({\xs-\hx}, {rb(\xs-\hx)*cos(\ps+\hp)}, {rb(\xs-\hx)*sin(\ps+\hp)}) {$dS$};
+  % the free stream, along the axis ahead of the nose
+  \draw[vec] (-2.3,0,0) -- (-0.95,0,0);
+  \node[anchor=south east, inner sep=2pt] at (-1.35,0,0) {$\vec{V}$};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,39 @@
+% Chapter 3, Figure 32: drag coefficient of a paraboloidal nose against its fineness ratio L/d (scan:
+% figures/ch3/fig32.png; after Stine). The curve is digitized from the scan by fig32.py (no equation in the
+% book); overlay on the scan (fig32.calib.json): 95% of the points within 0 px of the ink, 95% of the traced
+% ink centre line within 0.39 px of the curve.
+% The inset is drawn in the scan's pixels at the plot's scale (the axes are 443.5 x 288 px on the scan, 4.2 in
+% wide here): a paraboloid of revolution (r ~ sqrt(x) from the tip, as the scan's outline: L = 219 px,
+% d = 55 px, L/d = 4) with its flat base, on its centre line, L dimensioned below and d at the right.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \def\u{0.024054cm}   % one scan pixel
+  \begin{axis}[tamr,
+      width=443.5*\u, height=288*\u,
+      xmin=0, xmax=4, xtick={0,...,4}, minor xtick={0.5,1.5,2.5,3.5},
+      ymin=0, ymax=2, ytick={0,0.5,...,2}, yticklabels={0,0.5,1.0,1.5,2.0},
+      minor ytick={0.25,0.75,1.25,1.75},
+      xlabel={$\dfrac{L}{d}$},
+      ylabel={$\CD$}, ylabel style={rotate=-90, anchor=east}]
+    \addplot[series1] table[x=x, y=y, col sep=comma] {figures/v2/ch3/fig32.csv};
+    \coordinate (O) at (axis cs:0,0);
+  \end{axis}
+  % the inset, in the scan's pixels (y down) from its axes' origin (88, 305.5)
+  \begin{scope}[shift={(O)}, x=\u, y=-\u, xshift=-88*\u, yshift=305.5*\u]
+    \draw[centerline] (262,124.5) -- (508,124.5);
+    \begin{scope}[shift={(276,124.5)}]
+      \rocketoutline[parabolic]{219/27.5}
+    \end{scope}
+    % L below
+    \draw[extension] (276,129) -- (276,186);
+    \draw[extension] (495,155) -- (495,186);
+    \dimline{(276,179)}{(495,179)}{$L$}
+    % d at the right
+    \draw[extension] (499,97) -- (528,97);
+    \draw[extension] (499,152) -- (528,152);
+    \dimline{(520,97)}{(520,152)}{$d$}
+  \end{scope}
+\end{tikzpicture}
+\end{document}

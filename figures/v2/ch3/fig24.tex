@@ -1,0 +1,32 @@
+% Chapter 3, Figure 24: pressure coefficient on a circular cylinder (scan: figures/ch3/fig24.png, after Hoerner).
+% Curves: fig24.py. Theory computed, C_p = 1 - 4 sin^2(phi) (the figure's lettering and the text); the two
+% average experimental curves digitized (R_d = 3 x 10^5 supercritical, 6 x 10^4 subcritical). phi is measured
+% from point A of Fig 23 (B = 90 deg, C = 180 deg). Theory solid, 3 x 10^5 dashed, 6 x 10^4 dash-dot (series1-3).
+% The 1973 art has no ordinate title; C_p is set at the axis (the curves' quantity, from the theory's label).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr grid, grid=both,
+      width=4.2in, height=2.9in,
+      xmin=0, xmax=180, ymin=-3, ymax=1,
+      xtick={0,60,120,180}, xticklabels={$0\dg$,$60\dg$,$120\dg$,$180\dg$},
+      minor xtick={20,40,80,100,140,160},
+      ytick={-3,-2,-1,0,1},
+      xlabel={$\varphi$},
+      ylabel={$C_p$}, ylabel style={rotate=-90, anchor=east}]
+    \addplot[series1] table[x=phi, y=cp, col sep=comma] {figures/v2/ch3/fig24.csv};
+    \addplot[series2] table[x=phi, y=cp, col sep=comma] {figures/v2/ch3/fig24-r3e5.csv};
+    \addplot[series3] table[x=phi, y=cp, col sep=comma] {figures/v2/ch3/fig24-r6e4.csv};
+    % direct labels (the house label size, \small), each above its plateau in a white knock-out of the gridlines:
+    % 6 x 10^4 at the right, in a gap of the -1 gridline, as printed; 3 x 10^5 left of the theory's rising branch
+    % (at the right, as printed, the computed theory curve would run behind it: it crosses C_p = -0.4 at 143.7
+    % deg); no curve passes behind any label. The theory's formula right of its rising branch.
+    \begin{scope}[inner sep=1.5pt]
+      \node[anchor=south east, fill=white] at (axis cs:140,-0.40) {$R_d = 3 \times 10^{5}$};
+      \node[anchor=south east, fill=white] at (axis cs:179,-1.08) {$R_d = 6 \times 10^{4}$};
+      \node[anchor=west, fill=white] at (axis cs:118,-2.42) {$C_p = 1 - 4\sin^2\varphi$};
+    \end{scope}
+  \end{axis}
+\end{tikzpicture}
+\end{document}

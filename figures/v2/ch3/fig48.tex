@@ -1,0 +1,54 @@
+% Chapter 3, Figure 48: the Javelin rocket with its BC-74 nose, dimensions in centimetres (scan: figures/ch3/fig48.png).
+% Drawn to its lettered dimensions at 1:3 (coordinates are the rocket's centimetres: nose tip at the origin, axis
+% along +x). Tangent-ogive nose 9.14 long (the text: "a tangent-ogive nose"), body diameter 1.93, overall 31.75;
+% four fins, two in profile and the pair at right angles seen edge-on on the axis (thickness 0.238, 3/32-in balsa,
+% the text). Each fin: root leading edge 3.30 ahead of the base, leading edge swept 1.91, tip chord 2.07, span
+% 4.19 from the body, trailing edge square to the axis down to 0.68 above the body, then a chamfer to the base.
+% The lettering closes exactly: 31.75 - 3.30 + 1.91 + 2.07 = 32.43 = 31.75 + 0.68, so the chamfer is at 45 degrees
+% and the trailing edge stands 0.68 aft of the base (the text's root chord 3.97 is 3.30 + 0.68 to the trailing
+% edge line; corrections D26 keeps the labels as printed). The 1973 drawing is not to scale in the fins (root
+% leading edge to base 3.48, sweep 1.81, tip chord 2.29 at the body's scale): drawn to the labels.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.333333cm, y=0.333333cm]
+  \def\R{0.965}                                   % body radius (1.93/2)
+  \def\Lb{31.75}\def\Ln{9.14}                     % overall length, nose length
+  \pgfmathsetmacro\xle{\Lb-3.30}                  % root leading edge, 28.45
+  \pgfmathsetmacro\xtl{\xle+1.91}                 % tip leading edge, 30.36
+  \pgfmathsetmacro\xte{\xtl+2.07}                 % trailing edge, 32.43
+  \pgfmathsetmacro\ytip{\R+4.19}                  % fin tip, 5.155
+  \pgfmathsetmacro\ych{\R+0.68}                   % top of the chamfer, 1.645
+  \def\th{0.119}                                  % half the fin thickness
+  % ---- the rocket ----------------------------------------------------------------------------------------
+  \draw[centerline] (-2.4,0) -- (34.3,0);
+  \rocketoutline{\Ln/\R, \Lb/\R}
+  \foreach \s in {1,-1}
+    \draw[outline, yscale=\s] (\xle,\R) -- (\xtl,\ytip) -- (\xte,\ytip) -- (\xte,\ych) -- (\Lb,\R);
+  \draw[edge fin] (\xle,-\th) rectangle (\xte,\th);
+  % ---- overall and nose lengths, root leading edge to base (above) -----------------------------------------
+  \draw[extension] (0,0.45) -- (0,10.6);
+  \draw[extension] (\Ln,\R+0.35) -- (\Ln,8.4);
+  \draw[extension] (\Lb,\R+0.35) -- (\Lb,10.6);
+  \draw[extension] (\xle,\R+0.35) -- (\xle,8.4);
+  \dimline{(0,10.2)}{(\Lb,10.2)}{31.75}
+  \dimline{(0,8.0)}{(\Ln,8.0)}{9.14}
+  \dimline{(\xle,8.0)}{(\Lb,8.0)}{3.30}
+  % ---- body diameter ----------------------------------------------------------------------------------------
+  \tikzset{dim stub length=4.5mm}
+  \dimout{(12.65,-\R)}{(12.65,\R)}{1.93}
+  % ---- fin span, chamfer height (upper fin) ------------------------------------------------------------------
+  \draw[extension] (\xtl-0.35,\ytip) -- (25.9,\ytip);
+  \dimline[rotate=90]{(26.3,\R)}{(26.3,\ytip)}{4.19}
+  \draw[extension] (\xte+0.35,\ych) -- (34.0,\ych);
+  \draw[extension] (\Lb+0.35,\R) -- (34.0,\R);
+  \tikzset{dim stub length=3.6mm}
+  \dimout[rotate=90, anchor=west]{(33.6,\R)}{(33.6,\ych)}{0.68}
+  % ---- leading-edge sweep and tip chord (lower fin) --------------------------------------------------------
+  \draw[extension] (\xle,-\R-0.35) -- (\xle,-8.0);
+  \draw[extension] (\xtl,-\ytip-0.35) -- (\xtl,-9.5);
+  \draw[extension] (\xte,-\ytip-0.35) -- (\xte,-9.5);
+  \dimout{(\xtl,-7.6)}{(\xle,-7.6)}{1.91}
+  \dimout{(\xtl,-9.1)}{(\xte,-9.1)}{2.07}
+\end{tikzpicture}
+\end{document}
