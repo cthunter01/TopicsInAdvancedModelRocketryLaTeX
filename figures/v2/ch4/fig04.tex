@@ -1,0 +1,46 @@
+% Chapter 4, Figure 4 of 1973 (scan: figures/ch4/fig04.png): approximating the B4 thrust-time curve by a
+% piecewise-linear fit. Shown only in the Errata and Supplement Part, beside its 1994 replacement
+% (figures/v2/supplement/ch4-fig04-1994.tex, which Chapter 4 uses as Figure 4). The 1994 figure is this drawing
+% reproduced larger, with the same lettering (I_t, F_m, F_s, t_1, t_2, t_b, the legend, B4), so the two files draw
+% the same figure at the same size and differ only in the data file they read (each figure reads its own CSV;
+% the two hold the same numbers).
+% "Actual curve" (solid, s1): the shared B4 tracing figures/v2/common/b4.csv (corrections/v2-figures.md, rule 5),
+% traced from the 1994 scan; on this scan 95% of its points lie within 1 px of the ink. "Approximation" (dashed,
+% s2): COMPUTED from eqs. (73a)-(73c) with the lettered F_m = 13.0 N, F_s = 3.5 N, t_1 = t_m = 0.14 sec,
+% t_2 = t_s = 0.22 sec, t_b = 1.20 sec (fig04.py); eq. (75) gives the lettered I_t = 5.0 N-sec. The drawn
+% descending leg bends near 5 N; the computed one is the straight line of eq. (73b) (overlay on this scan: 95% of
+% the points within 2 px, 0.34 mm). The approximation is drawn first, so the actual curve lies over it where they
+% meet (the peak, the burnout drop at t_b).
+% Frame as the approved Ch1 Fig 5(a) (same width, axes and label styles), tick labels as printed and as Ch1 Fig 3
+% (0, 0.2, ..., 1.0, 1.2; Ch1 Fig 5 sets 0.0 at the origin); the legend top left and the lettering
+% block where the drawing has them, the block typeset as a table aligned on "=" and the decimal points.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr,
+      width=4.2in, height=2.6in,
+      xmin=0, xmax=1.2, xtick={0,0.2,...,1.2}, xticklabels={0, 0.2, 0.4, 0.6, 0.8, 1.0, 1.2},
+      ymin=0, ymax=16, ytick distance=2,
+      xlabel={$t$ (sec)}, ylabel={$F$ (N)},
+      clip=false,
+      legend style={at={(axis cs:0.025,16.3)}, anchor=north west, nodes={inner sep=1pt}}]
+    \addplot[series2, forget plot] table[x=t, y=F, col sep=comma] {figures/v2/ch4/fig04.csv};
+    \addplot[series1] table[x=t, y=F, col sep=comma] {figures/v2/common/b4.csv};
+    \addlegendentry{Actual curve}
+    \addlegendimage{series2}
+    \addlegendentry{Approximation}
+    \node at (axis cs:0.53,1.8) {B4};
+    \node[anchor=north west, inner sep=0pt] at (axis cs:0.47,11.0) {%
+      \sisetup{table-format=2.2}%
+      \begin{tabular}{@{}l@{${}={}$}S@{\enspace}l@{}}
+        $I_t$ & 5.0  & N-sec \\
+        $F_m$ & 13.0 & N \\
+        $F_s$ & 3.5  & N \\
+        $t_1$ & 0.14 & sec \\
+        $t_2$ & 0.22 & sec \\
+        $t_b$ & 1.20 & sec
+      \end{tabular}};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

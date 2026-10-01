@@ -1,0 +1,50 @@
+% Chapter 4, Figure 2: resolution of the trajectory along rectangular Cartesian coordinates (scan:
+% figures/ch4/fig02.png, PDF 551).
+% The axes are drawn at right angles (standing rule 4: the 1973 x axis is oblique, rising about 31 deg, and its
+% velocity triangle follows it). The trajectory is computed (fig02.py: eqs. (12)-(13) by the book's nonvertical
+% method, eqs. (125)-(131) then (106)-(115), for Table 2's B4 model launched at theta_o = 22 deg, the angle matched
+% to the scan; overlay 95% within 1.0 px), drawn to scale in x and y (1 m = 1.69 scan px), from the launch point
+% to the rocket's position, where its tangent makes theta = 50 deg with the vertical (fig02-end.csv).
+% The rocket icon (the house model) lies along that tangent; the velocity triangle starts just ahead of its nose,
+% as in 1973: v along the tangent, xdot = v_x horizontal, ydot = v_y vertical (eqs. (14)-(15): cos theta = ydot/v,
+% sin theta = xdot/v), theta measured from a vertical reference line (guide) to v.
+% Lettering as printed: v, x, y without vector arrows; "x = y = 0" with the digit 0.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \pgfplotstableread[col sep=comma]{figures/v2/ch4/fig02-end.csv}\rocketpos
+  \pgfplotstablegetelem{0}{x}\of\rocketpos \let\Ex\pgfplotsretval
+  \pgfplotstablegetelem{0}{y}\of\rocketpos \let\Ey\pgfplotsretval
+  \pgfplotstablegetelem{0}{theta}\of\rocketpos \let\Eth\pgfplotsretval
+  \def\px{0.016933cm}  % one scan pixel at the printed size (150 dpi)
+  \begin{axis}[tamr sketch,
+      x=1.69*\px, y=1.69*\px,                     % 1 m = 1.69 scan px, the same in x and y
+      xmin=0, xmax=283, ymin=0, ymax=376,
+      xlabel={$x$}, ylabel={$y$}, clip=false]
+    \addplot[s1] table[x=x, y=y, col sep=comma] {figures/v2/ch4/fig02.csv};
+    \coordinate (O) at (axis cs:0,0);
+    \coordinate (E) at (axis cs:\Ex,\Ey);
+    \node[anchor=west, inner sep=2pt] at (axis cs:96,180) {Trajectory};
+  \end{axis}
+  % the launch point
+  \node[point] at (O) {};
+  \node[anchor=north west, align=left, inner sep=0pt] at ($(O)+(-28*\px,-7*\px)$)
+    {Launch point\\$x = y = 0$};
+  % the rocket, tail at the end of the trajectory, along its tangent (theta from the vertical)
+  \pgfmathsetmacro\dir{90-\Eth}
+  \def\rlen{66}   % rocket length, scan px
+  \coordinate (N) at ($(E)+(\dir:\rlen*\px)$);
+  \pic[rotate=180+\dir, scale=\rlen/6.4*0.016933] at (N) {rocket={model, centerline=false, outline style={thin line}}};
+  % the velocity triangle, from P just ahead of the nose
+  \def\vlen{134}  % |v|, scan px
+  \coordinate (P) at ($(N)+(\dir:7*\px)$);
+  \coordinate (Vx) at ($(P)+({\vlen*sin(\Eth)*0.016933},0)$);
+  \coordinate (V) at ($(P)+(\dir:\vlen*\px)$);
+  \draw[guide] (P) -- ++(0,98*\px);
+  \anglemark[at=(P), arc={angle arc single}]{(90:1)}{(\dir:1)}{74*0.016933}{$\theta$}
+  \draw[vec] (P) -- (Vx) node[pos=0.62, below=2pt] {$\dot{x} = v_x$};
+  \draw[vec] (Vx) -- (V) node[midway, right=2pt] {$\dot{y} = v_y$};
+  \draw[vec] (P) -- (V) node[pos=0.78, above left=0pt and -1pt] {$v$};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,85 @@
+% Chapter 4, Figure 1: model rocket in flight at time t (a) and at t + dt (b) (scan: figures/ch4/fig01.png,
+% PDF 546).
+% The house model rocket (tamrfig `model', units of its length 6.4, 0.6 cm each), nose up and to the right, its
+% axis 60 degrees above the horizontal as on the scan, with the house exhaust plume (the 1973 spindle behind the
+% tail; 0.72 of the rocket's length, 1973 about 0.6); the C.G. at 0.72 of the length from the nose (as drawn; the
+% book gives no value).
+% Vectors as in Chapter 1 Figures 6-8 (the house `vec'), lettered with arrows as the text sets them (the 1973
+% hooked overbars; STYLE s.15, as Chapter 3 Figure 1): the velocity v vertical from the C.G.; the resultant
+% external force E into the C.G. from the upper right, at 30 deg below the horizontal (1973: it ends on the body
+% just below the C.G.).
+% (b) is (a) a time dt later: v + dv is the resultant of v and dv (head to tail; dv 68 deg above the horizontal,
+% |dv| = 0.55 |v|, as drawn); the expelled mass dm_e is the hatched slice of exhaust just behind the nozzle exit
+% (hatch back, so the lines cross the 60 deg axis at 75 deg; 0.8 units deep);
+% from its aft face the exhaust velocity c (relative to the rocket, backwards along the axis) and v (the same
+% vector as at the C.G.) add head to tail to c + v, the slice's velocity relative to the ground (eq. (4)).
+% The vectors are longer against the rocket than in 1973 (|v| = 2.9 units, 1973 about 2.0; |c| = 4.2, 1973 about
+% 3.4), so the triangle at the C.G. rises clear of the nose and its label v + dv sits beside its head (the 1973
+% label lies across the body); c + v then points 19 deg below the horizontal (1973 about 35 deg).
+% The state lists are typeset with their two columns as lettered.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.6cm, y=0.6cm]
+  \def\ax{60}          % axis angle above the horizontal
+  \def\L{6.4}\def\cgs{4.6}\def\plume{4.6}
+  \def\vl{2.9}         % |v|
+  \def\cl{4.2}         % |c|
+  \def\El{4.0}\def\Ea{210}   % E: length, direction
+  % \rocket: the rocket with its nose tip at the origin of the current scope
+  \newcommand{\rocket}{%
+    \pic[rotate=180+\ax] {rocket={model, centerline=false, plume=\plume}};
+    \draw[centerline] (\ax:0.3) -- (180+\ax:\L+\plume+0.3);
+    \coordinate (cg) at (180+\ax:\cgs);}
+  % ---------------- (a): time t
+  \begin{scope}
+    \rocket
+    \draw[vec] (cg) -- ++(0,\vl) node[pos=0.6, left=2pt] {$\vec{v}$};
+    \draw[vec, shorten >=2.8pt] ($(cg)+(\Ea-180:\El)$) -- (cg) node[pos=0.45, below right=0pt and 0pt] {$\vec{E}$};
+    \node[cg mark] at (cg) {};
+    \node[anchor=north west, inner sep=0pt] at (-11,1.9) {%
+      \begin{tabular}{@{}l@{\hspace{0.6em}}l@{}}
+        \multicolumn{2}{@{}l}{Time $= t$}\\
+        Rocket & mass $= m(t)$\\
+        Rocket & velocity $= \vec{v}$\\
+        Rocket & momentum $= \vec{p}$
+      \end{tabular}};
+    \node[panel, anchor=south east] at (3.4,-9.5) {(a)};
+  \end{scope}
+  % ---------------- (b): time t + dt
+  \begin{scope}[shift={(0,-13.2)}]
+    % the expelled mass: a hatched slice of the exhaust just behind the nozzle exit
+    \def\slab{0.8}
+    \begin{scope}[shift={(180+\ax:\L)}, rotate=180+\ax]
+      \clip \plumeshapeb{1.3}{0.2}{\plume};
+      \fill[hatch back] (0,-1) rectangle (\slab,1);   % 135 deg: 75 deg across the axis
+      \draw[thin line] (\slab,-1) -- (\slab,1);
+    \end{scope}
+    \rocket
+    \coordinate (S) at (180+\ax:\L+\slab);    % the aft face of the slice
+    % at the C.G.: v, dv, v + dv
+    \coordinate (vt) at ($(cg)+(0,\vl)$);
+    \coordinate (dvt) at ($(vt)+(68:1.6)$);
+    \draw[vec] (cg) -- (vt) node[pos=0.55, left=2pt] {$\vec{v}$};
+    \draw[vec] (vt) -- (dvt) node[pos=0.5, left=2pt] {$d\vec{v}$};
+    \draw[vec] (cg) -- (dvt) node[pos=1, anchor=south west, inner sep=1.5pt, xshift=1pt] {$\vec{v} + d\vec{v}$};
+    \draw[vec, shorten >=2.8pt] ($(cg)+(\Ea-180:\El)$) -- (cg) node[pos=0.45, below right=0pt and 0pt] {$\vec{E}$};
+    \node[cg mark] at (cg) {};
+    % at the slice: c (backwards along the axis), then v, make c + v
+    \coordinate (ct) at ($(S)+(180+\ax:\cl)$);
+    \coordinate (cvt) at ($(ct)+(0,\vl)$);
+    \draw[vec] (S) -- (ct) node[pos=0.5, below right=0pt and 0pt] {$\vec{c}$};
+    \draw[vec] (ct) -- (cvt) node[pos=0.5, left=2pt] {$\vec{v}$};
+    \draw[vec] (S) -- (cvt) node[pos=0.75, above left=0pt and -2pt] {$\vec{c} + \vec{v}$};
+    \callout{($(180+\ax:\L+\slab/2)+(\ax-90:0.22)$)}{(-1.2,-7.25)}{$dm_e$}
+    \node[anchor=north west, inner sep=0pt] at (-11,1.9) {%
+      \begin{tabular}{@{}l@{\hspace{0.6em}}l@{}}
+        \multicolumn{2}{@{}l}{Time $= t + dt$}\\
+        Rocket & mass $= m(t) - dm_e$\\
+        Rocket & velocity $= \vec{v} + d\vec{v}$\\
+        Rocket & momentum $= \vec{p} + d\vec{p}$
+      \end{tabular}};
+    \node[panel, anchor=south east] at (3.4,-9.5) {(b)};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

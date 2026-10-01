@@ -1,0 +1,63 @@
+% Chapter 4, Figure 3: assembly of the burning-phase and coasting-phase solutions for a three-staged model rocket
+% (scan: figures/ch4/fig03.png, PDF 571).
+% A schematic: the book gives no values, so the event altitudes are the 1973 drawing's (scan pixels at 150 dpi,
+% drawn at the printed size, launch at 0): first-stage burnout 71, second 180, third 325, apex 635 (so y_1 : y_2 :
+% y_3 : y_c = 71 : 109 : 145 : 310). The vertical flight path (s1, as the trajectories of Figures 2 and 10-15)
+% bends over into the horizontal rocket at the apex; the spent first and second stages (fin cans: the tail on
+% the left, as printed) peel off on short arcs. Each event has a dot on the path, an extension line to the
+% dimension columns (y_1, y_2, y_3, y_c inside; y_max outside) and a leader to its label (an arrow to the nose
+% at the apex, as printed). The labels are typeset as lettered ("O" is the digit 0; y_max with an upright max).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.016933cm, y=0.016933cm]   % one unit = one scan pixel at the printed size
+  \def\px{127}    % the flight path
+  \def\ci{60}     % inner dimension column (y_1, y_2, y_3, y_c)
+  \def\co{22}     % outer dimension column (y_max)
+  \def\tx{275}    % left edge of the labels
+  \def\yo{0}\def\yi{71}\def\yii{180}\def\yiii{325}\def\ya{635}
+  \def\rb{13}     % radius of the bend into the apex
+  % extension lines (left of the path) and leaders (right of it)
+  \foreach \y in {\yi,\yii,\yiii} {
+    \draw[extension] (\ci-7,\y) -- (\px-5,\y);
+    \draw[leader] (\px+5,\y) -- (\tx-4,\y);}
+  \draw[extension] (\co-7,\yo) -- (\px-5,\yo);
+  \draw[leader] (\px+5,\yo) -- (\tx-4,\yo);
+  \draw[extension] (\co-7,\ya) -- (\px-6,\ya);
+  % dimensions
+  \dimline{(\ci,\yo)}{(\ci,\yi)}{$y_1$}
+  \dimline{(\ci,\yi)}{(\ci,\yii)}{$y_2$}
+  \dimline{(\ci,\yii)}{(\ci,\yiii)}{$y_3$}
+  \dimline{(\ci,\yiii)}{(\ci,\ya)}{$y_c$}
+  \dimline{(\co,\yo)}{(\co,\ya)}{$y_{\max}$}
+  % the flight path, bending over into the rocket at the apex
+  \draw[s1, curve] (\px,\yo) -- (\px,\ya-\rb) arc[start angle=180, end angle=90, radius=\rb];
+  % the rocket at the apex (the house model, nose to the right): 72 px long
+  \pic[rotate=180, scale=72/6.4] at (\px+\rb+72,\ya) {rocket={model, centerline=false, outline style={thin line}}};
+  \draw[leader arrow] (\tx-4,\ya) -- (\px+\rb+72+3,\ya);
+  % the spent stages: a short arc from the burnout point to the tail of a fin can
+  \foreach \y in {\yi,\yii} {
+    \draw[s1, curve] (\px,\y) arc[start angle=180, end angle=90, radius=15];
+    \begin{scope}[shift={(\px+15,\y+15)}]
+      \draw[thin line, fill=white] (0,-2) rectangle (19,2);
+      \foreach \s in {1,-1}
+        \draw[thin line, yscale=\s] (9.5,2) -- (5,12) -- (0,12) -- (0,2);
+    \end{scope}}
+  % event points
+  \foreach \y in {\yo,\yi,\yii,\yiii} \node[point] at (\px,\y) {};
+  % labels
+  \tikzset{event/.style={anchor=mid west, inner sep=0pt}, values/.style={anchor=north west, inner sep=0pt,
+    align=left, font=\small}}
+  \node[event] (a) at (\tx,\ya) {Flight apex:};
+  \node[values] at ([yshift=-3pt]a.south west) {$t = t_1 + t_2 + t_3 + t_c$,\quad $v = 0$,\\
+    $y = y_b + y_c = y_{\max}$};
+  \node[event] (b3) at (\tx,\yiii) {3rd stage burnout:};
+  \node[values] at ([yshift=-3pt]b3.south west) {$t = t_1 + t_2 + t_3$,\quad $v = v_3 = v_b$,\\
+    $y = y_1 + y_2 + y_3 = y_b$};
+  \node[event] (b2) at (\tx,\yii) {2nd stage burnout:};
+  \node[values] at ([yshift=-3pt]b2.south west) {$t = t_1 + t_2$,\quad $v = v_2$,\quad $y = y_1 + y_2$};
+  \node[event] (b1) at (\tx,\yi) {1st stage burnout:};
+  \node[values] at ([yshift=-3pt]b1.south west) {$t = t_1$,\quad $v = v_1$,\quad $y = y_1$};
+  \node[event] at (\tx,\yo) {Launch:\quad $t = 0$,\quad $v = 0$,\quad $y = 0$};
+\end{tikzpicture}
+\end{document}

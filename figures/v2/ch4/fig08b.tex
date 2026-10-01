@@ -1,0 +1,33 @@
+% Chapter 4, Figure 8(b): percent error in y_b, F100 engine (scan: figures/ch4/fig08b.png).
+% Curves: digitized from the 1973 art by fig08b.py (the book gives neither the F100 thrust curve nor its
+% propellant mass, nor the transonic drag of the k_min curves below 0.17 kg, so the interval solution (83)-(87)
+% against eqs. (20), (21) and (27), (28) cannot be rerun); template fig06a.tex. Leader ends are points on the
+% fig08b.csv curves.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr,
+      width=4.0in, height=2.5in,
+      xmin=0.10, xmax=0.50, xtick={0.10,0.20,0.30,0.40,0.50}, minor xtick={0.15,0.25,0.35,0.45},
+      xticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=2},
+      ymin=-15, ymax=15, ytick distance=5,
+      xlabel={$m_o$ (kg)}, ylabel={Percent error in $y_b$},
+      legend pos=south east, legend style={nodes={inner sep=1pt}}]
+    \draw[muted, line width=0.4pt] (axis cs:0.10,0) -- (axis cs:0.50,0);
+    \addplot[series1] table[x=m0, y=fm_kmax, col sep=comma] {figures/v2/ch4/fig08b.csv};
+    \addlegendentry{Fehskens-Malewicki}
+    \addplot[series2] table[x=m0, y=cb_kmax, col sep=comma] {figures/v2/ch4/fig08b.csv};
+    \addlegendentry{Caporaso-Bengen}
+    \addplot[series1] table[x=m0, y=fm_kmin, col sep=comma] {figures/v2/ch4/fig08b.csv};
+    \addplot[series2] table[x=m0, y=cb_kmin, col sep=comma] {figures/v2/ch4/fig08b.csv};
+    % k labels with a leader to each method's curve for that k, placed as printed
+    \node (kmax) at (axis cs:0.1671,5.53) {\footnotesize $k_{\max}$};
+    \draw[leader] (kmax.north west) -- (axis cs:0.1435,10.616);
+    \draw[leader] (kmax.south) -- (axis cs:0.1618,2.818);
+    \node (kmin) at (axis cs:0.1680,13.86) {\footnotesize $k_{\min}$};
+    \draw[leader] (kmin.west) -- (axis cs:0.1272,12.645);
+    \draw[leader] (kmin.south) -- (axis cs:0.1697,9.106);
+  \end{axis}
+\end{tikzpicture}
+\end{document}

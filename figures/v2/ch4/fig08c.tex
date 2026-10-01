@@ -1,0 +1,33 @@
+% Chapter 4, Figure 8(c): percent error in y_max, F100 engine (scan: figures/ch4/fig08c.png).
+% Curves: digitized from the 1973 art by fig08c.py (the book gives neither the F100 thrust curve nor its
+% propellant mass, nor the transonic drag of the k_min curves below 0.17 kg, so the interval solution (83)-(87)
+% against eqs. (20), (21) and (27), (28) cannot be rerun); template fig06a.tex. The k_min curves keep their sharp
+% corners near 0.17 kg (each traced in two pieces, fig08c.py). Leader ends are points on the fig08c.csv curves.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr,
+      width=4.0in, height=2.5in,
+      xmin=0.10, xmax=0.50, xtick={0.10,0.20,0.30,0.40,0.50}, minor xtick={0.15,0.25,0.35,0.45},
+      xticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=2},
+      ymin=-15, ymax=15, ytick distance=5,
+      xlabel={$m_o$ (kg)}, ylabel={Percent error in $y_{\max}$},
+      legend pos=south east, legend style={nodes={inner sep=1pt}}]
+    \draw[muted, line width=0.4pt] (axis cs:0.10,0) -- (axis cs:0.50,0);
+    \addplot[series1] table[x=m0, y=fm_kmax, col sep=comma] {figures/v2/ch4/fig08c.csv};
+    \addlegendentry{Fehskens-Malewicki}
+    \addplot[series2] table[x=m0, y=cb_kmax, col sep=comma] {figures/v2/ch4/fig08c.csv};
+    \addlegendentry{Caporaso-Bengen}
+    \addplot[series1] table[x=m0, y=fm_kmin, col sep=comma] {figures/v2/ch4/fig08c.csv};
+    \addplot[series2] table[x=m0, y=cb_kmin, col sep=comma] {figures/v2/ch4/fig08c.csv};
+    % k labels with a leader to each method's curve for that k, placed as printed
+    \node (kmax) at (axis cs:0.1991,5.93) {\footnotesize $k_{\max}$};
+    \draw[leader] (kmax.north) -- (axis cs:0.1939,8.446);
+    \draw[leader] (kmax.south west) -- (axis cs:0.1791,3.926);
+    \node (kmin) at (axis cs:0.1174,2.53) {\footnotesize $k_{\min}$};
+    \draw[leader] (kmin.north east) -- (axis cs:0.1548,4.841);
+    \draw[leader] (kmin.north) -- (axis cs:0.1394,5.571);
+  \end{axis}
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,7 @@
+{"crop": "figures/ch4/fig12.png",
+ "note": "points: the tick marks, each set on its axis line as fitted through the ink. The y axis leans 1.04 deg to the right (5 px over its height) and the x axis falls 0.21 deg to the right, a skew of 0.83 deg that the lettering shares; the x ticks are even (95.5, 94.0, 94.0, 95.5 px per 200 m; the affine fit leaves 0.7 px). The frame convention of Figs 10, 12, 13 and 14 (fig10.py): x is read between the x ticks (xgrid: the tick columns on the x axis line, piecewise linear, extended by one tick step at both ends, the end interval repeated, as a safeguard for a point past the last tick) along lines parallel to the drawn y axis (lean: the fitted axis lines, x axis row = xaxis[0] col + xaxis[1], y axis col = yaxis[0] row + yaxis[1]); y is the affine fit of the points. digitize.py reads xgrid by column alone (it ignores lean), so its overlay of these curves is off by the lean; fig10.py prints the overlay with this mapping.",
+ "axes": {"main": {
+   "points": [[95.5, 320.87, 0, 0], [191, 321.22, 200, 0], [285, 321.56, 400, 0], [379, 321.89, 600, 0], [474.5, 322.24, 800, 0], [96.39, 321.5, 0, 0], [98.06, 229.5, 0, 200], [99.75, 136.5, 0, 400], [101.41, 44.7, 0, 600]],
+   "xgrid": [[0.0, -200], [95.5, 0], [191, 200], [285, 400], [379, 600], [474.5, 800], [570.0, 1000]],
+   "lean": {"xaxis": [0.0036, 320.53], "yaxis": [-0.01812, 102.22]}
+ }}}

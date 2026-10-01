@@ -66,10 +66,13 @@ slips), **v1** (a question about the text, not the figure).
 - **Ch3 Fig 22** (pilot sample). Caption $B = 1740$, text 1700, formula 1742.6 (v1 already notes the caption and
   text); curve C starts on curve A only with about 1742; curve A is drawn about 0.1 decade high. Computed on
   true log axes with the formula. **gate** (pilot)
-- **Ch4 Fig 11.** The book's own method (eqs. (83)-(87), 0.001 s steps, B4 from Fig 4 and Table 1) matches all
-  three captioned burnout points and the whole of curve (c), but for curves (a) and (b) the printed apex, impact
-  point and times differ badly after burnout (curve (a): computed apex 418 m at 7.07 s, printed 368 m at 5.60 s).
-  Recompute (and the printed times then disagree with the drawing) or digitize the printed curves. **gate**
+- **Ch4 Fig 11** DECIDED (user, 2026-10-01): computed by the book's 2-D method (eqs. (106)-(115) with the launch-rod
+  phase (125)-(131), dt = .001 s, theta_o = 30 deg, B4 by eqs. (73), mass by eq. (74), c = I_t/m_f), with the computed
+  apex and impact times marked. Burnout points computed against the caption: (a) (81.5, 131.1) vs 82/131, (b) (34.7,
+  51.2) vs 35/51, (c) (15.1, 18.8) vs 15/19. Times marked (computed vs 1973): (a) apex 7.07 vs 5.60, impact 19.16 vs
+  16.70; (b) 6.02 vs 6.20, 13.06 vs 14.30; (c) 2.72 vs 2.80, 5.70 vs 5.70. Apexes (338, 418), (207, 194), (38.7, 32.7) m;
+  impacts 487, 348, 62.7 m. The 1973 curves (a) and (b) leave the computation only after burnout (overlay by phase:
+  0 px to burnout); (c) agrees throughout. The y axis runs to 450 m for the higher computed apex of (a).
 - **Ch4 Fig 6** (pilot sample 6(a)). Computed with the book's own method (`figures/v2/ch4/trajectory.py`: the
   interval method (83)-(87) with the mass by eq. (74), which reproduces Table 2's "No disturbance" row; the
   approximations (20), (21), (27), (28), (67)), the curves keep the printed shapes but sit up to about 1
@@ -78,6 +81,10 @@ slips), **v1** (a question about the text, not the figure).
   masses, the percent-error formula (100 (approx - exact)/exact reproduces the shapes) or its 360/65 program's
   details; no single variant tried (g, a mass linear in time, thrust at the interval's end, dt) closes the gap
   at both ends. Keep the computed curves (the proposal) or trace the printed ones. **gate** (pilot)
+  Chapter 4 (2026-10-01): 6(b) overlay 95% at 4.0-5.4 px (0.7-0.9 mm), all four curves 0.5-0.7 point below the print
+  (FM k_max 1.46 against about 2 at 0.022; CB k_max -13.80 against about -13.3 at 0.10); 6(c) 95% at 4.0-9.0 px
+  (0.7-1.5 mm), 0.3 point low at 0.022 rising to about 1 point low at 0.10 (CB k_min -3.79 against about -2.8; FM
+  k_min -3.16 against about -2.2). Kept computed (pilot decision).
 - **Ch4 Figs 5, 7-10, 12-14** (engines B14, D4, F100, F7): the book does not give their thrust curves,
   propellant masses (and, for Fig 8, the transonic drag model), so these are digitized; Ch4 Figs 6, 11 and 16
   (B4) are computable. **rule** (compute-else-digitize)
@@ -341,6 +348,38 @@ corrected in the text (corrections/ch3.md D37).
 - 3D and rocket kit: a shorter-period phantom for small drawings (Fig 47 and Ch2 Fig 41 render short phantom
   segments solid); `hidden vec` (Fig 9); an axis-extension key on `\pic{rocket}` (Ch1 Figs 6-8, Ch3 Figs 1, 12);
   fins on a conical boattail in `\rocketfins` (Figs 50, 51).
+
+## Chapter 4 (workflow wf_f578bf90-3cd, 2026-10-01): for the Chapter 4 gate
+
+- **Fig 16 method.** Computed by Fehskens-Malewicki (eqs. (20), (21) with the coast (67)), the method Section 5.1
+  says such charts are made with (ch4-sec5.tex:82-84). The 1973 curves are this solution: overlay 95% within 1.0-1.4
+  px, against 2.0-3.2 px for the interval method (83)-(87) used for Figs 6 and 11 and 4-13 px for Caporaso-Bengen. The
+  Line of Bengen's maxima is the computed locus of the maxima (k .000032 at 700 m to .0016): 95% 3.6 px; its lower end
+  .0378 kg against about .040 drawn (placed by eye in 1973). Alternative: METHOD = 'interval' in fig16.py. DECIDED
+  (user, 2026-10-01): keep the closed form. **decided**
+- **Fig 4 pair in the supplement Part.** The 1994 Figure 4 is the 1973 drawing reproduced larger with the same
+  lettering, so the two redraws (the chapter's Figure 4 and the 1973 form shown beside it in the supplement Part) are
+  the same drawing at the same size, as for Ch1 Fig 2 and Ch2 Fig 36. **settled** (precedent)
+
+## Chapter 4 minor (logged only)
+
+- Fig 1: vectors drawn longer against the rocket than in 1973 (v 2.9 units against about 2.0, c 4.2 against 3.4) so
+  that v + dv can be lettered beside its vector; c + v then points 19 deg below the horizontal (1973 about 35); the
+  dm_e slice sits just aft of the nozzle exit, inside the plume (the text: dm_e has been expelled).
+- Fig 2: a generic trajectory, computed with Table 2's B4 model by eqs. (125)-(131) and (106)-(115) at theta_o = 22
+  deg (fitted to the scan; the book gives the figure no numbers), x and y axes at right angles (rule 4).
+- Fig 3: the event levels are the scan's; the flight path is a data curve (s1), as in Figs 2 and 15.
+- Figs 5, 7-9 (digitized): each panel keeps its printed m_o extent (e.g. Fig 7 .031-.124, Fig 8 .106-.450 kg); the book
+  does not state the twenty liftoff masses. Coincident printed curves stay coincident (Fig 5(b) the two FM curves;
+  Fig 9(a) FM .11-.15 kg); curves merging with the zero line are read from the merged run (about 0.1 point). The
+  inventory row of Fig 8(c) has the CB starts at .11 swapped (k_max starts at 9.5, k_min at 8.7, as the leaders show).
+- Figs 10, 12-14 (digitized): printed times kept; the caption's burnout points are not drawn, as in 1973; y axes run
+  half a tick step past the printed ends where an apex pokes above them (Fig 10 450, Fig 12 700, Fig 13 900, Fig 14
+  1400 m); the trajectory family shares one style (curve tags outside the arches, times on short leaders).
+- Fig 15: theta and theta_o marked where the text defines them (between the vertical and the flight direction at the
+  C.G.); F cos theta drawn from F's tail; the path shape assumed (the book gives no F7 data); drawn at 1.25 x.
+- Fig 4 (both forms) and Ch1 Fig 5(a): the B4 plots print the origin tick as 0 (Ch1 Fig 3, Ch4 Fig 4) or 0.0 (Ch1
+  Fig 5); left as drawn.
 
 ## Minor (logged only)
 

@@ -1,0 +1,36 @@
+{
+ "crop": "figures/ch4/fig02.png",
+ "note": "Not a plot: the frame of the redraw's trajectory (metres) in the page's own frame. Origin at the launch point (52, 635); 1.69 px per metre (the scale matched to the trajectory, fig02.py); the 1973 y axis leans 0.7 deg to the left, so the frame is deskewed by 0.7 deg. The 1973 x axis is oblique and is not used.",
+ "axes": {
+  "main": {
+   "xlog": false,
+   "ylog": false,
+   "points": [
+    [
+     52.0,
+     635.0,
+     0,
+     0
+    ],
+    [
+     474.47,
+     629.84,
+     250,
+     0
+    ],
+    [
+     44.77,
+     43.54,
+     0,
+     350
+    ],
+    [
+     467.24,
+     38.38,
+     250,
+     350
+    ]
+   ]
+  }
+ }
+}

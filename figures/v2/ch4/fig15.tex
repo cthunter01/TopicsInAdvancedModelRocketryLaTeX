@@ -1,0 +1,89 @@
+% Chapter 4, Figure 15: rocket undergoing a gravity turn (scan: figures/ch4/fig15.png, PDF 609).
+% Drawn 1.25 times the printed size; lengths in scan pixels (150 dpi, y up). Two positions of the house model rocket
+% (tamrfig `model', 121 px long, C.G. at 0.62 of the length from the nose as in Chapter 1 Figures 6-8): (a) at
+% theta_o = 30 deg to the vertical, (b) later at theta = 74 deg (as on the scan).
+% The flight path is computed (fig15.py: eqs. (90)-(91) by the book's method, eqs. (125)-(131) then (106)-(115),
+% for a low-thrust long-burning case: Figure 14's curve (c) model with a constant 7 N): both C.G.s lie on that
+% track with their axes tangent to it. The path (s1, as in Figures 2 and 3) is drawn, as in 1973, only where it is
+% clear of the rockets and their vectors: from just past (a)'s nose to (b)'s thrust, and beyond (b)'s velocity
+% (overlay on the 1973 freehand arc: 95% within 11.3 px and 15.7 px).
+% Forces drawn consistently (standing rule 4). At each C.G. the gravity vector g (100 px in both positions) is
+% resolved into g sin(theta) along the normal to the flight direction and g cos(theta) along it (the dashed
+% construction line, parallel to the axis); in (a) the vectors end at the C.G. (g from above, g sin theta_o from
+% the upper left), in (b) they start at it, as printed. The 1973 (b) draws g sin(theta) about as long as g and
+% marks as theta the small angle between them (90 deg - theta); here g sin(theta) = 0.96 g, 16 deg from g, and theta
+% (theta_o in (a)) is marked where the text defines it, between the vertical and the flight direction at the C.G.
+% (the vertical is g's line in (a), a reference line (guide) in (b)), with one head on the flight direction
+% (angle arc single, as Figure 2 marks the same angle).
+% The thrust F (52 px) along the axis into the tail; its vertical component F cos(theta) is drawn from F's tail,
+% with the dashed horizontal (F sin(theta)) closing the triangle at the nozzle. (1973 draws the vertical component
+% into the nozzle from below; in (b), where it is 0.28 F, that puts it on the lower fin's trailing edge.)
+% The velocity v along the axis ahead of the nose. Lettering as printed (no vector arrows).
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}[x=0.021166cm, y=0.021166cm]   % one unit = one scan pixel at 1.25 times the printed size
+  \def\Lr{121}\def\fcg{0.62}          % rocket length, C.G. from the nose
+  \def\g{100}\def\F{52}\def\vv{59}    % |g|, |F|, |v|
+  \pgfplotstableread[col sep=comma]{figures/v2/ch4/fig15-pos.csv}\pos
+  \foreach \r/\n in {0/a,1/b} {
+    \pgfplotstablegetelem{\r}{x}\of\pos \global\expandafter\let\csname x\n\endcsname\pgfplotsretval
+    \pgfplotstablegetelem{\r}{y}\of\pos \global\expandafter\let\csname y\n\endcsname\pgfplotsretval
+    \pgfplotstablegetelem{\r}{theta}\of\pos \global\expandafter\let\csname t\n\endcsname\pgfplotsretval}
+  % the flight path (in the same pixel frame: the hidden axis's origin at the picture's)
+  \begin{axis}[hide axis, anchor=origin, at={(0,0)}, x=0.021166cm, y=0.021166cm,
+      xmin=0, xmax=600, ymin=0, ymax=360, clip=false]
+    \addplot[s1, curve, restrict expr to domain={\thisrow{s}}{80:222}] table[x=x, y=y, col sep=comma]
+      {figures/v2/ch4/fig15.csv};
+    \addplot[s1, curve, restrict expr to domain={\thisrow{s}}{472:545}] table[x=x, y=y, col sep=comma]
+      {figures/v2/ch4/fig15.csv};
+  \end{axis}
+  % \position{<name>}{<x>}{<y>}{<theta>}: the rocket with its C.G. at (x, y), flying at theta from the vertical;
+  %   points <name>cg, <name>nose, <name>tail, <name>F (tail of the thrust), <name>P (corner of its triangle);
+  %   \ang = the axis direction, \nrm = the normal on the lower side
+  \newcommand{\position}[4]{%
+    \pgfmathsetmacro\ang{90-#4}\pgfmathsetmacro\nrm{-#4}%
+    \coordinate (#1cg) at (#2,#3);
+    \coordinate (#1nose) at ($(#1cg)+(\ang:\fcg*\Lr)$);
+    \coordinate (#1tail) at ($(#1cg)+(\ang:-\Lr+\fcg*\Lr)$);
+    \pic[rotate=180+\ang, scale=\Lr/6.4] at (#1nose) {rocket={model}};
+    \coordinate (#1F) at ($(#1tail)+(\ang:-\F)$);
+    \coordinate (#1P) at ($(#1tail)+({-\F*sin(#4)},0)$);
+    \draw[guide] (#1P) -- (#1tail);
+    \draw[vec] (#1F) -- (#1tail);
+    \draw[vec] (#1F) -- (#1P);
+    \draw[vec] ($(#1nose)+(\ang:6)$) -- ++(\ang:\vv) coordinate (#1v);}
+  % ---------------- (a)
+  \position{a}{\xa}{\ya}{\ta}
+  \node[below right=0pt and 1pt] at ($(aF)!0.5!(atail)$) {$F$};
+  \node[left=1pt] at ($(aF)!0.5!(aP)$) {$F\cos\theta_o$};
+  \node[left=1pt] at ($(anose)+(\ang:6+0.7*\vv)$) {$v$};
+  \coordinate (aT) at ($(acg)+(0,\g)$);
+  \coordinate (aA) at ($(acg)+(\nrm:{-\g*sin(\ta)})$);
+  \draw[guide] (aT) -- (aA);
+  \draw[vec, shorten >=2.8pt] (aT) -- (acg) node[pos=0.72, left=1pt] {$g$};
+  \draw[vec, shorten >=2.8pt] (aA) -- (acg);
+  \node[left=1pt] at (aA) {$g\sin\theta_o$};
+  \pgfmathsetmacro\trm{asin(3.8/56)}
+  \anglemark[at=(acg), trim=\trm, arc={angle arc single}]{(90:1)}{(\ang:1)}{56}{}
+  \node at ($(acg)+(78:70)$) {$\theta_o$};
+  \node[cg mark] at (acg) {};
+  \node[panel, anchor=south east] at (182,18) {(a)};
+  % ---------------- (b)
+  \position{b}{\xb}{\yb}{\tb}
+  \node[below right=0pt and 0pt] at ($(bF)!0.5!(btail)$) {$F$};
+  \node[left=1pt] at ($(bF)!0.5!(bP)$) {$F\cos\theta$};
+  \node[below=2pt] at ($(bnose)+(\ang:6+0.72*\vv)$) {$v$};
+  \coordinate (bG) at ($(bcg)+(0,-\g)$);
+  \coordinate (bN) at ($(bcg)+(\nrm:{\g*sin(\tb)})$);
+  \draw[guide] (bN) -- (bG);
+  \draw[vec] (bcg) -- (bG) node[pos=0.4, left=1pt] {$g$};
+  \draw[vec] (bcg) -- (bN) node[pos=0.55, right=2pt] {$g\sin\theta$};
+  \draw[guide] (bcg) -- ++(0,64);
+  \pgfmathsetmacro\trm{asin(3.8/46)}
+  \anglemark[at=(bcg), trim=\trm, arc={angle arc single}]{(90:1)}{(\ang:1)}{46}{}
+  \node at ($(bcg)+(56:60)$) {$\theta$};
+  \node[cg mark] at (bcg) {};
+  \node[panel, anchor=south east] at (566,180) {(b)};
+\end{tikzpicture}
+\end{document}

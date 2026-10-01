@@ -198,6 +198,7 @@
       ]
     },
     "artwork_pages": {
+      "567": "the extended Fehskens-Malewicki page (Section 2.2): almost all of it is equations (52)-(56), which the OCR cannot read; its prose (the NAR staging rule, the extension of the technique, the upper limit of (52)) is in chapters/ch4-sec2a.tex:454-493 and was checked against the scan. Its mean score fell from 0.26 to 0.24 when the Chapter 4 figures became vector text (v2), with no change to the page's text",
       "628": "Table 2, first half (not figure lettering): the OCR letter-spaces the typed cells ('descri ption', 'i ntensi ty', 'I mpulse'), so almost no 3-grams match; the header and all 17 rows were checked against the scan and are in the ch4:tab:2 longtable"
     }
   },

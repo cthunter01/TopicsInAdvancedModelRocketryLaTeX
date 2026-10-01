@@ -1,0 +1,44 @@
+% Chapter 4, Figure 13: non-vertical trajectories, 30 deg launch angle, F100 engine (scan: figures/ch4/fig13.png).
+% Curves: fig13-a/b/c.csv (fig13.py), DIGITIZED from the 1973 art: the book gives no F100 engine model, so its 2-D
+% method, eqs. (106)-(115) with (125)-(131), cannot be run (corrections/v2-figures.md). The times (seconds from
+% launch) are as printed (9.40 twice: the apex of (a) and the impact of (c)); their leaders touch the curves at the
+% apex and the impact of each (fig13-marks.csv: the highest point and the last point of each digitized curve).
+% The curves are read in the family's frame convention (fig10.py: x between the drawn x ticks, along the drawn
+% y axis; the 1973 frame is skewed and its x scale uneven, lettering and all).
+% The trajectory family (Figs 10-14): open axes, equal x and y scales as printed (the axes 4.2 in wide), the printed
+% ticks; each axis line runs half a tick step past its last label where a curve does (here the apex of (a), 831 m);
+% curves (a), (b), (c) solid in s1, s2, s3, each tag 2.75 mm out along the normal of its descending branch
+% (its centre computed by fig13.py, in fig13-marks.csv); times \footnotesize in ink on leaders.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\pgfplotstableread[col sep=comma]{figures/v2/ch4/fig13-marks.csv}\trajmarks
+\newcommand{\getmark}[3]{\pgfplotstablegetelem{#1}{#2}\of\trajmarks \edef#3{\pgfplotsretval}}
+\getmark{0}{apexx}\Aax \getmark{0}{apexy}\Aay \getmark{0}{impactx}\Aix \getmark{0}{tagx}\Atx \getmark{0}{tagy}\Aty
+\getmark{1}{apexx}\Bax \getmark{1}{apexy}\Bay \getmark{1}{impactx}\Bix \getmark{1}{tagx}\Btx \getmark{1}{tagy}\Bty
+\getmark{2}{apexx}\Cax \getmark{2}{apexy}\Cay \getmark{2}{impactx}\Cix \getmark{2}{tagx}\Ctx \getmark{2}{tagy}\Cty
+% \timemark{<x>}{<y>}{<angle>}{<length>}{<label anchor>}{<time>}: a leader from the point on the curve to the time
+\newcommand{\timemark}[6]{%
+  \draw[leader] (axis cs:#1,#2) -- ++(#3:#4) node[anchor=#5, font=\footnotesize, inner sep=1.2pt] {#6};}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr,
+      x=0.0035in, y=0.0035in,
+      xmin=0, xmax=1200, ymin=0, ymax=900,
+      xtick distance=200, ytick={0,200,...,800},
+      xlabel={$x$ (m)}, ylabel={$y$ (m)}]
+    \addplot[series1, solid] table[x=x, y=y, col sep=comma] {figures/v2/ch4/fig13-a.csv};
+    \addplot[series2, solid] table[x=x, y=y, col sep=comma] {figures/v2/ch4/fig13-b.csv};
+    \addplot[series3, solid] table[x=x, y=y, col sep=comma] {figures/v2/ch4/fig13-c.csv};
+    % times from launch at the apex and the impact, as printed
+    \timemark{\Aax}{\Aay}{-100}{4.5mm}{north}{9.40}
+    \timemark{\Aix}{0}{40}{5.5mm}{south west}{26.47}
+    \timemark{\Bax}{\Bay}{-100}{4.5mm}{north}{9.00}
+    \timemark{\Bix}{0}{150}{6mm}{south east}{21.84}
+    \timemark{\Cax}{\Cay}{30}{6.5mm}{south west}{3.80}
+    \timemark{\Cix}{0}{25}{6mm}{south west}{9.40}
+    \node[curve tag] at (axis cs:\Atx,\Aty) {a};
+    \node[curve tag] at (axis cs:\Btx,\Bty) {b};
+    \node[curve tag] at (axis cs:\Ctx,\Cty) {c};
+  \end{axis}
+\end{tikzpicture}
+\end{document}

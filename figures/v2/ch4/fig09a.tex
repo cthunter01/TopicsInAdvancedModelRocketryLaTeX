@@ -1,0 +1,32 @@
+% Chapter 4, Figure 9(a): percent error in v_b, F7 engine (scan: figures/ch4/fig09a.png).
+% Curves: fig09.py, DIGITIZED from the 1973 art (the book does not give the F7 thrust curve or propellant mass, so
+% the interval method (83)-(87) against eqs. (20), (21), (27), (28), (67) cannot be rerun); calibration
+% fig09a.calib.json. Template: fig06a.tex.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr,
+      width=4.0in, height=2.5in,
+      xmin=0.10, xmax=0.30, xtick={0.10,0.15,0.20,0.25,0.30}, minor xtick={0.125,0.175,0.225,0.275},
+      xticklabel style={/pgf/number format/.cd, fixed, fixed zerofill, precision=2},
+      ymin=-15, ymax=15, ytick distance=5,
+      xlabel={$m_o$ (kg)}, ylabel={Percent error in $v_b$},
+      legend pos=north east, legend style={nodes={inner sep=1pt}}]
+    \draw[muted, line width=0.4pt] (axis cs:0.10,0) -- (axis cs:0.30,0);
+    \addplot[series1] table[x=m0, y=fm_kmax, col sep=comma] {figures/v2/ch4/fig09a.csv};
+    \addlegendentry{Fehskens-Malewicki}
+    \addplot[series2] table[x=m0, y=cb_kmax, col sep=comma] {figures/v2/ch4/fig09a.csv};
+    \addlegendentry{Caporaso-Bengen}
+    \addplot[series1] table[x=m0, y=fm_kmin, col sep=comma] {figures/v2/ch4/fig09a.csv};
+    \addplot[series2] table[x=m0, y=cb_kmin, col sep=comma] {figures/v2/ch4/fig09a.csv};
+    % k labels with a leader to each method's curve for that k (end points on the curves: fig09a.csv)
+    \node (kmax) at (axis cs:0.243,6.2) {\footnotesize $k_{\max}$};
+    \draw[leader] (kmax.south west) -- (axis cs:0.237,2.619);
+    \draw[leader] (kmax.south) -- (axis cs:0.2535,1.116);
+    \node (kmin) at (axis cs:0.237,-3.3) {\footnotesize $k_{\min}$};
+    \draw[leader] (kmin.north) -- (axis cs:0.2385,0.704);
+    \draw[leader] (kmin.south west) -- (axis cs:0.2327,-6.549);
+  \end{axis}
+\end{tikzpicture}
+\end{document}

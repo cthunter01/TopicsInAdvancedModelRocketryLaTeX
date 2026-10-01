@@ -156,6 +156,9 @@ class Axes:
         # piecewise-linear between the listed gridlines, overriding the affine fit on that axis
         self.xgrid = np.array(spec["xgrid"], float) if spec.get("xgrid") else None
         self.ygrid = np.array(spec["ygrid"], float) if spec.get("ygrid") else None
+        # a skewed frame (Ch4 Figs 10, 12-14): xgrid read along lines parallel to the drawn y axis
+        # ("lean": {"xaxis": [a, b] (row = a col + b), "yaxis": [s, c] (col = s row + c)})
+        self.lean = spec.get("lean")
 
     def _fx(self, x):
         return np.log10(x) if self.xlog else np.asarray(x, float)
@@ -168,7 +171,11 @@ class Axes:
         x = 10 ** d[:, 0] if self.xlog else d[:, 0]
         y = 10 ** d[:, 1] if self.ylog else d[:, 1]
         if self.xgrid is not None:
-            x = np.interp(px, self.xgrid[:, 0], self.xgrid[:, 1])
+            cx = px
+            if self.lean:
+                (a, b), s = self.lean["xaxis"], self.lean["yaxis"][0]
+                cx = px + s * (a * np.asarray(px) + b - np.asarray(py)) / (1 - a * s)
+            x = np.interp(cx, self.xgrid[:, 0], self.xgrid[:, 1])
         if self.ygrid is not None:
             o = np.argsort(self.ygrid[:, 0])
             y = np.interp(py, self.ygrid[o, 0], self.ygrid[o, 1])
@@ -180,6 +187,11 @@ class Axes:
         if self.xgrid is not None:
             o = np.argsort(self.xgrid[:, 1])
             px = np.interp(x, self.xgrid[o, 1], self.xgrid[o, 0])
+            if self.lean:   # from the foot (px, on the x axis line) up the drawn y axis to height y
+                (a, b), s, A = self.lean["xaxis"], self.lean["yaxis"][0], self.A
+                rf = a * px + b
+                t = (self._fy(y) - (A[0, 1] * px + A[1, 1] * rf + A[2, 1])) / (A[0, 1] * s + A[1, 1])
+                px, py = px + s * t, rf + t
         if self.ygrid is not None:
             o = np.argsort(self.ygrid[:, 1])
             py = np.interp(y, self.ygrid[o, 1], self.ygrid[o, 0])

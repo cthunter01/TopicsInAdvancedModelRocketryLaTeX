@@ -1,0 +1,55 @@
+% Chapter 4, Figure 16 (scan: figures/ch4/fig16.png): a Malewicki chart, y_max of vertical flight against the
+% liftoff mass m_o for B4-powered models, k = .00005 ... .0016 kg/m lettered on the curves (Bengen's maxima).
+% Curves: fig16.py, COMPUTED by the Fehskens-Malewicki solution, eqs. (20), (21), with the coast of eq. (67)
+% (trajectory.fehskens_malewicki: mean mass, F = I_t/t_b; B4 from the Figure 4 lettering, propellant 8.33 g from
+% Table 1, g = 9.8), from the engine alone (m_o = .021 kg, Fig 11's curve (a)) to .10 kg; the line of Bengen's
+% maxima is the locus of the curves' maxima as k varies, from 700 m (k = .000032) down to the .0016 curve, where
+% the printed line ends. Overlay on the scan: the six curves 95% within 1-1.4 px (0.24 mm) of the printed ones;
+% the Bengen line within 3.6 px (0.61 mm), the computed maxima of the high-k curves lying left of the printed
+% line's lower end (k = .0016: .0378 kg against about .040 drawn). The book's interval method, eqs. (83)-(87),
+% is METHOD = "interval" in fig16.py (curves 1-4 m away, lower end of the Bengen line at .0407 kg); that switch
+% changes the CSVs only, and the k labels and the callout below, placed for these curves, would have to be moved
+% (the Bengen line would then cross ".0016" and run along ".0008" and ".0004"). For that variant (checked in a
+% render): .0001 to x = .0293, .0002 .0330, .0004 .0365, .0008 .0396, .0016 .0412 (y unchanged; .00005 stays),
+% the callout point to (.0240, 640) and its elbow to (.0293, 668). The k labels are \footnotesize, as are the
+% curve labels and legends of the other Chapter 4 plots; the callout and the engine label stay \small.
+% A design chart read for values: hairline grid at the printed spacing (.01 kg, 100 m). The six curves are one
+% family in one colour (s1) labelled on the curves as printed: just above each maximum, right of the Bengen line
+% (.00005 beside its falling branch); the Bengen line s2 dashed (printed long-dash-short-dash); the engine's own
+% mass a reference line (guide; printed short-dashed), its label set along it (the 1973 label stands further
+% left with a short leader stroke across the line). Labels in white knock-outs where the 1973 art breaks the grid.
+\documentclass[11pt]{standalone}
+\usepackage{tamrfig}
+\begin{document}
+\begin{tikzpicture}
+  \begin{axis}[tamr grid, grid=both,
+      width=3.8in, height=5.2in,
+      xmin=0, xmax=0.10, xtick={0,0.02,...,0.10}, xticklabels={0, 0.02, 0.04, 0.06, 0.08, 0.10},
+      minor xtick={0.01,0.03,...,0.09},
+      ymin=0, ymax=700, ytick distance=100,
+      xlabel={$m_o$ (kg)}, ylabel={$y_{\max}$ (m)}]
+    % the mass of the loaded engine alone: no model can be lighter
+    \draw[guide] (axis cs:0.021,0) -- (axis cs:0.021,700);
+    \node[rotate=90, anchor=south, fill=white, inner sep=1.5pt, yshift=1pt] at (axis cs:0.021,300) {$m_o$ of engine alone};
+    % y_max(m_o) for each k (kg/m)
+    \pgfplotsinvokeforeach{k00005,k0001,k0002,k0004,k0008,k0016}{
+      \addplot[s1] table[x=m0, y=#1, col sep=comma] {figures/v2/ch4/fig16.csv};
+    }
+    % the locus of the maxima
+    \addplot[series2] table[x=m0, y=ymax, col sep=comma] {figures/v2/ch4/fig16-bengen.csv};
+    \begin{scope}[every node/.style={fill=white, inner sep=1.2pt, font=\footnotesize}]
+      \node[anchor=west]       at (axis cs:0.0400,468) {.00005};
+      \node[anchor=south west] at (axis cs:0.0288,358) {.0001};
+      \node[anchor=south west] at (axis cs:0.0322,237) {.0002};
+      \node[anchor=south west] at (axis cs:0.0354,158) {.0004};
+      \node[anchor=south west] at (axis cs:0.0379,106) {.0008};
+      \node[anchor=south west] at (axis cs:0.0384,72) {.0016};
+    \end{scope}
+    \coordinate (bengen) at (axis cs:0.02375,640);
+    \coordinate (elbow) at (axis cs:0.0290,668);
+  \end{axis}
+  % (\callout measures its points, so it is drawn after the axis)
+  \tikzset{callout label/.append style={fill=white}}
+  \callout{(bengen)}{(elbow)}{Line of Bengen's maxima}
+\end{tikzpicture}
+\end{document}

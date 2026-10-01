@@ -1,0 +1,36 @@
+{
+ "crop": "figures/ch4/fig15.png",
+ "note": "Not a plot: the redraw's frame, scan pixels with y up (y = 339 - py). fig15.py writes the path in this frame; the redraw is drawn 1.25 times this size.",
+ "axes": {
+  "main": {
+   "xlog": false,
+   "ylog": false,
+   "points": [
+    [
+     0,
+     339,
+     0,
+     0
+    ],
+    [
+     583,
+     339,
+     583,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     339
+    ],
+    [
+     583,
+     0,
+     583,
+     339
+    ]
+   ]
+  }
+ }
+}
