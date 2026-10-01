@@ -26,6 +26,10 @@
   decorations.markings,backgrounds,3d,perspective}
 \usepgfplotslibrary{groupplots,fillbetween}
 \input{macros}
+% tables set in a figure (Ch2 Fig 46): booktabs rules, siunitx S columns. Loaded without options, so a figure
+% may load either again; set siunitx options locally with \sisetup.
+\RequirePackage{booktabs}
+\RequirePackage{siunitx}
 
 \newlength{\booktextwidth}\setlength{\booktextwidth}{6.5in}
 
@@ -94,12 +98,68 @@
       arc[start angle=270, end angle=180, radius=2.75pt] -- cycle;}},
   % an angle arc with arrowheads at both ends, e.g. \draw[angle arc] (P) ++(a1:r) arc (a1:a2:r);
   angle arc/.style={draw=ink, line width=0.5pt, {Stealth[length=4pt,width=2.6pt]}-{Stealth[length=4pt,width=2.6pt]}},
+  % the same with one head, at the end of the path (an angle measured from a reference line, Ch2 Fig 5)
+  angle arc single/.style={draw=ink, line width=0.5pt, -{Stealth[length=4pt,width=2.6pt]}},
+  % the label of \anglemark, in a white gap at the middle of its arc
+  angle label/.style={font=\small, fill=white, inner sep=1pt},
+  % a tangent drawn to a curve (Ch2 Figs 10-29): the second series colour, solid; its label stays ink
+  tangent/.style={draw=s2, solid, line width=1pt},
+  % a curve the caption calls dotted (an envelope, Ch2 Fig 11): round dots in the guide colour
+  dotted guide/.style={draw=ink2, line width=1.1pt, line cap=round, dash pattern=on 0pt off 2.6pt},
+  % a leader ending in an arrowhead (pointing at a line rather than a part, Ch2 Fig 36 "Rocket centerline")
+  leader arrow/.style={leader, -{Stealth[length=4pt,width=2.6pt]}},
+  % a dimension along a centre line (Ch2 Fig 36 (1994): ell along the mid-chord line); label as \dimline's
+  centre dimension/.style={centerline, {Stealth[length=4pt,width=2.4pt]}-{Stealth[length=4pt,width=2.4pt]}},
+  center dimension/.style={centre dimension},
+  % one arrow of a dimension too short for its label, drawn from outside (\dimout draws the pair)
+  dim stub/.style={draw=ink2, line width=0.4pt, -{Stealth[length=4pt,width=2.4pt]}},
+  dim stub length/.store in=\tamr@stub, dim stub length=3.6mm,
+  % \callout's label, and the length of its horizontal shoulder
+  callout label/.style={font=\small, inner sep=1.5pt},
+  callout shoulder/.store in=\tamr@shoulder, callout shoulder=4mm,
+  % \breakline's zigzag height (1 = Ch2 Fig 36's: peaks at half the break's length)
+  break amplitude/.store in=\tamr@brk, break amplitude=1,
+  % a fin seen edge-on (its section): white-filled outline, painted over the body (Ch2 Figs 48, 51)
+  edge fin/.style={outline, fill=white},
+  % the 0 at the origin of a sketch's axes (tamr sketch draws no tick labels): \node[zero label] at (axis cs:0,0) {0};
+  zero label/.style={anchor=east, font=\footnotesize, text=ink2, inner sep=3pt},
 }
 
 % \dimline[<label options>]{<from>}{<to>}{<label>}: a dimension line with its label set in a gap at the
 % middle (the default) or placed by the options (e.g. [above], [pos=0.3])
 \newcommand{\dimline}[4][]{%
   \draw[dimension] #2 -- #3 node[midway, font=\small, fill=white, inner sep=1.5pt, #1] {#4};}
+
+% \dimout[<label options>]{<from>}{<to>}{<label>}: a dimension too short for its label: two `dim stub' arrows
+% (\tikzset{dim stub length=...}, default 3.6mm) from outside, pointing at <from> and <to>; the label (may be
+% empty) beyond the tail of the arrow at <to>, e.g. \dimout{(0,1.2)}{(0,1.6)}{$t$} puts t above.
+\newcommand{\dimout}[4][]{%
+  \draw[dim stub] ($#2!-\tamr@stub!#3$) -- #2;
+  \ifx\relax#4\relax \draw[dim stub] ($#3!-\tamr@stub!#2$) -- #3;
+  \else \draw[dim stub] let \p1=($#3-#2$), \n1={atan2(\y1,\x1)+180} in ($#3!-\tamr@stub!#2$) -- #3
+    node[at start, anchor=\n1, font=\small, inner sep=1.5pt, #1] {#4};
+  \fi}
+
+% \callout[<leader options>]{<point>}{<elbow>}{<label>}: a leader from <point> to <elbow>, then a horizontal
+% shoulder (\tikzset{callout shoulder=...}, default 4mm) away from <point>, with the label at its end
+% (`callout label' style; set align=left for a label of several lines).
+% E.g. \callout[shorten <=2.9pt]{(CG)}{(3,1)}{\CG}
+\newdimen\tamr@dima \newdimen\tamr@dimb
+\newcommand{\callout}[4][]{%
+  \path #2 coordinate (tamr@co1) #3 coordinate (tamr@co2);
+  \pgfextractx{\tamr@dima}{\pgfpointanchor{tamr@co1}{center}}%
+  \pgfextractx{\tamr@dimb}{\pgfpointanchor{tamr@co2}{center}}%
+  \ifdim\tamr@dimb<\tamr@dima \def\tamr@side{-1}\def\tamr@anchor{east}%
+  \else \def\tamr@side{1}\def\tamr@anchor{west}\fi
+  \draw[leader, #1] #2 -- #3 -- ++({\tamr@side*\tamr@shoulder},0pt) node[callout label, anchor=\tamr@anchor] {#4};}
+
+% \breakline[<options>]{<from>}{<to>}: the zigzag break of a cut-off tube (Ch2 Fig 36), from <from> to <to>
+% across the tube; the zigzag rises first on the left of the direction of travel, its height set by
+% `break amplitude' (default 1: peaks at half the length). Drawn as `outline'; <options> add to it.
+\newcommand{\breakline}[3][]{%
+  \draw[outline, #1] let \p1=($#3-#2$), \n1={veclen(\x1,\y1)}, \n2={atan2(\y1,\x1)} in #2
+    \foreach \tamr@u/\tamr@v in {0.172/0, 0.276/0.241, 0.414/-0.483, 0.552/0.5, 0.664/-0.241, 0.776/0}
+      { -- ($#2+(\n2:{\tamr@u*\n1*1pt})+(\n2+90:{\tamr@v*\tamr@brk*\n1*1pt})$) } -- #3;}
 
 % ---- pgfplots -------------------------------------------------------------------
 \pgfplotsset{
@@ -132,14 +192,17 @@
   },
   % the same with a closed box (used when the printed chart is a boxed grid)
   tamr box/.style={tamr grid, axis lines*=box},
-  % a qualitative sketch: axes through the origin with arrowheads, no numeric ticks
+  % a qualitative sketch: axes through the origin with arrowheads, no numeric ticks; the x label after the
+  % arrow, the y label upright above it; a tick the figure sets on the other axis's line (at 0) is kept; the 0 at
+  % the origin, where wanted, is a node: \node[zero label] at (axis cs:0,0) {0};
   tamr sketch/.style={
     tamr,
     axis lines=middle,
     axis line style={draw=ink2, line width=0.7pt, -{Stealth[length=5pt,width=3pt]}},
     xtick=\empty, ytick=\empty,
+    hide obscured x ticks=false, hide obscured y ticks=false,
     xlabel style={anchor=west, at={(ticklabel* cs:1.0)}},
-    ylabel style={anchor=south, at={(ticklabel* cs:1.0)}, rotate=-90},
+    ylabel style={anchor=south, at={(ticklabel* cs:1.0)}, inner sep=3pt},
   },
   % series by role
   series1/.style={s1, solid},
@@ -148,43 +211,216 @@
   family1/.style={r1}, family2/.style={r2}, family3/.style={r3}, family4/.style={r4}, family5/.style={r5},
 }
 
+% ---- 3D drawings: true orthographic views ---------------------------------------------------------------
+% The house view (Ch2 Figs 1-6, 43, 44): elevation 32 deg, azimuth 45 deg, right-handed axes, z up, x drawn up
+% to the right, y up to the left: \begin{tikzpicture}[tamr view]. tamr view=<f> scales it: one unit of true
+% length is 1.626 cm x f (scan pixels drawn k times the printed size: f = 0.010412 k).
+% \silangle = 48.53: in the house view the silhouettes of a cylinder along x (along y) lie at t = \silangle and
+% \silangle + 180, t measured round the axis from +y (+x) towards +z; along z at t = 135 and 315 from +x towards
+% +y. The half t = \silangle ... \silangle + 180 of a ring round a cylinder along x or y faces the viewer.
+%
+% The primitives work out what is seen from the current x, y, z vectors (any parallel view: the house view,
+% scaled or not, or another, as Ch2 Fig 43's), and hide what lies behind by painting with white fills: draw
+% the furthest part first. <style> is added to `outline, fill=white' (e.g. fill=wash, fill=none, thin line;
+% phantom or hidden with fill=none). Coordinates and radii may be pgfmath expressions.
+%   \cylx[<style>]{<y>}{<z>}{<x0>}{<x1>}{<r>}  a cylinder along x, axis at (y, z), from x0 to x1 (either order):
+%   \cyly[<style>]{<x>}{<z>}{<y0>}{<y1>}{<r>}  its outline, the seen half of the far end's rim and the whole
+%   \cylz[<style>]{<x>}{<y>}{<z0>}{<z1>}{<r>}  near end (in the house view the near end is the lower x or y,
+%                                              the upper z)
+%   \ringx[<style>]{<x>}{<y>}{<z>}{<r>}        a circle centred at (x, y, z) in the plane x = const (an end
+%   \ringy, \ringz                             face, a bore), `outline' (add e.g. thin line)
+%   \ringx*[<style>]{...}, \ringy*, \ringz*    the half of it that faces the viewer (a joint or a band round a
+%                                              cylinder along that axis)
+%   \blk[<style>]{<x0>}{<x1>}{<y0>}{<y1>}{<z0>}{<z1>}  a rectangular block: the three faces that are seen
+%   \anglemark[<keys>]{<u>}{<v>}{<r>}{<label>}  an angle arc of radius r from the direction u to the direction v
+%     (each (x,y,z), or (x,y) or (<angle>:<length>) in a plane drawing; any length) in their plane, `angle arc'
+%     (both heads), with <label> in a white gap at its middle (`angle label'). Keys: at=<centre> (default
+%     (0,0,0)), trim=<deg> (stop that short of v, e.g. at a body's silhouette), start trim=<deg>,
+%     pos=<fraction of the arc for the label> (0.5), arc={<options>} (e.g. angle arc single),
+%     label={<node options>}, samples=<n> (25).
+%   \getview  sets \viewx, \viewy, \viewz: the unit vector towards the viewer (house view -0.5996, -0.5996,
+%     0.5301). A body along a slanting unit axis a shows its silhouettes at +-r (a x view)/|a x view| (Ch2 Fig 1).
+%   \pic{rocket 3d={<keys>}}  a rocket along any direction (with the side-view rocket, below).
+\def\silangle{48.53}
+\tikzset{
+  tamr view/.style={x={({#1*1.15cm},{#1*0.61cm})}, y={({-#1*1.15cm},{#1*0.61cm})}, z={(0cm,{#1*1.38cm})}},
+  tamr view/.default=1,
+}
+
+% the unit vector towards the viewer, \tamr@cx, \tamr@cy, \tamr@cz: the cross product of the two rows of the
+% projection (the page x and the page y of the x, y, z vectors)
+\def\tamr@view{%
+  \edef\tamr@Xx{\strip@pt\pgf@xx}\edef\tamr@Xy{\strip@pt\pgf@xy}%
+  \edef\tamr@Yx{\strip@pt\pgf@yx}\edef\tamr@Yy{\strip@pt\pgf@yy}%
+  \edef\tamr@Zx{\strip@pt\pgf@zx}\edef\tamr@Zy{\strip@pt\pgf@zy}%
+  \edef\tamr@cx{\fpeval{(\tamr@Yx)*(\tamr@Zy)-(\tamr@Zx)*(\tamr@Yy)}}%
+  \edef\tamr@cy{\fpeval{(\tamr@Zx)*(\tamr@Xy)-(\tamr@Xx)*(\tamr@Zy)}}%
+  \edef\tamr@cz{\fpeval{(\tamr@Xx)*(\tamr@Yy)-(\tamr@Yx)*(\tamr@Xy)}}%
+  \edef\tamr@cn{\fpeval{sqrt((\tamr@cx)^2+(\tamr@cy)^2+(\tamr@cz)^2)}}%
+  \edef\tamr@cx{\fpeval{round((\tamr@cx)/\tamr@cn,6)}}%
+  \edef\tamr@cy{\fpeval{round((\tamr@cy)/\tamr@cn,6)}}%
+  \edef\tamr@cz{\fpeval{round((\tamr@cz)/\tamr@cn,6)}}}
+\newcommand{\getview}{\tamr@view\let\viewx\tamr@cx\let\viewy\tamr@cy\let\viewz\tamr@cz}
+
+% \tamr@axis{x|y|z}, for a circle round an axis parallel to x, y or z (centre \tamr@a, \tamr@b in the other two
+% coordinates, radius \tamr@r): \tamr@P{<s>}{<t>} its point at s along the axis and angle t round it (from the
+% first of the other two axes towards the second); \tamr@tf the angle of the point nearest the viewer;
+% \tamr@ck the view's component along the axis (< 0: the lower end of a cylinder is the near one)
+\def\tamr@axis#1{%
+  \tamr@view
+  \if x#1%
+    \def\tamr@P##1##2{(##1, {\tamr@a+\tamr@r*cos(##2)}, {\tamr@b+\tamr@r*sin(##2)})}%
+    \pgfmathsetmacro\tamr@tf{atan2(\tamr@cz,\tamr@cy)}\let\tamr@ck\tamr@cx
+  \else\if y#1%
+    \def\tamr@P##1##2{({\tamr@a+\tamr@r*cos(##2)}, ##1, {\tamr@b+\tamr@r*sin(##2)})}%
+    \pgfmathsetmacro\tamr@tf{atan2(\tamr@cz,\tamr@cx)}\let\tamr@ck\tamr@cy
+  \else
+    \def\tamr@P##1##2{({\tamr@a+\tamr@r*cos(##2)}, {\tamr@b+\tamr@r*sin(##2)}, ##1)}%
+    \pgfmathsetmacro\tamr@tf{atan2(\tamr@cy,\tamr@cx)}\let\tamr@ck\tamr@cz
+  \fi\fi}
+
+% cylinders: the outline (far end's seen half rim, silhouettes, near end's other half), then the near end
+\newcommand{\cylx}[6][]{\tamr@cyl{x}{#1}{#2}{#3}{#4}{#5}{#6}}
+\newcommand{\cyly}[6][]{\tamr@cyl{y}{#1}{#2}{#3}{#4}{#5}{#6}}
+\newcommand{\cylz}[6][]{\tamr@cyl{z}{#1}{#2}{#3}{#4}{#5}{#6}}
+\def\tamr@cyl#1#2#3#4#5#6#7{% axis, style, a, b, s0, s1, r
+  \pgfmathsetmacro\tamr@a{#3}\pgfmathsetmacro\tamr@b{#4}\pgfmathsetmacro\tamr@r{#7}%
+  \tamr@axis{#1}%
+  \pgfmathsetmacro\tamr@near{(\tamr@ck<0) ? min(#5,#6) : max(#5,#6)}%
+  \pgfmathsetmacro\tamr@far{(\tamr@ck<0) ? max(#5,#6) : min(#5,#6)}%
+  \pgfmathsetmacro\tamr@ta{\tamr@tf-90}\pgfmathsetmacro\tamr@tb{\tamr@tf+90}\pgfmathsetmacro\tamr@tc{\tamr@tf+270}%
+  \edef\tamr@path{plot[domain=\tamr@ta:\tamr@tb, samples=41, variable=\noexpand\tamr@t]
+      \tamr@P{\tamr@far}{\noexpand\tamr@t}
+    -- plot[domain=\tamr@tb:\tamr@tc, samples=41, variable=\noexpand\tamr@t]
+      \tamr@P{\tamr@near}{\noexpand\tamr@t} -- cycle}%
+  \draw[outline, fill=white, #2] \tamr@path;
+  \edef\tamr@path{plot[domain=0:360, samples=73, variable=\noexpand\tamr@t]
+    \tamr@P{\tamr@near}{\noexpand\tamr@t} -- cycle}%
+  \draw[outline, #2] \tamr@path;}
+
+% rings: \ringx[<style>]{x}{y}{z}{r}; the starred form draws the half that faces the viewer
+\def\ringx{\@ifstar{\tamr@ringopt x1}{\tamr@ringopt x0}}
+\def\ringy{\@ifstar{\tamr@ringopt y1}{\tamr@ringopt y0}}
+\def\ringz{\@ifstar{\tamr@ringopt z1}{\tamr@ringopt z0}}
+\def\tamr@ringopt#1#2{\@ifnextchar[{\tamr@ring#1#2}{\tamr@ring#1#2[]}}
+\def\tamr@ring#1#2[#3]#4#5#6#7{%
+  \pgfmathsetmacro\tamr@r{#7}%
+  \if x#1\pgfmathsetmacro\tamr@s{#4}\pgfmathsetmacro\tamr@a{#5}\pgfmathsetmacro\tamr@b{#6}%
+  \else\if y#1\pgfmathsetmacro\tamr@s{#5}\pgfmathsetmacro\tamr@a{#4}\pgfmathsetmacro\tamr@b{#6}%
+  \else\pgfmathsetmacro\tamr@s{#6}\pgfmathsetmacro\tamr@a{#4}\pgfmathsetmacro\tamr@b{#5}\fi\fi
+  \tamr@axis{#1}%
+  \ifnum#2=1
+    \pgfmathsetmacro\tamr@ta{\tamr@tf-90}\pgfmathsetmacro\tamr@tb{\tamr@tf+90}%
+    \edef\tamr@path{plot[domain=\tamr@ta:\tamr@tb, samples=41, variable=\noexpand\tamr@t]
+      \tamr@P{\tamr@s}{\noexpand\tamr@t}}%
+  \else
+    \edef\tamr@path{plot[domain=0:360, samples=73, variable=\noexpand\tamr@t]
+      \tamr@P{\tamr@s}{\noexpand\tamr@t} -- cycle}%
+  \fi
+  \draw[outline, #3] \tamr@path;}
+
+% a block: the faces at the near x, the near y and the near z, in one white-filled path
+\newcommand{\blk}[7][]{%
+  \tamr@view
+  \pgfmathsetmacro\tamr@fx{(\tamr@cx<0) ? min(#2,#3) : max(#2,#3)}%
+  \pgfmathsetmacro\tamr@fy{(\tamr@cy<0) ? min(#4,#5) : max(#4,#5)}%
+  \pgfmathsetmacro\tamr@fz{(\tamr@cz<0) ? min(#6,#7) : max(#6,#7)}%
+  \draw[outline, fill=white, #1]
+       (\tamr@fx,{#4},{#6}) -- (\tamr@fx,{#5},{#6}) -- (\tamr@fx,{#5},{#7}) -- (\tamr@fx,{#4},{#7}) -- cycle
+       ({#2},\tamr@fy,{#6}) -- ({#3},\tamr@fy,{#6}) -- ({#3},\tamr@fy,{#7}) -- ({#2},\tamr@fy,{#7}) -- cycle
+       ({#2},{#4},\tamr@fz) -- ({#3},{#4},\tamr@fz) -- ({#3},{#5},\tamr@fz) -- ({#2},{#5},\tamr@fz) -- cycle;}
+
+% a direction (x,y,z), (x,y) or (<angle>:<length>) into \tamr@vx, \tamr@vy, \tamr@vz
+\def\tamr@parsevec(#1)\@nil{\in@{:}{#1}%
+  \ifin@\tamr@splitpolar#1\@nil\else\tamr@splitvec#1,,,\@nil\fi}
+\def\tamr@splitpolar#1:#2\@nil{\pgfmathsetmacro\tamr@vx{(#2)*cos(#1)}\pgfmathsetmacro\tamr@vy{(#2)*sin(#1)}%
+  \def\tamr@vz{0}}
+\def\tamr@splitvec#1,#2,#3,#4\@nil{\pgfmathsetmacro\tamr@vx{#1}\pgfmathsetmacro\tamr@vy{#2}%
+  \ifx\relax#3\relax\def\tamr@vz{0}\else\pgfmathsetmacro\tamr@vz{#3}\fi}
+
+% \anglemark: unit vectors u and w (in the plane of u and v, normal to u); the arc r (cos t u + sin t w)
+\pgfkeys{/tamr/anglemark/.is family, /tamr/anglemark,
+  at/.store in=\tamr@am@at, trim/.store in=\tamr@am@trim, start trim/.store in=\tamr@am@strim,
+  pos/.store in=\tamr@am@pos, samples/.store in=\tamr@am@n,
+  arc/.code={\tikzset{tamr@am@arc/.style={#1}}}, label/.code={\tikzset{tamr@am@lab/.style={#1}}}}
+\newcommand{\anglemark}[5][]{%
+  \begingroup
+  \pgfqkeys{/tamr/anglemark}{at={(0,0,0)}, trim=0, start trim=0, pos=0.5, samples=25, arc={}, label={}, #1}%
+  \tamr@parsevec#2\@nil
+  \let\tamr@ux\tamr@vx\let\tamr@uy\tamr@vy\let\tamr@uz\tamr@vz
+  \tamr@parsevec#3\@nil
+  \edef\tamr@un{\fpeval{sqrt((\tamr@ux)^2+(\tamr@uy)^2+(\tamr@uz)^2)}}%
+  \edef\tamr@vn{\fpeval{sqrt((\tamr@vx)^2+(\tamr@vy)^2+(\tamr@vz)^2)}}%
+  \edef\tamr@ux{\fpeval{(\tamr@ux)/\tamr@un}}\edef\tamr@uy{\fpeval{(\tamr@uy)/\tamr@un}}%
+  \edef\tamr@uz{\fpeval{(\tamr@uz)/\tamr@un}}%
+  \edef\tamr@vx{\fpeval{(\tamr@vx)/\tamr@vn}}\edef\tamr@vy{\fpeval{(\tamr@vy)/\tamr@vn}}%
+  \edef\tamr@vz{\fpeval{(\tamr@vz)/\tamr@vn}}%
+  \edef\tamr@ct{\fpeval{max(-1,min(1,(\tamr@ux)*(\tamr@vx)+(\tamr@uy)*(\tamr@vy)+(\tamr@uz)*(\tamr@vz)))}}%
+  \edef\tamr@th{\fpeval{acosd(\tamr@ct)}}\edef\tamr@st{\fpeval{sind(\tamr@th)}}%
+  \edef\tamr@wx{\fpeval{round(((\tamr@vx)-(\tamr@ct)*(\tamr@ux))/\tamr@st,6)}}%
+  \edef\tamr@wy{\fpeval{round(((\tamr@vy)-(\tamr@ct)*(\tamr@uy))/\tamr@st,6)}}%
+  \edef\tamr@wz{\fpeval{round(((\tamr@vz)-(\tamr@ct)*(\tamr@uz))/\tamr@st,6)}}%
+  \edef\tamr@ux{\fpeval{round(\tamr@ux,6)}}\edef\tamr@uy{\fpeval{round(\tamr@uy,6)}}%
+  \edef\tamr@uz{\fpeval{round(\tamr@uz,6)}}%
+  \pgfmathsetmacro\tamr@r{#4}%
+  \edef\tamr@ta{\fpeval{\tamr@am@strim}}\edef\tamr@tb{\fpeval{round(\tamr@th-(\tamr@am@trim),4)}}%
+  \edef\tamr@tm{\fpeval{\tamr@ta+(\tamr@am@pos)*(\tamr@tb-\tamr@ta)}}%
+  \def\tamr@Q##1{({\tamr@r*(cos(##1)*\tamr@ux+sin(##1)*\tamr@wx)}, {\tamr@r*(cos(##1)*\tamr@uy+sin(##1)*\tamr@wy)},
+    {\tamr@r*(cos(##1)*\tamr@uz+sin(##1)*\tamr@wz)})}%
+  \path \tamr@am@at coordinate (tamr@am@c);
+  \begin{scope}[shift={(tamr@am@c)}]
+    \edef\tamr@path{plot[domain=\tamr@ta:\tamr@tb, samples=\tamr@am@n, variable=\noexpand\tamr@t]
+      \tamr@Q{\noexpand\tamr@t}}%
+    \draw[angle arc, tamr@am@arc] \tamr@path;
+    \ifx\relax#5\relax\else \node[angle label, tamr@am@lab] at \tamr@Q{\tamr@tm} {#5};\fi
+  \end{scope}
+  \endgroup}
+
 % ---- rockets --------------------------------------------------------------------------
 % Side views, nose tip at the origin, axis along +x (rotate=-90 stands a rocket nose up).
 %
-% \rocketoutline[<nose>]{<stations>}: the outline of a body of revolution. <stations> is a list x/r: the
-%   first is the nose base, each later one the radius at that x, joined by straight lines (tubes, shoulders,
-%   boattails); a joint line is drawn at every station; the last is the tail. <nose> = ogive (default) |
-%   cone | parabolic | ellipsoid.
-% \rocketfins{<x tail>}{<r>}{<root chord>}{<tip chord>}{<span>}{<sweep>}: the two fins in profile, root
-%   on the body radius r ending at x tail, span from the body surface, sweep = the tip's leading edge aft of
-%   the root's. (sweep = root chord - tip chord gives a trailing edge square to the body.)
+% \rocketoutline[<nose>][<style>]{<stations>}: the outline of a body of revolution. <stations> is a list x/r:
+%   the first is the nose base, each later one the radius at that x, joined by straight lines (tubes,
+%   shoulders, boattails); a joint line is drawn at every station; the last is the tail. <nose> = ogive
+%   (default) | cone | parabolic (= paraboloid: r ~ sqrt(x)) | ellipsoid; the nose is computed exactly (any
+%   units: the tangent ogive in \fpeval, the paraboloid and ellipsoid parametrically, round at the tip).
+%   <style> is added to `outline' (e.g. [phantom, draw=ink2] for a rocket shown for context, [hidden]).
+% \rocketfins[<style>]{<x tail>}{<r>}{<root chord>}{<tip chord>}{<span>}{<sweep>}: the two fins in profile,
+%   root on the body radius r ending at x tail, span from the body surface, sweep = the tip's leading edge aft
+%   of the root's. (sweep = root chord - tip chord gives a trailing edge square to the body.)
 % \pic{rocket={<keys>}}: a one-tube rocket from the two, with its centre line; keys below.
 
-% nose profile y(\x) for 0 <= \x <= n, base radius r (pgfmath expression in \rk@y)
+% \rk@nosepath: the upper half of the nose from the tip (0,0) to the base (n, r), a TikZ plot
 \def\rk@setnose#1#2#3{% shape, n, r
   \edef\rk@n{#2}\edef\rk@r{#3}%
   \ifnum\pdfstrcmp{#1}{cone}=0
-    \def\rk@y{\rk@r*\x/\rk@n}%
-  \else\ifnum\pdfstrcmp{#1}{parabolic}=0
-    \def\rk@y{\rk@r*sqrt(\x/\rk@n)}%
-  \else\ifnum\pdfstrcmp{#1}{ellipsoid}=0
-    \def\rk@y{\rk@r*sqrt(max(0,1-(1-\x/\rk@n)^2))}%
+    \def\rk@nosepath{plot[domain=0:\rk@n, samples=40, smooth] (\x, {\fpeval{\rk@r*\x/\rk@n}})}%
+  \else\ifnum\pdfstrcmp{#1}{parabolic}=0 \rk@paraboloid
+  \else\ifnum\pdfstrcmp{#1}{paraboloid}=0 \rk@paraboloid
+  \else\ifnum\pdfstrcmp{#1}{ellipsoid}=0 % x = n (1 - cos t), y = r sin t
+    \def\rk@nosepath{plot[domain=0:90, samples=40, smooth, variable=\rk@t] ({\rk@n*(1-cos(\rk@t))},
+      {\rk@r*sin(\rk@t)})}%
   \else % tangent ogive: rho = (r^2+n^2)/(2r), y = sqrt(rho^2-(n-x)^2) + r - rho
     \edef\rk@rho{\fpeval{(\rk@r*\rk@r+\rk@n*\rk@n)/(2*\rk@r)}}%
-    \def\rk@y{sqrt(max(0,\rk@rho*\rk@rho-(\rk@n-\x)^2))+\rk@r-\rk@rho}%
-  \fi\fi\fi}
-\newcommand{\rocketoutline}[2][ogive]{%
-  \foreach \rk@px/\rk@pr [count=\rk@i] in {#2} {\ifnum\rk@i=1 \xdef\rk@nb{\rk@px}\xdef\rk@rb{\rk@pr}\fi}%
+    \def\rk@nosepath{plot[domain=0:\rk@n, samples=40, smooth]
+      (\x, {\fpeval{sqrt(max(0,\rk@rho*\rk@rho-(\rk@n-\x)^2))+\rk@r-\rk@rho}})}%
+  \fi\fi\fi\fi}
+\def\rk@paraboloid{% x = n t^2, y = r t
+  \def\rk@nosepath{plot[domain=0:1, samples=40, smooth, variable=\rk@t] ({\rk@n*\rk@t*\rk@t}, {\rk@r*\rk@t})}}
+\newcommand{\rocketoutline}[1][ogive]{\@ifnextchar[{\rk@outline{#1}}{\rk@outline{#1}[]}}
+\def\rk@outline#1[#2]#3{%
+  \tikzset{rk line/.style={#2}}%
+  \foreach \rk@px/\rk@pr [count=\rk@i] in {#3} {\ifnum\rk@i=1 \xdef\rk@nb{\rk@px}\xdef\rk@rb{\rk@pr}\fi}%
   \rk@setnose{#1}{\rk@nb}{\rk@rb}%
   \foreach \rk@s in {1,-1} {%
-    \draw[outline, yscale=\rk@s] plot[domain=0:\rk@nb, samples=40, smooth] (\x, {\rk@y})
-      \foreach \rk@px/\rk@pr in {#2} { -- (\rk@px, \rk@pr) };}%
-  \foreach \rk@px/\rk@pr in {#2} {\draw[outline] (\rk@px, \rk@pr) -- (\rk@px, -\rk@pr);}}
-\newcommand{\rocketfins}[6]{%
-  \pgfmathsetmacro\rk@le{#1-#3}\pgfmathsetmacro\rk@tle{\rk@le+#6}\pgfmathsetmacro\rk@tte{\rk@tle+#4}%
-  \pgfmathsetmacro\rk@tip{#2+#5}%
+    \draw[outline, rk line, yscale=\rk@s] \rk@nosepath
+      \foreach \rk@px/\rk@pr in {#3} { -- (\rk@px, \rk@pr) };}%
+  \foreach \rk@px/\rk@pr in {#3} {\draw[outline, rk line] (\rk@px, \rk@pr) -- (\rk@px, -\rk@pr);}}
+\newcommand{\rocketfins}[7][]{%
+  \pgfmathsetmacro\rk@le{#2-#4}\pgfmathsetmacro\rk@tle{\rk@le+#7}\pgfmathsetmacro\rk@tte{\rk@tle+#5}%
+  \pgfmathsetmacro\rk@tip{#3+#6}%
   \foreach \rk@s in {1,-1}
-    \draw[outline, yscale=\rk@s] (\rk@le, #2) -- (\rk@tle, \rk@tip) -- (\rk@tte, \rk@tip) -- (#1, #2);}
+    \draw[outline, #1, yscale=\rk@s] (\rk@le, #3) -- (\rk@tle, \rk@tip) -- (\rk@tte, \rk@tip) -- (#2, #3);}
 
 % \plumeshape{<r>}{<length>}: path of an exhaust plume from a nozzle exit of radius r at the origin along +x:
 % a slender spindle widening to about 1.3 r a third of the way down, then drawn to a point (the plumes of Ch1
@@ -196,9 +432,19 @@
 
 % \pic{rocket={...}}: length, diameter, nose length, nose, root chord, tip chord, span, sweep, fins = 2 | 3
 % (3 adds the fin seen edge-on on the centre line), centerline (true/false), plume (length of the exhaust
-% plume, 0 = none), plume bulge (its width over the nozzle's, default 1.3), lug (length of a launch lug, 0 = none); model = the Chapter 1 rocket. Named points:
-% -nose, -tail, -exit (the nozzle exit, = -tail).
+% plume, 0 = none), plume bulge (its width over the nozzle's, default 1.3), lug (length of a launch lug, 0 =
+% none), outline style (added to the outline and fins: phantom, hidden); model = the Chapter 1 rocket. Named
+% points: -nose, -tail, -exit (the nozzle exit, = -tail).
+% \pic{rocket 3d={...}} (in a 3D view): the same keys (not plume, lug) and axis = the direction the nose points
+% (default (0,0,1), upright), tip at = the nose tip's distance from the pic's position along the axis (default 0:
+% the tip at the position; a rocket with its C.G. at the position: tip at = the tip-to-C.G. distance), fins = the
+% number of fins round the body (default 4), roll = the angle of the first fin round the axis (from the
+% horizontal a x z, or x for an upright rocket, towards (a x z) x a: for a rocket along y, 0 = +x, 90 = +z),
+% centerline (default false: drawn over the body when true). The silhouettes are exact for the body of
+% revolution in the current view; fins behind the body are painted before it, fins in front after; the tail
+% is seen when it faces the viewer. Named points: -nose, -base (the nose base on the axis), -tail.
 \newif\ifrk@cl
+\tikzset{rk pic line/.style={}}
 \pgfkeys{/rocket/.is family, /rocket,
   length/.store in=\rk@L, length=30,
   diameter/.store in=\rk@d, diameter=2.5,
@@ -213,6 +459,10 @@
   plume/.store in=\rk@plume, plume=0,
   plume bulge/.store in=\rk@bulge, plume bulge=1.3,
   lug/.store in=\rk@lug, lug=0,
+  outline style/.code={\tikzset{rk pic line/.style={#1}}},
+  axis/.store in=\rk@axis, axis={(0,0,1)},
+  tip at/.store in=\rk@tipat, tip at=0,
+  roll/.store in=\rk@roll, roll=0,
   % the stylised model rocket of the Chapter 1 figures (and wherever a generic model rocket is drawn)
   model/.style={length=6.4, diameter=0.4, nose length=1.2, root chord=0.95, tip chord=0.45, span=0.6, sweep=0.5},
 }
@@ -220,9 +470,9 @@
   pics/rocket/.style={code={%
     \pgfkeys{/rocket,#1}%
     \pgfmathsetmacro\rk@rad{\rk@d/2}%
-    \rocketoutline[\rk@shape]{\rk@nl/\rk@rad, \rk@L/\rk@rad}%
-    \rocketfins{\rk@L}{\rk@rad}{\rk@cr}{\rk@ct}{\rk@sp}{\rk@sw}%
-    \ifnum\rk@fins>2 \draw[outline] ({\rk@L-\rk@cr}, 0) -- (\rk@L, 0); \fi
+    \rocketoutline[\rk@shape][rk pic line]{\rk@nl/\rk@rad, \rk@L/\rk@rad}%
+    \rocketfins[rk pic line]{\rk@L}{\rk@rad}{\rk@cr}{\rk@ct}{\rk@sp}{\rk@sw}%
+    \ifnum\rk@fins>2 \draw[outline, rk pic line] ({\rk@L-\rk@cr}, 0) -- (\rk@L, 0); \fi
     \ifrk@cl \draw[centerline] (-0.08*\rk@L, 0) -- (1.08*\rk@L, 0); \fi
     % exhaust plume: a spindle from the nozzle, as wide as the body, bulging a little, to a point
     \ifdim\rk@plume pt>0pt
@@ -230,12 +480,141 @@
     \fi
     % launch lug: a short tube on the body surface (lug = its length), ahead of the fins
     \ifdim\rk@lug pt>0pt
-      \draw[outline] ({\rk@L-\rk@cr-0.4*\rk@L}, \rk@rad) rectangle ++(\rk@lug, {0.35*\rk@rad});
+      \draw[outline, rk pic line] ({\rk@L-\rk@cr-0.4*\rk@L}, \rk@rad) rectangle ++(\rk@lug, {0.35*\rk@rad});
     \fi
     \coordinate (-nose) at (0,0);
     \coordinate (-tail) at (\rk@L, 0);
     \coordinate (-exit) at (\rk@L, 0);
   }},
+  pics/rocket 3d/.style={code={%
+    \pgfkeys{/rocket, fins=4, centerline=false, #1}%
+    \rk@threed
+  }},
 }
+
+% the 3D rocket. Unit axis a; view c; e = the unit part of c normal to a, n = a x e: a point at s aft of the
+% nose tip, radius rho, angle psi round the axis (from e towards n) is T - s a + rho (cos psi e + sin psi n).
+% The surface's normal is normal to c where cos psi = -(dr/ds) (a.c)/|c - (a.c) a|: the silhouettes.
+\def\rk@fp#1#2{\edef#1{\fpeval{round(#2,6)}}}
+% \rk@X{<s>}{<rho>}{<cos psi>}{<sin psi>}: the point, as (x,y,z), into \rk@pt
+\def\rk@X#1#2#3#4{\edef\rk@pt{(%
+  \fpeval{round(\rk@Tx-(#1)*(\rk@ax)+(#2)*((#3)*(\rk@ex)+(#4)*(\rk@nx)),5)},%
+  \fpeval{round(\rk@Ty-(#1)*(\rk@ay)+(#2)*((#3)*(\rk@ey)+(#4)*(\rk@ny)),5)},%
+  \fpeval{round(\rk@Tz-(#1)*(\rk@az)+(#2)*((#3)*(\rk@ez)+(#4)*(\rk@nz)),5)})}}
+% \rk@F{<s>}{<rho>}{<phi>}: a point of the fin at roll phi, into \rk@pt
+\def\rk@F#1#2#3{\edef\rk@pt{(%
+  \fpeval{round(\rk@Tx-(#1)*(\rk@ax)+(#2)*(cosd(#3)*(\rk@fx)+sind(#3)*(\rk@gx)),5)},%
+  \fpeval{round(\rk@Ty-(#1)*(\rk@ay)+(#2)*(cosd(#3)*(\rk@fy)+sind(#3)*(\rk@gy)),5)},%
+  \fpeval{round(\rk@Tz-(#1)*(\rk@az)+(#2)*(cosd(#3)*(\rk@fz)+sind(#3)*(\rk@gz)),5)})}}
+% \rk@nosept{<u>}, 0 < u <= 1 from the tip to the base: \rk@s, \rk@r, and ds, dr (the profile's direction)
+\def\rk@nosept#1{%
+  \ifnum\pdfstrcmp{\rk@shape}{cone}=0
+    \rk@fp\rk@s{\rk@N*(#1)}\rk@fp\rk@r{\rk@R*(#1)}\let\rk@ds\rk@N\let\rk@dr\rk@R
+  \else\ifnum\pdfstrcmp{\rk@shape}{parabolic}=0 \rk@paranose{#1}%
+  \else\ifnum\pdfstrcmp{\rk@shape}{paraboloid}=0 \rk@paranose{#1}%
+  \else\ifnum\pdfstrcmp{\rk@shape}{ellipsoid}=0
+    \rk@fp\rk@s{\rk@N*(1-cosd(90*(#1)))}\rk@fp\rk@r{\rk@R*sind(90*(#1))}%
+    \rk@fp\rk@ds{\rk@N*sind(90*(#1))}\rk@fp\rk@dr{\rk@R*cosd(90*(#1))}%
+  \else % tangent ogive, in units of the nose length: q = rho/n
+    \rk@fp\rk@s{\rk@N*(#1)}%
+    \rk@fp\rk@r{\rk@N*(sqrt(\rk@q^2-(1-(#1))^2)+\rk@R/\rk@N-\rk@q)}%
+    \def\rk@ds{1}\rk@fp\rk@dr{(1-(#1))/sqrt(\rk@q^2-(1-(#1))^2)}%
+  \fi\fi\fi\fi}
+\def\rk@paranose#1{\rk@fp\rk@s{\rk@N*(#1)^2}\rk@fp\rk@r{\rk@R*(#1)}\rk@fp\rk@ds{2*\rk@N*(#1)}\let\rk@dr\rk@R}
+\def\rk@threed{%
+  \tamr@view
+  \expandafter\tamr@parsevec\rk@axis\@nil
+  \rk@fp\rk@an{sqrt((\tamr@vx)^2+(\tamr@vy)^2+(\tamr@vz)^2)}%
+  \rk@fp\rk@ax{(\tamr@vx)/\rk@an}\rk@fp\rk@ay{(\tamr@vy)/\rk@an}\rk@fp\rk@az{(\tamr@vz)/\rk@an}%
+  % the fins' frame: f = a x z (horizontal; x for an upright rocket), g = f x a
+  \rk@fp\rk@fn{sqrt((\rk@ax)^2+(\rk@ay)^2)}%
+  \ifdim\rk@fn pt<0.00001pt \def\rk@fx{1}\def\rk@fy{0}\def\rk@fz{0}%
+  \else \rk@fp\rk@fx{(\rk@ay)/\rk@fn}\rk@fp\rk@fy{-(\rk@ax)/\rk@fn}\def\rk@fz{0}\fi
+  \rk@fp\rk@gx{(\rk@fy)*(\rk@az)-(\rk@fz)*(\rk@ay)}%
+  \rk@fp\rk@gy{(\rk@fz)*(\rk@ax)-(\rk@fx)*(\rk@az)}%
+  \rk@fp\rk@gz{(\rk@fx)*(\rk@ay)-(\rk@fy)*(\rk@ax)}%
+  % the view: cb = a.c, e, n
+  \rk@fp\rk@cb{(\rk@ax)*(\tamr@cx)+(\rk@ay)*(\tamr@cy)+(\rk@az)*(\tamr@cz)}%
+  \rk@fp\rk@ex{(\tamr@cx)-(\rk@cb)*(\rk@ax)}\rk@fp\rk@ey{(\tamr@cy)-(\rk@cb)*(\rk@ay)}%
+  \rk@fp\rk@ez{(\tamr@cz)-(\rk@cb)*(\rk@az)}%
+  \rk@fp\rk@sb{sqrt((\rk@ex)^2+(\rk@ey)^2+(\rk@ez)^2)}%
+  \ifdim\rk@sb pt<0.00001pt % seen along the axis
+    \let\rk@ex\rk@fx\let\rk@ey\rk@fy\let\rk@ez\rk@fz\def\rk@sb{0.00001}%
+  \else \rk@fp\rk@ex{(\rk@ex)/\rk@sb}\rk@fp\rk@ey{(\rk@ey)/\rk@sb}\rk@fp\rk@ez{(\rk@ez)/\rk@sb}\fi
+  \rk@fp\rk@nx{(\rk@ay)*(\rk@ez)-(\rk@az)*(\rk@ey)}%
+  \rk@fp\rk@ny{(\rk@az)*(\rk@ex)-(\rk@ax)*(\rk@ez)}%
+  \rk@fp\rk@nz{(\rk@ax)*(\rk@ey)-(\rk@ay)*(\rk@ex)}%
+  % sizes, the nose tip T
+  \pgfmathsetmacro\rk@R{\rk@d/2}\pgfmathsetmacro\rk@N{\rk@nl}\pgfmathsetmacro\rk@Lt{\rk@L}%
+  \pgfmathsetmacro\rk@Cr{\rk@cr}\pgfmathsetmacro\rk@Ct{\rk@ct}\pgfmathsetmacro\rk@Sp{\rk@sp}%
+  \pgfmathsetmacro\rk@Sw{\rk@sw}\pgfmathsetmacro\rk@Ta{\rk@tipat}%
+  \rk@fp\rk@q{((\rk@R/\rk@N)^2+1)/(2*\rk@R/\rk@N)}%
+  \rk@fp\rk@Tx{\rk@Ta*(\rk@ax)}\rk@fp\rk@Ty{\rk@Ta*(\rk@ay)}\rk@fp\rk@Tz{\rk@Ta*(\rk@az)}%
+  % the outline: the nose's two silhouettes, the tube's, the tail's rim between them
+  \rk@X{0}{0}{0}{0}\let\rk@tip\rk@pt
+  \gdef\rk@up{}\gdef\rk@dn{}%
+  \foreach \rk@k in {1,...,40} {%
+    \rk@nosept{\rk@k/40}%
+    \rk@fp\rk@c{max(-1,min(1,-(\rk@dr)*(\rk@cb)/((\rk@ds)*\rk@sb)))}\rk@fp\rk@si{sqrt(1-(\rk@c)^2)}%
+    \rk@X{\rk@s}{\rk@r}{\rk@c}{\rk@si}\xdef\rk@up{\rk@up -- \rk@pt}%
+    \rk@X{\rk@s}{\rk@r}{\rk@c}{-\rk@si}\xdef\rk@dn{-- \rk@pt\space\rk@dn}}%
+  \rk@X{\rk@N}{\rk@R}{0}{1}\edef\rk@up{\rk@up -- \rk@pt}%
+  \rk@X{\rk@Lt}{\rk@R}{0}{1}\edef\rk@up{\rk@up -- \rk@pt}%
+  \ifdim\rk@cb pt<0pt \def\rk@tl{180}\else\def\rk@tl{0}\fi % the tail's rim: its back half if the tail is seen
+  \gdef\rk@arc{}%
+  \foreach \rk@k in {1,...,23} {%
+    \rk@X{\rk@Lt}{\rk@R}{cosd(90+(\rk@tl-90)*\rk@k/12)}{sind(90+(\rk@tl-90)*\rk@k/12)}%
+    \xdef\rk@arc{\rk@arc -- \rk@pt}}%
+  \rk@X{\rk@Lt}{\rk@R}{0}{-1}\edef\rk@arc{\rk@arc -- \rk@pt}%
+  \rk@X{\rk@N}{\rk@R}{0}{-1}\edef\rk@arc{\rk@arc -- \rk@pt}%
+  % the fins: behind the body (normal to the view or turned away from it) and in front
+  \gdef\rk@back{}\gdef\rk@front{}%
+  \pgfmathsetmacro\rk@nf{int(\rk@fins)}%
+  \foreach \rk@k in {1,...,\rk@nf} {%
+    \rk@fp\rk@phi{\rk@roll+360*(\rk@k-1)/\rk@nf}%
+    \rk@F{\rk@Lt-\rk@Cr}{\rk@R}{\rk@phi}\let\rk@pa\rk@pt
+    \rk@F{\rk@Lt-\rk@Cr+\rk@Sw}{\rk@R+\rk@Sp}{\rk@phi}\let\rk@pb\rk@pt
+    \rk@F{\rk@Lt-\rk@Cr+\rk@Sw+\rk@Ct}{\rk@R+\rk@Sp}{\rk@phi}\let\rk@pc\rk@pt
+    \rk@F{\rk@Lt}{\rk@R}{\rk@phi}\let\rk@pd\rk@pt
+    \rk@fp\rk@depth{cosd(\rk@phi)*((\rk@fx)*(\tamr@cx)+(\rk@fy)*(\tamr@cy)+(\rk@fz)*(\tamr@cz))
+      +sind(\rk@phi)*((\rk@gx)*(\tamr@cx)+(\rk@gy)*(\tamr@cy)+(\rk@gz)*(\tamr@cz))}%
+    \edef\rk@this{\noexpand\draw[outline, fill=white, rk pic line] \rk@pa -- \rk@pb -- \rk@pc -- \rk@pd -- cycle;}%
+    \ifdim\rk@depth pt>0.00001pt \xdef\rk@front{\unexpanded\expandafter{\rk@front}\unexpanded\expandafter{\rk@this}}%
+    \else \xdef\rk@back{\unexpanded\expandafter{\rk@back}\unexpanded\expandafter{\rk@this}}\fi}%
+  % the joint at the nose base (its seen half) and the tail's end (when it faces the viewer)
+  \def\rk@joint{}%
+  \foreach \rk@k in {0,...,24} {%
+    \rk@X{\rk@N}{\rk@R}{cosd(-90+7.5*\rk@k)}{sind(-90+7.5*\rk@k)}%
+    \ifnum\rk@k=0 \xdef\rk@joint{\rk@pt}\else\xdef\rk@joint{\rk@joint -- \rk@pt}\fi}%
+  \foreach \rk@k in {0,...,47} {%
+    \rk@X{\rk@Lt}{\rk@R}{cosd(7.5*\rk@k)}{sind(7.5*\rk@k)}%
+    \ifnum\rk@k=0 \xdef\rk@end{\rk@pt}\else\xdef\rk@end{\rk@end -- \rk@pt}\fi}%
+  % paint
+  \rk@back
+  \draw[outline, fill=white, rk pic line] \rk@tip \rk@up \rk@arc \rk@dn -- cycle;
+  \draw[outline, rk pic line] \rk@joint;
+  \ifdim\rk@cb pt<0pt \draw[outline, fill=white, rk pic line] \rk@end -- cycle; \fi
+  \rk@front
+  \ifrk@cl
+    \rk@X{-0.08*\rk@Lt}{0}{0}{0}\let\rk@pa\rk@pt\rk@X{1.08*\rk@Lt}{0}{0}{0}%
+    \draw[centerline] \rk@pa -- \rk@pt;
+  \fi
+  \path \rk@tip coordinate (-nose);
+  \rk@X{\rk@N}{0}{0}{0}\path \rk@pt coordinate (-base);
+  \rk@X{\rk@Lt}{0}{0}{0}\path \rk@pt coordinate (-tail);
+}
+
+% ---- a figure's own definitions ---------------------------------------------------------------------------
+% A figure may define, with \newcommand, a macro of the same name as one of the kit's (Ch2 Figs 1, 6, 43, 44
+% and 48 keep their own \anglemark, \cylx, \blk, \dimout, \callout ...): for these names \newcommand quietly
+% replaces the kit's macro instead of stopping with "already defined".
+\edef\tamr@soft{\detokenize{,anglemark,dimout,callout,breakline,cylx,cyly,cylz,ringx,ringy,ringz,blk,getview,%
+  silangle,}}
+\let\tamr@ifdefinable\@ifdefinable
+\long\def\@ifdefinable#1#2{%
+  \edef\tamr@name{,\expandafter\@gobble\string#1,}%
+  \@expandtwoargs\in@{\tamr@name}{\tamr@soft}%
+  \ifin@\expandafter\@firstoftwo\else\expandafter\@secondoftwo\fi{#2}{\tamr@ifdefinable{#1}{#2}}}
+\let\@@ifdefinable\@ifdefinable % (\renewcommand restores \@ifdefinable from \@@ifdefinable)
 
 \endinput

@@ -384,21 +384,49 @@ the per-figure record is `figures/v2/inventory.csv`; doubts and decisions are in
   methods compared keep the printed solid/dashed as secondary encoding (`series1` solid, `series2` dashed).
   Text never takes a series colour.
 - **Plots** (pgfplots): `tamr` (open left and bottom axes), `tamr grid` (a design chart read for values:
-  hairline grid at the printed spacing), `tamr box`, `tamr sketch` (qualitative: arrowed axes, no numeric
-  ticks). Tick labels with a leading zero (0.25, not .25); no thousands separator (2500). Curve labels
-  directly on or beside the curve, set in a white knock-out only where no other curve passes; circled
-  reference letters the text cites use `curve tag`. Reference levels and asymptotes: `guide`. True log axes
-  (the 1973 "log" paper of Ch3 Figs 22, 26, 51, 52, 55 is not logarithmic between decades).
+  hairline grid at the printed spacing), `tamr box`, `tamr sketch` (qualitative: arrowed axes through the
+  origin, no numeric ticks, the y label upright above its arrow, a tick set on the other axis's line kept; the
+  0 at the origin is `\node[zero label] at (axis cs:0,0) {0};`). Tick labels with a leading zero (0.25, not
+  .25); no thousands separator (2500). Curve labels directly on or beside the curve, set in a white knock-out
+  only where no other curve passes; circled reference letters the text cites use `curve tag`. Reference
+  levels and asymptotes: `guide`; a curve the caption calls dotted (an envelope): `dotted guide`; a tangent
+  to a curve: `tangent` (s2, solid, 1pt; its label stays ink). True log axes (the 1973 "log" paper of Ch3
+  Figs 22, 26, 51, 52, 55 is not logarithmic between decades).
 - **Drawings** (TikZ): outlines `outline` (0.6pt); force and velocity vectors `vec` (1.3pt, stealth head);
   lighter arrows `thin vec`; centre lines `centerline` (dash-dot); dimensions `\dimline` (label in a gap at the
-  middle) with `extension` lines; callout leaders `leader`; hatching `hatch`/`hatch back` (45 and 135 degrees
-  only); C.G. `cg mark` (quartered circle), C.P. `cp mark` (circle with centre dot); angles `angle arc`.
-  Rockets: `\pic{rocket={model, ...}}` (the Chapter 1 model rocket; keys: length, diameter, nose, nose length,
-  root chord, tip chord, span, sweep, fins, centerline, plume, lug), `\rocketoutline[<nose>]{<x/r stations>}`
-  and `\rocketfins` for stepped bodies, `\plumeshape` for exhaust plumes. A pic takes its position but not its
-  orientation from an enclosing rotation: give the rotation in the pic's own options. 3D drawings use a true
-  orthographic view (Ch2 Fig 3: elevation 32 degrees, azimuth 45 degrees), right-handed axes as the book
-  defines them.
+  middle) with `extension` lines; a dimension too short for its label
+  `\dimout[<label opts>]{<from>}{<to>}{<label>}` (two `dim stub` arrows from outside, the label beyond the one
+  at `<to>`); a dimension along a centre line `centre dimension`; callout leaders `leader`, `leader arrow`
+  (ending in a head), `\callout[<opts>]{<point>}{<elbow>}{<label>}` (leader with a horizontal shoulder);
+  hatching `hatch`/`hatch back` (45 and 135 degrees only); C.G. `cg mark` (quartered circle), C.P. `cp mark`
+  (circle with centre dot); angles `angle arc`, `angle arc single` (one head); the break of a cut-off tube
+  `\breakline[<opts>]{<from>}{<to>}` (`break amplitude`); a fin seen edge-on `edge fin`. Signatures and keys
+  are in the comments of `tamrfig.sty`.
+- **Rockets.** `\pic{rocket={model, ...}}` (the Chapter 1 model rocket; keys: length, diameter, nose, nose
+  length, root chord, tip chord, span, sweep, fins, centerline, plume, lug, outline style),
+  `\rocketoutline[<nose>][<style>]{<x/r stations>}` and `\rocketfins[<style>]{...}` for stepped bodies (noses
+  ogive, cone, parabolic, ellipsoid, exact in any units: no `scale=10` work-around; `<style>` e.g.
+  `phantom, draw=ink2` for a rocket shown for context, or `hidden`), `\plumeshape` for exhaust plumes. A pic
+  takes its position but not its orientation from an enclosing rotation: give the rotation in the pic's own
+  options.
+- **3D drawings** use a true orthographic view, right-handed axes as the book defines them: the house view
+  `tamr view` (Ch2 Fig 3: elevation 32 degrees, azimuth 45 degrees; x up to the right, y up to the left, z up;
+  `tamr view=<f>` scales it), silhouette angle `\silangle` (48.53). Primitives that work out what is seen and
+  hide the rest with white fills (draw back to front): `\cylx`/`\cyly`/`\cylz` (cylinders),
+  `\ringx`/`\ringy`/`\ringz` (circles; starred: the half facing the viewer, a joint or band), `\blk` (block,
+  three faces), `\anglemark` (an arc between two 3D directions in their plane, label in a white gap),
+  `\pic{rocket 3d={axis=..., ...}}` (a rocket along any direction, exact silhouettes, fins in front and
+  behind), `\getview` (the view direction). They read the view from the x, y, z vectors, so they also work in
+  another parallel view (Ch2 Fig 43's).
+- **Tables in figures**: `booktabs` rules and `siunitx` `S` columns (loaded by `tamrfig`; `\sisetup` locally).
+- **Figure-local helpers.** Define a helper once in `tamrfig.sty` when a second figure needs it. A figure may
+  still define its own macro under a kit name with `\newcommand` (Ch2 Figs 1, 6, 43, 44, 48 do): its definition
+  wins.
+- **Pitfalls.** Inside a pgfplots `axis`, drawing commands are deferred to `\end{axis}`, so a `\foreach`
+  variable is gone when they run (`\k`, the T1 ogonek accent, and `\i` fail outright): loop with
+  `\pgfplotsinvokeforeach{<list>}{... #1 ...}`, or `\edef\temp{\noexpand\draw ...}\temp`. Under the house
+  `clip mode=individual`, a node attached to an `\addplot` path is clipped to the axes: set the label as a
+  separate `\node at (axis cs:...)`. `\coordinate (n) at \macro;` fails; write `\path \macro coordinate (n);`.
 - **Curve data.** Computed from the book's equations or tables when they determine the curve (the script
   names the equations); a qualitative sketch gets parameters matched to the scan; otherwise digitized with
   `tools/v2/digitize.py` (`lines`, `ticks`, `trace`, `overlay`; calibration `<name>.calib.json` against the
